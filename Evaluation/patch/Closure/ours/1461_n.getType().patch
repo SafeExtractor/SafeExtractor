@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..1ababe8 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -1129,7 +1129,8 @@
+   private Node tryMinimizeCondition(Node n) {
+     Node parent = n.getParent();
+ 
+-    switch (n.getType()) {
++    int var_1461 = n.getType();
++	switch (var_1461) {
+       case Token.NOT:
+         Node first = n.getFirstChild();
+         switch (first.getType()) {
+@@ -1224,7 +1225,7 @@
+         //   x && false  --> false
+         TernaryValue rightVal = NodeUtil.getPureBooleanValue(right);
+         if (NodeUtil.getPureBooleanValue(right) != TernaryValue.UNKNOWN) {
+-          int type = n.getType();
++          int type = var_1461;
+           Node replacement = null;
+           boolean rval = rightVal.toBoolean(true);
+ 

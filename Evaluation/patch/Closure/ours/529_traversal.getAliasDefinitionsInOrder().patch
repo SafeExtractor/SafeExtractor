@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ScopedAliases.java b/src/com/google/javascript/jscomp/ScopedAliases.java
+index e2f0538..f688a6a 100644
+--- a/src/com/google/javascript/jscomp/ScopedAliases.java
++++ b/src/com/google/javascript/jscomp/ScopedAliases.java
+@@ -116,7 +116,8 @@
+       }
+ 
+       // Remove the alias definitions.
+-      for (Node aliasDefinition : traversal.getAliasDefinitionsInOrder()) {
++      Collection<Node> var_529 = traversal.getAliasDefinitionsInOrder();
++	for (Node aliasDefinition : var_529) {
+         if (aliasDefinition.getParent().isVar() &&
+             aliasDefinition.getParent().hasOneChild()) {
+           aliasDefinition.getParent().detachFromParent();
+@@ -137,7 +138,7 @@
+       }
+ 
+       if (traversal.getAliasUsages().size() > 0 ||
+-          traversal.getAliasDefinitionsInOrder().size() > 0 ||
++          var_529.size() > 0 ||
+           traversal.getScopeCalls().size() > 0) {
+         compiler.reportCodeChange();
+       }

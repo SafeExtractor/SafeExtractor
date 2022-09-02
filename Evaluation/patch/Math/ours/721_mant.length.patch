@@ -1,0 +1,39 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..2eac7d2 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -2366,13 +2366,14 @@
+ 
+         final Dfp inc;
+         Dfp result;
+-        if (up) {
++        int var_721 = mant.length;
++		if (up) {
+             inc = newInstance(getOne());
+-            inc.exp = this.exp-mant.length+1;
++            inc.exp = this.exp-var_721+1;
+             inc.sign = this.sign;
+ 
+             if (this.equals(getZero())) {
+-                inc.exp = MIN_EXP-mant.length;
++                inc.exp = MIN_EXP-var_721;
+             }
+ 
+             result = add(inc);
+@@ -2382,13 +2383,13 @@
+             inc.sign = this.sign;
+ 
+             if (this.equals(inc)) {
+-                inc.exp = this.exp-mant.length;
++                inc.exp = this.exp-var_721;
+             } else {
+-                inc.exp = this.exp-mant.length+1;
++                inc.exp = this.exp-var_721+1;
+             }
+ 
+             if (this.equals(getZero())) {
+-                inc.exp = MIN_EXP-mant.length;
++                inc.exp = MIN_EXP-var_721;
+             }
+ 
+             result = this.subtract(inc);

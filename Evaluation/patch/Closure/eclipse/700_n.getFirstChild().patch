@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/AmbiguateProperties.java b/src/com/google/javascript/jscomp/AmbiguateProperties.java
+index 68c3996..74c846a 100644
+--- a/src/com/google/javascript/jscomp/AmbiguateProperties.java
++++ b/src/com/google/javascript/jscomp/AmbiguateProperties.java
+@@ -432,13 +432,14 @@
+   private class ProcessExterns extends AbstractPostOrderCallback {
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      switch (n.getType()) {
++      Node var_700 = n.getFirstChild();
++	switch (n.getType()) {
+         case Token.GETPROP:
+-          Node dest = n.getFirstChild().getNext();
++          Node dest = var_700.getNext();
+           externedNames.add(dest.getString());
+           break;
+         case Token.OBJECTLIT:
+-          for (Node child = n.getFirstChild();
++          for (Node child = var_700;
+                child != null;
+                child = child.getNext()) {
+             // names: STRING, GET, SET

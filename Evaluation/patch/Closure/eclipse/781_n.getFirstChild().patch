@@ -1,0 +1,53 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..fdbd4de 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -171,9 +171,10 @@
+     Node result = n;
+ 
+     // Simplify the results of conditional expressions
+-    switch (n.getType()) {
++    Node var_781 = n.getFirstChild();
++	switch (n.getType()) {
+       case Token.HOOK:
+-        Node trueNode = trySimplifyUnusedResult(n.getFirstChild().getNext());
++        Node trueNode = trySimplifyUnusedResult(var_781.getNext());
+         Node falseNode = trySimplifyUnusedResult(n.getLastChild());
+         // If one or more of the conditional children were removed,
+         // transform the HOOK to an equivalent operation:
+@@ -188,7 +189,7 @@
+           n.setType(Token.AND);
+           Preconditions.checkState(n.getChildCount() == 2);
+         } else if (trueNode == null && falseNode == null) {
+-          result = trySimplifyUnusedResult(n.getFirstChild());
++          result = trySimplifyUnusedResult(var_781);
+         } else {
+           // The structure didn't change.
+           result = n;
+@@ -205,7 +206,7 @@
+           Preconditions.checkState(n.hasOneChild());
+           // The conditionally executed code was removed, so
+           // replace the AND/OR with its LHS or remove it if it isn't useful.
+-          result = trySimplifyUnusedResult(n.getFirstChild());
++          result = trySimplifyUnusedResult(var_781);
+         }
+         break;
+       case Token.FUNCTION:
+@@ -218,7 +219,7 @@
+         // get split into individual EXPR_RESULT statement, if possible), so
+         // we special case COMMA (we don't want to rewrite COMMAs as new COMMAs
+         // nodes.
+-        Node left = trySimplifyUnusedResult(n.getFirstChild());
++        Node left = trySimplifyUnusedResult(var_781);
+         Node right = trySimplifyUnusedResult(n.getLastChild());
+         if (left == null && right == null) {
+           result = null;
+@@ -236,7 +237,7 @@
+           // This is the meat of this function. The node itself doesn't generate
+           // any side-effects but preserve any side-effects in the children.
+           Node resultList = null;
+-          for (Node next, c = n.getFirstChild(); c != null; c = next) {
++          for (Node next, c = var_781; c != null; c = next) {
+             next = c.getNext();
+             c = trySimplifyUnusedResult(c);
+             if (c != null) {

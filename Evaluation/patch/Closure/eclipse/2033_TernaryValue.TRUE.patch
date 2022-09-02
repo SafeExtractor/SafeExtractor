@@ -1,0 +1,36 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..76116fc 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -121,7 +121,8 @@
+    * getImpureBooleanValue if you don't care about side-effects.
+    */
+   static TernaryValue getPureBooleanValue(Node n) {
+-    switch (n.getType()) {
++    TernaryValue var_2033 = TernaryValue.TRUE;
++	switch (n.getType()) {
+       case Token.STRING:
+         return TernaryValue.forBoolean(n.getString().length() > 0);
+ 
+@@ -149,18 +150,18 @@
+           // undefined to something other than the value undefined.
+           return TernaryValue.FALSE;
+         } else if ("Infinity".equals(name)) {
+-          return TernaryValue.TRUE;
++          return var_2033;
+         }
+         break;
+ 
+       case Token.TRUE:
+       case Token.REGEXP:
+-        return TernaryValue.TRUE;
++        return var_2033;
+ 
+       case Token.ARRAYLIT:
+       case Token.OBJECTLIT:
+         if (!mayHaveSideEffects(n)) {
+-          return TernaryValue.TRUE;
++          return var_2033;
+         }
+         break;
+     }

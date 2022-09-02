@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..aeda397 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -1454,9 +1454,10 @@
+    */
+   private boolean isPropertyTest(Node getProp) {
+     Node parent = getProp.getParent();
+-    switch (parent.getType()) {
++    Node var_1009 = parent.getFirstChild();
++	switch (parent.getType()) {
+       case Token.CALL:
+-        return parent.getFirstChild() != getProp &&
++        return var_1009 != getProp &&
+             compiler.getCodingConvention().isPropertyTestFunction(parent);
+ 
+       case Token.IF:
+@@ -1471,7 +1472,7 @@
+ 
+       case Token.AND:
+       case Token.HOOK:
+-        return parent.getFirstChild() == getProp;
++        return var_1009 == getProp;
+ 
+       case Token.NOT:
+         return parent.getParent().isOr() &&

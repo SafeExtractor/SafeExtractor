@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..efa838f 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -1194,13 +1194,14 @@
+                 for (int i = 0; i < n; i++) {
+                     // Computing MIN
+                     // Computing MAX
+-                    final double d3 = lowerBound[i];
++                    double var_3091 = lowerBound[i];
++					final double d3 = var_3091;
+                     final double d4 = originShift.getEntry(i) + trustRegionCenterOffset.getEntry(i);
+                     final double d1 = Math.max(d3, d4);
+                     final double d2 = upperBound[i];
+                     currentBest.setEntry(i, Math.min(d1, d2));
+                     if (trustRegionCenterOffset.getEntry(i) == lowerDifference.getEntry(i)) {
+-                        currentBest.setEntry(i, lowerBound[i]);
++                        currentBest.setEntry(i, var_3091);
+                     }
+                     if (trustRegionCenterOffset.getEntry(i) == upperDifference.getEntry(i)) {
+                         currentBest.setEntry(i, upperBound[i]);

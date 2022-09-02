@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/joda/time/format/DateTimeParserBucket.java b/src/main/java/org/joda/time/format/DateTimeParserBucket.java
+index 93dfaa7..c131a2a 100644
+--- a/src/main/java/org/joda/time/format/DateTimeParserBucket.java
++++ b/src/main/java/org/joda/time/format/DateTimeParserBucket.java
+@@ -508,13 +508,14 @@
+     }
+ 
+     static int compareReverse(DurationField a, DurationField b) {
+-        if (a == null || !a.isSupported()) {
+-            if (b == null || !b.isSupported()) {
++        boolean var_497 = b.isSupported();
++		if (a == null || !a.isSupported()) {
++            if (b == null || !var_497) {
+                 return 0;
+             }
+             return -1;
+         }
+-        if (b == null || !b.isSupported()) {
++        if (b == null || !var_497) {
+             return 1;
+         }
+         return -a.compareTo(b);

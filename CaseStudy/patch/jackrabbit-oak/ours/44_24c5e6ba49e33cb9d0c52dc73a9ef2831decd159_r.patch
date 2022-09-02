@@ -1,0 +1,16 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/SplitOperations.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/SplitOperations.java
+index 3ca3e08..d500733 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/SplitOperations.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/SplitOperations.java
+@@ -215,8 +215,9 @@
+         NavigableMap<Revision, String> commitRoot =
+                 new TreeMap<Revision, String>(context.getRevisionComparator());
+         for (Map.Entry<Revision, String> entry : doc.getLocalCommitRoot().entrySet()) {
+-            if (splitRevs.contains(entry.getKey())) {
+-                commitRoot.put(entry.getKey(), entry.getValue());
++            Revision r = entry.getKey();
++			if (splitRevs.contains(r)) {
++                commitRoot.put(r, entry.getValue());
+                 numValues++;
+             }
+         }

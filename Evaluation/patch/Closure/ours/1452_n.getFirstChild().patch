@@ -1,0 +1,37 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..ce5a7dd 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -1129,9 +1129,10 @@
+   private Node tryMinimizeCondition(Node n) {
+     Node parent = n.getParent();
+ 
+-    switch (n.getType()) {
++    Node var_1452 = n.getFirstChild();
++	switch (n.getType()) {
+       case Token.NOT:
+-        Node first = n.getFirstChild();
++        Node first = var_1452;
+         switch (first.getType()) {
+           case Token.NOT: {
+               Node newRoot = first.removeFirstChild();
+@@ -1208,7 +1209,7 @@
+ 
+       case Token.OR:
+       case Token.AND: {
+-        Node left = n.getFirstChild();
++        Node left = var_1452;
+         Node right = n.getLastChild();
+ 
+         // Because the expression is in a boolean context minimize
+@@ -1248,8 +1249,8 @@
+       }
+ 
+       case Token.HOOK: {
+-        Node condition = n.getFirstChild();
+-        Node trueNode = n.getFirstChild().getNext();
++        Node condition = var_1452;
++        Node trueNode = var_1452.getNext();
+         Node falseNode = n.getLastChild();
+ 
+         // Because the expression is in a boolean context minimize

@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..02dfcb8 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -2043,12 +2043,13 @@
+     }
+ 
+     Node expr = null;
+-    do {
++    JsDocToken var_2370 = JsDocToken.COMMA;
++	do {
+       if (expr != null) {
+         skipEOLs();
+         token = next();
+         Preconditions.checkState(
+-            token == JsDocToken.PIPE || token == JsDocToken.COMMA);
++            token == JsDocToken.PIPE || token == var_2370);
+ 
+         boolean isPipe = token == JsDocToken.PIPE;
+         if (isPipe && match(JsDocToken.PIPE)) {
+@@ -2065,7 +2066,7 @@
+ 
+       union.addChildToBack(expr);
+       // We support commas for backwards compatibility.
+-    } while (match(JsDocToken.PIPE, JsDocToken.COMMA));
++    } while (match(JsDocToken.PIPE, var_2370));
+ 
+     if (alternate == null) {
+       skipEOLs();

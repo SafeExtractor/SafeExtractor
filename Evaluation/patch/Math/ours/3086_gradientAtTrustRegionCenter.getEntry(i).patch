@@ -1,0 +1,35 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..f2d7e1b 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -1042,10 +1042,11 @@
+                         sum += bMatrix.getEntry(k, i) *
+                             lagrangeValuesAtNewPoint.getEntry(k) + interpolationPoints.getEntry(k, i) * work3.getEntry(k);
+                     }
+-                    if (trustRegionCenterOffset.getEntry(i) == lowerDifference.getEntry(i)) {
++                    double var_3086 = gradientAtTrustRegionCenter.getEntry(i);
++					if (trustRegionCenterOffset.getEntry(i) == lowerDifference.getEntry(i)) {
+                         // Computing MIN
+                         // Computing 2nd power
+-                        final double d1 = Math.min(ZERO, gradientAtTrustRegionCenter.getEntry(i));
++                        final double d1 = Math.min(ZERO, var_3086);
+                         gqsq += d1 * d1;
+                         // Computing 2nd power
+                         final double d2 = Math.min(ZERO, sum);
+@@ -1053,14 +1054,14 @@
+                     } else if (trustRegionCenterOffset.getEntry(i) == upperDifference.getEntry(i)) {
+                         // Computing MAX
+                         // Computing 2nd power
+-                        final double d1 = Math.max(ZERO, gradientAtTrustRegionCenter.getEntry(i));
++                        final double d1 = Math.max(ZERO, var_3086);
+                         gqsq += d1 * d1;
+                         // Computing 2nd power
+                         final double d2 = Math.max(ZERO, sum);
+                         gisq += d2 * d2;
+                     } else {
+                         // Computing 2nd power
+-                        final double d1 = gradientAtTrustRegionCenter.getEntry(i);
++                        final double d1 = var_3086;
+                         gqsq += d1 * d1;
+                         gisq += sum * sum;
+                     }

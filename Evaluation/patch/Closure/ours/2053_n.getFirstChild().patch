@@ -1,0 +1,39 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..a764691 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -589,12 +589,13 @@
+    *     treated as literals.
+    */
+   static boolean isLiteralValue(Node n, boolean includeFunctions) {
+-    switch (n.getType()) {
++    Node var_2053 = n.getFirstChild();
++	switch (n.getType()) {
+       case Token.CAST:
+-        return isLiteralValue(n.getFirstChild(), includeFunctions);
++        return isLiteralValue(var_2053, includeFunctions);
+ 
+       case Token.ARRAYLIT:
+-        for (Node child = n.getFirstChild(); child != null;
++        for (Node child = var_2053; child != null;
+              child = child.getNext()) {
+           if ((!child.isEmpty()) && !isLiteralValue(child, includeFunctions)) {
+             return false;
+@@ -604,7 +605,7 @@
+ 
+       case Token.REGEXP:
+         // Return true only if all children are const.
+-        for (Node child = n.getFirstChild(); child != null;
++        for (Node child = var_2053; child != null;
+              child = child.getNext()) {
+           if (!isLiteralValue(child, includeFunctions)) {
+             return false;
+@@ -614,7 +615,7 @@
+ 
+       case Token.OBJECTLIT:
+         // Return true only if all values are const.
+-        for (Node child = n.getFirstChild(); child != null;
++        for (Node child = var_2053; child != null;
+              child = child.getNext()) {
+           if (!isLiteralValue(child.getFirstChild(), includeFunctions)) {
+             return false;

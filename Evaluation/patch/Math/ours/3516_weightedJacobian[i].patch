@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
+index edf07d5..df74b74 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
+@@ -568,7 +568,8 @@
+             int pk = permutation[k];
+             double ypk = lmDir[pk] / diagR[pk];
+             for (int i = 0; i < k; ++i) {
+-                lmDir[permutation[i]] -= ypk * weightedJacobian[i][pk];
++                double[] var_3516 = weightedJacobian[i];
++				lmDir[permutation[i]] -= ypk * var_3516[pk];
+             }
+             lmDir[pk] = ypk;
+         }

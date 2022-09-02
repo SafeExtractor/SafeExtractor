@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/ExpressionDecomposer.java b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+index 2344537..cae050d 100644
+--- a/src/com/google/javascript/jscomp/ExpressionDecomposer.java
++++ b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+@@ -752,11 +752,12 @@
+ 
+     Node child = subExpression;
+     for (Node parent : child.getAncestors()) {
+-      if (parent == expressionRoot) {
++      DecompositionType var_1968 = DecompositionType.DECOMPOSABLE;
++	if (parent == expressionRoot) {
+         // Done. The walk back to the root of the expression is complete, and
+         // nothing was encountered that blocks the call from being moved.
+         return requiresDecomposition
+-            ? DecompositionType.DECOMPOSABLE
++            ? var_1968
+             : DecompositionType.MOVABLE;
+       }
+ 
+@@ -825,7 +826,7 @@
+             if (maybeExternMethod(first)) {
+               return DecompositionType.UNDECOMPOSABLE;
+             } else {
+-              return DecompositionType.DECOMPOSABLE;
++              return var_1968;
+             }
+           }
+         }

@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/rhino/testing/BaseJSTypeTestCase.java b/src/com/google/javascript/rhino/testing/BaseJSTypeTestCase.java
+index 9e5ed6e..18251f0 100644
+--- a/src/com/google/javascript/rhino/testing/BaseJSTypeTestCase.java
++++ b/src/com/google/javascript/rhino/testing/BaseJSTypeTestCase.java
+@@ -349,8 +349,9 @@
+         .getNativeFunctionType(JSTypeNative.REGEXP_FUNCTION_TYPE)
+         .getPrototype();
+     addMethod(registry, regexpPrototype, "constructor", regexpType);
+-    addMethod(registry, regexpPrototype, "exec",
+-        registry.createNullableType(arrayType));
++    JSType var_2699 = registry.createNullableType(arrayType);
++	addMethod(registry, regexpPrototype, "exec",
++        var_2699);
+     addMethod(registry, regexpPrototype, "test", booleanType);
+     addMethod(registry, regexpPrototype, "toString", stringType);
+     regexpType.defineDeclaredProperty("source", stringType, null);
+@@ -372,7 +373,7 @@
+     addMethod(registry, stringPrototype, "lastIndexOf", numberType);
+     addMethod(registry, stringPrototype, "localeCompare", numberType);
+     addMethod(registry, stringPrototype, "match",
+-        registry.createNullableType(arrayType));
++        var_2699);
+     addMethod(registry, stringPrototype, "replace", stringType);
+     addMethod(registry, stringPrototype, "search", numberType);
+     addMethod(registry, stringPrototype, "slice", stringType);

@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 9d1b56c..6eb643a 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -177,8 +177,9 @@
+ 
+     Node parent = n.getParent();
+ 
+-    if (NodeUtil.isAssignmentOp(n) ||
+-        n.isInc() || n.isDec()) {
++    boolean var_240 = n.isInc();
++	if (NodeUtil.isAssignmentOp(n) ||
++        var_240 || n.isDec()) {
+ 
+       Node lhs = n.getFirstChild();
+       Node rhs = lhs.getNext();
+@@ -244,7 +245,7 @@
+         n.removeChild(lhs);
+         Node op = new Node(NodeUtil.getOpFromAssignmentOp(n), lhs, rhs);
+         parent.replaceChild(n, op);
+-      } else if (n.isInc() || n.isDec()) {
++      } else if (var_240 || n.isDec()) {
+         if (parent.isExprResult()) {
+           parent.replaceChild(n,
+               IR.voidNode(IR.number(0).srcref(n)));

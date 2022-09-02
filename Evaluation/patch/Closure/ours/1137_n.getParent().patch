@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+index 6219d26..52df4cc 100644
+--- a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
++++ b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+@@ -234,8 +234,9 @@
+     // Check to see if the return value is used. If not, replace the original
+     // call with new block. Otherwise, wrap the statements in an
+     // immediately-called anonymous function.
+-    if (n.getParent().isExprResult()) {
+-      Node parent = n.getParent();
++    Node var_1137 = n.getParent();
++	if (var_1137.isExprResult()) {
++      Node parent = var_1137;
+       parent.getParent().replaceChild(parent, fncBlock);
+     } else {
+       Node targetVal;

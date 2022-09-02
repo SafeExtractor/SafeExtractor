@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java b/src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java
+index c8e366b..706e3d6 100644
+--- a/src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java
++++ b/src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java
+@@ -864,7 +864,8 @@
+             }
+ 
+             if (hasCompressedSize) {
+-                ze.setCompressedSize(z64.getCompressedSize().getLongValue());
++                long size = z64.getCompressedSize().getLongValue();
++				ze.setCompressedSize(size);
+             } else if (hasUncompressedSize) {
+                 z64.setCompressedSize(new ZipEightByteInteger(ze.getCompressedSize()));
+             }

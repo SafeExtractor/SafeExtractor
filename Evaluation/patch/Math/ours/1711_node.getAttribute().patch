@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/RegionFactory.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/RegionFactory.java
+index 0b94b5d..5bf9370 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/RegionFactory.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/RegionFactory.java
+@@ -134,12 +134,13 @@
+      * @return new tree, complement of the node
+      */
+     private BSPTree<S> recurseComplement(final BSPTree<S> node) {
+-        if (node.getCut() == null) {
+-            return new BSPTree<S>(((Boolean) node.getAttribute()) ? Boolean.FALSE : Boolean.TRUE);
++        Object var_1711 = node.getAttribute();
++		if (node.getCut() == null) {
++            return new BSPTree<S>(((Boolean) var_1711) ? Boolean.FALSE : Boolean.TRUE);
+         }
+ 
+         @SuppressWarnings("unchecked")
+-        BoundaryAttribute<S> attribute = (BoundaryAttribute<S>) node.getAttribute();
++        BoundaryAttribute<S> attribute = (BoundaryAttribute<S>) var_1711;
+         if (attribute != null) {
+             final SubHyperplane<S> plusOutside =
+                 (attribute.getPlusInside() == null) ? null : attribute.getPlusInside().copySelf();

@@ -1,0 +1,39 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..91cee50 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -1497,7 +1497,8 @@
+     boolean ignoreStar = true;
+ 
+     do {
+-      switch (token) {
++      JsDocToken var_2337 = next();
++	switch (token) {
+         case ANNOTATION:
+         case EOC:
+         case EOF:
+@@ -1512,13 +1513,13 @@
+             builder.append('*');
+           }
+ 
+-          token = next();
++          token = var_2337;
+           continue;
+ 
+         case EOL:
+           ignoreStar = true;
+           builder.append('\n');
+-          token = next();
++          token = var_2337;
+           continue;
+ 
+         default:
+@@ -1533,7 +1534,7 @@
+           String line = stream.getRemainingJSDocLine();
+           line = trimEnd(line);
+           builder.append(line);
+-          token = next();
++          token = var_2337;
+       }
+     } while (true);
+   }

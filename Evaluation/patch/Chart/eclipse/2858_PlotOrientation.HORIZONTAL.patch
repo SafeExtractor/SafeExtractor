@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYShapeRenderer.java b/source/org/jfree/chart/renderer/xy/XYShapeRenderer.java
+index edbbfaf..0bf5a0f 100644
+--- a/source/org/jfree/chart/renderer/xy/XYShapeRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYShapeRenderer.java
+@@ -429,10 +429,11 @@
+         PlotOrientation orientation = plot.getOrientation();
+ 
+         // draw optional guide lines
+-        if ((pass == 0) && this.guideLinesVisible) {
++        PlotOrientation var_2858 = PlotOrientation.HORIZONTAL;
++		if ((pass == 0) && this.guideLinesVisible) {
+             g2.setStroke(this.guideLineStroke);
+             g2.setPaint(this.guideLinePaint);
+-            if (orientation == PlotOrientation.HORIZONTAL) {
++            if (orientation == var_2858) {
+                 g2.draw(new Line2D.Double(transY, dataArea.getMinY(), transY,
+                         dataArea.getMaxY()));
+                 g2.draw(new Line2D.Double(dataArea.getMinX(), transX,
+@@ -447,7 +448,7 @@
+         }
+         else if (pass == 1) {
+             Shape shape = getItemShape(series, item, selected);
+-            if (orientation == PlotOrientation.HORIZONTAL) {
++            if (orientation == var_2858) {
+                 shape = ShapeUtilities.createTranslatedShape(shape, transY,
+                         transX);
+             }

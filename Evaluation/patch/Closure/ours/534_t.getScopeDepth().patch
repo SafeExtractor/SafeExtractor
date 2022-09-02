@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/ScopedAliases.java b/src/com/google/javascript/jscomp/ScopedAliases.java
+index e2f0538..15e1ef2 100644
+--- a/src/com/google/javascript/jscomp/ScopedAliases.java
++++ b/src/com/google/javascript/jscomp/ScopedAliases.java
+@@ -398,7 +398,8 @@
+         validateScopeCall(t, n, n.getParent());
+       }
+ 
+-      if (t.getScopeDepth() < 2) {
++      int var_534 = t.getScopeDepth();
++	if (var_534 < 2) {
+         return;
+       }
+ 
+@@ -413,7 +414,7 @@
+       }
+ 
+       // Validate the top-level of the goog.scope block.
+-      if (t.getScopeDepth() == 2) {
++      if (var_534 == 2) {
+         if (aliasVar != null && NodeUtil.isLValue(n)) {
+           if (aliasVar.getNode() == n) {
+             aliasDefinitionsInOrder.add(n);
+@@ -436,7 +437,7 @@
+       }
+ 
+       // Validate all descendent scopes of the goog.scope block.
+-      if (t.getScopeDepth() >= 2) {
++      if (var_534 >= 2) {
+         // Check if this name points to an alias.
+         if (aliasVar != null) {
+           // Note, to support the transitive case, it's important we don't

@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java b/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
+index c6b1a04..5414b85 100644
+--- a/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
+@@ -901,14 +901,15 @@
+         final int iRow   = row - iBlock * BLOCK_SIZE;
+         int mBlockIndex  = 0;
+         int mIndex       = 0;
+-        T[] mBlock  = matrix.blocks[mBlockIndex];
++        T[][] var_1945 = matrix.blocks;
++		T[] mBlock  = var_1945[mBlockIndex];
+         for (int jBlock = 0; jBlock < blockColumns; ++jBlock) {
+             final int jWidth     = blockWidth(jBlock);
+             final T[] block = blocks[iBlock * blockColumns + jBlock];
+             final int available  = mBlock.length - mIndex;
+             if (jWidth > available) {
+                 System.arraycopy(mBlock, mIndex, block, iRow * jWidth, available);
+-                mBlock = matrix.blocks[++mBlockIndex];
++                mBlock = var_1945[++mBlockIndex];
+                 System.arraycopy(mBlock, 0, block, iRow * jWidth, jWidth - available);
+                 mIndex = jWidth - available;
+             } else {

@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/joda/time/LocalDate.java b/src/main/java/org/joda/time/LocalDate.java
+index 9806eb3..0e454a1 100644
+--- a/src/main/java/org/joda/time/LocalDate.java
++++ b/src/main/java/org/joda/time/LocalDate.java
+@@ -888,11 +888,12 @@
+         if (time == null) {
+             throw new IllegalArgumentException("The time must not be null");
+         }
+-        if (getChronology() != time.getChronology()) {
++        Chronology var_77 = getChronology();
++		if (var_77 != time.getChronology()) {
+             throw new IllegalArgumentException("The chronology of the time does not match");
+         }
+         long localMillis = getLocalMillis() + time.getLocalMillis();
+-        return new LocalDateTime(localMillis, getChronology());
++        return new LocalDateTime(localMillis, var_77);
+     }
+ 
+     //-----------------------------------------------------------------------

@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/regex/RegExpTree.java b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+index c0c470a..22fadd5 100644
+--- a/src/com/google/javascript/jscomp/regex/RegExpTree.java
++++ b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+@@ -148,7 +148,8 @@
+         // The last item parsed within an alternation.
+         RegExpTree preceder = null;
+ 
+-        topLoop:
++        Empty var_2414 = Empty.INSTANCE;
++		topLoop:
+         while (pos < limit) {
+           char ch = pattern.charAt(pos);
+           RegExpTree atom;
+@@ -178,7 +179,7 @@
+             case '|':
+               // An alternative may be empty as in /foo||bar/.
+               // The '|' is consumed below.
+-              atom = Empty.INSTANCE;
++              atom = var_2414;
+               break;
+             default:
+               // Find a run of concatenated characters to avoid building a
+@@ -238,7 +239,7 @@
+           }
+         }
+         // An alternative may have no parsed content blank as in /foo|/.
+-        if (preceder == null) { preceder = Empty.INSTANCE; }
++        if (preceder == null) { preceder = var_2414; }
+         if (alternatives != null) {
+           alternatives.add(preceder);
+           return new Alternation(alternatives.build());

@@ -1,0 +1,111 @@
+diff --git a/source/org/jfree/chart/util/SerialUtilities.java b/source/org/jfree/chart/util/SerialUtilities.java
+index 90edcc1..e0e6949 100644
+--- a/source/org/jfree/chart/util/SerialUtilities.java
++++ b/source/org/jfree/chart/util/SerialUtilities.java
+@@ -296,55 +296,57 @@
+                 double w = stream.readDouble();
+                 double h = stream.readDouble();
+                 result = new Ellipse2D.Double(x, y, w, h);
+-            }
+-            else if (c.equals(Arc2D.class)) {
+-                double x = stream.readDouble();
+-                double y = stream.readDouble();
+-                double w = stream.readDouble();
+-                double h = stream.readDouble();
+-                double as = stream.readDouble(); // Angle Start
+-                double ae = stream.readDouble(); // Angle Extent
+-                int at = stream.readInt();       // Arc type
+-                result = new Arc2D.Double(x, y, w, h, as, ae, at);
+-            }
+-            else if (c.equals(GeneralPath.class)) {
+-                GeneralPath gp = new GeneralPath();
+-                float[] args = new float[6];
+-                boolean hasNext = stream.readBoolean();
+-                while (!hasNext) {
+-                    int type = stream.readInt();
+-                    for (int i = 0; i < 6; i++) {
+-                        args[i] = stream.readFloat();
+-                    }
+-                    switch (type) {
+-                        case PathIterator.SEG_MOVETO :
+-                            gp.moveTo(args[0], args[1]);
+-                            break;
+-                        case PathIterator.SEG_LINETO :
+-                            gp.lineTo(args[0], args[1]);
+-                            break;
+-                        case PathIterator.SEG_CUBICTO :
+-                            gp.curveTo(args[0], args[1], args[2],
+-                                    args[3], args[4], args[5]);
+-                            break;
+-                        case PathIterator.SEG_QUADTO :
+-                            gp.quadTo(args[0], args[1], args[2], args[3]);
+-                            break;
+-                        case PathIterator.SEG_CLOSE :
+-                            gp.closePath();
+-                            break;
+-                        default :
+-                            throw new RuntimeException(
+-                                    "JFreeChart - No path exists");
+-                    }
+-                    gp.setWindingRule(stream.readInt());
+-                    hasNext = stream.readBoolean();
+-                }
+-                result = gp;
+-            }
+-            else {
+-                result = (Shape) stream.readObject();
+-            }
++            } else {
++				int var_3648 = stream.readInt();
++				if (c.equals(Arc2D.class)) {
++				    double x = stream.readDouble();
++				    double y = stream.readDouble();
++				    double w = stream.readDouble();
++				    double h = stream.readDouble();
++				    double as = stream.readDouble(); // Angle Start
++				    double ae = stream.readDouble(); // Angle Extent
++				    int at = var_3648;       // Arc type
++				    result = new Arc2D.Double(x, y, w, h, as, ae, at);
++				}
++				else if (c.equals(GeneralPath.class)) {
++				    GeneralPath gp = new GeneralPath();
++				    float[] args = new float[6];
++				    boolean hasNext = stream.readBoolean();
++				    while (!hasNext) {
++				        int type = var_3648;
++				        for (int i = 0; i < 6; i++) {
++				            args[i] = stream.readFloat();
++				        }
++				        switch (type) {
++				            case PathIterator.SEG_MOVETO :
++				                gp.moveTo(args[0], args[1]);
++				                break;
++				            case PathIterator.SEG_LINETO :
++				                gp.lineTo(args[0], args[1]);
++				                break;
++				            case PathIterator.SEG_CUBICTO :
++				                gp.curveTo(args[0], args[1], args[2],
++				                        args[3], args[4], args[5]);
++				                break;
++				            case PathIterator.SEG_QUADTO :
++				                gp.quadTo(args[0], args[1], args[2], args[3]);
++				                break;
++				            case PathIterator.SEG_CLOSE :
++				                gp.closePath();
++				                break;
++				            default :
++				                throw new RuntimeException(
++				                        "JFreeChart - No path exists");
++				        }
++				        gp.setWindingRule(var_3648);
++				        hasNext = stream.readBoolean();
++				    }
++				    result = gp;
++				}
++				else {
++				    result = (Shape) stream.readObject();
++				}
++			}
+         }
+         return result;
+ 

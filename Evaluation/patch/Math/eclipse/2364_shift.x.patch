@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+index a2ea88e..f5afde9 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+@@ -272,10 +272,11 @@
+         }
+ 
+         // Wilkinson's original ad hoc shift
+-        if (iteration == 10) {
+-            shift.exShift += shift.x;
++        double var_2364 = shift.x;
++		if (iteration == 10) {
++            shift.exShift += var_2364;
+             for (int i = 0; i <= idx; i++) {
+-                matrixT[i][i] -= shift.x;
++                matrixT[i][i] -= var_2364;
+             }
+             final double s = FastMath.abs(matrixT[idx][idx - 1]) + FastMath.abs(matrixT[idx - 1][idx - 2]);
+             shift.x = 0.75 * s;
+@@ -285,14 +286,14 @@
+ 
+         // MATLAB's new ad hoc shift
+         if (iteration == 30) {
+-            double s = (shift.y - shift.x) / 2.0;
++            double s = (shift.y - var_2364) / 2.0;
+             s = s * s + shift.w;
+             if (s > 0.0) {
+                 s = FastMath.sqrt(s);
+-                if (shift.y < shift.x) {
++                if (shift.y < var_2364) {
+                     s = -s;
+                 }
+-                s = shift.x - shift.w / ((shift.y - shift.x) / 2.0 + s);
++                s = var_2364 - shift.w / ((shift.y - var_2364) / 2.0 + s);
+                 for (int i = 0; i <= idx; i++) {
+                     matrixT[i][i] -= s;
+                 }

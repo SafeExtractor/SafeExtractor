@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/InlineObjectLiterals.java b/src/com/google/javascript/jscomp/InlineObjectLiterals.java
+index d03988c..ca75e09 100644
+--- a/src/com/google/javascript/jscomp/InlineObjectLiterals.java
++++ b/src/com/google/javascript/jscomp/InlineObjectLiterals.java
+@@ -419,7 +419,8 @@
+         vnode = v.getScope().getRootNode().getLastChild().getFirstChild();
+       }
+ 
+-      for (Map.Entry<String, String> entry : varmap.entrySet()) {
++      Node var_675 = vnode.getParent();
++	for (Map.Entry<String, String> entry : varmap.entrySet()) {
+         Node val = initvals.get(entry.getKey());
+         Node varnode = NodeUtil.newVarNode(entry.getValue(), val);
+         if (val == null) {
+@@ -428,11 +429,11 @@
+         } else {
+           blacklistVarReferencesInTree(val, v.scope);
+         }
+-        vnode.getParent().addChildBefore(varnode, vnode);
++        var_675.addChildBefore(varnode, vnode);
+       }
+ 
+       if (defined) {
+-        vnode.getParent().removeChild(vnode);
++        var_675.removeChild(vnode);
+       }
+ 
+       for (Reference ref : referenceInfo.references) {

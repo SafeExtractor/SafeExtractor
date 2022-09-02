@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..616116d 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -795,8 +795,9 @@
+       Node node = newNode(Token.IF);
+       node.addChildToBack(transform(statementNode.getCondition()));
+       node.addChildToBack(transformBlock(statementNode.getThenPart()));
+-      if (statementNode.getElsePart() != null) {
+-        node.addChildToBack(transformBlock(statementNode.getElsePart()));
++      AstNode var_2255 = statementNode.getElsePart();
++	if (var_2255 != null) {
++        node.addChildToBack(transformBlock(var_2255));
+       }
+       return node;
+     }

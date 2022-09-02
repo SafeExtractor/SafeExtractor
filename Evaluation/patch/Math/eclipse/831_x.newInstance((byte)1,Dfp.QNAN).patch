@@ -1,0 +1,36 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..0b4b489 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -532,10 +532,11 @@
+             return x;
+         }
+ 
+-        if (x.isNaN() || y.isNaN()) {
++        Dfp var_831 = x.newInstance((byte)1, Dfp.QNAN);
++		if (x.isNaN() || y.isNaN()) {
+             // Test for NaNs
+             x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x.newInstance((byte)1, Dfp.QNAN));
++            return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, var_831);
+         }
+ 
+         // X == 0
+@@ -591,7 +592,7 @@
+ 
+         if (x.equals(one) && y.classify() == Dfp.INFINITE) {
+             x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x.newInstance((byte)1, Dfp.QNAN));
++            return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, var_831);
+         }
+ 
+         if (x.classify() == Dfp.INFINITE) {
+@@ -625,7 +626,7 @@
+ 
+         if (invert && !y.rint().equals(y)) {
+             x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x.newInstance((byte)1, Dfp.QNAN));
++            return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, var_831);
+         }
+ 
+         // End special cases

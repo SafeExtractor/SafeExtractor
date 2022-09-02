@@ -1,0 +1,46 @@
+diff --git a/source/org/jfree/data/DefaultKeyedValues2D.java b/source/org/jfree/data/DefaultKeyedValues2D.java
+index 5f5b69c..0bc2558 100644
+--- a/source/org/jfree/data/DefaultKeyedValues2D.java
++++ b/source/org/jfree/data/DefaultKeyedValues2D.java
+@@ -359,7 +359,8 @@
+         // 1. check whether the row is now empty.
+         boolean allNull = true;
+         int rowIndex = getRowIndex(rowKey);
+-        DefaultKeyedValues row = (DefaultKeyedValues) this.rows.get(rowIndex);
++        List var_3787 = this.rows;
++		DefaultKeyedValues row = (DefaultKeyedValues) var_3787.get(rowIndex);
+ 
+         for (int item = 0, itemCount = row.getItemCount(); item < itemCount;
+              item++) {
+@@ -371,16 +372,16 @@
+ 
+         if (allNull) {
+             this.rowKeys.remove(rowIndex);
+-            this.rows.remove(rowIndex);
++            var_3787.remove(rowIndex);
+         }
+ 
+         // 2. check whether the column is now empty.
+         allNull = true;
+         //int columnIndex = getColumnIndex(columnKey);
+ 
+-        for (int item = 0, itemCount = this.rows.size(); item < itemCount;
++        for (int item = 0, itemCount = var_3787.size(); item < itemCount;
+              item++) {
+-            row = (DefaultKeyedValues) this.rows.get(item);
++            row = (DefaultKeyedValues) var_3787.get(item);
+             int columnIndex = row.getIndex(columnKey);
+             if (columnIndex >= 0 && row.getValue(columnIndex) != null) {
+                 allNull = false;
+@@ -389,9 +390,9 @@
+         }
+ 
+         if (allNull) {
+-            for (int item = 0, itemCount = this.rows.size(); item < itemCount;
++            for (int item = 0, itemCount = var_3787.size(); item < itemCount;
+                  item++) {
+-                row = (DefaultKeyedValues) this.rows.get(item);
++                row = (DefaultKeyedValues) var_3787.get(item);
+                 int columnIndex = row.getIndex(columnKey);
+                 if (columnIndex >= 0) {
+                     row.removeValue(columnIndex);

@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/ClosureCodingConvention.java b/src/com/google/javascript/jscomp/ClosureCodingConvention.java
+index f78afdb..c29b775 100644
+--- a/src/com/google/javascript/jscomp/ClosureCodingConvention.java
++++ b/src/com/google/javascript/jscomp/ClosureCodingConvention.java
+@@ -297,10 +297,11 @@
+   public void applySingletonGetter(FunctionType functionType,
+       FunctionType getterType, ObjectType objectType) {
+     super.applySingletonGetter(functionType, getterType, objectType);
+-    functionType.defineDeclaredProperty("getInstance", getterType,
+-        functionType.getSource());
++    Node var_178 = functionType.getSource();
++	functionType.defineDeclaredProperty("getInstance", getterType,
++        var_178);
+     functionType.defineDeclaredProperty("instance_", objectType,
+-        functionType.getSource());
++        var_178);
+   }
+ 
+   @Override

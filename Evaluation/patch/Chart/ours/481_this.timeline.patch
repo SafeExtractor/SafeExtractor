@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/axis/DateAxis.java b/source/org/jfree/chart/axis/DateAxis.java
+index 059bc3a..cfdbdd9 100644
+--- a/source/org/jfree/chart/axis/DateAxis.java
++++ b/source/org/jfree/chart/axis/DateAxis.java
+@@ -813,8 +813,9 @@
+                                 RectangleEdge edge) {
+ 
+         DateRange range = (DateRange) getRange();
+-        double axisMin = this.timeline.toTimelineValue(range.getLowerMillis());
+-        double axisMax = this.timeline.toTimelineValue(range.getUpperMillis());
++        Timeline var_481 = this.timeline;
++		double axisMin = var_481.toTimelineValue(range.getLowerMillis());
++        double axisMax = var_481.toTimelineValue(range.getUpperMillis());
+ 
+         double min = 0.0;
+         double max = 0.0;
+@@ -837,7 +838,7 @@
+                       * (axisMax - axisMin));
+         }
+ 
+-        return this.timeline.toMillisecond((long) result);
++        return var_481.toMillisecond((long) result);
+     }
+ 
+     /**

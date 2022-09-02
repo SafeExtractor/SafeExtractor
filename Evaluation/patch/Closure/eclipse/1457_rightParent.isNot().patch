@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..84634a3 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -1158,8 +1158,9 @@
+               // Check special case when such transformation cannot reduce
+               // due to the added ()
+               // It only occurs when both of expressions are not NOT expressions
+-              if (!leftParent.isNot()
+-                  && !rightParent.isNot()) {
++              boolean var_1457 = rightParent.isNot();
++			if (!leftParent.isNot()
++                  && !var_1457) {
+                 // If an expression has higher precedence than && or ||,
+                 // but lower precedence than NOT, an additional () is needed
+                 // Thus we do not preceed
+@@ -1178,7 +1179,7 @@
+                 leftParent.detachFromParent();
+                 left = IR.not(leftParent).srcref(leftParent);
+               }
+-              if (rightParent.isNot()) {
++              if (var_1457) {
+                 right = rightParent.removeFirstChild();
+               } else {
+                 rightParent.detachFromParent();

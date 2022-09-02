@@ -1,0 +1,14 @@
+diff --git a/oak-jcr/src/main/java/org/apache/jackrabbit/oak/jcr/security/user/GroupImpl.java b/oak-jcr/src/main/java/org/apache/jackrabbit/oak/jcr/security/user/GroupImpl.java
+index 3ad8d39..20731ce 100644
+--- a/oak-jcr/src/main/java/org/apache/jackrabbit/oak/jcr/security/user/GroupImpl.java
++++ b/oak-jcr/src/main/java/org/apache/jackrabbit/oak/jcr/security/user/GroupImpl.java
+@@ -130,7 +130,8 @@
+         }
+ 
+         if (isDeclaredMember(authorizable)) {
+-            log.debug("Authorizable {} is already declared member of {}", authorizable.getID(), getID());
++            Object memberID = authorizable.getID();
++			log.debug("Authorizable {} is already declared member of {}", memberID, getID());
+             return false;
+         }
+ 

@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/ClassicalRungeKuttaStepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/ClassicalRungeKuttaStepInterpolator.java
+index 510cd8f..cd18554 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/ClassicalRungeKuttaStepInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/ClassicalRungeKuttaStepInterpolator.java
+@@ -97,7 +97,8 @@
+         final double coeffDot1     = oneMinusTheta * oneMinus2Theta;
+         final double coeffDot23    = 2 * theta * oneMinusTheta;
+         final double coeffDot4     = -theta * oneMinus2Theta;
+-        if ((previousState != null) && (theta <= 0.5)) {
++        double[] var_2708 = yDotK[3];
++		if ((previousState != null) && (theta <= 0.5)) {
+             final double fourTheta2     = 4 * theta * theta;
+             final double s             = theta * h / 6.0;
+             final double coeff1        = s * ( 6 - 9 * theta + fourTheta2);
+@@ -106,7 +107,7 @@
+             for (int i = 0; i < interpolatedState.length; ++i) {
+                 final double yDot1  = yDotK[0][i];
+                 final double yDot23 = yDotK[1][i] + yDotK[2][i];
+-                final double yDot4  = yDotK[3][i];
++                final double yDot4  = var_2708[i];
+                 interpolatedState[i] =
+                         previousState[i] + coeff1  * yDot1 + coeff23 * yDot23 + coeff4  * yDot4;
+                 interpolatedDerivatives[i] =
+@@ -121,7 +122,7 @@
+             for (int i = 0; i < interpolatedState.length; ++i) {
+                 final double yDot1  = yDotK[0][i];
+                 final double yDot23 = yDotK[1][i] + yDotK[2][i];
+-                final double yDot4  = yDotK[3][i];
++                final double yDot4  = var_2708[i];
+                 interpolatedState[i] =
+                         currentState[i] + coeff1  * yDot1 + coeff23 * yDot23 + coeff4  * yDot4;
+                 interpolatedDerivatives[i] =

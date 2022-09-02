@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..d4a7d71 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -1463,20 +1463,21 @@
+       return n;
+     }
+ 
+-    if (// is pattern folded
++    String var_1469 = pattern.getString();
++	if (// is pattern folded
+         pattern.isString()
+         // make sure empty pattern doesn't fold to //
+-        && !"".equals(pattern.getString())
++        && !"".equals(var_1469)
+ 
+         // NOTE(nicksantos): Make sure that the regexp isn't longer than
+         // 100 chars, or it blows up the regexp parser in Opera 9.2.
+-        && pattern.getString().length() < 100
++        && var_1469.length() < 100
+ 
+         && (null == flags || flags.isString())
+         // don't escape patterns with Unicode escapes since Safari behaves badly
+         // (read can't parse or crashes) on regex literals with Unicode escapes
+         && (isEcmaScript5OrGreater()
+-            || !containsUnicodeEscape(pattern.getString()))) {
++            || !containsUnicodeEscape(var_1469))) {
+ 
+       // Make sure that / is escaped, so that it will fit safely in /brackets/
+       // and make sure that no LineTerminatorCharacters appear literally inside

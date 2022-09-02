@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalsSet.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalsSet.java
+index 674fb0a..256e02e 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalsSet.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalsSet.java
+@@ -136,9 +136,10 @@
+     /** {@inheritDoc} */
+     @Override
+     protected void computeGeometricalProperties() {
+-        if (getTree(false).getCut() == null) {
++        BSPTree<Euclidean1D> var_1149 = getTree(false);
++		if (var_1149.getCut() == null) {
+             setBarycenter(Vector1D.NaN);
+-            setSize(((Boolean) getTree(false).getAttribute()) ? Double.POSITIVE_INFINITY : 0);
++            setSize(((Boolean) var_1149.getAttribute()) ? Double.POSITIVE_INFINITY : 0);
+         } else {
+             double size = 0.0;
+             double sum = 0.0;
+@@ -152,7 +153,7 @@
+             } else if (size >= Precision.SAFE_MIN) {
+                 setBarycenter(new Vector1D(sum / size));
+             } else {
+-                setBarycenter(((OrientedPoint) getTree(false).getCut().getHyperplane()).getLocation());
++                setBarycenter(((OrientedPoint) var_1149.getCut().getHyperplane()).getLocation());
+             }
+         }
+     }

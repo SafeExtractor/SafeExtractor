@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/renderer/xy/HighLowRenderer.java b/source/org/jfree/chart/renderer/xy/HighLowRenderer.java
+index 878a686..28ce1ba 100644
+--- a/source/org/jfree/chart/renderer/xy/HighLowRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/HighLowRenderer.java
+@@ -350,16 +350,17 @@
+                         location);
+                 double yyLow = rangeAxis.valueToJava2D(yLow, dataArea,
+                         location);
+-                if (orientation == PlotOrientation.HORIZONTAL) {
++                double var_3247 = Math.abs(yyHigh - yyLow);
++				if (orientation == PlotOrientation.HORIZONTAL) {
+                     g2.draw(new Line2D.Double(yyLow, xx, yyHigh, xx));
+                     entityArea = new Rectangle2D.Double(Math.min(yyLow, yyHigh),
+-                            xx - 1.0, Math.abs(yyHigh - yyLow), 2.0);
++                            xx - 1.0, var_3247, 2.0);
+                 }
+                 else if (orientation == PlotOrientation.VERTICAL) {
+                     g2.draw(new Line2D.Double(xx, yyLow, xx, yyHigh));
+                     entityArea = new Rectangle2D.Double(xx - 1.0,
+                             Math.min(yyLow, yyHigh), 2.0,
+-                            Math.abs(yyHigh - yyLow));
++                            var_3247);
+                 }
+             }
+ 

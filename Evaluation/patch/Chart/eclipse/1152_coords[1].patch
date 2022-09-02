@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/entity/ChartEntity.java b/source/org/jfree/chart/entity/ChartEntity.java
+index 2d463c7..4cdf291 100644
+--- a/source/org/jfree/chart/entity/ChartEntity.java
++++ b/source/org/jfree/chart/entity/ChartEntity.java
+@@ -283,16 +283,17 @@
+         PathIterator pi = shape.getPathIterator(null, 1.0);
+         while (!pi.isDone()) {
+             pi.currentSegment(coords);
+-            if (first) {
++            float var_1152 = coords[1];
++			if (first) {
+                 first = false;
+                 result.append((int) coords[0]);
+-                result.append(",").append((int) coords[1]);
++                result.append(",").append((int) var_1152);
+             }
+             else {
+                 result.append(",");
+                 result.append((int) coords[0]);
+                 result.append(",");
+-                result.append((int) coords[1]);
++                result.append((int) var_1152);
+             }
+             pi.next();
+         }

@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot.java b/source/org/jfree/chart/plot/PiePlot.java
+index 34014e9..fe5cb4e 100644
+--- a/source/org/jfree/chart/plot/PiePlot.java
++++ b/source/org/jfree/chart/plot/PiePlot.java
+@@ -2762,7 +2762,8 @@
+             Comparable key = (Comparable) iterator.next();
+             boolean include = true;
+             double v = 0.0;
+-            Number n = getDataset().getValue(key);
++            PieDataset var_2046 = getDataset();
++			Number n = var_2046.getValue(key);
+             if (n == null) {
+                 include = !getIgnoreNullValues();
+             }
+@@ -2820,7 +2821,7 @@
+                 g2.setPaint(this.labelPaint);
+                 g2.setFont(this.labelFont);
+                 TextUtilities.drawAlignedString(getLabelGenerator()
+-                        .generateSectionLabel(getDataset(), key), g2, x, y,
++                        .generateSectionLabel(var_2046, key), g2, x, y,
+                         TextAnchor.CENTER);
+ 
+             }

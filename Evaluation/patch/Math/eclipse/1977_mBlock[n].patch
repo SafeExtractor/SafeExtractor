@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java b/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
+index a03c4f4..0517a32 100644
+--- a/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
+@@ -567,8 +567,9 @@
+                             double sum = 0;
+                             int l = lStart;
+                             int n = nStart;
+-                            while (l < lEnd - 3) {
+-                                sum += tBlock[l] * mBlock[n] +
++                            double var_1977 = mBlock[n];
++							while (l < lEnd - 3) {
++                                sum += tBlock[l] * var_1977 +
+                                        tBlock[l + 1] * mBlock[n + jWidth] +
+                                        tBlock[l + 2] * mBlock[n + jWidth2] +
+                                        tBlock[l + 3] * mBlock[n + jWidth3];
+@@ -576,7 +577,7 @@
+                                 n += jWidth4;
+                             }
+                             while (l < lEnd) {
+-                                sum += tBlock[l++] * mBlock[n];
++                                sum += tBlock[l++] * var_1977;
+                                 n += jWidth;
+                             }
+                             outBlock[k] += sum;

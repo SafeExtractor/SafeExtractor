@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/jsonml/JsonMLUtil.java b/src/com/google/javascript/jscomp/jsonml/JsonMLUtil.java
+index 519d06a..4e6303f 100644
+--- a/src/com/google/javascript/jscomp/jsonml/JsonMLUtil.java
++++ b/src/com/google/javascript/jscomp/jsonml/JsonMLUtil.java
+@@ -209,22 +209,23 @@
+      */
+     private boolean compareElements(JsonML a, JsonML b) {
+       // the elements are considered to be equal if they are both null
+-      if (a == null || b == null) {
++      boolean var_2187 = setMismatch(a, b);
++	if (a == null || b == null) {
+         if (a == null && b == null) {
+           return true;
+         } else {
+-          return setMismatch(a, b);
++          return var_2187;
+         }
+       }
+ 
+       // the elements themselves have to be equivalent
+       if (!areEquivalent(a, b)) {
+-        return setMismatch(a, b);
++        return var_2187;
+       }
+ 
+       // they both have to have the same number of children
+       if (a.childrenSize() != b.childrenSize()) {
+-        return setMismatch(a, b);
++        return var_2187;
+       }
+ 
+       // all the children has to be the same

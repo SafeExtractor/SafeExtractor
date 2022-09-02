@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/renderer/xy/StackedXYBarRenderer.java b/source/org/jfree/chart/renderer/xy/StackedXYBarRenderer.java
+index ccc914a..9104b04 100644
+--- a/source/org/jfree/chart/renderer/xy/StackedXYBarRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/StackedXYBarRenderer.java
+@@ -267,7 +267,8 @@
+         // assume the dataset has no negative values...perhaps that can be
+         // fixed too.
+         double total = 0.0;
+-        if (this.renderAsPercentages) {
++        boolean var_3057 = this.renderAsPercentages;
++		if (var_3057) {
+             total = DatasetUtilities.calculateStackTotal(
+                     (TableXYDataset) dataset, item);
+             value = value / total;
+@@ -279,7 +280,7 @@
+         for (int i = 0; i < series; i++) {
+             double v = dataset.getYValue(i, item);
+             if (!Double.isNaN(v)) {
+-                if (this.renderAsPercentages) {
++                if (var_3057) {
+                     v = v / total;
+                 }
+                 if (v > 0) {

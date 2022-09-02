@@ -1,0 +1,40 @@
+diff --git a/source/org/jfree/data/time/SpreadsheetDate.java b/source/org/jfree/data/time/SpreadsheetDate.java
+index 70f3207..9e92914 100644
+--- a/source/org/jfree/data/time/SpreadsheetDate.java
++++ b/source/org/jfree/data/time/SpreadsheetDate.java
+@@ -155,7 +155,8 @@
+ 
+         // the day-month-year needs to be synchronised with the serial number...
+       // get the year from the serial date
+-      final int days = this.serial - SERIAL_LOWER_BOUND;
++      int var_4341 = this.serial;
++	final int days = var_4341 - SERIAL_LOWER_BOUND;
+       // overestimated because we ignored leap days
+       final int overestimatedYYYY = 1900 + (days / 365);
+       final int leaps = SerialDate.leapYearCount(overestimatedYYYY);
+@@ -168,7 +169,7 @@
+       }
+       else {
+           int ss1 = calcSerial(1, 1, underestimatedYYYY);
+-          while (ss1 <= this.serial) {
++          while (ss1 <= var_4341) {
+               underestimatedYYYY = underestimatedYYYY + 1;
+               ss1 = calcSerial(1, 1, underestimatedYYYY);
+           }
+@@ -188,14 +189,14 @@
+       // get the month from the serial date
+       int mm = 1;
+       int sss = ss2 + daysToEndOfPrecedingMonth[mm] - 1;
+-      while (sss < this.serial) {
++      while (sss < var_4341) {
+           mm = mm + 1;
+           sss = ss2 + daysToEndOfPrecedingMonth[mm] - 1;
+       }
+       this.month = mm - 1;
+ 
+       // what's left is d(+1);
+-      this.day = this.serial - ss2
++      this.day = var_4341 - ss2
+                  - daysToEndOfPrecedingMonth[this.month] + 1;
+ 
+     }

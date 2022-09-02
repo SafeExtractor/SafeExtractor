@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..4b0a96c 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -313,10 +313,11 @@
+         Node elseBranch = thenBranch.getNext();
+         Node nextNode = child.getNext();
+ 
+-        if (nextNode != null && elseBranch == null
++        Node var_1423 = nextNode.getFirstChild();
++		if (nextNode != null && elseBranch == null
+             && isReturnBlock(thenBranch)
+             && nextNode.isIf()) {
+-          Node nextCond = nextNode.getFirstChild();
++          Node nextCond = var_1423;
+           Node nextThen = nextCond.getNext();
+           Node nextElse = nextThen.getNext();
+           if (thenBranch.isEquivalentToTyped(nextThen)) {
+@@ -355,7 +356,7 @@
+             thenExpr = NodeUtil.newUndefinedNode(child);
+           }
+ 
+-          Node elseExpr = nextNode.getFirstChild();
++          Node elseExpr = var_1423;
+ 
+           cond.detachFromParent();
+           elseExpr.detachFromParent();

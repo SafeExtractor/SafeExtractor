@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..5edad42 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -1394,11 +1394,12 @@
+           Node arg0 = constructorNameNode.getNext();
+           FoldArrayAction action = isSafeToFoldArrayConstructor(arg0);
+ 
+-          if (action == FoldArrayAction.SAFE_TO_FOLD_WITH_ARGS ||
++          FoldArrayAction var_1466 = FoldArrayAction.SAFE_TO_FOLD_WITH_ARGS;
++		if (action == var_1466 ||
+               action == FoldArrayAction.SAFE_TO_FOLD_WITHOUT_ARGS) {
+             newLiteralNode = IR.arraylit();
+             n.removeChildren();
+-            if (action == FoldArrayAction.SAFE_TO_FOLD_WITH_ARGS) {
++            if (action == var_1466) {
+               newLiteralNode.addChildrenToFront(arg0);
+             }
+           }

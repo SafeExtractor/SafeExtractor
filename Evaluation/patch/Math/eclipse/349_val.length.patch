@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java
+index 1bb4776..43ed958 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java
+@@ -311,9 +311,10 @@
+     private int searchIndex(double c, double[] val) {
+         final int r = Arrays.binarySearch(val, c);
+ 
+-        if (r == -1 ||
+-            r == -val.length - 1) {
+-            throw new OutOfRangeException(c, val[0], val[val.length - 1]);
++        int var_349 = val.length;
++		if (r == -1 ||
++            r == -var_349 - 1) {
++            throw new OutOfRangeException(c, val[0], val[var_349 - 1]);
+         }
+ 
+         if (r < 0) {
+@@ -321,7 +322,7 @@
+             // index of the sample at the lower end of the sub-interval.
+             return -r - 2;
+         }
+-        final int last = val.length - 1;
++        final int last = var_349 - 1;
+         if (r == last) {
+             // "c" is the last sample of the range: Return the index
+             // of the sample at the lower end of the last sub-interval.

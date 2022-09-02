@@ -1,0 +1,47 @@
+diff --git a/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java b/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java
+index 522fe94..ab0fb25 100644
+--- a/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java
++++ b/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java
+@@ -128,8 +128,9 @@
+       return; // Don't even brother. All global variables are likely escaped.
+     }
+ 
+-    if (LiveVariablesAnalysis.MAX_VARIABLES_TO_ANALYZE <
+-        t.getScope().getVarCount()) {
++    Scope var_1498 = t.getScope();
++	if (LiveVariablesAnalysis.MAX_VARIABLES_TO_ANALYZE <
++        var_1498.getVarCount()) {
+       return;
+     }
+ 
+@@ -139,7 +140,7 @@
+     Preconditions.checkState(t.getScopeRoot().isFunction());
+     cfa.process(null, t.getScopeRoot().getLastChild());
+     cfg = cfa.getCfg();
+-    reachingDef = new MustBeReachingVariableDef(cfg, t.getScope(), compiler);
++    reachingDef = new MustBeReachingVariableDef(cfg, var_1498, compiler);
+     reachingDef.analyze();
+     candidates = Lists.newLinkedList();
+ 
+@@ -149,10 +150,10 @@
+         t.getScopeRoot().getLastChild());
+ 
+     // Compute the backward reaching use. The CFG can be reused.
+-    reachingUses = new MaybeReachingVariableUse(cfg, t.getScope(), compiler);
++    reachingUses = new MaybeReachingVariableUse(cfg, var_1498, compiler);
+     reachingUses.analyze();
+     for (Candidate c : candidates) {
+-      if (c.canInline(t.getScope())) {
++      if (c.canInline(var_1498)) {
+         c.inlineVariable();
+ 
+         // If definition c has dependencies, then inlining it may have
+@@ -163,7 +164,7 @@
+         // We keep track of when the variable dependency graph changed
+         // so that we can back off appropriately.
+         if (!c.defMetadata.depends.isEmpty()) {
+-          inlinedNewDependencies.add(t.getScope().getVar(c.varName));
++          inlinedNewDependencies.add(var_1498.getVar(c.varName));
+         }
+       }
+     }

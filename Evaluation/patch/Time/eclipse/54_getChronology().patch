@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/joda/time/Interval.java b/src/main/java/org/joda/time/Interval.java
+index b2aa61b..90f1e2c 100644
+--- a/src/main/java/org/joda/time/Interval.java
++++ b/src/main/java/org/joda/time/Interval.java
+@@ -288,10 +288,11 @@
+         long otherEnd = interval.getEndMillis();
+         long thisStart = getStartMillis();
+         long thisEnd = getEndMillis();
+-        if (thisStart > otherEnd) {
+-            return new Interval(otherEnd, thisStart, getChronology());
++        Chronology var_54 = getChronology();
++		if (thisStart > otherEnd) {
++            return new Interval(otherEnd, thisStart, var_54);
+         } else if (otherStart > thisEnd) {
+-            return new Interval(thisEnd, otherStart, getChronology());
++            return new Interval(thisEnd, otherStart, var_54);
+         } else {
+             return null;
+         }

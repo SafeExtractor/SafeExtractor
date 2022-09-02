@@ -1,0 +1,74 @@
+diff --git a/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java b/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java
+index f154450..997eaa0 100644
+--- a/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java
++++ b/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java
+@@ -536,20 +536,21 @@
+         int seriesCount = getRowCount();
+         int categoryCount = getColumnCount();
+ 
+-        if (seriesCount > 1) {
++        double var_2426 = state.getBarWidth();
++		if (seriesCount > 1) {
+             double seriesGap = dataArea.getHeight() * getItemMargin()
+                                / (categoryCount * (seriesCount - 1));
+-            double usedWidth = (state.getBarWidth() * seriesCount)
++            double usedWidth = (var_2426 * seriesCount)
+                                + (seriesGap * (seriesCount - 1));
+             // offset the start of the boxes if the total width used is smaller
+             // than the category width
+             double offset = (categoryWidth - usedWidth) / 2;
+-            yy = yy + offset + (row * (state.getBarWidth() + seriesGap));
++            yy = yy + offset + (row * (var_2426 + seriesGap));
+         }
+         else {
+             // offset the start of the box if the box width is smaller than
+             // the category width
+-            double offset = (categoryWidth - state.getBarWidth()) / 2;
++            double offset = (categoryWidth - var_2426) / 2;
+             yy = yy + offset;
+         }
+ 
+@@ -575,21 +576,21 @@
+                     location);
+             double xxMin = rangeAxis.valueToJava2D(xMin.doubleValue(), dataArea,
+                     location);
+-            double yymid = yy + state.getBarWidth() / 2.0;
++            double yymid = yy + var_2426 / 2.0;
+ 
+             // draw the upper shadow...
+             g2.draw(new Line2D.Double(xxMax, yymid, xxQ3, yymid));
+             g2.draw(new Line2D.Double(xxMax, yy, xxMax,
+-                    yy + state.getBarWidth()));
++                    yy + var_2426));
+ 
+             // draw the lower shadow...
+             g2.draw(new Line2D.Double(xxMin, yymid, xxQ1, yymid));
+             g2.draw(new Line2D.Double(xxMin, yy, xxMin,
+-                    yy + state.getBarWidth()));
++                    yy + var_2426));
+ 
+             // draw the box...
+             box = new Rectangle2D.Double(Math.min(xxQ1, xxQ3), yy,
+-                    Math.abs(xxQ1 - xxQ3), state.getBarWidth());
++                    Math.abs(xxQ1 - xxQ3), var_2426);
+             if (this.fillBox) {
+                 g2.fill(box);
+             }
+@@ -606,7 +607,7 @@
+             if (xMean != null) {
+                 double xxMean = rangeAxis.valueToJava2D(xMean.doubleValue(),
+                         dataArea, location);
+-                aRadius = state.getBarWidth() / 4;
++                aRadius = var_2426 / 4;
+                 // here we check that the average marker will in fact be
+                 // visible before drawing it...
+                 if ((xxMean > (dataArea.getMinX() - aRadius))
+@@ -626,7 +627,7 @@
+                 double xxMedian = rangeAxis.valueToJava2D(xMedian.doubleValue(),
+                         dataArea, location);
+                 g2.draw(new Line2D.Double(xxMedian, yy, xxMedian,
+-                        yy + state.getBarWidth()));
++                        yy + var_2426));
+             }
+         }
+ 

@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..7b29c81 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -445,9 +445,10 @@
+      * @see #FieldRotation(FieldVector3D, RealFieldElement)
+      */
+     public T getAngle() {
+-        if ((q0.getReal() < -0.1) || (q0.getReal() > 0.1)) {
++        double var_1233 = q0.getReal();
++		if ((var_1233 < -0.1) || (var_1233 > 0.1)) {
+             return q1.multiply(q1).add(q2.multiply(q2)).add(q3.multiply(q3)).sqrt().asin().multiply(2);
+-        } else if (q0.getReal() < 0) {
++        } else if (var_1233 < 0) {
+             return q0.negate().acos().multiply(2);
+         }
+         return q0.acos().multiply(2);

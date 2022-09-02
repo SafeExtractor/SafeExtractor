@@ -1,0 +1,18 @@
+diff --git a/source/org/jfree/data/xy/DefaultXYDataset.java b/source/org/jfree/data/xy/DefaultXYDataset.java
+index d255d03..5e083e3 100644
+--- a/source/org/jfree/data/xy/DefaultXYDataset.java
++++ b/source/org/jfree/data/xy/DefaultXYDataset.java
+@@ -362,9 +362,10 @@
+     public Object clone() throws CloneNotSupportedException {
+         DefaultXYDataset clone = (DefaultXYDataset) super.clone();
+         clone.seriesKeys = new java.util.ArrayList(this.seriesKeys);
+-        clone.seriesList = new ArrayList(this.seriesList.size());
+-        for (int i = 0; i < this.seriesList.size(); i++) {
+-            double[][] data = (double[][]) this.seriesList.get(i);
++        List var_4408 = this.seriesList;
++		clone.seriesList = new ArrayList(var_4408.size());
++        for (int i = 0; i < var_4408.size(); i++) {
++            double[][] data = (double[][]) var_4408.get(i);
+             double[] x = data[0];
+             double[] y = data[1];
+             double[] xx = new double[x.length];

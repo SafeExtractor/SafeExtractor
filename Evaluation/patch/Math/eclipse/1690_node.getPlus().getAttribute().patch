@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+index d33ceab..a22faea 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+@@ -523,15 +523,16 @@
+             break;
+         default :
+             // the sub-hyperplane and the cut sub-hyperplane share the same hyperplane
+-            if (node.getCut().getHyperplane().sameOrientationAs(sub.getHyperplane())) {
+-                if ((node.getPlus().getCut() != null) || ((Boolean) node.getPlus().getAttribute())) {
++            Object var_1690 = node.getPlus().getAttribute();
++			if (node.getCut().getHyperplane().sameOrientationAs(sub.getHyperplane())) {
++                if ((node.getPlus().getCut() != null) || ((Boolean) var_1690)) {
+                     sides.rememberPlusFound();
+                 }
+                 if ((node.getMinus().getCut() != null) || ((Boolean) node.getMinus().getAttribute())) {
+                     sides.rememberMinusFound();
+                 }
+             } else {
+-                if ((node.getPlus().getCut() != null) || ((Boolean) node.getPlus().getAttribute())) {
++                if ((node.getPlus().getCut() != null) || ((Boolean) var_1690)) {
+                     sides.rememberMinusFound();
+                 }
+                 if ((node.getMinus().getCut() != null) || ((Boolean) node.getMinus().getAttribute())) {

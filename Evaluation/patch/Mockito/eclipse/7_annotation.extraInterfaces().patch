@@ -1,0 +1,16 @@
+diff --git a/src/org/mockito/internal/configuration/MockAnnotationProcessor.java b/src/org/mockito/internal/configuration/MockAnnotationProcessor.java
+index 40cb992..48b1fb5 100644
+--- a/src/org/mockito/internal/configuration/MockAnnotationProcessor.java
++++ b/src/org/mockito/internal/configuration/MockAnnotationProcessor.java
+@@ -16,8 +16,9 @@
+ public class MockAnnotationProcessor implements FieldAnnotationProcessor<Mock> {
+     public Object process(Mock annotation, Field field) {
+         MockSettings mockSettings = Mockito.withSettings();
+-        if (annotation.extraInterfaces().length > 0) { // never null
+-            mockSettings.extraInterfaces(annotation.extraInterfaces());
++        Class<?>[] var_7 = annotation.extraInterfaces();
++		if (var_7.length > 0) { // never null
++            mockSettings.extraInterfaces(var_7);
+         }
+         if ("".equals(annotation.name())) {
+             mockSettings.name(field.getName());

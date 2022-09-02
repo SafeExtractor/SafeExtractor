@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/OptimizeParameters.java b/src/com/google/javascript/jscomp/OptimizeParameters.java
+index 76e12a5..42024a6 100644
+--- a/src/com/google/javascript/jscomp/OptimizeParameters.java
++++ b/src/com/google/javascript/jscomp/OptimizeParameters.java
+@@ -253,13 +253,14 @@
+       // * the current parameter can be effected and a following
+       // parameter that will not be moved has side-effects
+ 
+-      if (current.shouldRemove
++      boolean var_1974 = current.shouldRemove;
++	if (var_1974
+           && ((seenUnmovableSideEffects && current.canBeSideEffected())
+           || (seenUnmoveableSideEfffected && current.hasSideEffects()))) {
+         current.shouldRemove = false;
+       }
+ 
+-      if (current.shouldRemove) {
++      if (var_1974) {
+         anyMovable = true;
+       } else {
+         if (current.canBeSideEffected) {

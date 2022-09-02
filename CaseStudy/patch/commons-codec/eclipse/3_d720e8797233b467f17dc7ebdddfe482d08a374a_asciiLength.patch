@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/codec/binary/BinaryCodec.java b/src/main/java/org/apache/commons/codec/binary/BinaryCodec.java
+index 590dd3e..2c06657 100644
+--- a/src/main/java/org/apache/commons/codec/binary/BinaryCodec.java
++++ b/src/main/java/org/apache/commons/codec/binary/BinaryCodec.java
+@@ -109,16 +109,17 @@
+      * @return the raw encoded binary where each bit corresponds to a char in the char array argument
+      */
+     public static byte[] fromAscii(final char[] ascii) {
+-        if (ascii == null || ascii.length == 0) {
++        int asciiLength = ascii.length;
++		if (ascii == null || asciiLength == 0) {
+             return EMPTY_BYTE_ARRAY;
+         }
+         // get length/8 times bytes with 3 bit shifts to the right of the length
+-        final byte[] l_raw = new byte[ascii.length >> 3];
++        final byte[] l_raw = new byte[asciiLength >> 3];
+         /*
+          * We decr index jj by 8 as we go along to not recompute indices using multiplication every time inside the
+          * loop.
+          */
+-        for (int ii = 0, jj = ascii.length - 1; ii < l_raw.length; ii++, jj -= 8) {
++        for (int ii = 0, jj = asciiLength - 1; ii < l_raw.length; ii++, jj -= 8) {
+             for (int bits = 0; bits < BITS.length; ++bits) {
+                 if (ascii[jj - bits] == '1') {
+                     l_raw[ii] |= BITS[bits];

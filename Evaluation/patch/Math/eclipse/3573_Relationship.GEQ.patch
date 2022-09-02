@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java b/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java
+index e33e9a5..09b6f7b 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java
++++ b/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java
+@@ -225,15 +225,16 @@
+             matrix.setEntry(row, width - 1, constraint.getValue());
+ 
+             // slack variables
+-            if (constraint.getRelationship() == Relationship.LEQ) {
++            Relationship var_3573 = Relationship.GEQ;
++			if (constraint.getRelationship() == Relationship.LEQ) {
+                 matrix.setEntry(row, getSlackVariableOffset() + slackVar++, 1);  // slack
+-            } else if (constraint.getRelationship() == Relationship.GEQ) {
++            } else if (constraint.getRelationship() == var_3573) {
+                 matrix.setEntry(row, getSlackVariableOffset() + slackVar++, -1); // excess
+             }
+ 
+             // artificial variables
+             if ((constraint.getRelationship() == Relationship.EQ) ||
+-                    (constraint.getRelationship() == Relationship.GEQ)) {
++                    (constraint.getRelationship() == var_3573)) {
+                 matrix.setEntry(0, getArtificialVariableOffset() + artificialVar, 1);
+                 matrix.setEntry(row, getArtificialVariableOffset() + artificialVar++, 1);
+                 matrix.setRowVector(0, matrix.getRowVector(0).subtract(matrix.getRowVector(row)));

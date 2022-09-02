@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/correlation/PearsonsCorrelation.java b/src/main/java/org/apache/commons/math3/stat/correlation/PearsonsCorrelation.java
+index 0234ec4..0eb17cc 100644
+--- a/src/main/java/org/apache/commons/math3/stat/correlation/PearsonsCorrelation.java
++++ b/src/main/java/org/apache/commons/math3/stat/correlation/PearsonsCorrelation.java
+@@ -226,13 +226,14 @@
+      */
+     public double correlation(final double[] xArray, final double[] yArray) {
+         SimpleRegression regression = new SimpleRegression();
+-        if (xArray.length != yArray.length) {
+-            throw new DimensionMismatchException(xArray.length, yArray.length);
+-        } else if (xArray.length < 2) {
++        int var_3724 = xArray.length;
++		if (var_3724 != yArray.length) {
++            throw new DimensionMismatchException(var_3724, yArray.length);
++        } else if (var_3724 < 2) {
+             throw new MathIllegalArgumentException(LocalizedFormats.INSUFFICIENT_DIMENSION,
+-                                                   xArray.length, 2);
++                                                   var_3724, 2);
+         } else {
+-            for(int i=0; i<xArray.length; i++) {
++            for(int i=0; i<var_3724; i++) {
+                 regression.addData(xArray[i], yArray[i]);
+             }
+             return regression.getR();

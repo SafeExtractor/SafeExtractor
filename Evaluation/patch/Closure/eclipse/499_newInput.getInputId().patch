@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+index 5f6b2c5..cc84913 100644
+--- a/src/com/google/javascript/jscomp/Compiler.java
++++ b/src/com/google/javascript/jscomp/Compiler.java
+@@ -1123,10 +1123,11 @@
+     }
+ 
+     // Verify the input id is set properly.
+-    Preconditions.checkState(
+-        newInput.getInputId().equals(oldInput.getInputId()));
++    InputId var_499 = newInput.getInputId();
++	Preconditions.checkState(
++        var_499.equals(oldInput.getInputId()));
+     InputId inputIdOnAst = newInput.getAstRoot(this).getInputId();
+-    Preconditions.checkState(newInput.getInputId().equals(inputIdOnAst));
++    Preconditions.checkState(var_499.equals(inputIdOnAst));
+ 
+     inputs.remove(oldInput);
+     return true;

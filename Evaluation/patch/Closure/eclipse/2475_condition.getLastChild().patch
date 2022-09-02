@@ -1,0 +1,62 @@
+diff --git a/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java b/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java
+index aa25ddd..d43476c 100644
+--- a/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java
++++ b/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java
+@@ -126,7 +126,8 @@
+       FlowScope blindScope, boolean outcome) {
+     // Check for the typeof operator.
+     int operatorToken = condition.getType();
+-    switch (operatorToken) {
++    Node var_2475 = condition.getLastChild();
++	switch (operatorToken) {
+       case Token.EQ:
+       case Token.NE:
+       case Token.SHEQ:
+@@ -139,7 +140,7 @@
+           right = condition.getFirstChild();
+         } else {
+           left = condition.getFirstChild();
+-          right = condition.getLastChild();
++          right = var_2475;
+         }
+ 
+         Node typeOfNode = null;
+@@ -170,19 +171,19 @@
+       case Token.AND:
+         if (outcome) {
+           return caseAndOrNotShortCircuiting(condition.getFirstChild(),
+-              condition.getLastChild(), blindScope, true);
++              var_2475, blindScope, true);
+         } else {
+           return caseAndOrMaybeShortCircuiting(condition.getFirstChild(),
+-              condition.getLastChild(), blindScope, true);
++              var_2475, blindScope, true);
+         }
+ 
+       case Token.OR:
+         if (!outcome) {
+           return caseAndOrNotShortCircuiting(condition.getFirstChild(),
+-              condition.getLastChild(), blindScope, false);
++              var_2475, blindScope, false);
+         } else {
+           return caseAndOrMaybeShortCircuiting(condition.getFirstChild(),
+-              condition.getLastChild(), blindScope, false);
++              var_2475, blindScope, false);
+         }
+ 
+       case Token.EQ:
+@@ -239,12 +240,12 @@
+ 
+       case Token.INSTANCEOF:
+         return caseInstanceOf(
+-            condition.getFirstChild(), condition.getLastChild(), blindScope,
++            condition.getFirstChild(), var_2475, blindScope,
+             outcome);
+ 
+       case Token.IN:
+         if (outcome && condition.getFirstChild().isString()) {
+-          return caseIn(condition.getLastChild(),
++          return caseIn(var_2475,
+               condition.getFirstChild().getString(), blindScope);
+         }
+         break;

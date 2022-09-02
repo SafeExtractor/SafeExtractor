@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/renderer/category/BarRenderer3D.java b/source/org/jfree/chart/renderer/category/BarRenderer3D.java
+index 6cf5928..33f7622 100644
+--- a/source/org/jfree/chart/renderer/category/BarRenderer3D.java
++++ b/source/org/jfree/chart/renderer/category/BarRenderer3D.java
+@@ -588,9 +588,10 @@
+ 
+             GeneralPath path = null;
+             PlotOrientation orientation = plot.getOrientation();
+-            if (orientation == PlotOrientation.HORIZONTAL) {
++            RectangleEdge var_2612 = plot.getRangeAxisEdge();
++			if (orientation == PlotOrientation.HORIZONTAL) {
+                 float x = (float) axis.valueToJava2D(value, adjusted,
+-                        plot.getRangeAxisEdge());
++                        var_2612);
+                 float y = (float) adjusted.getMaxY();
+                 path = new GeneralPath();
+                 path.moveTo(x, y);
+@@ -603,7 +604,7 @@
+             }
+             else if (orientation == PlotOrientation.VERTICAL) {
+                 float y = (float) axis.valueToJava2D(value, adjusted,
+-                        plot.getRangeAxisEdge());
++                        var_2612);
+                 float x = (float) dataArea.getX();
+                 path = new GeneralPath();
+                 path.moveTo(x, y);

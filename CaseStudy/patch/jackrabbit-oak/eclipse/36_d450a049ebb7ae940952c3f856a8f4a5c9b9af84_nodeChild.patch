@@ -1,0 +1,16 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/DocumentNodeStore.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/DocumentNodeStore.java
+index 715fac2..3e7f16d 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/DocumentNodeStore.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/DocumentNodeStore.java
+@@ -1970,8 +1970,9 @@
+                     while (t.read() != '}') {
+                         // skip properties
+                     }
+-                    continueComparison = diff.childNodeAdded(name,
+-                            node.getChildNode(name));
++                    NodeState nodeChild = node.getChildNode(name);
++					continueComparison = diff.childNodeAdded(name,
++                            nodeChild);
+                     break;
+                 }
+                 case '-': {

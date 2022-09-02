@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/ArrayRealVector.java b/src/main/java/org/apache/commons/math3/linear/ArrayRealVector.java
+index e807cb0..7558276 100644
+--- a/src/main/java/org/apache/commons/math3/linear/ArrayRealVector.java
++++ b/src/main/java/org/apache/commons/math3/linear/ArrayRealVector.java
+@@ -546,11 +546,12 @@
+     @Override
+     public double getLInfDistance(RealVector v)
+         throws DimensionMismatchException {
+-        if (v instanceof ArrayRealVector) {
++        int var_2414 = data.length;
++		if (v instanceof ArrayRealVector) {
+             final double[] vData = ((ArrayRealVector) v).data;
+             checkVectorDimensions(vData.length);
+             double max = 0;
+-            for (int i = 0; i < data.length; ++i) {
++            for (int i = 0; i < var_2414; ++i) {
+                 final double delta = data[i] - vData[i];
+                 max = FastMath.max(max, FastMath.abs(delta));
+             }
+@@ -558,7 +559,7 @@
+         } else {
+             checkVectorDimensions(v);
+             double max = 0;
+-            for (int i = 0; i < data.length; ++i) {
++            for (int i = 0; i < var_2414; ++i) {
+                 final double delta = data[i] - v.getEntry(i);
+                 max = FastMath.max(max, FastMath.abs(delta));
+             }

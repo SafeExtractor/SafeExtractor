@@ -1,0 +1,50 @@
+diff --git a/source/org/jfree/chart/renderer/xy/SamplingXYLineRenderer.java b/source/org/jfree/chart/renderer/xy/SamplingXYLineRenderer.java
+index ec442b1..15c44a5 100644
+--- a/source/org/jfree/chart/renderer/xy/SamplingXYLineRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/SamplingXYLineRenderer.java
+@@ -241,7 +241,8 @@
+ 
+         State s = (State) state;
+         // update path to reflect latest point
+-        if (!Double.isNaN(transX1) && !Double.isNaN(transY1)) {
++        GeneralPath var_3047 = s.seriesPath;
++		if (!Double.isNaN(transX1) && !Double.isNaN(transY1)) {
+             float x = (float) transX1;
+             float y = (float) transY1;
+             PlotOrientation orientation = plot.getOrientation();
+@@ -251,7 +252,7 @@
+             }
+             if (s.lastPointGood) {
+                 if ((Math.abs(x - s.lastX) > s.dX)) {
+-                    s.seriesPath.lineTo(x, y);
++                    var_3047.lineTo(x, y);
+                     if (s.lowY < s.highY) {
+                         s.intervalPath.moveTo((float) s.lastX, (float) s.lowY);
+                         s.intervalPath.lineTo((float) s.lastX, (float) s.highY);
+@@ -269,7 +270,7 @@
+                 }
+             }
+             else {
+-                s.seriesPath.moveTo(x, y);
++                var_3047.moveTo(x, y);
+                 s.lastX = x;
+                 s.openY = y;
+                 s.highY = y;
+@@ -284,7 +285,7 @@
+         // if this is the last item, draw the path ...
+         if (item == s.getLastItemIndex()) {
+             // draw path
+-            PathIterator pi = s.seriesPath.getPathIterator(null);
++            PathIterator pi = var_3047.getPathIterator(null);
+             int count = 0;
+             while (!pi.isDone()) {
+                 count++;
+@@ -292,7 +293,7 @@
+             }
+             g2.setStroke(getItemStroke(series, item, selected));
+             g2.setPaint(getItemPaint(series, item, selected));
+-            g2.draw(s.seriesPath);
++            g2.draw(var_3047);
+             g2.draw(s.intervalPath);
+         }
+     }

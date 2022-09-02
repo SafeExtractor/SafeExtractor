@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+index 4652f61..494c26e 100644
+--- a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+@@ -886,7 +886,8 @@
+                         } else {
+                             // Solve complex equations
+                             double x = matrixT[i][i + 1];
+-                            double y = matrixT[i + 1][i];
++                            double[] var_2141 = matrixT[i + 1];
++							double y = var_2141[i];
+                             double vr = (realEigenvalues[i] - p) * (realEigenvalues[i] - p) +
+                                         imagEigenvalues[i] * imagEigenvalues[i] - q * q;
+                             final double vi = (realEigenvalues[i] - p) * 2.0 * q;
+@@ -901,15 +902,15 @@
+                             matrixT[i][idx]     = c.getImaginary();
+ 
+                             if (FastMath.abs(x) > (FastMath.abs(z) + FastMath.abs(q))) {
+-                                matrixT[i + 1][idx - 1] = (-ra - w * matrixT[i][idx - 1] +
++                                var_2141[idx - 1] = (-ra - w * matrixT[i][idx - 1] +
+                                                            q * matrixT[i][idx]) / x;
+-                                matrixT[i + 1][idx]     = (-sa - w * matrixT[i][idx] -
++                                var_2141[idx]     = (-sa - w * matrixT[i][idx] -
+                                                            q * matrixT[i][idx - 1]) / x;
+                             } else {
+                                 final Complex c2        = cdiv(-r - y * matrixT[i][idx - 1],
+                                                                -s - y * matrixT[i][idx], z, q);
+-                                matrixT[i + 1][idx - 1] = c2.getReal();
+-                                matrixT[i + 1][idx]     = c2.getImaginary();
++                                var_2141[idx - 1] = c2.getReal();
++                                var_2141[idx]     = c2.getImaginary();
+                             }
+                         }
+ 

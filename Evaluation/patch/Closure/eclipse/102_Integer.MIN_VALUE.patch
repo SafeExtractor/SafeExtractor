@@ -1,0 +1,32 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapConsumerV1.java b/src/com/google/debugging/sourcemap/SourceMapConsumerV1.java
+index 8bd554f..0ab9ace 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapConsumerV1.java
++++ b/src/com/google/debugging/sourcemap/SourceMapConsumerV1.java
+@@ -158,7 +158,8 @@
+       JSONArray charArray = new JSONArray(currentLine);
+       int numOffsets = charArray.length();
+       int lastID = -1;
+-      int startID = Integer.MIN_VALUE;
++      int var_102 = Integer.MIN_VALUE;
++	int startID = var_102;
+       List<Byte> currentOffsets = Lists.newArrayList();
+       for (int j = 0; j < charArray.length(); ++j) {
+         // Keep track of the current mappingID, if the next element in the
+@@ -171,7 +172,7 @@
+           }
+         }
+ 
+-        if (startID == Integer.MIN_VALUE) {
++        if (startID == var_102) {
+           startID = mappingID;
+         } else {
+           // If the difference is bigger than a byte we need to keep track of
+@@ -191,7 +192,7 @@
+ 
+         lastID = mappingID;
+       }
+-      if (startID != Integer.MIN_VALUE) {
++      if (startID != var_102) {
+         myLineFragment = new LineFragment(
+             startID, Bytes.toArray(currentOffsets));
+         fragmentList.add(myLineFragment);

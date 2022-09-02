@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/chart/util/SerialUtilities.java b/source/org/jfree/chart/util/SerialUtilities.java
+index 90edcc1..245301c 100644
+--- a/source/org/jfree/chart/util/SerialUtilities.java
++++ b/source/org/jfree/chart/util/SerialUtilities.java
+@@ -503,13 +503,14 @@
+         boolean isNull = stream.readBoolean();
+         if (!isNull) {
+             // read string and attributes then create result
+-            String plainStr = (String) stream.readObject();
++            Object var_3651 = stream.readObject();
++			String plainStr = (String) var_3651;
+             result = new AttributedString(plainStr);
+             char c = stream.readChar();
+             int start = 0;
+             while (c != CharacterIterator.DONE) {
+                 int limit = stream.readInt();
+-                Map atts = (Map) stream.readObject();
++                Map atts = (Map) var_3651;
+                 result.addAttributes(atts, start, limit);
+                 start = limit;
+                 c = stream.readChar();

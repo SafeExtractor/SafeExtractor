@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..fe57e75 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -662,14 +662,15 @@
+                 pos1 += nvars - row - 2;
+             }
+             pos2 = pos1 + 1;
+-            for (int col2 = col1 + 1; col2 < nvars; col2++) {
+-                work[col2 + wrk_off] += d[col1] * r[pos2];
++            double var_3984 = d[col1];
++			for (int col2 = col1 + 1; col2 < nvars; col2++) {
++                work[col2 + wrk_off] += var_3984 * r[pos2];
+                 ++pos2;
+                 output[ (col2 - 1 - in) * (col2 - in) / 2 + col1 - in] =
+                         work[col2 + wrk_off] * rms[col1 + rms_off] * rms[col2 + rms_off];
+                 ++pos;
+             }
+-            sumxy += d[col1] * rhs[col1];
++            sumxy += var_3984 * rhs[col1];
+             output[col1 + rms_off + offXX] = sumxy * rms[col1 + rms_off] * sumyy;
+         }
+ 

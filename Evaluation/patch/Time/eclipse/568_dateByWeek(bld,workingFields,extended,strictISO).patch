@@ -1,0 +1,40 @@
+diff --git a/src/main/java/org/joda/time/format/ISODateTimeFormat.java b/src/main/java/org/joda/time/format/ISODateTimeFormat.java
+index af53ee4..6afe93f 100644
+--- a/src/main/java/org/joda/time/format/ISODateTimeFormat.java
++++ b/src/main/java/org/joda/time/format/ISODateTimeFormat.java
+@@ -165,19 +165,22 @@
+             reducedPrec = dateByMonth(bld, workingFields, extended, strictISO);
+         } else if (workingFields.contains(DateTimeFieldType.dayOfYear())) {
+             reducedPrec = dateByOrdinal(bld, workingFields, extended, strictISO);
+-        } else if (workingFields.contains(DateTimeFieldType.weekOfWeekyear())) {
+-            reducedPrec = dateByWeek(bld, workingFields, extended, strictISO);
+-        } else if (workingFields.contains(DateTimeFieldType.dayOfMonth())) {
+-            reducedPrec = dateByMonth(bld, workingFields, extended, strictISO);
+-        } else if (workingFields.contains(DateTimeFieldType.dayOfWeek())) {
+-            reducedPrec = dateByWeek(bld, workingFields, extended, strictISO);
+-        } else if (workingFields.remove(DateTimeFieldType.year())) {
+-            bld.append(Constants.ye);
+-            reducedPrec = true;
+-        } else if (workingFields.remove(DateTimeFieldType.weekyear())) {
+-            bld.append(Constants.we);
+-            reducedPrec = true;
+-        }
++        } else {
++			boolean var_568 = dateByWeek(bld, workingFields, extended, strictISO);
++			if (workingFields.contains(DateTimeFieldType.weekOfWeekyear())) {
++			    reducedPrec = var_568;
++			} else if (workingFields.contains(DateTimeFieldType.dayOfMonth())) {
++			    reducedPrec = dateByMonth(bld, workingFields, extended, strictISO);
++			} else if (workingFields.contains(DateTimeFieldType.dayOfWeek())) {
++			    reducedPrec = var_568;
++			} else if (workingFields.remove(DateTimeFieldType.year())) {
++			    bld.append(Constants.ye);
++			    reducedPrec = true;
++			} else if (workingFields.remove(DateTimeFieldType.weekyear())) {
++			    bld.append(Constants.we);
++			    reducedPrec = true;
++			}
++		}
+         boolean datePresent = (workingFields.size() < inputSize);
+         
+         // time

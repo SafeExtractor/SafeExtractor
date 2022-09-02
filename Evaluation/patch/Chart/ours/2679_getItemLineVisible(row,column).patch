@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java b/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java
+index 882b0f1..ae83bde 100644
+--- a/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java
++++ b/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java
+@@ -728,7 +728,8 @@
+         }
+ 
+         // do nothing if both the line and shape are not visible
+-        if (!getItemLineVisible(row, column)
++        boolean var_2679 = getItemLineVisible(row, column);
++		if (!var_2679
+                 && !getItemShapeVisible(row, column)) {
+             return;
+         }
+@@ -762,7 +763,7 @@
+         double y1 = rangeAxis.valueToJava2D(value, dataArea,
+                 plot.getRangeAxisEdge());
+ 
+-        if (pass == 0 && getItemLineVisible(row, column)) {
++        if (pass == 0 && var_2679) {
+             if (column != 0) {
+                 Number previousValue = dataset.getValue(row, column - 1);
+                 if (previousValue != null) {

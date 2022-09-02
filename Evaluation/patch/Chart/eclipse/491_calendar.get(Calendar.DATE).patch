@@ -1,0 +1,45 @@
+diff --git a/source/org/jfree/chart/axis/DateAxis.java b/source/org/jfree/chart/axis/DateAxis.java
+index 059bc3a..3da8f28 100644
+--- a/source/org/jfree/chart/axis/DateAxis.java
++++ b/source/org/jfree/chart/axis/DateAxis.java
+@@ -887,10 +887,11 @@
+         int value = count * (current / count);
+ 
+         DateTickUnitType t = unit.getUnitType();
+-        if (t.equals(DateTickUnitType.MILLISECOND)) {
++        int var_491 = calendar.get(Calendar.DATE);
++		if (t.equals(DateTickUnitType.MILLISECOND)) {
+             years = calendar.get(Calendar.YEAR);
+             months = calendar.get(Calendar.MONTH);
+-            days = calendar.get(Calendar.DATE);
++            days = var_491;
+             hours = calendar.get(Calendar.HOUR_OF_DAY);
+             minutes = calendar.get(Calendar.MINUTE);
+             seconds = calendar.get(Calendar.SECOND);
+@@ -906,7 +907,7 @@
+         else if (t.equals(DateTickUnitType.SECOND)) {
+             years = calendar.get(Calendar.YEAR);
+             months = calendar.get(Calendar.MONTH);
+-            days = calendar.get(Calendar.DATE);
++            days = var_491;
+             hours = calendar.get(Calendar.HOUR_OF_DAY);
+             minutes = calendar.get(Calendar.MINUTE);
+             if (this.tickMarkPosition == DateTickMarkPosition.START) {
+@@ -930,7 +931,7 @@
+         else if (t.equals(DateTickUnitType.MINUTE)) {
+             years = calendar.get(Calendar.YEAR);
+             months = calendar.get(Calendar.MONTH);
+-            days = calendar.get(Calendar.DATE);
++            days = var_491;
+             hours = calendar.get(Calendar.HOUR_OF_DAY);
+             if (this.tickMarkPosition == DateTickMarkPosition.START) {
+                seconds = 0;
+@@ -953,7 +954,7 @@
+         else if (t.equals(DateTickUnitType.HOUR)) {
+             years = calendar.get(Calendar.YEAR);
+             months = calendar.get(Calendar.MONTH);
+-            days = calendar.get(Calendar.DATE);
++            days = var_491;
+             if (this.tickMarkPosition == DateTickMarkPosition.START) {
+                 minutes = 0;
+                 seconds = 0;

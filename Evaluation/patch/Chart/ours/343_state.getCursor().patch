@@ -1,0 +1,47 @@
+diff --git a/source/org/jfree/chart/axis/SubCategoryAxis.java b/source/org/jfree/chart/axis/SubCategoryAxis.java
+index 5b619d5..67c7b98 100644
+--- a/source/org/jfree/chart/axis/SubCategoryAxis.java
++++ b/source/org/jfree/chart/axis/SubCategoryAxis.java
+@@ -324,12 +324,13 @@
+             double x1 = 0.0;
+             double y0 = 0.0;
+             double y1 = 0.0;
+-            if (edge == RectangleEdge.TOP) {
++            double var_343 = state.getCursor();
++			if (edge == RectangleEdge.TOP) {
+                 x0 = getCategoryStart(categoryIndex, categoryCount, dataArea,
+                         edge);
+                 x1 = getCategoryEnd(categoryIndex, categoryCount, dataArea,
+                         edge);
+-                y1 = state.getCursor();
++                y1 = var_343;
+                 y0 = y1 - maxdim;
+             }
+             else if (edge == RectangleEdge.BOTTOM) {
+@@ -337,7 +338,7 @@
+                         edge);
+                 x1 = getCategoryEnd(categoryIndex, categoryCount, dataArea,
+                         edge);
+-                y0 = state.getCursor();
++                y0 = var_343;
+                 y1 = y0 + maxdim;
+             }
+             else if (edge == RectangleEdge.LEFT) {
+@@ -345,7 +346,7 @@
+                         edge);
+                 y1 = getCategoryEnd(categoryIndex, categoryCount, dataArea,
+                         edge);
+-                x1 = state.getCursor();
++                x1 = var_343;
+                 x0 = x1 - maxdim;
+             }
+             else if (edge == RectangleEdge.RIGHT) {
+@@ -353,7 +354,7 @@
+                         edge);
+                 y1 = getCategoryEnd(categoryIndex, categoryCount, dataArea,
+                         edge);
+-                x0 = state.getCursor();
++                x0 = var_343;
+                 x1 = x0 + maxdim;
+             }
+             Rectangle2D area = new Rectangle2D.Double(x0, y0, (x1 - x0),

@@ -1,0 +1,14 @@
+diff --git a/src/org/mockito/internal/invocation/InvocationMatcher.java b/src/org/mockito/internal/invocation/InvocationMatcher.java
+index d45e4c6..85d443a 100644
+--- a/src/org/mockito/internal/invocation/InvocationMatcher.java
++++ b/src/org/mockito/internal/invocation/InvocationMatcher.java
+@@ -123,7 +123,8 @@
+             for (int position = 0; position < indexOfVararg; position++) {
+                 Matcher m = matchers.get(position);
+                 if (m instanceof CapturesArguments) {
+-                    ((CapturesArguments) m).captureFrom(invocation.getArgumentAt(position, Object.class));
++                    Object var_50 = invocation.getArgumentAt(position, Object.class);
++					((CapturesArguments) m).captureFrom(var_50);
+                 }
+             }
+             for (int position = indexOfVararg; position < matchers.size(); position++) {

@@ -1,0 +1,38 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..1f80cbe 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1320,8 +1320,9 @@
+         /* Handle special case when a or b is zero, by setting the exponent
+        of the zero number equal to the other one.  This avoids an alignment
+        which would cause catastropic loss of precision */
+-        if (b.mant[mant.length-1] == 0) {
+-            b.exp = a.exp;
++        int var_626 = a.exp;
++		if (b.mant[mant.length-1] == 0) {
++            b.exp = var_626;
+         }
+ 
+         if (a.mant[mant.length-1] == 0) {
+@@ -1331,10 +1332,10 @@
+         /* align number with the smaller exponent */
+         int aextradigit = 0;
+         int bextradigit = 0;
+-        if (a.exp < b.exp) {
++        if (var_626 < b.exp) {
+             aextradigit = a.align(b.exp);
+         } else {
+-            bextradigit = b.align(a.exp);
++            bextradigit = b.align(var_626);
+         }
+ 
+         /* complement the smaller of the two if the signs are different */
+@@ -1353,7 +1354,7 @@
+             rh = r / RADIX;
+             result.mant[i] = r - rh * RADIX;
+         }
+-        result.exp = a.exp;
++        result.exp = var_626;
+         result.sign = rsign;
+ 
+         /* handle overflow -- note, when asign!=bsign an overflow is

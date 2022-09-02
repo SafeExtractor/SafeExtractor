@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/VariableReferenceCheck.java b/src/com/google/javascript/jscomp/VariableReferenceCheck.java
+index c934263..cdde55d 100644
+--- a/src/com/google/javascript/jscomp/VariableReferenceCheck.java
++++ b/src/com/google/javascript/jscomp/VariableReferenceCheck.java
+@@ -131,7 +131,8 @@
+         boolean allowDupe =
+             SyntacticScopeCreator.hasDuplicateDeclarationSuppression(
+                 reference.getNode(), v);
+-        if (isDeclaration && !allowDupe) {
++        String var_226 = NodeUtil.getSourceName(reference.getNode());
++		if (isDeclaration && !allowDupe) {
+           // Look through all the declarations we've found so far, and
+           // check if any of them are before this block.
+           for (BasicBlock declaredBlock : blocksWithDeclarations) {
+@@ -140,7 +141,7 @@
+               // have property StaticSourceFile attached at each node. Or
+               // better yet, make sure the generated code never violates
+               // the requirement to pass aggressive var check!
+-              String filename = NodeUtil.getSourceName(reference.getNode());
++              String filename = var_226;
+               compiler.report(
+                   JSError.make(filename,
+                       reference.getNode(),
+@@ -156,7 +157,7 @@
+           // block it is declared.
+           for (BasicBlock declaredBlock : blocksWithDeclarations) {
+             if (!declaredBlock.provablyExecutesBefore(basicBlock)) {
+-              String filename = NodeUtil.getSourceName(reference.getNode());
++              String filename = var_226;
+               compiler.report(
+                   JSError.make(filename,
+                       reference.getNode(),
+@@ -179,7 +180,7 @@
+             // Only generate warnings if the scopes do not match in order
+             // to deal with possible forward declarations and recursion
+             if (reference.getScope() == v.scope) {
+-              String filename = NodeUtil.getSourceName(reference.getNode());
++              String filename = var_226;
+               compiler.report(
+                   JSError.make(filename,
+                                reference.getNode(),

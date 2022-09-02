@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessCommonJSModules.java b/src/com/google/javascript/jscomp/ProcessCommonJSModules.java
+index 6777957..38c8f5a 100644
+--- a/src/com/google/javascript/jscomp/ProcessCommonJSModules.java
++++ b/src/com/google/javascript/jscomp/ProcessCommonJSModules.java
+@@ -215,11 +215,12 @@
+         return;
+       }
+ 
+-      Node moduleExportsProp = IR.getprop(IR.name(moduleName),
++      Node var_1929 = IR.name(moduleName);
++	Node moduleExportsProp = IR.getprop(var_1929,
+           IR.string("module$exports"));
+       script.addChildToBack(IR.ifNode(
+           moduleExportsProp,
+-          IR.block(IR.exprResult(IR.assign(IR.name(moduleName),
++          IR.block(IR.exprResult(IR.assign(var_1929,
+               moduleExportsProp.cloneTree())))).copyInformationFromForTree(
+           script));
+     }

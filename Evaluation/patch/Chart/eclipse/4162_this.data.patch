@@ -1,0 +1,33 @@
+diff --git a/source/org/jfree/data/time/TimeSeries.java b/source/org/jfree/data/time/TimeSeries.java
+index 72bb2ea..afeac3d 100644
+--- a/source/org/jfree/data/time/TimeSeries.java
++++ b/source/org/jfree/data/time/TimeSeries.java
+@@ -821,10 +821,11 @@
+             throw new SeriesException(msg);
+         }
+         TimeSeriesDataItem overwritten = null;
+-        int index = Collections.binarySearch(this.data, item);
++        List var_4162 = this.data;
++		int index = Collections.binarySearch(var_4162, item);
+         if (index >= 0) {
+             TimeSeriesDataItem existing
+-                    = (TimeSeriesDataItem) this.data.get(index);
++                    = (TimeSeriesDataItem) var_4162.get(index);
+             overwritten = (TimeSeriesDataItem) existing.clone();
+             // figure out if we need to iterate through all the y-values
+             // to find the revised minY / maxY
+@@ -846,12 +847,12 @@
+         }
+         else {
+             item = (TimeSeriesDataItem) item.clone();
+-            this.data.add(-index - 1, item);
++            var_4162.add(-index - 1, item);
+             updateBoundsForAddedItem(item);
+ 
+             // check if this addition will exceed the maximum item count...
+             if (getItemCount() > this.maximumItemCount) {
+-                TimeSeriesDataItem d = (TimeSeriesDataItem) this.data.remove(0);
++                TimeSeriesDataItem d = (TimeSeriesDataItem) var_4162.remove(0);
+                 updateBoundsForRemovedItem(d);
+             }
+         }

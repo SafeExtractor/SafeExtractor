@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..b8544cf 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -464,7 +464,8 @@
+                         }
+                         temp *= modelSecondDerivativesParameters.getEntry(k);
+                         for (int i = 0; i < n; i++) {
+-                            gradientAtTrustRegionCenter.setEntry(i, gradientAtTrustRegionCenter.getEntry(i) + temp * interpolationPoints.getEntry(k, i));
++                            double var_3359 = gradientAtTrustRegionCenter.getEntry(i);
++							gradientAtTrustRegionCenter.setEntry(i, var_3359 + temp * interpolationPoints.getEntry(k, i));
+                         }
+                     }
+                     // throw new PathIsExploredException(); // XXX

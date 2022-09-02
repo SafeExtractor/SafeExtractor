@@ -1,0 +1,45 @@
+diff --git a/source/org/jfree/chart/axis/Axis.java b/source/org/jfree/chart/axis/Axis.java
+index cabb331..ca0b1b1 100644
+--- a/source/org/jfree/chart/axis/Axis.java
++++ b/source/org/jfree/chart/axis/Axis.java
+@@ -1304,10 +1304,11 @@
+         Rectangle2D labelBounds = TextUtilities.getTextBounds(label, g2, fm);
+         Shape hotspot = null;
+ 
+-        if (edge == RectangleEdge.TOP) {
++        double var_309 = labelBounds.getCenterY();
++		if (edge == RectangleEdge.TOP) {
+             AffineTransform t = AffineTransform.getRotateInstance(
+                     getLabelAngle(), labelBounds.getCenterX(),
+-                    labelBounds.getCenterY());
++                    var_309);
+             Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);
+             labelBounds = rotatedLabelBounds.getBounds2D();
+             float w = (float) labelBounds.getWidth();
+@@ -1325,7 +1326,7 @@
+         else if (edge == RectangleEdge.BOTTOM) {
+             AffineTransform t = AffineTransform.getRotateInstance(
+                     getLabelAngle(), labelBounds.getCenterX(),
+-                    labelBounds.getCenterY());
++                    var_309);
+             Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);
+             labelBounds = rotatedLabelBounds.getBounds2D();
+             float w = (float) labelBounds.getWidth();
+@@ -1343,7 +1344,7 @@
+         else if (edge == RectangleEdge.LEFT) {
+             AffineTransform t = AffineTransform.getRotateInstance(
+                     getLabelAngle() - Math.PI / 2.0, labelBounds.getCenterX(),
+-                    labelBounds.getCenterY());
++                    var_309);
+             Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);
+             labelBounds = rotatedLabelBounds.getBounds2D();
+             float w = (float) labelBounds.getWidth();
+@@ -1363,7 +1364,7 @@
+ 
+             AffineTransform t = AffineTransform.getRotateInstance(
+                     getLabelAngle() + Math.PI / 2.0,
+-                    labelBounds.getCenterX(), labelBounds.getCenterY());
++                    labelBounds.getCenterX(), var_309);
+             Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);
+             labelBounds = rotatedLabelBounds.getBounds2D();
+             float w = (float) labelBounds.getWidth();

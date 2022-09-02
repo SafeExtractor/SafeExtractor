@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/data/xy/MatrixSeriesCollection.java b/source/org/jfree/data/xy/MatrixSeriesCollection.java
+index 6af3a1a..1bb5194 100644
+--- a/source/org/jfree/data/xy/MatrixSeriesCollection.java
++++ b/source/org/jfree/data/xy/MatrixSeriesCollection.java
+@@ -282,13 +282,14 @@
+     public void removeAllSeries() {
+         // Unregister the collection as a change listener to each series in
+         // the collection.
+-        for (int i = 0; i < this.seriesList.size(); i++) {
+-            MatrixSeries series = (MatrixSeries) this.seriesList.get(i);
++        List var_4444 = this.seriesList;
++		for (int i = 0; i < var_4444.size(); i++) {
++            MatrixSeries series = (MatrixSeries) var_4444.get(i);
+             series.removeChangeListener(this);
+         }
+ 
+         // Remove all the series from the collection and notify listeners.
+-        this.seriesList.clear();
++        var_4444.clear();
+         fireDatasetChanged(new DatasetChangeInfo());
+         //TODO: fill in real change info
+     }

@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..8e1c430 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -472,7 +472,8 @@
+ 
+     passes.add(createEmptyPass("beforeMainOptimizations"));
+ 
+-    passes.addAll(getMainOptimizationLoop());
++    List<PassFactory> var_1783 = getMainOptimizationLoop();
++	passes.addAll(var_1783);
+ 
+     if (options.specializeInitialModule) {
+       // When specializing the initial module, we want our fixups to be
+@@ -489,7 +490,7 @@
+       }
+ 
+       passes.add(specializeInitialModule);
+-      passes.addAll(getMainOptimizationLoop());
++      passes.addAll(var_1783);
+     }
+ 
+     passes.add(createEmptyPass("beforeModuleMotion"));

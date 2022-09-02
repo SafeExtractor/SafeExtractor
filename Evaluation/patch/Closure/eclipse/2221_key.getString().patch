@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/jsonml/Writer.java b/src/com/google/javascript/jscomp/jsonml/Writer.java
+index b357eb9..78a0cbe 100644
+--- a/src/com/google/javascript/jscomp/jsonml/Writer.java
++++ b/src/com/google/javascript/jscomp/jsonml/Writer.java
+@@ -638,18 +638,19 @@
+       Node value = key.getFirstChild();
+       JsonML item;
+       Object name;
+-      switch (key.getType()) {
++      String var_2221 = key.getString();
++	switch (key.getType()) {
+         case Token.STRING_KEY:
+           item = new JsonML(TagType.DataProp);
+-          name = key.getString();
++          name = var_2221;
+           break;
+         case Token.GETTER_DEF:
+           item = new JsonML(TagType.GetterProp);
+-          name = key.getString();
++          name = var_2221;
+           break;
+         case Token.SETTER_DEF:
+           item = new JsonML(TagType.SetterProp);
+-          name = key.getString();
++          name = var_2221;
+           break;
+         default:
+           throw new IllegalArgumentException("Illegal type of node.");

@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/InlineVariables.java b/src/com/google/javascript/jscomp/InlineVariables.java
+index 5c7408d..e203450 100644
+--- a/src/com/google/javascript/jscomp/InlineVariables.java
++++ b/src/com/google/javascript/jscomp/InlineVariables.java
+@@ -226,8 +226,9 @@
+       if (scope.isLocal()) {
+         Var arguments = scope.getArgumentsVar();
+         ReferenceCollection refs = referenceMap.getReferences(arguments);
+-        if (refs != null && !refs.references.isEmpty()) {
+-          for (Reference ref : refs.references) {
++        List<Reference> var_1098 = refs.references;
++		if (refs != null && !var_1098.isEmpty()) {
++          for (Reference ref : var_1098) {
+             Node refNode = ref.getNode();
+             Node refParent = ref.getParent();
+             // Any reference that is not a read of the arguments property

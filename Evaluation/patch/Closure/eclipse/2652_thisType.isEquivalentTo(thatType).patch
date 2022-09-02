@@ -1,0 +1,66 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSType.java b/src/com/google/javascript/rhino/jstype/JSType.java
+index 11875e9..729a388 100644
+--- a/src/com/google/javascript/rhino/jstype/JSType.java
++++ b/src/com/google/javascript/rhino/jstype/JSType.java
+@@ -1060,32 +1060,35 @@
+       // See the comment in supAndInfHelper for more info on this.
+       return thisType.toMaybeFunctionType().supAndInfHelper(
+           thatType.toMaybeFunctionType(), false);
+-    } else if (thisType.isEquivalentTo(thatType)) {
+-      return thisType;
+-    } else if (thisType.isUnknownType() || thatType.isUnknownType()) {
+-      // The greatest subtype with any unknown type is the universal
+-      // unknown type, unless the two types are equal.
+-      return thisType.isEquivalentTo(thatType) ? thisType :
+-          thisType.getNativeType(JSTypeNative.UNKNOWN_TYPE);
+-    } else if (thisType.isUnionType()) {
+-      return thisType.toMaybeUnionType().meet(thatType);
+-    } else if (thatType.isUnionType()) {
+-      return thatType.toMaybeUnionType().meet(thisType);
+-    } else if (thisType.isParameterizedType()) {
+-      return thisType.toMaybeParameterizedType().getGreatestSubtypeHelper(
+-          thatType);
+-    }  else if (thatType.isParameterizedType()) {
+-      return thatType.toMaybeParameterizedType().getGreatestSubtypeHelper(
+-          thisType);
+-    } else if (thisType.isSubtype(thatType)) {
+-      return filterNoResolvedType(thisType);
+-    } else if (thatType.isSubtype(thisType)) {
+-      return filterNoResolvedType(thatType);
+-    } else if (thisType.isRecordType()) {
+-      return thisType.toMaybeRecordType().getGreatestSubtypeHelper(thatType);
+-    } else if (thatType.isRecordType()) {
+-      return thatType.toMaybeRecordType().getGreatestSubtypeHelper(thisType);
+-    }
++    } else {
++		boolean var_2652 = thisType.isEquivalentTo(thatType);
++		if (var_2652) {
++		  return thisType;
++		} else if (thisType.isUnknownType() || thatType.isUnknownType()) {
++		  // The greatest subtype with any unknown type is the universal
++		  // unknown type, unless the two types are equal.
++		  return var_2652 ? thisType :
++		      thisType.getNativeType(JSTypeNative.UNKNOWN_TYPE);
++		} else if (thisType.isUnionType()) {
++		  return thisType.toMaybeUnionType().meet(thatType);
++		} else if (thatType.isUnionType()) {
++		  return thatType.toMaybeUnionType().meet(thisType);
++		} else if (thisType.isParameterizedType()) {
++		  return thisType.toMaybeParameterizedType().getGreatestSubtypeHelper(
++		      thatType);
++		}  else if (thatType.isParameterizedType()) {
++		  return thatType.toMaybeParameterizedType().getGreatestSubtypeHelper(
++		      thisType);
++		} else if (thisType.isSubtype(thatType)) {
++		  return filterNoResolvedType(thisType);
++		} else if (thatType.isSubtype(thisType)) {
++		  return filterNoResolvedType(thatType);
++		} else if (thisType.isRecordType()) {
++		  return thisType.toMaybeRecordType().getGreatestSubtypeHelper(thatType);
++		} else if (thatType.isRecordType()) {
++		  return thatType.toMaybeRecordType().getGreatestSubtypeHelper(thisType);
++		}
++	}
+ 
+     if (thisType.isEnumElementType()) {
+       JSType inf = thisType.toMaybeEnumElementType().meet(thatType);

@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYBlockRenderer.java b/source/org/jfree/chart/renderer/xy/XYBlockRenderer.java
+index 476d601..2951445 100644
+--- a/source/org/jfree/chart/renderer/xy/XYBlockRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYBlockRenderer.java
+@@ -367,13 +367,14 @@
+                 + this.yOffset, dataArea, plot.getRangeAxisEdge());
+         Rectangle2D block;
+         PlotOrientation orientation = plot.getOrientation();
+-        if (orientation.equals(PlotOrientation.HORIZONTAL)) {
++        double var_3185 = Math.min(xx0, xx1);
++		if (orientation.equals(PlotOrientation.HORIZONTAL)) {
+             block = new Rectangle2D.Double(Math.min(yy0, yy1),
+-                    Math.min(xx0, xx1), Math.abs(yy1 - yy0),
++                    var_3185, Math.abs(yy1 - yy0),
+                     Math.abs(xx0 - xx1));
+         }
+         else {
+-            block = new Rectangle2D.Double(Math.min(xx0, xx1),
++            block = new Rectangle2D.Double(var_3185,
+                     Math.min(yy0, yy1), Math.abs(xx1 - xx0),
+                     Math.abs(yy1 - yy0));
+         }

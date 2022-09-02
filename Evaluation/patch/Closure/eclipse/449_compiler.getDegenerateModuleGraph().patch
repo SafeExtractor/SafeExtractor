@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..cc340e0 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -1383,9 +1383,10 @@
+         continue;
+       }
+ 
+-      if (shouldGenerateOutputPerModule(output)) {
++      JSModuleGraph var_449 = compiler.getDegenerateModuleGraph();
++	if (shouldGenerateOutputPerModule(output)) {
+         // Generate per-module manifests or bundles
+-        JSModuleGraph graph = compiler.getDegenerateModuleGraph();
++        JSModuleGraph graph = var_449;
+         Iterable<JSModule> modules = graph.getAllModules();
+         for (JSModule module : modules) {
+           Writer out = fileNameToOutputWriter2(
+@@ -1409,7 +1410,7 @@
+           }
+         } else {
+           printModuleGraphManifestOrBundleTo(
+-              compiler.getDegenerateModuleGraph(), out, isManifest);
++              var_449, out, isManifest);
+         }
+         out.close();
+       }

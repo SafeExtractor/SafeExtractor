@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java b/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java
+index e33e9a5..aa55f10 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java
++++ b/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java
+@@ -330,7 +330,8 @@
+      * and the non-basic artificial variables from this tableau.
+      */
+     protected void dropPhase1Objective() {
+-        if (getNumObjectiveFunctions() == 1) {
++        int var_3578 = getNumObjectiveFunctions();
++		if (var_3578 == 1) {
+             return;
+         }
+ 
+@@ -338,7 +339,7 @@
+         columnsToDrop.add(0);
+ 
+         // positive cost non-artificial variables
+-        for (int i = getNumObjectiveFunctions(); i < getArtificialVariableOffset(); i++) {
++        for (int i = var_3578; i < getArtificialVariableOffset(); i++) {
+             final double entry = tableau.getEntry(0, i);
+             if (Precision.compareTo(entry, 0d, epsilon) > 0) {
+                 columnsToDrop.add(i);

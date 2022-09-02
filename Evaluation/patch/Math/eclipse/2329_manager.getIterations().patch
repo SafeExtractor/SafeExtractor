@@ -1,0 +1,43 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+index 7b1dcc7..ab4107d 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
++++ b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+@@ -1160,8 +1160,9 @@
+         state.init();
+         state.refineSolution(x);
+         IterativeLinearSolverEvent event;
+-        event = new DefaultIterativeLinearSolverEvent(this,
+-                                                      manager.getIterations(),
++        int var_2329 = manager.getIterations();
++		event = new DefaultIterativeLinearSolverEvent(this,
++                                                      var_2329,
+                                                       x,
+                                                       b,
+                                                       state.getNormOfResidual());
+@@ -1178,7 +1179,7 @@
+             do {
+                 manager.incrementIterationCount();
+                 event = new DefaultIterativeLinearSolverEvent(this,
+-                                                              manager.getIterations(),
++                                                              var_2329,
+                                                               x,
+                                                               b,
+                                                               state.getNormOfResidual());
+@@ -1186,7 +1187,7 @@
+                 state.update();
+                 state.refineSolution(x);
+                 event = new DefaultIterativeLinearSolverEvent(this,
+-                                                              manager.getIterations(),
++                                                              var_2329,
+                                                               x,
+                                                               b,
+                                                               state.getNormOfResidual());
+@@ -1194,7 +1195,7 @@
+             } while (!state.hasConverged());
+         }
+         event = new DefaultIterativeLinearSolverEvent(this,
+-                                                      manager.getIterations(),
++                                                      var_2329,
+                                                       x,
+                                                       b,
+                                                       state.getNormOfResidual());

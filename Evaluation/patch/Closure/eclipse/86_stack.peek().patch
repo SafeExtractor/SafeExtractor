@@ -1,0 +1,22 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapGeneratorV3.java b/src/com/google/debugging/sourcemap/SourceMapGeneratorV3.java
+index 5ba6e4b..e72d37b 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapGeneratorV3.java
++++ b/src/com/google/debugging/sourcemap/SourceMapGeneratorV3.java
+@@ -495,14 +495,15 @@
+         // An overlapping mapping is an ancestor of the current mapping, any
+         // non-overlapping mappings are siblings (or cousins) and must be
+         // closed in the reverse order of when they encountered.
+-        while (!stack.isEmpty() && !isOverlapped(stack.peek(), m)) {
++        Mapping var_86 = stack.peek();
++		while (!stack.isEmpty() && !isOverlapped(var_86, m)) {
+           Mapping previous = stack.pop();
+           maybeVisit(v, previous);
+         }
+ 
+         // Any gaps between the current line position and the start of the
+         // current mapping belong to the parent.
+-        Mapping parent = stack.peek();
++        Mapping parent = var_86;
+         maybeVisitParent(v, parent, m);
+ 
+         stack.push(m);

@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/inference/GTest.java b/src/main/java/org/apache/commons/math3/stat/inference/GTest.java
+index 78ab705..bd65e3e 100644
+--- a/src/main/java/org/apache/commons/math3/stat/inference/GTest.java
++++ b/src/main/java/org/apache/commons/math3/stat/inference/GTest.java
+@@ -101,9 +101,10 @@
+         }
+         double sum = 0d;
+         for (int i = 0; i < observed.length; i++) {
+-            final double dev = rescale ?
+-                    FastMath.log((double) observed[i] / (ratio * expected[i])) :
+-                        FastMath.log((double) observed[i] / expected[i]);
++            double var_3824 = expected[i];
++			final double dev = rescale ?
++                    FastMath.log((double) observed[i] / (ratio * var_3824)) :
++                        FastMath.log((double) observed[i] / var_3824);
+             sum += ((double) observed[i]) * dev;
+         }
+         return 2d * sum;

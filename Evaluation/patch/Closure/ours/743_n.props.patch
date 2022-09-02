@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..561a404 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -934,8 +934,9 @@
+     Preconditions.checkArgument(NodeUtil.isStatementBlock(parent));
+     Preconditions.checkNotNull(addAfter);
+     int numStubs = 0;
+-    if (n.props != null) {
+-      for (Name p : n.props) {
++    List<Name> var_743 = n.props;
++	if (var_743 != null) {
++      for (Name p : var_743) {
+         if (p.needsToBeStubbed()) {
+           String propAlias = appendPropForAlias(alias, p.getBaseName());
+           Node nameNode = IR.name(propAlias);

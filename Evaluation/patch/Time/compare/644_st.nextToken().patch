@@ -1,0 +1,37 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/644_st.nextToken().patch b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/644_st.nextToken().patch
+index 6588fb1..5f6e01c 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/644_st.nextToken().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/644_st.nextToken().patch
+@@ -1,28 +1,14 @@
+ diff --git a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+-index 4e56fef..f9225e2 100644
++index 4e56fef..adb7b28 100644
+ --- a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+ +++ b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+-@@ -653,16 +653,17 @@
++@@ -653,7 +653,8 @@
+          public final String iLetterS;
+  
+          Rule(StringTokenizer st) {
+ -            iName = st.nextToken().intern();
+--            iFromYear = parseYear(st.nextToken(), 0);
+--            iToYear = parseYear(st.nextToken(), iFromYear);
+ +            String var_644 = st.nextToken();
+ +			iName = var_644.intern();
+-+            iFromYear = parseYear(var_644, 0);
+-+            iToYear = parseYear(var_644, iFromYear);
++             iFromYear = parseYear(st.nextToken(), 0);
++             iToYear = parseYear(st.nextToken(), iFromYear);
+              if (iToYear < iFromYear) {
+-                 throw new IllegalArgumentException();
+-             }
+--            iType = parseOptional(st.nextToken());
+-+            iType = parseOptional(var_644);
+-             iDateTimeOfYear = new DateTimeOfYear(st);
+--            iSaveMillis = parseTime(st.nextToken());
+--            iLetterS = parseOptional(st.nextToken());
+-+            iSaveMillis = parseTime(var_644);
+-+            iLetterS = parseOptional(var_644);
+-         }
+- 
+-         /**

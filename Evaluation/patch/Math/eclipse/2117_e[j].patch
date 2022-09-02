@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+index 4652f61..8353fcf 100644
+--- a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+@@ -621,12 +621,13 @@
+                                                             maxIter);
+                     }
+                     its++;
+-                    double q = (realEigenvalues[j + 1] - realEigenvalues[j]) / (2 * e[j]);
++                    double var_2117 = e[j];
++					double q = (realEigenvalues[j + 1] - realEigenvalues[j]) / (2 * var_2117);
+                     double t = FastMath.sqrt(1 + q * q);
+                     if (q < 0.0) {
+-                        q = realEigenvalues[m] - realEigenvalues[j] + e[j] / (q - t);
++                        q = realEigenvalues[m] - realEigenvalues[j] + var_2117 / (q - t);
+                     } else {
+-                        q = realEigenvalues[m] - realEigenvalues[j] + e[j] / (q + t);
++                        q = realEigenvalues[m] - realEigenvalues[j] + var_2117 / (q + t);
+                     }
+                     double u = 0.0;
+                     double s = 1.0;

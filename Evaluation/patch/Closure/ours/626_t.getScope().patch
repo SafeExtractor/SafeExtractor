@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/RenameVars.java b/src/com/google/javascript/jscomp/RenameVars.java
+index 27c69c3..b480820 100644
+--- a/src/com/google/javascript/jscomp/RenameVars.java
++++ b/src/com/google/javascript/jscomp/RenameVars.java
+@@ -193,13 +193,14 @@
+     public void enterScope(NodeTraversal t) {
+       if (t.inGlobalScope()) return;
+ 
+-      Iterator<Var> it = t.getScope().getVars();
++      Scope var_626 = t.getScope();
++	Iterator<Var> it = var_626.getVars();
+       while (it.hasNext()) {
+         Var current = it.next();
+         if (current.isBleedingFunction()) {
+           localBleedingFunctions.add(current);
+           localBleedingFunctionsPerScope.put(
+-              t.getScope().getParent(), current);
++              var_626.getParent(), current);
+         }
+       }
+     }

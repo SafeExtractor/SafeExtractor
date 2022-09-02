@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+index 5f6b2c5..f099d82 100644
+--- a/src/com/google/javascript/jscomp/Compiler.java
++++ b/src/com/google/javascript/jscomp/Compiler.java
+@@ -1486,7 +1486,8 @@
+     // with multiple ways to express dependencies. Directly support JSModules
+     // that are equivalent to a signal file and which express their deps
+     // directly in the source.
+-    for (CompilerInput input : inputs) {
++    boolean var_514 = options.processCommonJSModules;
++	for (CompilerInput input : inputs) {
+       input.setCompiler(this);
+       Node root = input.getAstRoot(this);
+       if (root == null) {
+@@ -1495,7 +1496,7 @@
+       if (options.transformAMDToCJSModules) {
+         new TransformAMDToCJSModule(this).process(null, root);
+       }
+-      if (options.processCommonJSModules) {
++      if (var_514) {
+         ProcessCommonJSModules cjs = new ProcessCommonJSModules(this,
+             options.commonJSModulePathPrefix);
+         cjs.process(null, root);
+@@ -1506,7 +1507,7 @@
+         }
+       }
+     }
+-    if (options.processCommonJSModules) {
++    if (var_514) {
+       List<JSModule> modules = Lists.newArrayList(modulesByName.values());
+       if (!modules.isEmpty()) {
+         this.modules = modules;

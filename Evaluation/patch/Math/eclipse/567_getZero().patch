@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..0e28b95 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -755,9 +755,10 @@
+     public boolean lessThan(final Dfp x) {
+ 
+         // make sure we don't mix number with different precision
+-        if (field.getRadixDigits() != x.field.getRadixDigits()) {
++        Dfp var_567 = getZero();
++		if (field.getRadixDigits() != x.field.getRadixDigits()) {
+             field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            final Dfp result = newInstance(getZero());
++            final Dfp result = newInstance(var_567);
+             result.nans = QNAN;
+             dotrap(DfpField.FLAG_INVALID, LESS_THAN_TRAP, x, result);
+             return false;
+@@ -766,7 +767,7 @@
+         /* if a nan is involved, signal invalid and return false */
+         if (isNaN() || x.isNaN()) {
+             field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            dotrap(DfpField.FLAG_INVALID, LESS_THAN_TRAP, x, newInstance(getZero()));
++            dotrap(DfpField.FLAG_INVALID, LESS_THAN_TRAP, x, newInstance(var_567));
+             return false;
+         }
+ 

@@ -1,0 +1,49 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/684_lastTick.getAngle().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/684_lastTick.getAngle().patch
+index edb0027..4a37887 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/684_lastTick.getAngle().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/684_lastTick.getAngle().patch
+@@ -1,37 +1,14 @@
+ diff --git a/source/org/jfree/chart/axis/CyclicNumberAxis.java b/source/org/jfree/chart/axis/CyclicNumberAxis.java
+-index 114e296..273377a 100644
++index 114e296..93213ac 100644
+ --- a/source/org/jfree/chart/axis/CyclicNumberAxis.java
+ +++ b/source/org/jfree/chart/axis/CyclicNumberAxis.java
+-@@ -474,7 +474,8 @@
+-             TextAnchor anchor = null;
+-             TextAnchor rotationAnchor = null;
+-             double angle = 0.0;
+--            if (isVerticalTickLabels()) {
+-+            double var_684 = lastTick.getAngle();
+-+			if (isVerticalTickLabels()) {
+-                 if (edge == RectangleEdge.TOP) {
+-                     angle = Math.PI / 2.0;
+-                 }
+-@@ -491,7 +492,7 @@
+-                     result.add(new CycleBoundTick(
+-                         this.boundMappedToLastCycle, lastTick.getNumber(),
+-                         lastTick.getText(), anchor, anchor,
+--                        lastTick.getAngle())
+-+                        var_684)
+-                     );
+-                     this.internalMarkerWhenTicksOverlap = true;
+-                     anchor = isInverted()
+-@@ -510,7 +511,7 @@
+-                         result.add(new CycleBoundTick(
+-                             this.boundMappedToLastCycle, lastTick.getNumber(),
+-                             lastTick.getText(), anchor, anchor,
+--                            lastTick.getAngle())
+-+                            var_684)
+-                         );
+-                         this.internalMarkerWhenTicksOverlap = true;
++@@ -507,10 +507,11 @@
+                          anchor = isInverted()
+-@@ -528,7 +529,7 @@
+-                         result.add(new CycleBoundTick(
++                             ? TextAnchor.BOTTOM_LEFT : TextAnchor.BOTTOM_RIGHT;
++                         result.remove(result.size() - 1);
++-                        result.add(new CycleBoundTick(
+++                        double var_684 = lastTick.getAngle();
+++						result.add(new CycleBoundTick(
+                              this.boundMappedToLastCycle, lastTick.getNumber(),
+                              lastTick.getText(), anchor, anchor,
+ -                            lastTick.getAngle())

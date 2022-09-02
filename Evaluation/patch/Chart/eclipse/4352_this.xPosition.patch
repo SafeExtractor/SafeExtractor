@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/data/time/ohlc/OHLCSeriesCollection.java b/source/org/jfree/data/time/ohlc/OHLCSeriesCollection.java
+index 6786421..1cdba0f 100644
+--- a/source/org/jfree/data/time/ohlc/OHLCSeriesCollection.java
++++ b/source/org/jfree/data/time/ohlc/OHLCSeriesCollection.java
+@@ -191,13 +191,14 @@
+      */
+     protected synchronized long getX(RegularTimePeriod period) {
+         long result = 0L;
+-        if (this.xPosition == TimePeriodAnchor.START) {
++        TimePeriodAnchor var_4352 = this.xPosition;
++		if (var_4352 == TimePeriodAnchor.START) {
+             result = period.getFirstMillisecond();
+         }
+-        else if (this.xPosition == TimePeriodAnchor.MIDDLE) {
++        else if (var_4352 == TimePeriodAnchor.MIDDLE) {
+             result = period.getMiddleMillisecond();
+         }
+-        else if (this.xPosition == TimePeriodAnchor.END) {
++        else if (var_4352 == TimePeriodAnchor.END) {
+             result = period.getLastMillisecond();
+         }
+         return result;

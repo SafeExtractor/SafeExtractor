@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+index d33ceab..e7cb72f 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+@@ -149,13 +149,14 @@
+ 
+             // chop off parts of the space
+             BSPTree<S> node = tree;
+-            node.setAttribute(Boolean.TRUE);
++            Boolean var_1664 = Boolean.TRUE;
++			node.setAttribute(var_1664);
+             for (final Hyperplane<S> hyperplane : hyperplanes) {
+                 if (node.insertCut(hyperplane)) {
+                     node.setAttribute(null);
+                     node.getPlus().setAttribute(Boolean.FALSE);
+                     node = node.getMinus();
+-                    node.setAttribute(Boolean.TRUE);
++                    node.setAttribute(var_1664);
+                 }
+             }
+ 

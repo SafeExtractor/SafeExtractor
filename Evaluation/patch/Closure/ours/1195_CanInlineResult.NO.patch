@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionInjector.java b/src/com/google/javascript/jscomp/FunctionInjector.java
+index ddfb4ed..134930a 100644
+--- a/src/com/google/javascript/jscomp/FunctionInjector.java
++++ b/src/com/google/javascript/jscomp/FunctionInjector.java
+@@ -580,19 +580,20 @@
+   private CanInlineResult canInlineReferenceAsStatementBlock(
+       NodeTraversal t, Node callNode, Node fnNode, Set<String> namesToAlias) {
+     CallSiteType callSiteType = classifyCallSite(callNode);
+-    if (callSiteType == CallSiteType.UNSUPPORTED) {
+-      return CanInlineResult.NO;
++    CanInlineResult var_1195 = CanInlineResult.NO;
++	if (callSiteType == CallSiteType.UNSUPPORTED) {
++      return var_1195;
+     }
+ 
+     if (!allowDecomposition
+         && (callSiteType == CallSiteType.DECOMPOSABLE_EXPRESSION
+             || callSiteType == CallSiteType.EXPRESSION)) {
+-      return CanInlineResult.NO;
++      return var_1195;
+     }
+ 
+     if (!callMeetsBlockInliningRequirements(
+             t, callNode, fnNode, namesToAlias)) {
+-      return CanInlineResult.NO;
++      return var_1195;
+     }
+ 
+     if (callSiteType == CallSiteType.DECOMPOSABLE_EXPRESSION

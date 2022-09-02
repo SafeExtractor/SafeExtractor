@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveInputStream.java b/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveInputStream.java
+index 0ffb3ae..5c2228e 100644
+--- a/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveInputStream.java
++++ b/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveInputStream.java
+@@ -888,7 +888,8 @@
+         final ZipLong potentialSig = new ZipLong(twoDwordBuf, DWORD);
+         if (potentialSig.equals(ZipLong.CFH_SIG) || potentialSig.equals(ZipLong.LFH_SIG)) {
+             pushback(twoDwordBuf, DWORD, DWORD);
+-            current.entry.setCompressedSize(ZipLong.getValue(twoDwordBuf));
++            long size = ZipLong.getValue(twoDwordBuf);
++			current.entry.setCompressedSize(size);
+             current.entry.setSize(ZipLong.getValue(twoDwordBuf, WORD));
+         } else {
+             current.entry.setCompressedSize(ZipEightByteInteger.getLongValue(twoDwordBuf));

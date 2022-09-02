@@ -1,0 +1,70 @@
+diff --git a/source/org/jfree/chart/axis/DateAxis.java b/source/org/jfree/chart/axis/DateAxis.java
+index 059bc3a..a59706a 100644
+--- a/source/org/jfree/chart/axis/DateAxis.java
++++ b/source/org/jfree/chart/axis/DateAxis.java
+@@ -887,8 +887,9 @@
+         int value = count * (current / count);
+ 
+         DateTickUnitType t = unit.getUnitType();
+-        if (t.equals(DateTickUnitType.MILLISECOND)) {
+-            years = calendar.get(Calendar.YEAR);
++        int var_487 = Calendar.YEAR;
++		if (t.equals(DateTickUnitType.MILLISECOND)) {
++            years = calendar.get(var_487);
+             months = calendar.get(Calendar.MONTH);
+             days = calendar.get(Calendar.DATE);
+             hours = calendar.get(Calendar.HOUR_OF_DAY);
+@@ -904,7 +905,7 @@
+             return mm;
+         }
+         else if (t.equals(DateTickUnitType.SECOND)) {
+-            years = calendar.get(Calendar.YEAR);
++            years = calendar.get(var_487);
+             months = calendar.get(Calendar.MONTH);
+             days = calendar.get(Calendar.DATE);
+             hours = calendar.get(Calendar.HOUR_OF_DAY);
+@@ -928,7 +929,7 @@
+             return dd;
+         }
+         else if (t.equals(DateTickUnitType.MINUTE)) {
+-            years = calendar.get(Calendar.YEAR);
++            years = calendar.get(var_487);
+             months = calendar.get(Calendar.MONTH);
+             days = calendar.get(Calendar.DATE);
+             hours = calendar.get(Calendar.HOUR_OF_DAY);
+@@ -951,7 +952,7 @@
+             return d0;
+         }
+         else if (t.equals(DateTickUnitType.HOUR)) {
+-            years = calendar.get(Calendar.YEAR);
++            years = calendar.get(var_487);
+             months = calendar.get(Calendar.MONTH);
+             days = calendar.get(Calendar.DATE);
+             if (this.tickMarkPosition == DateTickMarkPosition.START) {
+@@ -976,7 +977,7 @@
+             return d1;
+         }
+         else if (t.equals(DateTickUnitType.DAY)) {
+-            years = calendar.get(Calendar.YEAR);
++            years = calendar.get(var_487);
+             months = calendar.get(Calendar.MONTH);
+             if (this.tickMarkPosition == DateTickMarkPosition.START) {
+                 hours = 0;
+@@ -1005,7 +1006,7 @@
+             return d2;
+         }
+         else if (t.equals(DateTickUnitType.MONTH)) {
+-            years = calendar.get(Calendar.YEAR);
++            years = calendar.get(var_487);
+             calendar.clear(Calendar.MILLISECOND);
+             calendar.set(years, value, 1, 0, 0, 0);
+             Month month = new Month(calendar.getTime(), this.timeZone,
+@@ -1040,7 +1041,7 @@
+             calendar.set(value, months, days, 0, 0, 0);
+             Date d3 = calendar.getTime();
+             if (d3.getTime() >= date.getTime()) {
+-                calendar.set(Calendar.YEAR, value - 1);
++                calendar.set(var_487, value - 1);
+                 d3 = calendar.getTime();
+             }
+             return d3;

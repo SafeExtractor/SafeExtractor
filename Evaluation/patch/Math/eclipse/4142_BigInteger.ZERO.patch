@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/ArithmeticUtils.java b/src/main/java/org/apache/commons/math3/util/ArithmeticUtils.java
+index 4916f75..6efd572 100644
+--- a/src/main/java/org/apache/commons/math3/util/ArithmeticUtils.java
++++ b/src/main/java/org/apache/commons/math3/util/ArithmeticUtils.java
+@@ -787,13 +787,14 @@
+      * @throws NotPositiveException if {@code e < 0}.
+      */
+     public static BigInteger pow(final BigInteger k, BigInteger e) throws NotPositiveException {
+-        if (e.compareTo(BigInteger.ZERO) < 0) {
++        BigInteger var_4142 = BigInteger.ZERO;
++		if (e.compareTo(var_4142) < 0) {
+             throw new NotPositiveException(LocalizedFormats.EXPONENT, e);
+         }
+ 
+         BigInteger result = BigInteger.ONE;
+         BigInteger k2p    = k;
+-        while (!BigInteger.ZERO.equals(e)) {
++        while (!var_4142.equals(e)) {
+             if (e.testBit(0)) {
+                 result = result.multiply(k2p);
+             }

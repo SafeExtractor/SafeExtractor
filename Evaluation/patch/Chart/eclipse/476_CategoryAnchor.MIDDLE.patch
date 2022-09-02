@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/axis/CategoryAnchor.java b/source/org/jfree/chart/axis/CategoryAnchor.java
+index 5eb7345..0009024 100644
+--- a/source/org/jfree/chart/axis/CategoryAnchor.java
++++ b/source/org/jfree/chart/axis/CategoryAnchor.java
+@@ -119,13 +119,15 @@
+     private Object readResolve() throws ObjectStreamException {
+         if (this.equals(CategoryAnchor.START)) {
+             return CategoryAnchor.START;
+-        }
+-        else if (this.equals(CategoryAnchor.MIDDLE)) {
+-            return CategoryAnchor.MIDDLE;
+-        }
+-        else if (this.equals(CategoryAnchor.END)) {
+-            return CategoryAnchor.END;
+-        }
++        } else {
++			CategoryAnchor var_476 = CategoryAnchor.MIDDLE;
++			if (this.equals(var_476)) {
++			    return var_476;
++			}
++			else if (this.equals(CategoryAnchor.END)) {
++			    return CategoryAnchor.END;
++			}
++		}
+         return null;
+     }
+ 

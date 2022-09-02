@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/RenamePrototypes.java b/src/com/google/javascript/jscomp/RenamePrototypes.java
+index c051306..b419490 100644
+--- a/src/com/google/javascript/jscomp/RenamePrototypes.java
++++ b/src/com/google/javascript/jscomp/RenamePrototypes.java
+@@ -217,14 +217,15 @@
+     for (Iterator<Map.Entry<String, Property>> it =
+            properties.entrySet().iterator(); it.hasNext(); ) {
+       Property a = it.next().getValue();
+-      if (a.canRename() && !reservedNames.contains(a.oldName)) {
++      String var_1819 = a.oldName;
++	if (a.canRename() && !reservedNames.contains(var_1819)) {
+         propsByFrequency.add(a);
+       } else {
+         it.remove();
+ 
+         // If we're not renaming this, make sure we don't name something
+         // else to this name.
+-        reservedNames.add(a.oldName);
++        reservedNames.add(var_1819);
+       }
+     }
+ 

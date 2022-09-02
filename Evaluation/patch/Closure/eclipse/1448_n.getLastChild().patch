@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..34a3fd2 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -1046,18 +1046,19 @@
+    */
+   private boolean consumesDanglingElse(Node n) {
+     while (true) {
+-      switch (n.getType()) {
++      Node var_1448 = n.getLastChild();
++	switch (n.getType()) {
+         case Token.IF:
+           if (n.getChildCount() < 3) {
+             return true;
+           }
+           // This IF node has no else clause.
+-          n = n.getLastChild();
++          n = var_1448;
+           continue;
+         case Token.WITH:
+         case Token.WHILE:
+         case Token.FOR:
+-          n = n.getLastChild();
++          n = var_1448;
+           continue;
+         default:
+           return false;

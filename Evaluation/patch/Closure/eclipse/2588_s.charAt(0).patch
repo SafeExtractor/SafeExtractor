@@ -1,0 +1,73 @@
+diff --git a/src/com/google/javascript/rhino/TokenStream.java b/src/com/google/javascript/rhino/TokenStream.java
+index 73fed17..a2562b7 100644
+--- a/src/com/google/javascript/rhino/TokenStream.java
++++ b/src/com/google/javascript/rhino/TokenStream.java
+@@ -63,14 +63,15 @@
+             partial: switch (s.length()) {
+             case 2: c=s.charAt(1);
+                 if (c=='f') {
+-                  if (s.charAt(0)=='i') {id=true; break complete;}
++                  if (var_2588=='i') {id=true; break complete;}
+                 } else if (c=='n') {
+-                  if (s.charAt(0)=='i') {id=true; break complete;}
++                  if (var_2588=='i') {id=true; break complete;}
+                 } else if (c=='o') {
+-                  if (s.charAt(0)=='d') {id=true; break complete;}
++                  if (var_2588=='d') {id=true; break complete;}
+                 }
+                 break partial;
+-            case 3: switch (s.charAt(0)) {
++            case 3: char var_2588 = s.charAt(0);
++				switch (var_2588) {
+                 case 'f':
+                   if (s.charAt(2)=='r' && s.charAt(1)=='o') {
+                     id=true; break complete;
+@@ -92,7 +93,7 @@
+                     id=true; break complete;
+                   } break partial;
+                 } break partial;
+-            case 4: switch (s.charAt(0)) {
++            case 4: switch (var_2588) {
+                 case 'b': X="byte";id=true; break partial;
+                 case 'c': c=s.charAt(3);
+                     if (c=='e') { if (s.charAt(2)=='s' && s.charAt(1)=='a') {
+@@ -128,11 +129,11 @@
+                 case 'e': X="break";id=true; break partial;
+                 case 'i': X="while";id=true; break partial;
+                 case 'l': X="false";id=true; break partial;
+-                case 'n': c=s.charAt(0);
++                case 'n': c=var_2588;
+                     if (c=='c') { X="const";id=true; }
+                     else if (c=='f') { X="final";id=true; }
+                     break partial;
+-                case 'o': c=s.charAt(0);
++                case 'o': c=var_2588;
+                     if (c=='f') { X="float";id=true; }
+                     else if (c=='s') { X="short";id=true; }
+                     break partial;
+@@ -142,7 +143,7 @@
+                 } break partial;
+             case 6: switch (s.charAt(1)) {
+                 case 'a': X="native";id=true; break partial;
+-                case 'e': c=s.charAt(0);
++                case 'e': c=var_2588;
+                     if (c=='d') { X="delete";id=true; }
+                     else if (c=='r') { X="return";id=true; }
+                     break partial;
+@@ -163,14 +164,14 @@
+                 case 'r': X="private";id=true; break partial;
+                 case 'x': X="extends";id=true; break partial;
+                 } break partial;
+-            case 8: switch (s.charAt(0)) {
++            case 8: switch (var_2588) {
+                 case 'a': X="abstract";id=true; break partial;
+                 case 'c': X="continue";id=true; break partial;
+                 case 'd': X="debugger";id=true; break partial;
+                 case 'f': X="function";id=true; break partial;
+                 case 'v': X="volatile";id=true; break partial;
+                 } break partial;
+-            case 9: c=s.charAt(0);
++            case 9: c=var_2588;
+                 if (c=='i') { X="interface";id=true; }
+                 else if (c=='p') { X="protected";id=true; }
+                 else if (c=='t') { X="transient";id=true; }

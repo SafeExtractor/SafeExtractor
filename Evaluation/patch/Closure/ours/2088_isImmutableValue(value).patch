@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..2738ee6 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -2922,7 +2922,8 @@
+    *     outside the expression scope.
+    */
+   static boolean evaluatesToLocalValue(Node value, Predicate<Node> locals) {
+-    switch (value.getType()) {
++    boolean var_2088 = isImmutableValue(value);
++	switch (value.getType()) {
+       case Token.CAST:
+         return evaluatesToLocalValue(value.getFirstChild(), locals);
+       case Token.ASSIGN:
+@@ -2951,7 +2952,7 @@
+       case Token.THIS:
+         return locals.apply(value);
+       case Token.NAME:
+-        return isImmutableValue(value) || locals.apply(value);
++        return var_2088 || locals.apply(value);
+       case Token.GETELEM:
+       case Token.GETPROP:
+         // There is no information about the locality of object properties.
+@@ -2979,7 +2980,7 @@
+         //  x -= g (x is now an local number)
+         if (isAssignmentOp(value)
+             || isSimpleOperator(value)
+-            || isImmutableValue(value)) {
++            || var_2088) {
+           return true;
+         }
+ 

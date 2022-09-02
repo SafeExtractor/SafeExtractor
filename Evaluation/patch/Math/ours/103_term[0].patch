@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..646a8a5 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -438,7 +438,8 @@
+ 
+                 // derive the first factor in the term: f_k with respect to new parameter
+                 int[] derivedTermF = new int[term.length + 1];
+-                derivedTermF[0] = term[0];     // p
++                int var_103 = term[0];
++				derivedTermF[0] = var_103;     // p
+                 derivedTermF[1] = term[1] + 1; // f_(k+1)
+                 int[] orders = new int[parameters];
+                 orders[parameters - 1] = 1;
+@@ -456,7 +457,7 @@
+                 // derive the various g_l
+                 for (int l = 2; l < term.length; ++l) {
+                     int[] derivedTermG = new int[term.length];
+-                    derivedTermG[0] = term[0];
++                    derivedTermG[0] = var_103;
+                     derivedTermG[1] = term[1];
+                     for (int j = 2; j < term.length; ++j) {
+                         // convert the indices as the mapping for the current order

@@ -1,0 +1,37 @@
+diff --git a/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/SegmentNodeStoreRegistrar.java b/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/SegmentNodeStoreRegistrar.java
+index 69fb62a..3243756 100644
+--- a/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/SegmentNodeStoreRegistrar.java
++++ b/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/SegmentNodeStoreRegistrar.java
+@@ -176,7 +176,8 @@
+             return null;
+         }
+ 
+-        if (cfg.getSegmentNodeStorePersistence() == null && cfg.hasCustomSegmentStore()) {
++        SegmentNodeStorePersistence customPersistence = cfg.getSegmentNodeStorePersistence();
++		if (customPersistence == null && cfg.hasCustomSegmentStore()) {
+             cfg.getLogger().info("customSegmentStore enabled. SegmentNodeStore will be initialized once the custom segment store becomes available");
+             return null;
+         }
+@@ -230,17 +231,17 @@
+             builder.withBlobStore(cfg.getBlobStore());
+         }
+ 
+-        if (cfg.hasCustomSegmentStore() && cfg.getSegmentNodeStorePersistence() != null) {
++        if (cfg.hasCustomSegmentStore() && customPersistence != null) {
+             if (cfg.hasSplitPersistence()) {
+-                cfg.getLogger().info("Initializing SegmentNodeStore with custom persistence [{}] and local writes", cfg.getSegmentNodeStorePersistence());
++                cfg.getLogger().info("Initializing SegmentNodeStore with custom persistence [{}] and local writes", customPersistence);
+                 cfg.getSplitPersistenceDirectory().mkdirs();
+-                SegmentNodeStorePersistence roPersistence = cfg.getSegmentNodeStorePersistence();
++                SegmentNodeStorePersistence roPersistence = customPersistence;
+                 SegmentNodeStorePersistence rwPersistence = new TarPersistence(cfg.getSplitPersistenceDirectory());
+                 SegmentNodeStorePersistence persistence = new SplitPersistence(roPersistence, rwPersistence);
+                 builder.withCustomPersistence(persistence);
+             } else {
+-                cfg.getLogger().info("Initializing SegmentNodeStore with custom persistence [{}]", cfg.getSegmentNodeStorePersistence());
+-                builder.withCustomPersistence(cfg.getSegmentNodeStorePersistence());
++                cfg.getLogger().info("Initializing SegmentNodeStore with custom persistence [{}]", customPersistence);
++                builder.withCustomPersistence(customPersistence);
+             }
+         }
+ 

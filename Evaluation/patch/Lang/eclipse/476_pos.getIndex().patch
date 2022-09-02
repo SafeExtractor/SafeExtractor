@@ -1,0 +1,47 @@
+diff --git a/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java b/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
+index 722d3b5..19cf8e2 100644
+--- a/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
++++ b/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
+@@ -155,21 +155,22 @@
+         final ParsePosition pos = new ParsePosition(0);
+         final char[] c = pattern.toCharArray();
+         int fmtCount = 0;
+-        while (pos.getIndex() < pattern.length()) {
+-            switch (c[pos.getIndex()]) {
++        int var_476 = pos.getIndex();
++		while (var_476 < pattern.length()) {
++            switch (c[var_476]) {
+             case QUOTE:
+                 appendQuotedString(pattern, pos, stripCustom, true);
+                 break;
+             case START_FE:
+                 fmtCount++;
+                 seekNonWs(pattern, pos);
+-                final int start = pos.getIndex();
++                final int start = var_476;
+                 final int index = readArgumentIndex(pattern, next(pos));
+                 stripCustom.append(START_FE).append(index);
+                 seekNonWs(pattern, pos);
+                 Format format = null;
+                 String formatDescription = null;
+-                if (c[pos.getIndex()] == START_FMT) {
++                if (c[var_476] == START_FMT) {
+                     formatDescription = parseFormatDescription(pattern,
+                             next(pos));
+                     format = getFormat(formatDescription);
+@@ -181,13 +182,13 @@
+                 foundDescriptions.add(format == null ? null : formatDescription);
+                 Validate.isTrue(foundFormats.size() == fmtCount);
+                 Validate.isTrue(foundDescriptions.size() == fmtCount);
+-                if (c[pos.getIndex()] != END_FE) {
++                if (c[var_476] != END_FE) {
+                     throw new IllegalArgumentException(
+                             "Unreadable format element at position " + start);
+                 }
+                 //$FALL-THROUGH$
+             default:
+-                stripCustom.append(c[pos.getIndex()]);
++                stripCustom.append(c[var_476]);
+                 next(pos);
+             }
+         }

@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/joda/time/Duration.java b/src/main/java/org/joda/time/Duration.java
+index 15fe52d..dcef7df 100644
+--- a/src/main/java/org/joda/time/Duration.java
++++ b/src/main/java/org/joda/time/Duration.java
+@@ -512,10 +512,11 @@
+      * @return the new duration instance
+      */
+     public Duration negated() {
+-        if (getMillis() == Long.MIN_VALUE) {
++        long var_128 = getMillis();
++		if (var_128 == Long.MIN_VALUE) {
+             throw new ArithmeticException("Negation of this duration would overflow");
+         }
+-        return new Duration(-getMillis());
++        return new Duration(-var_128);
+     }
+ 
+ }

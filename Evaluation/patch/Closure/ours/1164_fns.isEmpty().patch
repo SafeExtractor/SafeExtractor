@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/InlineFunctions.java b/src/com/google/javascript/jscomp/InlineFunctions.java
+index 008ffe5..3357ad4 100644
+--- a/src/com/google/javascript/jscomp/InlineFunctions.java
++++ b/src/com/google/javascript/jscomp/InlineFunctions.java
+@@ -114,13 +114,14 @@
+     Preconditions.checkState(compiler.getLifeCycleStage().isNormalized());
+ 
+     NodeTraversal.traverse(compiler, root, new FindCandidateFunctions());
+-    if (fns.isEmpty()) {
++    boolean var_1164 = fns.isEmpty();
++	if (var_1164) {
+       return;  // Nothing left to do.
+     }
+     NodeTraversal.traverse(compiler, root,
+        new FindCandidatesReferences(fns, anonFns));
+     trimCanidatesNotMeetingMinimumRequirements();
+-    if (fns.isEmpty()) {
++    if (var_1164) {
+       return;  // Nothing left to do.
+     }
+ 
+@@ -136,7 +137,7 @@
+     injector.setKnownConstants(fnNames);
+ 
+     trimCanidatesUsingOnCost();
+-    if (fns.isEmpty()) {
++    if (var_1164) {
+       return;  // Nothing left to do.
+     }
+     resolveInlineConflicts();

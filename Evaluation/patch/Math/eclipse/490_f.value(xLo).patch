@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/solvers/UnivariateSolverUtils.java b/src/main/java/org/apache/commons/math3/analysis/solvers/UnivariateSolverUtils.java
+index ec20578..f026f2b 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/solvers/UnivariateSolverUtils.java
++++ b/src/main/java/org/apache/commons/math3/analysis/solvers/UnivariateSolverUtils.java
+@@ -113,7 +113,8 @@
+         final double step = FastMath.max(bracketing.getAbsoluteAccuracy(),
+                                          FastMath.abs(baseRoot * bracketing.getRelativeAccuracy()));
+         double xLo        = FastMath.max(min, baseRoot - step);
+-        double fLo        = f.value(xLo);
++        double var_490 = f.value(xLo);
++		double fLo        = var_490;
+         double xHi        = FastMath.min(max, baseRoot + step);
+         double fHi        = f.value(xHi);
+         int remainingEval = maxEval - 2;
+@@ -150,7 +151,7 @@
+             // update the lower bound
+             if (changeLo) {
+                 xLo = FastMath.max(min, xLo - step);
+-                fLo  = f.value(xLo);
++                fLo  = var_490;
+                 remainingEval--;
+             }
+ 

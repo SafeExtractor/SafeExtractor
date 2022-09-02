@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ShadowVariables.java b/src/com/google/javascript/jscomp/ShadowVariables.java
+index f627aaf..cf49c52 100644
+--- a/src/com/google/javascript/jscomp/ShadowVariables.java
++++ b/src/com/google/javascript/jscomp/ShadowVariables.java
+@@ -174,7 +174,8 @@
+     @Override
+     public void enterScope(NodeTraversal t) {
+       Scope s = t.getScope();
+-      if (!s.isLocal()) {
++      boolean var_539 = s.isLocal();
++	if (!var_539) {
+         return;
+       }
+ 
+@@ -193,7 +194,7 @@
+         }
+ 
+         // Don't shadow an exported local.
+-        if (compiler.getCodingConvention().isExported(var.name, s.isLocal())) {
++        if (compiler.getCodingConvention().isExported(var.name, var_539)) {
+           continue;
+         }
+ 

@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/rhino/jstype/NamedType.java b/src/com/google/javascript/rhino/jstype/NamedType.java
+index 9fb2191..ca3eeff 100644
+--- a/src/com/google/javascript/rhino/jstype/NamedType.java
++++ b/src/com/google/javascript/rhino/jstype/NamedType.java
+@@ -341,7 +341,8 @@
+       boolean isForwardDeclared =
+           ignoreForwardReferencedTypes &&
+           registry.isForwardDeclaredType(reference);
+-      if (!isForwardDeclared && registry.isLastGeneration()) {
++      JSType var_2646 = getReferencedType();
++	if (!isForwardDeclared && registry.isLastGeneration()) {
+         t.warning("Bad type annotation. Unknown type " + reference,
+             sourceName, lineno, charno);
+       } else {
+@@ -350,11 +351,11 @@
+                 JSTypeNative.NO_RESOLVED_TYPE));
+ 
+         if (registry.isLastGeneration() && validator != null) {
+-          validator.apply(getReferencedType());
++          validator.apply(var_2646);
+         }
+       }
+ 
+-      setResolvedTypeInternal(getReferencedType());
++      setResolvedTypeInternal(var_2646);
+     } else {
+       setResolvedTypeInternal(this);
+     }

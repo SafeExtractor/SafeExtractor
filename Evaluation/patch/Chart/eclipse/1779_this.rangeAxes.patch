@@ -1,0 +1,18 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..bc54574 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -5657,9 +5657,10 @@
+         clone.domainAxisLocations = (ObjectList)
+                 this.domainAxisLocations.clone();
+ 
+-        clone.rangeAxes = (ObjectList) ObjectUtilities.clone(this.rangeAxes);
+-        for (int i = 0; i < this.rangeAxes.size(); i++) {
+-            ValueAxis axis = (ValueAxis) this.rangeAxes.get(i);
++        ObjectList var_1779 = this.rangeAxes;
++		clone.rangeAxes = (ObjectList) ObjectUtilities.clone(var_1779);
++        for (int i = 0; i < var_1779.size(); i++) {
++            ValueAxis axis = (ValueAxis) var_1779.get(i);
+             if (axis != null) {
+                 ValueAxis clonedAxis = (ValueAxis) axis.clone();
+                 clone.rangeAxes.set(i, clonedAxis);

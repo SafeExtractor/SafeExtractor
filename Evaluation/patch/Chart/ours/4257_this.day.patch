@@ -1,0 +1,20 @@
+diff --git a/source/org/jfree/data/time/Hour.java b/source/org/jfree/data/time/Hour.java
+index 5f669f1..3e5c46c 100644
+--- a/source/org/jfree/data/time/Hour.java
++++ b/source/org/jfree/data/time/Hour.java
+@@ -282,11 +282,12 @@
+     public RegularTimePeriod next() {
+ 
+         Hour result;
+-        if (this.hour != LAST_HOUR_IN_DAY) {
+-            result = new Hour(this.hour + 1, this.day);
++        Day var_4257 = this.day;
++		if (this.hour != LAST_HOUR_IN_DAY) {
++            result = new Hour(this.hour + 1, var_4257);
+         }
+         else { // we are at the last hour in the day...
+-            Day nextDay = (Day) this.day.next();
++            Day nextDay = (Day) var_4257.next();
+             if (nextDay != null) {
+                 result = new Hour(FIRST_HOUR_IN_DAY, nextDay);
+             }

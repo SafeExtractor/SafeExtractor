@@ -1,0 +1,68 @@
+diff --git a/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java b/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
+index 8332a80..1213b68 100644
+--- a/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
+@@ -423,7 +423,8 @@
+         Paint seriesPaint = getItemPaint(series, item, selected);
+         Stroke seriesStroke = getItemStroke(series, item, selected);
+ 
+-        if (pass == 0) {
++        PlotOrientation var_3007 = PlotOrientation.VERTICAL;
++		if (pass == 0) {
+             //  On first pass render the areas, line and outlines
+ 
+             if (item == 0) {
+@@ -438,7 +439,7 @@
+                         plot.getRangeAxisEdge());
+ 
+                 // The first point is (x, 0)
+-                if (orientation == PlotOrientation.VERTICAL) {
++                if (orientation == var_3007) {
+                     areaState.getSeriesArea().addPoint((int) transX1,
+                             (int) transY2);
+                 }
+@@ -449,7 +450,7 @@
+             }
+ 
+             // Add each point to Area (x, y)
+-            if (orientation == PlotOrientation.VERTICAL) {
++            if (orientation == var_3007) {
+                 Point point = new Point((int) transX1, (int) transY1);
+                 areaState.getSeriesArea().addPoint((int) point.getX(),
+                         (int) point.getY());
+@@ -471,7 +472,7 @@
+                     double transY0 = rangeAxis.valueToJava2D(y0 + ph0,
+                             dataArea, plot.getRangeAxisEdge());
+ 
+-                    if (orientation == PlotOrientation.VERTICAL) {
++                    if (orientation == var_3007) {
+                         areaState.getLine().setLine(transX0, transY0, transX1,
+                                 transY1);
+                     }
+@@ -490,7 +491,7 @@
+                 double transY2 = rangeAxis.valueToJava2D(ph1, dataArea,
+                         plot.getRangeAxisEdge());
+ 
+-                if (orientation == PlotOrientation.VERTICAL) {
++                if (orientation == var_3007) {
+                     // Add the last point (x,0)
+                     areaState.getSeriesArea().addPoint((int) transX1,
+                             (int) transY2);
+@@ -540,7 +541,7 @@
+             Shape shape = null;
+             if (getPlotShapes()) {
+                 shape = getItemShape(series, item, selected);
+-                if (plot.getOrientation() == PlotOrientation.VERTICAL) {
++                if (plot.getOrientation() == var_3007) {
+                     shape = ShapeUtilities.createTranslatedShape(shape,
+                             transX1, transY1);
+                 }
+@@ -565,7 +566,7 @@
+                 }
+             }
+             else {
+-                if (plot.getOrientation() == PlotOrientation.VERTICAL) {
++                if (plot.getOrientation() == var_3007) {
+                     shape = new Rectangle2D.Double(transX1 - 3, transY1 - 3,
+                             6.0, 6.0);
+                 }

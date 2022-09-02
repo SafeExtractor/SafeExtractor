@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/lang3/ClassUtils.java b/src/main/java/org/apache/commons/lang3/ClassUtils.java
+index 015e6dd..072a14a 100644
+--- a/src/main/java/org/apache/commons/lang3/ClassUtils.java
++++ b/src/main/java/org/apache/commons/lang3/ClassUtils.java
+@@ -1109,14 +1109,15 @@
+             if (dim < 1) {
+                 return className;
+             } else {
+-                if (className.startsWith("L")) {
++                int var_240 = className.length();
++				if (className.startsWith("L")) {
+                     className = className.substring(
+                         1,
+                         className.endsWith(";")
+-                            ? className.length() - 1
+-                            : className.length());
++                            ? var_240 - 1
++                            : var_240);
+                 } else {
+-                    if (className.length() > 0) {
++                    if (var_240 > 0) {
+                         className = reverseAbbreviationMap.get(className.substring(0, 1));
+                     }
+                 }

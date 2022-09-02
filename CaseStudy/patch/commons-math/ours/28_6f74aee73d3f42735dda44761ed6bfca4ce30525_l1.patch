@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math/linear/ArrayRealVector.java b/src/main/java/org/apache/commons/math/linear/ArrayRealVector.java
+index 14b0f39..122d1f3 100644
+--- a/src/main/java/org/apache/commons/math/linear/ArrayRealVector.java
++++ b/src/main/java/org/apache/commons/math/linear/ArrayRealVector.java
+@@ -218,9 +218,10 @@
+      * @param v2 second vector (will be put at back of the new vector)
+      */
+     public ArrayRealVector(double[] v1, double[] v2) {
+-        data = new double[v1.length + v2.length];
+-        System.arraycopy(v1, 0, data, 0, v1.length);
+-        System.arraycopy(v2, 0, data, v1.length, v2.length);
++        int l1 = v1.length;
++		data = new double[l1 + v2.length];
++        System.arraycopy(v1, 0, data, 0, l1);
++        System.arraycopy(v2, 0, data, l1, v2.length);
+     }
+ 
+     /** {@inheritDoc} */

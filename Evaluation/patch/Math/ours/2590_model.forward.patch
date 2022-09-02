@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java b/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java
+index a5f5faf..4e1ef98 100644
+--- a/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java
++++ b/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java
+@@ -134,9 +134,10 @@
+       return;
+     }
+ 
+-    if (steps.size() == 0) {
++    boolean var_2590 = model.forward;
++	if (steps.size() == 0) {
+       initialTime = model.initialTime;
+-      forward     = model.forward;
++      forward     = var_2590;
+     } else {
+ 
+       if (getInterpolatedState().length != model.getInterpolatedState().length) {
+@@ -144,7 +145,7 @@
+                                                getInterpolatedState().length);
+       }
+ 
+-      if (forward ^ model.forward) {
++      if (forward ^ var_2590) {
+           throw new MathIllegalArgumentException(LocalizedFormats.PROPAGATION_DIRECTION_MISMATCH);
+       }
+ 

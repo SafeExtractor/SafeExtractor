@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+index c837709..d235662 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+@@ -976,9 +976,10 @@
+      * @return Matrix representing the element-wise logarithm of m.
+      */
+     private static RealMatrix log(final RealMatrix m) {
+-        final double[][] d = new double[m.getRowDimension()][m.getColumnDimension()];
++        int var_3036 = m.getColumnDimension();
++		final double[][] d = new double[m.getRowDimension()][var_3036];
+         for (int r = 0; r < m.getRowDimension(); r++) {
+-            for (int c = 0; c < m.getColumnDimension(); c++) {
++            for (int c = 0; c < var_3036; c++) {
+                 d[r][c] = Math.log(m.getEntry(r, c));
+             }
+         }

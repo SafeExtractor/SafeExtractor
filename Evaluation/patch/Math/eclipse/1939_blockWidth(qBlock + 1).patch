@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java b/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
+index c6b1a04..aeb6b40 100644
+--- a/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
+@@ -688,11 +688,12 @@
+ 
+                 final int heightExcess = iHeight + rowsShift - BLOCK_SIZE;
+                 final int widthExcess  = jWidth + columnsShift - BLOCK_SIZE;
+-                if (heightExcess > 0) {
++                int var_1939 = blockWidth(qBlock + 1);
++				if (heightExcess > 0) {
+                     // the submatrix block spans on two blocks rows from the original matrix
+                     if (widthExcess > 0) {
+                         // the submatrix block spans on two blocks columns from the original matrix
+-                        final int width2 = blockWidth(qBlock + 1);
++                        final int width2 = var_1939;
+                         copyBlockPart(blocks[index], width,
+                                       rowsShift, BLOCK_SIZE,
+                                       columnsShift, BLOCK_SIZE,
+@@ -724,7 +725,7 @@
+                     // the submatrix block spans on one block row from the original matrix
+                     if (widthExcess > 0) {
+                         // the submatrix block spans on two blocks columns from the original matrix
+-                        final int width2 = blockWidth(qBlock + 1);
++                        final int width2 = var_1939;
+                         copyBlockPart(blocks[index], width,
+                                       rowsShift, iHeight + rowsShift,
+                                       columnsShift, BLOCK_SIZE,

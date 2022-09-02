@@ -1,0 +1,28 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/493_calculateDateForPosition(month,this.tickMarkPosition).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/493_calculateDateForPosition(month,this.tickMarkPosition).patch
+index aedc4dc..5a75af8 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/493_calculateDateForPosition(month,this.tickMarkPosition).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/493_calculateDateForPosition(month,this.tickMarkPosition).patch
+@@ -1,8 +1,8 @@
+ diff --git a/source/org/jfree/chart/axis/DateAxis.java b/source/org/jfree/chart/axis/DateAxis.java
+-index 059bc3a..08f9912 100644
++index 059bc3a..f87e7a1 100644
+ --- a/source/org/jfree/chart/axis/DateAxis.java
+ +++ b/source/org/jfree/chart/axis/DateAxis.java
+-@@ -1010,16 +1010,16 @@
++@@ -1010,8 +1010,9 @@
+              calendar.set(years, value, 1, 0, 0, 0);
+              Month month = new Month(calendar.getTime(), this.timeZone,
+                      this.locale);
+@@ -13,12 +13,3 @@ index 059bc3a..08f9912 100644
+              long millis = standardDate.getTime();
+              if (millis >= date.getTime()) {
+                  month = (Month) month.previous();
+-                 // need to peg the month in case the time zone isn't the
+-                 // default - see bug 2078057
+-                 month.peg(Calendar.getInstance(this.timeZone));
+--                standardDate = calculateDateForPosition(
+--                        month, this.tickMarkPosition);
+-+                standardDate = var_493;
+-             }
+-             return standardDate;
+-         }

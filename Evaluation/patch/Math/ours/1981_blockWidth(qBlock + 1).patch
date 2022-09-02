@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java b/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
+index a03c4f4..68c1b1a 100644
+--- a/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
+@@ -693,11 +693,12 @@
+ 
+                 final int heightExcess = iHeight + rowsShift - BLOCK_SIZE;
+                 final int widthExcess = jWidth + columnsShift - BLOCK_SIZE;
+-                if (heightExcess > 0) {
++                int var_1981 = blockWidth(qBlock + 1);
++				if (heightExcess > 0) {
+                     // the submatrix block spans on two blocks rows from the original matrix
+                     if (widthExcess > 0) {
+                         // the submatrix block spans on two blocks columns from the original matrix
+-                        final int width2 = blockWidth(qBlock + 1);
++                        final int width2 = var_1981;
+                         copyBlockPart(blocks[index], width,
+                                       rowsShift, BLOCK_SIZE,
+                                       columnsShift, BLOCK_SIZE,
+@@ -729,7 +730,7 @@
+                     // the submatrix block spans on one block row from the original matrix
+                     if (widthExcess > 0) {
+                         // the submatrix block spans on two blocks columns from the original matrix
+-                        final int width2 = blockWidth(qBlock + 1);
++                        final int width2 = var_1981;
+                         copyBlockPart(blocks[index], width,
+                                       rowsShift, iHeight + rowsShift,
+                                       columnsShift, BLOCK_SIZE,

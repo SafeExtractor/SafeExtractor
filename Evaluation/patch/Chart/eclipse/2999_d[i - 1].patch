@@ -1,0 +1,16 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java b/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java
+index 6841362..60cc8d9 100644
+--- a/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java
+@@ -244,8 +244,9 @@
+                         diag[i] = (h[i] + h[i + 1]) / 3;
+                         sup[i] = h[i + 1] / 6;
+                         sub[i] = h[i] / 6;
+-                        a[i] = (d[i + 1] - d[i]) / h[i + 1]
+-                                   - (d[i] - d[i - 1]) / h[i];
++                        float var_2999 = d[i - 1];
++						a[i] = (d[i + 1] - d[i]) / h[i + 1]
++                                   - (d[i] - var_2999) / h[i];
+                     }
+                     solveTridiag(sub, diag, sup, a, np - 2);
+ 

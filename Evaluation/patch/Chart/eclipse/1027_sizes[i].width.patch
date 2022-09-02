@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/chart/block/FlowArrangement.java b/source/org/jfree/chart/block/FlowArrangement.java
+index ac17808..5c5da6f 100644
+--- a/source/org/jfree/chart/block/FlowArrangement.java
++++ b/source/org/jfree/chart/block/FlowArrangement.java
+@@ -366,12 +366,13 @@
+                 sizes[i] = block.arrange(g2, RectangleConstraint.NONE);
+                 width = width + sizes[i].getWidth();
+                 maxHeight = Math.max(sizes[i].height, maxHeight);
+-                block.setBounds(
++                double var_1027 = sizes[i].width;
++				block.setBounds(
+                     new Rectangle2D.Double(
+-                        x, 0.0, sizes[i].width, sizes[i].height
++                        x, 0.0, var_1027, sizes[i].height
+                     )
+                 );
+-                x = x + sizes[i].width + this.horizontalGap;
++                x = x + var_1027 + this.horizontalGap;
+             }
+             if (blockCount > 1) {
+                 width = width + this.horizontalGap * (blockCount - 1);

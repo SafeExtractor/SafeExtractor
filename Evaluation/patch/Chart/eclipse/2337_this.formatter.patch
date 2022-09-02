@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/plot/dial/DialValueIndicator.java b/source/org/jfree/chart/plot/dial/DialValueIndicator.java
+index ee99219..4fc82d5 100644
+--- a/source/org/jfree/chart/plot/dial/DialValueIndicator.java
++++ b/source/org/jfree/chart/plot/dial/DialValueIndicator.java
+@@ -597,11 +597,12 @@
+         // specified, provides a maximum size) and the actual value
+         FontMetrics fm = g2.getFontMetrics(this.font);
+         double value = plot.getValue(this.datasetIndex);
+-        String valueStr = this.formatter.format(value);
++        NumberFormat var_2337 = this.formatter;
++		String valueStr = var_2337.format(value);
+         Rectangle2D valueBounds = TextUtilities.getTextBounds(valueStr, g2, fm);
+ 
+         // calculate the bounds of the template value
+-        String s = this.formatter.format(this.templateValue);
++        String s = var_2337.format(this.templateValue);
+         Rectangle2D tb = TextUtilities.getTextBounds(s, g2, fm);
+         double minW = tb.getWidth();
+         double minH = tb.getHeight();
+@@ -609,7 +610,7 @@
+         double maxW = Double.MAX_VALUE;
+         double maxH = Double.MAX_VALUE;
+         if (this.maxTemplateValue != null) {
+-            s = this.formatter.format(this.maxTemplateValue);
++            s = var_2337.format(this.maxTemplateValue);
+             tb = TextUtilities.getTextBounds(s, g2, fm);
+             maxW = Math.max(tb.getWidth(), minW);
+             maxH = Math.max(tb.getHeight(), minH);

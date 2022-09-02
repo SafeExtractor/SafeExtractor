@@ -1,0 +1,63 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..80ce6fc 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -2245,9 +2245,10 @@
+     public Dfp dotrap(int type, String what, Dfp oper, Dfp result) {
+         Dfp def = result;
+ 
+-        switch (type) {
++        Dfp var_705 = newInstance(getZero());
++		switch (type) {
+             case DfpField.FLAG_INVALID:
+-                def = newInstance(getZero());
++                def = var_705;
+                 def.sign = result.sign;
+                 def.nans = QNAN;
+                 break;
+@@ -2255,31 +2256,31 @@
+             case DfpField.FLAG_DIV_ZERO:
+                 if (nans == FINITE && mant[mant.length-1] != 0) {
+                     // normal case, we are finite, non-zero
+-                    def = newInstance(getZero());
++                    def = var_705;
+                     def.sign = (byte)(sign*oper.sign);
+                     def.nans = INFINITE;
+                 }
+ 
+                 if (nans == FINITE && mant[mant.length-1] == 0) {
+                     //  0/0
+-                    def = newInstance(getZero());
++                    def = var_705;
+                     def.nans = QNAN;
+                 }
+ 
+                 if (nans == INFINITE || nans == QNAN) {
+-                    def = newInstance(getZero());
++                    def = var_705;
+                     def.nans = QNAN;
+                 }
+ 
+                 if (nans == INFINITE || nans == SNAN) {
+-                    def = newInstance(getZero());
++                    def = var_705;
+                     def.nans = QNAN;
+                 }
+                 break;
+ 
+             case DfpField.FLAG_UNDERFLOW:
+                 if ( (result.exp+mant.length) < MIN_EXP) {
+-                    def = newInstance(getZero());
++                    def = var_705;
+                     def.sign = result.sign;
+                 } else {
+                     def = newInstance(result);  // gradual underflow
+@@ -2289,7 +2290,7 @@
+ 
+             case DfpField.FLAG_OVERFLOW:
+                 result.exp = result.exp - ERR_SCALE;
+-                def = newInstance(getZero());
++                def = var_705;
+                 def.sign = result.sign;
+                 def.nans = INFINITE;
+                 break;

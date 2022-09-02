@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/PolyhedronsSet.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/PolyhedronsSet.java
+index ac1e894..888fdd2 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/PolyhedronsSet.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/PolyhedronsSet.java
+@@ -134,15 +134,16 @@
+         // compute the contribution of all boundary facets
+         getTree(true).visit(new FacetsContributionVisitor());
+ 
+-        if (getSize() < 0) {
++        double var_1342 = getSize();
++		if (var_1342 < 0) {
+             // the polyhedrons set as a finite outside
+             // surrounded by an infinite inside
+             setSize(Double.POSITIVE_INFINITY);
+             setBarycenter(Vector3D.NaN);
+         } else {
+             // the polyhedrons set is finite, apply the remaining scaling factors
+-            setSize(getSize() / 3.0);
+-            setBarycenter(new Vector3D(1.0 / (4 * getSize()), (Vector3D) getBarycenter()));
++            setSize(var_1342 / 3.0);
++            setBarycenter(new Vector3D(1.0 / (4 * var_1342), (Vector3D) getBarycenter()));
+         }
+ 
+     }

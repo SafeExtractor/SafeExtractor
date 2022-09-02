@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/CheckAccessControls.java b/src/com/google/javascript/jscomp/CheckAccessControls.java
+index df50c26..2869af0 100644
+--- a/src/com/google/javascript/jscomp/CheckAccessControls.java
++++ b/src/com/google/javascript/jscomp/CheckAccessControls.java
+@@ -574,15 +574,16 @@
+     // 1) Calls of deprecated functions and methods.
+     // 2) Instantiations of deprecated classes.
+     // For now, we just let everything else by.
+-    if (t.inGlobalScope()) {
+-      if (!((parent.isCall() && parent.getFirstChild() == n) ||
++    Node var_928 = parent.getFirstChild();
++	if (t.inGlobalScope()) {
++      if (!((parent.isCall() && var_928 == n) ||
+               n.isNew())) {
+         return false;
+       }
+     }
+ 
+     // We can always assign to a deprecated property, to keep it up to date.
+-    if (n.isGetProp() && n == parent.getFirstChild() &&
++    if (n.isGetProp() && n == var_928 &&
+         NodeUtil.isAssignmentOp(parent)) {
+       return false;
+     }

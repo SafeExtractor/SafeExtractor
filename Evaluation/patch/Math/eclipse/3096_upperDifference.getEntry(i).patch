@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..90a6594 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -1050,20 +1050,23 @@
+                         // Computing 2nd power
+                         final double d2 = Math.min(ZERO, sum);
+                         gisq += d2 * d2;
+-                    } else if (trustRegionCenterOffset.getEntry(i) == upperDifference.getEntry(i)) {
+-                        // Computing MAX
+-                        // Computing 2nd power
+-                        final double d1 = Math.max(ZERO, gradientAtTrustRegionCenter.getEntry(i));
+-                        gqsq += d1 * d1;
+-                        // Computing 2nd power
+-                        final double d2 = Math.max(ZERO, sum);
+-                        gisq += d2 * d2;
+                     } else {
+-                        // Computing 2nd power
+-                        final double d1 = gradientAtTrustRegionCenter.getEntry(i);
+-                        gqsq += d1 * d1;
+-                        gisq += sum * sum;
+-                    }
++						double var_3096 = upperDifference.getEntry(i);
++						if (trustRegionCenterOffset.getEntry(i) == var_3096) {
++						    // Computing MAX
++						    // Computing 2nd power
++						    final double d1 = Math.max(ZERO, gradientAtTrustRegionCenter.getEntry(i));
++						    gqsq += d1 * d1;
++						    // Computing 2nd power
++						    final double d2 = Math.max(ZERO, sum);
++						    gisq += d2 * d2;
++						} else {
++						    // Computing 2nd power
++						    final double d1 = gradientAtTrustRegionCenter.getEntry(i);
++						    gqsq += d1 * d1;
++						    gisq += sum * sum;
++						}
++					}
+                     lagrangeValuesAtNewPoint.setEntry(npt + i, sum);
+                 }
+ 

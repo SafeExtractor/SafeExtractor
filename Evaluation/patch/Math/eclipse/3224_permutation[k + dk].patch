@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+index 8d6a50b..16d55e5 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+@@ -915,12 +915,13 @@
+             // transform the remaining columns
+             for (int dk = nC - 1 - k; dk > 0; --dk) {
+                 double gamma = 0;
+-                for (int j = k; j < nR; ++j) {
+-                    gamma += weightedJacobian[j][pk] * weightedJacobian[j][permutation[k + dk]];
++                int var_3224 = permutation[k + dk];
++				for (int j = k; j < nR; ++j) {
++                    gamma += weightedJacobian[j][pk] * weightedJacobian[j][var_3224];
+                 }
+                 gamma *= betak;
+                 for (int j = k; j < nR; ++j) {
+-                    weightedJacobian[j][permutation[k + dk]] -= gamma * weightedJacobian[j][pk];
++                    weightedJacobian[j][var_3224] -= gamma * weightedJacobian[j][pk];
+                 }
+             }
+         }

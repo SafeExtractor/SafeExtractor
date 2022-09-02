@@ -1,0 +1,46 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/univariate/BracketFinder.java b/src/main/java/org/apache/commons/math3/optim/univariate/BracketFinder.java
+index 571f55e..b02d3ca 100644
+--- a/src/main/java/org/apache/commons/math3/optim/univariate/BracketFinder.java
++++ b/src/main/java/org/apache/commons/math3/optim/univariate/BracketFinder.java
+@@ -142,8 +142,9 @@
+             double wLim = xB + growLimit * (xC - xB);
+ 
+             double fW;
+-            if ((w - xC) * (xB - w) > 0) {
+-                fW = eval(func, w);
++            double var_3233 = eval(func, w);
++			if ((w - xC) * (xB - w) > 0) {
++                fW = var_3233;
+                 if (isMinim ?
+                     fW < fC :
+                     fW > fC) {
+@@ -160,12 +161,12 @@
+                     break;
+                 }
+                 w = xC + GOLD * (xC - xB);
+-                fW = eval(func, w);
++                fW = var_3233;
+             } else if ((w - wLim) * (wLim - xC) >= 0) {
+                 w = wLim;
+-                fW = eval(func, w);
++                fW = var_3233;
+             } else if ((w - wLim) * (xC - w) > 0) {
+-                fW = eval(func, w);
++                fW = var_3233;
+                 if (isMinim ?
+                     fW < fC :
+                     fW > fC) {
+@@ -174,11 +175,11 @@
+                     w = xC + GOLD * (xC - xB);
+                     fB = fC;
+                     fC =fW;
+-                    fW = eval(func, w);
++                    fW = var_3233;
+                 }
+             } else {
+                 w = xC + GOLD * (xC - xB);
+-                fW = eval(func, w);
++                fW = var_3233;
+             }
+ 
+             xA = xB;

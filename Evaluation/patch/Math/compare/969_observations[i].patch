@@ -1,0 +1,28 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/969_observations[i].patch b/Users/safe/paper/Evaluation/patch/Math/ours/969_observations[i].patch
+index 2f38fef..23f3eb9 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/969_observations[i].patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/969_observations[i].patch
+@@ -1,19 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/fitting/HarmonicFitter.java b/src/main/java/org/apache/commons/math3/fitting/HarmonicFitter.java
+-index 12badd2..d29132b 100644
++index 12badd2..21ab91c 100644
+ --- a/src/main/java/org/apache/commons/math3/fitting/HarmonicFitter.java
+ +++ b/src/main/java/org/apache/commons/math3/fitting/HarmonicFitter.java
+-@@ -240,11 +240,12 @@
+-                 if (curr.getX() < prec.getX()) {
+-                     // the current element should be inserted closer to the beginning
+-                     int i = j - 1;
+--                    WeightedObservedPoint mI = observations[i];
+-+                    WeightedObservedPoint var_969 = observations[i];
+-+					WeightedObservedPoint mI = var_969;
++@@ -244,7 +244,8 @@
+                      while ((i >= 0) && (curr.getX() < mI.getX())) {
+                          observations[i + 1] = mI;
+                          if (i-- != 0) {
+ -                            mI = observations[i];
+-+                            mI = var_969;
+++                            WeightedObservedPoint var_969 = observations[i];
+++							mI = var_969;
+                          }
+                      }
+                      observations[i + 1] = curr;

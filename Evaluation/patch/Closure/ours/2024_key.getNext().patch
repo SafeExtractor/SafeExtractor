@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/StripCode.java b/src/com/google/javascript/jscomp/StripCode.java
+index 94c384a..f64c573 100644
+--- a/src/com/google/javascript/jscomp/StripCode.java
++++ b/src/com/google/javascript/jscomp/StripCode.java
+@@ -365,14 +365,15 @@
+       //   ...
+       Node key = n.getFirstChild();
+       while (key != null) {
+-        if (isStripName(key.getString())) {
++        Node var_2024 = key.getNext();
++		if (isStripName(key.getString())) {
+           Node value = key.getFirstChild();
+-          Node next = key.getNext();
++          Node next = var_2024;
+           n.removeChild(key);
+           key = next;
+           compiler.reportCodeChange();
+         } else {
+-          key = key.getNext();
++          key = var_2024;
+         }
+       }
+     }

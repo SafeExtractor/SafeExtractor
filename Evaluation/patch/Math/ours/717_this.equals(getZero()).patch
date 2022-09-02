@@ -1,0 +1,38 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..9d6f475 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -2366,12 +2366,13 @@
+ 
+         final Dfp inc;
+         Dfp result;
+-        if (up) {
++        boolean var_717 = this.equals(getZero());
++		if (up) {
+             inc = newInstance(getOne());
+             inc.exp = this.exp-mant.length+1;
+             inc.sign = this.sign;
+ 
+-            if (this.equals(getZero())) {
++            if (var_717) {
+                 inc.exp = MIN_EXP-mant.length;
+             }
+ 
+@@ -2387,7 +2388,7 @@
+                 inc.exp = this.exp-mant.length+1;
+             }
+ 
+-            if (this.equals(getZero())) {
++            if (var_717) {
+                 inc.exp = MIN_EXP-mant.length;
+             }
+ 
+@@ -2399,7 +2400,7 @@
+             result = dotrap(DfpField.FLAG_INEXACT, NEXT_AFTER_TRAP, x, result);
+         }
+ 
+-        if (result.equals(getZero()) && this.equals(getZero()) == false) {
++        if (result.equals(getZero()) && var_717 == false) {
+             field.setIEEEFlagsBits(DfpField.FLAG_INEXACT);
+             result = dotrap(DfpField.FLAG_INEXACT, NEXT_AFTER_TRAP, x, result);
+         }

@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/rhino/jstype/RecordType.java b/src/com/google/javascript/rhino/jstype/RecordType.java
+index c2f0249..9611685 100755
+--- a/src/com/google/javascript/rhino/jstype/RecordType.java
++++ b/src/com/google/javascript/rhino/jstype/RecordType.java
+@@ -152,8 +152,9 @@
+       // record types. If any property conflicts, then the NO_TYPE type
+       // is returned.
+       for (String property : getOwnPropertyNames()) {
+-        if (thatRecord.hasProperty(property) &&
+-            !thatRecord.getPropertyType(property).isInvariant(
++        JSType var_2685 = thatRecord.getPropertyType(property);
++		if (thatRecord.hasProperty(property) &&
++            !var_2685.isInvariant(
+                 getPropertyType(property))) {
+           return registry.getNativeObjectType(JSTypeNative.NO_TYPE);
+         }

@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/data/xml/CategorySeriesHandler.java b/source/org/jfree/data/xml/CategorySeriesHandler.java
+index 32200b1..a38ffdd 100644
+--- a/source/org/jfree/data/xml/CategorySeriesHandler.java
++++ b/source/org/jfree/data/xml/CategorySeriesHandler.java
+@@ -135,8 +135,9 @@
+                            String localName,
+                            String qName) {
+ 
+-        if (this.root instanceof CategoryDatasetHandler) {
+-            CategoryDatasetHandler handler = (CategoryDatasetHandler) this.root;
++        RootHandler var_4368 = this.root;
++		if (var_4368 instanceof CategoryDatasetHandler) {
++            CategoryDatasetHandler handler = (CategoryDatasetHandler) var_4368;
+ 
+             Iterator iterator = this.values.getKeys().iterator();
+             while (iterator.hasNext()) {
+@@ -145,7 +146,7 @@
+                 handler.addItem(this.seriesKey, key, value);
+             }
+ 
+-            this.root.popSubHandler();
++            var_4368.popSubHandler();
+         }
+ 
+     }

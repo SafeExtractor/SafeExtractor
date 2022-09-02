@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/ranking/NaturalRanking.java b/src/main/java/org/apache/commons/math3/stat/ranking/NaturalRanking.java
+index 7fd7850..a00f7b4 100644
+--- a/src/main/java/org/apache/commons/math3/stat/ranking/NaturalRanking.java
++++ b/src/main/java/org/apache/commons/math3/stat/ranking/NaturalRanking.java
+@@ -232,11 +232,12 @@
+         out[ranks[0].getPosition()] = pos;
+         List<Integer> tiesTrace = new ArrayList<Integer>();
+         tiesTrace.add(ranks[0].getPosition());
+-        for (int i = 1; i < ranks.length; i++) {
++        int var_3871 = tiesTrace.size();
++		for (int i = 1; i < ranks.length; i++) {
+             if (Double.compare(ranks[i].getValue(), ranks[i - 1].getValue()) > 0) {
+                 // tie sequence has ended (or had length 1)
+                 pos = i + 1;
+-                if (tiesTrace.size() > 1) {  // if seq is nontrivial, resolve
++                if (var_3871 > 1) {  // if seq is nontrivial, resolve
+                     resolveTie(out, tiesTrace);
+                 }
+                 tiesTrace = new ArrayList<Integer>();
+@@ -247,7 +248,7 @@
+             }
+             out[ranks[i].getPosition()] = pos;
+         }
+-        if (tiesTrace.size() > 1) {  // handle tie sequence at end
++        if (var_3871 > 1) {  // handle tie sequence at end
+             resolveTie(out, tiesTrace);
+         }
+         if (nanStrategy == NaNStrategy.FIXED) {

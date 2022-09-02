@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java b/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java
+index cc7b318..5206f0f 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java
++++ b/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java
+@@ -90,13 +90,14 @@
+             throw new NotStrictlyPositiveException(data.length);
+         }
+ 
+-        this.data = new double[data.length][data[0].length];
++        double[] var_913 = data[0];
++		this.data = new double[data.length][var_913.length];
+ 
+         for (int i = 0; i < data.length; i++) {
+-            if (data[i].length != data[0].length) {
++            if (data[i].length != var_913.length) {
+                 // Jagged arrays not allowed
+                 throw new DimensionMismatchException(data[i].length,
+-                                                     data[0].length);
++                                                     var_913.length);
+             }
+             if (data[i].length < 2) {
+                 throw new NumberIsTooSmallException(LocalizedFormats.NUMBER_TOO_SMALL,

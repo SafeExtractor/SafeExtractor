@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/chrono/EthiopicChronology.java b/src/main/java/org/joda/time/chrono/EthiopicChronology.java
+index 44b8edf..2502a2d 100644
+--- a/src/main/java/org/joda/time/chrono/EthiopicChronology.java
++++ b/src/main/java/org/joda/time/chrono/EthiopicChronology.java
+@@ -133,7 +133,8 @@
+                     ("Invalid min days in first week: " + minDaysInFirstWeek);
+             }
+             if (chrono == null) {
+-                if (zone == DateTimeZone.UTC) {
++                DateTimeZone var_215 = DateTimeZone.UTC;
++				if (zone == var_215) {
+                     // First create without a lower limit.
+                     chrono = new EthiopicChronology(null, null, minDaysInFirstWeek);
+                     // Impose lower limit and make another EthiopicChronology.
+@@ -142,7 +143,7 @@
+                         (LimitChronology.getInstance(chrono, lowerLimit, null),
+                          null, minDaysInFirstWeek);
+                 } else {
+-                    chrono = getInstance(DateTimeZone.UTC, minDaysInFirstWeek);
++                    chrono = getInstance(var_215, minDaysInFirstWeek);
+                     chrono = new EthiopicChronology
+                         (ZonedChronology.getInstance(chrono, zone), null, minDaysInFirstWeek);
+                 }

@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/RemoveUnusedVars.java b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+index 4c84735..c96d603 100644
+--- a/src/com/google/javascript/jscomp/RemoveUnusedVars.java
++++ b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+@@ -947,14 +947,15 @@
+       boolean isPropAssign = false;
+       Node current = assignNode.getFirstChild();
+       if (NodeUtil.isGet(current)) {
+-        current = current.getFirstChild();
++        Node var_620 = current.getFirstChild();
++		current = var_620;
+         isPropAssign = true;
+ 
+         if (current.isGetProp() &&
+             current.getLastChild().getString().equals("prototype")) {
+           // Prototype properties sets should be considered like normal
+           // property sets.
+-          current = current.getFirstChild();
++          current = var_620;
+         }
+       }
+ 

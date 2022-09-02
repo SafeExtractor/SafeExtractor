@@ -1,0 +1,50 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocTokenStream.java b/src/com/google/javascript/jscomp/parsing/JsDocTokenStream.java
+index 0fc2b3b..a19b089 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocTokenStream.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocTokenStream.java
+@@ -73,7 +73,8 @@
+         }
+       }
+ 
+-      switch (c) {
++      String var_2273 = getStringFromBuffer();
++	switch (c) {
+         // annotation, e.g. @type or @constructor
+         case '@':
+           do {
+@@ -82,7 +83,7 @@
+               addToString(c);
+             } else {
+               ungetChar(c);
+-              this.string = getStringFromBuffer();
++              this.string = var_2273;
+               stringBufferTop = 0;
+               return JsDocToken.ANNOTATION;
+             }
+@@ -162,7 +163,7 @@
+           int c2 = getChar();
+           if (!isJSDocString(c2)) {
+             ungetChar(c2);
+-            this.string = getStringFromBuffer();
++            this.string = var_2273;
+             stringBufferTop = 0;
+             return JsDocToken.STRING;
+           } else {
+@@ -172,7 +173,7 @@
+               if (c1 == '.' && c2 == '<') {
+                 ungetChar(c2);
+                 ungetChar(c1);
+-                this.string = getStringFromBuffer();
++                this.string = var_2273;
+                 stringBufferTop = 0;
+                 return JsDocToken.STRING;
+               } else {
+@@ -181,7 +182,7 @@
+                 } else {
+                   ungetChar(c2);
+                   addToString(c1);
+-                  this.string = getStringFromBuffer();
++                  this.string = var_2273;
+                   stringBufferTop = 0;
+                   return JsDocToken.STRING;
+                 }

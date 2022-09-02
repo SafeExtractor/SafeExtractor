@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/data/statistics/Statistics.java b/source/org/jfree/data/statistics/Statistics.java
+index 1f97438..2e5bdaf 100644
+--- a/source/org/jfree/data/statistics/Statistics.java
++++ b/source/org/jfree/data/statistics/Statistics.java
+@@ -310,17 +310,18 @@
+         if (data == null) {
+             throw new IllegalArgumentException("Null 'data' array.");
+         }
+-        if (data.length == 0) {
++        int var_4107 = data.length;
++		if (var_4107 == 0) {
+             throw new IllegalArgumentException("Zero length 'data' array.");
+         }
+         double avg = calculateMean(data);
+         double sum = 0.0;
+ 
+-        for (int counter = 0; counter < data.length; counter++) {
++        for (int counter = 0; counter < var_4107; counter++) {
+             double diff = data[counter].doubleValue() - avg;
+             sum = sum + diff * diff;
+         }
+-        return Math.sqrt(sum / (data.length - 1));
++        return Math.sqrt(sum / (var_4107 - 1));
+     }
+ 
+     /**

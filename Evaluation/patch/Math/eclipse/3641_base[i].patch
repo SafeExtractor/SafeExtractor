@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/random/HaltonSequenceGenerator.java b/src/main/java/org/apache/commons/math3/random/HaltonSequenceGenerator.java
+index c0240a0..b7938c7 100644
+--- a/src/main/java/org/apache/commons/math3/random/HaltonSequenceGenerator.java
++++ b/src/main/java/org/apache/commons/math3/random/HaltonSequenceGenerator.java
+@@ -126,14 +126,15 @@
+         final double[] v = new double[dimension];
+         for (int i = 0; i < dimension; i++) {
+             int index = count;
+-            double f = 1.0 / base[i];
++            int var_3641 = base[i];
++			double f = 1.0 / var_3641;
+ 
+             int j = 0;
+             while (index > 0) {
+-                final int digit = scramble(i, j, base[i], index % base[i]);
++                final int digit = scramble(i, j, var_3641, index % var_3641);
+                 v[i] += f * digit;
+-                index /= base[i]; // floor( index / base )
+-                f /= base[i];
++                index /= var_3641; // floor( index / base )
++                f /= var_3641;
+             }
+         }
+         count++;

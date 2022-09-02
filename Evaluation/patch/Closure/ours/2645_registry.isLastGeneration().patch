@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/rhino/jstype/NamedType.java b/src/com/google/javascript/rhino/jstype/NamedType.java
+index 9fb2191..251c62a 100644
+--- a/src/com/google/javascript/rhino/jstype/NamedType.java
++++ b/src/com/google/javascript/rhino/jstype/NamedType.java
+@@ -337,11 +337,12 @@
+   // type name.
+   private void handleUnresolvedType(
+       ErrorReporter t, boolean ignoreForwardReferencedTypes) {
+-    if (registry.isLastGeneration()) {
++    boolean var_2645 = registry.isLastGeneration();
++	if (var_2645) {
+       boolean isForwardDeclared =
+           ignoreForwardReferencedTypes &&
+           registry.isForwardDeclaredType(reference);
+-      if (!isForwardDeclared && registry.isLastGeneration()) {
++      if (!isForwardDeclared && var_2645) {
+         t.warning("Bad type annotation. Unknown type " + reference,
+             sourceName, lineno, charno);
+       } else {
+@@ -349,7 +350,7 @@
+             registry.getNativeObjectType(
+                 JSTypeNative.NO_RESOLVED_TYPE));
+ 
+-        if (registry.isLastGeneration() && validator != null) {
++        if (var_2645 && validator != null) {
+           validator.apply(getReferencedType());
+         }
+       }

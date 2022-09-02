@@ -1,0 +1,20 @@
+diff --git a/source/org/jfree/chart/axis/DateAxis.java b/source/org/jfree/chart/axis/DateAxis.java
+index 059bc3a..38a1cfa 100644
+--- a/source/org/jfree/chart/axis/DateAxis.java
++++ b/source/org/jfree/chart/axis/DateAxis.java
+@@ -746,11 +746,12 @@
+     public double valueToJava2D(double value, Rectangle2D area,
+                                 RectangleEdge edge) {
+ 
+-        value = this.timeline.toTimelineValue((long) value);
++        Timeline var_479 = this.timeline;
++		value = var_479.toTimelineValue((long) value);
+ 
+         DateRange range = (DateRange) getRange();
+-        double axisMin = this.timeline.toTimelineValue(range.getLowerMillis());
+-        double axisMax = this.timeline.toTimelineValue(range.getUpperMillis());
++        double axisMin = var_479.toTimelineValue(range.getLowerMillis());
++        double axisMax = var_479.toTimelineValue(range.getUpperMillis());
+         double result = 0.0;
+         if (RectangleEdge.isTopOrBottom(edge)) {
+             double minX = area.getX();

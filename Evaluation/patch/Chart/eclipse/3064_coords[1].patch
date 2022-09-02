@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/renderer/xy/DeviationRenderer.java b/source/org/jfree/chart/renderer/xy/DeviationRenderer.java
+index f8af216..051a35b 100644
+--- a/source/org/jfree/chart/renderer/xy/DeviationRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/DeviationRenderer.java
+@@ -301,17 +301,18 @@
+                 g2.setPaint(getItemFillPaint(series, item, selected));
+                 GeneralPath area = new GeneralPath();
+                 double[] coords = (double[]) drState.lowerCoordinates.get(0);
+-                area.moveTo((float) coords[0], (float) coords[1]);
++                double var_3064 = coords[1];
++				area.moveTo((float) coords[0], (float) var_3064);
+                 for (int i = 1; i < drState.lowerCoordinates.size(); i++) {
+                     coords = (double[]) drState.lowerCoordinates.get(i);
+-                    area.lineTo((float) coords[0], (float) coords[1]);
++                    area.lineTo((float) coords[0], (float) var_3064);
+                 }
+                 int count = drState.upperCoordinates.size();
+                 coords = (double[]) drState.upperCoordinates.get(count - 1);
+-                area.lineTo((float) coords[0], (float) coords[1]);
++                area.lineTo((float) coords[0], (float) var_3064);
+                 for (int i = count - 2; i >= 0; i--) {
+                     coords = (double[]) drState.upperCoordinates.get(i);
+-                    area.lineTo((float) coords[0], (float) coords[1]);
++                    area.lineTo((float) coords[0], (float) var_3064);
+                 }
+                 area.closePath();
+                 g2.fill(area);

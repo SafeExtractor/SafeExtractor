@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/function/Gaussian.java b/src/main/java/org/apache/commons/math3/analysis/function/Gaussian.java
+index 08ea43b..b465a3c 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/function/Gaussian.java
++++ b/src/main/java/org/apache/commons/math3/analysis/function/Gaussian.java
+@@ -222,7 +222,8 @@
+         // the general recurrence relation for P_n is:
+         // P_n(u) = P_(n-1)'(u) - u P_(n-1)(u)
+         // as per polynomial parity, we can store coefficients of both P_(n-1) and P_n in the same array
+-        final double[] p = new double[f.length];
++        int var_183 = f.length;
++		final double[] p = new double[var_183];
+         p[0] = 1;
+         final double u2 = u * u;
+         double coeff = norm * FastMath.exp(-0.5 * u2);
+@@ -230,7 +231,7 @@
+             Arrays.fill(f, 0.0);
+         } else {
+             f[0] = coeff;
+-            for (int n = 1; n < f.length; ++n) {
++            for (int n = 1; n < var_183; ++n) {
+ 
+                 // update and evaluate polynomial P_n(x)
+                 double v = 0;

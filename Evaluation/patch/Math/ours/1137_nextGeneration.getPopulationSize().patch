@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/genetics/GeneticAlgorithm.java b/src/main/java/org/apache/commons/math3/genetics/GeneticAlgorithm.java
+index 445ed58..221756d 100644
+--- a/src/main/java/org/apache/commons/math3/genetics/GeneticAlgorithm.java
++++ b/src/main/java/org/apache/commons/math3/genetics/GeneticAlgorithm.java
+@@ -151,7 +151,8 @@
+ 
+         RandomGenerator randGen = getRandomGenerator();
+ 
+-        while (nextGeneration.getPopulationSize() < nextGeneration.getPopulationLimit()) {
++        int var_1137 = nextGeneration.getPopulationSize();
++		while (var_1137 < nextGeneration.getPopulationLimit()) {
+             // select parent chromosomes
+             ChromosomePair pair = getSelectionPolicy().select(current);
+ 
+@@ -172,7 +173,7 @@
+             // add the first chromosome to the population
+             nextGeneration.addChromosome(pair.getFirst());
+             // is there still a place for the second chromosome?
+-            if (nextGeneration.getPopulationSize() < nextGeneration.getPopulationLimit()) {
++            if (var_1137 < nextGeneration.getPopulationLimit()) {
+                 // add the second chromosome to the population
+                 nextGeneration.addChromosome(pair.getSecond());
+             }

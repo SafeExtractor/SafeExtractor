@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java
+index 7437838..cc809ed 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java
+@@ -250,7 +250,8 @@
+                 for (int k = 0; k < lastK; k++) {
+                     final int kp1 = k + 1;
+ 
+-                    final double[] beta = new double[] {
++                    double[] var_270 = d2FdXdZ[i][jp1];
++					final double[] beta = new double[] {
+                         f[i][j][k], f[ip1][j][k],
+                         f[i][jp1][k], f[ip1][jp1][k],
+                         f[i][j][kp1], f[ip1][j][kp1],
+@@ -277,9 +278,9 @@
+                         d2FdXdY[i][jp1][kp1], d2FdXdY[ip1][jp1][kp1],
+ 
+                         d2FdXdZ[i][j][k], d2FdXdZ[ip1][j][k],
+-                        d2FdXdZ[i][jp1][k], d2FdXdZ[ip1][jp1][k],
++                        var_270[k], d2FdXdZ[ip1][jp1][k],
+                         d2FdXdZ[i][j][kp1], d2FdXdZ[ip1][j][kp1],
+-                        d2FdXdZ[i][jp1][kp1], d2FdXdZ[ip1][jp1][kp1],
++                        var_270[kp1], d2FdXdZ[ip1][jp1][kp1],
+ 
+                         d2FdYdZ[i][j][k], d2FdYdZ[ip1][j][k],
+                         d2FdYdZ[i][jp1][k], d2FdYdZ[ip1][jp1][k],

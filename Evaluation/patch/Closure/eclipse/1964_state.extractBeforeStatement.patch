@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/ExpressionDecomposer.java b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+index 2344537..fca6e40 100644
+--- a/src/com/google/javascript/jscomp/ExpressionDecomposer.java
++++ b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+@@ -525,8 +525,9 @@
+ 
+     // Extracts the expression representing the function to call. For example:
+     //   "a['b'].c" from "a['b'].c()"
+-    Node getVarNode = extractExpression(
+-        first, state.extractBeforeStatement);
++    Node var_1964 = state.extractBeforeStatement;
++	Node getVarNode = extractExpression(
++        first, var_1964);
+     state.extractBeforeStatement = getVarNode;
+ 
+     // Extracts the object reference to be used as "this". For example:
+@@ -534,7 +535,7 @@
+     Node getExprNode = getVarNode.getFirstChild().getFirstChild();
+     Preconditions.checkArgument(NodeUtil.isGet(getExprNode));
+     Node thisVarNode = extractExpression(
+-        getExprNode.getFirstChild(), state.extractBeforeStatement);
++        getExprNode.getFirstChild(), var_1964);
+     state.extractBeforeStatement = thisVarNode;
+ 
+     // Rewrite the CALL expression.

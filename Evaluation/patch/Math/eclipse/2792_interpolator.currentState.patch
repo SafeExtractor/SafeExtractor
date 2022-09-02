@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
+index 15450f4..76a7370 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
+@@ -244,7 +244,8 @@
+ 
+     super(interpolator);
+ 
+-    if (interpolator.currentState == null) {
++    double[] var_2792 = interpolator.currentState;
++	if (var_2792 == null) {
+ 
+       yDotKLast = null;
+       v         = null;
+@@ -252,7 +253,7 @@
+ 
+     } else {
+ 
+-      final int dimension = interpolator.currentState.length;
++      final int dimension = var_2792.length;
+ 
+       yDotKLast    = new double[3][];
+       for (int k = 0; k < yDotKLast.length; ++k) {

@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/data/general/WaferMapDataset.java b/source/org/jfree/data/general/WaferMapDataset.java
+index 7436b84..824fd8f 100644
+--- a/source/org/jfree/data/general/WaferMapDataset.java
++++ b/source/org/jfree/data/general/WaferMapDataset.java
+@@ -200,15 +200,16 @@
+      * @return The data value.
+      */
+     public Number getChipValue(Comparable chipx, Comparable chipy) {
+-        int rowIndex = this.data.getRowIndex(chipx);
++        DefaultKeyedValues2D var_3969 = this.data;
++		int rowIndex = var_3969.getRowIndex(chipx);
+         if (rowIndex < 0) {
+             return null;
+         }
+-        int colIndex = this.data.getColumnIndex(chipy);
++        int colIndex = var_3969.getColumnIndex(chipy);
+         if (colIndex < 0) {
+             return null;
+         }
+-        return this.data.getValue(rowIndex, colIndex);
++        return var_3969.getValue(rowIndex, colIndex);
+     }
+ 
+     /**

@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/GLSMultipleLinearRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/GLSMultipleLinearRegression.java
+index 0450ebd..0fe28a4 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/GLSMultipleLinearRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/GLSMultipleLinearRegression.java
+@@ -109,7 +109,8 @@
+     @Override
+     protected RealMatrix calculateBetaVariance() {
+         RealMatrix OI = getOmegaInverse();
+-        RealMatrix XTOIX = getX().transpose().multiply(OI).multiply(getX());
++        RealMatrix var_3952 = getX();
++		RealMatrix XTOIX = var_3952.transpose().multiply(OI).multiply(var_3952);
+         return new LUDecomposition(XTOIX).getSolver().getInverse();
+     }
+ 

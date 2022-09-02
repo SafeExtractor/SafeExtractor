@@ -1,0 +1,38 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot3D.java b/source/org/jfree/chart/plot/PiePlot3D.java
+index a7aab14..e6ab101 100644
+--- a/source/org/jfree/chart/plot/PiePlot3D.java
++++ b/source/org/jfree/chart/plot/PiePlot3D.java
+@@ -253,12 +253,13 @@
+                 + labelPercent) * 2.0;
+         double gapVertical = plotArea.getHeight() * gapPercent * 2.0;
+ 
+-        if (DEBUG_DRAW_INTERIOR) {
++        double var_1472 = plotArea.getY();
++		if (DEBUG_DRAW_INTERIOR) {
+             double hGap = plotArea.getWidth() * getInteriorGap();
+             double vGap = plotArea.getHeight() * getInteriorGap();
+             double igx1 = plotArea.getX() + hGap;
+             double igx2 = plotArea.getMaxX() - hGap;
+-            double igy1 = plotArea.getY() + vGap;
++            double igy1 = var_1472 + vGap;
+             double igy2 = plotArea.getMaxY() - vGap;
+             g2.setPaint(Color.lightGray);
+             g2.draw(new Rectangle2D.Double(igx1, igy1, igx2 - igx1,
+@@ -266,7 +267,7 @@
+         }
+ 
+         double linkX = plotArea.getX() + gapHorizontal / 2;
+-        double linkY = plotArea.getY() + gapVertical / 2;
++        double linkY = var_1472 + gapVertical / 2;
+         double linkW = plotArea.getWidth() - gapHorizontal;
+         double linkH = plotArea.getHeight() - gapVertical;
+ 
+@@ -348,7 +349,7 @@
+             int stringWidth = fm.stringWidth(text);
+ 
+             g2.drawString(text, (int) (plotArea.getX() + (plotArea.getWidth()
+-                    - stringWidth) / 2), (int) (plotArea.getY()
++                    - stringWidth) / 2), (int) (var_1472
+                     + (plotArea.getHeight() / 2)));
+             return;
+         }

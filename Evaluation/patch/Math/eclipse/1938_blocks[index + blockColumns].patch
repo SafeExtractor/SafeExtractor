@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java b/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
+index c6b1a04..7df509f 100644
+--- a/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
+@@ -690,7 +690,8 @@
+                 final int widthExcess  = jWidth + columnsShift - BLOCK_SIZE;
+                 if (heightExcess > 0) {
+                     // the submatrix block spans on two blocks rows from the original matrix
+-                    if (widthExcess > 0) {
++                    T[] var_1938 = blocks[index + blockColumns];
++					if (widthExcess > 0) {
+                         // the submatrix block spans on two blocks columns from the original matrix
+                         final int width2 = blockWidth(qBlock + 1);
+                         copyBlockPart(blocks[index], width,
+@@ -701,7 +702,7 @@
+                                       rowsShift, BLOCK_SIZE,
+                                       0, widthExcess,
+                                       outBlock, jWidth, 0, jWidth - widthExcess);
+-                        copyBlockPart(blocks[index + blockColumns], width,
++                        copyBlockPart(var_1938, width,
+                                       0, heightExcess,
+                                       columnsShift, BLOCK_SIZE,
+                                       outBlock, jWidth, iHeight - heightExcess, 0);
+@@ -715,7 +716,7 @@
+                                       rowsShift, BLOCK_SIZE,
+                                       columnsShift, jWidth + columnsShift,
+                                       outBlock, jWidth, 0, 0);
+-                        copyBlockPart(blocks[index + blockColumns], width,
++                        copyBlockPart(var_1938, width,
+                                       0, heightExcess,
+                                       columnsShift, jWidth + columnsShift,
+                                       outBlock, jWidth, iHeight - heightExcess, 0);

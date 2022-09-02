@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/CheckAccessControls.java b/src/com/google/javascript/jscomp/CheckAccessControls.java
+index df50c26..d8c9578 100644
+--- a/src/com/google/javascript/jscomp/CheckAccessControls.java
++++ b/src/com/google/javascript/jscomp/CheckAccessControls.java
+@@ -278,7 +278,8 @@
+       return;
+     }
+ 
+-    Scope.Var var = t.getScope().getVar(n.getString());
++    String var_915 = n.getString();
++	Scope.Var var = t.getScope().getVar(var_915);
+     JSDocInfo docInfo = var == null ? null : var.getJSDocInfo();
+ 
+     if (docInfo != null && docInfo.isDeprecated() &&
+@@ -286,11 +287,11 @@
+ 
+       if (docInfo.getDeprecationReason() != null) {
+         compiler.report(
+-            t.makeError(n, DEPRECATED_NAME_REASON, n.getString(),
++            t.makeError(n, DEPRECATED_NAME_REASON, var_915,
+                 docInfo.getDeprecationReason()));
+       } else {
+         compiler.report(
+-            t.makeError(n, DEPRECATED_NAME, n.getString()));
++            t.makeError(n, DEPRECATED_NAME, var_915));
+       }
+     }
+   }

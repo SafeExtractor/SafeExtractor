@@ -1,0 +1,33 @@
+diff --git a/src/com/google/javascript/jscomp/ConcreteType.java b/src/com/google/javascript/jscomp/ConcreteType.java
+index 7bf7593..80cbd50 100644
+--- a/src/com/google/javascript/jscomp/ConcreteType.java
++++ b/src/com/google/javascript/jscomp/ConcreteType.java
+@@ -29,6 +29,7 @@
+ import com.google.javascript.rhino.jstype.StaticSlot;
+ import com.google.javascript.rhino.jstype.UnknownType;
+ 
++import java.util.ArrayList;
+ import java.util.Collection;
+ import java.util.Collections;
+ import java.util.List;
+@@ -135,8 +136,9 @@
+    */
+   private <C> List<C> getMatchingTypes(TypeFilter<C> filter) {
+     C type = null;
+-    if (isUnion()) {
+-      List<C> list = Lists.newArrayList();
++    ArrayList<C> var_1754 = Lists.newArrayList();
++	if (isUnion()) {
++      List<C> list = var_1754;
+       for (ConcreteType alt : toUnion().getAlternatives()) {
+         if ((type = filter.filter(alt)) != null) {
+           list.add(type);
+@@ -144,7 +146,7 @@
+       }
+       return list;
+     } else if ((type = filter.filter(this)) != null) {
+-      List<C> list = Lists.newArrayList();
++      List<C> list = var_1754;
+       list.add(type);
+       return list;
+     } else {

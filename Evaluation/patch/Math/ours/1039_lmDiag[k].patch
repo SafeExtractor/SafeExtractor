@@ -1,0 +1,35 @@
+diff --git a/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
+index 930eb1e..edb389e 100644
+--- a/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
+@@ -828,24 +828,25 @@
+ 
+                 // determine a Givens rotation which eliminates the
+                 // appropriate element in the current row of d
+-                if (lmDiag[k] != 0) {
++                double var_1039 = lmDiag[k];
++				if (var_1039 != 0) {
+ 
+                     final double sin;
+                     final double cos;
+                     double rkk = weightedJacobian[k][pk];
+-                    if (FastMath.abs(rkk) < FastMath.abs(lmDiag[k])) {
+-                        final double cotan = rkk / lmDiag[k];
++                    if (FastMath.abs(rkk) < FastMath.abs(var_1039)) {
++                        final double cotan = rkk / var_1039;
+                         sin   = 1.0 / FastMath.sqrt(1.0 + cotan * cotan);
+                         cos   = sin * cotan;
+                     } else {
+-                        final double tan = lmDiag[k] / rkk;
++                        final double tan = var_1039 / rkk;
+                         cos = 1.0 / FastMath.sqrt(1.0 + tan * tan);
+                         sin = cos * tan;
+                     }
+ 
+                     // compute the modified diagonal element of R and
+                     // the modified element of (Qty,0)
+-                    weightedJacobian[k][pk] = cos * rkk + sin * lmDiag[k];
++                    weightedJacobian[k][pk] = cos * rkk + sin * var_1039;
+                     final double temp = cos * work[k] + sin * qtbpj;
+                     qtbpj = -sin * work[k] + cos * qtbpj;
+                     work[k] = temp;

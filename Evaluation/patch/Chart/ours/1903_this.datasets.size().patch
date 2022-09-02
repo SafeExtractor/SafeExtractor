@@ -1,0 +1,36 @@
+diff --git a/source/org/jfree/chart/plot/CategoryPlot.java b/source/org/jfree/chart/plot/CategoryPlot.java
+index 24a84fd..d75c9f3 100644
+--- a/source/org/jfree/chart/plot/CategoryPlot.java
++++ b/source/org/jfree/chart/plot/CategoryPlot.java
+@@ -3702,10 +3702,11 @@
+                 AlphaComposite.SRC_OVER, getForegroundAlpha()));
+ 
+         DatasetRenderingOrder order = getDatasetRenderingOrder();
+-        if (order == DatasetRenderingOrder.FORWARD) {
++        int var_1903 = this.datasets.size();
++		if (order == DatasetRenderingOrder.FORWARD) {
+ 
+             // draw background annotations
+-            int datasetCount = this.datasets.size();
++            int datasetCount = var_1903;
+             for (int i = 0; i < datasetCount; i++) {
+                 CategoryItemRenderer r = getRenderer(i);
+                 if (r != null) {
+@@ -3735,7 +3736,7 @@
+         else {  // DatasetRenderingOrder.REVERSE
+ 
+             // draw background annotations
+-            int datasetCount = this.datasets.size();
++            int datasetCount = var_1903;
+             for (int i = datasetCount - 1; i >= 0; i--) {
+                 CategoryItemRenderer r = getRenderer(i);
+                 if (r != null) {
+@@ -3746,7 +3747,7 @@
+                 }
+             }
+ 
+-            for (int i = this.datasets.size() - 1; i >= 0; i--) {
++            for (int i = var_1903 - 1; i >= 0; i--) {
+                 foundData = render(g2, dataArea, i, state, crosshairState)
+                     || foundData;
+             }

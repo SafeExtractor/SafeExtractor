@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/lang3/builder/ToStringBuilder.java b/src/main/java/org/apache/commons/lang3/builder/ToStringBuilder.java
+index 879b27c..cdb6f84 100644
+--- a/src/main/java/org/apache/commons/lang3/builder/ToStringBuilder.java
++++ b/src/main/java/org/apache/commons/lang3/builder/ToStringBuilder.java
+@@ -1055,12 +1055,13 @@
+      */
+     @Override
+     public String toString() {
+-        if (this.getObject() == null) {
+-            this.getStringBuffer().append(this.getStyle().getNullText());
++        StringBuffer var_330 = this.getStringBuffer();
++		if (this.getObject() == null) {
++            var_330.append(this.getStyle().getNullText());
+         } else {
+-            style.appendEnd(this.getStringBuffer(), this.getObject());
++            style.appendEnd(var_330, this.getObject());
+         }
+-        return this.getStringBuffer().toString();
++        return var_330.toString();
+     }
+ 
+     /**

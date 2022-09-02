@@ -1,0 +1,20 @@
+diff --git a/source/org/jfree/data/statistics/DefaultBoxAndWhiskerCategoryDataset.java b/source/org/jfree/data/statistics/DefaultBoxAndWhiskerCategoryDataset.java
+index 3f26a3e..743103c 100644
+--- a/source/org/jfree/data/statistics/DefaultBoxAndWhiskerCategoryDataset.java
++++ b/source/org/jfree/data/statistics/DefaultBoxAndWhiskerCategoryDataset.java
+@@ -142,11 +142,12 @@
+     public void add(BoxAndWhiskerItem item, Comparable rowKey,
+             Comparable columnKey) {
+ 
+-        this.data.addObject(item, rowKey, columnKey);
++        KeyedObjects2D var_4028 = this.data;
++		var_4028.addObject(item, rowKey, columnKey);
+ 
+         // update cached min and max values
+-        int r = this.data.getRowIndex(rowKey);
+-        int c = this.data.getColumnIndex(columnKey);
++        int r = var_4028.getRowIndex(rowKey);
++        int c = var_4028.getColumnIndex(columnKey);
+         if ((this.maximumRangeValueRow == r && this.maximumRangeValueColumn
+                 == c) || (this.minimumRangeValueRow == r
+                 && this.minimumRangeValueColumn == c))  {

@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/axis/MarkerAxisBand.java b/source/org/jfree/chart/axis/MarkerAxisBand.java
+index 3943ebc..3914da5 100644
+--- a/source/org/jfree/chart/axis/MarkerAxisBand.java
++++ b/source/org/jfree/chart/axis/MarkerAxisBand.java
+@@ -64,6 +64,7 @@
+ import org.jfree.chart.text.TextUtilities;
+ import org.jfree.chart.util.ObjectUtilities;
+ import org.jfree.chart.util.RectangleEdge;
++import org.jfree.data.Range;
+ 
+ /**
+  * A band that can be added to a number axis to display regions.
+@@ -190,11 +191,12 @@
+         Iterator iterator = this.markers.iterator();
+         while (iterator.hasNext()) {
+             IntervalMarker marker = (IntervalMarker) iterator.next();
+-            double start =  Math.max(
+-                marker.getStartValue(), this.axis.getRange().getLowerBound()
++            Range var_555 = this.axis.getRange();
++			double start =  Math.max(
++                marker.getStartValue(), var_555.getLowerBound()
+             );
+             double end = Math.min(
+-                marker.getEndValue(), this.axis.getRange().getUpperBound()
++                marker.getEndValue(), var_555.getUpperBound()
+             );
+             double s = this.axis.valueToJava2D(
+                 start, dataArea, RectangleEdge.BOTTOM

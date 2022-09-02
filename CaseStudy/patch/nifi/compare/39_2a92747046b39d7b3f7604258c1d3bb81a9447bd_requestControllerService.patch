@@ -1,0 +1,37 @@
+diff --git a/Users/safe/paper/CaseStudy/patch/nifi/eclipse/39_2a92747046b39d7b3f7604258c1d3bb81a9447bd_requestControllerService.patch b/Users/safe/paper/CaseStudy/patch/nifi/ours/39_2a92747046b39d7b3f7604258c1d3bb81a9447bd_requestControllerService.patch
+index 3171b8a..3751b15 100644
+--- a/Users/safe/paper/CaseStudy/patch/nifi/eclipse/39_2a92747046b39d7b3f7604258c1d3bb81a9447bd_requestControllerService.patch
++++ b/Users/safe/paper/CaseStudy/patch/nifi/ours/39_2a92747046b39d7b3f7604258c1d3bb81a9447bd_requestControllerService.patch
+@@ -1,5 +1,5 @@
+ diff --git a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ControllerResource.java b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ControllerResource.java
+-index 4063a72..ce83c81 100644
++index 4063a72..d2c00f8 100644
+ --- a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ControllerResource.java
+ +++ b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ControllerResource.java
+ @@ -39,6 +39,7 @@
+@@ -10,22 +10,13 @@ index 4063a72..ce83c81 100644
+  import org.apache.nifi.web.api.dto.NodeDTO;
+  import org.apache.nifi.web.api.entity.ClusterEntity;
+  import org.apache.nifi.web.api.entity.ControllerConfigurationEntity;
+-@@ -329,7 +330,8 @@
+-                     required = true
+-             ) final ControllerServiceEntity controllerServiceEntity) {
+- 
+--        if (controllerServiceEntity == null || controllerServiceEntity.getComponent() == null) {
+-+        ControllerServiceDTO requestControllerService = controllerServiceEntity.getComponent();
+-+		if (controllerServiceEntity == null || requestControllerService == null) {
+-             throw new IllegalArgumentException("Controller service details must be specified.");
+-         }
+- 
+-@@ -337,11 +339,11 @@
++@@ -337,11 +338,12 @@
+              throw new IllegalArgumentException("A revision of 0 must be specified when creating a new Controller service.");
+          }
+  
+ -        if (controllerServiceEntity.getComponent().getId() != null) {
+-+        if (requestControllerService.getId() != null) {
+++        ControllerServiceDTO requestControllerService = controllerServiceEntity.getComponent();
+++		if (requestControllerService.getId() != null) {
+              throw new IllegalArgumentException("Controller service ID cannot be specified.");
+          }
+  

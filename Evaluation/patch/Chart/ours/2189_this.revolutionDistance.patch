@@ -1,0 +1,18 @@
+diff --git a/source/org/jfree/chart/plot/CompassPlot.java b/source/org/jfree/chart/plot/CompassPlot.java
+index 2963422..dbe7881 100644
+--- a/source/org/jfree/chart/plot/CompassPlot.java
++++ b/source/org/jfree/chart/plot/CompassPlot.java
+@@ -683,9 +683,10 @@
+             ValueDataset data = this.datasets[i];
+ 
+             if (data != null && data.getValue() != null) {
+-                value = (data.getValue().doubleValue())
+-                    % this.revolutionDistance;
+-                value = value / this.revolutionDistance * 360;
++                double var_2189 = this.revolutionDistance;
++				value = (data.getValue().doubleValue())
++                    % var_2189;
++                value = value / var_2189 * 360;
+                 current = i % x;
+                 this.seriesNeedle[current].draw(g2, needleArea, value);
+             }

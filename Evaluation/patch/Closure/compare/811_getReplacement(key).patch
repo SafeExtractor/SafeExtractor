@@ -1,0 +1,45 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/811_getReplacement(key).patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/811_getReplacement(key).patch
+index 5075050..702182f 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/811_getReplacement(key).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/811_getReplacement(key).patch
+@@ -1,36 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/ReplaceStrings.java b/src/com/google/javascript/jscomp/ReplaceStrings.java
+-index 1d4ac50..83835ea 100644
++index 1d4ac50..957cbbd 100644
+ --- a/src/com/google/javascript/jscomp/ReplaceStrings.java
+ +++ b/src/com/google/javascript/jscomp/ReplaceStrings.java
+-@@ -306,10 +306,11 @@
+-     Node replacement;
+-     String key = null;
+-     String replacementString;
+--    switch (expr.getType()) {
+-+    String var_811 = getReplacement(key);
+-+	switch (expr.getType()) {
+-       case Token.STRING:
+-         key = expr.getString();
+--        replacementString = getReplacement(key);
+-+        replacementString = var_811;
+-         replacement = IR.string(replacementString);
+-         break;
+-       case Token.ADD:
+-@@ -317,7 +318,7 @@
++@@ -317,7 +317,8 @@
+          Node keyNode = IR.string("");
+          replacement = buildReplacement(expr, keyNode, keyBuilder);
+          key = keyBuilder.toString();
+ -        replacementString = getReplacement(key);
+-+        replacementString = var_811;
+++        String var_811 = getReplacement(key);
+++		replacementString = var_811;
+          keyNode.setString(replacementString);
+          break;
+        case Token.NAME:
+-@@ -327,7 +328,7 @@
+-           Node value = var.getInitialValue();
+-           if (value != null && value.isString()) {
+-             key = value.getString();
+--            replacementString = getReplacement(key);
+-+            replacementString = var_811;
+-             replacement = IR.string(replacementString);
+-             break;
+-           }

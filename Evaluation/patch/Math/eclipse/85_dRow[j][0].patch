@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..b3b6ddc 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -363,8 +363,9 @@
+             final int[][] dRow = derivativeCompiler.multIndirection[i];
+             List<int[]> row = new ArrayList<int[]>(dRow.length * 2);
+             for (int j = 0; j < dRow.length; ++j) {
+-                row.add(new int[] { dRow[j][0], lowerIndirection[dRow[j][1]], vSize + dRow[j][2] });
+-                row.add(new int[] { dRow[j][0], vSize + dRow[j][1], lowerIndirection[dRow[j][2]] });
++                int var_85 = dRow[j][0];
++				row.add(new int[] { var_85, lowerIndirection[dRow[j][1]], vSize + dRow[j][2] });
++                row.add(new int[] { var_85, vSize + dRow[j][1], lowerIndirection[dRow[j][2]] });
+             }
+ 
+             // combine terms with similar derivation orders

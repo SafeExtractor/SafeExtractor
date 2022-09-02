@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/ExpressionDecomposer.java b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+index 2344537..45e89c7 100644
+--- a/src/com/google/javascript/jscomp/ExpressionDecomposer.java
++++ b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+@@ -762,10 +762,11 @@
+ 
+       int parentType = parent.getType();
+ 
+-      if (isConditionalOp(parent)) {
++      Node var_1967 = parent.getFirstChild();
++	if (isConditionalOp(parent)) {
+         // Only the first child is always executed, otherwise it must be
+         // decomposed.
+-        if (child != parent.getFirstChild()) {
++        if (child != var_1967) {
+           requiresDecomposition = true;
+         }
+       } else {
+@@ -818,7 +819,7 @@
+           // in the extern definitions and if we did we would need accurate
+           // type information.
+           //
+-          Node first = parent.getFirstChild();
++          Node first = var_1967;
+           if (requiresDecomposition
+               && parent.isCall()
+               && NodeUtil.isGet(first)) {

@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/FastMath.java b/src/main/java/org/apache/commons/math3/util/FastMath.java
+index 919e39f..7baa686 100644
+--- a/src/main/java/org/apache/commons/math3/util/FastMath.java
++++ b/src/main/java/org/apache/commons/math3/util/FastMath.java
+@@ -2435,8 +2435,9 @@
+         boolean negate = false;
+         int idx;
+ 
+-        if (xa == 0.0) { // Matches +/- 0.0; return correct sign
+-            return leftPlane ? copySign(Math.PI, xa) : xa;
++        double var_4332 = Math.PI;
++		if (xa == 0.0) { // Matches +/- 0.0; return correct sign
++            return leftPlane ? copySign(var_4332, xa) : xa;
+         }
+ 
+         if (xa < 0) {
+@@ -2447,7 +2448,7 @@
+         }
+ 
+         if (xa > 1.633123935319537E16) { // Very large input
+-            return (negate ^ leftPlane) ? (-Math.PI * F_1_2) : (Math.PI * F_1_2);
++            return (negate ^ leftPlane) ? (-var_4332 * F_1_2) : (var_4332 * F_1_2);
+         }
+ 
+         /* Estimate the closest tabulated arctan value, compute eps = xa-tangentTable */

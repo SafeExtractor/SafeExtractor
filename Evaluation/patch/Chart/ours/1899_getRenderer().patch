@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/plot/CategoryPlot.java b/source/org/jfree/chart/plot/CategoryPlot.java
+index 24a84fd..f5eb8e4 100644
+--- a/source/org/jfree/chart/plot/CategoryPlot.java
++++ b/source/org/jfree/chart/plot/CategoryPlot.java
+@@ -3612,8 +3612,9 @@
+ 
+         // if there is a renderer, it draws the background, otherwise use the
+         // default background...
+-        if (getRenderer() != null) {
+-            getRenderer().drawBackground(g2, this, dataArea);
++        CategoryItemRenderer var_1899 = getRenderer();
++		if (var_1899 != null) {
++            var_1899.drawBackground(g2, this, dataArea);
+         }
+         else {
+             drawBackground(g2, dataArea);
+@@ -3832,8 +3833,8 @@
+ 
+         // draw an outline around the plot area...
+         if (isOutlineVisible()) {
+-            if (getRenderer() != null) {
+-                getRenderer().drawOutline(g2, this, dataArea);
++            if (var_1899 != null) {
++                var_1899.drawOutline(g2, this, dataArea);
+             }
+             else {
+                 drawOutline(g2, dataArea);

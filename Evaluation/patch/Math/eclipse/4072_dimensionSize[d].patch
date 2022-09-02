@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/transform/FastFourierTransformer.java b/src/main/java/org/apache/commons/math3/transform/FastFourierTransformer.java
+index 22d8a3d..fa2e782 100644
+--- a/src/main/java/org/apache/commons/math3/transform/FastFourierTransformer.java
++++ b/src/main/java/org/apache/commons/math3/transform/FastFourierTransformer.java
+@@ -462,8 +462,9 @@
+         int[] dimensionSize = mdcm.getDimensionSizes();
+         //if done
+         if (subVector.length == dimensionSize.length) {
+-            Complex[] temp = new Complex[dimensionSize[d]];
+-            for (int i = 0; i < dimensionSize[d]; i++) {
++            int var_4072 = dimensionSize[d];
++			Complex[] temp = new Complex[var_4072];
++            for (int i = 0; i < var_4072; i++) {
+                 //fft along dimension d
+                 subVector[d] = i;
+                 temp[i] = mdcm.get(subVector);
+@@ -471,7 +472,7 @@
+ 
+             temp = transform(temp, type);
+ 
+-            for (int i = 0; i < dimensionSize[d]; i++) {
++            for (int i = 0; i < var_4072; i++) {
+                 subVector[d] = i;
+                 mdcm.set(temp[i], subVector);
+             }

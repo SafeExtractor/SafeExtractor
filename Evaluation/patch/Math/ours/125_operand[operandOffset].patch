@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..6bf3b13 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -1128,9 +1128,10 @@
+ 
+         // create the function value and derivatives
+         double[] function = new double[1 + order];
+-        function[0] = FastMath.log10(operand[operandOffset]);
++        double var_125 = operand[operandOffset];
++		function[0] = FastMath.log10(var_125);
+         if (order > 0) {
+-            double inv = 1.0 / operand[operandOffset];
++            double inv = 1.0 / var_125;
+             double xk  = inv / FastMath.log(10.0);
+             for (int i = 1; i <= order; ++i) {
+                 function[i] = xk;

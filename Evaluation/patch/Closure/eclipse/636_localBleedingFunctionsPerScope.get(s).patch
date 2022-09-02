@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/RenameVars.java b/src/com/google/javascript/jscomp/RenameVars.java
+index 27c69c3..870b42e 100644
+--- a/src/com/google/javascript/jscomp/RenameVars.java
++++ b/src/com/google/javascript/jscomp/RenameVars.java
+@@ -552,11 +552,12 @@
+         localBleedingFunctions.contains(v);
+ 
+     while (s.getParent() != null) {
+-      if (isBleedingIntoScope) {
+-        num += localBleedingFunctionsPerScope.get(s).indexOf(v) + 1;
++      List<Var> var_636 = localBleedingFunctionsPerScope.get(s);
++	if (isBleedingIntoScope) {
++        num += var_636.indexOf(v) + 1;
+         isBleedingIntoScope = false;
+       } else {
+-        num += localBleedingFunctionsPerScope.get(s).size();
++        num += var_636.size();
+       }
+ 
+       num += s.getVarCount();

@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+index 5f6b2c5..6d86a7a 100644
+--- a/src/com/google/javascript/jscomp/Compiler.java
++++ b/src/com/google/javascript/jscomp/Compiler.java
+@@ -1248,12 +1248,13 @@
+   @Override
+   public ReverseAbstractInterpreter getReverseAbstractInterpreter() {
+     if (abstractInterpreter == null) {
+-      ChainableReverseAbstractInterpreter interpreter =
++      JSTypeRegistry var_503 = getTypeRegistry();
++	ChainableReverseAbstractInterpreter interpreter =
+           new SemanticReverseAbstractInterpreter(
+-              getCodingConvention(), getTypeRegistry());
++              getCodingConvention(), var_503);
+       if (options.closurePass) {
+         interpreter = new ClosureReverseAbstractInterpreter(
+-            getCodingConvention(), getTypeRegistry())
++            getCodingConvention(), var_503)
+             .append(interpreter).getFirst();
+       }
+       abstractInterpreter = interpreter;

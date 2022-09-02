@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+index 5f6b2c5..89afed0 100644
+--- a/src/com/google/javascript/jscomp/Compiler.java
++++ b/src/com/google/javascript/jscomp/Compiler.java
+@@ -823,12 +823,13 @@
+       removeTryCatchFinally();
+     }
+ 
+-    if (options.getTweakProcessing().shouldStrip() ||
++    Set<String> var_497 = options.stripNameSuffixes;
++	if (options.getTweakProcessing().shouldStrip() ||
+         !options.stripTypes.isEmpty() ||
+-        !options.stripNameSuffixes.isEmpty() ||
++        !var_497.isEmpty() ||
+         !options.stripTypePrefixes.isEmpty() ||
+         !options.stripNamePrefixes.isEmpty()) {
+-      stripCode(options.stripTypes, options.stripNameSuffixes,
++      stripCode(options.stripTypes, var_497,
+           options.stripTypePrefixes, options.stripNamePrefixes);
+     }
+ 

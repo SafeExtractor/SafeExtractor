@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+index c837709..c342569 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+@@ -778,7 +778,8 @@
+                 }
+                 final double tfac = max(diagD) / 1e14;
+                 C = C.add(eye(dimension, dimension).scalarMultiply(tfac));
+-                diagD = diagD.add(ones(dimension, 1).scalarMultiply(tfac));
++                RealMatrix var_3025 = ones(dimension, 1).scalarMultiply(tfac);
++				diagD = diagD.add(var_3025);
+             }
+             if (max(diagD) > 1e14 * min(diagD)) {
+                 final double tfac = max(diagD) / 1e14 - min(diagD);

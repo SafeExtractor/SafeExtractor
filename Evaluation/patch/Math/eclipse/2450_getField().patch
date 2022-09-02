@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java b/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java
+index 786e707..2e63737 100644
+--- a/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java
+@@ -233,7 +233,8 @@
+ 
+         final int rowCount    = getRowDimension();
+         final int columnCount = getColumnDimension();
+-        final T[][] outData = MathArrays.buildArray(getField(), rowCount, columnCount);
++        Field<T> var_2450 = getField();
++		final T[][] outData = MathArrays.buildArray(var_2450, rowCount, columnCount);
+         for (int row = 0; row < rowCount; row++) {
+             final T[] dataRow    = data[row];
+             final T[] mRow       = m.data[row];
+@@ -243,7 +244,7 @@
+             }
+         }
+ 
+-        return new Array2DRowFieldMatrix<T>(getField(), outData, false);
++        return new Array2DRowFieldMatrix<T>(var_2450, outData, false);
+     }
+ 
+     /**

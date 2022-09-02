@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java b/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java
+index 8b9d8e0..a26def2 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java
+@@ -401,10 +401,11 @@
+         if (this.isSymmetricVCD) {
+             if (this.varCovData.length > 1) {
+                 //could be stored in upper or lower triangular
+-                if (i == j) {
+-                    return varCovData[i][i];
++                double[] var_3904 = varCovData[i];
++				if (i == j) {
++                    return var_3904[i];
+                 } else if (i >= varCovData[j].length) {
+-                    return varCovData[i][j];
++                    return var_3904[j];
+                 } else {
+                     return varCovData[j][i];
+                 }

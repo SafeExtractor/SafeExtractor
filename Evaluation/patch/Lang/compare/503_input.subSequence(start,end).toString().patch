@@ -1,0 +1,34 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/503_input.subSequence(start,end).toString().patch b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/503_input.subSequence(start,end).toString().patch
+index e29d1cf..fae1ded 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/503_input.subSequence(start,end).toString().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/503_input.subSequence(start,end).toString().patch
+@@ -1,24 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/lang3/text/translate/OctalUnescaper.java b/src/main/java/org/apache/commons/lang3/text/translate/OctalUnescaper.java
+-index 52b40c4..06f9fc9 100644
++index 52b40c4..b4ac73d 100644
+ --- a/src/main/java/org/apache/commons/lang3/text/translate/OctalUnescaper.java
+ +++ b/src/main/java/org/apache/commons/lang3/text/translate/OctalUnescaper.java
+-@@ -44,15 +44,16 @@
+-             final int start = index + 1;
+- 
++@@ -46,7 +46,8 @@
+              int end = index + 2;
+--            while ( end < input.length() && Character.isDigit(input.charAt(end)) ) {
+-+            String var_503 = input.subSequence(start, end).toString();
+-+			while ( end < input.length() && Character.isDigit(input.charAt(end)) ) {
++             while ( end < input.length() && Character.isDigit(input.charAt(end)) ) {
+                  end++;
+ -                if ( Integer.parseInt(input.subSequence(start, end).toString(), 10) > OCTAL_MAX) {
+-+                if ( Integer.parseInt(var_503, 10) > OCTAL_MAX) {
+++                String var_503 = input.subSequence(start, end).toString();
+++				if ( Integer.parseInt(var_503, 10) > OCTAL_MAX) {
+                      end--; // rollback
+                      break;
+                  }
+-             }
+- 
+--            out.write( Integer.parseInt(input.subSequence(start, end).toString(), 8) );
+-+            out.write( Integer.parseInt(var_503, 8) );
+-             return 1 + end - start;
+-         }
+-         return 0;

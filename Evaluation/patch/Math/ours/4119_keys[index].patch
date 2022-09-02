@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java b/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+index 2b007b2..d372802 100644
+--- a/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
++++ b/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+@@ -303,9 +303,12 @@
+ 
+             if (states[index] == FREE) {
+                 return firstRemoved;
+-            } else if (states[index] == FULL && keys[index] == key) {
+-                return changeIndexSign(index);
+-            }
++            } else {
++				int var_4119 = keys[index];
++				if (states[index] == FULL && var_4119 == key) {
++				    return changeIndexSign(index);
++				}
++			}
+ 
+             perturb >>= PERTURB_SHIFT;
+ 

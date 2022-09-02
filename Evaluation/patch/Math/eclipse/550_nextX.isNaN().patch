@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java b/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
+index 372c699..43901b3 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
++++ b/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
+@@ -299,7 +299,8 @@
+             Dfp nextX;
+             int start = 0;
+             int end   = nbPoints;
+-            do {
++            boolean var_550 = nextX.isNaN();
++			do {
+ 
+                 // guess a value for current target, using inverse polynomial interpolation
+                 System.arraycopy(x, start, tmpX, start, end - start);
+@@ -324,9 +325,9 @@
+ 
+                 }
+ 
+-            } while (nextX.isNaN() && (end - start > 1));
++            } while (var_550 && (end - start > 1));
+ 
+-            if (nextX.isNaN()) {
++            if (var_550) {
+                 // fall back to bisection
+                 nextX = xA.add(xB.subtract(xA).divide(2));
+                 start = signChangeIndex - 1;

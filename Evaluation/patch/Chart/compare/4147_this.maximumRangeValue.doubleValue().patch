@@ -1,0 +1,36 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/4147_this.maximumRangeValue.doubleValue().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/4147_this.maximumRangeValue.doubleValue().patch
+index 0b7fb21..72f7c75 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/4147_this.maximumRangeValue.doubleValue().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/4147_this.maximumRangeValue.doubleValue().patch
+@@ -1,26 +1,16 @@
+ diff --git a/source/org/jfree/data/statistics/DefaultBoxAndWhiskerXYDataset.java b/source/org/jfree/data/statistics/DefaultBoxAndWhiskerXYDataset.java
+-index 4aa2d4d..9a8603e 100644
++index 4aa2d4d..9cfb033 100644
+ --- a/source/org/jfree/data/statistics/DefaultBoxAndWhiskerXYDataset.java
+ +++ b/source/org/jfree/data/statistics/DefaultBoxAndWhiskerXYDataset.java
+-@@ -232,17 +232,18 @@
+-                 this.minimumRangeValue = item.getMinRegularValue();
+-             }
+-         }
+--        if (this.maximumRangeValue == null) {
+-+        double var_4147 = this.maximumRangeValue.doubleValue();
+-+		if (this.maximumRangeValue == null) {
++@@ -236,8 +236,9 @@
+              this.maximumRangeValue = item.getMaxRegularValue();
+          }
+          else {
+-             if (item.getMaxRegularValue().doubleValue()
++-            if (item.getMaxRegularValue().doubleValue()
+ -                    > this.maximumRangeValue.doubleValue()) {
+++            double var_4147 = this.maximumRangeValue.doubleValue();
+++			if (item.getMaxRegularValue().doubleValue()
+ +                    > var_4147) {
+                  this.maximumRangeValue = item.getMaxRegularValue();
+              }
+          }
+-         this.rangeBounds = new Range(this.minimumRangeValue.doubleValue(),
+--                this.maximumRangeValue.doubleValue());
+-+                var_4147);
+-         fireDatasetChanged(new DatasetChangeInfo());
+-         //TODO: fill in real change info
+-     }

@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/chart/util/RefineryUtilities.java b/source/org/jfree/chart/util/RefineryUtilities.java
+index 70f12e2..e967cdb 100644
+--- a/source/org/jfree/chart/util/RefineryUtilities.java
++++ b/source/org/jfree/chart/util/RefineryUtilities.java
+@@ -214,9 +214,10 @@
+         Dimension p = parent.getSize();
+ 
+         int baseX = parent.getX() - d.width;
+-        int baseY = parent.getY() - d.height;
++        int var_3623 = d.height;
++		int baseY = parent.getY() - var_3623;
+         int w = d.width + p.width;
+-        int h = d.height + p.height;
++        int h = var_3623 + p.height;
+         int x = baseX + (int) (horizontalPercent * w);
+         int y = baseY + (int) (verticalPercent * h);
+ 
+@@ -224,10 +225,10 @@
+         Rectangle s = getMaximumWindowBounds();
+         x = Math.min(x, (s.width - d.width));
+         x = Math.max(x, 0);
+-        y = Math.min(y, (s.height - d.height));
++        y = Math.min(y, (s.height - var_3623));
+         y = Math.max(y, 0);
+ 
+-        dialog.setBounds(x + s.x, y + s.y, d.width, d.height);
++        dialog.setBounds(x + s.x, y + s.y, d.width, var_3623);
+ 
+     }
+ 

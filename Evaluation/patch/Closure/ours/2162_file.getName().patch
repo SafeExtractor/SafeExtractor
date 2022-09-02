@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/deps/DepsGenerator.java b/src/com/google/javascript/jscomp/deps/DepsGenerator.java
+index 135c87c..bf7a098 100644
+--- a/src/com/google/javascript/jscomp/deps/DepsGenerator.java
++++ b/src/com/google/javascript/jscomp/deps/DepsGenerator.java
+@@ -320,16 +320,17 @@
+     JsFileParser jsParser = new JsFileParser(errorManager);
+ 
+     for (SourceFile file : srcs) {
+-      String closureRelativePath =
++      String var_2162 = file.getName();
++	String closureRelativePath =
+           PathUtil.makeRelative(
+-              closurePathAbs, PathUtil.makeAbsolute(file.getName()));
++              closurePathAbs, PathUtil.makeAbsolute(var_2162));
+       logger.fine("Closure-relative path: " + closureRelativePath);
+ 
+       if (InclusionStrategy.WHEN_IN_SRCS == mergeStrategy ||
+           !preparsedFiles.contains(closureRelativePath)) {
+         DependencyInfo depInfo =
+             jsParser.parseFile(
+-                file.getName(), closureRelativePath,
++                var_2162, closureRelativePath,
+                 file.getCode());
+ 
+         // Kick the source out of memory.

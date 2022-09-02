@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/rhino/Node.java b/src/com/google/javascript/rhino/Node.java
+index 55aefbe..1157c83 100644
+--- a/src/com/google/javascript/rhino/Node.java
++++ b/src/com/google/javascript/rhino/Node.java
+@@ -474,13 +474,14 @@
+       this.last = children[children.length - 1];
+ 
+       for (int i = 1; i < children.length; i++) {
+-        if (null != children[i - 1].next) {
++        Node var_2553 = children[i - 1];
++		if (null != var_2553.next) {
+           // fail early on loops. implies same node in array twice
+           throw new IllegalArgumentException("duplicate child");
+         }
+-        children[i - 1].next = children[i];
+-        Preconditions.checkArgument(children[i - 1].parent == null);
+-        children[i - 1].parent = this;
++        var_2553.next = children[i];
++        Preconditions.checkArgument(var_2553.parent == null);
++        var_2553.parent = this;
+       }
+       Preconditions.checkArgument(children[children.length - 1].parent == null);
+       children[children.length - 1].parent = this;

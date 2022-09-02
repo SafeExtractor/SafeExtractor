@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..5e8f702 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -296,8 +296,9 @@
+             final double boundDiff = boundDifference[j];
+             lowerDifference.setEntry(j, lowerBound[j] - currentBest.getEntry(j));
+             upperDifference.setEntry(j, upperBound[j] - currentBest.getEntry(j));
+-            if (lowerDifference.getEntry(j) >= -initialTrustRegionRadius) {
+-                if (lowerDifference.getEntry(j) >= ZERO) {
++            double var_3072 = lowerDifference.getEntry(j);
++			if (var_3072 >= -initialTrustRegionRadius) {
++                if (var_3072 >= ZERO) {
+                     currentBest.setEntry(j, lowerBound[j]);
+                     lowerDifference.setEntry(j, ZERO);
+                     upperDifference.setEntry(j, boundDiff);

@@ -1,0 +1,16 @@
+diff --git a/src/org/mockito/internal/configuration/injection/PropertyAndSetterInjection.java b/src/org/mockito/internal/configuration/injection/PropertyAndSetterInjection.java
+index 67126af..5483888 100644
+--- a/src/org/mockito/internal/configuration/injection/PropertyAndSetterInjection.java
++++ b/src/org/mockito/internal/configuration/injection/PropertyAndSetterInjection.java
+@@ -88,8 +88,9 @@
+         try {
+             report = new FieldInitializer(fieldOwner, field).initialize();
+         } catch (MockitoException e) {
+-            if(e.getCause() instanceof InvocationTargetException) {
+-                Throwable realCause = e.getCause().getCause();
++            Throwable var_15 = e.getCause();
++			if(var_15 instanceof InvocationTargetException) {
++                Throwable realCause = var_15.getCause();
+                 new Reporter().fieldInitialisationThrewException(field, realCause);
+             }
+             new Reporter().cannotInitializeForInjectMocksAnnotation(field.getName(), e);

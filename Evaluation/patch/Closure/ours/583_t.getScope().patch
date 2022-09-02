@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java b/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
+index 7412a61..3e03455 100755
+--- a/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
++++ b/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
+@@ -237,7 +237,8 @@
+     // Recursive definition should not block movement.
+ 
+     boolean recursive = false;
+-    Node rootNode = t.getScope().getRootNode();
++    Scope var_583 = t.getScope();
++	Node rootNode = var_583.getRootNode();
+     if (rootNode.isFunction()) {
+ 
+       // CASE #1:
+@@ -252,7 +253,7 @@
+         // CASE #2:
+         // Suppose name is Foo, we keep look up the scope stack to look for
+         // a scope with "Foo.prototype.bar = function() { ..... "
+-        for (Scope s = t.getScope();
++        for (Scope s = var_583;
+              s.getParent() != null; s = s.getParent()) {
+           Node curRoot = s.getRootNode();
+           if (curRoot.getParent().isAssign()) {

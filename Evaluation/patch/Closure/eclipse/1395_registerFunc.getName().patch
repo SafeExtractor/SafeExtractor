@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessTweaks.java b/src/com/google/javascript/jscomp/ProcessTweaks.java
+index e20b902..bf6ccb0 100644
+--- a/src/com/google/javascript/jscomp/ProcessTweaks.java
++++ b/src/com/google/javascript/jscomp/ProcessTweaks.java
+@@ -488,13 +488,14 @@
+         Node valueNode = call.valueNode;
+         TweakFunction tweakFunc = call.tweakFunc;
+         TweakFunction registerFunc = registerCall.tweakFunc;
+-        if (valueNode != null) {
++        String var_1395 = registerFunc.getName();
++		if (valueNode != null) {
+           // For register* and overrideDefaultValue calls, ensure the default
+           // value is a literal of the correct type.
+           if (!registerFunc.isValidNodeType(valueNode.getType())) {
+             compiler.report(JSError.make(call.sourceName,
+                 valueNode, INVALID_TWEAK_DEFAULT_VALUE_WARNING,
+-                tweakId, registerFunc.getName(),
++                tweakId, var_1395,
+                 registerFunc.getExpectedTypeName()));
+           }
+         } else if (tweakFunc.isGetterFunction()) {
+@@ -502,7 +503,7 @@
+           if (!tweakFunc.isCorrectRegisterFunction(registerFunc)) {
+             compiler.report(JSError.make(call.sourceName,
+                 call.callNode, TWEAK_WRONG_GETTER_TYPE_WARNING,
+-                tweakFunc.getName(), registerFunc.getName()));
++                tweakFunc.getName(), var_1395));
+           }
+         }
+       }

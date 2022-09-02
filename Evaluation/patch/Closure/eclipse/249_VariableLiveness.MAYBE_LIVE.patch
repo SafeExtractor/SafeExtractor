@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 9d1b56c..057546f 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -296,7 +296,8 @@
+   private boolean isVariableStillLiveWithinExpression(
+       Node n, Node exprRoot, String variable) {
+     while (n != exprRoot) {
+-      VariableLiveness state = VariableLiveness.MAYBE_LIVE;
++      VariableLiveness var_249 = VariableLiveness.MAYBE_LIVE;
++	VariableLiveness state = var_249;
+       switch (n.getParent().getType()) {
+         case Token.OR:
+         case Token.AND:
+@@ -307,7 +308,7 @@
+             state = isVariableReadBeforeKill(
+                 n.getNext(), variable);
+             if (state == VariableLiveness.KILL) {
+-              state = VariableLiveness.MAYBE_LIVE;
++              state = var_249;
+             }
+           }
+           break;
+@@ -326,7 +327,7 @@
+           for(Node sibling = n.getNext(); sibling != null;
+               sibling = sibling.getNext()) {
+             state = isVariableReadBeforeKill(sibling, variable);
+-            if (state != VariableLiveness.MAYBE_LIVE) {
++            if (state != var_249) {
+               break;
+             }
+           }

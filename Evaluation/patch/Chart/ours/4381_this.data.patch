@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/data/xy/DefaultTableXYDataset.java b/source/org/jfree/data/xy/DefaultTableXYDataset.java
+index 7eac51b..588e7cd 100644
+--- a/source/org/jfree/data/xy/DefaultTableXYDataset.java
++++ b/source/org/jfree/data/xy/DefaultTableXYDataset.java
+@@ -354,13 +354,14 @@
+ 
+         // Unregister the collection as a change listener to each series in
+         // the collection.
+-        for (int i = 0; i < this.data.size(); i++) {
+-            XYSeries series = (XYSeries) this.data.get(i);
++        List var_4381 = this.data;
++		for (int i = 0; i < var_4381.size(); i++) {
++            XYSeries series = (XYSeries) var_4381.get(i);
+             series.removeChangeListener(this);
+         }
+ 
+         // Remove all the series from the collection and notify listeners.
+-        this.data.clear();
++        var_4381.clear();
+         this.xPoints.clear();
+         fireDatasetChanged(new DatasetChangeInfo());
+         //TODO: fill in real change info

@@ -1,0 +1,46 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2472_marker.getLabelTextAnchor().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/2472_marker.getLabelTextAnchor().patch
+index 0d16295..df28c32 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2472_marker.getLabelTextAnchor().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/2472_marker.getLabelTextAnchor().patch
+@@ -1,5 +1,5 @@
+ diff --git a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+-index 4a54655..723745f 100644
++index 4a54655..9075395 100644
+ --- a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+ +++ b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+ @@ -156,6 +156,7 @@
+@@ -10,28 +10,13 @@ index 4a54655..723745f 100644
+  import org.jfree.chart.text.TextUtilities;
+  import org.jfree.chart.urls.CategoryURLGenerator;
+  import org.jfree.chart.util.GradientPaintTransformer;
+-@@ -1183,7 +1184,8 @@
+-                                 Marker marker,
+-                                 Rectangle2D dataArea) {
+- 
+--        if (marker instanceof ValueMarker) {
+-+        TextAnchor var_2472 = marker.getLabelTextAnchor();
+-+		if (marker instanceof ValueMarker) {
+-             ValueMarker vm = (ValueMarker) marker;
+-             double value = vm.getValue();
+-             Range range = axis.getRange();
+-@@ -1225,7 +1227,7 @@
++@@ -1223,9 +1224,10 @@
++                         g2, orientation, dataArea, line.getBounds2D(),
++                         marker.getLabelOffset(), LengthAdjustmentType.EXPAND,
+                          anchor);
+-                 TextUtilities.drawAlignedString(label, g2,
+-                         (float) coordinates.getX(), (float) coordinates.getY(),
+--                        marker.getLabelTextAnchor());
+-+                        var_2472);
+-             }
+-             g2.setComposite(savedComposite);
+-         }
+-@@ -1327,7 +1329,7 @@
+-                         anchor);
+-                 TextUtilities.drawAlignedString(label, g2,
++-                TextUtilities.drawAlignedString(label, g2,
+++                TextAnchor var_2472 = marker.getLabelTextAnchor();
+++				TextUtilities.drawAlignedString(label, g2,
+                          (float) coordinates.getX(), (float) coordinates.getY(),
+ -                        marker.getLabelTextAnchor());
+ +                        var_2472);

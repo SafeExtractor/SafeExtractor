@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java
+index c1a681a..9ba0cb3 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java
+@@ -833,7 +833,8 @@
+                     (variablesToInclude.length > 1 && !hasIntercept) ? 1 : 2);
+         }
+ 
+-        if( hasIntercept ){
++        RegressionResults var_3928 = regress();
++		if( hasIntercept ){
+             if( variablesToInclude.length == 2 ){
+                 if( variablesToInclude[0] == 1 ){
+                     throw new ModelSpecificationException(LocalizedFormats.NOT_INCREASING_SEQUENCE);
+@@ -843,7 +844,7 @@
+                 if( variablesToInclude[1] != 1){
+                      throw new OutOfRangeException( variablesToInclude[0], 0,1 );
+                 }
+-                return regress();
++                return var_3928;
+             }else{
+                 if( variablesToInclude[0] != 1 && variablesToInclude[0] != 0 ){
+                      throw new OutOfRangeException( variablesToInclude[0],0,1 );
+@@ -883,7 +884,7 @@
+             if( variablesToInclude[0] != 0 ){
+                 throw new OutOfRangeException(variablesToInclude[0],0,0);
+             }
+-            return regress();
++            return var_3928;
+         }
+ 
+         return null;

@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
+index fbdafa3..534c6af 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
+@@ -234,8 +234,9 @@
+     double[][] ort = orthogonalizeMatrix(m, threshold);
+ 
+     // check the sign of the determinant
+-    double det = ort[0][0] * (ort[1][1] * ort[2][2] - ort[2][1] * ort[1][2]) -
+-                 ort[1][0] * (ort[0][1] * ort[2][2] - ort[2][1] * ort[0][2]) +
++    double var_1357 = ort[2][1];
++	double det = ort[0][0] * (ort[1][1] * ort[2][2] - var_1357 * ort[1][2]) -
++                 ort[1][0] * (ort[0][1] * ort[2][2] - var_1357 * ort[0][2]) +
+                  ort[2][0] * (ort[0][1] * ort[1][2] - ort[1][1] * ort[0][2]);
+     if (det < 0.0) {
+       throw new NotARotationMatrixException(

@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/LoggerErrorManager.java b/src/com/google/javascript/jscomp/LoggerErrorManager.java
+index 00a76b7..590413b 100644
+--- a/src/com/google/javascript/jscomp/LoggerErrorManager.java
++++ b/src/com/google/javascript/jscomp/LoggerErrorManager.java
+@@ -62,15 +62,16 @@
+ 
+   @Override
+   protected void printSummary() {
+-    Level level = (getErrorCount() + getWarningCount() == 0) ?
++    int var_1185 = getErrorCount();
++	Level level = (var_1185 + getWarningCount() == 0) ?
+         Level.INFO : Level.WARNING;
+     if (getTypedPercent() > 0.0) {
+       logger.log(level, "{0} error(s), {1} warning(s), {2,number,#.#}% typed",
+-          new Object[] {getErrorCount(), getWarningCount(), getTypedPercent()});
++          new Object[] {var_1185, getWarningCount(), getTypedPercent()});
+     } else {
+-      if (getErrorCount() + getWarningCount() > 0) {
++      if (var_1185 + getWarningCount() > 0) {
+         logger.log(level, "{0} error(s), {1} warning(s)",
+-            new Object[] {getErrorCount(), getWarningCount()});
++            new Object[] {var_1185, getWarningCount()});
+       }
+     }
+   }

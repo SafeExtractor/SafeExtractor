@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubLine.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubLine.java
+index 62a91d1..ff1ef1d 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubLine.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubLine.java
+@@ -110,7 +110,8 @@
+     public Vector3D intersection(final SubLine subLine, final boolean includeEndPoints) {
+ 
+         // compute the intersection on infinite line
+-        Vector3D v1D = line.intersection(subLine.line);
++        Line var_1470 = subLine.line;
++		Vector3D v1D = line.intersection(var_1470);
+         if (v1D == null) {
+             return null;
+         }
+@@ -119,7 +120,7 @@
+         Location loc1 = remainingRegion.checkPoint(line.toSubSpace(v1D));
+ 
+         // check location of point with respect to second sub-line
+-        Location loc2 = subLine.remainingRegion.checkPoint(subLine.line.toSubSpace(v1D));
++        Location loc2 = subLine.remainingRegion.checkPoint(var_1470.toSubSpace(v1D));
+ 
+         if (includeEndPoints) {
+             return ((loc1 != Location.OUTSIDE) && (loc2 != Location.OUTSIDE)) ? v1D : null;

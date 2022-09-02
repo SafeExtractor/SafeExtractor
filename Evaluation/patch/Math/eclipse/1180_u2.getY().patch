@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..6c6fb83 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -232,13 +232,14 @@
+         // buid a matrix transforming the first base into the second one
+         final T[][] array = MathArrays.buildArray(u1.getX().getField(), 3, 3);
+         array[0][0] = u1.getX().multiply(v1.getX()).add(u2.getX().multiply(v2.getX())).add(u3.getX().multiply(v3.getX()));
+-        array[0][1] = u1.getY().multiply(v1.getX()).add(u2.getY().multiply(v2.getX())).add(u3.getY().multiply(v3.getX()));
++        T var_1180 = u2.getY();
++		array[0][1] = u1.getY().multiply(v1.getX()).add(var_1180.multiply(v2.getX())).add(u3.getY().multiply(v3.getX()));
+         array[0][2] = u1.getZ().multiply(v1.getX()).add(u2.getZ().multiply(v2.getX())).add(u3.getZ().multiply(v3.getX()));
+         array[1][0] = u1.getX().multiply(v1.getY()).add(u2.getX().multiply(v2.getY())).add(u3.getX().multiply(v3.getY()));
+-        array[1][1] = u1.getY().multiply(v1.getY()).add(u2.getY().multiply(v2.getY())).add(u3.getY().multiply(v3.getY()));
++        array[1][1] = u1.getY().multiply(v1.getY()).add(var_1180.multiply(v2.getY())).add(u3.getY().multiply(v3.getY()));
+         array[1][2] = u1.getZ().multiply(v1.getY()).add(u2.getZ().multiply(v2.getY())).add(u3.getZ().multiply(v3.getY()));
+         array[2][0] = u1.getX().multiply(v1.getZ()).add(u2.getX().multiply(v2.getZ())).add(u3.getX().multiply(v3.getZ()));
+-        array[2][1] = u1.getY().multiply(v1.getZ()).add(u2.getY().multiply(v2.getZ())).add(u3.getY().multiply(v3.getZ()));
++        array[2][1] = u1.getY().multiply(v1.getZ()).add(var_1180.multiply(v2.getZ())).add(u3.getY().multiply(v3.getZ()));
+         array[2][2] = u1.getZ().multiply(v1.getZ()).add(u2.getZ().multiply(v2.getZ())).add(u3.getZ().multiply(v3.getZ()));
+ 
+         T[] quat = mat2quat(array);

@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/lang3/builder/ToStringStyle.java b/src/main/java/org/apache/commons/lang3/builder/ToStringStyle.java
+index f41a3ea..9dfb311 100644
+--- a/src/main/java/org/apache/commons/lang3/builder/ToStringStyle.java
++++ b/src/main/java/org/apache/commons/lang3/builder/ToStringStyle.java
+@@ -1451,10 +1451,11 @@
+     protected void appendClassName(final StringBuffer buffer, final Object object) {
+         if (useClassName && object != null) {
+             register(object);
+-            if (useShortClassName) {
+-                buffer.append(getShortClassName(object.getClass()));
++            Class<? extends Object> var_322 = object.getClass();
++			if (useShortClassName) {
++                buffer.append(getShortClassName(var_322));
+             } else {
+-                buffer.append(object.getClass().getName());
++                buffer.append(var_322.getName());
+             }
+         }
+     }

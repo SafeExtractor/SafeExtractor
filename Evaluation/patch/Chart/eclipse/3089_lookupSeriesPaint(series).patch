@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java b/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java
+index 5f2b6ba..017c7c2 100644
+--- a/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java
+@@ -1110,17 +1110,18 @@
+                 boolean shapeIsVisible = getItemShapeVisible(series, 0);
+                 Shape shape = lookupLegendShape(series);
+                 boolean shapeIsFilled = getItemShapeFilled(series, 0);
+-                Paint fillPaint = (this.useFillPaint
++                Paint var_3089 = lookupSeriesPaint(series);
++				Paint fillPaint = (this.useFillPaint
+                     ? lookupSeriesFillPaint(series)
+-                    : lookupSeriesPaint(series));
++                    : var_3089);
+                 boolean shapeOutlineVisible = this.drawOutlines;
+                 Paint outlinePaint = (this.useOutlinePaint
+                     ? lookupSeriesOutlinePaint(series)
+-                    : lookupSeriesPaint(series));
++                    : var_3089);
+                 Stroke outlineStroke = lookupSeriesOutlineStroke(series);
+                 boolean lineVisible = getItemLineVisible(series, 0);
+                 Stroke lineStroke = lookupSeriesStroke(series);
+-                Paint linePaint = lookupSeriesPaint(series);
++                Paint linePaint = var_3089;
+                 result = new LegendItem(label, description, toolTipText,
+                         urlText, shapeIsVisible, shape, shapeIsFilled,
+                         fillPaint, shapeOutlineVisible, outlinePaint,

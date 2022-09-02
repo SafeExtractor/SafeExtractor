@@ -1,0 +1,49 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/AVLTree.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/AVLTree.java
+index 7070060..81b7a2a 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/AVLTree.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/AVLTree.java
+@@ -413,34 +413,35 @@
+          * @return true if the parent tree should be reSkew.BALANCED too
+          */
+         private boolean rebalanceLeftGrown() {
+-            switch (skew) {
++            Skew var_1768 = Skew.BALANCED;
++			switch (skew) {
+             case LEFT_HIGH:
+                 if (left.skew == Skew.LEFT_HIGH) {
+                     rotateCW();
+-                    skew       = Skew.BALANCED;
+-                    right.skew = Skew.BALANCED;
++                    skew       = var_1768;
++                    right.skew = var_1768;
+                 } else {
+                     final Skew s = left.right.skew;
+                     left.rotateCCW();
+                     rotateCW();
+                     switch(s) {
+                     case LEFT_HIGH:
+-                        left.skew  = Skew.BALANCED;
++                        left.skew  = var_1768;
+                         right.skew = Skew.RIGHT_HIGH;
+                         break;
+                     case RIGHT_HIGH:
+                         left.skew  = Skew.LEFT_HIGH;
+-                        right.skew = Skew.BALANCED;
++                        right.skew = var_1768;
+                         break;
+                     default:
+-                        left.skew  = Skew.BALANCED;
+-                        right.skew = Skew.BALANCED;
++                        left.skew  = var_1768;
++                        right.skew = var_1768;
+                     }
+-                    skew = Skew.BALANCED;
++                    skew = var_1768;
+                 }
+                 return false;
+             case RIGHT_HIGH:
+-                skew = Skew.BALANCED;
++                skew = var_1768;
+                 return false;
+             default:
+                 skew = Skew.LEFT_HIGH;

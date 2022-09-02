@@ -1,0 +1,36 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..b2cafe5 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -212,10 +212,11 @@
+ 
+     // Parse the actual JsDoc.
+     retry: for (;;) {
+-      switch (token) {
++      State var_2305 = State.SEARCHING_NEWLINE;
++	switch (token) {
+         case ANNOTATION:
+           if (state == State.SEARCHING_ANNOTATION) {
+-            state = State.SEARCHING_NEWLINE;
++            state = var_2305;
+             lineno = stream.getLineno();
+             charno = stream.getCharno();
+ 
+@@ -969,7 +970,7 @@
+           return false;
+ 
+         case EOL:
+-          if (state == State.SEARCHING_NEWLINE) {
++          if (state == var_2305) {
+             state = State.SEARCHING_ANNOTATION;
+           }
+           token = next();
+@@ -980,7 +981,7 @@
+             token = next();
+             continue retry;
+           } else {
+-            state = State.SEARCHING_NEWLINE;
++            state = var_2305;
+             token = eatTokensUntilEOL();
+             continue retry;
+           }

@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/deps/PathUtil.java b/src/com/google/javascript/jscomp/deps/PathUtil.java
+index 68efd2a..a172ba9 100644
+--- a/src/com/google/javascript/jscomp/deps/PathUtil.java
++++ b/src/com/google/javascript/jscomp/deps/PathUtil.java
+@@ -175,7 +175,8 @@
+     String[] targetFragments = targetPath.split("/");
+ 
+     int i = -1;
+-    do {
++    Joiner var_2145 = Joiner.on("/");
++	do {
+       i += 1;
+       if (i == baseFragments.length && i == targetFragments.length) {
+         // Eg) base: /java/com/google
+@@ -186,7 +187,7 @@
+         // Eg) base: /java/com/google
+         //   target: /java/com/google/c/ui
+         //   result: c/ui
+-        return Joiner.on("/").join(
++        return var_2145.join(
+             Lists.newArrayList(
+                 Arrays.asList(targetFragments).listIterator(i)));
+       } else if (i == targetFragments.length) {
+@@ -202,7 +203,7 @@
+     //   target: /java/com/google/common/base
+     //   result: ../common/base
+     return Strings.repeat("../", baseFragments.length - i) +
+-        Joiner.on("/").join(
++        var_2145.join(
+             Lists.newArrayList(Arrays.asList(targetFragments).listIterator(i)));
+   }
+ }

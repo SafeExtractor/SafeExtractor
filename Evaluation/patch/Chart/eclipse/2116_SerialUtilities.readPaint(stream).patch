@@ -1,0 +1,20 @@
+diff --git a/source/org/jfree/chart/plot/Plot.java b/source/org/jfree/chart/plot/Plot.java
+index 4656dc7..370dfd3 100644
+--- a/source/org/jfree/chart/plot/Plot.java
++++ b/source/org/jfree/chart/plot/Plot.java
+@@ -1416,11 +1416,12 @@
+     private void readObject(ObjectInputStream stream)
+         throws IOException, ClassNotFoundException {
+         stream.defaultReadObject();
+-        this.noDataMessagePaint = SerialUtilities.readPaint(stream);
++        Paint var_2116 = SerialUtilities.readPaint(stream);
++		this.noDataMessagePaint = var_2116;
+         this.outlineStroke = SerialUtilities.readStroke(stream);
+-        this.outlinePaint = SerialUtilities.readPaint(stream);
++        this.outlinePaint = var_2116;
+         // backgroundImage
+-        this.backgroundPaint = SerialUtilities.readPaint(stream);
++        this.backgroundPaint = var_2116;
+ 
+         this.listenerList = new EventListenerList();
+ 

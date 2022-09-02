@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..ea26c39 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -244,9 +244,10 @@
+             Arrays.fill(sizes[0], 1);
+         } else {
+             System.arraycopy(valueCompiler.sizes, 0, sizes, 0, parameters);
+-            sizes[parameters][0] = 1;
++            int[] var_75 = sizes[parameters];
++			var_75[0] = 1;
+             for (int i = 0; i < order; ++i) {
+-                sizes[parameters][i + 1] = sizes[parameters][i] + sizes[parameters - 1][i + 1];
++                var_75[i + 1] = var_75[i] + sizes[parameters - 1][i + 1];
+             }
+         }
+ 

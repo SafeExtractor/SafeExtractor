@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..e31bfef 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -3647,11 +3647,12 @@
+             ValueAxis xAxis = getDomainAxis();
+             double previous = xAxis.getLowerBound();
+             Iterator iterator = ticks.iterator();
+-            while (iterator.hasNext()) {
++            XYItemRenderer var_1712 = getRenderer();
++			while (iterator.hasNext()) {
+                 ValueTick tick = (ValueTick) iterator.next();
+                 double current = tick.getValue();
+                 if (fillBand) {
+-                    getRenderer().fillDomainGridBand(g2, this, xAxis, dataArea,
++                    var_1712.fillDomainGridBand(g2, this, xAxis, dataArea,
+                             previous, current);
+                 }
+                 previous = current;
+@@ -3659,7 +3660,7 @@
+             }
+             double end = xAxis.getUpperBound();
+             if (fillBand) {
+-                getRenderer().fillDomainGridBand(g2, this, xAxis, dataArea,
++                var_1712.fillDomainGridBand(g2, this, xAxis, dataArea,
+                         previous, end);
+             }
+         }

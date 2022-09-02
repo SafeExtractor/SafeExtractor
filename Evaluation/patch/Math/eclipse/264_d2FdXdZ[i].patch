@@ -1,0 +1,42 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java
+index 7437838..499c6a0 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java
+@@ -209,8 +209,9 @@
+             if (d2FdXdY[i].length != yLen) {
+                 throw new DimensionMismatchException(d2FdXdY[i].length, yLen);
+             }
+-            if (d2FdXdZ[i].length != yLen) {
+-                throw new DimensionMismatchException(d2FdXdZ[i].length, yLen);
++            double[][] var_264 = d2FdXdZ[i];
++			if (var_264.length != yLen) {
++                throw new DimensionMismatchException(var_264.length, yLen);
+             }
+             if (d2FdYdZ[i].length != yLen) {
+                 throw new DimensionMismatchException(d2FdYdZ[i].length, yLen);
+@@ -236,8 +237,8 @@
+                 if (d2FdXdY[i][j].length != zLen) {
+                     throw new DimensionMismatchException(d2FdXdY[i][j].length, zLen);
+                 }
+-                if (d2FdXdZ[i][j].length != zLen) {
+-                    throw new DimensionMismatchException(d2FdXdZ[i][j].length, zLen);
++                if (var_264[j].length != zLen) {
++                    throw new DimensionMismatchException(var_264[j].length, zLen);
+                 }
+                 if (d2FdYdZ[i][j].length != zLen) {
+                     throw new DimensionMismatchException(d2FdYdZ[i][j].length, zLen);
+@@ -276,10 +277,10 @@
+                         d2FdXdY[i][j][kp1], d2FdXdY[ip1][j][kp1],
+                         d2FdXdY[i][jp1][kp1], d2FdXdY[ip1][jp1][kp1],
+ 
+-                        d2FdXdZ[i][j][k], d2FdXdZ[ip1][j][k],
+-                        d2FdXdZ[i][jp1][k], d2FdXdZ[ip1][jp1][k],
+-                        d2FdXdZ[i][j][kp1], d2FdXdZ[ip1][j][kp1],
+-                        d2FdXdZ[i][jp1][kp1], d2FdXdZ[ip1][jp1][kp1],
++                        var_264[j][k], d2FdXdZ[ip1][j][k],
++                        var_264[jp1][k], d2FdXdZ[ip1][jp1][k],
++                        var_264[j][kp1], d2FdXdZ[ip1][j][kp1],
++                        var_264[jp1][kp1], d2FdXdZ[ip1][jp1][kp1],
+ 
+                         d2FdYdZ[i][j][k], d2FdYdZ[ip1][j][k],
+                         d2FdYdZ[i][jp1][k], d2FdYdZ[ip1][jp1][k],

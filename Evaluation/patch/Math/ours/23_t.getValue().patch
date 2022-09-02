@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/FunctionUtils.java b/src/main/java/org/apache/commons/math3/analysis/FunctionUtils.java
+index c39fc5e..6063d04 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/FunctionUtils.java
++++ b/src/main/java/org/apache/commons/math3/analysis/FunctionUtils.java
+@@ -495,14 +495,15 @@
+              */
+             public DerivativeStructure value(final DerivativeStructure t)
+                 throws NumberIsTooLargeException {
+-                switch (t.getOrder()) {
++                double var_23 = t.getValue();
++				switch (t.getOrder()) {
+                     case 0 :
+-                        return new DerivativeStructure(t.getFreeParameters(), 0, f.value(t.getValue()));
++                        return new DerivativeStructure(t.getFreeParameters(), 0, f.value(var_23));
+                     case 1 : {
+                         final int parameters = t.getFreeParameters();
+                         final double[] derivatives = new double[parameters + 1];
+-                        derivatives[0] = f.value(t.getValue());
+-                        final double fPrime = f.derivative().value(t.getValue());
++                        derivatives[0] = f.value(var_23);
++                        final double fPrime = f.derivative().value(var_23);
+                         int[] orders = new int[parameters];
+                         for (int i = 0; i < parameters; ++i) {
+                             orders[i] = 1;

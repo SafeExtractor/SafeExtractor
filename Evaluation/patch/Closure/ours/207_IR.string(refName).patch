@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/RuntimeTypeCheck.java b/src/com/google/javascript/jscomp/RuntimeTypeCheck.java
+index 773b7ad..a92a4f3 100644
+--- a/src/com/google/javascript/jscomp/RuntimeTypeCheck.java
++++ b/src/com/google/javascript/jscomp/RuntimeTypeCheck.java
+@@ -343,16 +343,17 @@
+ 
+         StaticSourceFile sourceFile =
+             NodeUtil.getSourceFile(objType.getConstructor().getSource());
+-        if (sourceFile == null || sourceFile.isExtern()) {
++        Node var_207 = IR.string(refName);
++		if (sourceFile == null || sourceFile.isExtern()) {
+           return IR.call(
+                   jsCode("externClassChecker"),
+-                  IR.string(refName));
++                  var_207);
+         }
+ 
+         return IR.call(
+                 jsCode(objType.getConstructor().isInterface() ?
+                         "interfaceChecker" : "classChecker"),
+-                IR.string(refName));
++                var_207);
+ 
+       } else {
+         // We don't check this type (e.g. unknown & all types).

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+index 8d6a50b..52d6289 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+@@ -768,7 +768,8 @@
+ 
+                     final double sin;
+                     final double cos;
+-                    double rkk = weightedJacobian[k][pk];
++                    double[] var_3213 = weightedJacobian[k];
++					double rkk = var_3213[pk];
+                     if (FastMath.abs(rkk) < FastMath.abs(lmDiag[k])) {
+                         final double cotan = rkk / lmDiag[k];
+                         sin   = 1.0 / FastMath.sqrt(1.0 + cotan * cotan);
+@@ -781,7 +782,7 @@
+ 
+                     // compute the modified diagonal element of R and
+                     // the modified element of (Qty,0)
+-                    weightedJacobian[k][pk] = cos * rkk + sin * lmDiag[k];
++                    var_3213[pk] = cos * rkk + sin * lmDiag[k];
+                     final double temp = cos * work[k] + sin * qtbpj;
+                     qtbpj = -sin * work[k] + cos * qtbpj;
+                     work[k] = temp;

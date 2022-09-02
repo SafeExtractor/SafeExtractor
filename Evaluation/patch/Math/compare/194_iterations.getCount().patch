@@ -1,0 +1,25 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/194_iterations.getCount().patch b/Users/safe/paper/Evaluation/patch/Math/ours/194_iterations.getCount().patch
+index 9c18d6c..8db8975 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/194_iterations.getCount().patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/194_iterations.getCount().patch
+@@ -1,8 +1,8 @@
+ diff --git a/src/main/java/org/apache/commons/math3/analysis/integration/SimpsonIntegrator.java b/src/main/java/org/apache/commons/math3/analysis/integration/SimpsonIntegrator.java
+-index fd0c647..7f911e9 100644
++index fd0c647..2bba259 100644
+ --- a/src/main/java/org/apache/commons/math3/analysis/integration/SimpsonIntegrator.java
+ +++ b/src/main/java/org/apache/commons/math3/analysis/integration/SimpsonIntegrator.java
+-@@ -110,10 +110,11 @@
++@@ -110,7 +110,8 @@
+          double olds = 0;
+          double oldt = qtrap.stage(this, 0);
+          while (true) {
+@@ -11,8 +11,4 @@ index fd0c647..7f911e9 100644
+ +			final double t = qtrap.stage(this, var_194);
+              iterations.incrementCount();
+              final double s = (4 * t - oldt) / 3.0;
+--            if (iterations.getCount() >= getMinimalIterationCount()) {
+-+            if (var_194 >= getMinimalIterationCount()) {
+-                 final double delta = FastMath.abs(s - olds);
+-                 final double rLimit =
+-                     getRelativeAccuracy() * (FastMath.abs(olds) + FastMath.abs(s)) * 0.5;
++             if (iterations.getCount() >= getMinimalIterationCount()) {

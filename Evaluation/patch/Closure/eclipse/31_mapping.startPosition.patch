@@ -1,0 +1,16 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapGeneratorV2.java b/src/com/google/debugging/sourcemap/SourceMapGeneratorV2.java
+index 8d33887..9e2d3a4 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapGeneratorV2.java
++++ b/src/com/google/debugging/sourcemap/SourceMapGeneratorV2.java
+@@ -212,8 +212,9 @@
+     if (lastMapping != null) {
+       int lastLine = lastMapping.startPosition.getLine();
+       int lastColumn = lastMapping.startPosition.getColumn();
+-      int nextLine = mapping.startPosition.getLine();
+-      int nextColumn = mapping.startPosition.getColumn();
++      FilePosition var_31 = mapping.startPosition;
++	int nextLine = var_31.getLine();
++      int nextColumn = var_31.getColumn();
+       Preconditions.checkState(nextLine > lastLine
+           || (nextLine == lastLine && nextColumn >= lastColumn),
+           "Incorrect source mappings order, previous : (%s,%s)\n"

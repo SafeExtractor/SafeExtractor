@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..d772e78 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -952,7 +952,8 @@
+             for (int m = 0; m < nptm; m++) {
+                 final double temp = diff * zMatrix.getEntry(knew, m);
+                 for (int k = 0; k < npt; k++) {
+-                    modelSecondDerivativesParameters.setEntry(k, modelSecondDerivativesParameters.getEntry(k) + temp * zMatrix.getEntry(k, m));
++                    double var_3358 = modelSecondDerivativesParameters.getEntry(k);
++					modelSecondDerivativesParameters.setEntry(k, var_3358 + temp * zMatrix.getEntry(k, m));
+                 }
+             }
+ 

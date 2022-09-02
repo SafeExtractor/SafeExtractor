@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+index 104bdf5..bd95a3d 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+@@ -913,7 +913,8 @@
+             if (max(diagD) > 1e14 * min(diagD)) {
+                 final double tfac = max(diagD) / 1e14 - min(diagD);
+                 C = C.add(eye(dimension, dimension).scalarMultiply(tfac));
+-                diagD = diagD.add(ones(dimension, 1).scalarMultiply(tfac));
++                RealMatrix var_3278 = ones(dimension, 1).scalarMultiply(tfac);
++				diagD = diagD.add(var_3278);
+             }
+             diagC = diag(C);
+             diagD = sqrt(diagD); // D contains standard deviations now

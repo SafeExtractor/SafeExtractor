@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/Config.java b/src/com/google/javascript/jscomp/parsing/Config.java
+index 6e85129..8cabdf3 100644
+--- a/src/com/google/javascript/jscomp/parsing/Config.java
++++ b/src/com/google/javascript/jscomp/parsing/Config.java
+@@ -89,9 +89,10 @@
+       Set<String> annotationWhitelist) {
+     ImmutableMap.Builder<String, Annotation> annotationBuilder =
+         ImmutableMap.builder();
+-    annotationBuilder.putAll(Annotation.recognizedAnnotations);
++    Map<String, Annotation> var_2283 = Annotation.recognizedAnnotations;
++	annotationBuilder.putAll(var_2283);
+     for (String unrecognizedAnnotation : annotationWhitelist) {
+-      if (!Annotation.recognizedAnnotations.containsKey(
++      if (!var_2283.containsKey(
+               unrecognizedAnnotation)) {
+         annotationBuilder.put(
+             unrecognizedAnnotation, Annotation.NOT_IMPLEMENTED);

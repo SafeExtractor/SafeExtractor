@@ -1,0 +1,44 @@
+diff --git a/source/org/jfree/chart/block/BorderArrangement.java b/source/org/jfree/chart/block/BorderArrangement.java
+index b3ae54b..8a2e8fd 100644
+--- a/source/org/jfree/chart/block/BorderArrangement.java
++++ b/source/org/jfree/chart/block/BorderArrangement.java
+@@ -182,24 +182,25 @@
+     protected Size2D arrangeNN(BlockContainer container, Graphics2D g2) {
+         double[] w = new double[5];
+         double[] h = new double[5];
+-        if (this.topBlock != null) {
+-            Size2D size = this.topBlock.arrange(g2, RectangleConstraint.NONE);
++        RectangleConstraint var_941 = RectangleConstraint.NONE;
++		if (this.topBlock != null) {
++            Size2D size = this.topBlock.arrange(g2, var_941);
+             w[0] = size.width;
+             h[0] = size.height;
+         }
+         if (this.bottomBlock != null) {
+             Size2D size = this.bottomBlock.arrange(g2,
+-                    RectangleConstraint.NONE);
++                    var_941);
+             w[1] = size.width;
+             h[1] = size.height;
+         }
+         if (this.leftBlock != null) {
+-            Size2D size = this.leftBlock.arrange(g2, RectangleConstraint.NONE);
++            Size2D size = this.leftBlock.arrange(g2, var_941);
+             w[2] = size.width;
+             h[2] = size.height;
+        }
+         if (this.rightBlock != null) {
+-            Size2D size = this.rightBlock.arrange(g2, RectangleConstraint.NONE);
++            Size2D size = this.rightBlock.arrange(g2, var_941);
+             w[3] = size.width;
+             h[3] = size.height;
+         }
+@@ -209,7 +210,7 @@
+ 
+         if (this.centerBlock != null) {
+             Size2D size = this.centerBlock.arrange(g2,
+-                    RectangleConstraint.NONE);
++                    var_941);
+             w[4] = size.width;
+             h[4] = size.height;
+         }

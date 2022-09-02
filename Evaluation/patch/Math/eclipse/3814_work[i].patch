@@ -1,0 +1,36 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/descriptive/rank/Percentile.java b/src/main/java/org/apache/commons/math3/stat/descriptive/rank/Percentile.java
+index db447aa..0255554 100644
+--- a/src/main/java/org/apache/commons/math3/stat/descriptive/rank/Percentile.java
++++ b/src/main/java/org/apache/commons/math3/stat/descriptive/rank/Percentile.java
+@@ -409,25 +409,26 @@
+ 
+         int i = begin + 1;
+         int j = end - 1;
+-        while (i < j) {
++        double var_3814 = work[i];
++		while (i < j) {
+             while ((i < j) && (work[j] > value)) {
+                 --j;
+             }
+-            while ((i < j) && (work[i] < value)) {
++            while ((i < j) && (var_3814 < value)) {
+                 ++i;
+             }
+ 
+             if (i < j) {
+-                final double tmp = work[i];
++                final double tmp = var_3814;
+                 work[i++] = work[j];
+                 work[j--] = tmp;
+             }
+         }
+ 
+-        if ((i >= end) || (work[i] > value)) {
++        if ((i >= end) || (var_3814 > value)) {
+             --i;
+         }
+-        work[begin] = work[i];
++        work[begin] = var_3814;
+         work[i]     = value;
+         return i;
+ 

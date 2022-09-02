@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/block/ColumnArrangement.java b/source/org/jfree/chart/block/ColumnArrangement.java
+index ad240d9..bca1d25 100644
+--- a/source/org/jfree/chart/block/ColumnArrangement.java
++++ b/source/org/jfree/chart/block/ColumnArrangement.java
+@@ -316,7 +316,8 @@
+         int blockCount = blocks.size();
+         if (blockCount > 0) {
+             Size2D[] sizes = new Size2D[blocks.size()];
+-            for (int i = 0; i < blocks.size(); i++) {
++            double var_919 = this.verticalGap;
++			for (int i = 0; i < blocks.size(); i++) {
+                 Block block = (Block) blocks.get(i);
+                 sizes[i] = block.arrange(g2, RectangleConstraint.NONE);
+                 height = height + sizes[i].getHeight();
+@@ -326,10 +327,10 @@
+                         0.0, y, sizes[i].width, sizes[i].height
+                     )
+                 );
+-                y = y + sizes[i].height + this.verticalGap;
++                y = y + sizes[i].height + var_919;
+             }
+             if (blockCount > 1) {
+-                height = height + this.verticalGap * (blockCount - 1);
++                height = height + var_919 * (blockCount - 1);
+             }
+             if (this.horizontalAlignment != HorizontalAlignment.LEFT) {
+                 for (int i = 0; i < blocks.size(); i++) {

@@ -1,0 +1,36 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/485_appendTo.append(c,lastHold,pos.getIndex() - lastHold).patch b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/485_appendTo.append(c,lastHold,pos.getIndex() - lastHold).patch
+index 6c67506..9494678 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/485_appendTo.append(c,lastHold,pos.getIndex() - lastHold).patch	
++++ b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/485_appendTo.append(c,lastHold,pos.getIndex() - lastHold).patch	
+@@ -1,26 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java b/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
+-index 722d3b5..d8d6824 100644
++index 722d3b5..91f6109 100644
+ --- a/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
+ +++ b/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
+-@@ -484,8 +484,9 @@
+-         }
++@@ -485,7 +485,8 @@
+          int lastHold = start;
+          for (int i = pos.getIndex(); i < pattern.length(); i++) {
+--            if (escapingOn && pattern.substring(i).startsWith(ESCAPED_QUOTE)) {
++             if (escapingOn && pattern.substring(i).startsWith(ESCAPED_QUOTE)) {
+ -                appendTo.append(c, lastHold, pos.getIndex() - lastHold).append(
+-+            StringBuilder var_485 = appendTo.append(c, lastHold, pos.getIndex() - lastHold);
+-+			if (escapingOn && pattern.substring(i).startsWith(ESCAPED_QUOTE)) {
+-+                var_485.append(
+++                StringBuilder var_485 = appendTo.append(c, lastHold, pos.getIndex() - lastHold);
+++				var_485.append(
+                          QUOTE);
+                  pos.setIndex(i + ESCAPED_QUOTE.length());
+                  lastHold = pos.getIndex();
+-@@ -494,8 +495,7 @@
+-             switch (c[pos.getIndex()]) {
+-             case QUOTE:
+-                 next(pos);
+--                return appendTo == null ? null : appendTo.append(c, lastHold,
+--                        pos.getIndex() - lastHold);
+-+                return appendTo == null ? null : var_485;
+-             default:
+-                 next(pos);
+-             }

@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/OLSMultipleLinearRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/OLSMultipleLinearRegression.java
+index af33fb5..5364777 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/OLSMultipleLinearRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/OLSMultipleLinearRegression.java
+@@ -194,12 +194,13 @@
+      * @since 2.2
+      */
+     public double calculateAdjustedRSquared() throws MathIllegalArgumentException {
+-        final double n = getX().getRowDimension();
++        RealMatrix var_3934 = getX();
++		final double n = var_3934.getRowDimension();
+         if (isNoIntercept()) {
+-            return 1 - (1 - calculateRSquared()) * (n / (n - getX().getColumnDimension()));
++            return 1 - (1 - calculateRSquared()) * (n / (n - var_3934.getColumnDimension()));
+         } else {
+             return 1 - (calculateResidualSumOfSquares() * (n - 1)) /
+-                (calculateTotalSumOfSquares() * (n - getX().getColumnDimension()));
++                (calculateTotalSumOfSquares() * (n - var_3934.getColumnDimension()));
+         }
+     }
+ 

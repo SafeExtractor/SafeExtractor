@@ -1,0 +1,14 @@
+diff --git a/src/java/org/apache/commons/math/linear/QRDecompositionImpl.java b/src/java/org/apache/commons/math/linear/QRDecompositionImpl.java
+index 5f9c05f..ccc38d9 100644
+--- a/src/java/org/apache/commons/math/linear/QRDecompositionImpl.java
++++ b/src/java/org/apache/commons/math/linear/QRDecompositionImpl.java
+@@ -116,7 +116,8 @@
+                 for (int col = minor+1; col < n; col++) {
+                     double alpha = 0;
+                     for (int row = minor; row < m; row++) {
+-                        alpha -= qr[row][col]*qr[row][minor];
++                        double[] qrRow = qr[row];
++						alpha -= qrRow[col]*qrRow[minor];
+                     }
+                     alpha /= a*qr[minor][minor];
+ 

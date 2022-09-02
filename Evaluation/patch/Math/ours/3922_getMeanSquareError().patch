@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java
+index c1a681a..d57e8ad 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java
+@@ -769,13 +769,14 @@
+      * estimate the regression parameters
+      */
+     public RegressionResults regress() throws ModelSpecificationException, NoDataException {
+-        if (hasIntercept) {
++        double var_3922 = getMeanSquareError();
++		if (hasIntercept) {
+           if( n < 3 ){
+               throw new NoDataException(LocalizedFormats.NOT_ENOUGH_DATA_REGRESSION);
+           }
+           if( FastMath.abs( sumXX ) > Precision.SAFE_MIN ){
+               final double[] params = new double[]{ getIntercept(), getSlope() };
+-              final double mse = getMeanSquareError();
++              final double mse = var_3922;
+               final double _syy = sumYY + sumY * sumY / n;
+               final double[] vcv = new double[]{
+                 mse * (xbar *xbar /sumXX + 1.0 / n),
+@@ -800,7 +801,7 @@
+               throw new NoDataException(LocalizedFormats.NOT_ENOUGH_DATA_REGRESSION);
+           }
+           if( !Double.isNaN(sumXX) ){
+-          final double[] vcv = new double[]{ getMeanSquareError() / sumXX };
++          final double[] vcv = new double[]{ var_3922 / sumXX };
+           final double[] params = new double[]{ sumXY/sumXX };
+           return new RegressionResults(
+                       params, new double[][]{vcv}, true, n, 1,

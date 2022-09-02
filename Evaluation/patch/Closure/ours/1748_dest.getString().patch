@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/MethodCompilerPass.java b/src/com/google/javascript/jscomp/MethodCompilerPass.java
+index 786d143..04efbf1 100644
+--- a/src/com/google/javascript/jscomp/MethodCompilerPass.java
++++ b/src/com/google/javascript/jscomp/MethodCompilerPass.java
+@@ -187,7 +187,8 @@
+           Node dest = n.getFirstChild().getNext();
+ 
+           if (dest.isString()) {
+-            if (dest.getString().equals("prototype")) {
++            String var_1748 = dest.getString();
++			if (var_1748.equals("prototype")) {
+               processPrototypeParent(t, parent);
+             } else {
+               // Static methods of the form Foo.bar = function() {} or
+@@ -200,7 +201,7 @@
+               //      function or name  <- n.getNext()
+               if (parent.isAssign() &&
+                   parent.getFirstChild() == n) {
+-                addPossibleSignature(dest.getString(), n.getNext(), t);
++                addPossibleSignature(var_1748, n.getNext(), t);
+               }
+             }
+           }

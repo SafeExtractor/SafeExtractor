@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/joda/time/chrono/BasicChronology.java b/src/main/java/org/joda/time/chrono/BasicChronology.java
+index 63f394a..d57c007 100644
+--- a/src/main/java/org/joda/time/chrono/BasicChronology.java
++++ b/src/main/java/org/joda/time/chrono/BasicChronology.java
+@@ -500,10 +500,11 @@
+     int getWeekyear(long instant) {
+         int year = getYear(instant);
+         int week = getWeekOfWeekyear(instant, year);
+-        if (week == 1) {
+-            return getYear(instant + DateTimeConstants.MILLIS_PER_WEEK);
++        int var_382 = DateTimeConstants.MILLIS_PER_WEEK;
++		if (week == 1) {
++            return getYear(instant + var_382);
+         } else if (week > 51) {
+-            return getYear(instant - (2 * DateTimeConstants.MILLIS_PER_WEEK));
++            return getYear(instant - (2 * var_382));
+         } else {
+             return year;
+         }

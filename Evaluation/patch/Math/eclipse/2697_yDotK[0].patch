@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/RungeKuttaIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/RungeKuttaIntegrator.java
+index cc55dbe..855b83d 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/RungeKuttaIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/RungeKuttaIntegrator.java
+@@ -129,13 +129,14 @@
+       interpolator.shift();
+ 
+       // first stage
+-      computeDerivatives(stepStart, y, yDotK[0]);
++      double[] var_2697 = yDotK[0];
++	computeDerivatives(stepStart, y, var_2697);
+ 
+       // next stages
+       for (int k = 1; k < stages; ++k) {
+ 
+           for (int j = 0; j < y0.length; ++j) {
+-              double sum = a[k-1][0] * yDotK[0][j];
++              double sum = a[k-1][0] * var_2697[j];
+               for (int l = 1; l < k; ++l) {
+                   sum += a[k-1][l] * yDotK[l][j];
+               }
+@@ -148,7 +149,7 @@
+ 
+       // estimate the state at the end of the step
+       for (int j = 0; j < y0.length; ++j) {
+-          double sum    = b[0] * yDotK[0][j];
++          double sum    = b[0] * var_2697[j];
+           for (int l = 1; l < stages; ++l) {
+               sum    += b[l] * yDotK[l][j];
+           }

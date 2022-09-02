@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/renderer/xy/StackedXYBarRenderer.java b/source/org/jfree/chart/renderer/xy/StackedXYBarRenderer.java
+index ccc914a..3225b8e 100644
+--- a/source/org/jfree/chart/renderer/xy/StackedXYBarRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/StackedXYBarRenderer.java
+@@ -332,14 +332,15 @@
+ 
+         Rectangle2D bar = null;
+         PlotOrientation orientation = plot.getOrientation();
+-        if (orientation == PlotOrientation.HORIZONTAL) {
+-            bar = new Rectangle2D.Double(Math.min(translatedBase,
+-                    translatedValue), translatedEndX, translatedHeight,
++        double var_3054 = Math.min(translatedBase,
++		        translatedValue);
++		if (orientation == PlotOrientation.HORIZONTAL) {
++            bar = new Rectangle2D.Double(var_3054, translatedEndX, translatedHeight,
+                     translatedWidth);
+         }
+         else if (orientation == PlotOrientation.VERTICAL) {
+             bar = new Rectangle2D.Double(translatedStartX,
+-                    Math.min(translatedBase, translatedValue),
++                    var_3054,
+                     translatedWidth, translatedHeight);
+         }
+         boolean positive = (value > 0.0);

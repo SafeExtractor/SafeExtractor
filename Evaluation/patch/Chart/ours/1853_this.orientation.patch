@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/plot/CategoryPlot.java b/source/org/jfree/chart/plot/CategoryPlot.java
+index 24a84fd..d3b2eaa 100644
+--- a/source/org/jfree/chart/plot/CategoryPlot.java
++++ b/source/org/jfree/chart/plot/CategoryPlot.java
+@@ -2265,14 +2265,15 @@
+         if (dataArea.contains(x, y)) {
+             // set the anchor value for the range axis...
+             double java2D = 0.0;
+-            if (this.orientation == PlotOrientation.HORIZONTAL) {
++            PlotOrientation var_1853 = this.orientation;
++			if (var_1853 == PlotOrientation.HORIZONTAL) {
+                 java2D = x;
+             }
+-            else if (this.orientation == PlotOrientation.VERTICAL) {
++            else if (var_1853 == PlotOrientation.VERTICAL) {
+                 java2D = y;
+             }
+             RectangleEdge edge = Plot.resolveRangeAxisLocation(
+-                    getRangeAxisLocation(), this.orientation);
++                    getRangeAxisLocation(), var_1853);
+             double value = getRangeAxis().java2DToValue(
+                     java2D, info.getDataArea(), edge);
+             setAnchorValue(value);

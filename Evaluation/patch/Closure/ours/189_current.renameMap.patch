@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/RenameLabels.java b/src/com/google/javascript/jscomp/RenameLabels.java
+index 321e236..7966b47 100644
+--- a/src/com/google/javascript/jscomp/RenameLabels.java
++++ b/src/com/google/javascript/jscomp/RenameLabels.java
+@@ -139,13 +139,14 @@
+       if (node.isLabel()) {
+         // Determine the new name for this label.
+         LabelNamespace current = namespaceStack.peek();
+-        int currentDepth = current.renameMap.size() + 1;
++        Map<String, LabelInfo> var_189 = current.renameMap;
++		int currentDepth = var_189.size() + 1;
+         String name = node.getFirstChild().getString();
+ 
+         // Store the context for this label name.
+         LabelInfo li = new LabelInfo(currentDepth);
+-        Preconditions.checkState(!current.renameMap.containsKey(name));
+-        current.renameMap.put(name, li);
++        Preconditions.checkState(!var_189.containsKey(name));
++        var_189.put(name, li);
+ 
+         // Create a new name, if needed, for this depth.
+         if (names.size() < currentDepth) {

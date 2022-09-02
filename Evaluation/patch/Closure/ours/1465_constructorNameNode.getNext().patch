@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..1663dac 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -1384,14 +1384,15 @@
+         // "RegExp("boo", "g")" --> /boo/g
+         return tryFoldRegularExpressionConstructor(n);
+       } else {
+-        boolean constructorHasArgs = constructorNameNode.getNext() != null;
++        Node var_1465 = constructorNameNode.getNext();
++		boolean constructorHasArgs = var_1465 != null;
+ 
+         if ("Object".equals(className) && !constructorHasArgs) {
+           // "Object()" --> "{}"
+           newLiteralNode = IR.objectlit();
+         } else if ("Array".equals(className)) {
+           // "Array(arg0, arg1, ...)" --> "[arg0, arg1, ...]"
+-          Node arg0 = constructorNameNode.getNext();
++          Node arg0 = var_1465;
+           FoldArrayAction action = isSafeToFoldArrayConstructor(arg0);
+ 
+           if (action == FoldArrayAction.SAFE_TO_FOLD_WITH_ARGS ||

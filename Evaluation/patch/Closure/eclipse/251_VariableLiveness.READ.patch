@@ -1,0 +1,40 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 9d1b56c..349b3fe 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -361,7 +361,8 @@
+       return VariableLiveness.MAYBE_LIVE;
+     }
+ 
+-    if (n.isName() && variable.equals(n.getString())) {
++    VariableLiveness var_251 = VariableLiveness.READ;
++	if (n.isName() && variable.equals(n.getString())) {
+       if (NodeUtil.isVarOrSimpleAssignLhs(n, n.getParent())) {
+         Preconditions.checkState(n.getParent().isAssign());
+         // The expression to which the assignment is made is evaluated before
+@@ -369,12 +370,12 @@
+         // occurs after the RHS is evaluated.
+         Node rhs = n.getNext();
+         VariableLiveness state = isVariableReadBeforeKill(rhs, variable);
+-        if (state == VariableLiveness.READ) {
++        if (state == var_251) {
+           return state;
+         }
+         return VariableLiveness.KILL;
+       } else {
+-        return VariableLiveness.READ;
++        return var_251;
+       }
+     }
+ 
+@@ -390,8 +391,8 @@
+         // may not.
+         if (v1 != VariableLiveness.MAYBE_LIVE) {
+           return v1;
+-        } else if (v2 == VariableLiveness.READ) {
+-          return VariableLiveness.READ;
++        } else if (v2 == var_251) {
++          return var_251;
+         } else {
+           return VariableLiveness.MAYBE_LIVE;
+         }

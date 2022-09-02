@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+index fa5c164..899cfaa 100644
+--- a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
++++ b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+@@ -1428,7 +1428,8 @@
+ 
+             Chronology chrono = ISOChronology.getInstanceUTC();
+ 
+-            for (int i = 0; i < nameKeys.length - 1; i++) {
++            boolean var_698 = ZoneInfoCompiler.verbose();
++			for (int i = 0; i < nameKeys.length - 1; i++) {
+                 String curNameKey = nameKeys[i];
+                 String nextNameKey = nameKeys[i + 1];
+                 long curOffset = wallOffsets[i];
+@@ -1443,7 +1444,7 @@
+                         curNameKey.equals(zoneNameData[2]) &&
+                         curNameKey.equals(zoneNameData[4])) {
+                     
+-                    if (ZoneInfoCompiler.verbose()) {
++                    if (var_698) {
+                         System.out.println("Fixing duplicate name key - " + nextNameKey);
+                         System.out.println("     - " + new DateTime(trans[i], chrono) +
+                                            " - " + new DateTime(trans[i + 1], chrono));
+@@ -1460,7 +1461,7 @@
+             if (tailZone != null) {
+                 if (tailZone.iStartRecurrence.getNameKey()
+                     .equals(tailZone.iEndRecurrence.getNameKey())) {
+-                    if (ZoneInfoCompiler.verbose()) {
++                    if (var_698) {
+                         System.out.println("Fixing duplicate recurrent name key - " +
+                                            tailZone.iStartRecurrence.getNameKey());
+                     }

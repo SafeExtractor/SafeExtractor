@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..10d9752 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -1368,8 +1368,9 @@
+   private ExtractionInfo extractMultilineTextualBlock(JsDocToken token,
+                                                       WhitespaceOption option) {
+ 
+-    if (token == JsDocToken.EOC || token == JsDocToken.EOL ||
+-        token == JsDocToken.EOF) {
++    JsDocToken var_2335 = JsDocToken.EOF;
++	if (token == JsDocToken.EOC || token == JsDocToken.EOL ||
++        token == var_2335) {
+       return new ExtractionInfo("", token);
+     }
+ 
+@@ -1443,7 +1444,7 @@
+           }
+ 
+           if (token == JsDocToken.EOC ||
+-              token == JsDocToken.EOF ||
++              token == var_2335 ||
+               // When we're capturing a license block, annotations
+               // in the block are OK.
+               (token == JsDocToken.ANNOTATION &&

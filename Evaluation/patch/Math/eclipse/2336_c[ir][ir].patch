@@ -1,0 +1,31 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/RectangularCholeskyDecomposition.java b/src/main/java/org/apache/commons/math3/linear/RectangularCholeskyDecomposition.java
+index 56d0110..c0b1f17 100644
+--- a/src/main/java/org/apache/commons/math3/linear/RectangularCholeskyDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/RectangularCholeskyDecomposition.java
+@@ -117,10 +117,11 @@
+ 
+             // check diagonal element
+             int ir = index[r];
+-            if (c[ir][ir] <= small) {
++            double var_2336 = c[ir][ir];
++			if (var_2336 <= small) {
+ 
+                 if (r == 0) {
+-                    throw new NonPositiveDefiniteMatrixException(c[ir][ir], ir, small);
++                    throw new NonPositiveDefiniteMatrixException(var_2336, ir, small);
+                 }
+ 
+                 // check remaining diagonal elements
+@@ -139,10 +140,10 @@
+             } else {
+ 
+                 // transform the matrix
+-                final double sqrt = FastMath.sqrt(c[ir][ir]);
++                final double sqrt = FastMath.sqrt(var_2336);
+                 b[r][r] = sqrt;
+                 final double inverse  = 1 / sqrt;
+-                final double inverse2 = 1 / c[ir][ir];
++                final double inverse2 = 1 / var_2336;
+                 for (int i = r + 1; i < order; ++i) {
+                     final int ii = index[i];
+                     final double e = inverse * c[ii][ir];

@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/jsonml/Validator.java b/src/com/google/javascript/jscomp/jsonml/Validator.java
+index 78aa19a..b99ee65 100644
+--- a/src/com/google/javascript/jscomp/jsonml/Validator.java
++++ b/src/com/google/javascript/jscomp/jsonml/Validator.java
+@@ -352,11 +352,12 @@
+     validateMinChildrenSize(element, 1);
+     boolean defaultStmt = false;
+     for (int i = 1; i < element.childrenSize(); ++i) {
+-      if (!defaultStmt) {
++      TagType var_2230 = TagType.Case;
++	if (!defaultStmt) {
+         validateChildType(element,
+-            new TagType[] {TagType.Case, TagType.DefaultCase}, i);
++            new TagType[] {var_2230, TagType.DefaultCase}, i);
+       } else {
+-        validateChildType(element, TagType.Case, i);
++        validateChildType(element, var_2230, i);
+       }
+ 
+       if (error) {

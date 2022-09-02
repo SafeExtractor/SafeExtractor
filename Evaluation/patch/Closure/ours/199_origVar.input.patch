@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/SyntacticScopeCreator.java b/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
+index e1caa71..2b8691a 100644
+--- a/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
++++ b/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
+@@ -207,12 +207,13 @@
+         boolean allowDupe = hasDuplicateDeclarationSuppression(n, origVar);
+ 
+         if (!allowDupe) {
+-          compiler.report(
++          CompilerInput var_199 = origVar.input;
++		compiler.report(
+               JSError.make(NodeUtil.getSourceName(n), n,
+                            VAR_MULTIPLY_DECLARED_ERROR,
+                            name,
+-                           (origVar.input != null
+-                            ? origVar.input.getName()
++                           (var_199 != null
++                            ? var_199.getName()
+                             : "??")));
+         }
+       } else if (name.equals(ARGUMENTS) && !NodeUtil.isVarDeclaration(n)) {

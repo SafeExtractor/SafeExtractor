@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..bfe9172 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -997,8 +997,9 @@
+       return ConcreteType.ALL;
+     }
+ 
+-    if (jsType.isUnionType()) {
+-      ConcreteType type = ConcreteType.NONE;
++    ConcreteType var_1067 = ConcreteType.NONE;
++	if (jsType.isUnionType()) {
++      ConcreteType type = var_1067;
+       for (JSType alt : jsType.toMaybeUnionType().getAlternates()) {
+         type = type.unionWith(createType(alt));
+       }
+@@ -1017,7 +1018,7 @@
+       return createConcreteInstance(jsType.toObjectType());
+     }
+ 
+-    return ConcreteType.NONE;  // Not a reference type.
++    return var_1067;  // Not a reference type.
+   }
+ 
+   /**

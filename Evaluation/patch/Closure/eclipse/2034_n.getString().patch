@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..00205ba 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -121,9 +121,10 @@
+    * getImpureBooleanValue if you don't care about side-effects.
+    */
+   static TernaryValue getPureBooleanValue(Node n) {
+-    switch (n.getType()) {
++    String var_2034 = n.getString();
++	switch (n.getType()) {
+       case Token.STRING:
+-        return TernaryValue.forBoolean(n.getString().length() > 0);
++        return TernaryValue.forBoolean(var_2034.length() > 0);
+ 
+       case Token.NUMBER:
+         return TernaryValue.forBoolean(n.getDouble() != 0);
+@@ -142,7 +143,7 @@
+         break;
+ 
+       case Token.NAME:
+-        String name = n.getString();
++        String name = var_2034;
+         if ("undefined".equals(name)
+             || "NaN".equals(name)) {
+           // We assume here that programs don't change the value of the keyword

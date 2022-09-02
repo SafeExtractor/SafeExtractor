@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/UnreachableCodeElimination.java b/src/com/google/javascript/jscomp/UnreachableCodeElimination.java
+index b5ffbd1..1ed4b95 100644
+--- a/src/com/google/javascript/jscomp/UnreachableCodeElimination.java
++++ b/src/com/google/javascript/jscomp/UnreachableCodeElimination.java
+@@ -163,9 +163,10 @@
+           // branches to the same node. If after removing it control still
+           // branches to the same node, it is safe to remove.
+           List<DiGraphEdge<Node,Branch>> outEdges = gNode.getOutEdges();
+-          if (outEdges.size() == 1 &&
++          Node var_555 = n.getNext();
++		if (outEdges.size() == 1 &&
+               // If there is a next node, there is no chance this jump is useless.
+-              (n.getNext() == null || n.getNext().isFunction())) {
++              (var_555 == null || var_555.isFunction())) {
+ 
+             Preconditions.checkState(outEdges.get(0).getValue() == Branch.UNCOND);
+             Node fallThrough = computeFollowing(n);

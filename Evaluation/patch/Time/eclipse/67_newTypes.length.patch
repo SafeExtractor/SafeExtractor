@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/Partial.java b/src/main/java/org/joda/time/Partial.java
+index 6ff2771..2631729 100644
+--- a/src/main/java/org/joda/time/Partial.java
++++ b/src/main/java/org/joda/time/Partial.java
+@@ -441,7 +441,8 @@
+         int index = indexOf(fieldType);
+         if (index == -1) {
+             DateTimeFieldType[] newTypes = new DateTimeFieldType[iTypes.length + 1];
+-            int[] newValues = new int[newTypes.length];
++            int var_67 = newTypes.length;
++			int[] newValues = new int[var_67];
+             
+             // find correct insertion point to keep largest-smallest order
+             int i = 0;
+@@ -471,7 +472,7 @@
+             System.arraycopy(iValues, 0, newValues, 0, i);
+             newTypes[i] = fieldType;
+             newValues[i] = value;
+-            System.arraycopy(iTypes, i, newTypes, i + 1, newTypes.length - i - 1);
++            System.arraycopy(iTypes, i, newTypes, i + 1, var_67 - i - 1);
+             System.arraycopy(iValues, i, newValues, i + 1, newValues.length - i - 1);
+             // use public constructor to ensure full validation
+             // this isn't overly efficient, but is safe

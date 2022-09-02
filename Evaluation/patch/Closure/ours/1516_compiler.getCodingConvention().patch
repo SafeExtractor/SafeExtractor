@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+index 2e75bce..097c5d9 100644
+--- a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
++++ b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+@@ -421,7 +421,8 @@
+     }
+ 
+     String enclosingQname = enclosingFnNameNode.getQualifiedName();
+-    if (enclosingQname.indexOf(".prototype.") == -1) {
++    CodingConvention var_1516 = compiler.getCodingConvention();
++	if (enclosingQname.indexOf(".prototype.") == -1) {
+       // Handle constructors.
+       Node enclosingParent = enclosingFnNameNode.getParent();
+       Node maybeInheritsExpr = (enclosingParent.isAssign() ?
+@@ -448,7 +449,7 @@
+       n.replaceChild(
+           callee,
+           NodeUtil.newQualifiedNameNode(
+-            compiler.getCodingConvention(),
++            var_1516,
+             String.format("%s.call", baseClassNode.getQualifiedName()),
+             callee, "goog.base"));
+       compiler.reportCodeChange();
+@@ -475,7 +476,7 @@
+       n.replaceChild(
+           callee,
+           NodeUtil.newQualifiedNameNode(
+-            compiler.getCodingConvention(),
++            var_1516,
+             String.format("%s.superClass_.%s.call",
+                 className.getQualifiedName(), methodName),
+             callee, "goog.base"));

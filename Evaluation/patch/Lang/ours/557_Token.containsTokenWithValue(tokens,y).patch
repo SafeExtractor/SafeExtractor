@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+index 09e636b..4f05f9a 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+@@ -311,7 +311,8 @@
+             days -= 1;
+         }
+        
+-        if (Token.containsTokenWithValue(tokens, M)) {
++        boolean var_557 = Token.containsTokenWithValue(tokens, y);
++		if (Token.containsTokenWithValue(tokens, M)) {
+             while (days < 0) {
+                 days += start.getActualMaximum(Calendar.DAY_OF_MONTH);
+                 months -= 1;
+@@ -323,7 +324,7 @@
+                 years -= 1;
+             }
+ 
+-            if (!Token.containsTokenWithValue(tokens, y) && years != 0) {
++            if (!var_557 && years != 0) {
+                 while (years != 0) {
+                     months += 12 * years;
+                     years = 0;
+@@ -332,7 +333,7 @@
+         } else {
+             // there are no M's in the format string
+ 
+-            if( !Token.containsTokenWithValue(tokens, y) ) {
++            if( !var_557 ) {
+                 int target = end.get(Calendar.YEAR);
+                 if (months < 0) {
+                     // target is end-year -1

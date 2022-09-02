@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/title/PaintScaleLegend.java b/source/org/jfree/chart/title/PaintScaleLegend.java
+index c489277..a64ef79 100644
+--- a/source/org/jfree/chart/title/PaintScaleLegend.java
++++ b/source/org/jfree/chart/title/PaintScaleLegend.java
+@@ -547,9 +547,10 @@
+         double increment = this.axis.getRange().getLength() / this.subdivisions;
+         Rectangle2D r = new Rectangle2D.Double();
+ 
+-        if (RectangleEdge.isTopOrBottom(getPosition())) {
++        AxisLocation var_3437 = this.axisLocation;
++		if (RectangleEdge.isTopOrBottom(getPosition())) {
+             RectangleEdge axisEdge = Plot.resolveRangeAxisLocation(
+-                    this.axisLocation, PlotOrientation.HORIZONTAL);
++                    var_3437, PlotOrientation.HORIZONTAL);
+             if (axisEdge == RectangleEdge.TOP) {
+                 for (int i = 0; i < this.subdivisions; i++) {
+                     double v = base + (i * increment);
+@@ -603,7 +604,7 @@
+         }
+         else {
+             RectangleEdge axisEdge = Plot.resolveRangeAxisLocation(
+-                    this.axisLocation, PlotOrientation.VERTICAL);
++                    var_3437, PlotOrientation.VERTICAL);
+             if (axisEdge == RectangleEdge.LEFT) {
+                 for (int i = 0; i < this.subdivisions; i++) {
+                     double v = base + (i * increment);

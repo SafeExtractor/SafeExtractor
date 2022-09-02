@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..dc9a749 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -321,8 +321,9 @@
+         if (caseMatches != TernaryValue.UNKNOWN) {
+           Node block, lastStm;
+           // Skip cases until you find one whose last stm is a break
+-          while (cur != null) {
+-            block = cur.getLastChild();
++          Node var_788 = cur.getLastChild();
++		while (cur != null) {
++            block = var_788;
+             lastStm = block.getLastChild();
+             cur = cur.getNext();
+             if (lastStm != null && lastStm.isBreak()) {
+@@ -339,7 +340,7 @@
+           // If there is one case left, we may be able to fold it
+           cur = cond.getNext();
+           if (cur != null && cur.getNext() == null) {
+-            block = cur.getLastChild();
++            block = var_788;
+             if (!(NodeUtil.containsType(block, Token.BREAK,
+                 NodeUtil.MATCH_NOT_FUNCTION))) {
+               cur.removeChild(block);

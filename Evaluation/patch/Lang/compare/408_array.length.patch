@@ -1,0 +1,40 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/408_array.length.patch b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/408_array.length.patch
+index 6591741..3c1d5ee 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/408_array.length.patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/408_array.length.patch
+@@ -1,24 +1,20 @@
+ diff --git a/src/main/java/org/apache/commons/lang3/math/IEEE754rUtils.java b/src/main/java/org/apache/commons/lang3/math/IEEE754rUtils.java
+-index d85e91e..2a21d9e 100644
++index d85e91e..9ae63f4 100644
+ --- a/src/main/java/org/apache/commons/lang3/math/IEEE754rUtils.java
+ +++ b/src/main/java/org/apache/commons/lang3/math/IEEE754rUtils.java
+-@@ -179,15 +179,16 @@
+-      */
+-     public static float max(final float[] array) {
++@@ -181,9 +181,12 @@
+          // Validates input
+--        if (array == null) {
+-+        int var_408 = array.length;
+-+		if (array == null) {
++         if (array == null) {
+              throw new IllegalArgumentException("The Array must not be null");
+ -        } else if (array.length == 0) {
+-+        } else if (var_408 == 0) {
+-             throw new IllegalArgumentException("Array cannot be empty.");
+-         }
++-            throw new IllegalArgumentException("Array cannot be empty.");
++-        }
+++        } else {
+++			int var_408 = array.length;
+++			if (var_408 == 0) {
+++			    throw new IllegalArgumentException("Array cannot be empty.");
+++			}
+++		}
+  
+          // Finds and returns max
+          float max = array[0];
+--        for (int j = 1; j < array.length; j++) {
+-+        for (int j = 1; j < var_408; j++) {
+-             max = max(array[j], max);
+-         }
+- 

@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..07f6450 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -1161,16 +1161,17 @@
+     double lv = leftValue;
+     double rv = rightValue;
+ 
+-    switch (op) {
++    boolean var_171 = right.isNumber();
++	switch (op) {
+       case Token.SHEQ:
+       case Token.EQ:
+         Preconditions.checkState(
+-            left.isNumber() && right.isNumber());
++            left.isNumber() && var_171);
+         return TernaryValue.forBoolean(lv == rv);
+       case Token.SHNE:
+       case Token.NE:
+         Preconditions.checkState(
+-            left.isNumber() && right.isNumber());
++            left.isNumber() && var_171);
+         return TernaryValue.forBoolean(lv != rv);
+       case Token.LE:
+         return TernaryValue.forBoolean(lv <= rv);

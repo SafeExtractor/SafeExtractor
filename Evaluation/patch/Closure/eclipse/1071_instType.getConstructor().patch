@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..19b6171 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -1032,9 +1032,10 @@
+       }
+     } else {
+       ObjectType instType = ObjectType.cast(jsType);
+-      if (instType != null &&
+-          instType.getConstructor() != null &&
+-          instType.getConstructor().isInterface()) {
++      FunctionType var_1071 = instType.getConstructor();
++	if (instType != null &&
++          var_1071 != null &&
++          var_1071.isInterface()) {
+         Collection<FunctionType> implementors =
+             getTypeRegistry().getDirectImplementors(instType);
+ 

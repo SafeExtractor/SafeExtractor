@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+index 3dc8ec6..2faa7ff 100644
+--- a/src/com/google/javascript/jscomp/TypeInference.java
++++ b/src/com/google/javascript/jscomp/TypeInference.java
+@@ -253,7 +253,8 @@
+           }
+ 
+           if (condition != null) {
+-            if (condition.isAnd() ||
++            boolean var_938 = condition.isAnd();
++			if (var_938 ||
+                 condition.isOr()) {
+               // When handling the short-circuiting binary operators,
+               // the outcome scope on true can be different than the outcome
+@@ -270,7 +271,7 @@
+               // conditionOutcomes is cached from previous iterations
+               // of the loop.
+               if (conditionOutcomes == null) {
+-                conditionOutcomes = condition.isAnd() ?
++                conditionOutcomes = var_938 ?
+                     traverseAnd(condition, output.createChildFlowScope()) :
+                     traverseOr(condition, output.createChildFlowScope());
+               }

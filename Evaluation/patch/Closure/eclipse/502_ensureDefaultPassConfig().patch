@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+index 5f6b2c5..f4bf287 100644
+--- a/src/com/google/javascript/jscomp/Compiler.java
++++ b/src/com/google/javascript/jscomp/Compiler.java
+@@ -1213,8 +1213,9 @@
+       symbolTable.findScopes(this, externsRoot, jsRoot);
+     }
+ 
+-    GlobalNamespace globalNamespace =
+-        ensureDefaultPassConfig().getGlobalNamespace();
++    DefaultPassConfig var_502 = ensureDefaultPassConfig();
++	GlobalNamespace globalNamespace =
++        var_502.getGlobalNamespace();
+     if (globalNamespace != null) {
+       symbolTable.addSymbolsFrom(globalNamespace);
+     }
+@@ -1226,7 +1227,7 @@
+     symbolTable.addSymbolsFrom(refCollector);
+ 
+     PreprocessorSymbolTable preprocessorSymbolTable =
+-        ensureDefaultPassConfig().getPreprocessorSymbolTable();
++        var_502.getPreprocessorSymbolTable();
+     if (preprocessorSymbolTable != null) {
+       symbolTable.addSymbolsFrom(preprocessorSymbolTable);
+     }

@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..835af74 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -768,20 +768,21 @@
+         moduleSpecs.remove(0);
+       }
+     }
+-    if (!moduleSpecs.isEmpty()) {
++    boolean var_423 = config.skipNormalOutputs;
++	if (!moduleSpecs.isEmpty()) {
+       modules = createJsModules(moduleSpecs, jsFiles);
+       for (JSModule m : modules) {
+         outputFileNames.add(getModuleOutputFileName(m));
+       }
+ 
+-      if (config.skipNormalOutputs) {
++      if (var_423) {
+         compiler.initModules(externs, modules, options);
+       } else {
+         result = compiler.compileModules(externs, modules, options);
+       }
+     } else {
+       List<SourceFile> inputs = createSourceInputs(jsFiles);
+-      if (config.skipNormalOutputs) {
++      if (var_423) {
+         compiler.init(externs, inputs, options);
+       } else {
+         result = compiler.compile(externs, inputs, options);

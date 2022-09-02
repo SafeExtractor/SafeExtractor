@@ -1,0 +1,50 @@
+diff --git a/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
+index aa90f2b..ebbf739 100644
+--- a/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
+@@ -764,7 +764,8 @@
+         double transX1 = domainAxis.valueToJava2D(x1, dataArea, xAxisLocation);
+         double transY1 = rangeAxis.valueToJava2D(y1, dataArea, yAxisLocation);
+ 
+-        if (getPlotLines()) {
++        PlotOrientation var_2917 = PlotOrientation.HORIZONTAL;
++		if (getPlotLines()) {
+             if (this.drawSeriesLineAsPath) {
+                 State s = (State) state;
+                 if (s.getSeriesIndex() != series) {
+@@ -779,7 +780,7 @@
+                         && !Double.isNaN(transY1)) {
+                     float x = (float) transX1;
+                     float y = (float) transY1;
+-                    if (orientation == PlotOrientation.HORIZONTAL) {
++                    if (orientation == var_2917) {
+                         x = (float) transY1;
+                         y = (float) transX1;
+                     }
+@@ -837,7 +838,7 @@
+                             return;
+                         }
+ 
+-                        if (orientation == PlotOrientation.HORIZONTAL) {
++                        if (orientation == var_2917) {
+                             state.workingLine.setLine(transY0, transX0,
+                                     transY1, transX1);
+                         }
+@@ -864,7 +865,7 @@
+         if (getBaseShapesVisible()) {
+ 
+             Shape shape = getItemShape(series, item, selected);
+-            if (orientation == PlotOrientation.HORIZONTAL) {
++            if (orientation == var_2917) {
+                 shape = ShapeUtilities.createTranslatedShape(shape, transY1,
+                         transX1);
+             }
+@@ -900,7 +901,7 @@
+ 
+         double xx = transX1;
+         double yy = transY1;
+-        if (orientation == PlotOrientation.HORIZONTAL) {
++        if (orientation == var_2917) {
+             xx = transY1;
+             yy = transX1;
+         }

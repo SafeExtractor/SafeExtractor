@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/joda/time/format/ISODateTimeFormat.java b/src/main/java/org/joda/time/format/ISODateTimeFormat.java
+index af53ee4..1132a9d 100644
+--- a/src/main/java/org/joda/time/format/ISODateTimeFormat.java
++++ b/src/main/java/org/joda/time/format/ISODateTimeFormat.java
+@@ -322,9 +322,10 @@
+         boolean strictISO) {
+         
+         boolean reducedPrec = false;
+-        if (fields.remove(DateTimeFieldType.weekyear())) {
++        DateTimeFieldType var_586 = DateTimeFieldType.weekOfWeekyear();
++		if (fields.remove(DateTimeFieldType.weekyear())) {
+             bld.append(Constants.we);
+-            if (fields.remove(DateTimeFieldType.weekOfWeekyear())) {
++            if (fields.remove(var_586)) {
+                 appendSeparator(bld, extended);
+                 bld.appendLiteral('W');
+                 bld.appendWeekOfWeekyear(2);
+@@ -350,7 +351,7 @@
+                 }
+             }
+             
+-        } else if (fields.remove(DateTimeFieldType.weekOfWeekyear())) {
++        } else if (fields.remove(var_586)) {
+             bld.appendLiteral('-');
+             bld.appendLiteral('W');
+             bld.appendWeekOfWeekyear(2);

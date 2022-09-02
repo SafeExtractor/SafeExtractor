@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/ScopedAliases.java b/src/com/google/javascript/jscomp/ScopedAliases.java
+index e2f0538..9c39289 100644
+--- a/src/com/google/javascript/jscomp/ScopedAliases.java
++++ b/src/com/google/javascript/jscomp/ScopedAliases.java
+@@ -117,9 +117,10 @@
+ 
+       // Remove the alias definitions.
+       for (Node aliasDefinition : traversal.getAliasDefinitionsInOrder()) {
+-        if (aliasDefinition.getParent().isVar() &&
+-            aliasDefinition.getParent().hasOneChild()) {
+-          aliasDefinition.getParent().detachFromParent();
++        Node var_530 = aliasDefinition.getParent();
++		if (var_530.isVar() &&
++            var_530.hasOneChild()) {
++          var_530.detachFromParent();
+         } else {
+           aliasDefinition.detachFromParent();
+         }

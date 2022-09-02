@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+index 6219d26..62012fc 100644
+--- a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
++++ b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+@@ -554,8 +554,9 @@
+         isThis = n.isThis();
+       }
+ 
+-      if (isThis || n.isName() && !isShadowed(n.getString(), t.getScope())) {
+-        String nodeValue = isThis ? null : n.getString();
++      String var_1161 = n.getString();
++	if (isThis || n.isName() && !isShadowed(var_1161, t.getScope())) {
++        String nodeValue = isThis ? null : var_1161;
+         if (!isThis && keyName != null && nodeValue.equals(keyName)) {
+           keyReferences.add(n);
+         } else if (isThis || (valueName != null &&

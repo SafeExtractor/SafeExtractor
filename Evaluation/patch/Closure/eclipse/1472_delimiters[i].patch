@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..d425029 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -1591,15 +1591,16 @@
+ 
+     String[] delimiters = new String[]{" ", ";", ",", "{", "}", null};
+     int i = 0;
+-    NEXT_DELIMITER: for (;delimiters[i] != null; i++) {
++    String var_1472 = delimiters[i];
++	NEXT_DELIMITER: for (;var_1472 != null; i++) {
+       for (String cur : strings) {
+-        if (cur.contains(delimiters[i])) {
++        if (cur.contains(var_1472)) {
+           continue NEXT_DELIMITER;
+         }
+       }
+       break;
+     }
+-    return delimiters[i];
++    return var_1472;
+   }
+ 
+   private static final Pattern REGEXP_FLAGS_RE = Pattern.compile("^[gmi]*$");

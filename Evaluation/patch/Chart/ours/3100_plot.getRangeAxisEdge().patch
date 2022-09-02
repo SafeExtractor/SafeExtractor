@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..ce19867 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -177,6 +177,7 @@
+ import org.jfree.chart.util.ObjectUtilities;
+ import org.jfree.chart.util.PublicCloneable;
+ import org.jfree.chart.util.RectangleAnchor;
++import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.chart.util.RectangleInsets;
+ import org.jfree.data.Range;
+ import org.jfree.data.general.DatasetUtilities;
+@@ -1177,9 +1178,10 @@
+     public void fillRangeGridBand(Graphics2D g2, XYPlot plot, ValueAxis axis,
+             Rectangle2D dataArea, double start, double end) {
+ 
+-        double y1 = axis.valueToJava2D(start, dataArea,
+-                plot.getRangeAxisEdge());
+-        double y2 = axis.valueToJava2D(end, dataArea, plot.getRangeAxisEdge());
++        RectangleEdge var_3100 = plot.getRangeAxisEdge();
++		double y1 = axis.valueToJava2D(start, dataArea,
++                var_3100);
++        double y2 = axis.valueToJava2D(end, dataArea, var_3100);
+         Rectangle2D band;
+         if (plot.getOrientation() == PlotOrientation.VERTICAL) {
+             band = new Rectangle2D.Double(dataArea.getMinX(), Math.min(y1, y2),

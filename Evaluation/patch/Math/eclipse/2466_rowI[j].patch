@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java b/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java
+index 786e707..5fff85e 100644
+--- a/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java
+@@ -494,7 +494,8 @@
+         for (int i = startRow; i <= endRow; ++i) {
+             final T[] rowI = data[i];
+             for (int j = startColumn; j <= endColumn; ++j) {
+-                rowI[j] = visitor.visit(i, j, rowI[j]);
++                T var_2466 = rowI[j];
++				rowI[j] = visitor.visit(i, j, var_2466);
+             }
+         }
+         return visitor.end();

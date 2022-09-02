@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/distribution/KolmogorovSmirnovDistribution.java b/src/main/java/org/apache/commons/math3/distribution/KolmogorovSmirnovDistribution.java
+index 52748aa..7803cdd 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/KolmogorovSmirnovDistribution.java
++++ b/src/main/java/org/apache/commons/math3/distribution/KolmogorovSmirnovDistribution.java
+@@ -315,9 +315,10 @@
+         /*
+          * First column and last row has special values (each other reversed).
+          */
+-        for (int i = 0; i < m; ++i) {
++        BigFraction[] var_901 = Hdata[m - 1];
++		for (int i = 0; i < m; ++i) {
+             Hdata[i][0] = Hdata[i][0].subtract(hPowers[i]);
+-            Hdata[m - 1][i] = Hdata[m - 1][i].subtract(hPowers[m - i - 1]);
++            var_901[i] = var_901[i].subtract(hPowers[m - i - 1]);
+         }
+ 
+         /*
+@@ -326,7 +327,7 @@
+          * 1/2 is sufficient to check:
+          */
+         if (h.compareTo(BigFraction.ONE_HALF) == 1) {
+-            Hdata[m - 1][0] = Hdata[m - 1][0].add(h.multiply(2).subtract(1).pow(m));
++            var_901[0] = var_901[0].add(h.multiply(2).subtract(1).pow(m));
+         }
+ 
+         /*

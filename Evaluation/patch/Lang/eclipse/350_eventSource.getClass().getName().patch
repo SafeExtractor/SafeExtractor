@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/lang3/event/EventUtils.java b/src/main/java/org/apache/commons/lang3/event/EventUtils.java
+index cf07adc..0fa2228 100644
+--- a/src/main/java/org/apache/commons/lang3/event/EventUtils.java
++++ b/src/main/java/org/apache/commons/lang3/event/EventUtils.java
+@@ -49,7 +49,8 @@
+         try {
+             MethodUtils.invokeMethod(eventSource, "add" + listenerType.getSimpleName(), listener);
+         } catch (final NoSuchMethodException e) {
+-            throw new IllegalArgumentException("Class " + eventSource.getClass().getName()
++            String var_350 = eventSource.getClass().getName();
++			throw new IllegalArgumentException("Class " + var_350
+                     + " does not have a public add" + listenerType.getSimpleName()
+                     + " method which takes a parameter of type " + listenerType.getName() + ".");
+         } catch (final IllegalAccessException e) {

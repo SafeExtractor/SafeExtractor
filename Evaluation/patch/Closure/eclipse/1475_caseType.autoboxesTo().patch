@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/TypeValidator.java b/src/com/google/javascript/jscomp/TypeValidator.java
+index 5feecd0..a4db1ca 100644
+--- a/src/com/google/javascript/jscomp/TypeValidator.java
++++ b/src/com/google/javascript/jscomp/TypeValidator.java
+@@ -302,9 +302,10 @@
+     // but allowing extra autoboxing.
+     // TODO(user): remove extra conditions when type annotations
+     // in the code base have adapted to the change in the compiler.
+-    if (!switchType.canTestForShallowEqualityWith(caseType) &&
+-        (caseType.autoboxesTo() == null ||
+-            !caseType.autoboxesTo().isSubtype(switchType))) {
++    JSType var_1475 = caseType.autoboxesTo();
++	if (!switchType.canTestForShallowEqualityWith(caseType) &&
++        (var_1475 == null ||
++            !var_1475.isSubtype(switchType))) {
+       mismatch(t, n.getFirstChild(),
+           "case expression doesn't match switch",
+           caseType, switchType);

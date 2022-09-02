@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..a1ab753 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -376,13 +376,14 @@
+           break;
+         case Token.EXPR_RESULT:
+           Node firstChild = node.getFirstChild();
+-          if (firstChild.isAssign()) {
++          JSDocInfo var_1207 = firstChild.getJSDocInfo();
++		if (firstChild.isAssign()) {
+             identifyNameNode(
+                 firstChild.getFirstChild(), firstChild.getLastChild(),
+-                firstChild.getJSDocInfo());
++                var_1207);
+           } else {
+             identifyNameNode(
+-                firstChild, null, firstChild.getJSDocInfo());
++                firstChild, null, var_1207);
+           }
+           break;
+       }

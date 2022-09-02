@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..098683f 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -1647,7 +1647,8 @@
+       }
+     } else if (functionType.isInterface()) {
+       // Interface must extend only interfaces
+-      for (ObjectType extInterface : functionType.getExtendedInterfaces()) {
++      Iterable<ObjectType> var_1012 = functionType.getExtendedInterfaces();
++	for (ObjectType extInterface : var_1012) {
+         if (extInterface.getConstructor() != null
+             && !extInterface.getConstructor().isInterface()) {
+           compiler.report(
+@@ -1663,7 +1664,7 @@
+             = new HashMap<String, ObjectType>();
+         HashMap<String, ObjectType> currentProperties
+             = new HashMap<String, ObjectType>();
+-        for (ObjectType interfaceType : functionType.getExtendedInterfaces()) {
++        for (ObjectType interfaceType : var_1012) {
+           currentProperties.clear();
+           checkInterfaceConflictProperties(t, n, functionPrivateName,
+               properties, currentProperties, interfaceType);

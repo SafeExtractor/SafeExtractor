@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..0bb12d2 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -597,11 +597,12 @@
+     Node processCatchClause(CatchClause clauseNode) {
+       AstNode catchVar = clauseNode.getVarName();
+       Node node = newNode(Token.CATCH, transform(catchVar));
+-      if (clauseNode.getCatchCondition() != null) {
++      AstNode var_2247 = clauseNode.getCatchCondition();
++	if (var_2247 != null) {
+         errorReporter.error(
+             "Catch clauses are not supported",
+             sourceName,
+-            clauseNode.getCatchCondition().getLineno(), "", 0);
++            var_2247.getLineno(), "", 0);
+       }
+       node.addChildToBack(transformBlock(clauseNode.getBody()));
+       return node;

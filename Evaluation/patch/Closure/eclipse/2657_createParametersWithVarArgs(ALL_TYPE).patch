@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+index c8fbac8..c6db6bb 100644
+--- a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
++++ b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+@@ -291,10 +291,11 @@
+     registerNativeType(JSTypeNative.OBJECT_PROTOTYPE, OBJECT_PROTOTYPE);
+ 
+     // Function
+-    FunctionType FUNCTION_FUNCTION_TYPE =
++    Node var_2657 = createParametersWithVarArgs(ALL_TYPE);
++	FunctionType FUNCTION_FUNCTION_TYPE =
+         new FunctionType(this, "Function", null,
+             createArrowType(
+-                createParametersWithVarArgs(ALL_TYPE), UNKNOWN_TYPE),
++                var_2657, UNKNOWN_TYPE),
+             null, null, true, true);
+     FUNCTION_FUNCTION_TYPE.setPrototypeBasedOn(OBJECT_TYPE);
+     registerNativeType(
+@@ -315,7 +316,7 @@
+     // Array
+     FunctionType ARRAY_FUNCTION_TYPE =
+       new FunctionType(this, "Array", null,
+-          createArrowType(createParametersWithVarArgs(ALL_TYPE), null),
++          createArrowType(var_2657, null),
+           null, null, true, true);
+     ARRAY_FUNCTION_TYPE.getInternalArrowType().returnType =
+         ARRAY_FUNCTION_TYPE.getInstanceType();

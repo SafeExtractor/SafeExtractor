@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/renderer/xy/ClusteredXYBarRenderer.java b/source/org/jfree/chart/renderer/xy/ClusteredXYBarRenderer.java
+index ee3e0b4..68e527d 100644
+--- a/source/org/jfree/chart/renderer/xy/ClusteredXYBarRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/ClusteredXYBarRenderer.java
+@@ -270,10 +270,11 @@
+         double seriesBarWidth = intervalW / numSeries;  // may be negative
+ 
+         Rectangle2D bar = null;
+-        if (orientation == PlotOrientation.HORIZONTAL) {
++        double var_3022 = Math.min(yy0, yy1);
++		if (orientation == PlotOrientation.HORIZONTAL) {
+             double barY0 = baseX + (seriesBarWidth * series);
+             double barY1 = barY0 + seriesBarWidth;
+-            double rx = Math.min(yy0, yy1);
++            double rx = var_3022;
+             double rw = intervalH;
+             double ry = Math.min(barY0, barY1);
+             double rh = Math.abs(barY1 - barY0);
+@@ -284,7 +285,7 @@
+             double barX1 = barX0 + seriesBarWidth;
+             double rx = Math.min(barX0, barX1);
+             double rw = Math.abs(barX1 - barX0);
+-            double ry = Math.min(yy0, yy1);
++            double ry = var_3022;
+             double rh = intervalH;
+             bar = new Rectangle2D.Double(rx, ry, rw, rh);
+         }

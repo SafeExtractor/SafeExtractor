@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/genetics/CycleCrossover.java b/src/main/java/org/apache/commons/math3/genetics/CycleCrossover.java
+index bd35990..3275781 100644
+--- a/src/main/java/org/apache/commons/math3/genetics/CycleCrossover.java
++++ b/src/main/java/org/apache/commons/math3/genetics/CycleCrossover.java
+@@ -147,7 +147,8 @@
+             T item = parent2Rep.get(idx);
+             idx = parent1Rep.indexOf(item);
+ 
+-            while (idx != indices.get(0)) {
++            Integer var_1104 = indices.get(0);
++			while (idx != var_1104) {
+                 // add that index to the cycle indices
+                 indices.add(idx);
+                 // get the item in the second parent at that index
+@@ -167,7 +168,7 @@
+ 
+             visitedIndices.addAll(indices);
+             // find next starting index: last one + 1 until we find an unvisited index
+-            idx = (indices.get(0) + 1) % length;
++            idx = (var_1104 + 1) % length;
+             while (visitedIndices.contains(idx) && visitedIndices.size() < length) {
+                 idx++;
+                 if (idx >= length) {

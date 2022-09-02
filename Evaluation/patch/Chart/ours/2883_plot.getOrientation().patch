@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYBarRenderer.java b/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
+index 679cc20..a3a99d8 100644
+--- a/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
+@@ -1039,8 +1039,9 @@
+         }
+ 
+         // work out the label anchor point...
+-        Point2D anchorPoint = calculateLabelAnchorPoint(
+-                position.getItemLabelAnchor(), bar, plot.getOrientation());
++        PlotOrientation var_2883 = plot.getOrientation();
++		Point2D anchorPoint = calculateLabelAnchorPoint(
++                position.getItemLabelAnchor(), bar, var_2883);
+ 
+         if (isInternalAnchor(position.getItemLabelAnchor())) {
+             Shape bounds = TextUtilities.calculateRotatedStringBounds(label,
+@@ -1059,7 +1060,7 @@
+                     if (position != null) {
+                         anchorPoint = calculateLabelAnchorPoint(
+                                 position.getItemLabelAnchor(), bar,
+-                                plot.getOrientation());
++                                var_2883);
+                     }
+                 }
+             }

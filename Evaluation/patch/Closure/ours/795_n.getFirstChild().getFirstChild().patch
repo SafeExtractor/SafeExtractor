@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..b37eca3 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -597,11 +597,12 @@
+   private boolean isSimpleAssignment(Node n) {
+     // For our purposes we define a simple assignment to be a assignment
+     // to a NAME node, or a VAR declaration with one child and a initializer.
+-    if (NodeUtil.isExprAssign(n)
+-        && n.getFirstChild().getFirstChild().isName()) {
++    Node var_795 = n.getFirstChild().getFirstChild();
++	if (NodeUtil.isExprAssign(n)
++        && var_795.isName()) {
+       return true;
+     } else if (n.isVar() && n.hasOneChild() &&
+-        n.getFirstChild().getFirstChild() != null) {
++        var_795 != null) {
+       return true;
+     }
+ 

@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 9d1b56c..6ba1636 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -316,9 +316,10 @@
+           // If current node is the condition, check each following
+           // branch, otherwise it is a conditional branch and the
+           // other branch can be ignored.
+-          if (n.getNext() != null && n.getNext().getNext() != null) {
++          Node var_248 = n.getNext().getNext();
++		if (n.getNext() != null && var_248 != null) {
+             state = checkHookBranchReadBeforeKill(
+-                n.getNext(), n.getNext().getNext(), variable);
++                n.getNext(), var_248, variable);
+           }
+           break;
+ 

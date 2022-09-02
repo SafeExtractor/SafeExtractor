@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java b/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java
+index 9468a5e..5abf25b 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java
++++ b/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java
+@@ -479,10 +479,11 @@
+             checkVectorDimensions(n);
+             SparseFieldVector<T> res = new SparseFieldVector<T>(this);
+             for (int i = 0; i < n; i++) {
+-                if (entries.containsKey(i)) {
+-                    res.setEntry(i, entries.get(i).subtract(v.getEntry(i)));
++                T var_2213 = v.getEntry(i);
++				if (entries.containsKey(i)) {
++                    res.setEntry(i, entries.get(i).subtract(var_2213));
+                 } else {
+-                    res.setEntry(i, field.getZero().subtract(v.getEntry(i)));
++                    res.setEntry(i, field.getZero().subtract(var_2213));
+                 }
+             }
+             return res;

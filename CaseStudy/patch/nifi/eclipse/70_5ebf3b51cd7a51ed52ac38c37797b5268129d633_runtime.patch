@@ -1,0 +1,14 @@
+diff --git a/nifi-bootstrap/src/main/java/org/apache/nifi/bootstrap/RunNiFi.java b/nifi-bootstrap/src/main/java/org/apache/nifi/bootstrap/RunNiFi.java
+index afa1f47..0ed22e9 100644
+--- a/nifi-bootstrap/src/main/java/org/apache/nifi/bootstrap/RunNiFi.java
++++ b/nifi-bootstrap/src/main/java/org/apache/nifi/bootstrap/RunNiFi.java
+@@ -155,7 +155,8 @@
+ 		System.out.println("Command: " + cmdBuilder.toString());
+ 
+ 		final Process proc = builder.start();
+-		Runtime.getRuntime().addShutdownHook(new ShutdownHook(proc));
++		Runtime runtime = Runtime.getRuntime();
++		runtime.addShutdownHook(new ShutdownHook(proc));
+ 		final int statusCode = proc.waitFor();
+ 		System.out.println("Apache NiFi exited with Status Code " + statusCode);
+ 	}

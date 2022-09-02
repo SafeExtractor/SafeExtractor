@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853Integrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853Integrator.java
+index c5bb0c3..c2330cb 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853Integrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853Integrator.java
+@@ -256,11 +256,12 @@
+     double error2 = 0;
+ 
+     for (int j = 0; j < mainSetDimension; ++j) {
+-      final double errSum1 = E1_01 * yDotK[0][j]  + E1_06 * yDotK[5][j] +
++      double[] var_2868 = yDotK[0];
++	final double errSum1 = E1_01 * var_2868[j]  + E1_06 * yDotK[5][j] +
+                              E1_07 * yDotK[6][j]  + E1_08 * yDotK[7][j] +
+                              E1_09 * yDotK[8][j]  + E1_10 * yDotK[9][j] +
+                              E1_11 * yDotK[10][j] + E1_12 * yDotK[11][j];
+-      final double errSum2 = E2_01 * yDotK[0][j]  + E2_06 * yDotK[5][j] +
++      final double errSum2 = E2_01 * var_2868[j]  + E2_06 * yDotK[5][j] +
+                              E2_07 * yDotK[6][j]  + E2_08 * yDotK[7][j] +
+                              E2_09 * yDotK[8][j]  + E2_10 * yDotK[9][j] +
+                              E2_11 * yDotK[10][j] + E2_12 * yDotK[11][j];

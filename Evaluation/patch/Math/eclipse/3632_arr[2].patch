@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/random/ISAACRandom.java b/src/main/java/org/apache/commons/math3/random/ISAACRandom.java
+index 396d56c..9010647 100644
+--- a/src/main/java/org/apache/commons/math3/random/ISAACRandom.java
++++ b/src/main/java/org/apache/commons/math3/random/ISAACRandom.java
+@@ -231,12 +231,13 @@
+     private void shuffle() {
+         arr[0] ^= arr[1] << 11;
+         arr[3] += arr[0];
+-        arr[1] += arr[2];
+-        arr[1] ^= arr[2] >>> 2;
++        int var_3632 = arr[2];
++		arr[1] += var_3632;
++        arr[1] ^= var_3632 >>> 2;
+         arr[4] += arr[1];
+         arr[2] += arr[3];
+         arr[2] ^= arr[3] << 8;
+-        arr[5] += arr[2];
++        arr[5] += var_3632;
+         arr[3] += arr[4];
+         arr[3] ^= arr[4] >>> 16;
+         arr[6] += arr[3];

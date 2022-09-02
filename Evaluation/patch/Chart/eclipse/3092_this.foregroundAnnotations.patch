@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..1ecc703 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -743,9 +743,10 @@
+      * to all registered listeners.
+      */
+     public void removeAnnotations() {
+-        for(int i = 0; i < this.foregroundAnnotations.size(); i++){
++        List var_3092 = this.foregroundAnnotations;
++		for(int i = 0; i < var_3092.size(); i++){
+             XYAnnotation annotation
+-                    = (XYAnnotation) this.foregroundAnnotations.get(i);
++                    = (XYAnnotation) var_3092.get(i);
+             annotation.removeChangeListener(this);
+         }
+          for(int i = 0; i < this.backgroundAnnotations.size(); i++){
+@@ -753,7 +754,7 @@
+                     = (XYAnnotation) this.backgroundAnnotations.get(i);
+             annotation.removeChangeListener(this);
+         }
+-        this.foregroundAnnotations.clear();
++        var_3092.clear();
+         this.backgroundAnnotations.clear();
+         fireChangeEvent();
+     }

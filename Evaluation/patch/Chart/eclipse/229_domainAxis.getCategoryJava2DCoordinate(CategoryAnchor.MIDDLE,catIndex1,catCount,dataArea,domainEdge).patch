@@ -1,0 +1,31 @@
+diff --git a/source/org/jfree/chart/annotations/CategoryLineAnnotation.java b/source/org/jfree/chart/annotations/CategoryLineAnnotation.java
+index 119b3de..5777f5a 100644
+--- a/source/org/jfree/chart/annotations/CategoryLineAnnotation.java
++++ b/source/org/jfree/chart/annotations/CategoryLineAnnotation.java
+@@ -321,10 +321,11 @@
+         RectangleEdge rangeEdge = Plot.resolveRangeAxisLocation(
+             plot.getRangeAxisLocation(), orientation);
+ 
+-        if (orientation == PlotOrientation.HORIZONTAL) {
+-            lineY1 = domainAxis.getCategoryJava2DCoordinate(
+-                CategoryAnchor.MIDDLE, catIndex1, catCount, dataArea,
+-                domainEdge);
++        double var_229 = domainAxis.getCategoryJava2DCoordinate(
++		    CategoryAnchor.MIDDLE, catIndex1, catCount, dataArea,
++		    domainEdge);
++		if (orientation == PlotOrientation.HORIZONTAL) {
++            lineY1 = var_229;
+             lineX1 = rangeAxis.valueToJava2D(this.value1, dataArea, rangeEdge);
+             lineY2 = domainAxis.getCategoryJava2DCoordinate(
+                 CategoryAnchor.MIDDLE, catIndex2, catCount, dataArea,
+@@ -332,9 +333,7 @@
+             lineX2 = rangeAxis.valueToJava2D(this.value2, dataArea, rangeEdge);
+         }
+         else if (orientation == PlotOrientation.VERTICAL) {
+-            lineX1 = domainAxis.getCategoryJava2DCoordinate(
+-                CategoryAnchor.MIDDLE, catIndex1, catCount, dataArea,
+-                domainEdge);
++            lineX1 = var_229;
+             lineY1 = rangeAxis.valueToJava2D(this.value1, dataArea, rangeEdge);
+             lineX2 = domainAxis.getCategoryJava2DCoordinate(
+                 CategoryAnchor.MIDDLE, catIndex2, catCount, dataArea,

@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+index 5d8a992..dc4947d 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+@@ -250,12 +250,13 @@
+             }
+         }
+ 
+-        if (inserted == null) {
++        Boolean var_1619 = Boolean.TRUE;
++		if (inserted == null) {
+             // no suitable edge was found, the node remains a leaf node
+             // we need to set its inside/outside boolean indicator
+             final BSPTree<Euclidean2D> parent = node.getParent();
+             if (parent == null || node == parent.getMinus()) {
+-                node.setAttribute(Boolean.TRUE);
++                node.setAttribute(var_1619);
+             } else {
+                 node.setAttribute(Boolean.FALSE);
+             }
+@@ -315,7 +316,7 @@
+         if (!minusList.isEmpty()) {
+             insertEdges(hyperplaneThickness, node.getMinus(), minusList);
+         } else {
+-            node.getMinus().setAttribute(Boolean.TRUE);
++            node.getMinus().setAttribute(var_1619);
+         }
+ 
+     }

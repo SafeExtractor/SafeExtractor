@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java b/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
+index c6b1a04..8319be6 100644
+--- a/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
+@@ -597,9 +597,10 @@
+                             T sum = zero;
+                             int l = lStart;
+                             int n = nStart;
+-                            while (l < lEnd - 3) {
++                            T var_1933 = mBlock[n];
++							while (l < lEnd - 3) {
+                                 sum = sum.
+-                                      add(tBlock[l].multiply(mBlock[n])).
++                                      add(tBlock[l].multiply(var_1933)).
+                                       add(tBlock[l + 1].multiply(mBlock[n + jWidth])).
+                                       add(tBlock[l + 2].multiply(mBlock[n + jWidth2])).
+                                       add(tBlock[l + 3].multiply(mBlock[n + jWidth3]));
+@@ -607,7 +608,7 @@
+                                 n += jWidth4;
+                             }
+                             while (l < lEnd) {
+-                                sum = sum.add(tBlock[l++].multiply(mBlock[n]));
++                                sum = sum.add(tBlock[l++].multiply(var_1933));
+                                 n += jWidth;
+                             }
+                             outBlock[k] = outBlock[k].add(sum);

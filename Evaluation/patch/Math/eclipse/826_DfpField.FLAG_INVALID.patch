@@ -1,0 +1,63 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..b3c3463 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -505,11 +505,12 @@
+     public static Dfp pow(Dfp x, final Dfp y) {
+ 
+         // make sure we don't mix number with different precision
+-        if (x.getField().getRadixDigits() != y.getField().getRadixDigits()) {
+-            x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
++        int var_826 = DfpField.FLAG_INVALID;
++		if (x.getField().getRadixDigits() != y.getField().getRadixDigits()) {
++            x.getField().setIEEEFlagsBits(var_826);
+             final Dfp result = x.newInstance(x.getZero());
+             result.nans = Dfp.QNAN;
+-            return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, result);
++            return x.dotrap(var_826, POW_TRAP, x, result);
+         }
+ 
+         final Dfp zero = x.getZero();
+@@ -526,16 +527,16 @@
+         if (y.equals(one)) {
+             if (x.isNaN()) {
+                 // Test for NaNs
+-                x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-                return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x);
++                x.getField().setIEEEFlagsBits(var_826);
++                return x.dotrap(var_826, POW_TRAP, x, x);
+             }
+             return x;
+         }
+ 
+         if (x.isNaN() || y.isNaN()) {
+             // Test for NaNs
+-            x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x.newInstance((byte)1, Dfp.QNAN));
++            x.getField().setIEEEFlagsBits(var_826);
++            return x.dotrap(var_826, POW_TRAP, x, x.newInstance((byte)1, Dfp.QNAN));
+         }
+ 
+         // X == 0
+@@ -590,8 +591,8 @@
+         }
+ 
+         if (x.equals(one) && y.classify() == Dfp.INFINITE) {
+-            x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x.newInstance((byte)1, Dfp.QNAN));
++            x.getField().setIEEEFlagsBits(var_826);
++            return x.dotrap(var_826, POW_TRAP, x, x.newInstance((byte)1, Dfp.QNAN));
+         }
+ 
+         if (x.classify() == Dfp.INFINITE) {
+@@ -624,8 +625,8 @@
+         }
+ 
+         if (invert && !y.rint().equals(y)) {
+-            x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x.newInstance((byte)1, Dfp.QNAN));
++            x.getField().setIEEEFlagsBits(var_826);
++            return x.dotrap(var_826, POW_TRAP, x, x.newInstance((byte)1, Dfp.QNAN));
+         }
+ 
+         // End special cases

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+index d33ceab..9dd84a2 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+@@ -477,7 +477,8 @@
+             return;
+         }
+ 
+-        final Hyperplane<S> hyperplane = node.getCut().getHyperplane();
++        Hyperplane<S> var_1694 = node.getCut().getHyperplane();
++		final Hyperplane<S> hyperplane = var_1694;
+         switch (sub.side(hyperplane)) {
+         case PLUS :
+             // the sub-hyperplane is entirely in the plus sub-tree
+@@ -523,7 +524,7 @@
+             break;
+         default :
+             // the sub-hyperplane and the cut sub-hyperplane share the same hyperplane
+-            if (node.getCut().getHyperplane().sameOrientationAs(sub.getHyperplane())) {
++            if (var_1694.sameOrientationAs(sub.getHyperplane())) {
+                 if ((node.getPlus().getCut() != null) || ((Boolean) node.getPlus().getAttribute())) {
+                     sides.rememberPlusFound();
+                 }

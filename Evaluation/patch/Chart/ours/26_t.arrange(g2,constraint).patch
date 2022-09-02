@@ -1,0 +1,43 @@
+diff --git a/source/org/jfree/chart/JFreeChart.java b/source/org/jfree/chart/JFreeChart.java
+index 625eca5..290ce08 100644
+--- a/source/org/jfree/chart/JFreeChart.java
++++ b/source/org/jfree/chart/JFreeChart.java
+@@ -1318,8 +1318,9 @@
+         Object retValue = null;
+         BlockParams p = new BlockParams();
+         p.setGenerateEntities(entities);
+-        if (position == RectangleEdge.TOP) {
+-            Size2D size = t.arrange(g2, constraint);
++        Size2D var_26 = t.arrange(g2, constraint);
++		if (position == RectangleEdge.TOP) {
++            Size2D size = var_26;
+             titleArea = createAlignedRectangle2D(size, area,
+                     t.getHorizontalAlignment(), VerticalAlignment.TOP);
+             retValue = t.draw(g2, titleArea, p);
+@@ -1328,7 +1329,7 @@
+                     - size.height, 0));
+         }
+         else if (position == RectangleEdge.BOTTOM) {
+-            Size2D size = t.arrange(g2, constraint);
++            Size2D size = var_26;
+             titleArea = createAlignedRectangle2D(size, area,
+                     t.getHorizontalAlignment(), VerticalAlignment.BOTTOM);
+             retValue = t.draw(g2, titleArea, p);
+@@ -1336,7 +1337,7 @@
+                     area.getHeight() - size.height);
+         }
+         else if (position == RectangleEdge.RIGHT) {
+-            Size2D size = t.arrange(g2, constraint);
++            Size2D size = var_26;
+             titleArea = createAlignedRectangle2D(size, area,
+                     HorizontalAlignment.RIGHT, t.getVerticalAlignment());
+             retValue = t.draw(g2, titleArea, p);
+@@ -1345,7 +1346,7 @@
+         }
+ 
+         else if (position == RectangleEdge.LEFT) {
+-            Size2D size = t.arrange(g2, constraint);
++            Size2D size = var_26;
+             titleArea = createAlignedRectangle2D(size, area,
+                     HorizontalAlignment.LEFT, t.getVerticalAlignment());
+             retValue = t.draw(g2, titleArea, p);

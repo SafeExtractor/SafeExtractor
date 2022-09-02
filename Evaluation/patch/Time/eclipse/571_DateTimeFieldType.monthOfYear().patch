@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/joda/time/format/ISODateTimeFormat.java b/src/main/java/org/joda/time/format/ISODateTimeFormat.java
+index af53ee4..5655b87 100644
+--- a/src/main/java/org/joda/time/format/ISODateTimeFormat.java
++++ b/src/main/java/org/joda/time/format/ISODateTimeFormat.java
+@@ -217,9 +217,10 @@
+         boolean strictISO) {
+         
+         boolean reducedPrec = false;
+-        if (fields.remove(DateTimeFieldType.year())) {
++        DateTimeFieldType var_571 = DateTimeFieldType.monthOfYear();
++		if (fields.remove(DateTimeFieldType.year())) {
+             bld.append(Constants.ye);
+-            if (fields.remove(DateTimeFieldType.monthOfYear())) {
++            if (fields.remove(var_571)) {
+                 if (fields.remove(DateTimeFieldType.dayOfMonth())) {
+                     // YYYY-MM-DD/YYYYMMDD
+                     appendSeparator(bld, extended);
+@@ -245,7 +246,7 @@
+                 }
+             }
+             
+-        } else if (fields.remove(DateTimeFieldType.monthOfYear())) {
++        } else if (fields.remove(var_571)) {
+             bld.appendLiteral('-');
+             bld.appendLiteral('-');
+             bld.appendMonthOfYear(2);

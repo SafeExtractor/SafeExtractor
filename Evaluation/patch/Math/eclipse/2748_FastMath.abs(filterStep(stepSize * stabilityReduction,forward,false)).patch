@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+index ed2ddda..b245b19 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+@@ -661,13 +661,14 @@
+         ++k;
+ 
+         // modified midpoint integration with the current substep
+-        if ( ! tryStep(stepStart, y, stepSize, k, scale, fk[k],
++        double var_2748 = FastMath.abs(filterStep(stepSize * stabilityReduction, forward, false));
++		if ( ! tryStep(stepStart, y, stepSize, k, scale, fk[k],
+                        (k == 0) ? yMidDots[0] : diagonal[k-1],
+                        (k == 0) ? y1 : y1Diag[k-1],
+                        yTmp)) {
+ 
+           // the stability check failed, we reduce the global step
+-          hNew   = FastMath.abs(filterStep(stepSize * stabilityReduction, forward, false));
++          hNew   = var_2748;
+           reject = true;
+           loop   = false;
+ 
+@@ -691,7 +692,7 @@
+ 
+             if ((error > 1.0e15) || ((k > 1) && (error > maxError))) {
+               // error is too big, we reduce the global step
+-              hNew   = FastMath.abs(filterStep(stepSize * stabilityReduction, forward, false));
++              hNew   = var_2748;
+               reject = true;
+               loop   = false;
+             } else {

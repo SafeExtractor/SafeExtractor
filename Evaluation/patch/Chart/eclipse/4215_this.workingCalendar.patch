@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/data/time/TimeSeriesCollection.java b/source/org/jfree/data/time/TimeSeriesCollection.java
+index f76f9b9..ca75630 100644
+--- a/source/org/jfree/data/time/TimeSeriesCollection.java
++++ b/source/org/jfree/data/time/TimeSeriesCollection.java
+@@ -424,14 +424,15 @@
+      */
+     protected synchronized long getX(RegularTimePeriod period) {
+         long result = 0L;
+-        if (this.xPosition == TimePeriodAnchor.START) {
+-            result = period.getFirstMillisecond(this.workingCalendar);
++        Calendar var_4215 = this.workingCalendar;
++		if (this.xPosition == TimePeriodAnchor.START) {
++            result = period.getFirstMillisecond(var_4215);
+         }
+         else if (this.xPosition == TimePeriodAnchor.MIDDLE) {
+-            result = period.getMiddleMillisecond(this.workingCalendar);
++            result = period.getMiddleMillisecond(var_4215);
+         }
+         else if (this.xPosition == TimePeriodAnchor.END) {
+-            result = period.getLastMillisecond(this.workingCalendar);
++            result = period.getLastMillisecond(var_4215);
+         }
+         return result;
+     }

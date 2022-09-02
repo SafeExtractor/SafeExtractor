@@ -1,0 +1,35 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/2198_manager.getIterations().patch b/Users/safe/paper/Evaluation/patch/Math/ours/2198_manager.getIterations().patch
+index 3675a63..51f091e 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/2198_manager.getIterations().patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/2198_manager.getIterations().patch
+@@ -1,24 +1,15 @@
+ diff --git a/src/main/java/org/apache/commons/math3/linear/ConjugateGradient.java b/src/main/java/org/apache/commons/math3/linear/ConjugateGradient.java
+-index a7b80a4..fd5451b 100644
++index a7b80a4..7fa5abb 100644
+ --- a/src/main/java/org/apache/commons/math3/linear/ConjugateGradient.java
+ +++ b/src/main/java/org/apache/commons/math3/linear/ConjugateGradient.java
+-@@ -179,8 +179,9 @@
+-             z = null;
+-         }
+-         IterativeLinearSolverEvent evt;
+--        evt = new DefaultIterativeLinearSolverEvent(this,
+--            manager.getIterations(), xro, bro, rro, rnorm);
+-+        int var_2198 = manager.getIterations();
+-+		evt = new DefaultIterativeLinearSolverEvent(this,
+-+            var_2198, xro, bro, rro, rnorm);
+-         manager.fireInitializationEvent(evt);
+-         if (rnorm <= rmax) {
+-             manager.fireTerminationEvent(evt);
+-@@ -190,7 +191,7 @@
++@@ -189,8 +189,9 @@
++         double rhoPrev = 0.;
+          while (true) {
+              manager.incrementIterationCount();
+-             evt = new DefaultIterativeLinearSolverEvent(this,
++-            evt = new DefaultIterativeLinearSolverEvent(this,
+ -                manager.getIterations(), xro, bro, rro, rnorm);
+++            int var_2198 = manager.getIterations();
+++			evt = new DefaultIterativeLinearSolverEvent(this,
+ +                var_2198, xro, bro, rro, rnorm);
+              manager.fireIterationStartedEvent(evt);
+              if (m != null) {

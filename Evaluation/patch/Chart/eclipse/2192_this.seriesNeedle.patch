@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/plot/CompassPlot.java b/source/org/jfree/chart/plot/CompassPlot.java
+index 2963422..835e419 100644
+--- a/source/org/jfree/chart/plot/CompassPlot.java
++++ b/source/org/jfree/chart/plot/CompassPlot.java
+@@ -675,7 +675,8 @@
+         Rectangle2D needleArea = new Rectangle2D.Double(
+             (midX - x1), (midY - y1), (2 * x1), (2 * y1)
+         );
+-        int x = this.seriesNeedle.length;
++        MeterNeedle[] var_2192 = this.seriesNeedle;
++		int x = var_2192.length;
+         int current = 0;
+         double value = 0;
+         int i = (this.datasets.length - 1);
+@@ -687,7 +688,7 @@
+                     % this.revolutionDistance;
+                 value = value / this.revolutionDistance * 360;
+                 current = i % x;
+-                this.seriesNeedle[current].draw(g2, needleArea, value);
++                var_2192[current].draw(g2, needleArea, value);
+             }
+         }
+ 

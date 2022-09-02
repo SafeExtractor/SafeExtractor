@@ -1,0 +1,49 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..b1d4a15 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -2922,7 +2922,8 @@
+    *     outside the expression scope.
+    */
+   static boolean evaluatesToLocalValue(Node value, Predicate<Node> locals) {
+-    switch (value.getType()) {
++    boolean var_2085 = locals.apply(value);
++	switch (value.getType()) {
+       case Token.CAST:
+         return evaluatesToLocalValue(value.getFirstChild(), locals);
+       case Token.ASSIGN:
+@@ -2930,7 +2931,7 @@
+         // same as returning a non-local name, but this doesn't matter if the
+         // value is immutable.
+         return NodeUtil.isImmutableValue(value.getLastChild())
+-            || (locals.apply(value)
++            || (var_2085
+                 && evaluatesToLocalValue(value.getLastChild(), locals));
+       case Token.COMMA:
+         return evaluatesToLocalValue(value.getLastChild(), locals);
+@@ -2949,20 +2950,20 @@
+           return true;
+         }
+       case Token.THIS:
+-        return locals.apply(value);
++        return var_2085;
+       case Token.NAME:
+-        return isImmutableValue(value) || locals.apply(value);
++        return isImmutableValue(value) || var_2085;
+       case Token.GETELEM:
+       case Token.GETPROP:
+         // There is no information about the locality of object properties.
+-        return locals.apply(value);
++        return var_2085;
+       case Token.CALL:
+         return callHasLocalResult(value)
+             || isToStringMethodCall(value)
+-            || locals.apply(value);
++            || var_2085;
+       case Token.NEW:
+         return newHasLocalResult(value)
+-               || locals.apply(value);
++               || var_2085;
+       case Token.FUNCTION:
+       case Token.REGEXP:
+       case Token.ARRAYLIT:

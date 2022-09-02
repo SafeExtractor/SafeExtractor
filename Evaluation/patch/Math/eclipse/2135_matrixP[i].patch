@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+index 4652f61..2736117 100644
+--- a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+@@ -940,10 +940,11 @@
+         for (int j = n - 1; j >= 0; j--) {
+             for (int i = 0; i <= n - 1; i++) {
+                 z = 0.0;
+-                for (int k = 0; k <= FastMath.min(j, n - 1); k++) {
+-                    z = z + matrixP[i][k] * matrixT[k][j];
++                double[] var_2135 = matrixP[i];
++				for (int k = 0; k <= FastMath.min(j, n - 1); k++) {
++                    z = z + var_2135[k] * matrixT[k][j];
+                 }
+-                matrixP[i][j] = z;
++                var_2135[j] = z;
+             }
+         }
+ 

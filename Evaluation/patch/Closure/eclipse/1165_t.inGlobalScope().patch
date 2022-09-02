@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/InlineFunctions.java b/src/com/google/javascript/jscomp/InlineFunctions.java
+index 008ffe5..301b6ca 100644
+--- a/src/com/google/javascript/jscomp/InlineFunctions.java
++++ b/src/com/google/javascript/jscomp/InlineFunctions.java
+@@ -164,8 +164,9 @@
+ 
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      if ((t.inGlobalScope() && inlineGlobalFunctions)
+-          || (!t.inGlobalScope() && inlineLocalFunctions)) {
++      boolean var_1165 = t.inGlobalScope();
++	if ((var_1165 && inlineGlobalFunctions)
++          || (!var_1165 && inlineLocalFunctions)) {
+         findNamedFunctions(t, n, parent);
+ 
+         findFunctionExpressions(t, n);

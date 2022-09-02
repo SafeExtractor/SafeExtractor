@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/type/ClosureReverseAbstractInterpreter.java b/src/com/google/javascript/jscomp/type/ClosureReverseAbstractInterpreter.java
+index 8e69edf..528d652 100644
+--- a/src/com/google/javascript/jscomp/type/ClosureReverseAbstractInterpreter.java
++++ b/src/com/google/javascript/jscomp/type/ClosureReverseAbstractInterpreter.java
+@@ -191,11 +191,12 @@
+       .put("isArray", new Function<TypeRestriction, JSType>() {
+         @Override
+         public JSType apply(TypeRestriction p) {
+-          if (p.type == null) {
+-            return p.outcome ? getNativeType(ARRAY_TYPE) : null;
++          boolean var_2488 = p.outcome;
++		if (p.type == null) {
++            return var_2488 ? getNativeType(ARRAY_TYPE) : null;
+           }
+ 
+-          Visitor<JSType> visitor = p.outcome ? restrictToArrayVisitor :
++          Visitor<JSType> visitor = var_2488 ? restrictToArrayVisitor :
+               restrictToNotArrayVisitor;
+           return p.type.visit(visitor);
+         }

@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/plot/PolarPlot.java b/source/org/jfree/chart/plot/PolarPlot.java
+index bc0de0a..97a9578 100644
+--- a/source/org/jfree/chart/plot/PolarPlot.java
++++ b/source/org/jfree/chart/plot/PolarPlot.java
+@@ -779,9 +779,10 @@
+         g2.setColor(Color.black);
+         double width = 0.0;
+         double height = 0.0;
+-        for (Iterator it = this.cornerTextItems.iterator(); it.hasNext();) {
++        FontMetrics var_2219 = g2.getFontMetrics();
++		for (Iterator it = this.cornerTextItems.iterator(); it.hasNext();) {
+             String msg = (String) it.next();
+-            FontMetrics fm = g2.getFontMetrics();
++            FontMetrics fm = var_2219;
+             Rectangle2D bounds = TextUtilities.getTextBounds(msg, g2, fm);
+             width = Math.max(width, bounds.getWidth());
+             height += bounds.getHeight();
+@@ -799,7 +800,7 @@
+         for (Iterator it = this.cornerTextItems.iterator(); it.hasNext();) {
+             String msg = (String) it.next();
+             Rectangle2D bounds = TextUtilities.getTextBounds(msg, g2,
+-                    g2.getFontMetrics());
++                    var_2219);
+             y += bounds.getHeight();
+             g2.drawString(msg, (int) x, (int) y);
+         }

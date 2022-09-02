@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/ExportTestFunctions.java b/src/com/google/javascript/jscomp/ExportTestFunctions.java
+index 4bfceee..4c773ba 100644
+--- a/src/com/google/javascript/jscomp/ExportTestFunctions.java
++++ b/src/com/google/javascript/jscomp/ExportTestFunctions.java
+@@ -61,7 +61,8 @@
+         return;
+       }
+ 
+-      if (parent.isScript()) {
++      Node var_1698 = n.getFirstChild();
++	if (parent.isScript()) {
+         if (NodeUtil.isFunctionDeclaration(n)) {
+           // Check for a test function statement.
+           String functionName = NodeUtil.getFunctionName(n);
+@@ -70,7 +71,7 @@
+           }
+         } else if (isVarDeclaredFunction(n)) {
+           // Check for a test function expression.
+-          Node functionNode = n.getFirstChild().getFirstChild();
++          Node functionNode = var_1698.getFirstChild();
+           String functionName = NodeUtil.getFunctionName(functionNode);
+           if (isTestFunction(functionNode, functionName)) {
+             exportTestFunctionAsSymbol(functionName, n, parent);
+@@ -81,7 +82,7 @@
+         // Check for a test method assignment.
+         Node grandparent = parent.getParent();
+         if (grandparent != null && grandparent.isScript()) {
+-          String functionName = n.getFirstChild().getQualifiedName();
++          String functionName = var_1698.getQualifiedName();
+           if (isTestFunction(n, functionName)) {
+             exportTestFunctionAsProperty(functionName, parent, n, grandparent);
+           }

@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot.java b/source/org/jfree/chart/plot/PiePlot.java
+index 34014e9..8580f6e 100644
+--- a/source/org/jfree/chart/plot/PiePlot.java
++++ b/source/org/jfree/chart/plot/PiePlot.java
+@@ -937,7 +937,8 @@
+         Paint result = null;
+ 
+         // is a paint defined for the specified key
+-        result = this.sectionPaintMap.getPaint(key);
++        PaintMap var_2010 = this.sectionPaintMap;
++		result = var_2010.getPaint(key);
+         if (result != null) {
+             return result;
+         }
+@@ -947,7 +948,7 @@
+             DrawingSupplier ds = getDrawingSupplier();
+             if (ds != null) {
+                 result = ds.getNextPaint();
+-                this.sectionPaintMap.put(key, result);
++                var_2010.put(key, result);
+             }
+             else {
+                 result = this.baseSectionPaint;

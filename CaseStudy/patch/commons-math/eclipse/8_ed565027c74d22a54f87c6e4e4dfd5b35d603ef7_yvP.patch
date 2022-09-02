@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/AkimaSplineInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/AkimaSplineInterpolator.java
+index 260cbfb..fe7440c 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/AkimaSplineInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/AkimaSplineInterpolator.java
+@@ -210,10 +210,11 @@
+             double w2 = w * w;
+             coefficients[0] = yvals[i];
+             coefficients[1] = firstDerivatives[i];
+-            coefficients[2] = (3 * (yvals[i + 1] - yvals[i]) / w - 2 *
++            double yvP = yvals[i + 1];
++			coefficients[2] = (3 * (yvP - yvals[i]) / w - 2 *
+                                firstDerivatives[i] - firstDerivatives[i + 1]) /
+                               w;
+-            coefficients[3] = (2 * (yvals[i] - yvals[i + 1]) / w +
++            coefficients[3] = (2 * (yvals[i] - yvP) / w +
+                                firstDerivatives[i] + firstDerivatives[i + 1]) /
+                               w2;
+             polynomials[i] = new PolynomialFunction(coefficients);

@@ -1,0 +1,48 @@
+diff --git a/src/main/java/org/joda/time/format/ISODateTimeFormat.java b/src/main/java/org/joda/time/format/ISODateTimeFormat.java
+index af53ee4..454237c 100644
+--- a/src/main/java/org/joda/time/format/ISODateTimeFormat.java
++++ b/src/main/java/org/joda/time/format/ISODateTimeFormat.java
+@@ -322,13 +322,14 @@
+         boolean strictISO) {
+         
+         boolean reducedPrec = false;
+-        if (fields.remove(DateTimeFieldType.weekyear())) {
++        DateTimeFieldType var_588 = DateTimeFieldType.dayOfWeek();
++		if (fields.remove(DateTimeFieldType.weekyear())) {
+             bld.append(Constants.we);
+             if (fields.remove(DateTimeFieldType.weekOfWeekyear())) {
+                 appendSeparator(bld, extended);
+                 bld.appendLiteral('W');
+                 bld.appendWeekOfWeekyear(2);
+-                if (fields.remove(DateTimeFieldType.dayOfWeek())) {
++                if (fields.remove(var_588)) {
+                     // YYYY-WWW-D/YYYYWWWD
+                     appendSeparator(bld, extended);
+                     bld.appendDayOfWeek(1);
+@@ -337,7 +338,7 @@
+                     reducedPrec = true;
+                 }
+             } else {
+-                if (fields.remove(DateTimeFieldType.dayOfWeek())) {
++                if (fields.remove(var_588)) {
+                     // YYYY-W-D/YYYYW-D (non-iso)
+                     checkNotStrictISO(fields, strictISO);
+                     appendSeparator(bld, extended);
+@@ -354,7 +355,7 @@
+             bld.appendLiteral('-');
+             bld.appendLiteral('W');
+             bld.appendWeekOfWeekyear(2);
+-            if (fields.remove(DateTimeFieldType.dayOfWeek())) {
++            if (fields.remove(var_588)) {
+                 // -WWW-D/-WWWD
+                 appendSeparator(bld, extended);
+                 bld.appendDayOfWeek(1);
+@@ -362,7 +363,7 @@
+                 // -WWW/-WWW
+                 reducedPrec = true;
+             }
+-        } else if (fields.remove(DateTimeFieldType.dayOfWeek())) {
++        } else if (fields.remove(var_588)) {
+             // -W-D/-W-D
+             bld.appendLiteral('-');
+             bld.appendLiteral('W');

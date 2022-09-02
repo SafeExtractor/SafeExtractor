@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/chart/axis/LogarithmicAxis.java b/source/org/jfree/chart/axis/LogarithmicAxis.java
+index 1f440bd..e78450f 100644
+--- a/source/org/jfree/chart/axis/LogarithmicAxis.java
++++ b/source/org/jfree/chart/axis/LogarithmicAxis.java
+@@ -886,14 +886,15 @@
+         List ticks = new java.util.ArrayList();
+ 
+         //get lower bound value:
+-        double lowerBoundVal = getRange().getLowerBound();
++        Range var_462 = getRange();
++		double lowerBoundVal = var_462.getLowerBound();
+         //if small log values and lower bound value too small
+         // then set to a small value (don't allow <= 0):
+         if (this.smallLogFlag && lowerBoundVal < SMALL_LOG_VALUE) {
+             lowerBoundVal = SMALL_LOG_VALUE;
+         }
+         //get upper bound value
+-        double upperBoundVal = getRange().getUpperBound();
++        double upperBoundVal = var_462.getUpperBound();
+ 
+         //get log10 version of lower bound and round to integer:
+         int iBegCount = (int) Math.rint(switchedLog10(lowerBoundVal));

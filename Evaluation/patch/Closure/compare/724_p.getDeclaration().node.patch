@@ -1,0 +1,27 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/724_p.getDeclaration().node.patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/724_p.getDeclaration().node.patch
+index 12a4de5..e69de29 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/724_p.getDeclaration().node.patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/724_p.getDeclaration().node.patch
+@@ -1,22 +0,0 @@
+-diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+-index 3dc9204..20c1ca6 100644
+---- a/src/com/google/javascript/jscomp/CollapseProperties.java
+-+++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+-@@ -508,12 +508,13 @@
+-         collapseDeclarationOfNameAndDescendants(
+-             p, appendPropForAlias(alias, p.getBaseName()));
+- 
+--        if (!p.inExterns && canCollapseChildNames &&
+-+        Node var_724 = p.getDeclaration().node;
+-+		if (!p.inExterns && canCollapseChildNames &&
+-             p.getDeclaration() != null &&
+-             p.canCollapse() &&
+--            p.getDeclaration().node != null &&
+--            p.getDeclaration().node.getParent() != null &&
+--            p.getDeclaration().node.getParent().isAssign()) {
+-+            var_724 != null &&
+-+            var_724.getParent() != null &&
+-+            var_724.getParent().isAssign()) {
+-           updateSimpleDeclaration(
+-               appendPropForAlias(alias, p.getBaseName()), p, p.getDeclaration());
+-         }

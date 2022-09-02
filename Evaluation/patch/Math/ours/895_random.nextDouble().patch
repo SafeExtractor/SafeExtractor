@@ -1,0 +1,47 @@
+diff --git a/src/main/java/org/apache/commons/math3/distribution/GammaDistribution.java b/src/main/java/org/apache/commons/math3/distribution/GammaDistribution.java
+index 1f7a2b3..113ea74 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/GammaDistribution.java
++++ b/src/main/java/org/apache/commons/math3/distribution/GammaDistribution.java
+@@ -371,12 +371,13 @@
+      */
+     @Override
+     public double sample()  {
+-        if (shape < 1) {
++        double var_895 = random.nextDouble();
++		if (shape < 1) {
+             // [1]: p. 228, Algorithm GS
+ 
+             while (true) {
+                 // Step 1:
+-                final double u = random.nextDouble();
++                final double u = var_895;
+                 final double bGS = 1 + shape / FastMath.E;
+                 final double p = bGS * u;
+ 
+@@ -384,7 +385,7 @@
+                     // Step 2:
+ 
+                     final double x = FastMath.pow(p, 1 / shape);
+-                    final double u2 = random.nextDouble();
++                    final double u2 = var_895;
+ 
+                     if (u2 > FastMath.exp(-x)) {
+                         // Reject
+@@ -396,7 +397,7 @@
+                     // Step 3:
+ 
+                     final double x = -1 * FastMath.log((bGS - p) / shape);
+-                    final double u2 = random.nextDouble();
++                    final double u2 = var_895;
+ 
+                     if (u2 > FastMath.pow(x, shape - 1)) {
+                         // Reject
+@@ -422,7 +423,7 @@
+             }
+ 
+             final double x2 = x * x;
+-            final double u = random.nextDouble();
++            final double u = var_895;
+ 
+             // Squeeze
+             if (u < 1 - 0.0331 * x2 * x2) {

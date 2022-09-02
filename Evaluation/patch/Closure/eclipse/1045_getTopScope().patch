@@ -1,0 +1,49 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..513da1a 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -596,7 +596,8 @@
+     // TODO(user): handle object literals like { a: new Foo };
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      switch (n.getType()) {
++      ConcreteScope var_1045 = getTopScope();
++	switch (n.getType()) {
+         case Token.VAR:
+           // Variable declaration, e.g. var a = b;
+           Node name;
+@@ -619,12 +620,12 @@
+         case Token.GETPROP:
+           // Property access, e.g. a.b = c;
+           if (inExterns) {
+-            ConcreteType type = inferConcreteType(getTopScope(), n);
++            ConcreteType type = inferConcreteType(var_1045, n);
+             // We only need to set a type if one hasn't been assigned by
+             // something else, e.g. an ASSIGN node.
+             if (type.isNone()) {
+               ConcreteScope scope =
+-                  (ConcreteScope) inferConcreteType(getTopScope(),
++                  (ConcreteScope) inferConcreteType(var_1045,
+                       n.getFirstChild()).getScope();
+               if (scope != null) {
+                 type = createType(n.getJSType());
+@@ -662,16 +663,16 @@
+             // Again, we have to trust the externs.
+             ConcreteScope scope;
+             if (lhs.isGetProp()) {
+-              ConcreteType type = inferConcreteType(getTopScope(),
++              ConcreteType type = inferConcreteType(var_1045,
+                   lhs.getFirstChild());
+               scope = (ConcreteScope) type.getScope();
+             } else {
+-              scope = getTopScope();
++              scope = var_1045;
+             }
+ 
+             if (scope == null) break;
+ 
+-            ConcreteType type = inferConcreteType(getTopScope(), n);
++            ConcreteType type = inferConcreteType(var_1045, n);
+             if (type.isNone() || type.isAll()) {
+               break;
+             }

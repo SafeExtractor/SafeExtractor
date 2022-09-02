@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunction.java b/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunction.java
+index f00799d..57ce1da 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunction.java
++++ b/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunction.java
+@@ -168,15 +168,16 @@
+      */
+     public PolynomialFunction add(final PolynomialFunction p) {
+         // identify the lowest degree polynomial
+-        final int lowLength  = FastMath.min(coefficients.length, p.coefficients.length);
+-        final int highLength = FastMath.max(coefficients.length, p.coefficients.length);
++        int var_433 = p.coefficients.length;
++		final int lowLength  = FastMath.min(coefficients.length, var_433);
++        final int highLength = FastMath.max(coefficients.length, var_433);
+ 
+         // build the coefficients array
+         double[] newCoefficients = new double[highLength];
+         for (int i = 0; i < lowLength; ++i) {
+             newCoefficients[i] = coefficients[i] + p.coefficients[i];
+         }
+-        System.arraycopy((coefficients.length < p.coefficients.length) ?
++        System.arraycopy((coefficients.length < var_433) ?
+                          p.coefficients : coefficients,
+                          lowLength,
+                          newCoefficients, lowLength,

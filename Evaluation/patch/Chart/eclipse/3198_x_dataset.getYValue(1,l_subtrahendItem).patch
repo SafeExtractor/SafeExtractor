@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java b/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
+index cd91775..30b4109 100644
+--- a/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
+@@ -492,7 +492,8 @@
+ 
+         // fast-forward through leading tails
+         boolean b_fastForwardDone = false;
+-        while (!b_fastForwardDone) {
++        double var_3198 = x_dataset.getYValue(1, l_subtrahendItem);
++		while (!b_fastForwardDone) {
+             // get the x and y coordinates
+             l_x1 = x_dataset.getXValue(0, l_minuendItem);
+             l_y1 = x_dataset.getYValue(0, l_minuendItem);
+@@ -512,7 +513,7 @@
+             }
+             else {
+                 l_x3 = x_dataset.getXValue(1, l_subtrahendItem);
+-                l_y3 = x_dataset.getYValue(1, l_subtrahendItem);
++                l_y3 = var_3198;
+                 l_x4 = x_dataset.getXValue(1, l_subtrahendItem + 1);
+                 l_y4 = x_dataset.getYValue(1, l_subtrahendItem + 1);
+ 
+@@ -593,7 +594,7 @@
+             if (!b_impliedZeroSubtrahend && !b_subtrahendDone
+                     && !b_subtrahendFastForward && b_subtrahendAdvanced) {
+                 l_x3 = x_dataset.getXValue(1, l_subtrahendItem);
+-                l_y3 = x_dataset.getYValue(1, l_subtrahendItem);
++                l_y3 = var_3198;
+                 l_subtrahendCurX = new Double(l_x3);
+                 l_subtrahendCurY = new Double(l_y3);
+ 

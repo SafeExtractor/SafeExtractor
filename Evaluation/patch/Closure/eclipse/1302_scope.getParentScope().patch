@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+index 5f0a14c..7a90736 100644
+--- a/src/com/google/javascript/jscomp/SymbolTable.java
++++ b/src/com/google/javascript/jscomp/SymbolTable.java
+@@ -515,12 +515,13 @@
+     if (sym == null) {
+       // JSCompiler has no symbol for this scope. Check to see if it's a
+       // local function. If it is, give it a name.
+-      if (scope.isLexicalScope() &&
++      SymbolScope var_1302 = scope.getParentScope();
++	if (scope.isLexicalScope() &&
+           !scope.isGlobalScope() &&
+           scope.getRootNode() != null &&
+           !scope.getRootNode().isFromExterns() &&
+-          scope.getParentScope() != null) {
+-        SymbolScope parent = scope.getParentScope();
++          var_1302 != null) {
++        SymbolScope parent = var_1302;
+ 
+         int count = parent.innerAnonFunctionsWithNames++;
+         String innerName = "function%" + count;

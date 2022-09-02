@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/chart/panel/ZoomHandler.java b/source/org/jfree/chart/panel/ZoomHandler.java
+index ab08810..b6ab3f9 100644
+--- a/source/org/jfree/chart/panel/ZoomHandler.java
++++ b/source/org/jfree/chart/panel/ZoomHandler.java
+@@ -97,12 +97,13 @@
+ 
+         boolean hZoom = false;
+         boolean vZoom = false;
+-        if (panel.getOrientation() == PlotOrientation.HORIZONTAL) {
++        boolean var_1324 = panel.isDomainZoomable();
++		if (panel.getOrientation() == PlotOrientation.HORIZONTAL) {
+             hZoom = panel.isRangeZoomable();
+-            vZoom = panel.isDomainZoomable();
++            vZoom = var_1324;
+         }
+         else {
+-            hZoom = panel.isDomainZoomable();
++            hZoom = var_1324;
+             vZoom = panel.isRangeZoomable();
+         }
+         Rectangle2D scaledDataArea = panel.getScreenDataArea(

@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..f72ff6b 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -340,14 +340,15 @@
+       return 0.0;
+     }
+ 
+-    if (s.length() > 2
++    double var_2042 = Double.NaN;
++	if (s.length() > 2
+         && s.charAt(0) == '0'
+         && (s.charAt(1) == 'x' || s.charAt(1) == 'X')) {
+       // Attempt to convert hex numbers.
+       try {
+         return Double.valueOf(Integer.parseInt(s.substring(2), 16));
+       } catch (NumberFormatException e) {
+-        return Double.NaN;
++        return var_2042;
+       }
+     }
+ 
+@@ -370,7 +371,7 @@
+     try {
+       return Double.parseDouble(s);
+     } catch (NumberFormatException e) {
+-      return Double.NaN;
++      return var_2042;
+     }
+   }
+ 

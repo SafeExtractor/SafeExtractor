@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/RescopeGlobalSymbols.java b/src/com/google/javascript/jscomp/RescopeGlobalSymbols.java
+index 72b9653..f3fec07 100644
+--- a/src/com/google/javascript/jscomp/RescopeGlobalSymbols.java
++++ b/src/com/google/javascript/jscomp/RescopeGlobalSymbols.java
+@@ -166,14 +166,15 @@
+         return;
+       }
+       // Don't touch externs.
+-      if (var.isExtern()) {
++      boolean var_827 = var.isExtern();
++	if (var_827) {
+         return;
+       }
+       // When the globalSymbolNamespace is used as a local variable name
+       // add suffix to avoid shadowing the namespace. Also add a suffix
+       // if a name starts with the name of the globalSymbolNamespace and
+       // the suffix.
+-      if (!var.isExtern() && (name.equals(globalSymbolNamespace) ||
++      if (!var_827 && (name.equals(globalSymbolNamespace) ||
+           name.indexOf(globalSymbolNamespace + DISAMBIGUATION_SUFFIX) == 0)) {
+         n.setString(name + DISAMBIGUATION_SUFFIX);
+         compiler.reportCodeChange();

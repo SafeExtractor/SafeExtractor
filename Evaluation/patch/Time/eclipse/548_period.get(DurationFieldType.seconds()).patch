@@ -1,0 +1,31 @@
+diff --git a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
+index c3dd8cc..7b67ffd 100644
+--- a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
++++ b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
+@@ -1394,7 +1394,8 @@
+ 
+             long value;
+ 
+-            switch (iFieldType) {
++            int var_548 = period.get(DurationFieldType.seconds());
++			switch (iFieldType) {
+             default:
+                 return Long.MAX_VALUE;
+             case YEARS:
+@@ -1416,14 +1417,14 @@
+                 value = period.get(DurationFieldType.minutes());
+                 break;
+             case SECONDS:
+-                value = period.get(DurationFieldType.seconds());
++                value = var_548;
+                 break;
+             case MILLIS:
+                 value = period.get(DurationFieldType.millis());
+                 break;
+             case SECONDS_MILLIS: // drop through
+             case SECONDS_OPTIONAL_MILLIS:
+-                int seconds = period.get(DurationFieldType.seconds());
++                int seconds = var_548;
+                 int millis = period.get(DurationFieldType.millis());
+                 value = (seconds * (long) DateTimeConstants.MILLIS_PER_SECOND) + millis;
+                 break;

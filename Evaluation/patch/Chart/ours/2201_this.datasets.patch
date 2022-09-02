@@ -1,0 +1,19 @@
+diff --git a/source/org/jfree/chart/plot/CompassPlot.java b/source/org/jfree/chart/plot/CompassPlot.java
+index 2963422..76a9904 100644
+--- a/source/org/jfree/chart/plot/CompassPlot.java
++++ b/source/org/jfree/chart/plot/CompassPlot.java
+@@ -818,11 +818,12 @@
+         if (this.rect1 != null) {
+             clone.rect1 = (Rectangle2D) this.rect1.clone();
+         }
+-        clone.datasets = (ValueDataset[]) this.datasets.clone();
++        ValueDataset[] var_2201 = this.datasets;
++		clone.datasets = (ValueDataset[]) var_2201.clone();
+         clone.seriesNeedle = (MeterNeedle[]) this.seriesNeedle.clone();
+ 
+         // clone share data sets => add the clone as listener to the dataset
+-        for (int i = 0; i < this.datasets.length; ++i) {
++        for (int i = 0; i < var_2201.length; ++i) {
+             if (clone.datasets[i] != null) {
+                 clone.datasets[i].addChangeListener(clone);
+             }

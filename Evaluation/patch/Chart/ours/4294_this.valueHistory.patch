@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+index 067e1df..fddbbeb 100644
+--- a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
++++ b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+@@ -688,16 +688,17 @@
+      */
+      public void appendData(float[] newData, int insertionIndex, int refresh) {
+          int nDataPoints = newData.length;
+-         if (nDataPoints > this.valueHistory.length) {
++         ValueSequence[] var_4294 = this.valueHistory;
++		if (nDataPoints > var_4294.length) {
+              throw new IllegalArgumentException(
+                  "More data than series to put them " + "in"
+              );
+          }
+          for (int s = 0; s < nDataPoints; s++) {
+-             if (this.valueHistory[s] == null) {
+-                this.valueHistory[s] = new ValueSequence(this.historyCount);
++             if (var_4294[s] == null) {
++                var_4294[s] = new ValueSequence(this.historyCount);
+              }
+-             this.valueHistory[s].enterData(insertionIndex, newData[s]);
++             var_4294[s].enterData(insertionIndex, newData[s]);
+          }
+          if (refresh > 0) {
+              insertionIndex++;

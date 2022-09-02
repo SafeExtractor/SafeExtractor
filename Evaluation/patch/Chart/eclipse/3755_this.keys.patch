@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/data/DefaultKeyedValues.java b/source/org/jfree/data/DefaultKeyedValues.java
+index 3160ce9..e620483 100644
+--- a/source/org/jfree/data/DefaultKeyedValues.java
++++ b/source/org/jfree/data/DefaultKeyedValues.java
+@@ -229,14 +229,15 @@
+             throw new IllegalArgumentException("Null 'key' argument.");
+         }
+         int keyIndex = getIndex(key);
+-        if (keyIndex >= 0) {
+-            this.keys.set(keyIndex, key);
++        ArrayList var_3755 = this.keys;
++		if (keyIndex >= 0) {
++            var_3755.set(keyIndex, key);
+             this.values.set(keyIndex, value);
+         }
+         else {
+-            this.keys.add(key);
++            var_3755.add(key);
+             this.values.add(value);
+-            this.indexMap.put(key, new Integer(this.keys.size() - 1));
++            this.indexMap.put(key, new Integer(var_3755.size() - 1));
+         }
+     }
+ 

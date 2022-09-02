@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/compress/compressors/lz4/FramedLZ4CompressorOutputStream.java b/src/main/java/org/apache/commons/compress/compressors/lz4/FramedLZ4CompressorOutputStream.java
+index 81a1770..dcf9af2 100644
+--- a/src/main/java/org/apache/commons/compress/compressors/lz4/FramedLZ4CompressorOutputStream.java
++++ b/src/main/java/org/apache/commons/compress/compressors/lz4/FramedLZ4CompressorOutputStream.java
+@@ -210,13 +210,14 @@
+         if (params.withContentChecksum) {
+             contentHash.update(data, off, len);
+         }
+-        if (currentIndex + len > blockData.length) {
++        int blockDataLength = blockData.length;
++		if (currentIndex + len > blockDataLength) {
+             flushBlock();
+-            while (len > blockData.length) {
+-                System.arraycopy(data, off, blockData, 0, blockData.length);
+-                off += blockData.length;
+-                len -= blockData.length;
+-                currentIndex = blockData.length;
++            while (len > blockDataLength) {
++                System.arraycopy(data, off, blockData, 0, blockDataLength);
++                off += blockDataLength;
++                len -= blockDataLength;
++                currentIndex = blockDataLength;
+                 flushBlock();
+             }
+         }

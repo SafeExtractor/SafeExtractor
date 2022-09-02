@@ -1,0 +1,32 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/2101_FastMath.sqrt(xNormSqr).patch b/Users/safe/paper/Evaluation/patch/Math/ours/2101_FastMath.sqrt(xNormSqr).patch
+index 367afd8..5bce552 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/2101_FastMath.sqrt(xNormSqr).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/2101_FastMath.sqrt(xNormSqr).patch
+@@ -1,23 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/linear/BiDiagonalTransformer.java b/src/main/java/org/apache/commons/math3/linear/BiDiagonalTransformer.java
+-index c2c5002..fdd8f7f 100644
++index c2c5002..24597b2 100644
+ --- a/src/main/java/org/apache/commons/math3/linear/BiDiagonalTransformer.java
+ +++ b/src/main/java/org/apache/commons/math3/linear/BiDiagonalTransformer.java
+-@@ -331,7 +331,8 @@
+-                 final double c = hK[j];
+-                 xNormSqr += c * c;
+-             }
+--            final double a = (hK[k] > 0) ? -FastMath.sqrt(xNormSqr) : FastMath.sqrt(xNormSqr);
+-+            double var_2101 = FastMath.sqrt(xNormSqr);
+-+			final double a = (hK[k] > 0) ? -var_2101 : var_2101;
+-             main[k] = a;
+-             if (a != 0.0) {
+-                 hK[k] -= a;
+-@@ -356,7 +357,7 @@
++@@ -356,7 +356,8 @@
+                      final double c = householderVectors[i][k];
+                      xNormSqr += c * c;
+                  }
+ -                final double b = (hKp1[k] > 0) ? -FastMath.sqrt(xNormSqr) : FastMath.sqrt(xNormSqr);
+-+                final double b = (hKp1[k] > 0) ? -var_2101 : var_2101;
+++                double var_2101 = FastMath.sqrt(xNormSqr);
+++				final double b = (hKp1[k] > 0) ? -var_2101 : var_2101;
+                  secondary[k] = b;
+                  if (b != 0.0) {
+                      hKp1[k] -= b;

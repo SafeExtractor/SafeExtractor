@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/panel/ZoomHandler.java b/source/org/jfree/chart/panel/ZoomHandler.java
+index ab08810..1c0bb44 100644
+--- a/source/org/jfree/chart/panel/ZoomHandler.java
++++ b/source/org/jfree/chart/panel/ZoomHandler.java
+@@ -91,7 +91,8 @@
+         // this is we are using XOR mode, which we do when we're not using
+         // the buffer (if there is a buffer, then at the end of this method we
+         // just trigger a repaint)
+-        if (!panel.getUseBuffer()) {
++        boolean var_1333 = panel.getUseBuffer();
++		if (!var_1333) {
+             drawZoomRectangle(panel, g2, true);
+         }
+ 
+@@ -129,7 +130,7 @@
+         }
+         panel.setZoomRectangle(this.zoomRectangle);
+         // Draw the new zoom rectangle...
+-        if (panel.getUseBuffer()) {
++        if (var_1333) {
+             panel.repaint();
+         }
+         else {

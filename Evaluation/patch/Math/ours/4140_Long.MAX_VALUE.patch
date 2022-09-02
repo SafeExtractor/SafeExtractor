@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/ArithmeticUtils.java b/src/main/java/org/apache/commons/math3/util/ArithmeticUtils.java
+index 4916f75..f061642 100644
+--- a/src/main/java/org/apache/commons/math3/util/ArithmeticUtils.java
++++ b/src/main/java/org/apache/commons/math3/util/ArithmeticUtils.java
+@@ -550,10 +550,11 @@
+             // use symmetry to reduce boundary cases
+             ret = mulAndCheck(b, a);
+         } else {
+-            if (a < 0) {
++            long var_4140 = Long.MAX_VALUE;
++			if (a < 0) {
+                 if (b < 0) {
+                     // check for positive overflow with negative a, negative b
+-                    if (a >= Long.MAX_VALUE / b) {
++                    if (a >= var_4140 / b) {
+                         ret = a * b;
+                     } else {
+                         throw new MathArithmeticException();
+@@ -575,7 +576,7 @@
+                 // assert b > 0
+ 
+                 // check for positive overflow with positive a, positive b
+-                if (a <= Long.MAX_VALUE / b) {
++                if (a <= var_4140 / b) {
+                     ret = a * b;
+                 } else {
+                     throw new MathArithmeticException();

@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+index 171eb51..4820824 100644
+--- a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
++++ b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+@@ -209,10 +209,11 @@
+       return result;
+     } else if (name.isOr() || name.isHook()) {
+       Node firstVal;
+-      if (name.isHook()) {
+-        firstVal = name.getFirstChild().getNext();
++      Node var_1344 = name.getFirstChild();
++	if (name.isHook()) {
++        firstVal = var_1344.getNext();
+       } else {
+-        firstVal = name.getFirstChild();
++        firstVal = var_1344;
+       }
+ 
+       Collection<Definition> defs1 = getCallableDefinitions(definitionProvider,

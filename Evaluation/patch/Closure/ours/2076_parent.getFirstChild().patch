@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..0fa71b3 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -2053,10 +2053,11 @@
+     if (parent == null) {
+       return false;
+     }
+-    return (NodeUtil.isAssignmentOp(parent) && parent.getFirstChild() == n)
+-        || (NodeUtil.isForIn(parent) && parent.getFirstChild() == n)
++    Node var_2076 = parent.getFirstChild();
++	return (NodeUtil.isAssignmentOp(parent) && var_2076 == n)
++        || (NodeUtil.isForIn(parent) && var_2076 == n)
+         || parent.isVar()
+-        || (parent.isFunction() && parent.getFirstChild() == n)
++        || (parent.isFunction() && var_2076 == n)
+         || parent.isDec()
+         || parent.isInc()
+         || parent.isParamList()

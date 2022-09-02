@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java b/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java
+index 18c8964..8aed50c 100644
+--- a/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java
++++ b/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java
+@@ -846,16 +846,17 @@
+                 buffer.append((char)(value % 10 + '0'));
+             } else {
+                 int digits;
+-                if (value < 1000) {
++                String var_606 = Integer.toString(value);
++				if (value < 1000) {
+                     digits = 3;
+                 } else {
+                     Validate.isTrue(value > -1, "Negative values should not be possible", value);
+-                    digits = Integer.toString(value).length();
++                    digits = var_606.length();
+                 }
+                 for (int i = mSize; --i >= digits; ) {
+                     buffer.append('0');
+                 }
+-                buffer.append(Integer.toString(value));
++                buffer.append(var_606);
+             }
+         }
+     }

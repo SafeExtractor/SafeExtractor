@@ -1,0 +1,42 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
+index 15450f4..8c4c97d 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
+@@ -370,7 +370,8 @@
+     final double dot5 = theta2 * (3 + theta * (-12 + theta * (15 - 6 * theta)));
+     final double dot6 = theta2 * theta * (4 + theta * (-15 + theta * (18 - 7 * theta)));
+ 
+-    if ((previousState != null) && (theta <= 0.5)) {
++    double[] var_2802 = v[5];
++	if ((previousState != null) && (theta <= 0.5)) {
+         for (int i = 0; i < interpolatedState.length; ++i) {
+             interpolatedState[i] = previousState[i] +
+                     theta * h * (v[0][i] +
+@@ -378,11 +379,11 @@
+                                     theta * (v[2][i] +
+                                             eta * (v[3][i] +
+                                                     theta * (v[4][i] +
+-                                                            eta * (v[5][i] +
++                                                            eta * (var_2802[i] +
+                                                                     theta * (v[6][i])))))));
+             interpolatedDerivatives[i] =  v[0][i] + dot1 * v[1][i] + dot2 * v[2][i] +
+                     dot3 * v[3][i] + dot4 * v[4][i] +
+-                    dot5 * v[5][i] + dot6 * v[6][i];
++                    dot5 * var_2802[i] + dot6 * v[6][i];
+         }
+     } else {
+         for (int i = 0; i < interpolatedState.length; ++i) {
+@@ -392,11 +393,11 @@
+                                     theta * (v[2][i] +
+                                             eta * (v[3][i] +
+                                                     theta * (v[4][i] +
+-                                                            eta * (v[5][i] +
++                                                            eta * (var_2802[i] +
+                                                                     theta * (v[6][i])))))));
+             interpolatedDerivatives[i] =  v[0][i] + dot1 * v[1][i] + dot2 * v[2][i] +
+                     dot3 * v[3][i] + dot4 * v[4][i] +
+-                    dot5 * v[5][i] + dot6 * v[6][i];
++                    dot5 * var_2802[i] + dot6 * v[6][i];
+         }
+     }
+ 

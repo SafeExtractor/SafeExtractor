@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+index d33ceab..d721872 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+@@ -649,13 +649,14 @@
+     @SuppressWarnings("unchecked")
+     private BSPTree<S> recurseTransform(final BSPTree<S> node, final Transform<S, T> transform) {
+ 
+-        if (node.getCut() == null) {
+-            return new BSPTree<S>(node.getAttribute());
++        Object var_1700 = node.getAttribute();
++		if (node.getCut() == null) {
++            return new BSPTree<S>(var_1700);
+         }
+ 
+         final SubHyperplane<S>  sub = node.getCut();
+         final SubHyperplane<S> tSub = ((AbstractSubHyperplane<S, T>) sub).applyTransform(transform);
+-        BoundaryAttribute<S> attribute = (BoundaryAttribute<S>) node.getAttribute();
++        BoundaryAttribute<S> attribute = (BoundaryAttribute<S>) var_1700;
+         if (attribute != null) {
+             final SubHyperplane<S> tPO = (attribute.getPlusOutside() == null) ?
+                 null : ((AbstractSubHyperplane<S, T>) attribute.getPlusOutside()).applyTransform(transform);

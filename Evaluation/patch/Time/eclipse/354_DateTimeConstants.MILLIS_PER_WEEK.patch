@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/joda/time/chrono/BasicWeekyearDateTimeField.java b/src/main/java/org/joda/time/chrono/BasicWeekyearDateTimeField.java
+index fc2f299..acd6046 100644
+--- a/src/main/java/org/joda/time/chrono/BasicWeekyearDateTimeField.java
++++ b/src/main/java/org/joda/time/chrono/BasicWeekyearDateTimeField.java
+@@ -177,10 +177,11 @@
+         // At most we are off by one year, which can be "fixed" by
+         // adding/subtracting a week.
+         //
+-        if ( workWoyYear < year ) {
+-            workInstant += DateTimeConstants.MILLIS_PER_WEEK;
++        int var_354 = DateTimeConstants.MILLIS_PER_WEEK;
++		if ( workWoyYear < year ) {
++            workInstant += var_354;
+         } else if ( workWoyYear > year ) {
+-            workInstant -= DateTimeConstants.MILLIS_PER_WEEK;
++            workInstant -= var_354;
+         }
+         //
+         // Set the proper week in the current weekyear.
+@@ -190,7 +191,7 @@
+         int currentWoyWeek = iChronology.getWeekOfWeekyear(workInstant);
+         // No range check required (we already know it is OK).
+         workInstant = workInstant + (setToWeek - currentWoyWeek)
+-            * (long)DateTimeConstants.MILLIS_PER_WEEK;
++            * (long)var_354;
+         // END: possible set WeekOfWeekyear logic.
+ 
+         //

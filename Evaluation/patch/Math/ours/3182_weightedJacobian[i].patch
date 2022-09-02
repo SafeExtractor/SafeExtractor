@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+index 8d6a50b..dde5fab 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+@@ -449,7 +449,8 @@
+                     double dirJ = lmDir[pj];
+                     work1[j] = 0;
+                     for (int i = 0; i <= j; ++i) {
+-                        work1[i] += weightedJacobian[i][pj] * dirJ;
++                        double[] var_3182 = weightedJacobian[i];
++						work1[i] += var_3182[pj] * dirJ;
+                     }
+                 }
+                 double coeff1 = 0;

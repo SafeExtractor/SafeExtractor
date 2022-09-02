@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..7682868 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -270,7 +270,8 @@
+    * <code>Number()</code> JavaScript cast function.
+    */
+   static Double getNumberValue(Node n) {
+-    switch (n.getType()) {
++    String var_2037 = n.getString();
++	switch (n.getType()) {
+       case Token.TRUE:
+         return 1.0;
+ 
+@@ -290,7 +291,7 @@
+ 
+       case Token.NAME:
+         // Check for known constants
+-        String name = n.getString();
++        String name = var_2037;
+         if (name.equals("undefined")) {
+           return Double.NaN;
+         }
+@@ -317,7 +318,7 @@
+         break;
+ 
+       case Token.STRING:
+-        return getStringNumberValue(n.getString());
++        return getStringNumberValue(var_2037);
+ 
+       case Token.ARRAYLIT:
+       case Token.OBJECTLIT:

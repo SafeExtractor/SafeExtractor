@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
+index a80802a..1de2bed 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
+@@ -823,10 +823,11 @@
+     private void qrDecomposition() throws ConvergenceException {
+ 
+         // initializations
+-        for (int k = 0; k < cols; ++k) {
++        int nR = weightedResidualJacobian.length;
++		for (int k = 0; k < cols; ++k) {
+             permutation[k] = k;
+             double norm2 = 0;
+-            for (int i = 0; i < weightedResidualJacobian.length; ++i) {
++            for (int i = 0; i < nR; ++i) {
+                 double akk = weightedResidualJacobian[i][k];
+                 norm2 += akk * akk;
+             }
+@@ -841,7 +842,7 @@
+             double ak2 = Double.NEGATIVE_INFINITY;
+             for (int i = k; i < cols; ++i) {
+                 double norm2 = 0;
+-                for (int j = k; j < weightedResidualJacobian.length; ++j) {
++                for (int j = k; j < nR; ++j) {
+                     double aki = weightedResidualJacobian[j][permutation[i]];
+                     norm2 += aki * aki;
+                 }
+@@ -875,11 +876,11 @@
+             // transform the remaining columns
+             for (int dk = cols - 1 - k; dk > 0; --dk) {
+                 double gamma = 0;
+-                for (int j = k; j < weightedResidualJacobian.length; ++j) {
++                for (int j = k; j < nR; ++j) {
+                     gamma += weightedResidualJacobian[j][pk] * weightedResidualJacobian[j][permutation[k + dk]];
+                 }
+                 gamma *= betak;
+-                for (int j = k; j < weightedResidualJacobian.length; ++j) {
++                for (int j = k; j < nR; ++j) {
+                     weightedResidualJacobian[j][permutation[k + dk]] -= gamma * weightedResidualJacobian[j][pk];
+                 }
+             }

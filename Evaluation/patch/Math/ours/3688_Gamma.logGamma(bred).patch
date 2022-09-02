@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/special/Beta.java b/src/main/java/org/apache/commons/math3/special/Beta.java
+index a425f99..9663808 100644
+--- a/src/main/java/org/apache/commons/math3/special/Beta.java
++++ b/src/main/java/org/apache/commons/math3/special/Beta.java
+@@ -461,10 +461,11 @@
+                         bred -= 1.0;
+                         prod2 *= bred / (ared + bred);
+                     }
+-                    return FastMath.log(prod1) +
++                    double var_3688 = Gamma.logGamma(bred);
++					return FastMath.log(prod1) +
+                            FastMath.log(prod2) +
+                            (Gamma.logGamma(ared) +
+-                           (Gamma.logGamma(bred) -
++                           (var_3688 -
+                             logGammaSum(ared, bred)));
+                 } else {
+                     return FastMath.log(prod1) +

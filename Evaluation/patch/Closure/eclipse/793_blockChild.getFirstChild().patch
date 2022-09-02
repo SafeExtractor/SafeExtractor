@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..6f6137e 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -448,13 +448,14 @@
+       if (block.hasChildren()) {
+         for (Node blockChild : block.children()) {
+           // If this is a block with a labelless break, it is useless.
+-          switch (blockChild.getType()) {
++          Node var_793 = blockChild.getFirstChild();
++		switch (blockChild.getType()) {
+             case Token.BREAK:
+               // A break to a different control structure isn't useless.
+-              return blockChild.getFirstChild() == null;
++              return var_793 == null;
+             case Token.VAR:
+               if (blockChild.hasOneChild()
+-                  && blockChild.getFirstChild().getFirstChild() == null) {
++                  && var_793.getFirstChild() == null) {
+                 // Variable declarations without initializations are OK.
+                 continue;
+               }

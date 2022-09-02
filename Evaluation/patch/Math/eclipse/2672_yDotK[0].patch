@@ -1,0 +1,55 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
+index 2ff86a0..9420a80 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
+@@ -226,11 +226,12 @@
+ 
+       // iterate over step size, ensuring local normalized error is smaller than 1
+       double error = 10;
+-      while (error >= 1.0) {
++      double[] var_2672 = yDotK[0];
++	while (error >= 1.0) {
+ 
+         if (firstTime || !fsal) {
+           // first stage
+-          computeDerivatives(stepStart, y, yDotK[0]);
++          computeDerivatives(stepStart, y, var_2672);
+         }
+ 
+         if (firstTime) {
+@@ -245,7 +246,7 @@
+               }
+           }
+           hNew = initializeStep(forward, getOrder(), scale,
+-                                stepStart, y, yDotK[0], yTmp, yDotK[1]);
++                                stepStart, y, var_2672, yTmp, yDotK[1]);
+           firstTime = false;
+         }
+ 
+@@ -264,7 +265,7 @@
+         for (int k = 1; k < stages; ++k) {
+ 
+           for (int j = 0; j < y0.length; ++j) {
+-            double sum = a[k-1][0] * yDotK[0][j];
++            double sum = a[k-1][0] * var_2672[j];
+             for (int l = 1; l < k; ++l) {
+               sum += a[k-1][l] * yDotK[l][j];
+             }
+@@ -277,7 +278,7 @@
+ 
+         // estimate the state at the end of the step
+         for (int j = 0; j < y0.length; ++j) {
+-          double sum    = b[0] * yDotK[0][j];
++          double sum    = b[0] * var_2672[j];
+           for (int l = 1; l < stages; ++l) {
+             sum    += b[l] * yDotK[l][j];
+           }
+@@ -310,7 +311,7 @@
+ 
+           if (fsal) {
+               // save the last evaluation for the next step
+-              System.arraycopy(yDotTmp, 0, yDotK[0], 0, y0.length);
++              System.arraycopy(yDotTmp, 0, var_2672, 0, y0.length);
+           }
+ 
+           // stepsize control for next step

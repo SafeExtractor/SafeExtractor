@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/axis/ModuloAxis.java b/source/org/jfree/chart/axis/ModuloAxis.java
+index cf1e3c9..b2ab7d8 100644
+--- a/source/org/jfree/chart/axis/ModuloAxis.java
++++ b/source/org/jfree/chart/axis/ModuloAxis.java
+@@ -181,13 +181,14 @@
+             min = area.getMaxY();
+             max = area.getMaxY() - area.getHeight();
+         }
+-        if (isInverted()) {
+-            return max - ((value - this.displayStart)
+-                   / (this.displayEnd - this.displayStart)) * (max - min);
++        double var_764 = this.displayStart;
++		if (isInverted()) {
++            return max - ((value - var_764)
++                   / (this.displayEnd - var_764)) * (max - min);
+         }
+         else {
+-            return min + ((value - this.displayStart)
+-                   / (this.displayEnd - this.displayStart)) * (max - min);
++            return min + ((value - var_764)
++                   / (this.displayEnd - var_764)) * (max - min);
+         }
+ 
+     }

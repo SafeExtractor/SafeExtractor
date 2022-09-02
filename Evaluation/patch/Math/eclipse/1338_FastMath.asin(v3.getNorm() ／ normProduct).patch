@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Vector3D.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Vector3D.java
+index 2809a59..c536f9b 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Vector3D.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Vector3D.java
+@@ -358,10 +358,11 @@
+         if ((dot < -threshold) || (dot > threshold)) {
+             // the vectors are almost aligned, compute using the sine
+             Vector3D v3 = crossProduct(v1, v2);
+-            if (dot >= 0) {
+-                return FastMath.asin(v3.getNorm() / normProduct);
++            double var_1338 = FastMath.asin(v3.getNorm() / normProduct);
++			if (dot >= 0) {
++                return var_1338;
+             }
+-            return FastMath.PI - FastMath.asin(v3.getNorm() / normProduct);
++            return FastMath.PI - var_1338;
+         }
+ 
+         // the vectors are sufficiently separated to use the cosine

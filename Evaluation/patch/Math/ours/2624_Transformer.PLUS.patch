@@ -1,0 +1,39 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/events/FilterType.java b/src/main/java/org/apache/commons/math3/ode/events/FilterType.java
+index 438df05..a64cc89 100644
+--- a/src/main/java/org/apache/commons/math3/ode/events/FilterType.java
++++ b/src/main/java/org/apache/commons/math3/ode/events/FilterType.java
+@@ -268,13 +268,14 @@
+         @Override
+         protected  Transformer selectTransformer(final Transformer previous,
+                                                  final double g, final boolean forward) {
+-            if (forward) {
++            Transformer var_2624 = Transformer.PLUS;
++			if (forward) {
+                 switch (previous) {
+                     case UNINITIALIZED :
+                         // we are initializing the first point
+                         if (g > 0) {
+                             // initialize as if previous root (i.e. backward one) was a triggered increasing event
+-                            return Transformer.PLUS;
++                            return var_2624;
+                         } else if (g < 0) {
+                             // initialize as if previous root (i.e. backward one) was an ignored decreasing event
+                             return Transformer.MIN;
+@@ -305,7 +306,7 @@
+                         if (g >= 0) {
+                             // we have crossed the zero line on a triggered increasing event,
+                             // we must change the transformer
+-                            return Transformer.PLUS;
++                            return var_2624;
+                         } else {
+                             // we are still in the same status
+                             return previous;
+@@ -369,7 +370,7 @@
+                         if (g <= 0) {
+                             // we have crossed the zero line on a triggered increasing event,
+                             // we must change the transformer
+-                            return Transformer.PLUS;
++                            return var_2624;
+                         } else {
+                             // we are still in the same status
+                             return previous;

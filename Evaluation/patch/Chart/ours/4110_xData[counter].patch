@@ -1,0 +1,19 @@
+diff --git a/source/org/jfree/data/statistics/Statistics.java b/source/org/jfree/data/statistics/Statistics.java
+index 1f97438..a2242e0 100644
+--- a/source/org/jfree/data/statistics/Statistics.java
++++ b/source/org/jfree/data/statistics/Statistics.java
+@@ -387,10 +387,11 @@
+         double sx = 0.0, sxx = 0.0, sxy = 0.0, sy = 0.0;
+         int counter;
+         for (counter = 0; counter < xData.length; counter++) {
+-            sx = sx + xData[counter].doubleValue();
+-            sxx = sxx + Math.pow(xData[counter].doubleValue(), 2);
++            Number var_4110 = xData[counter];
++			sx = sx + var_4110.doubleValue();
++            sxx = sxx + Math.pow(var_4110.doubleValue(), 2);
+             sxy = sxy + yData[counter].doubleValue()
+-                      * xData[counter].doubleValue();
++                      * var_4110.doubleValue();
+             sy = sy + yData[counter].doubleValue();
+         }
+         return (sxy - (sx * sy) / counter) / (sxx - (sx * sx) / counter);

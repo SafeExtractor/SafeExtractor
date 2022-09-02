@@ -1,0 +1,14 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/mongomk/MongoDocumentStore.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/mongomk/MongoDocumentStore.java
+index 3e3a8f3..11e6835 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/mongomk/MongoDocumentStore.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/mongomk/MongoDocumentStore.java
+@@ -235,7 +235,8 @@
+                 T doc = convertFromDBObject(collection, o);
+                 if (collection == Collection.NODES && doc != null) {
+                     doc.seal();
+-                    nodesCache.put(doc.getId(), (NodeDocument) doc);
++                    String id = doc.getId();
++					nodesCache.put(id, (NodeDocument) doc);
+                 }
+                 list.add(doc);
+             }

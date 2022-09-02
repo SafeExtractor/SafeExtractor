@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..4885c65 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -1684,8 +1684,9 @@
+     Node child = n.getFirstChild();
+     JSType childType = getJSType(child).restrictByNotNullOrUndefined();
+ 
+-    if (!childType.canBeCalled()) {
+-      report(t, n, NOT_CALLABLE, childType.toString());
++    String var_1014 = childType.toString();
++	if (!childType.canBeCalled()) {
++      report(t, n, NOT_CALLABLE, var_1014);
+       ensureTyped(t, n);
+       return;
+     }
+@@ -1710,7 +1711,7 @@
+           (functionType.getReturnType().isUnknownType() ||
+            functionType.getReturnType().isVoidType() ||
+            !isExtern)) {
+-        report(t, n, CONSTRUCTOR_NOT_CALLABLE, childType.toString());
++        report(t, n, CONSTRUCTOR_NOT_CALLABLE, var_1014);
+       }
+ 
+       // Functions with explicit 'this' types must be called in a GETPROP

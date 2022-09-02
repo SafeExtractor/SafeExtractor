@@ -1,0 +1,52 @@
+diff --git a/source/org/jfree/chart/annotations/XYPointerAnnotation.java b/source/org/jfree/chart/annotations/XYPointerAnnotation.java
+index 5ea9d1e..322d001 100644
+--- a/source/org/jfree/chart/annotations/XYPointerAnnotation.java
++++ b/source/org/jfree/chart/annotations/XYPointerAnnotation.java
+@@ -393,24 +393,25 @@
+             j2DX = j2DY;
+             j2DY = temp;
+         }
+-        double startX = j2DX + Math.cos(this.angle) * this.baseRadius;
+-        double startY = j2DY + Math.sin(this.angle) * this.baseRadius;
++        double var_243 = this.angle;
++		double startX = j2DX + Math.cos(var_243) * this.baseRadius;
++        double startY = j2DY + Math.sin(var_243) * this.baseRadius;
+ 
+-        double endX = j2DX + Math.cos(this.angle) * this.tipRadius;
+-        double endY = j2DY + Math.sin(this.angle) * this.tipRadius;
++        double endX = j2DX + Math.cos(var_243) * this.tipRadius;
++        double endY = j2DY + Math.sin(var_243) * this.tipRadius;
+ 
+-        double arrowBaseX = endX + Math.cos(this.angle) * this.arrowLength;
+-        double arrowBaseY = endY + Math.sin(this.angle) * this.arrowLength;
++        double arrowBaseX = endX + Math.cos(var_243) * this.arrowLength;
++        double arrowBaseY = endY + Math.sin(var_243) * this.arrowLength;
+ 
+         double arrowLeftX = arrowBaseX
+-                + Math.cos(this.angle + Math.PI / 2.0) * this.arrowWidth;
++                + Math.cos(var_243 + Math.PI / 2.0) * this.arrowWidth;
+         double arrowLeftY = arrowBaseY
+-                + Math.sin(this.angle + Math.PI / 2.0) * this.arrowWidth;
++                + Math.sin(var_243 + Math.PI / 2.0) * this.arrowWidth;
+ 
+         double arrowRightX = arrowBaseX
+-                - Math.cos(this.angle + Math.PI / 2.0) * this.arrowWidth;
++                - Math.cos(var_243 + Math.PI / 2.0) * this.arrowWidth;
+         double arrowRightY = arrowBaseY
+-                - Math.sin(this.angle + Math.PI / 2.0) * this.arrowWidth;
++                - Math.sin(var_243 + Math.PI / 2.0) * this.arrowWidth;
+ 
+         GeneralPath arrow = new GeneralPath();
+         arrow.moveTo((float) endX, (float) endY);
+@@ -425,9 +426,9 @@
+         g2.fill(arrow);
+ 
+         // draw the label
+-        double labelX = j2DX + Math.cos(this.angle) * (this.baseRadius
++        double labelX = j2DX + Math.cos(var_243) * (this.baseRadius
+                 + this.labelOffset);
+-        double labelY = j2DY + Math.sin(this.angle) * (this.baseRadius
++        double labelY = j2DY + Math.sin(var_243) * (this.baseRadius
+                 + this.labelOffset);
+         g2.setFont(getFont());
+         Shape hotspot = TextUtilities.calculateRotatedStringBounds(

@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/fraction/BigFraction.java b/src/main/java/org/apache/commons/math3/fraction/BigFraction.java
+index 4ca33eb..cb064c6 100644
+--- a/src/main/java/org/apache/commons/math3/fraction/BigFraction.java
++++ b/src/main/java/org/apache/commons/math3/fraction/BigFraction.java
+@@ -915,11 +915,12 @@
+         if (fraction == null) {
+             throw new NullArgumentException(LocalizedFormats.FRACTION);
+         }
+-        if (numerator.equals(BigInteger.ZERO) ||
+-            fraction.numerator.equals(BigInteger.ZERO)) {
++        BigInteger var_1071 = fraction.numerator;
++		if (numerator.equals(BigInteger.ZERO) ||
++            var_1071.equals(BigInteger.ZERO)) {
+             return ZERO;
+         }
+-        return new BigFraction(numerator.multiply(fraction.numerator),
++        return new BigFraction(numerator.multiply(var_1071),
+                                denominator.multiply(fraction.denominator));
+     }
+ 

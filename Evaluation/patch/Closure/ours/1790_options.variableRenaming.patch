@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..5abe7e1 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -626,14 +626,15 @@
+       passes.add(instrumentFunctions);
+     }
+ 
+-    if (options.variableRenaming != VariableRenamingPolicy.ALL) {
++    VariableRenamingPolicy var_1790 = options.variableRenaming;
++	if (var_1790 != VariableRenamingPolicy.ALL) {
+       // If we're leaving some (or all) variables with their old names,
+       // then we need to undo any of the markers we added for distinguishing
+       // local variables ("$$1").
+       passes.add(invertContextualRenaming);
+     }
+ 
+-    if (options.variableRenaming != VariableRenamingPolicy.OFF) {
++    if (var_1790 != VariableRenamingPolicy.OFF) {
+       passes.add(renameVars);
+     }
+ 

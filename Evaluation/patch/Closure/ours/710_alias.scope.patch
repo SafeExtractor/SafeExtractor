@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..44dae02 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -204,7 +204,8 @@
+     Node aliasParent = alias.node.getParent();
+     if (aliasParent.isName()) {
+       // Ensure that the local variable is well defined and never reassigned.
+-      Scope scope = alias.scope;
++      Scope var_710 = alias.scope;
++	Scope scope = var_710;
+       Var aliasVar = scope.getVar(aliasParent.getString());
+       ReferenceCollectingCallback collector =
+           new ReferenceCollectingCallback(compiler,
+@@ -234,7 +235,7 @@
+ 
+         // Inlining the variable may have introduced new references
+         // to descendants of {@code name}. So those need to be collected now.
+-        namespace.scanNewNodes(alias.scope, newNodes);
++        namespace.scanNewNodes(var_710, newNodes);
+         return true;
+       }
+     }

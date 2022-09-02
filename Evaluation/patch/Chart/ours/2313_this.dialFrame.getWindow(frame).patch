@@ -1,0 +1,45 @@
+diff --git a/source/org/jfree/chart/plot/dial/DialPlot.java b/source/org/jfree/chart/plot/dial/DialPlot.java
+index acb9f7c..78c3484 100644
+--- a/source/org/jfree/chart/plot/dial/DialPlot.java
++++ b/source/org/jfree/chart/plot/dial/DialPlot.java
+@@ -541,10 +541,11 @@
+         Rectangle2D frame = viewToFrame(area);
+ 
+         // draw the background if there is one...
+-        if (this.background != null && this.background.isVisible()) {
++        Shape var_2313 = this.dialFrame.getWindow(frame);
++		if (this.background != null && this.background.isVisible()) {
+             if (this.background.isClippedToWindow()) {
+                 Shape savedClip = g2.getClip();
+-                g2.clip(this.dialFrame.getWindow(frame));
++                g2.clip(var_2313);
+                 this.background.draw(g2, this, frame, area);
+                 g2.setClip(savedClip);
+             }
+@@ -559,7 +560,7 @@
+             if (current.isVisible()) {
+                 if (current.isClippedToWindow()) {
+                     Shape savedClip = g2.getClip();
+-                    g2.clip(this.dialFrame.getWindow(frame));
++                    g2.clip(var_2313);
+                     current.draw(g2, this, frame, area);
+                     g2.setClip(savedClip);
+                 }
+@@ -576,7 +577,7 @@
+             if (current.isVisible()) {
+                 if (current.isClippedToWindow()) {
+                     Shape savedClip = g2.getClip();
+-                    g2.clip(this.dialFrame.getWindow(frame));
++                    g2.clip(var_2313);
+                     current.draw(g2, this, frame, area);
+                     g2.setClip(savedClip);
+                 }
+@@ -590,7 +591,7 @@
+         if (this.cap != null && this.cap.isVisible()) {
+             if (this.cap.isClippedToWindow()) {
+                 Shape savedClip = g2.getClip();
+-                g2.clip(this.dialFrame.getWindow(frame));
++                g2.clip(var_2313);
+                 this.cap.draw(g2, this, frame, area);
+                 g2.setClip(savedClip);
+             }

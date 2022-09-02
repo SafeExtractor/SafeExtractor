@@ -1,0 +1,31 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/221_className.substring(1).patch b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/221_className.substring(1).patch
+index 2acc6fa..f06c744 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/221_className.substring(1).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/221_className.substring(1).patch
+@@ -1,21 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/lang3/ClassUtils.java b/src/main/java/org/apache/commons/lang3/ClassUtils.java
+-index 015e6dd..a14ccaa 100644
++index 015e6dd..aa3e36c 100644
+ --- a/src/main/java/org/apache/commons/lang3/ClassUtils.java
+ +++ b/src/main/java/org/apache/commons/lang3/ClassUtils.java
+-@@ -291,12 +291,13 @@
+-         }
++@@ -292,7 +292,8 @@
+  
+          // Strip array encoding
+--        while (className.charAt(0) == '[') {
++         while (className.charAt(0) == '[') {
+ -            className = className.substring(1);
+-+        String var_221 = className.substring(1);
+-+		while (className.charAt(0) == '[') {
+-+            className = var_221;
+++            String var_221 = className.substring(1);
+++			className = var_221;
+          }
+          // Strip Object type encoding
+          if (className.charAt(0) == 'L' && className.charAt(className.length() - 1) == ';') {
+--            className = className.substring(1);
+-+            className = var_221;
+-         }
+- 
+-         final int i = className.lastIndexOf(PACKAGE_SEPARATOR_CHAR);

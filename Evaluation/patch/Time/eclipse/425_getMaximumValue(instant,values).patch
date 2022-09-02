@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/joda/time/field/BaseDateTimeField.java b/src/main/java/org/joda/time/field/BaseDateTimeField.java
+index c86bf1c..fc0359b 100644
+--- a/src/main/java/org/joda/time/field/BaseDateTimeField.java
++++ b/src/main/java/org/joda/time/field/BaseDateTimeField.java
+@@ -303,8 +303,9 @@
+         // adding/removing one from the larger field at a time
+         DateTimeField nextField = null;
+         
+-        while (valueToAdd > 0) {
+-            int max = getMaximumValue(instant, values);
++        int var_425 = getMaximumValue(instant, values);
++		while (valueToAdd > 0) {
++            int max = var_425;
+             long proposed = values[fieldIndex] + valueToAdd;
+             if (proposed <= max) {
+                 values[fieldIndex] = (int) proposed;
+@@ -342,7 +343,7 @@
+             }
+             valueToAdd -= (min - 1) - values[fieldIndex];  // reduce the amount to add
+             values = nextField.add(instant, fieldIndex - 1, values, -1);  // subtract 1 from next bigger field
+-            values[fieldIndex] = getMaximumValue(instant, values);  // reset this field to max value
++            values[fieldIndex] = var_425;  // reset this field to max value
+         }
+         
+         return set(instant, fieldIndex, values, values[fieldIndex]);  // adjusts smaller fields

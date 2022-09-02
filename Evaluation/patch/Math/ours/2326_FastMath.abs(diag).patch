@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+index 7b1dcc7..172de68 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
++++ b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+@@ -767,7 +767,8 @@
+             lqnorm = FastMath.sqrt(gammaZeta * gammaZeta +
+                                    minusEpsZeta * minusEpsZeta);
+             final double qrnorm = snprod * beta1;
+-            cgnorm = qrnorm * beta / FastMath.abs(diag);
++            double var_2326 = FastMath.abs(diag);
++			cgnorm = qrnorm * beta / var_2326;
+ 
+             /*
+              * Estimate cond(A). In this version we look at the diagonals of L
+@@ -779,7 +780,7 @@
+             if (lqnorm <= cgnorm) {
+                 acond = gmax / gmin;
+             } else {
+-                acond = gmax / FastMath.min(gmin, FastMath.abs(diag));
++                acond = gmax / FastMath.min(gmin, var_2326);
+             }
+             if (acond * MACH_PREC >= 0.1) {
+                 throw new IllConditionedOperatorException(acond);

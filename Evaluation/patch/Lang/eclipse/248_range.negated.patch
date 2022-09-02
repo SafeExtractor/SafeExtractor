@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/lang3/CharRange.java b/src/main/java/org/apache/commons/lang3/CharRange.java
+index 39b26f9..a0b4ab0 100644
+--- a/src/main/java/org/apache/commons/lang3/CharRange.java
++++ b/src/main/java/org/apache/commons/lang3/CharRange.java
+@@ -183,13 +183,14 @@
+         if (range == null) {
+             throw new IllegalArgumentException("The Range must not be null");
+         }
+-        if (negated) {
+-            if (range.negated) {
++        boolean var_248 = range.negated;
++		if (negated) {
++            if (var_248) {
+                 return start >= range.start && end <= range.end;
+             }
+             return range.end < start || range.start > end;
+         }
+-        if (range.negated) {
++        if (var_248) {
+             return start == 0 && end == Character.MAX_VALUE;
+         }
+         return start <= range.start && end >= range.end;

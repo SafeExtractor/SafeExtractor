@@ -1,0 +1,24 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/version/VersionableState.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/version/VersionableState.java
+index 2af1c27..940da55 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/version/VersionableState.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/version/VersionableState.java
+@@ -287,15 +287,16 @@
+             }
+         }
+         for (PropertyState p : dest.getProperties()) {
+-            if (BASIC_PROPERTIES.contains(p.getName())) {
++            String propName = p.getName();
++			if (BASIC_PROPERTIES.contains(propName)) {
+                 continue;
+             }
+-            if (frozen.hasProperty(p.getName())) {
++            if (frozen.hasProperty(propName)) {
+                 continue;
+             }
+             int action = getOPV(dest, p);
+             if (action == COPY || action == VERSION || action == ABORT) {
+-                dest.removeProperty(p.getName());
++                dest.removeProperty(propName);
+             } else if (action == IGNORE) {
+                 // no action
+             } else if (action == INITIALIZE) {

@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/InlineFunctions.java b/src/com/google/javascript/jscomp/InlineFunctions.java
+index 008ffe5..ea5db15 100644
+--- a/src/com/google/javascript/jscomp/InlineFunctions.java
++++ b/src/com/google/javascript/jscomp/InlineFunctions.java
+@@ -178,7 +178,8 @@
+         return;
+       }
+ 
+-      switch (n.getType()) {
++      JSModule var_1166 = t.getModule();
++	switch (n.getType()) {
+         // Functions expressions in the form of:
+         //   var fooFn = function(x) { return ... }
+         case Token.VAR:
+@@ -186,7 +187,7 @@
+           Node nameNode = n.getFirstChild();
+           if (nameNode.isName() && nameNode.hasChildren()
+               && nameNode.getFirstChild().isFunction()) {
+-            maybeAddFunction(new FunctionVar(n), t.getModule());
++            maybeAddFunction(new FunctionVar(n), var_1166);
+           }
+           break;
+ 
+@@ -197,7 +198,7 @@
+               || parent.isLabel());
+           if (!NodeUtil.isFunctionExpression(n)) {
+             Function fn = new NamedFunction(n);
+-            maybeAddFunction(fn, t.getModule());
++            maybeAddFunction(fn, var_1166);
+           }
+           break;
+       }

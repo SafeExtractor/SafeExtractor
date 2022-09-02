@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/lang3/ArrayUtils.java b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+index a0a499a..c87caca 100644
+--- a/src/main/java/org/apache/commons/lang3/ArrayUtils.java
++++ b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+@@ -3453,12 +3453,13 @@
+             return clone(array1);
+         }
+         final Class<?> type1 = array1.getClass().getComponentType();
+-        @SuppressWarnings("unchecked") // OK, because array is of type T
++        int var_197 = array1.length;
++		@SuppressWarnings("unchecked") // OK, because array is of type T
+         final
+-        T[] joinedArray = (T[]) Array.newInstance(type1, array1.length + array2.length);
+-        System.arraycopy(array1, 0, joinedArray, 0, array1.length);
++        T[] joinedArray = (T[]) Array.newInstance(type1, var_197 + array2.length);
++        System.arraycopy(array1, 0, joinedArray, 0, var_197);
+         try {
+-            System.arraycopy(array2, 0, joinedArray, array1.length, array2.length);
++            System.arraycopy(array2, 0, joinedArray, var_197, array2.length);
+         } catch (final ArrayStoreException ase) {
+             // Check if problem was due to incompatible types
+             /*

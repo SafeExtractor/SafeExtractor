@@ -1,0 +1,28 @@
+diff --git a/httpcore5/src/main/java/org/apache/hc/core5/http/impl/nio/ClientHttp1StreamHandler.java b/httpcore5/src/main/java/org/apache/hc/core5/http/impl/nio/ClientHttp1StreamHandler.java
+index ee83a83..55c664f 100644
+--- a/httpcore5/src/main/java/org/apache/hc/core5/http/impl/nio/ClientHttp1StreamHandler.java
++++ b/httpcore5/src/main/java/org/apache/hc/core5/http/impl/nio/ClientHttp1StreamHandler.java
+@@ -222,18 +222,19 @@
+ 
+         validateStatus(response);
+ 
+-        if (requestState == MessageState.ACK) {
++        int status = response.getCode();
++		if (requestState == MessageState.ACK) {
+             connection.setSocketTimeout(timeout);
+             requestState = MessageState.BODY;
+-            if (response.getCode() < HttpStatus.SC_CLIENT_ERROR) {
++            if (status < HttpStatus.SC_CLIENT_ERROR) {
+                 exchangeHandler.produce(internalDataChannel);
+             }
+         }
+-        if (response.getCode() == HttpStatus.SC_CONTINUE) {
++        if (status == HttpStatus.SC_CONTINUE) {
+             return;
+         }
+         if (requestState == MessageState.BODY) {
+-            boolean keepAlive = response.getCode() < HttpStatus.SC_CLIENT_ERROR;
++            boolean keepAlive = status < HttpStatus.SC_CLIENT_ERROR;
+             if (keepAlive) {
+                 final Header h = response.getFirstHeader(HttpHeaders.CONNECTION);
+                 if (h != null && HeaderElements.CLOSE.equalsIgnoreCase(h.getValue())) {

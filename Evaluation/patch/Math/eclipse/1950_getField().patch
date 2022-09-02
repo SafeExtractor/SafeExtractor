@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java b/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
+index c6b1a04..53f5adb 100644
+--- a/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
+@@ -1005,7 +1005,8 @@
+     public FieldVector<T> getRowVector(final int row)
+         throws OutOfRangeException {
+         checkRowIndex(row);
+-        final T[] outData = MathArrays.buildArray(getField(), columns);
++        Field<T> var_1950 = getField();
++		final T[] outData = MathArrays.buildArray(var_1950, columns);
+ 
+         // perform copy block-wise, to ensure good cache behavior
+         final int iBlock  = row / BLOCK_SIZE;
+@@ -1018,7 +1019,7 @@
+             outIndex += jWidth;
+         }
+ 
+-        return new ArrayFieldVector<T>(getField(), outData, false);
++        return new ArrayFieldVector<T>(var_1950, outData, false);
+     }
+ 
+     /** {@inheritDoc} */

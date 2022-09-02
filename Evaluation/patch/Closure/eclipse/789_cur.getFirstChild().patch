@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..ec32345 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -290,9 +290,10 @@
+     if (defaultCase == null) {
+       Node cond = n.getFirstChild(), prev = null, next = null, cur;
+ 
+-      for (cur = cond.getNext(); cur != null; cur = next) {
++      Node var_789 = cur.getFirstChild();
++	for (cur = cond.getNext(); cur != null; cur = next) {
+         next = cur.getNext();
+-        if (!mayHaveSideEffects(cur.getFirstChild()) &&
++        if (!mayHaveSideEffects(var_789) &&
+             isUselessCase(cur, prev)) {
+           removeCase(n, cur);
+         } else {
+@@ -307,7 +308,7 @@
+         // Remove cases until you find one that may match
+         for (cur = cond.getNext(); cur != null; cur = next) {
+           next = cur.getNext();
+-          caseLabel = cur.getFirstChild();
++          caseLabel = var_789;
+           caseMatches = PeepholeFoldConstants.evaluateComparison(
+               Token.SHEQ, cond, caseLabel);
+           if (caseMatches == TernaryValue.TRUE) {

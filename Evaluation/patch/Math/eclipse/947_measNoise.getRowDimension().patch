@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java b/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
+index 423689d..372fd81 100644
+--- a/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
++++ b/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
+@@ -204,9 +204,10 @@
+         }
+ 
+         // row dimension of R must be equal to row dimension of H
+-        if (measNoise.getRowDimension() != measurementMatrix.getRowDimension() ||
++        int var_947 = measNoise.getRowDimension();
++		if (var_947 != measurementMatrix.getRowDimension() ||
+             measNoise.getColumnDimension() != 1) {
+-            throw new MatrixDimensionMismatchException(measNoise.getRowDimension(),
++            throw new MatrixDimensionMismatchException(var_947,
+                                                        measNoise.getColumnDimension(),
+                                                        measurementMatrix.getRowDimension(), 1);
+         }

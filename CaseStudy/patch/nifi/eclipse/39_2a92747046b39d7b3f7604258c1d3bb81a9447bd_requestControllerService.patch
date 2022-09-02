@@ -1,0 +1,51 @@
+diff --git a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ControllerResource.java b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ControllerResource.java
+index 4063a72..ce83c81 100644
+--- a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ControllerResource.java
++++ b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ControllerResource.java
+@@ -39,6 +39,7 @@
+ import org.apache.nifi.web.NiFiServiceFacade;
+ import org.apache.nifi.web.Revision;
+ import org.apache.nifi.web.api.dto.ClusterDTO;
++import org.apache.nifi.web.api.dto.ControllerServiceDTO;
+ import org.apache.nifi.web.api.dto.NodeDTO;
+ import org.apache.nifi.web.api.entity.ClusterEntity;
+ import org.apache.nifi.web.api.entity.ControllerConfigurationEntity;
+@@ -329,7 +330,8 @@
+                     required = true
+             ) final ControllerServiceEntity controllerServiceEntity) {
+ 
+-        if (controllerServiceEntity == null || controllerServiceEntity.getComponent() == null) {
++        ControllerServiceDTO requestControllerService = controllerServiceEntity.getComponent();
++		if (controllerServiceEntity == null || requestControllerService == null) {
+             throw new IllegalArgumentException("Controller service details must be specified.");
+         }
+ 
+@@ -337,11 +339,11 @@
+             throw new IllegalArgumentException("A revision of 0 must be specified when creating a new Controller service.");
+         }
+ 
+-        if (controllerServiceEntity.getComponent().getId() != null) {
++        if (requestControllerService.getId() != null) {
+             throw new IllegalArgumentException("Controller service ID cannot be specified.");
+         }
+ 
+-        if (StringUtils.isBlank(controllerServiceEntity.getComponent().getType())) {
++        if (StringUtils.isBlank(requestControllerService.getType())) {
+             throw new IllegalArgumentException("The type of controller service to create must be specified.");
+         }
+ 
+@@ -362,11 +364,11 @@
+         }
+ 
+         // set the processor id as appropriate
+-        controllerServiceEntity.getComponent().setId(generateUuid());
++        requestControllerService.setId(generateUuid());
+ 
+         // create the controller service and generate the json
+-        final Revision revision = getRevision(controllerServiceEntity, controllerServiceEntity.getComponent().getId());
+-        final ControllerServiceEntity entity = serviceFacade.createControllerService(revision, null, controllerServiceEntity.getComponent());
++        final Revision revision = getRevision(controllerServiceEntity, requestControllerService.getId());
++        final ControllerServiceEntity entity = serviceFacade.createControllerService(revision, null, requestControllerService);
+         controllerServiceResource.populateRemainingControllerServiceEntityContent(entity);
+ 
+         // build the response

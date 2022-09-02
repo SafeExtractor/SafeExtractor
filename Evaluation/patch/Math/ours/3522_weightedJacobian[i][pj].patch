@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
+index edf07d5..7a90a29 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
+@@ -811,7 +811,8 @@
+                 int pj = permutation[j];
+                 double sum = 0;
+                 for (int i = j + 1; i < nSing; ++i) {
+-                    sum += weightedJacobian[i][pj] * work[i];
++                    double var_3522 = weightedJacobian[i][pj];
++					sum += var_3522 * work[i];
+                 }
+                 work[j] = (work[j] - sum) / lmDiag[j];
+             }

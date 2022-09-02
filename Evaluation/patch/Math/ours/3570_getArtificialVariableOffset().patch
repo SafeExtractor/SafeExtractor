@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java b/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java
+index e33e9a5..968a2b3 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java
++++ b/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java
+@@ -234,8 +234,9 @@
+             // artificial variables
+             if ((constraint.getRelationship() == Relationship.EQ) ||
+                     (constraint.getRelationship() == Relationship.GEQ)) {
+-                matrix.setEntry(0, getArtificialVariableOffset() + artificialVar, 1);
+-                matrix.setEntry(row, getArtificialVariableOffset() + artificialVar++, 1);
++                int var_3570 = getArtificialVariableOffset();
++				matrix.setEntry(0, var_3570 + artificialVar, 1);
++                matrix.setEntry(row, var_3570 + artificialVar++, 1);
+                 matrix.setRowVector(0, matrix.getRowVector(0).subtract(matrix.getRowVector(row)));
+             }
+         }

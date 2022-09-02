@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+index 3dc8ec6..ac16ae8 100644
+--- a/src/com/google/javascript/jscomp/TypeInference.java
++++ b/src/com/google/javascript/jscomp/TypeInference.java
+@@ -587,7 +587,8 @@
+       registry.registerPropertyOnType(propName, nodeType);
+     } else {
+       // Don't add the property to @struct objects outside a constructor
+-      if (nodeType.isStruct() && !objectType.hasProperty(propName)) {
++      boolean var_944 = objectType.hasProperty(propName);
++	if (nodeType.isStruct() && !var_944) {
+         if (!(obj.isThis() &&
+               getJSType(syntacticScope.getRootNode()).isConstructor())) {
+           return;

@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..139d0e5 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1647,7 +1647,8 @@
+         if (x < 0 || x >= RADIX) {
+             field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+             result = newInstance(getZero());
+-            result.nans = QNAN;
++            byte var_655 = result.nans;
++			result.nans = QNAN;
+             result = dotrap(DfpField.FLAG_INVALID, MULTIPLY_TRAP, result, result);
+             return result;
+         }

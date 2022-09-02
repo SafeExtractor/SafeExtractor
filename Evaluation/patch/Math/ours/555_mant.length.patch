@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..4e87de5 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -232,9 +232,10 @@
+         }
+ 
+         exp = 0;
+-        while (x != 0) {
+-            System.arraycopy(mant, mant.length - exp, mant, mant.length - 1 - exp, exp);
+-            mant[mant.length - 1] = (int) (x % RADIX);
++        int var_555 = mant.length;
++		while (x != 0) {
++            System.arraycopy(mant, var_555 - exp, mant, var_555 - 1 - exp, exp);
++            mant[var_555 - 1] = (int) (x % RADIX);
+             x /= RADIX;
+             exp++;
+         }
+@@ -242,7 +243,7 @@
+         if (isLongMin) {
+             // remove the shift added for Long.MIN_VALUE
+             // we know in this case that fixing the last digit is sufficient
+-            for (int i = 0; i < mant.length - 1; i++) {
++            for (int i = 0; i < var_555 - 1; i++) {
+                 if (mant[i] != 0) {
+                     mant[i]++;
+                     break;

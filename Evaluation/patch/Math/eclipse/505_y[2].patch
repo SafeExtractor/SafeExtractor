@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/solvers/BracketingNthOrderBrentSolver.java b/src/main/java/org/apache/commons/math3/analysis/solvers/BracketingNthOrderBrentSolver.java
+index c481d20..e716d2d 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/solvers/BracketingNthOrderBrentSolver.java
++++ b/src/main/java/org/apache/commons/math3/analysis/solvers/BracketingNthOrderBrentSolver.java
+@@ -180,17 +180,18 @@
+ 
+             // evaluate second endpoint
+             y[2] = computeObjectiveValue(x[2]);
+-            if (Precision.equals(y[2], 0.0, 1)) {
++            double var_505 = y[2];
++			if (Precision.equals(var_505, 0.0, 1)) {
+                 // return the second endpoint if it is a perfect root.
+                 return x[2];
+             }
+ 
+-            if (y[1] * y[2] < 0) {
++            if (y[1] * var_505 < 0) {
+                 // use all computed point as a start sampling array for solving
+                 nbPoints        = 3;
+                 signChangeIndex = 2;
+             } else {
+-                throw new NoBracketingException(x[0], x[2], y[0], y[2]);
++                throw new NoBracketingException(x[0], x[2], y[0], var_505);
+             }
+ 
+         }

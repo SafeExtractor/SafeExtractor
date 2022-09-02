@@ -1,0 +1,56 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYAreaRenderer.java b/source/org/jfree/chart/renderer/xy/XYAreaRenderer.java
+index d05eb2f..ab8dc14 100644
+--- a/source/org/jfree/chart/renderer/xy/XYAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYAreaRenderer.java
+@@ -535,7 +535,8 @@
+         double transZero = rangeAxis.valueToJava2D(0.0, dataArea,
+                 plot.getRangeAxisEdge());
+         Polygon hotspot = null;
+-        if (plot.getOrientation() == PlotOrientation.HORIZONTAL) {
++        PlotOrientation var_2944 = plot.getOrientation();
++		if (var_2944 == PlotOrientation.HORIZONTAL) {
+             hotspot = new Polygon();
+             hotspot.addPoint((int) transZero,
+                     (int) ((transX0 + transX1) / 2.0));
+@@ -565,23 +566,23 @@
+             // the first point is (x, 0)
+             double zero = rangeAxis.valueToJava2D(0.0, dataArea,
+                     plot.getRangeAxisEdge());
+-            if (plot.getOrientation() == PlotOrientation.VERTICAL) {
++            if (var_2944 == PlotOrientation.VERTICAL) {
+                 areaState.area.addPoint((int) transX1, (int) zero);
+             }
+-            else if (plot.getOrientation() == PlotOrientation.HORIZONTAL) {
++            else if (var_2944 == PlotOrientation.HORIZONTAL) {
+                 areaState.area.addPoint((int) zero, (int) transX1);
+             }
+         }
+ 
+         // Add each point to Area (x, y)
+-        if (plot.getOrientation() == PlotOrientation.VERTICAL) {
++        if (var_2944 == PlotOrientation.VERTICAL) {
+             areaState.area.addPoint((int) transX1, (int) transY1);
+         }
+-        else if (plot.getOrientation() == PlotOrientation.HORIZONTAL) {
++        else if (var_2944 == PlotOrientation.HORIZONTAL) {
+             areaState.area.addPoint((int) transY1, (int) transX1);
+         }
+ 
+-        PlotOrientation orientation = plot.getOrientation();
++        PlotOrientation orientation = var_2944;
+         Paint paint = getItemPaint(series, item, selected);
+         Stroke stroke = getItemStroke(series, item, selected);
+         g2.setPaint(paint);
+@@ -603,10 +604,10 @@
+ 
+         if (getPlotLines()) {
+             if (item > 0) {
+-                if (plot.getOrientation() == PlotOrientation.VERTICAL) {
++                if (var_2944 == PlotOrientation.VERTICAL) {
+                     areaState.line.setLine(transX0, transY0, transX1, transY1);
+                 }
+-                else if (plot.getOrientation() == PlotOrientation.HORIZONTAL) {
++                else if (var_2944 == PlotOrientation.HORIZONTAL) {
+                     areaState.line.setLine(transY0, transX0, transY1, transX1);
+                 }
+                 g2.draw(areaState.line);

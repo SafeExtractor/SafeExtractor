@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java
+index 14199eb..67fef17 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java
+@@ -97,10 +97,11 @@
+         for (int i = 0; i < value.length; ++i) {
+ 
+             final T[] y = value[i].clone();
+-            if (i > 1) {
++            int var_376 = y.length;
++			if (i > 1) {
+                 factorial = factorial.multiply(i);
+                 final T inv = factorial.reciprocal();
+-                for (int j = 0; j < y.length; ++j) {
++                for (int j = 0; j < var_376; ++j) {
+                     y[j] = y[j].multiply(inv);
+                 }
+             }
+@@ -115,7 +116,7 @@
+                     throw new ZeroException(LocalizedFormats.DUPLICATED_ABSCISSA_DIVISION_BY_ZERO, x);
+                 }
+                 final T inv = x.subtract(abscissae.get(n - (j + 1))).reciprocal();
+-                for (int k = 0; k < y.length; ++k) {
++                for (int k = 0; k < var_376; ++k) {
+                     bottom1[k] = inv.multiply(bottom0[k].subtract(bottom1[k]));
+                 }
+                 bottom0 = bottom1;

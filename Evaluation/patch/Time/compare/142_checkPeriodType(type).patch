@@ -1,0 +1,36 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/142_checkPeriodType(type).patch b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/142_checkPeriodType(type).patch
+index ca3421b..f3d828e 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/142_checkPeriodType(type).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/142_checkPeriodType(type).patch
+@@ -1,26 +1,14 @@
+ diff --git a/src/main/java/org/joda/time/base/BasePeriod.java b/src/main/java/org/joda/time/base/BasePeriod.java
+-index 96b4738..e449b0c 100644
++index 96b4738..b9f0c63 100644
+ --- a/src/main/java/org/joda/time/base/BasePeriod.java
+ +++ b/src/main/java/org/joda/time/base/BasePeriod.java
+-@@ -156,9 +156,10 @@
+-         if (start == null || end == null) {
+-             throw new IllegalArgumentException("ReadablePartial objects must not be null");
++@@ -158,7 +158,8 @@
+          }
+--        if (start instanceof BaseLocal && end instanceof BaseLocal && start.getClass() == end.getClass()) {
+-+        PeriodType var_142 = checkPeriodType(type);
+-+		if (start instanceof BaseLocal && end instanceof BaseLocal && start.getClass() == end.getClass()) {
++         if (start instanceof BaseLocal && end instanceof BaseLocal && start.getClass() == end.getClass()) {
+              // for performance
+ -            type = checkPeriodType(type);
+-+            type = var_142;
+++            PeriodType var_142 = checkPeriodType(type);
+++			type = var_142;
+              long startMillis = ((BaseLocal) start).getLocalMillis();
+              long endMillis = ((BaseLocal) end).getLocalMillis();
+              Chronology chrono = start.getChronology();
+-@@ -177,7 +178,7 @@
+-             if (DateTimeUtils.isContiguous(start) == false) {
+-                 throw new IllegalArgumentException("ReadablePartial objects must be contiguous");
+-             }
+--            iType = checkPeriodType(type);
+-+            iType = var_142;
+-             Chronology chrono = DateTimeUtils.getChronology(start.getChronology()).withUTC();
+-             iValues = chrono.get(this, chrono.set(start, 0L), chrono.set(end, 0L));
+-         }

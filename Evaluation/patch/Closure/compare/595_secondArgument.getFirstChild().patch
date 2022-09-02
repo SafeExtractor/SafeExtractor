@@ -1,0 +1,39 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/595_secondArgument.getFirstChild().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/595_secondArgument.getFirstChild().patch
+index 1a31dab..eb4cbd8 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/595_secondArgument.getFirstChild().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/595_secondArgument.getFirstChild().patch
+@@ -1,28 +1,16 @@
+ diff --git a/src/com/google/javascript/jscomp/ObjectPropertyStringPostprocess.java b/src/com/google/javascript/jscomp/ObjectPropertyStringPostprocess.java
+-index 3189487..8c543ca 100644
++index 3189487..670c152 100644
+ --- a/src/com/google/javascript/jscomp/ObjectPropertyStringPostprocess.java
+ +++ b/src/com/google/javascript/jscomp/ObjectPropertyStringPostprocess.java
+-@@ -66,18 +66,19 @@
+-       Node firstArgument = objectName.getNext();
+-       Node secondArgument = firstArgument.getNext();
+-       int secondArgumentType = secondArgument.getType();
+--      if (secondArgumentType == Token.GETPROP) {
+-+      Node var_595 = secondArgument.getFirstChild();
+-+	if (secondArgumentType == Token.GETPROP) {
+-         // Rewrite "new goog.testing.ObjectPropertyString(window, foo.bar)"
+-         // as "new goog.testing.ObjectPropertyString(foo, 'bar')".
+--        Node newChild = secondArgument.getFirstChild();
+-+        Node newChild = var_595;
++@@ -72,8 +72,9 @@
++         Node newChild = secondArgument.getFirstChild();
+          secondArgument.removeChild(newChild);
+          n.replaceChild(firstArgument, newChild);
+-         n.replaceChild(secondArgument,
++-        n.replaceChild(secondArgument,
+ -            IR.string(secondArgument.getFirstChild().getString()));
+++        Node var_595 = secondArgument.getFirstChild();
+++		n.replaceChild(secondArgument,
+ +            IR.string(var_595.getString()));
+        } else if (secondArgumentType == Token.GETELEM) {
+          // Rewrite "new goog.testing.ObjectPropertyString(window, foo[bar])"
+          // as "new goog.testing.ObjectPropertyString(foo, bar)".
+--        Node newFirstArgument = secondArgument.getFirstChild();
+-+        Node newFirstArgument = var_595;
+-         secondArgument.removeChild(newFirstArgument);
+-         Node newSecondArgument = secondArgument.getLastChild();
+-         secondArgument.removeChild(newSecondArgument);

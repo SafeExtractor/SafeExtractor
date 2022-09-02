@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+index 6219d26..c333c47 100644
+--- a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
++++ b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+@@ -269,7 +269,8 @@
+    * property assignment with GETPROP nodes to allow for renaming.
+    */
+   private void maybeExpandJqueryEachCall(NodeTraversal t, Node n) {
+-    Node objectToLoopOver = n.getChildAtIndex(1);
++    Node var_1141 = n.getChildAtIndex(1);
++	Node objectToLoopOver = var_1141;
+ 
+     if (objectToLoopOver == null) {
+       return;
+@@ -282,7 +283,7 @@
+ 
+     // Run the peephole optimizations on the first argument to handle
+     // cases like ("a " + "b").split(" ")
+-    peepholePasses.process(null, n.getChildAtIndex(1));
++    peepholePasses.process(null, var_1141);
+ 
+     // Create a reference tree
+     Node nClone = n.cloneTree();

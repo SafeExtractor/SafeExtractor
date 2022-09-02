@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/SimpleDefinitionFinder.java b/src/com/google/javascript/jscomp/SimpleDefinitionFinder.java
+index fb9b5c2..4182f1a 100644
+--- a/src/com/google/javascript/jscomp/SimpleDefinitionFinder.java
++++ b/src/com/google/javascript/jscomp/SimpleDefinitionFinder.java
+@@ -164,7 +164,8 @@
+ 
+       Definition def =
+           DefinitionsRemover.getDefinition(node, inExterns);
+-      if (def != null) {
++      boolean var_545 = jsdocContainsDeclarations(node);
++	if (def != null) {
+         String name = getSimplifiedName(def.getLValue());
+         if (name != null) {
+           Node rValue = def.getRValue();
+@@ -193,7 +194,7 @@
+             if (qualifiedName != null) {
+               for (Definition prevDef : nameDefinitionMultimap.get(name)) {
+                 if (prevDef instanceof ExternalNameOnlyDefinition
+-                    && !jsdocContainsDeclarations(node)) {
++                    && !var_545) {
+                   String prevName = prevDef.getLValue().getQualifiedName();
+                   if (qualifiedName.equals(prevName)) {
+                     // Drop this stub, there is a real definition.
+@@ -231,7 +232,7 @@
+           //    externs definition if no other definition is provided.
+ 
+           boolean dropStub = false;
+-          if (!jsdocContainsDeclarations(node)) {
++          if (!var_545) {
+             String qualifiedName = node.getQualifiedName();
+             if (qualifiedName != null) {
+               for (Definition prevDef : nameDefinitionMultimap.get(name)) {

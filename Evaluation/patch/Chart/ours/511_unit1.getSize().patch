@@ -1,0 +1,19 @@
+diff --git a/source/org/jfree/chart/axis/DateAxis.java b/source/org/jfree/chart/axis/DateAxis.java
+index 059bc3a..deb327e 100644
+--- a/source/org/jfree/chart/axis/DateAxis.java
++++ b/source/org/jfree/chart/axis/DateAxis.java
+@@ -1370,11 +1370,12 @@
+         // start with the current tick unit...
+         TickUnitSource tickUnits = getStandardTickUnits();
+         TickUnit unit1 = tickUnits.getCeilingTickUnit(getTickUnit());
+-        double x1 = valueToJava2D(shift + unit1.getSize(), dataArea, edge);
++        double var_511 = unit1.getSize();
++		double x1 = valueToJava2D(shift + var_511, dataArea, edge);
+         double unit1Width = Math.abs(x1 - zero);
+ 
+         // then extrapolate...
+-        double guess = (tickLabelWidth / unit1Width) * unit1.getSize();
++        double guess = (tickLabelWidth / unit1Width) * var_511;
+         DateTickUnit unit2 = (DateTickUnit) tickUnits.getCeilingTickUnit(guess);
+         double x2 = valueToJava2D(shift + unit2.getSize(), dataArea, edge);
+         double unit2Width = Math.abs(x2 - zero);

@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/FastMath.java b/src/main/java/org/apache/commons/math3/util/FastMath.java
+index 919e39f..7d39007 100644
+--- a/src/main/java/org/apache/commons/math3/util/FastMath.java
++++ b/src/main/java/org/apache/commons/math3/util/FastMath.java
+@@ -2027,15 +2027,16 @@
+         int idx = exponent >> 6;
+         int shift = exponent - (idx << 6);
+ 
+-        if (shift != 0) {
++        long var_4324 = RECIP_2PI[idx+1];
++		if (shift != 0) {
+             shpi0 = (idx == 0) ? 0 : (RECIP_2PI[idx-1] << shift);
+             shpi0 |= RECIP_2PI[idx] >>> (64-shift);
+-            shpiA = (RECIP_2PI[idx] << shift) | (RECIP_2PI[idx+1] >>> (64-shift));
+-            shpiB = (RECIP_2PI[idx+1] << shift) | (RECIP_2PI[idx+2] >>> (64-shift));
++            shpiA = (RECIP_2PI[idx] << shift) | (var_4324 >>> (64-shift));
++            shpiB = (var_4324 << shift) | (RECIP_2PI[idx+2] >>> (64-shift));
+         } else {
+             shpi0 = (idx == 0) ? 0 : RECIP_2PI[idx-1];
+             shpiA = RECIP_2PI[idx];
+-            shpiB = RECIP_2PI[idx+1];
++            shpiB = var_4324;
+         }
+ 
+         /* Multiply input by shpiA */

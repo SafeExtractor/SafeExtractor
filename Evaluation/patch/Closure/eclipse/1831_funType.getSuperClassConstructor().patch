@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/TypedCodeGenerator.java b/src/com/google/javascript/jscomp/TypedCodeGenerator.java
+index 64c3d95..0d4474f 100644
+--- a/src/com/google/javascript/jscomp/TypedCodeGenerator.java
++++ b/src/com/google/javascript/jscomp/TypedCodeGenerator.java
+@@ -133,11 +133,12 @@
+     // Constructor/interface
+     if (funType.isConstructor() || funType.isInterface()) {
+ 
+-      FunctionType superConstructor = funType.getSuperClassConstructor();
++      FunctionType var_1831 = funType.getSuperClassConstructor();
++	FunctionType superConstructor = var_1831;
+ 
+       if (superConstructor != null) {
+         ObjectType superInstance =
+-          funType.getSuperClassConstructor().getInstanceType();
++          var_1831.getInstanceType();
+         if (!superInstance.toString().equals("Object")) {
+           sb.append(" * ");
+           appendAnnotation(sb, "extends", superInstance.toAnnotationString());

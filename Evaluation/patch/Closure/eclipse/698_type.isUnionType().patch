@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/AmbiguateProperties.java b/src/com/google/javascript/jscomp/AmbiguateProperties.java
+index 68c3996..5ab5226 100644
+--- a/src/com/google/javascript/jscomp/AmbiguateProperties.java
++++ b/src/com/google/javascript/jscomp/AmbiguateProperties.java
+@@ -281,9 +281,10 @@
+    * won't be ambiguated).
+    */
+   private void computeRelatedTypes(JSType type) {
+-    if (type.isUnionType()) {
++    boolean var_698 = type.isUnionType();
++	if (var_698) {
+       type = type.restrictByNotNullOrUndefined();
+-      if (type.isUnionType()) {
++      if (var_698) {
+         for (JSType alt : type.toMaybeUnionType().getAlternates()) {
+           computeRelatedTypes(alt);
+         }

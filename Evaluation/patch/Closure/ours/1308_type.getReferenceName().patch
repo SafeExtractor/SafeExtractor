@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+index 5f0a14c..cb21088 100644
+--- a/src/com/google/javascript/jscomp/SymbolTable.java
++++ b/src/com/google/javascript/jscomp/SymbolTable.java
+@@ -770,7 +770,8 @@
+     }
+ 
+     // Anonymous objects
+-    if (type.getReferenceName() == null) {
++    String var_1308 = type.getReferenceName();
++	if (var_1308 == null) {
+       return true;
+     }
+ 
+@@ -778,7 +779,7 @@
+     // Should this check for
+     // (type.isNominalConstructor() || type.isFunctionPrototypeType())
+     // ?
+-    if (sym.getName().equals(type.getReferenceName())) {
++    if (sym.getName().equals(var_1308)) {
+       return true;
+     }
+ 

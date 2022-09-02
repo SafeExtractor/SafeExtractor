@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/regex/RegExpTree.java b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+index c0c470a..ec7d6f5 100644
+--- a/src/com/google/javascript/jscomp/regex/RegExpTree.java
++++ b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+@@ -1083,10 +1083,11 @@
+         case 0: return Empty.INSTANCE;
+         case 1: return alternatives.get(0);
+         case 2:
+-          if (alternatives.get(1) instanceof Empty) {  // (?:a|) -> a?
++          RegExpTree var_2434 = alternatives.get(1);
++		if (var_2434 instanceof Empty) {  // (?:a|) -> a?
+             return new Repetition(alternatives.get(0), 0, 1, true);
+           } else if (alternatives.get(0) instanceof Empty) {
+-            return new Repetition(alternatives.get(1), 0, 1, false);
++            return new Repetition(var_2434, 0, 1, false);
+           }
+           break;
+       }

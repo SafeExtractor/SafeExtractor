@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/InferJSDocInfo.java b/src/com/google/javascript/jscomp/InferJSDocInfo.java
+index b2cb704..2416cc4 100644
+--- a/src/com/google/javascript/jscomp/InferJSDocInfo.java
++++ b/src/com/google/javascript/jscomp/InferJSDocInfo.java
+@@ -93,7 +93,8 @@
+   public void visit(NodeTraversal t, Node n, Node parent) {
+     JSDocInfo docInfo;
+ 
+-    switch (n.getType()) {
++    JSDocInfo var_1703 = n.getJSDocInfo();
++	switch (n.getType()) {
+       // Infer JSDocInfo on types of all type declarations on variables.
+       case Token.NAME:
+         if (parent == null) {
+@@ -117,7 +118,7 @@
+         // var x, /** ... */ y = function() { ... }
+         // 4) A VAR gramps.
+         // /** ... */ var x = function() { ... }
+-        docInfo = n.getJSDocInfo();
++        docInfo = var_1703;
+         if (docInfo == null &&
+             !(parent.isVar() &&
+                 !parent.hasOneChild())) {
+@@ -160,7 +161,7 @@
+         if (parent.isExprResult() ||
+             (parent.isAssign() &&
+              parent.getFirstChild() == n)) {
+-          docInfo = n.getJSDocInfo();
++          docInfo = var_1703;
+           if (docInfo == null) {
+             docInfo = parent.getJSDocInfo();
+           }

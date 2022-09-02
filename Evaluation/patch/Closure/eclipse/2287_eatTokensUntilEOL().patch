@@ -1,0 +1,252 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..dc8e0fb 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -212,7 +212,8 @@
+ 
+     // Parse the actual JsDoc.
+     retry: for (;;) {
+-      switch (token) {
++      JsDocToken var_2287 = eatTokensUntilEOL();
++	switch (token) {
+         case ANNOTATION:
+           if (state == State.SEARCHING_ANNOTATION) {
+             state = State.SEARCHING_NEWLINE;
+@@ -251,7 +252,7 @@
+                     parser.addParserWarning("msg.jsdoc.consistidgen",
+                       stream.getLineno(), stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case STRUCT:
+@@ -260,7 +261,7 @@
+                                           stream.getLineno(),
+                                           stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case DICT:
+@@ -269,7 +270,7 @@
+                                           stream.getLineno(),
+                                           stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case CONSTRUCTOR:
+@@ -282,7 +283,7 @@
+                           stream.getLineno(), stream.getCharno());
+                     }
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case DEPRECATED:
+@@ -314,14 +315,14 @@
+                           stream.getLineno(), stream.getCharno());
+                     }
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case DESC:
+                   if (jsdocBuilder.isDescriptionRecorded()) {
+                     parser.addParserWarning("msg.jsdoc.desc.extra",
+                         stream.getLineno(), stream.getCharno());
+-                    token = eatTokensUntilEOL();
++                    token = var_2287;
+                     continue retry;
+                   } else {
+                     ExtractionInfo descriptionInfo =
+@@ -397,7 +398,7 @@
+                     parser.addParserWarning("msg.jsdoc.export",
+                         stream.getLineno(), stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case EXPOSE:
+@@ -405,7 +406,7 @@
+                     parser.addParserWarning("msg.jsdoc.expose",
+                         stream.getLineno(), stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case EXTERNS:
+@@ -413,7 +414,7 @@
+                     parser.addParserWarning("msg.jsdoc.externs",
+                         stream.getLineno(), stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case JAVA_DISPATCH:
+@@ -421,7 +422,7 @@
+                     parser.addParserWarning("msg.jsdoc.javadispatch",
+                         stream.getLineno(), stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case EXTENDS:
+@@ -481,7 +482,7 @@
+                     parser.addParserWarning("msg.jsdoc.hidden",
+                         stream.getLineno(), stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case LENDS:
+@@ -508,7 +509,7 @@
+                     parser.addTypeWarning("msg.jsdoc.missing.rc",
+                         stream.getLineno(), stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case MEANING:
+@@ -527,7 +528,7 @@
+                     parser.addParserWarning("msg.jsdoc.noalias",
+                         stream.getLineno(), stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case NO_COMPILE:
+@@ -535,7 +536,7 @@
+                     parser.addParserWarning("msg.jsdoc.nocompile",
+                         stream.getLineno(), stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case NO_TYPE_CHECK:
+@@ -543,11 +544,11 @@
+                     parser.addParserWarning("msg.jsdoc.nocheck",
+                         stream.getLineno(), stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case NOT_IMPLEMENTED:
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case INHERIT_DOC:
+@@ -556,7 +557,7 @@
+                     parser.addTypeWarning("msg.jsdoc.override",
+                         stream.getLineno(), stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case THROWS:
+@@ -573,7 +574,7 @@
+                     if (type == null) {
+                       // parsing error reported during recursive descent
+                       // recovering parsing
+-                      token = eatTokensUntilEOL();
++                      token = var_2287;
+                       continue retry;
+                     }
+                   }
+@@ -615,7 +616,7 @@
+                     if (type == null) {
+                       // parsing error reported during recursive descent
+                       // recovering parsing
+-                      token = eatTokensUntilEOL();
++                      token = var_2287;
+                       continue retry;
+                     }
+                     skipEOLs();
+@@ -704,7 +705,7 @@
+                     parser.addParserWarning("msg.jsdoc.preservertry",
+                         stream.getLineno(), stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case NO_SHADOW:
+@@ -712,7 +713,7 @@
+                     parser.addParserWarning("msg.jsdoc.noshadow",
+                         stream.getLineno(), stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case NO_SIDE_EFFECTS:
+@@ -720,7 +721,7 @@
+                     parser.addParserWarning("msg.jsdoc.nosideeffects",
+                         stream.getLineno(), stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case MODIFIES:
+@@ -732,7 +733,7 @@
+                     parser.addTypeWarning("msg.jsdoc.implicitcast",
+                         stream.getLineno(), stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case SEE:
+@@ -758,7 +759,7 @@
+                     parser.addParserWarning("msg.jsdoc.stableidgen",
+                       stream.getLineno(), stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case SUPPRESS:
+@@ -788,7 +789,7 @@
+                     parser.addParserWarning("msg.jsdoc.idgen",
+                       stream.getLineno(), stream.getCharno());
+                   }
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+ 
+                 case VERSION:
+@@ -946,7 +947,7 @@
+                     }
+                   }
+ 
+-                  token = eatTokensUntilEOL();
++                  token = var_2287;
+                   continue retry;
+               }
+             }
+@@ -981,7 +982,7 @@
+             continue retry;
+           } else {
+             state = State.SEARCHING_NEWLINE;
+-            token = eatTokensUntilEOL();
++            token = var_2287;
+             continue retry;
+           }
+       }

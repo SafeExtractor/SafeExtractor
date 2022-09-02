@@ -1,0 +1,53 @@
+diff --git a/src/com/google/javascript/jscomp/Tracer.java b/src/com/google/javascript/jscomp/Tracer.java
+index 5298e98..b38d816 100644
+--- a/src/com/google/javascript/jscomp/Tracer.java
++++ b/src/com/google/javascript/jscomp/Tracer.java
+@@ -803,24 +803,25 @@
+         events.add(new Event(false, t));
+       }
+ 
+-      if (t.type != null) {
+-        Stat stat = stats.get(t.type);
++      String var_1941 = t.type;
++	if (var_1941 != null) {
++        Stat stat = stats.get(var_1941);
+         if (stat == null) {
+           stat = new Stat();
+           if (!extraTracingStatistics.isEmpty()) {
+             stat.extraInfo = new int[extraTracingStatistics.size()];
+           }
+-          stats.put(t.type, stat);
++          stats.put(var_1941, stat);
+         }
+ 
+         stat.count++;
+         if (typeToCountMap != null) {
+-          typeToCountMap.incrementBy(t.type, 1);
++          typeToCountMap.incrementBy(var_1941, 1);
+         }
+ 
+         stat.clockTime += elapsed;
+         if (typeToTimeMap != null) {
+-          typeToTimeMap.incrementBy(t.type, elapsed);
++          typeToTimeMap.incrementBy(var_1941, elapsed);
+         }
+ 
+         if (stat.extraInfo != null && t.extraTracingValues != null) {
+@@ -831,7 +832,7 @@
+             AtomicTracerStatMap map =
+                 extraTracingStatistics.get(i).getTracingStat();
+             if (map != null) {
+-              map.incrementBy(t.type, t.extraTracingValues[i]);
++              map.incrementBy(var_1941, t.extraTracingValues[i]);
+             }
+           }
+         }
+@@ -839,7 +840,7 @@
+         if (elapsed < silenceThreshold) {
+           stat.silent++;
+           if (typeToSilentMap != null) {
+-            typeToSilentMap.incrementBy(t.type, 1);
++            typeToSilentMap.incrementBy(var_1941, 1);
+           }
+         }
+       }

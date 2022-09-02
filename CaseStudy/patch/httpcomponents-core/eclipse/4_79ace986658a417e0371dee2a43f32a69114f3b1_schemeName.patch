@@ -1,0 +1,17 @@
+diff --git a/httpcore5/src/main/java/org/apache/hc/core5/http/impl/nio/pool/BasicNIOConnPool.java b/httpcore5/src/main/java/org/apache/hc/core5/http/impl/nio/pool/BasicNIOConnPool.java
+index 708d1c1..f63490c 100644
+--- a/httpcore5/src/main/java/org/apache/hc/core5/http/impl/nio/pool/BasicNIOConnPool.java
++++ b/httpcore5/src/main/java/org/apache/hc/core5/http/impl/nio/pool/BasicNIOConnPool.java
+@@ -75,9 +75,10 @@
+             final String hostname = host.getHostName();
+             int port = host.getPort();
+             if (port == -1) {
+-                if (host.getSchemeName().equalsIgnoreCase("http")) {
++                String schemeName = host.getSchemeName();
++				if (schemeName.equalsIgnoreCase("http")) {
+                     port = 80;
+-                } else if (host.getSchemeName().equalsIgnoreCase("https")) {
++                } else if (schemeName.equalsIgnoreCase("https")) {
+                     port = 443;
+                 }
+             }

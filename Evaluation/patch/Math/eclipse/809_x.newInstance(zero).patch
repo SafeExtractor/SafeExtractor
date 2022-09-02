@@ -1,0 +1,62 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..e8d70e9 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -539,11 +539,12 @@
+         }
+ 
+         // X == 0
+-        if (x.equals(zero)) {
++        Dfp var_809 = x.newInstance(zero);
++		if (x.equals(zero)) {
+             if (Dfp.copysign(one, x).greaterThan(zero)) {
+                 // X == +0
+                 if (y.greaterThan(zero)) {
+-                    return x.newInstance(zero);
++                    return var_809;
+                 } else {
+                     return x.newInstance(x.newInstance((byte)1, Dfp.INFINITE));
+                 }
+@@ -559,7 +560,7 @@
+                 } else {
+                     // Y is not odd integer
+                     if (y.greaterThan(zero)) {
+-                        return x.newInstance(zero);
++                        return var_809;
+                     } else {
+                         return x.newInstance(x.newInstance((byte)1, Dfp.INFINITE));
+                     }
+@@ -577,13 +578,13 @@
+             if (y.greaterThan(zero)) {
+                 return y;
+             } else {
+-                return x.newInstance(zero);
++                return var_809;
+             }
+         }
+ 
+         if (x.lessThan(one) && y.classify() == Dfp.INFINITE) {
+             if (y.greaterThan(zero)) {
+-                return x.newInstance(zero);
++                return var_809;
+             } else {
+                 return x.newInstance(Dfp.copysign(y, one));
+             }
+@@ -610,7 +611,7 @@
+                     if (y.greaterThan(zero)) {
+                         return x.newInstance(x.newInstance((byte)1, Dfp.INFINITE));
+                     } else {
+-                        return x.newInstance(zero);
++                        return var_809;
+                     }
+                 }
+             } else {
+@@ -618,7 +619,7 @@
+                 if (y.greaterThan(zero)) {
+                     return x;
+                 } else {
+-                    return x.newInstance(zero);
++                    return var_809;
+                 }
+             }
+         }

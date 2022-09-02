@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java
+index 1bb4776..a1d35f0 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java
+@@ -146,8 +146,9 @@
+             final int ip1 = i + 1;
+             for (int j = 0; j < lastJ; j++) {
+                 final int jp1 = j + 1;
+-                final double[] beta = new double[] {
+-                    f[i][j], f[ip1][j], f[i][jp1], f[ip1][jp1],
++                double[] var_341 = f[ip1];
++				final double[] beta = new double[] {
++                    f[i][j], var_341[j], f[i][jp1], var_341[jp1],
+                     dFdX[i][j], dFdX[ip1][j], dFdX[i][jp1], dFdX[ip1][jp1],
+                     dFdY[i][j], dFdY[ip1][j], dFdY[i][jp1], dFdY[ip1][jp1],
+                     d2FdXdY[i][j], d2FdXdY[ip1][j], d2FdXdY[i][jp1], d2FdXdY[ip1][jp1]

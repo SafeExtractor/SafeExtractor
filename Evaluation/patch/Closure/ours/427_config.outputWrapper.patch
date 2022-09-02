@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..d26967a 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -904,13 +904,14 @@
+   void outputSingleBinary() throws IOException {
+     Function<String, String> escaper = null;
+     String marker = OUTPUT_MARKER;
+-    if (config.outputWrapper.contains(OUTPUT_MARKER_JS_STRING)) {
++    String var_427 = config.outputWrapper;
++	if (var_427.contains(OUTPUT_MARKER_JS_STRING)) {
+       marker = OUTPUT_MARKER_JS_STRING;
+       escaper = getJavascriptEscaper();
+     }
+ 
+     writeOutput(
+-        jsOutput, compiler, compiler.toSource(), config.outputWrapper,
++        jsOutput, compiler, compiler.toSource(), var_427,
+         marker, escaper);
+   }
+ 

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java b/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java
+index 07f397b..8a2e653 100644
+--- a/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java
++++ b/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java
+@@ -373,7 +373,8 @@
+             }
+         }
+ 
+-        double[][] matrix = new double[getHeight() - 1][getWidth() - columnsToDrop.size()];
++        int var_2942 = columnsToDrop.size();
++		double[][] matrix = new double[getHeight() - 1][getWidth() - var_2942];
+         for (int i = 1; i < getHeight(); i++) {
+             int col = 0;
+             for (int j = 0; j < getWidth(); j++) {
+@@ -384,7 +385,7 @@
+         }
+ 
+         // remove the columns in reverse order so the indices are correct
+-        Integer[] drop = columnsToDrop.toArray(new Integer[columnsToDrop.size()]);
++        Integer[] drop = columnsToDrop.toArray(new Integer[var_2942]);
+         for (int i = drop.length - 1; i >= 0; i--) {
+             columnLabels.remove((int) drop[i]);
+         }

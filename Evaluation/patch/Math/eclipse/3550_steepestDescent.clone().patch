@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/general/NonLinearConjugateGradientOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/general/NonLinearConjugateGradientOptimizer.java
+index dc7c8b2..d388fc4 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/general/NonLinearConjugateGradientOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/general/NonLinearConjugateGradientOptimizer.java
+@@ -161,7 +161,8 @@
+ 
+         // Initial search direction.
+         double[] steepestDescent = preconditioner.precondition(point, r);
+-        double[] searchDirection = steepestDescent.clone();
++        double[] var_3550 = steepestDescent.clone();
++		double[] searchDirection = var_3550;
+ 
+         double delta = 0;
+         for (int i = 0; i < n; ++i) {
+@@ -227,7 +228,7 @@
+             if (iter % n == 0 ||
+                 beta < 0) {
+                 // Break conjugation: reset search direction.
+-                searchDirection = steepestDescent.clone();
++                searchDirection = var_3550;
+             } else {
+                 // Compute new conjugate search direction.
+                 for (int i = 0; i < n; ++i) {

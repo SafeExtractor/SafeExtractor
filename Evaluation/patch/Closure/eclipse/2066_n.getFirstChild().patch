@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..8524f22 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -1300,18 +1300,19 @@
+    * all possible result Nodes of the expression.
+    */
+   static boolean anyResultsMatch(Node n, Predicate<Node> p) {
+-    switch (n.getType()) {
++    Node var_2066 = n.getFirstChild();
++	switch (n.getType()) {
+       case Token.CAST:
+-        return anyResultsMatch(n.getFirstChild(), p);
++        return anyResultsMatch(var_2066, p);
+       case Token.ASSIGN:
+       case Token.COMMA:
+         return anyResultsMatch(n.getLastChild(), p);
+       case Token.AND:
+       case Token.OR:
+-        return anyResultsMatch(n.getFirstChild(), p)
++        return anyResultsMatch(var_2066, p)
+             || anyResultsMatch(n.getLastChild(), p);
+       case Token.HOOK:
+-        return anyResultsMatch(n.getFirstChild().getNext(), p)
++        return anyResultsMatch(var_2066.getNext(), p)
+             || anyResultsMatch(n.getLastChild(), p);
+       default:
+         return p.apply(n);

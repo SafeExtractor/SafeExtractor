@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java b/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
+index 3e7fff7..f37c214 100644
+--- a/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
++++ b/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
+@@ -681,10 +681,11 @@
+         dest.n = source.n;
+ 
+         // Keep commons-math supplied statistics with embedded moments in synch
+-        if (source.getVarianceImpl() instanceof Variance) {
++        StorelessUnivariateStatistic var_3746 = source.varianceImpl;
++		if (source.getVarianceImpl() instanceof Variance) {
+             dest.varianceImpl = new Variance(dest.secondMoment);
+         } else {
+-            dest.varianceImpl = source.varianceImpl.copy();
++            dest.varianceImpl = var_3746.copy();
+         }
+         if (source.meanImpl instanceof Mean) {
+             dest.meanImpl = new Mean(dest.secondMoment);
+@@ -724,7 +725,7 @@
+         } else {
+             Sum.copy(source.sum, dest.sum);
+         }
+-        if (source.variance == source.varianceImpl) {
++        if (source.variance == var_3746) {
+             dest.variance = (Variance) dest.varianceImpl;
+         } else {
+             Variance.copy(source.variance, dest.variance);

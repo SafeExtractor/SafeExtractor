@@ -1,0 +1,67 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/504_Long.toString(value).patch b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/504_Long.toString(value).patch
+index 6f01811..a3d72e2 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/504_Long.toString(value).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/504_Long.toString(value).patch
+@@ -1,55 +1,14 @@
+ diff --git a/src/main/java/org/joda/time/format/FormatUtils.java b/src/main/java/org/joda/time/format/FormatUtils.java
+-index dba1431..ea51fe6 100644
++index dba1431..e91c769 100644
+ --- a/src/main/java/org/joda/time/format/FormatUtils.java
+ +++ b/src/main/java/org/joda/time/format/FormatUtils.java
+-@@ -201,27 +201,30 @@
+-         int intValue = (int)value;
++@@ -202,7 +202,8 @@
+          if (intValue == value) {
+              writePaddedInteger(out, intValue, size);
+--        } else if (size <= 19) {
++         } else if (size <= 19) {
+ -            out.write(Long.toString(value));
+++            String var_504 = Long.toString(value);
+++			out.write(var_504);
+          } else {
+--            if (value < 0) {
+--                out.write('-');
+--                if (value != Long.MIN_VALUE) {
+--                    value = -value;
+--                } else {
+--                    for (; size > 19; size--) {
+--                        out.write('0');
+--                    }
+--                    out.write("9223372036854775808");
+--                    return;
+--                }
+--            }
+--            int digits = (int)(Math.log(value) / LOG_10) + 1;
+--            for (; size > digits; size--) {
+--                out.write('0');
+--            }
+--            out.write(Long.toString(value));
+--        }
+-+			String var_504 = Long.toString(value);
+-+			if (size <= 19) {
+-+			    out.write(var_504);
+-+			} else {
+-+			    if (value < 0) {
+-+			        out.write('-');
+-+			        if (value != Long.MIN_VALUE) {
+-+			            value = -value;
+-+			        } else {
+-+			            for (; size > 19; size--) {
+-+			                out.write('0');
+-+			            }
+-+			            out.write("9223372036854775808");
+-+			            return;
+-+			        }
+-+			    }
+-+			    int digits = (int)(Math.log(value) / LOG_10) + 1;
+-+			    for (; size > digits; size--) {
+-+			        out.write('0');
+-+			    }
+-+			    out.write(var_504);
+-+			}
+-+		}
+-     }
+- 
+-     /**
++             if (value < 0) {
++                 out.write('-');

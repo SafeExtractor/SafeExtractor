@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/joda/time/MutableInterval.java b/src/main/java/org/joda/time/MutableInterval.java
+index 38715c0..1a8c196 100644
+--- a/src/main/java/org/joda/time/MutableInterval.java
++++ b/src/main/java/org/joda/time/MutableInterval.java
+@@ -365,10 +365,11 @@
+      * @throws ArithmeticException if the end instant exceeds the capacity of a long
+      */
+     public void setPeriodAfterStart(ReadablePeriod period) {
+-        if (period == null) {
+-            setEndMillis(getStartMillis());
++        long var_119 = getStartMillis();
++		if (period == null) {
++            setEndMillis(var_119);
+         } else {
+-            setEndMillis(getChronology().add(period, getStartMillis(), 1));
++            setEndMillis(getChronology().add(period, var_119, 1));
+         }
+     }
+ 

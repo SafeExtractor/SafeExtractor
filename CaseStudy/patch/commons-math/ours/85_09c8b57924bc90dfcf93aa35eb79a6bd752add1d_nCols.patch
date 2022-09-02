@@ -1,0 +1,23 @@
+diff --git a/src/java/org/apache/commons/math/RealMatrixImpl.java b/src/java/org/apache/commons/math/RealMatrixImpl.java
+index 62af788..b53324b 100644
+--- a/src/java/org/apache/commons/math/RealMatrixImpl.java
++++ b/src/java/org/apache/commons/math/RealMatrixImpl.java
+@@ -187,7 +187,8 @@
+      *             if columnDimension(this) != rowDimension(m)
+      */
+     public RealMatrix multiply(RealMatrix m) {
+-      if (this.getColumnDimension() != m.getRowDimension()) {
++      int nCols = this.getColumnDimension();
++	if (nCols != m.getRowDimension()) {
+          throw new IllegalArgumentException
+             ("Matrices are not multiplication compatible.");
+       }
+@@ -198,7 +199,7 @@
+       for (int row = 0; row < this.getRowDimension(); row++) {
+          for (int col = 0; col < m.getColumnDimension(); col++) {
+             sum = 0;
+-            for (int i = 0; i < this.getColumnDimension(); i++) {
++            for (int i = 0; i < nCols; i++) {
+                 sum += data[row][i] * mData[i][col];
+             }
+             outData[row][col] = sum;

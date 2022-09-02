@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..c419a4d 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -949,7 +949,8 @@
+     boolean nullRight = right.isNull();
+     int lhType = getNormalizedNodeType(left);
+     int rhType = getNormalizedNodeType(right);
+-    switch (lhType) {
++    int var_148 = right.getType();
++	switch (lhType) {
+       case Token.VOID:
+         if (!leftLiteral) {
+           return TernaryValue.UNKNOWN;
+@@ -1018,7 +1019,7 @@
+         if (nullRight && isEqualityOp(op)) {
+           return TernaryValue.forBoolean(compareToNull(left, op));
+         }
+-        if (Token.STRING != right.getType()) {
++        if (Token.STRING != var_148) {
+           return TernaryValue.UNKNOWN;  // Only eval if they are the same type
+         }
+ 
+@@ -1041,7 +1042,7 @@
+         if (nullRight && isEqualityOp(op)) {
+           return TernaryValue.forBoolean(compareToNull(left, op));
+         }
+-        if (Token.NUMBER != right.getType()) {
++        if (Token.NUMBER != var_148) {
+           return TernaryValue.UNKNOWN;  // Only eval if they are the same type
+         }
+         return compareAsNumbers(op, left, right);
+@@ -1061,7 +1062,7 @@
+           }
+         }
+ 
+-        if (Token.NAME != right.getType()) {
++        if (Token.NAME != var_148) {
+           return TernaryValue.UNKNOWN;  // Only eval if they are the same type
+         }
+         String ln = left.getString();

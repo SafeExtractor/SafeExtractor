@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/RenameVars.java b/src/com/google/javascript/jscomp/RenameVars.java
+index 27c69c3..abe8330 100644
+--- a/src/com/google/javascript/jscomp/RenameVars.java
++++ b/src/com/google/javascript/jscomp/RenameVars.java
+@@ -385,11 +385,12 @@
+   private String getNewGlobalName(Node n) {
+     String oldName = n.getString();
+     Assignment a = assignments.get(oldName);
+-    if (a.newName != null && !a.newName.equals(oldName)) {
++    String var_630 = a.newName;
++	if (var_630 != null && !var_630.equals(oldName)) {
+       if (pseudoNameMap != null) {
+         return pseudoNameMap.get(n);
+       }
+-      return a.newName;
++      return var_630;
+     } else {
+       return null;
+     }

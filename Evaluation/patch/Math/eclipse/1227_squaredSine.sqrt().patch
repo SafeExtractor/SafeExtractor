@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..dfbc92f 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -429,14 +429,15 @@
+      */
+     public FieldVector3D<T> getAxis() {
+         final T squaredSine = q1.multiply(q1).add(q2.multiply(q2)).add(q3.multiply(q3));
+-        if (squaredSine.getReal() == 0) {
++        T var_1227 = squaredSine.sqrt();
++		if (squaredSine.getReal() == 0) {
+             final Field<T> field = squaredSine.getField();
+             return new FieldVector3D<T>(field.getOne(), field.getZero(), field.getZero());
+         } else if (q0.getReal() < 0) {
+-            T inverse = squaredSine.sqrt().reciprocal();
++            T inverse = var_1227.reciprocal();
+             return new FieldVector3D<T>(q1.multiply(inverse), q2.multiply(inverse), q3.multiply(inverse));
+         }
+-        final T inverse = squaredSine.sqrt().reciprocal().negate();
++        final T inverse = var_1227.reciprocal().negate();
+         return new FieldVector3D<T>(q1.multiply(inverse), q2.multiply(inverse), q3.multiply(inverse));
+     }
+ 

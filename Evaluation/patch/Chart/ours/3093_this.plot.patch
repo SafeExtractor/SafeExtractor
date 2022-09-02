@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..3788275 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -982,12 +982,13 @@
+      * @return The legend item collection (never <code>null</code>).
+      */
+     public LegendItemCollection getLegendItems() {
+-        if (this.plot == null) {
++        XYPlot var_3093 = this.plot;
++		if (var_3093 == null) {
+             return new LegendItemCollection();
+         }
+         LegendItemCollection result = new LegendItemCollection();
+-        int index = this.plot.getIndexOf(this);
+-        XYDataset dataset = this.plot.getDataset(index);
++        int index = var_3093.getIndexOf(this);
++        XYDataset dataset = var_3093.getDataset(index);
+         if (dataset != null) {
+             int seriesCount = dataset.getSeriesCount();
+             for (int i = 0; i < seriesCount; i++) {

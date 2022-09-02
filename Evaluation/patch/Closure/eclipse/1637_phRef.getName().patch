@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/ReplaceMessages.java b/src/com/google/javascript/jscomp/ReplaceMessages.java
+index bd435ec..f6770c0 100644
+--- a/src/com/google/javascript/jscomp/ReplaceMessages.java
++++ b/src/com/google/javascript/jscomp/ReplaceMessages.java
+@@ -324,9 +324,10 @@
+             "for a translated message with placeholders.", objLitNode);
+       }
+ 
+-      for (Node key = objLitNode.getFirstChild(); key != null;
++      String var_1637 = phRef.getName();
++	for (Node key = objLitNode.getFirstChild(); key != null;
+            key = key.getNext()) {
+-        if (key.getString().equals(phRef.getName())) {
++        if (key.getString().equals(var_1637)) {
+           Node valueNode = key.getFirstChild();
+           partNode = valueNode.cloneTree();
+         }
+@@ -334,7 +335,7 @@
+ 
+       if (partNode == null) {
+         throw new MalformedException(
+-            "Unrecognized message placeholder referenced: " + phRef.getName(),
++            "Unrecognized message placeholder referenced: " + var_1637,
+             objLitNode);
+       }
+     } else {

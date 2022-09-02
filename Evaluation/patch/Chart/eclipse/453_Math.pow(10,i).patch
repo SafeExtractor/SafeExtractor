@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/axis/LogarithmicAxis.java b/source/org/jfree/chart/axis/LogarithmicAxis.java
+index 1f440bd..b481d74 100644
+--- a/source/org/jfree/chart/axis/LogarithmicAxis.java
++++ b/source/org/jfree/chart/axis/LogarithmicAxis.java
+@@ -767,9 +767,10 @@
+             //for each power of 10 value; create ten ticks
+             for (int j = 0; j < 10; ++j) {
+                 //for each tick to be displayed
+-                if (this.smallLogFlag) {
++                double var_453 = Math.pow(10, i);
++				if (this.smallLogFlag) {
+                     //small log values in use; create numeric value for tick
+-                    currentTickValue = Math.pow(10, i) + (Math.pow(10, i) * j);
++                    currentTickValue = var_453 + (var_453 * j);
+                     if (this.expTickLabelsFlag
+                         || (i < 0 && currentTickValue > 0.0
+                         && currentTickValue < 1.0)) {
+@@ -804,7 +805,7 @@
+                         --j;              //decrement to do 1.0 tick now
+                     }     //calculate power-of-ten value for tick:
+                     currentTickValue = (i >= 0)
+-                        ? Math.pow(10, i) + (Math.pow(10, i) * j)
++                        ? var_453 + (var_453 * j)
+                         : -(Math.pow(10, -i) - (Math.pow(10, -i - 1) * j));
+                     if (!zeroTickFlag) {  // did not do zero tick last iteration
+                         if (Math.abs(currentTickValue - 1.0) < 0.0001

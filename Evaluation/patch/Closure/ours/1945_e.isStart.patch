@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/Tracer.java b/src/com/google/javascript/jscomp/Tracer.java
+index 5298e98..50ead0f 100644
+--- a/src/com/google/javascript/jscomp/Tracer.java
++++ b/src/com/google/javascript/jscomp/Tracer.java
+@@ -869,7 +869,8 @@
+       long etime = -1;
+       LinkedList<String> indent = prettyPrint ? new LinkedList<String>() : null;
+       for (Event e : events) {
+-        if (prettyPrint && !e.isStart && !indent.isEmpty()) {
++        boolean var_1945 = e.isStart;
++		if (prettyPrint && !var_1945 && !indent.isEmpty()) {
+           indent.pop();
+         }
+         sb.append(" ");
+@@ -880,7 +881,7 @@
+         }
+         etime = e.eventTime();
+         sb.append('\n');
+-        if (prettyPrint && e.isStart) {
++        if (prettyPrint && var_1945) {
+           indent.push("|  ");
+         }
+       }

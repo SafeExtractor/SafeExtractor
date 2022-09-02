@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/data/time/TimeSeries.java b/source/org/jfree/data/time/TimeSeries.java
+index 72bb2ea..3bebd5b 100644
+--- a/source/org/jfree/data/time/TimeSeries.java
++++ b/source/org/jfree/data/time/TimeSeries.java
+@@ -594,13 +594,14 @@
+ 
+         // make the change (if it's not a duplicate time period)...
+         boolean added = false;
+-        int count = getItemCount();
++        int var_4155 = getItemCount();
++		int count = var_4155;
+         if (count == 0) {
+             this.data.add(item);
+             added = true;
+         }
+         else {
+-            RegularTimePeriod last = getTimePeriod(getItemCount() - 1);
++            RegularTimePeriod last = getTimePeriod(var_4155 - 1);
+             if (item.getPeriod().compareTo(last) > 0) {
+                 this.data.add(item);
+                 added = true;
+@@ -626,7 +627,7 @@
+         if (added) {
+             updateBoundsForAddedItem(item);
+             // check if this addition will exceed the maximum item count...
+-            if (getItemCount() > this.maximumItemCount) {
++            if (var_4155 > this.maximumItemCount) {
+                 TimeSeriesDataItem d = (TimeSeriesDataItem) this.data.remove(0);
+                 updateBoundsForRemovedItem(d);
+             }

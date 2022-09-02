@@ -1,0 +1,37 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2878_anchorPoint.getY().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/2878_anchorPoint.getY().patch
+index 7fce7ff..89f5497 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2878_anchorPoint.getY().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/2878_anchorPoint.getY().patch
+@@ -1,26 +1,16 @@
+ diff --git a/source/org/jfree/chart/renderer/xy/XYBarRenderer.java b/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
+-index 679cc20..ff6b4a4 100644
++index 679cc20..a3d7132 100644
+ --- a/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
+ +++ b/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
+-@@ -1042,9 +1042,10 @@
+-         Point2D anchorPoint = calculateLabelAnchorPoint(
++@@ -1043,8 +1043,9 @@
+                  position.getItemLabelAnchor(), bar, plot.getOrientation());
+  
+--        if (isInternalAnchor(position.getItemLabelAnchor())) {
+-+        double var_2878 = anchorPoint.getY();
+-+		if (isInternalAnchor(position.getItemLabelAnchor())) {
+-             Shape bounds = TextUtilities.calculateRotatedStringBounds(label,
++         if (isInternalAnchor(position.getItemLabelAnchor())) {
++-            Shape bounds = TextUtilities.calculateRotatedStringBounds(label,
+ -                    g2, (float) anchorPoint.getX(), (float) anchorPoint.getY(),
+++            double var_2878 = anchorPoint.getY();
+++			Shape bounds = TextUtilities.calculateRotatedStringBounds(label,
+ +                    g2, (float) anchorPoint.getX(), (float) var_2878,
+                      position.getTextAnchor(), position.getAngle(),
+                      position.getRotationAnchor());
+  
+-@@ -1068,7 +1069,7 @@
+- 
+-         if (position != null) {
+-             TextUtilities.drawRotatedString(label, g2,
+--                    (float) anchorPoint.getX(), (float) anchorPoint.getY(),
+-+                    (float) anchorPoint.getX(), (float) var_2878,
+-                     position.getTextAnchor(), position.getAngle(),
+-                     position.getRotationAnchor());
+-         }

@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..4725779 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -1426,8 +1426,9 @@
+   private FoldArrayAction isSafeToFoldArrayConstructor(Node arg) {
+     FoldArrayAction action = FoldArrayAction.NOT_SAFE_TO_FOLD;
+ 
+-    if (arg == null) {
+-      action = FoldArrayAction.SAFE_TO_FOLD_WITHOUT_ARGS;
++    FoldArrayAction var_1468 = FoldArrayAction.SAFE_TO_FOLD_WITHOUT_ARGS;
++	if (arg == null) {
++      action = var_1468;
+     } else if (arg.getNext() != null) {
+       action = FoldArrayAction.SAFE_TO_FOLD_WITH_ARGS;
+     } else {
+@@ -1439,7 +1440,7 @@
+         case Token.NUMBER:
+           // "Array(0)" --> "[]"
+           if (arg.getDouble() == 0) {
+-            action = FoldArrayAction.SAFE_TO_FOLD_WITHOUT_ARGS;
++            action = var_1468;
+           }
+           break;
+         case Token.ARRAYLIT:

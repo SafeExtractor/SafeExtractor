@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/axis/CategoryAxis.java b/source/org/jfree/chart/axis/CategoryAxis.java
+index 9c5f5bc..c26945c 100644
+--- a/source/org/jfree/chart/axis/CategoryAxis.java
++++ b/source/org/jfree/chart/axis/CategoryAxis.java
+@@ -1028,14 +1028,15 @@
+                 Point2D anchorPoint = RectangleAnchor.coordinates(area,
+                         position.getCategoryAnchor());
+                 TextBlock block = tick.getLabel();
+-                block.draw(g2, (float) anchorPoint.getX(),
++                double var_859 = position.getAngle();
++				block.draw(g2, (float) anchorPoint.getX(),
+                         (float) anchorPoint.getY(), position.getLabelAnchor(),
+                         (float) anchorPoint.getX(), (float) anchorPoint.getY(),
+-                        position.getAngle());
++                        var_859);
+                 Shape bounds = block.calculateBounds(g2,
+                         (float) anchorPoint.getX(), (float) anchorPoint.getY(),
+                         position.getLabelAnchor(), (float) anchorPoint.getX(),
+-                        (float) anchorPoint.getY(), position.getAngle());
++                        (float) anchorPoint.getY(), var_859);
+                 if (plotState != null && plotState.getOwner() != null) {
+                     EntityCollection entities
+                             = plotState.getOwner().getEntityCollection();

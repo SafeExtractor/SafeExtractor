@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/joda/time/tz/DefaultNameProvider.java b/src/main/java/org/joda/time/tz/DefaultNameProvider.java
+index 89e6739..6c98abf 100644
+--- a/src/main/java/org/joda/time/tz/DefaultNameProvider.java
++++ b/src/main/java/org/joda/time/tz/DefaultNameProvider.java
+@@ -55,13 +55,14 @@
+         }
+ 
+         Map<String, Map<String, Object>> byIdCache = iByLocaleCache.get(locale);
+-        if (byIdCache == null) {
+-            iByLocaleCache.put(locale, byIdCache = createCache());
++        HashMap var_603 = createCache();
++		if (byIdCache == null) {
++            iByLocaleCache.put(locale, byIdCache = var_603);
+         }
+ 
+         Map<String, Object> byNameKeyCache = byIdCache.get(id);
+         if (byNameKeyCache == null) {
+-            byIdCache.put(id, byNameKeyCache = createCache());
++            byIdCache.put(id, byNameKeyCache = var_603);
+             
+             String[][] zoneStringsEn = DateTimeUtils.getDateFormatSymbols(Locale.ENGLISH).getZoneStrings();
+             String[] setEn = null;

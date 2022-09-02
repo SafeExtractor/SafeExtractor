@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+index c837709..da9b919 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+@@ -491,12 +491,13 @@
+                 lastResult = current;
+             }
+             // Adjust step size in case of equal function values (flat fitness)
+-            if (bestValue == fitness[arindex[(int)(0.1+lambda/4.)]]) {
+-                sigma = sigma * Math.exp(0.2 + cs / damps);
++            double var_3002 = Math.exp(0.2 + cs / damps);
++			if (bestValue == fitness[arindex[(int)(0.1+lambda/4.)]]) {
++                sigma = sigma * var_3002;
+             }
+             if (iterations > 2 && Math.max(historyWorst, bestFitness) -
+                 Math.min(historyBest, bestFitness) == 0) {
+-                sigma = sigma * Math.exp(0.2 + cs / damps);
++                sigma = sigma * var_3002;
+             }
+             // store best in history
+             push(fitnessHistory,bestFitness);

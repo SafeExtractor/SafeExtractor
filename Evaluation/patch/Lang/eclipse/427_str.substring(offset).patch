@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/lang3/text/WordUtils.java b/src/main/java/org/apache/commons/lang3/text/WordUtils.java
+index 7f29b59..ccea5c7 100644
+--- a/src/main/java/org/apache/commons/lang3/text/WordUtils.java
++++ b/src/main/java/org/apache/commons/lang3/text/WordUtils.java
+@@ -99,7 +99,8 @@
+         int offset = 0;
+         final StringBuilder wrappedLine = new StringBuilder(inputLineLength + 32);
+         
+-        while (inputLineLength - offset > wrapLength) {
++        String var_427 = str.substring(offset);
++		while (inputLineLength - offset > wrapLength) {
+             if (str.charAt(offset) == ' ') {
+                 offset++;
+                 continue;
+@@ -127,7 +128,7 @@
+                         wrappedLine.append(newLineStr);
+                         offset = spaceToWrapAt + 1;
+                     } else {
+-                        wrappedLine.append(str.substring(offset));
++                        wrappedLine.append(var_427);
+                         offset = inputLineLength;
+                     }
+                 }
+@@ -135,7 +136,7 @@
+         }
+ 
+         // Whatever is left in line is short enough to just pass through
+-        wrappedLine.append(str.substring(offset));
++        wrappedLine.append(var_427);
+ 
+         return wrappedLine.toString();
+     }

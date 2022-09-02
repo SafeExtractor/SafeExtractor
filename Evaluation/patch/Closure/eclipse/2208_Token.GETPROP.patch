@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/jsonml/Writer.java b/src/com/google/javascript/jscomp/jsonml/Writer.java
+index b357eb9..3d4da50 100644
+--- a/src/com/google/javascript/jscomp/jsonml/Writer.java
++++ b/src/com/google/javascript/jscomp/jsonml/Writer.java
+@@ -338,8 +338,9 @@
+     JsonML element;
+     // the first child may indicate that it is invoke expression
+     // or a standard function call
+-    switch (child.getType()) {
+-      case Token.GETPROP:         // a.x()
++    final int var_2208 = Token.GETPROP;
++	switch (child.getType()) {
++      case var_2208:         // a.x()
+       case Token.GETELEM:         // a[x]()
+         // we have to process this node here and cannot call processNode(child)
+         // other children of CALL represent arguments, so we need to have
+@@ -347,7 +348,7 @@
+         element = new JsonML(TagType.InvokeExpr);
+         element.setAttribute(
+             TagAttr.OP,
+-            child.getType() == Token.GETPROP ? "." : "[]");
++            child.getType() == var_2208 ? "." : "[]");
+         currentParent.appendChild(element);
+ 
+         // there should be exactly two children

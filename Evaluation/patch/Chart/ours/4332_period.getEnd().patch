@@ -1,0 +1,39 @@
+diff --git a/source/org/jfree/data/time/TimeTableXYDataset.java b/source/org/jfree/data/time/TimeTableXYDataset.java
+index 377c9a4..6ae4a61 100644
+--- a/source/org/jfree/data/time/TimeTableXYDataset.java
++++ b/source/org/jfree/data/time/TimeTableXYDataset.java
+@@ -58,6 +58,7 @@
+ package org.jfree.data.time;
+ 
+ import java.util.Calendar;
++import java.util.Date;
+ import java.util.List;
+ import java.util.Locale;
+ import java.util.TimeZone;
+@@ -485,15 +486,17 @@
+         long result = 0L;
+         if (this.xPosition == TimePeriodAnchor.START) {
+             result = period.getStart().getTime();
+-        }
+-        else if (this.xPosition == TimePeriodAnchor.MIDDLE) {
+-            long t0 = period.getStart().getTime();
+-            long t1 = period.getEnd().getTime();
+-            result = t0 + (t1 - t0) / 2L;
+-        }
+-        else if (this.xPosition == TimePeriodAnchor.END) {
+-            result = period.getEnd().getTime();
+-        }
++        } else {
++			Date var_4332 = period.getEnd();
++			if (this.xPosition == TimePeriodAnchor.MIDDLE) {
++			    long t0 = period.getStart().getTime();
++			    long t1 = var_4332.getTime();
++			    result = t0 + (t1 - t0) / 2L;
++			}
++			else if (this.xPosition == TimePeriodAnchor.END) {
++			    result = var_4332.getTime();
++			}
++		}
+         return result;
+     }
+ 

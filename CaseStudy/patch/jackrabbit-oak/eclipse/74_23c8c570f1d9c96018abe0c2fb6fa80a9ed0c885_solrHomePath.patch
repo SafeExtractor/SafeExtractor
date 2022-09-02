@@ -1,0 +1,16 @@
+diff --git a/oak-solr-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/solr/server/DefaultOakSolrProvider.java b/oak-solr-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/solr/server/DefaultOakSolrProvider.java
+index a7986b0..c63eca3 100644
+--- a/oak-solr-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/solr/server/DefaultOakSolrProvider.java
++++ b/oak-solr-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/solr/server/DefaultOakSolrProvider.java
+@@ -42,8 +42,9 @@
+     private SolrServer solrServer;
+ 
+     private SolrServer createSolrServer() throws Exception {
+-        CoreContainer coreContainer = new CoreContainer(oakSolrConfiguration.getSolrHomePath());
+-        coreContainer.load(oakSolrConfiguration.getSolrHomePath(), new File(oakSolrConfiguration.getSolrConfigPath()));
++        String solrHomePath = oakSolrConfiguration.getSolrHomePath();
++		CoreContainer coreContainer = new CoreContainer(solrHomePath);
++        coreContainer.load(solrHomePath, new File(oakSolrConfiguration.getSolrConfigPath()));
+         return new EmbeddedSolrServer(coreContainer, oakSolrConfiguration.getCoreName());
+     }
+ 

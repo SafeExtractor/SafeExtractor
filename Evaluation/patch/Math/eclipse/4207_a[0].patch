@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/FastMathCalc.java b/src/main/java/org/apache/commons/math3/util/FastMathCalc.java
+index 07c0bdc..0131b7a 100644
+--- a/src/main/java/org/apache/commons/math3/util/FastMathCalc.java
++++ b/src/main/java/org/apache/commons/math3/util/FastMathCalc.java
+@@ -575,17 +575,18 @@
+         y[0] = LN_SPLIT_COEF[LN_SPLIT_COEF.length-1][0];
+         y[1] = LN_SPLIT_COEF[LN_SPLIT_COEF.length-1][1];
+ 
+-        for (int i = LN_SPLIT_COEF.length-2; i >= 0; i--) {
++        double var_4207 = a[0];
++		for (int i = LN_SPLIT_COEF.length-2; i >= 0; i--) {
+             splitMult(y, x2, a);
+-            y[0] = a[0];
++            y[0] = var_4207;
+             y[1] = a[1];
+             splitAdd(y, LN_SPLIT_COEF[i], a);
+-            y[0] = a[0];
++            y[0] = var_4207;
+             y[1] = a[1];
+         }
+ 
+         splitMult(y, x, a);
+-        y[0] = a[0];
++        y[0] = var_4207;
+         y[1] = a[1];
+ 
+         return y;

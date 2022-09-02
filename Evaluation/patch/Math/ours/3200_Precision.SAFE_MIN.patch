@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+index 8d6a50b..8c7e129 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+@@ -634,8 +634,9 @@
+         }
+         double gNorm = FastMath.sqrt(sum2);
+         double paru = gNorm / delta;
+-        if (paru == 0) {
+-            paru = Precision.SAFE_MIN / FastMath.min(delta, 0.1);
++        double var_3200 = Precision.SAFE_MIN;
++		if (paru == 0) {
++            paru = var_3200 / FastMath.min(delta, 0.1);
+         }
+ 
+         // if the input par lies outside of the interval (parl,paru),
+@@ -649,7 +650,7 @@
+ 
+             // evaluate the function at the current value of lmPar
+             if (lmPar == 0) {
+-                lmPar = FastMath.max(Precision.SAFE_MIN, 0.001 * paru);
++                lmPar = FastMath.max(var_3200, 0.001 * paru);
+             }
+             double sPar = FastMath.sqrt(lmPar);
+             for (int j = 0; j < solvedCols; ++j) {

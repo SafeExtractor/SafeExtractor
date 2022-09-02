@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java b/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java
+index 6841362..98f8f61 100644
+--- a/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java
+@@ -257,11 +257,12 @@
+                     for (int i = 1; i <= np - 1; i++) {
+                         // loop over intervals between nodes
+                         for (int j = 1; j <= this.precision; j++) {
+-                            t1 = (h[i] * j) / this.precision;
+-                            t2 = h[i] - t1;
+-                            y = ((-a[i - 1] / 6 * (t2 + h[i]) * t1 + d[i - 1])
+-                                    * t2 + (-a[i] / 6 * (t1 + h[i]) * t2
+-                                    + d[i]) * t1) / h[i];
++                            float var_2996 = h[i];
++							t1 = (var_2996 * j) / this.precision;
++                            t2 = var_2996 - t1;
++                            y = ((-a[i - 1] / 6 * (t2 + var_2996) * t1 + d[i - 1])
++                                    * t2 + (-a[i] / 6 * (t1 + var_2996) * t2
++                                    + d[i]) * t1) / var_2996;
+                             t = x[i - 1] + t1;
+                             s.seriesPath.lineTo(t, y);
+                             oldt = t;

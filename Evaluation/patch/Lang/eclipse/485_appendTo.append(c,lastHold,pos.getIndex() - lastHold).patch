@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java b/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
+index 722d3b5..d8d6824 100644
+--- a/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
++++ b/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
+@@ -484,8 +484,9 @@
+         }
+         int lastHold = start;
+         for (int i = pos.getIndex(); i < pattern.length(); i++) {
+-            if (escapingOn && pattern.substring(i).startsWith(ESCAPED_QUOTE)) {
+-                appendTo.append(c, lastHold, pos.getIndex() - lastHold).append(
++            StringBuilder var_485 = appendTo.append(c, lastHold, pos.getIndex() - lastHold);
++			if (escapingOn && pattern.substring(i).startsWith(ESCAPED_QUOTE)) {
++                var_485.append(
+                         QUOTE);
+                 pos.setIndex(i + ESCAPED_QUOTE.length());
+                 lastHold = pos.getIndex();
+@@ -494,8 +495,7 @@
+             switch (c[pos.getIndex()]) {
+             case QUOTE:
+                 next(pos);
+-                return appendTo == null ? null : appendTo.append(c, lastHold,
+-                        pos.getIndex() - lastHold);
++                return appendTo == null ? null : var_485;
+             default:
+                 next(pos);
+             }

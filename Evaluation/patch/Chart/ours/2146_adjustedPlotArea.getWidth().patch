@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/plot/CombinedRangeCategoryPlot.java b/source/org/jfree/chart/plot/CombinedRangeCategoryPlot.java
+index 439eb47..112543e 100644
+--- a/source/org/jfree/chart/plot/CombinedRangeCategoryPlot.java
++++ b/source/org/jfree/chart/plot/CombinedRangeCategoryPlot.java
+@@ -287,8 +287,9 @@
+         double x = adjustedPlotArea.getX();
+         double y = adjustedPlotArea.getY();
+         double usableSize = 0.0;
+-        if (orientation == PlotOrientation.VERTICAL) {
+-            usableSize = adjustedPlotArea.getWidth() - this.gap * (n - 1);
++        double var_2146 = adjustedPlotArea.getWidth();
++		if (orientation == PlotOrientation.VERTICAL) {
++            usableSize = var_2146 - this.gap * (n - 1);
+         }
+         else if (orientation == PlotOrientation.HORIZONTAL) {
+             usableSize = adjustedPlotArea.getHeight() - this.gap * (n - 1);
+@@ -307,7 +308,7 @@
+             else if (orientation == PlotOrientation.HORIZONTAL) {
+                 double h = usableSize * plot.getWeight() / totalWeight;
+                 this.subplotArea[i] = new Rectangle2D.Double(x, y,
+-                        adjustedPlotArea.getWidth(), h);
++                        var_2146, h);
+                 y = y + h + this.gap;
+             }
+ 

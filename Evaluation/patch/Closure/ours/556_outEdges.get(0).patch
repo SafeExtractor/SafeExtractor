@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/UnreachableCodeElimination.java b/src/com/google/javascript/jscomp/UnreachableCodeElimination.java
+index b5ffbd1..c851927 100644
+--- a/src/com/google/javascript/jscomp/UnreachableCodeElimination.java
++++ b/src/com/google/javascript/jscomp/UnreachableCodeElimination.java
+@@ -167,9 +167,10 @@
+               // If there is a next node, there is no chance this jump is useless.
+               (n.getNext() == null || n.getNext().isFunction())) {
+ 
+-            Preconditions.checkState(outEdges.get(0).getValue() == Branch.UNCOND);
++            DiGraphEdge<Node, Branch> var_556 = outEdges.get(0);
++			Preconditions.checkState(var_556.getValue() == Branch.UNCOND);
+             Node fallThrough = computeFollowing(n);
+-            Node nextCfgNode = outEdges.get(0).getDestination().getValue();
++            Node nextCfgNode = var_556.getDestination().getValue();
+             if (nextCfgNode == fallThrough) {
+               removeDeadExprStatementSafely(n);
+               return fallThrough;

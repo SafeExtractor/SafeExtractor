@@ -1,0 +1,25 @@
+diff --git a/Users/safe/paper/CaseStudy/patch/nifi/eclipse/25_a1b07b1e9c388d8642699b1d8b101a606dc5bd6a_currentTimestamp.patch b/Users/safe/paper/CaseStudy/patch/nifi/ours/25_a1b07b1e9c388d8642699b1d8b101a606dc5bd6a_currentTimestamp.patch
+index 7b53431..44fd253 100644
+--- a/Users/safe/paper/CaseStudy/patch/nifi/eclipse/25_a1b07b1e9c388d8642699b1d8b101a606dc5bd6a_currentTimestamp.patch
++++ b/Users/safe/paper/CaseStudy/patch/nifi/ours/25_a1b07b1e9c388d8642699b1d8b101a606dc5bd6a_currentTimestamp.patch
+@@ -1,8 +1,8 @@
+ diff --git a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-cluster/src/main/java/org/apache/nifi/cluster/coordination/heartbeat/AbstractHeartbeatMonitor.java b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-cluster/src/main/java/org/apache/nifi/cluster/coordination/heartbeat/AbstractHeartbeatMonitor.java
+-index 5119dac..45255fd 100644
++index 5119dac..e95e817 100644
+ --- a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-cluster/src/main/java/org/apache/nifi/cluster/coordination/heartbeat/AbstractHeartbeatMonitor.java
+ +++ b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-cluster/src/main/java/org/apache/nifi/cluster/coordination/heartbeat/AbstractHeartbeatMonitor.java
+-@@ -154,10 +154,11 @@
++@@ -154,7 +154,8 @@
+  
+          // Disconnect any node that hasn't sent a heartbeat in a long time (8 times the heartbeat interval)
+          final long maxMillis = heartbeatIntervalMillis * 8;
+@@ -11,8 +11,4 @@ index 5119dac..45255fd 100644
+ +		final long threshold = currentTimestamp - maxMillis;
+          for (final NodeHeartbeat heartbeat : latestHeartbeats.values()) {
+              if (heartbeat.getTimestamp() < threshold) {
+--                final long secondsSinceLastHeartbeat = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - heartbeat.getTimestamp());
+-+                final long secondsSinceLastHeartbeat = TimeUnit.MILLISECONDS.toSeconds(currentTimestamp - heartbeat.getTimestamp());
+- 
+-                 clusterCoordinator.disconnectionRequestedByNode(heartbeat.getNodeIdentifier(), DisconnectionCode.LACK_OF_HEARTBEAT,
+-                         "Have not received a heartbeat from node in " + secondsSinceLastHeartbeat + " seconds");
++                 final long secondsSinceLastHeartbeat = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - heartbeat.getTimestamp());

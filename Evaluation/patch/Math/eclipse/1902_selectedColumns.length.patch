@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/AbstractRealMatrix.java b/src/main/java/org/apache/commons/math3/linear/AbstractRealMatrix.java
+index 6577281..ee44fa1 100644
+--- a/src/main/java/org/apache/commons/math3/linear/AbstractRealMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/AbstractRealMatrix.java
+@@ -392,20 +392,21 @@
+         throws OutOfRangeException, NullArgumentException, NoDataException,
+         MatrixDimensionMismatchException {
+         MatrixUtils.checkSubMatrixIndex(this, selectedRows, selectedColumns);
+-        final int nCols = selectedColumns.length;
++        int var_1902 = selectedColumns.length;
++		final int nCols = var_1902;
+         if ((destination.length < selectedRows.length) ||
+             (destination[0].length < nCols)) {
+             throw new MatrixDimensionMismatchException(destination.length, destination[0].length,
+-                                                       selectedRows.length, selectedColumns.length);
++                                                       selectedRows.length, var_1902);
+         }
+ 
+         for (int i = 0; i < selectedRows.length; i++) {
+             final double[] destinationI = destination[i];
+             if (destinationI.length < nCols) {
+                 throw new MatrixDimensionMismatchException(destination.length, destinationI.length,
+-                                                           selectedRows.length, selectedColumns.length);
++                                                           selectedRows.length, var_1902);
+             }
+-            for (int j = 0; j < selectedColumns.length; j++) {
++            for (int j = 0; j < var_1902; j++) {
+                 destinationI[j] = getEntry(selectedRows[i], selectedColumns[j]);
+             }
+         }

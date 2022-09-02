@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/joda/time/format/ISODateTimeFormat.java b/src/main/java/org/joda/time/format/ISODateTimeFormat.java
+index af53ee4..bdc921a 100644
+--- a/src/main/java/org/joda/time/format/ISODateTimeFormat.java
++++ b/src/main/java/org/joda/time/format/ISODateTimeFormat.java
+@@ -1234,10 +1234,11 @@
+ 
+         private static DateTimeFormatter dateElementParser() {
+             if (dpe == null) {
+-                return new DateTimeFormatterBuilder()
++                DateTimeFormatterBuilder var_592 = new DateTimeFormatterBuilder()
++				.append(yearElement());
++				return new DateTimeFormatterBuilder()
+                     .append(null, new DateTimeParser[] {
+-                        new DateTimeFormatterBuilder()
+-                        .append(yearElement())
++                        var_592
+                         .appendOptional
+                         (new DateTimeFormatterBuilder()
+                          .append(monthElement())
+@@ -1249,8 +1250,7 @@
+                         .append(weekElement())
+                         .appendOptional(dayOfWeekElement().getParser())
+                         .toParser(),
+-                        new DateTimeFormatterBuilder()
+-                        .append(yearElement())
++                        var_592
+                         .append(dayOfYearElement())
+                         .toParser()
+                     })

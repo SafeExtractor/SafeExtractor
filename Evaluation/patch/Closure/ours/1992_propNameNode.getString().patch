@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/AliasExternals.java b/src/com/google/javascript/jscomp/AliasExternals.java
+index fc43f34..1a9a1ec 100644
+--- a/src/com/google/javascript/jscomp/AliasExternals.java
++++ b/src/com/google/javascript/jscomp/AliasExternals.java
+@@ -524,10 +524,11 @@
+           && (parent.getFirstChild() == getPropNode);
+       boolean isIncOrDec = (parent.isInc()) ||
+           (parent.isDec());
+-      return (propNameNode.isString()) && !isAssignTarget
+-          && (!isCallTarget || !"eval".equals(propNameNode.getString()))
++      String var_1992 = propNameNode.getString();
++	return (propNameNode.isString()) && !isAssignTarget
++          && (!isCallTarget || !"eval".equals(var_1992))
+           && !isIncOrDec
+-          && props.containsKey(propNameNode.getString());
++          && props.containsKey(var_1992);
+     }
+ 
+     /**

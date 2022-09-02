@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java b/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
+index 7412a61..ca4a111 100755
+--- a/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
++++ b/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
+@@ -99,9 +99,10 @@
+         JSModuleGraph moduleGraph = compiler.getModuleGraph();
+         while (it.hasNext()) {
+           Declaration decl = it.next();
+-          if (decl.module != null &&
++          JSModule var_581 = decl.module;
++		if (var_581 != null &&
+               moduleGraph.dependsOn(deepestDependency,
+-                  decl.module)) {
++                  var_581)) {
+ 
+             // Find the appropriate spot to move it to
+             Node destParent = moduleVarParentMap.get(deepestDependency);

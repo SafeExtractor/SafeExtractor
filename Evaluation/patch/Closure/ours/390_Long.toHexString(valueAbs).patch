@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/CodeConsumer.java b/src/com/google/javascript/jscomp/CodeConsumer.java
+index 551a0d9..6b27e0d 100644
+--- a/src/com/google/javascript/jscomp/CodeConsumer.java
++++ b/src/com/google/javascript/jscomp/CodeConsumer.java
+@@ -262,10 +262,11 @@
+         addConstant(Long.toString(mantissa) + "E" + Integer.toString(exp));
+       } else {
+         long valueAbs = Math.abs(value);
+-        if (Long.toHexString(valueAbs).length() + 2 <
++        String var_390 = Long.toHexString(valueAbs);
++		if (var_390.length() + 2 <
+             Long.toString(valueAbs).length()) {
+           addConstant((value < 0 ? "-" : "") + "0x" +
+-              Long.toHexString(valueAbs));
++              var_390);
+         } else {
+           addConstant(Long.toString(value));
+         }

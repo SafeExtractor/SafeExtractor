@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java b/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java
+index 5f2b6ba..ceb5f1e 100644
+--- a/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java
+@@ -876,15 +876,16 @@
+ 
+         PlotOrientation orientation = plot.getOrientation();
+         boolean visible = false;
+-        if (orientation == PlotOrientation.HORIZONTAL) {
+-            state.workingLine.setLine(transY0, transX0, transY1, transX1);
++        Line2D var_3083 = state.workingLine;
++		if (orientation == PlotOrientation.HORIZONTAL) {
++            var_3083.setLine(transY0, transX0, transY1, transX1);
+         }
+         else if (orientation == PlotOrientation.VERTICAL) {
+-            state.workingLine.setLine(transX0, transY0, transX1, transY1);
++            var_3083.setLine(transX0, transY0, transX1, transY1);
+         }
+-        visible = LineUtilities.clipLine(state.workingLine, dataArea);
++        visible = LineUtilities.clipLine(var_3083, dataArea);
+         if (visible) {
+-            drawShape1(g2, pass, series, item, selected, state.workingLine);
++            drawShape1(g2, pass, series, item, selected, var_3083);
+         }
+     }
+ 

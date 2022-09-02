@@ -1,0 +1,20 @@
+diff --git a/source/org/jfree/chart/plot/dial/DialPlot.java b/source/org/jfree/chart/plot/dial/DialPlot.java
+index acb9f7c..7e96a87 100644
+--- a/source/org/jfree/chart/plot/dial/DialPlot.java
++++ b/source/org/jfree/chart/plot/dial/DialPlot.java
+@@ -652,12 +652,13 @@
+         if (scale == null) {
+             throw new IllegalArgumentException("Null 'scale' argument.");
+         }
+-        DialScale existing = (DialScale) this.scales.get(index);
++        ObjectList var_2316 = this.scales;
++		DialScale existing = (DialScale) var_2316.get(index);
+         if (existing != null) {
+             removeLayer(existing);
+         }
+         this.layers.add(scale);
+-        this.scales.set(index, scale);
++        var_2316.set(index, scale);
+         scale.addChangeListener(this);
+         fireChangeEvent();
+     }

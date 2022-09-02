@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..215b822 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -1705,10 +1705,11 @@
+       // Non-native constructors should not be called directly
+       // unless they specify a return type and are defined
+       // in an extern.
+-      if (functionType.isConstructor() &&
++      JSType var_1017 = functionType.getReturnType();
++	if (functionType.isConstructor() &&
+           !functionType.isNativeObjectType() &&
+-          (functionType.getReturnType().isUnknownType() ||
+-           functionType.getReturnType().isVoidType() ||
++          (var_1017.isUnknownType() ||
++           var_1017.isVoidType() ||
+            !isExtern)) {
+         report(t, n, CONSTRUCTOR_NOT_CALLABLE, childType.toString());
+       }
+@@ -1725,7 +1726,7 @@
+       }
+ 
+       visitParameterList(t, n, functionType);
+-      ensureTyped(t, n, functionType.getReturnType());
++      ensureTyped(t, n, var_1017);
+     } else {
+       ensureTyped(t, n);
+     }

@@ -1,0 +1,31 @@
+diff --git a/source/org/jfree/chart/plot/CombinedDomainCategoryPlot.java b/source/org/jfree/chart/plot/CombinedDomainCategoryPlot.java
+index 49e983b..735b681 100644
+--- a/source/org/jfree/chart/plot/CombinedDomainCategoryPlot.java
++++ b/source/org/jfree/chart/plot/CombinedDomainCategoryPlot.java
+@@ -389,21 +389,22 @@
+             CategoryPlot plot = (CategoryPlot) this.subplots.get(i);
+ 
+             // calculate sub-plot area
+-            if (orientation == PlotOrientation.HORIZONTAL) {
++            Rectangle2D[] var_1592 = this.subplotAreas;
++			if (orientation == PlotOrientation.HORIZONTAL) {
+                 double w = usableSize * plot.getWeight() / totalWeight;
+-                this.subplotAreas[i] = new Rectangle2D.Double(x, y, w,
++                var_1592[i] = new Rectangle2D.Double(x, y, w,
+                         adjustedPlotArea.getHeight());
+                 x = x + w + this.gap;
+             }
+             else if (orientation == PlotOrientation.VERTICAL) {
+                 double h = usableSize * plot.getWeight() / totalWeight;
+-                this.subplotAreas[i] = new Rectangle2D.Double(x, y,
++                var_1592[i] = new Rectangle2D.Double(x, y,
+                         adjustedPlotArea.getWidth(), h);
+                 y = y + h + this.gap;
+             }
+ 
+             AxisSpace subSpace = plot.calculateRangeAxisSpace(g2,
+-                    this.subplotAreas[i], null);
++                    var_1592[i], null);
+             space.ensureAtLeast(subSpace);
+ 
+         }

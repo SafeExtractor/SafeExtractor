@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/DisambiguateProperties.java b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+index c64c178..04acecc 100644
+--- a/src/com/google/javascript/jscomp/DisambiguateProperties.java
++++ b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+@@ -1049,9 +1049,10 @@
+ 
+     @Override public boolean isTypeToSkip(ConcreteType type) {
+       // Skip anonymous object literals and enum types.
+-      return type.isInstance()
+-        && !(type.toInstance().isFunctionPrototype()
+-             || type.toInstance().instanceType.isInstanceType());
++      ConcreteInstanceType var_890 = type.toInstance();
++	return type.isInstance()
++        && !(var_890.isFunctionPrototype()
++             || var_890.instanceType.isInstanceType());
+     }
+ 
+     @Override

@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/SplineInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/SplineInterpolator.java
+index bce2e18..25e8755 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/SplineInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/SplineInterpolator.java
+@@ -109,8 +109,9 @@
+ 
+         for (int j = n -1; j >=0; j--) {
+             c[j] = z[j] - mu[j] * c[j + 1];
+-            b[j] = (y[j + 1] - y[j]) / h[j] - h[j] * (c[j + 1] + 2d * c[j]) / 3d;
+-            d[j] = (c[j + 1] - c[j]) / (3d * h[j]);
++            double var_389 = h[j];
++			b[j] = (y[j + 1] - y[j]) / var_389 - var_389 * (c[j + 1] + 2d * c[j]) / 3d;
++            d[j] = (c[j + 1] - c[j]) / (3d * var_389);
+         }
+ 
+         final PolynomialFunction polynomials[] = new PolynomialFunction[n];

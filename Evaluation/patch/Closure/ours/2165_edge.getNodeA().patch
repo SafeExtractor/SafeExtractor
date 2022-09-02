@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/graph/LinkedUndirectedGraph.java b/src/com/google/javascript/jscomp/graph/LinkedUndirectedGraph.java
+index 45e6922..b698524 100644
+--- a/src/com/google/javascript/jscomp/graph/LinkedUndirectedGraph.java
++++ b/src/com/google/javascript/jscomp/graph/LinkedUndirectedGraph.java
+@@ -349,10 +349,11 @@
+       @Override
+       public GraphNode<N, E> next() {
+         UndiGraphEdge<N, E> edge = edgeIterator.next();
+-        if (edge.getNodeA() == LinkedUndirectedGraphNode.this) {
++        GraphNode<N, E> var_2165 = edge.getNodeA();
++		if (var_2165 == LinkedUndirectedGraphNode.this) {
+           return edge.getNodeB();
+         } else {
+-          return edge.getNodeA();
++          return var_2165;
+         }
+       }
+ 

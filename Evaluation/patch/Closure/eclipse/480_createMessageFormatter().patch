@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+index 5f6b2c5..58c44d1 100644
+--- a/src/com/google/javascript/jscomp/Compiler.java
++++ b/src/com/google/javascript/jscomp/Compiler.java
+@@ -274,12 +274,13 @@
+   public void initOptions(CompilerOptions options) {
+     this.options = options;
+     if (errorManager == null) {
+-      if (outStream == null) {
++      MessageFormatter var_480 = createMessageFormatter();
++	if (outStream == null) {
+         setErrorManager(
+-            new LoggerErrorManager(createMessageFormatter(), logger));
++            new LoggerErrorManager(var_480, logger));
+       } else {
+         PrintStreamErrorManager printer =
+-            new PrintStreamErrorManager(createMessageFormatter(), outStream);
++            new PrintStreamErrorManager(var_480, outStream);
+         printer.setSummaryDetailLevel(options.summaryDetailLevel);
+         setErrorManager(printer);
+       }

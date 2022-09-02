@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/DevirtualizePrototypeMethods.java b/src/com/google/javascript/jscomp/DevirtualizePrototypeMethods.java
+index de2b0d4..69ddc61 100644
+--- a/src/com/google/javascript/jscomp/DevirtualizePrototypeMethods.java
++++ b/src/com/google/javascript/jscomp/DevirtualizePrototypeMethods.java
+@@ -363,10 +363,11 @@
+     Node newVarNode = IR.var(newNameNode).copyInformationFrom(refNode);
+ 
+     Node functionNode;
+-    if (!isObjLitDefKey) {
++    Node var_579 = parent.getParent();
++	if (!isObjLitDefKey) {
+       Preconditions.checkState(parent.isAssign());
+       functionNode = parent.getLastChild();
+-      Node expr = parent.getParent();
++      Node expr = var_579;
+       Node block = expr.getParent();
+       parent.removeChild(functionNode);
+       newNameNode.addChildToFront(functionNode);
+@@ -378,7 +379,7 @@
+     } else {
+       Preconditions.checkState(parent.isObjectLit());
+       functionNode = node.getFirstChild();
+-      Node assign = parent.getParent();
++      Node assign = var_579;
+       Node expr = assign.getParent();
+       Node block = expr.getParent();
+ 

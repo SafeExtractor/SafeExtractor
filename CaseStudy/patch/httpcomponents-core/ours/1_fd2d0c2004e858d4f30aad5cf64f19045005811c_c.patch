@@ -1,0 +1,18 @@
+diff --git a/httpcore5/src/main/java/org/apache/hc/core5/util/ByteArrayBuffer.java b/httpcore5/src/main/java/org/apache/hc/core5/util/ByteArrayBuffer.java
+index 94909ec..6c474ae 100644
+--- a/httpcore5/src/main/java/org/apache/hc/core5/util/ByteArrayBuffer.java
++++ b/httpcore5/src/main/java/org/apache/hc/core5/util/ByteArrayBuffer.java
+@@ -137,9 +137,10 @@
+         }
+ 
+         for (int i1 = off, i2 = oldlen; i2 < newlen; i1++, i2++) {
+-            if ((b[i1] >= 0x20 && b[i1] <= 0x7E) || // Visible ASCII
+-                (b[i1] >= 0xA0 && b[i1] <= 0xFF)) { // Visible ISO-8859-1
+-                this.array[i2] = (byte) b[i1];
++            char c = b[i1];
++			if ((c >= 0x20 && c <= 0x7E) || // Visible ASCII
++                (c >= 0xA0 && c <= 0xFF)) { // Visible ISO-8859-1
++                this.array[i2] = (byte) c;
+             } else {
+                 this.array[i2] = '?';
+             }

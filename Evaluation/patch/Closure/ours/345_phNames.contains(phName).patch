@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/JsMessageVisitor.java b/src/com/google/javascript/jscomp/JsMessageVisitor.java
+index becd724..546e10b 100644
+--- a/src/com/google/javascript/jscomp/JsMessageVisitor.java
++++ b/src/com/google/javascript/jscomp/JsMessageVisitor.java
+@@ -561,7 +561,8 @@
+           for (Node argumentNode : fnChild.children()) {
+             if (argumentNode.isName()) {
+               String phName = argumentNode.getString();
+-              if (phNames.contains(phName)) {
++              boolean var_345 = phNames.contains(phName);
++			if (var_345) {
+                 throw new MalformedException("Duplicate placeholder name: "
+                     + phName, argumentNode);
+               } else {

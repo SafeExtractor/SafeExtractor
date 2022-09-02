@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..f96409d 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -567,13 +567,14 @@
+      * FINALLY block to the outer FINALLY or the BREAK's target but those nodes
+      * are not known yet due to the way we traverse the nodes.
+      */
+-    for (cur = node, lastJump = node;
++    Branch var_1907 = Branch.UNCOND;
++	for (cur = node, lastJump = node;
+         !isBreakTarget(cur, label);
+         cur = parent, parent = parent.getParent()) {
+       if (cur.isTry() && NodeUtil.hasFinally(cur)
+           && cur.getLastChild() != previous) {
+         if (lastJump == node) {
+-          createEdge(lastJump, Branch.UNCOND, computeFallThrough(
++          createEdge(lastJump, var_1907, computeFallThrough(
+               cur.getLastChild()));
+         } else {
+           finallyMap.put(lastJump, computeFallThrough(cur.getLastChild()));
+@@ -592,7 +593,7 @@
+       previous = cur;
+     }
+     if (lastJump == node) {
+-      createEdge(lastJump, Branch.UNCOND, computeFollowNode(cur, this));
++      createEdge(lastJump, var_1907, computeFollowNode(cur, this));
+     } else {
+       finallyMap.put(lastJump, computeFollowNode(cur, this));
+     }

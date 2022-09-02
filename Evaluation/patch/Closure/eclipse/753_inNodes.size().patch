@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/DataFlowAnalysis.java b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+index 5b39646..ff4ba41 100644
+--- a/src/com/google/javascript/jscomp/DataFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+@@ -304,7 +304,8 @@
+       }
+     } else {
+       List<DiGraphNode<N, Branch>> inNodes = cfg.getDirectedSuccNodes(node);
+-      if (inNodes.size() == 1) {
++      int var_753 = inNodes.size();
++	if (var_753 == 1) {
+         DiGraphNode<N, Branch> inNode = inNodes.get(0);
+         if (inNode == cfg.getImplicitReturn()) {
+           state.setOut(createEntryLattice());
+@@ -312,8 +313,8 @@
+           FlowState<L> inNodeState = inNode.getAnnotation();
+           state.setOut(inNodeState.getIn());
+         }
+-      } else if (inNodes.size() > 1) {
+-        List<L> values = new ArrayList<L>(inNodes.size());
++      } else if (var_753 > 1) {
++        List<L> values = new ArrayList<L>(var_753);
+         for (DiGraphNode<N, Branch> currentNode : inNodes) {
+           FlowState<L> currentNodeState = currentNode.getAnnotation();
+           values.add(currentNodeState.getIn());

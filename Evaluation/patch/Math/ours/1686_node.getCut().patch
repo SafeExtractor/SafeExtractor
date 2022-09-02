@@ -1,0 +1,46 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+index d33ceab..3c30432 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+@@ -468,7 +468,8 @@
+      */
+     private void recurseSides(final BSPTree<S> node, final SubHyperplane<S> sub, final Sides sides) {
+ 
+-        if (node.getCut() == null) {
++        SubHyperplane<S> var_1686 = node.getCut();
++		if (var_1686 == null) {
+             if ((Boolean) node.getAttribute()) {
+                 // this is an inside cell expanding across the hyperplane
+                 sides.rememberPlusFound();
+@@ -477,11 +478,11 @@
+             return;
+         }
+ 
+-        final Hyperplane<S> hyperplane = node.getCut().getHyperplane();
++        final Hyperplane<S> hyperplane = var_1686.getHyperplane();
+         switch (sub.side(hyperplane)) {
+         case PLUS :
+             // the sub-hyperplane is entirely in the plus sub-tree
+-            if (node.getCut().side(sub.getHyperplane()) == Side.PLUS) {
++            if (var_1686.side(sub.getHyperplane()) == Side.PLUS) {
+                 if (!isEmpty(node.getMinus())) {
+                     sides.rememberPlusFound();
+                 }
+@@ -496,7 +497,7 @@
+             break;
+         case MINUS :
+             // the sub-hyperplane is entirely in the minus sub-tree
+-            if (node.getCut().side(sub.getHyperplane()) == Side.PLUS) {
++            if (var_1686.side(sub.getHyperplane()) == Side.PLUS) {
+                 if (!isEmpty(node.getPlus())) {
+                     sides.rememberPlusFound();
+                 }
+@@ -523,7 +524,7 @@
+             break;
+         default :
+             // the sub-hyperplane and the cut sub-hyperplane share the same hyperplane
+-            if (node.getCut().getHyperplane().sameOrientationAs(sub.getHyperplane())) {
++            if (var_1686.getHyperplane().sameOrientationAs(sub.getHyperplane())) {
+                 if ((node.getPlus().getCut() != null) || ((Boolean) node.getPlus().getAttribute())) {
+                     sides.rememberPlusFound();
+                 }

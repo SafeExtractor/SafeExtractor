@@ -1,0 +1,38 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java
+index 14199eb..0ae8143 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java
+@@ -19,6 +19,7 @@
+ import java.util.ArrayList;
+ import java.util.List;
+ 
++import org.apache.commons.math3.Field;
+ import org.apache.commons.math3.FieldElement;
+ import org.apache.commons.math3.exception.DimensionMismatchException;
+ import org.apache.commons.math3.exception.MathArithmeticException;
+@@ -176,18 +177,19 @@
+             throw new NoDataException(LocalizedFormats.EMPTY_INTERPOLATION_SAMPLE);
+         }
+ 
+-        final T zero = x.getField().getZero();
+-        final T one  = x.getField().getOne();
+-        final T[] tj = MathArrays.buildArray(x.getField(), order + 1);
++        Field<T> var_386 = x.getField();
++		final T zero = var_386.getZero();
++        final T one  = var_386.getOne();
++        final T[] tj = MathArrays.buildArray(var_386, order + 1);
+         tj[0] = zero;
+         for (int i = 0; i < order; ++i) {
+             tj[i + 1] = tj[i].add(one);
+         }
+ 
+         final T[][] derivatives =
+-                MathArrays.buildArray(x.getField(), order + 1, topDiagonal.get(0).length);
+-        final T[] valueCoeff = MathArrays.buildArray(x.getField(), order + 1);
+-        valueCoeff[0] = x.getField().getOne();
++                MathArrays.buildArray(var_386, order + 1, topDiagonal.get(0).length);
++        final T[] valueCoeff = MathArrays.buildArray(var_386, order + 1);
++        valueCoeff[0] = var_386.getOne();
+         for (int i = 0; i < topDiagonal.size(); ++i) {
+             T[] dividedDifference = topDiagonal.get(i);
+             final T deltaX = x.subtract(abscissae.get(i));

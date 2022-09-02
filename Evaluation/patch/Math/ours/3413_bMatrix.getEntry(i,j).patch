@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..eee377c 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -2361,10 +2361,11 @@
+             final double d3 = (alpha * lagrangeValuesAtNewPoint.getEntry(jp) - tau * work.getEntry(jp)) / denom;
+             final double d4 = (-beta * work.getEntry(jp) - tau * lagrangeValuesAtNewPoint.getEntry(jp)) / denom;
+             for (int i = 0; i <= jp; i++) {
+-                bMatrix.setEntry(i, j,
+-                              bMatrix.getEntry(i, j) + d3 * lagrangeValuesAtNewPoint.getEntry(i) + d4 * work.getEntry(i));
++                double var_3413 = bMatrix.getEntry(i, j);
++				bMatrix.setEntry(i, j,
++                              var_3413 + d3 * lagrangeValuesAtNewPoint.getEntry(i) + d4 * work.getEntry(i));
+                 if (i >= npt) {
+-                    bMatrix.setEntry(jp, (i - npt), bMatrix.getEntry(i, j));
++                    bMatrix.setEntry(jp, (i - npt), var_3413);
+                 }
+             }
+         }

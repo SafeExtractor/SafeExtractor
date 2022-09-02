@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/joda/time/field/DividedDateTimeField.java b/src/main/java/org/joda/time/field/DividedDateTimeField.java
+index 9a30dc9..fbc3246 100644
+--- a/src/main/java/org/joda/time/field/DividedDateTimeField.java
++++ b/src/main/java/org/joda/time/field/DividedDateTimeField.java
+@@ -200,8 +200,9 @@
+      */
+     public long set(long instant, int value) {
+         FieldUtils.verifyValueBounds(this, value, iMin, iMax);
+-        int remainder = getRemainder(getWrappedField().get(instant));
+-        return getWrappedField().set(instant, value * iDivisor + remainder);
++        DateTimeField var_449 = getWrappedField();
++		int remainder = getRemainder(var_449.get(instant));
++        return var_449.set(instant, value * iDivisor + remainder);
+     }
+ 
+     /**

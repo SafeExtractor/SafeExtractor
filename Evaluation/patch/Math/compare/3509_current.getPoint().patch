@@ -1,0 +1,46 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/3509_current.getPoint().patch b/Users/safe/paper/Evaluation/patch/Math/ours/3509_current.getPoint().patch
+index 0d4b9cc..88aef4f 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/3509_current.getPoint().patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/3509_current.getPoint().patch
+@@ -1,37 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
+-index edf07d5..20aafdc 100644
++index edf07d5..c3d3a48 100644
+ --- a/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
+ +++ b/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
+-@@ -371,11 +371,12 @@
+-                     }
+-                 }
+-             }
+--            if (maxCosine <= orthoTolerance) {
+-+            double[] var_3509 = current.getPoint();
+-+			if (maxCosine <= orthoTolerance) {
++@@ -375,7 +375,8 @@
+                  // Convergence has been reached.
+                  setCost(currentCost);
+                  // Update (deprecated) "point" field.
+ -                point = current.getPoint();
+-+                point = var_3509;
+++                double[] var_3509 = current.getPoint();
+++				point = var_3509;
+                  return current;
+              }
+  
+-@@ -483,7 +484,7 @@
+-                     if (checker != null && checker.converged(iter, previous, current)) {
+-                         setCost(currentCost);
+-                         // Update (deprecated) "point" field.
+--                        point = current.getPoint();
+-+                        point = var_3509;
+-                         return current;
+-                     }
+-                 } else {
+-@@ -510,7 +511,7 @@
+-                     delta <= parRelativeTolerance * xNorm) {
+-                     setCost(currentCost);
+-                     // Update (deprecated) "point" field.
+--                    point = current.getPoint();
+-+                    point = var_3509;
+-                     return current;
+-                 }
+- 

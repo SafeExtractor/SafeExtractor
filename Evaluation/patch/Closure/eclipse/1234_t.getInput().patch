@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..43dbc58 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -1542,11 +1542,12 @@
+         }
+       }
+ 
+-      if (valueType == null) {
++      CompilerInput var_1234 = t.getInput();
++	if (valueType == null) {
+         if (parent.isExprResult()) {
+           stubDeclarations.add(new StubDeclaration(
+               n,
+-              t.getInput() != null && t.getInput().isExtern(),
++              var_1234 != null && var_1234.isExtern(),
+               ownerName));
+         }
+ 
+@@ -1560,7 +1561,7 @@
+         if (ownerType != null) {
+           // Only declare this as an official property if it has not been
+           // declared yet.
+-          boolean isExtern = t.getInput() != null && t.getInput().isExtern();
++          boolean isExtern = var_1234 != null && var_1234.isExtern();
+           if ((!ownerType.hasOwnProperty(propName) ||
+                ownerType.isPropertyTypeInferred(propName)) &&
+               ((isExtern && !ownerType.isNativeObjectType()) ||

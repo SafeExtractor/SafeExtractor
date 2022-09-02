@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+index c8fbac8..4f3efac 100644
+--- a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
++++ b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+@@ -1604,8 +1604,9 @@
+         ObjectType thisType = null;
+         boolean isConstructor = false;
+         Node current = n.getFirstChild();
+-        if (current.getType() == Token.THIS ||
+-            current.getType() == Token.NEW) {
++        int var_2672 = Token.NEW;
++		if (current.getType() == Token.THIS ||
++            current.getType() == var_2672) {
+           Node contextNode = current.getFirstChild();
+           thisType =
+               ObjectType.cast(
+@@ -1622,7 +1623,7 @@
+                 contextNode.getLineno(), contextNode.getCharno());
+           }
+ 
+-          isConstructor = current.getType() == Token.NEW;
++          isConstructor = current.getType() == var_2672;
+           current = current.getNext();
+         }
+ 

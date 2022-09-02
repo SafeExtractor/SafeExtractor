@@ -1,0 +1,42 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java
+index aca170e..8d05f13 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java
+@@ -493,18 +493,19 @@
+ 
+         final Hyperplane<S> cHyperplane = cut.getHyperplane();
+         final Hyperplane<S> sHyperplane = sub.getHyperplane();
+-        switch (sub.side(cHyperplane)) {
++        SubHyperplane<S> var_1722 = cut.copySelf();
++		switch (sub.side(cHyperplane)) {
+         case PLUS :
+         { // the partitioning sub-hyperplane is entirely in the plus sub-tree
+             final BSPTree<S> split = plus.split(sub);
+             if (cut.side(sHyperplane) == Side.PLUS) {
+                 split.plus =
+-                    new BSPTree<S>(cut.copySelf(), split.plus, minus.copySelf(), attribute);
++                    new BSPTree<S>(var_1722, split.plus, minus.copySelf(), attribute);
+                 split.plus.condense();
+                 split.plus.parent = split;
+             } else {
+                 split.minus =
+-                    new BSPTree<S>(cut.copySelf(), split.minus, minus.copySelf(), attribute);
++                    new BSPTree<S>(var_1722, split.minus, minus.copySelf(), attribute);
+                 split.minus.condense();
+                 split.minus.parent = split;
+             }
+@@ -515,12 +516,12 @@
+             final BSPTree<S> split = minus.split(sub);
+             if (cut.side(sHyperplane) == Side.PLUS) {
+                 split.plus =
+-                    new BSPTree<S>(cut.copySelf(), plus.copySelf(), split.plus, attribute);
++                    new BSPTree<S>(var_1722, plus.copySelf(), split.plus, attribute);
+                 split.plus.condense();
+                 split.plus.parent = split;
+             } else {
+                 split.minus =
+-                    new BSPTree<S>(cut.copySelf(), plus.copySelf(), split.minus, attribute);
++                    new BSPTree<S>(var_1722, plus.copySelf(), split.minus, attribute);
+                 split.minus.condense();
+                 split.minus.parent = split;
+             }

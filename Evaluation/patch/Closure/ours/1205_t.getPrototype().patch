@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..7b7f85f 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -341,8 +341,9 @@
+   private void declareNativeFunctionType(Scope scope, JSTypeNative tId) {
+     FunctionType t = typeRegistry.getNativeFunctionType(tId);
+     declareNativeType(scope, t.getInstanceType().getReferenceName(), t);
+-    declareNativeType(
+-        scope, t.getPrototype().getReferenceName(), t.getPrototype());
++    ObjectType var_1205 = t.getPrototype();
++	declareNativeType(
++        scope, var_1205.getReferenceName(), t.getPrototype());
+   }
+ 
+   private void declareNativeValueType(Scope scope, String name,

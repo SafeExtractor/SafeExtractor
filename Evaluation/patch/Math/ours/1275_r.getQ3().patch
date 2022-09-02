@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..0309e7a 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -840,11 +840,12 @@
+         final T y = u.getY();
+         final T z = u.getZ();
+ 
+-        final T s = x.multiply(r.getQ1()).add(y.multiply(r.getQ2())).add(z.multiply(r.getQ3()));
++        double var_1275 = r.getQ3();
++		final T s = x.multiply(r.getQ1()).add(y.multiply(r.getQ2())).add(z.multiply(var_1275));
+ 
+-        return new FieldVector3D<T>(x.multiply(r.getQ0()).subtract(z.multiply(r.getQ2()).subtract(y.multiply(r.getQ3()))).multiply(r.getQ0()).add(s.multiply(r.getQ1())).multiply(2).subtract(x),
+-                                    y.multiply(r.getQ0()).subtract(x.multiply(r.getQ3()).subtract(z.multiply(r.getQ1()))).multiply(r.getQ0()).add(s.multiply(r.getQ2())).multiply(2).subtract(y),
+-                                    z.multiply(r.getQ0()).subtract(y.multiply(r.getQ1()).subtract(x.multiply(r.getQ2()))).multiply(r.getQ0()).add(s.multiply(r.getQ3())).multiply(2).subtract(z));
++        return new FieldVector3D<T>(x.multiply(r.getQ0()).subtract(z.multiply(r.getQ2()).subtract(y.multiply(var_1275))).multiply(r.getQ0()).add(s.multiply(r.getQ1())).multiply(2).subtract(x),
++                                    y.multiply(r.getQ0()).subtract(x.multiply(var_1275).subtract(z.multiply(r.getQ1()))).multiply(r.getQ0()).add(s.multiply(r.getQ2())).multiply(2).subtract(y),
++                                    z.multiply(r.getQ0()).subtract(y.multiply(r.getQ1()).subtract(x.multiply(r.getQ2()))).multiply(r.getQ0()).add(s.multiply(var_1275)).multiply(2).subtract(z));
+ 
+     }
+ 

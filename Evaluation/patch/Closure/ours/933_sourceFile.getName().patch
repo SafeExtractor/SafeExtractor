@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/JsAst.java b/src/com/google/javascript/jscomp/JsAst.java
+index 1da141f..157295f 100644
+--- a/src/com/google/javascript/jscomp/JsAst.java
++++ b/src/com/google/javascript/jscomp/JsAst.java
+@@ -81,17 +81,18 @@
+   }
+ 
+   private void parse(AbstractCompiler compiler) {
+-    try {
+-      logger_.fine("Parsing: " + sourceFile.getName());
++    String var_933 = sourceFile.getName();
++	try {
++      logger_.fine("Parsing: " + var_933);
+       ParserRunner.ParseResult result = ParserRunner.parse(sourceFile, sourceFile.getCode(),
+           compiler.getParserConfig(),
+           compiler.getDefaultErrorReporter(),
+           logger_);
+       root = result.ast;
+-      compiler.setOldParseTree(sourceFile.getName(), result.oldAst);
++      compiler.setOldParseTree(var_933, result.oldAst);
+     } catch (IOException e) {
+       compiler.report(
+-          JSError.make(AbstractCompiler.READ_ERROR, sourceFile.getName()));
++          JSError.make(AbstractCompiler.READ_ERROR, var_933));
+     }
+ 
+     if (root == null || compiler.hasHaltingErrors()) {

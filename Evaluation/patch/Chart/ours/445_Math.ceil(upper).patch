@@ -1,0 +1,31 @@
+diff --git a/source/org/jfree/chart/axis/LogarithmicAxis.java b/source/org/jfree/chart/axis/LogarithmicAxis.java
+index 1f440bd..74d156a 100644
+--- a/source/org/jfree/chart/axis/LogarithmicAxis.java
++++ b/source/org/jfree/chart/axis/LogarithmicAxis.java
+@@ -569,7 +569,8 @@
+                 upper = Math.pow(10, (logUpper + (logAbs * upperMargin)));
+             }
+ 
+-            if (!this.allowNegativesFlag && upper < 1.0 && upper > 0.0
++            double var_445 = Math.ceil(upper);
++			if (!this.allowNegativesFlag && upper < 1.0 && upper > 0.0
+                     && lower > 0.0) {
+                 //negatives not allowed and upper bound between 0 & 1
+                 //round up to nearest significant digit for bound:
+@@ -579,14 +580,14 @@
+                 expVal = Math.pow(10, expVal);      //create multiplier value
+                 //multiply, round up, and divide for bound value:
+                 upper = (expVal > 0.0) ? Math.ceil(upper * expVal) / expVal
+-                    : Math.ceil(upper);
++                    : var_445;
+             }
+             else {
+                 //negatives allowed or upper bound not between 0 & 1
+                 //if flag then change to log version of highest value to
+                 // make range begin at a 10^n value; else use nearest int
+                 upper = (this.autoRangeNextLogFlag) ? computeLogCeil(upper)
+-                    : Math.ceil(upper);
++                    : var_445;
+             }
+             // ensure the autorange is at least <minRange> in size...
+             double minRange = getAutoRangeMinimumSize();

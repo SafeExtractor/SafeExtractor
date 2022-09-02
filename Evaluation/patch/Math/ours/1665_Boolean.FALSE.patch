@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+index d33ceab..ae30ef2 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+@@ -140,8 +140,9 @@
+      * empty region will be built)
+      */
+     public AbstractRegion(final Hyperplane<S>[] hyperplanes) {
+-        if ((hyperplanes == null) || (hyperplanes.length == 0)) {
+-            tree = new BSPTree<S>(Boolean.FALSE);
++        Boolean var_1665 = Boolean.FALSE;
++		if ((hyperplanes == null) || (hyperplanes.length == 0)) {
++            tree = new BSPTree<S>(var_1665);
+         } else {
+ 
+             // use the first hyperplane to build the right class
+@@ -153,7 +154,7 @@
+             for (final Hyperplane<S> hyperplane : hyperplanes) {
+                 if (node.insertCut(hyperplane)) {
+                     node.setAttribute(null);
+-                    node.getPlus().setAttribute(Boolean.FALSE);
++                    node.getPlus().setAttribute(var_1665);
+                     node = node.getMinus();
+                     node.setAttribute(Boolean.TRUE);
+                 }

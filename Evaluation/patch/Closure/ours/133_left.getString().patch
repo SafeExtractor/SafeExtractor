@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..a8f0859 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -373,10 +373,11 @@
+         return n;
+       case Token.NEG:
+         if (left.isName()) {
+-          if (left.getString().equals("Infinity")) {
++          String var_133 = left.getString();
++		if (var_133.equals("Infinity")) {
+             // "-Infinity" is valid and a literal, don't modify it.
+             return n;
+-          } else if (left.getString().equals("NaN")) {
++          } else if (var_133.equals("NaN")) {
+             // "-NaN" is "NaN".
+             n.removeChild(left);
+             parent.replaceChild(n, left);

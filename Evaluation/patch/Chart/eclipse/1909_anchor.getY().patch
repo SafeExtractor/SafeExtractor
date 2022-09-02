@@ -1,0 +1,35 @@
+diff --git a/source/org/jfree/chart/plot/CategoryPlot.java b/source/org/jfree/chart/plot/CategoryPlot.java
+index 24a84fd..9b15f72 100644
+--- a/source/org/jfree/chart/plot/CategoryPlot.java
++++ b/source/org/jfree/chart/plot/CategoryPlot.java
+@@ -3623,9 +3623,10 @@
+ 
+         // the anchor point is typically the point where the mouse last
+         // clicked - the crosshairs will be driven off this point...
+-        if (anchor != null && !dataArea.contains(anchor)) {
++        double var_1909 = anchor.getY();
++		if (anchor != null && !dataArea.contains(anchor)) {
+             anchor = ShapeUtilities.getPointInRectangle(anchor.getX(),
+-                    anchor.getY(), dataArea);
++                    var_1909, dataArea);
+         }
+         CategoryCrosshairState crosshairState = new CategoryCrosshairState();
+         crosshairState.setCrosshairDistance(Double.POSITIVE_INFINITY);
+@@ -3641,7 +3642,7 @@
+             if (rangeAxis != null) {
+                 double y;
+                 if (getOrientation() == PlotOrientation.VERTICAL) {
+-                    y = rangeAxis.java2DToValue(anchor.getY(), dataArea,
++                    y = rangeAxis.java2DToValue(var_1909, dataArea,
+                             getRangeAxisEdge());
+                 }
+                 else {
+@@ -3814,7 +3815,7 @@
+         if (!this.rangeCrosshairLockedOnData && anchor != null) {
+             double yy;
+             if (getOrientation() == PlotOrientation.VERTICAL) {
+-                yy = yAxis.java2DToValue(anchor.getY(), dataArea, yAxisEdge);
++                yy = yAxis.java2DToValue(var_1909, dataArea, yAxisEdge);
+             }
+             else {
+                 yy = yAxis.java2DToValue(anchor.getX(), dataArea, yAxisEdge);

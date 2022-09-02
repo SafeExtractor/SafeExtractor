@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..3818fd8 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -365,9 +365,10 @@
+     @Override
+     public void visit(NodeTraversal t, Node node, Node parent) {
+       Node nameNode = null;
+-      switch (node.getType()) {
++      Node var_1206 = node.getFirstChild();
++	switch (node.getType()) {
+         case Token.VAR:
+-          for (Node child = node.getFirstChild();
++          for (Node child = var_1206;
+                child != null; child = child.getNext()) {
+             identifyNameNode(
+                 child, child.getFirstChild(),
+@@ -375,7 +376,7 @@
+           }
+           break;
+         case Token.EXPR_RESULT:
+-          Node firstChild = node.getFirstChild();
++          Node firstChild = var_1206;
+           if (firstChild.isAssign()) {
+             identifyNameNode(
+                 firstChild.getFirstChild(), firstChild.getLastChild(),

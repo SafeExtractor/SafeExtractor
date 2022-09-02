@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..4a993eb 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -168,8 +168,9 @@
+       for (DiGraphNode<Node, Branch> candidate : cfg.getDirectedGraphNodes()) {
+         Node value = candidate.getValue();
+         if (value != null && value.isFunction()) {
+-          Preconditions.checkState(
+-              !nodePriorities.containsKey(candidate) || candidate == entry);
++          boolean var_1885 = nodePriorities.containsKey(candidate);
++		Preconditions.checkState(
++              !var_1885 || candidate == entry);
+           prioritizeFromEntryNode(candidate);
+         }
+       }

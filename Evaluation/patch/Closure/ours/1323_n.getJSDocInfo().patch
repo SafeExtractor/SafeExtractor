@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+index 5f0a14c..aad44e2 100644
+--- a/src/com/google/javascript/jscomp/SymbolTable.java
++++ b/src/com/google/javascript/jscomp/SymbolTable.java
+@@ -1518,10 +1518,11 @@
+     }
+ 
+     @Override public void visit(NodeTraversal t, Node n, Node parent) {
+-      if (n.getJSDocInfo() != null) {
++      JSDocInfo var_1323 = n.getJSDocInfo();
++	if (var_1323 != null) {
+ 
+         // Find references in the JSDocInfo.
+-        JSDocInfo info = n.getJSDocInfo();
++        JSDocInfo info = var_1323;
+         docInfos.add(info);
+ 
+         for (Node typeAst : info.getTypeNodes()) {

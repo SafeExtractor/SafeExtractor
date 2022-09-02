@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+index 067e1df..5e05995 100644
+--- a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
++++ b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+@@ -453,7 +453,8 @@
+                 + seriesNumber + "unspecified in c'tor"
+             );
+         }
+-        if (this.valueHistory[seriesNumber] == null) {
++        ValueSequence var_4277 = this.valueHistory[seriesNumber];
++		if (var_4277 == null) {
+             this.valueHistory[seriesNumber]
+                 = new ValueSequence(this.historyCount);
+             this.seriesCount++;
+@@ -461,7 +462,7 @@
+         // But if that series array already exists, just overwrite its contents
+         //synchronized(this)
+         //{
+-            this.valueHistory[seriesNumber].enterData(index, value);
++            var_4277.enterData(index, value);
+         //}
+         fireSeriesChanged();
+     }

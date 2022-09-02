@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..79538d7 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -193,10 +193,11 @@
+ 
+         // get the cached compilers
+         final DSCompiler[][] cache = compilers.get();
+-        if (cache != null && cache.length > parameters &&
+-            cache[parameters].length > order && cache[parameters][order] != null) {
++        DSCompiler var_72 = cache[parameters][order];
++		if (cache != null && cache.length > parameters &&
++            cache[parameters].length > order && var_72 != null) {
+             // the compiler has already been created
+-            return cache[parameters][order];
++            return var_72;
+         }
+ 
+         // we need to create more compilers

@@ -1,0 +1,50 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/3589_best(previous,current,isMinim).patch b/Users/safe/paper/Evaluation/patch/Math/ours/3589_best(previous,current,isMinim).patch
+index 9071db3..6bcb68a 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/3589_best(previous,current,isMinim).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/3589_best(previous,current,isMinim).patch
+@@ -1,37 +1,19 @@
+ diff --git a/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java
+-index 20d0980..06df249 100644
++index 20d0980..0e60d36 100644
+ --- a/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java
+ +++ b/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java
+-@@ -160,7 +160,10 @@
+- 
+-             // Default stopping criterion.
+-             final boolean stop = FastMath.abs(x - m) <= tol2 - 0.5 * (b - a);
+--            if (!stop) {
+-+            UnivariatePointValuePair var_3589 = best(previous,
+-+			     current,
+-+			     isMinim);
+-+			if (!stop) {
+-                 double p = 0;
+-                 double q = 0;
+-                 double r = 0;
+-@@ -235,9 +238,7 @@
+-                 previous = current;
+-                 current = new UnivariatePointValuePair(u, isMinim ? fu : -fu);
+-                 best = best(best,
+--                            best(previous,
+--                                 current,
+--                                 isMinim),
+-+                            var_3589,
+-                             isMinim);
+- 
+-                 if (checker != null && checker.converged(iter, previous, current)) {
+-@@ -278,9 +279,7 @@
++@@ -277,10 +277,11 @@
++                     }
+                  }
+              } else { // Default termination (Brent's criterion).
+-                 return best(best,
++-                return best(best,
+ -                            best(previous,
+ -                                 current,
+ -                                 isMinim),
+++                UnivariatePointValuePair var_3589 = best(previous,
+++				     current,
+++				     isMinim);
+++				return best(best,
+ +                            var_3589,
+                              isMinim);
+              }

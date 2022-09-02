@@ -1,0 +1,36 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+index c8fbac8..5ffa657 100644
+--- a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
++++ b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+@@ -1519,7 +1519,8 @@
+   /** @see #createFromTypeNodes(Node, String, StaticScope) */
+   private JSType createFromTypeNodesInternal(Node n, String sourceName,
+       StaticScope<JSType> scope) {
+-    switch (n.getType()) {
++    String var_2678 = n.getString();
++	switch (n.getType()) {
+       case Token.LC: // Record type.
+         return createRecordTypeFromNodes(
+             n.getFirstChild(), sourceName, scope);
+@@ -1571,17 +1572,17 @@
+         return getNativeType(VOID_TYPE);
+ 
+       case Token.STRING:
+-        JSType namedType = getType(scope, n.getString(), sourceName,
++        JSType namedType = getType(scope, var_2678, sourceName,
+             n.getLineno(), n.getCharno());
+         if (resolveMode != ResolveMode.LAZY_NAMES) {
+           namedType = namedType.resolveInternal(reporter, scope);
+         }
+         if ((namedType instanceof ObjectType) &&
+-            !(nonNullableTypeNames.contains(n.getString()))) {
++            !(nonNullableTypeNames.contains(var_2678))) {
+           Node typeList = n.getFirstChild();
+           if (typeList != null &&
+-              ("Array".equals(n.getString()) ||
+-               "Object".equals(n.getString()))) {
++              ("Array".equals(var_2678) ||
++               "Object".equals(var_2678))) {
+             JSType parameterType =
+                 createFromTypeNodesInternal(
+                     typeList.getLastChild(), sourceName, scope);

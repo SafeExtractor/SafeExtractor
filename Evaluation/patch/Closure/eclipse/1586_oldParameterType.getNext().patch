@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionTypeBuilder.java b/src/com/google/javascript/jscomp/FunctionTypeBuilder.java
+index db990fa..7d37cfd 100644
+--- a/src/com/google/javascript/jscomp/FunctionTypeBuilder.java
++++ b/src/com/google/javascript/jscomp/FunctionTypeBuilder.java
+@@ -447,7 +447,8 @@
+         Sets.newHashSet(info.getParameterNames());
+     boolean foundTemplateType = false;
+     boolean isVarArgs = false;
+-    for (Node arg : argsParent.children()) {
++    Node var_1586 = oldParameterType.getNext();
++	for (Node arg : argsParent.children()) {
+       String argumentName = arg.getString();
+       allJsDocParams.remove(argumentName);
+ 
+@@ -474,7 +475,7 @@
+           isVarArgs);
+ 
+       if (oldParameterType != null) {
+-        oldParameterType = oldParameterType.getNext();
++        oldParameterType = var_1586;
+       }
+     }
+ 
+@@ -482,7 +483,7 @@
+     if (!isVarArgs) {
+       while (oldParameterType != null && !isVarArgs) {
+         builder.newParameterFromNode(oldParameterType);
+-        oldParameterType = oldParameterType.getNext();
++        oldParameterType = var_1586;
+       }
+     }
+ 

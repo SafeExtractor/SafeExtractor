@@ -1,0 +1,20 @@
+diff --git a/source/org/jfree/chart/panel/PanHandler.java b/source/org/jfree/chart/panel/PanHandler.java
+index 49ce1fe..ad6a489 100644
+--- a/source/org/jfree/chart/panel/PanHandler.java
++++ b/source/org/jfree/chart/panel/PanHandler.java
+@@ -91,11 +91,12 @@
+         if (pannable.isDomainPannable() || pannable.isRangePannable()) {
+             Rectangle2D screenDataArea = panel.getScreenDataArea(e.getX(),
+                     e.getY());
+-            if (screenDataArea != null && screenDataArea.contains(
+-                    e.getPoint())) {
++            Point var_1314 = e.getPoint();
++			if (screenDataArea != null && screenDataArea.contains(
++                    var_1314)) {
+                 this.panW = screenDataArea.getWidth();
+                 this.panH = screenDataArea.getHeight();
+-                this.panLast = e.getPoint();
++                this.panLast = var_1314;
+                 panel.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
+             }
+         }

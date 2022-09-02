@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/ArithmeticUtils.java b/src/main/java/org/apache/commons/math3/util/ArithmeticUtils.java
+index 4916f75..3df976b 100644
+--- a/src/main/java/org/apache/commons/math3/util/ArithmeticUtils.java
++++ b/src/main/java/org/apache/commons/math3/util/ArithmeticUtils.java
+@@ -252,11 +252,12 @@
+         throws MathArithmeticException {
+         int a = p;
+         int b = q;
+-        if (a == 0 ||
++        LocalizedFormats var_4135 = LocalizedFormats.GCD_OVERFLOW_32_BITS;
++		if (a == 0 ||
+             b == 0) {
+             if (a == Integer.MIN_VALUE ||
+                 b == Integer.MIN_VALUE) {
+-                throw new MathArithmeticException(LocalizedFormats.GCD_OVERFLOW_32_BITS,
++                throw new MathArithmeticException(var_4135,
+                                                   p, q);
+             }
+             return FastMath.abs(a + b);
+@@ -283,7 +284,7 @@
+         }
+         if (useLong) {
+             if(al == bl) {
+-                throw new MathArithmeticException(LocalizedFormats.GCD_OVERFLOW_32_BITS,
++                throw new MathArithmeticException(var_4135,
+                                                   p, q);
+             }
+             long blbu = bl;
+@@ -291,7 +292,7 @@
+             al = blbu % al;
+             if (al == 0) {
+                 if (bl > Integer.MAX_VALUE) {
+-                    throw new MathArithmeticException(LocalizedFormats.GCD_OVERFLOW_32_BITS,
++                    throw new MathArithmeticException(var_4135,
+                                                       p, q);
+                 }
+                 return (int) bl;

@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/StrictModeCheck.java b/src/com/google/javascript/jscomp/StrictModeCheck.java
+index b22f3ed..a40db5f 100644
+--- a/src/com/google/javascript/jscomp/StrictModeCheck.java
++++ b/src/com/google/javascript/jscomp/StrictModeCheck.java
+@@ -144,19 +144,20 @@
+ 
+   /** Checks that the given name is used legally. */
+   private void checkNameUse(NodeTraversal t, Node n) {
+-    Var v = t.getScope().getVar(n.getString());
++    String var_210 = n.getString();
++	Var v = t.getScope().getVar(var_210);
+     if (v == null) {
+       // In particular, this prevents creating a global variable by assigning
+       // to it without a declaration.
+       if (!noVarCheck) {
+-        t.report(n, UNKNOWN_VARIABLE, n.getString());
++        t.report(n, UNKNOWN_VARIABLE, var_210);
+       }
+     }
+ 
+     if (!noCajaChecks) {
+-      if ("eval".equals(n.getString())) {
++      if ("eval".equals(var_210)) {
+         t.report(n, EVAL_USE);
+-      } else if (n.getString().endsWith("__")) {
++      } else if (var_210.endsWith("__")) {
+         t.report(n, ILLEGAL_NAME);
+       }
+     }

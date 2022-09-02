@@ -1,0 +1,39 @@
+diff --git a/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java b/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java
+index 311459c..a1d619f 100644
+--- a/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java
++++ b/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java
+@@ -761,13 +761,14 @@
+ 
+         Point2D p0 = new Point2D.Double(x0, y1);
+         Point2D p1 = new Point2D.Double(x0 + width, y1);
+-        Point2D p2 = new Point2D.Double(p1.getX() + getXOffset(),
+-                p1.getY() - getYOffset());
++        double var_2791 = p1.getY();
++		Point2D p2 = new Point2D.Double(p1.getX() + getXOffset(),
++                var_2791 - getYOffset());
+         Point2D p3 = new Point2D.Double(p0.getX() + getXOffset(),
+                 p0.getY() - getYOffset());
+ 
+         GeneralPath right = new GeneralPath();
+-        right.moveTo((float) p1.getX(), (float) p1.getY());
++        right.moveTo((float) p1.getX(), (float) var_2791);
+         right.lineTo((float) p01.getX(), (float) p01.getY());
+         right.lineTo((float) p02.getX(), (float) p02.getY());
+         right.lineTo((float) p2.getX(), (float) p2.getY());
+@@ -789,14 +790,14 @@
+ 
+         GeneralPath front = new GeneralPath();
+         front.moveTo((float) p0.getX(), (float) p0.getY());
+-        front.lineTo((float) p1.getX(), (float) p1.getY());
++        front.lineTo((float) p1.getX(), (float) var_2791);
+         front.lineTo((float) p01.getX(), (float) p01.getY());
+         front.lineTo((float) p00.getX(), (float) p00.getY());
+         front.closePath();
+ 
+         GeneralPath top = new GeneralPath();
+         top.moveTo((float) p0.getX(), (float) p0.getY());
+-        top.lineTo((float) p1.getX(), (float) p1.getY());
++        top.lineTo((float) p1.getX(), (float) var_2791);
+         top.lineTo((float) p2.getX(), (float) p2.getY());
+         top.lineTo((float) p3.getX(), (float) p3.getY());
+         top.closePath();

@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/RescopeGlobalSymbols.java b/src/com/google/javascript/jscomp/RescopeGlobalSymbols.java
+index 72b9653..c8b8da1 100644
+--- a/src/com/google/javascript/jscomp/RescopeGlobalSymbols.java
++++ b/src/com/google/javascript/jscomp/RescopeGlobalSymbols.java
+@@ -245,11 +245,12 @@
+         }
+       }
+       for (Node c : interestingChildren) {
+-        if (parent.isFor() && parent.getFirstChild() == n) {
+-          commas.add(c.cloneTree());
++        Node var_828 = c.cloneTree();
++		if (parent.isFor() && parent.getFirstChild() == n) {
++          commas.add(var_828);
+         } else {
+           // Var statement outside of for-loop.
+-          Node expr = IR.exprResult(c.cloneTree()).srcref(c);
++          Node expr = IR.exprResult(var_828).srcref(c);
+           parent.addChildBefore(expr, n);
+         }
+       }

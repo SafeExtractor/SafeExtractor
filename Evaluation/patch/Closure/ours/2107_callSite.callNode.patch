@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/ChainCalls.java b/src/com/google/javascript/jscomp/ChainCalls.java
+index 2a1d792..45a09fa 100644
+--- a/src/com/google/javascript/jscomp/ChainCalls.java
++++ b/src/com/google/javascript/jscomp/ChainCalls.java
+@@ -53,9 +53,10 @@
+ 
+     for (CallSite callSite : callSites) {
+       callSite.parent.removeChild(callSite.n);
+-      callSite.n.removeChild(callSite.callNode);
++      Node var_2107 = callSite.callNode;
++	callSite.n.removeChild(var_2107);
+       callSite.nextGetPropNode.replaceChild(callSite.nextGetPropFirstChildNode,
+-                                            callSite.callNode);
++                                            var_2107);
+       compiler.reportCodeChange();
+     }
+   }

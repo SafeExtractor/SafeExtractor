@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/CodingConventions.java b/src/com/google/javascript/jscomp/CodingConventions.java
+index 88e2040..53196bd 100644
+--- a/src/com/google/javascript/jscomp/CodingConventions.java
++++ b/src/com/google/javascript/jscomp/CodingConventions.java
+@@ -428,10 +428,11 @@
+ 
+       Node callTarget = n.getFirstChild();
+       String name = callTarget.getQualifiedName();
+-      if (name != null) {
++      Node var_775 = callTarget.getNext();
++	if (name != null) {
+         if (name.equals("Function.prototype.bind.call")) {
+           // goog.bind(fn, self, args...);
+-          Node fn = callTarget.getNext();
++          Node fn = var_775;
+           if (fn == null) {
+             return null;
+           }
+@@ -453,7 +454,7 @@
+ 
+         if (fnType != null || maybeFn.isFunction()) {
+           // (function(){}).bind(self, args...);
+-          Node thisValue = callTarget.getNext();
++          Node thisValue = var_775;
+           Node parameters = safeNext(thisValue);
+           return new Bind(maybeFn, thisValue, parameters);
+         }

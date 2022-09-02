@@ -1,0 +1,24 @@
+diff --git a/src/org/mockito/internal/debugging/MockitoDebuggerImpl.java b/src/org/mockito/internal/debugging/MockitoDebuggerImpl.java
+index 7f0bd94..6dee843 100644
+--- a/src/org/mockito/internal/debugging/MockitoDebuggerImpl.java
++++ b/src/org/mockito/internal/debugging/MockitoDebuggerImpl.java
+@@ -8,6 +8,7 @@
+ import org.mockito.internal.invocation.UnusedStubsFinder;
+ import org.mockito.internal.invocation.finder.AllInvocationsFinder;
+ import org.mockito.invocation.Invocation;
++import org.mockito.invocation.StubInfo;
+ 
+ import java.util.List;
+ 
+@@ -27,8 +28,9 @@
+         for(Invocation i:invocations) {
+             out += line(i.toString());
+             out += line(" invoked: " + i.getLocation());
+-            if (i.stubInfo() != null) {
+-                out += line(" stubbed: " + i.stubInfo().stubbedAt().toString());
++            StubInfo var_30 = i.stubInfo();
++			if (var_30 != null) {
++                out += line(" stubbed: " + var_30.stubbedAt().toString());
+             }
+         }
+ 

@@ -1,0 +1,34 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/738_p.getDeclaration().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/738_p.getDeclaration().patch
+index 277e485..4c77949 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/738_p.getDeclaration().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/738_p.getDeclaration().patch
+@@ -1,23 +1,16 @@
+ diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+-index 3dc9204..66f5833 100644
++index 3dc9204..036700f 100644
+ --- a/src/com/google/javascript/jscomp/CollapseProperties.java
+ +++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+-@@ -896,14 +896,15 @@
+-       // done. (Duplicate keys in an object literal can bring us here twice
++@@ -897,8 +897,9 @@
+        // for the same global name.)
+        if (isJsIdentifier && p != null) {
+--        if (!discardKeys) {
+-+        Ref var_738 = p.getDeclaration();
+-+		if (!discardKeys) {
+-           Ref newAlias =
++         if (!discardKeys) {
++-          Ref newAlias =
+ -              p.getDeclaration().cloneAndReclassify(Ref.Type.ALIASING_GET);
+++          Ref var_738 = p.getDeclaration();
+++		Ref newAlias =
+ +              var_738.cloneAndReclassify(Ref.Type.ALIASING_GET);
+            newAlias.node = refNode;
+            p.addRef(newAlias);
+          }
+- 
+--        p.getDeclaration().node = nameNode;
+-+        var_738.node = nameNode;
+- 
+-         if (value.isFunction()) {
+-           checkForHosedThisReferences(value, value.getJSDocInfo(), p);

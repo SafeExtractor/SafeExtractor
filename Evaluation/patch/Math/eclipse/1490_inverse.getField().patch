@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java
+index 5371054..e6b6f47 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java
+@@ -20,6 +20,7 @@
+ import java.io.Serializable;
+ import java.text.NumberFormat;
+ 
++import org.apache.commons.math3.Field;
+ import org.apache.commons.math3.RealFieldElement;
+ import org.apache.commons.math3.exception.DimensionMismatchException;
+ import org.apache.commons.math3.exception.MathArithmeticException;
+@@ -558,7 +559,8 @@
+             return new FieldVector3D<T>(inverse.multiply(z).negate(), inverse.getField().getZero(), inverse.multiply(x));
+         } else {
+             final T inverse  = x.multiply(x).add(y.multiply(y)).sqrt().reciprocal();
+-            return new FieldVector3D<T>(inverse.multiply(y), inverse.multiply(x).negate(), inverse.getField().getZero());
++            Field<T> var_1490 = inverse.getField();
++			return new FieldVector3D<T>(inverse.multiply(y), inverse.multiply(x).negate(), var_1490.getZero());
+         }
+ 
+     }

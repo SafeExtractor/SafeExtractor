@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/ArrayRealVector.java b/src/main/java/org/apache/commons/math3/linear/ArrayRealVector.java
+index e807cb0..270de40 100644
+--- a/src/main/java/org/apache/commons/math3/linear/ArrayRealVector.java
++++ b/src/main/java/org/apache/commons/math3/linear/ArrayRealVector.java
+@@ -685,13 +685,14 @@
+         if (v instanceof ArrayRealVector) {
+             setSubVector(index, ((ArrayRealVector) v).data);
+         } else {
+-            try {
+-                for (int i = index; i < index + v.getDimension(); ++i) {
++            int var_2422 = v.getDimension();
++			try {
++                for (int i = index; i < index + var_2422; ++i) {
+                     data[i] = v.getEntry(i - index);
+                 }
+             } catch (IndexOutOfBoundsException e) {
+                 checkIndex(index);
+-                checkIndex(index + v.getDimension() - 1);
++                checkIndex(index + var_2422 - 1);
+             }
+         }
+     }

@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+index 5f0a14c..91b892a 100644
+--- a/src/com/google/javascript/jscomp/SymbolTable.java
++++ b/src/com/google/javascript/jscomp/SymbolTable.java
+@@ -515,10 +515,11 @@
+     if (sym == null) {
+       // JSCompiler has no symbol for this scope. Check to see if it's a
+       // local function. If it is, give it a name.
+-      if (scope.isLexicalScope() &&
++      Node var_1301 = scope.getRootNode();
++	if (scope.isLexicalScope() &&
+           !scope.isGlobalScope() &&
+-          scope.getRootNode() != null &&
+-          !scope.getRootNode().isFromExterns() &&
++          var_1301 != null &&
++          !var_1301.isFromExterns() &&
+           scope.getParentScope() != null) {
+         SymbolScope parent = scope.getParentScope();
+ 
+@@ -526,7 +527,7 @@
+         String innerName = "function%" + count;
+         scope.setSymbolForScope(
+             declareInferredSymbol(
+-                parent, innerName, scope.getRootNode()));
++                parent, innerName, var_1301));
+       }
+     }
+   }

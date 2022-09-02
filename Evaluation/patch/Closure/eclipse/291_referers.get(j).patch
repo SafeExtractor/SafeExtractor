@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 781fc3c..fc9e28f 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -975,8 +975,9 @@
+       int size = referers.size();
+       for (int i = 0; i < size; i++) {
+         for (int j = i + 1; j < size; j++) {
+-          recordAlias(referers.get(i).name, referers.get(j).name);
+-          recordAlias(referers.get(j).name, referers.get(i).name);
++          NameInformation var_291 = referers.get(j);
++		recordAlias(referers.get(i).name, var_291.name);
++          recordAlias(var_291.name, referers.get(i).name);
+         }
+       }
+     }

@@ -1,0 +1,20 @@
+diff --git a/src/org/mockito/internal/stubbing/answers/ReturnsArgumentAt.java b/src/org/mockito/internal/stubbing/answers/ReturnsArgumentAt.java
+index 059074d..e8361ce 100644
+--- a/src/org/mockito/internal/stubbing/answers/ReturnsArgumentAt.java
++++ b/src/org/mockito/internal/stubbing/answers/ReturnsArgumentAt.java
+@@ -95,11 +95,12 @@
+     public Class returnedTypeOnSignature(InvocationOnMock invocation) {
+         int actualArgumentPosition = actualArgumentPosition(invocation);
+ 
+-        if(!invocation.getMethod().isVarArgs()) {
+-            return invocation.getMethod().getParameterTypes()[actualArgumentPosition];
++        Class<?>[] var_89 = invocation.getMethod().getParameterTypes();
++		if(!invocation.getMethod().isVarArgs()) {
++            return var_89[actualArgumentPosition];
+         }
+ 
+-        Class<?>[] parameterTypes = invocation.getMethod().getParameterTypes();
++        Class<?>[] parameterTypes = var_89;
+         int varargPosition = parameterTypes.length - 1;
+ 
+         if(actualArgumentPosition < varargPosition) {

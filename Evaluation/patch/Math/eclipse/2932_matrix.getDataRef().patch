@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java b/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java
+index 07f397b..dc28d21 100644
+--- a/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java
++++ b/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java
+@@ -216,7 +216,8 @@
+         matrix.setEntry(zIndex, zIndex, maximize ? 1 : -1);
+         RealVector objectiveCoefficients =
+             maximize ? f.getCoefficients().mapMultiply(-1) : f.getCoefficients();
+-        copyArray(objectiveCoefficients.toArray(), matrix.getDataRef()[zIndex]);
++        double[][] var_2932 = matrix.getDataRef();
++		copyArray(objectiveCoefficients.toArray(), var_2932[zIndex]);
+         matrix.setEntry(zIndex, width - 1,
+             maximize ? f.getConstantTerm() : -1 * f.getConstantTerm());
+ 
+@@ -233,7 +234,7 @@
+             int row = getNumObjectiveFunctions() + i;
+ 
+             // decision variable coefficients
+-            copyArray(constraint.getCoefficients().toArray(), matrix.getDataRef()[row]);
++            copyArray(constraint.getCoefficients().toArray(), var_2932[row]);
+ 
+             // x-
+             if (!restrictToNonNegative) {

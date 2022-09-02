@@ -1,0 +1,35 @@
+diff --git a/src/com/google/javascript/jscomp/deps/SortedDependencies.java b/src/com/google/javascript/jscomp/deps/SortedDependencies.java
+index 95e2071..40d2d9d 100644
+--- a/src/com/google/javascript/jscomp/deps/SortedDependencies.java
++++ b/src/com/google/javascript/jscomp/deps/SortedDependencies.java
+@@ -30,6 +30,7 @@
+ import com.google.common.collect.Sets;
+ 
+ import java.util.ArrayDeque;
++import java.util.ArrayList;
+ import java.util.Collection;
+ import java.util.Collections;
+ import java.util.Comparator;
+@@ -238,10 +239,11 @@
+ 
+   private static <T> List<T> topologicalStableSort(
+       List<T> items, Multimap<T, T> deps) {
+-    if (items.size() == 0) {
++    ArrayList<T> var_2155 = Lists.newArrayList();
++	if (items.size() == 0) {
+       // Priority queue blows up if we give it a size of 0. Since we need
+       // to special case this either way, just bail out.
+-      return Lists.newArrayList();
++      return var_2155;
+     }
+ 
+     final Map<T, Integer> originalIndex = Maps.newHashMap();
+@@ -257,7 +259,7 @@
+             originalIndex.get(b).intValue();
+       }
+     });
+-    List<T> result = Lists.newArrayList();
++    List<T> result = var_2155;
+ 
+     Multiset<T> inDegree = HashMultiset.create();
+     Multimap<T, T> reverseDeps = ArrayListMultimap.create();

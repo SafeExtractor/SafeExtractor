@@ -1,0 +1,54 @@
+diff --git a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+index bc570e2..df2515f 100644
+--- a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
++++ b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+@@ -248,7 +248,8 @@
+ 
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      if (n.isGetProp()) {
++      JSModule var_1658 = t.getModule();
++	if (n.isGetProp()) {
+         String propName = n.getFirstChild().getNext().getString();
+ 
+         if (n.isQualifiedName()) {
+@@ -257,7 +258,7 @@
+               return;
+             }
+           } else if (compiler.getCodingConvention().isExported(propName)) {
+-            addGlobalUseOfSymbol(propName, t.getModule(), PROPERTY);
++            addGlobalUseOfSymbol(propName, var_1658, PROPERTY);
+             return;
+           } else {
+             // Do not mark prototype prop assigns as a 'use' in the global scope.
+@@ -270,7 +271,7 @@
+           }
+         }
+ 
+-        addSymbolUse(propName, t.getModule(), PROPERTY);
++        addSymbolUse(propName, var_1658, PROPERTY);
+       } else if (n.isObjectLit()) {
+         // Make sure that we're not handling object literals being
+         // assigned to a prototype, as in:
+@@ -287,7 +288,7 @@
+              propNameNode = propNameNode.getNext()) {
+           // May be STRING, GET, or SET, but NUMBER isn't interesting.
+           if (!propNameNode.isQuotedString()) {
+-            addSymbolUse(propNameNode.getString(), t.getModule(), PROPERTY);
++            addSymbolUse(propNameNode.getString(), var_1658, PROPERTY);
+           }
+         }
+       } else if (n.isName()) {
+@@ -301,10 +302,10 @@
+                 var.getInitialValue().isFunction()) {
+               if (t.inGlobalScope()) {
+                 if (!processGlobalFunctionDeclaration(t, n, var)) {
+-                  addGlobalUseOfSymbol(name, t.getModule(), VAR);
++                  addGlobalUseOfSymbol(name, var_1658, VAR);
+                 }
+               } else {
+-                addSymbolUse(name, t.getModule(), VAR);
++                addSymbolUse(name, var_1658, VAR);
+               }
+             }
+ 

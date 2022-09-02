@@ -1,0 +1,18 @@
+diff --git a/src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java b/src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java
+index 54f2c3f..66168ca 100644
+--- a/src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java
++++ b/src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java
+@@ -94,9 +94,10 @@
+     }
+ 
+     private MockSettings withSettingsUsing(GenericMetadataSupport returnTypeGenericMetadata, MockCreationSettings parentMockSettings) {
+-        MockSettings mockSettings = returnTypeGenericMetadata.hasRawExtraInterfaces() ?
+-                withSettings().extraInterfaces(returnTypeGenericMetadata.rawExtraInterfaces())
+-                : withSettings();
++        MockSettings var_92 = withSettings();
++		MockSettings mockSettings = returnTypeGenericMetadata.hasRawExtraInterfaces() ?
++                var_92.extraInterfaces(returnTypeGenericMetadata.rawExtraInterfaces())
++                : var_92;
+ 
+         return propagateSerializationSettings(mockSettings, parentMockSettings)
+                 .defaultAnswer(returnsDeepStubsAnswerUsing(returnTypeGenericMetadata));

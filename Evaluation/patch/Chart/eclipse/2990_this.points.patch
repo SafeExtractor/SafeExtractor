@@ -1,0 +1,55 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java b/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java
+index 6841362..d4feb8f 100644
+--- a/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java
+@@ -189,32 +189,33 @@
+         double transY1 = rangeAxis.valueToJava2D(y1, dataArea, yAxisLocation);
+ 
+         // collect points
+-        if (!Double.isNaN(transX1) && !Double.isNaN(transY1)) {
++        Vector var_2990 = this.points;
++		if (!Double.isNaN(transX1) && !Double.isNaN(transY1)) {
+             ControlPoint p = new ControlPoint(plot.getOrientation()
+                                 == PlotOrientation.HORIZONTAL ? (float) transY1
+                                 : (float) transX1, plot.getOrientation()
+                                 == PlotOrientation.HORIZONTAL ? (float) transX1
+                                         : (float) transY1);
+-            if (!this.points.contains(p)) {
+-                this.points.add(p);
++            if (!var_2990.contains(p)) {
++                var_2990.add(p);
+             }
+         }
+         if (item == dataset.getItemCount(series) - 1) {
+             State s = (State) state;
+             // construct path
+-            if (this.points.size() > 1) {
++            if (var_2990.size() > 1) {
+                 // we need at least two points to draw something
+-                ControlPoint cp0 = (ControlPoint) this.points.get(0);
++                ControlPoint cp0 = (ControlPoint) var_2990.get(0);
+                 s.seriesPath.moveTo(cp0.x, cp0.y);
+-                if (this.points.size() == 2) {
++                if (var_2990.size() == 2) {
+                     // we need at least 3 points to spline. Draw simple line
+                     // for two points
+-                    ControlPoint cp1 = (ControlPoint) this.points.get(1);
++                    ControlPoint cp1 = (ControlPoint) var_2990.get(1);
+                     s.seriesPath.lineTo(cp1.x, cp1.y);
+                 }
+                 else {
+                     // construct spline
+-                    int np = this.points.size(); // number of points
++                    int np = var_2990.size(); // number of points
+                     float[] d = new float[np]; // Newton form coefficients
+                     float[] x = new float[np]; // x-coordinates of nodes
+                     float y;
+@@ -228,7 +229,7 @@
+                     float[] h = new float[np];
+ 
+                     for (int i = 0; i < np; i++) {
+-                        ControlPoint cpi = (ControlPoint) this.points.get(i);
++                        ControlPoint cpi = (ControlPoint) var_2990.get(i);
+                         x[i] = cpi.x;
+                         d[i] = cpi.y;
+                     }

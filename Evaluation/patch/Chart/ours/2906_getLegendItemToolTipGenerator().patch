@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
+index aa90f2b..1a9e702 100644
+--- a/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
+@@ -129,6 +129,7 @@
+ import org.jfree.chart.axis.ValueAxis;
+ import org.jfree.chart.entity.EntityCollection;
+ import org.jfree.chart.event.RendererChangeEvent;
++import org.jfree.chart.labels.XYSeriesLabelGenerator;
+ import org.jfree.chart.labels.XYToolTipGenerator;
+ import org.jfree.chart.plot.Plot;
+ import org.jfree.chart.plot.PlotOrientation;
+@@ -589,8 +590,9 @@
+                         dataset, series);
+                 String description = label;
+                 String toolTipText = null;
+-                if (getLegendItemToolTipGenerator() != null) {
+-                    toolTipText = getLegendItemToolTipGenerator().generateLabel(
++                XYSeriesLabelGenerator var_2906 = getLegendItemToolTipGenerator();
++				if (var_2906 != null) {
++                    toolTipText = var_2906.generateLabel(
+                             dataset, series);
+                 }
+                 String urlText = null;

@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/chart/axis/CategoryLabelWidthType.java b/source/org/jfree/chart/axis/CategoryLabelWidthType.java
+index 8fc16bb..311cfe3 100644
+--- a/source/org/jfree/chart/axis/CategoryLabelWidthType.java
++++ b/source/org/jfree/chart/axis/CategoryLabelWidthType.java
+@@ -119,10 +119,12 @@
+     private Object readResolve() throws ObjectStreamException {
+         if (this.equals(CategoryLabelWidthType.CATEGORY)) {
+             return CategoryLabelWidthType.CATEGORY;
+-        }
+-        else if (this.equals(CategoryLabelWidthType.RANGE)) {
+-            return CategoryLabelWidthType.RANGE;
+-        }
++        } else {
++			CategoryLabelWidthType var_741 = CategoryLabelWidthType.RANGE;
++			if (this.equals(var_741)) {
++			    return var_741;
++			}
++		}
+         return null;
+     }
+ 

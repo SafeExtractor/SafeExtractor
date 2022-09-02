@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/util/ShapeUtilities.java b/source/org/jfree/chart/util/ShapeUtilities.java
+index 5c137f7..315e0f2 100644
+--- a/source/org/jfree/chart/util/ShapeUtilities.java
++++ b/source/org/jfree/chart/util/ShapeUtilities.java
+@@ -647,7 +647,8 @@
+             double dy = (y2 - y1);
+             // update (x1, y1), (x2, y2) and f1 and f2 using intersections
+             // then recheck
+-            if (f1 != 0) {
++            int var_3668 = Rectangle2D.OUT_BOTTOM;
++			if (f1 != 0) {
+                 // first point is outside, so we update it against one of the
+                 // four sides then continue
+                 if ((f1 & Rectangle2D.OUT_LEFT) == Rectangle2D.OUT_LEFT
+@@ -660,7 +661,7 @@
+                     y1 = y1 + (maxX - x1) * dy / dx;
+                     x1 = maxX;
+                 }
+-                else if ((f1 & Rectangle2D.OUT_BOTTOM) == Rectangle2D.OUT_BOTTOM
++                else if ((f1 & var_3668) == var_3668
+                         && dy != 0.0) {
+                     x1 = x1 + (maxY - y1) * dx / dy;
+                     y1 = maxY;
+@@ -685,7 +686,7 @@
+                     y2 = y2 + (maxX - x2) * dy / dx;
+                     x2 = maxX;
+                 }
+-                else if ((f2 & Rectangle2D.OUT_BOTTOM) == Rectangle2D.OUT_BOTTOM
++                else if ((f2 & var_3668) == var_3668
+                         && dy != 0.0) {
+                     x2 = x2 + (maxY - y2) * dx / dy;
+                     y2 = maxY;

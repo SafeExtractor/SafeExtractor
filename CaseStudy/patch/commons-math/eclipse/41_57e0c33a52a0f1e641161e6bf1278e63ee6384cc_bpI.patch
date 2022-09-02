@@ -1,0 +1,14 @@
+diff --git a/src/java/org/apache/commons/math/linear/BigMatrixImpl.java b/src/java/org/apache/commons/math/linear/BigMatrixImpl.java
+index ccb9a9d..0063e87 100644
+--- a/src/java/org/apache/commons/math/linear/BigMatrixImpl.java
++++ b/src/java/org/apache/commons/math/linear/BigMatrixImpl.java
+@@ -980,7 +980,8 @@
+         for (int col = 0; col < nCol; col++) {
+             for (int i = col + 1; i < nCol; i++) {
+                 for (int j = 0; j < nColB; j++) {
+-                    bp[i][j] = bp[i][j].subtract(bp[col][j].multiply(lu[i][col]));
++                    BigDecimal[] bpI = bp[i];
++					bpI[j] = bpI[j].subtract(bp[col][j].multiply(lu[i][col]));
+                 }
+             }
+         }

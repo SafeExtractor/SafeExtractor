@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+index 3dc8ec6..59c6955 100644
+--- a/src/com/google/javascript/jscomp/TypeInference.java
++++ b/src/com/google/javascript/jscomp/TypeInference.java
+@@ -1121,15 +1121,16 @@
+       Map<TemplateType, JSType> resolvedTypes) {
+     while (declParams.hasNext() && callParams.hasNext()) {
+       Node declParam = declParams.next();
+-      maybeResolveTemplatedType(
++      JSType var_960 = getJSType(callParams.next());
++	maybeResolveTemplatedType(
+           getJSType(declParam),
+-          getJSType(callParams.next()),
++          var_960,
+           resolvedTypes);
+       if (declParam.isVarArgs()) {
+         while (callParams.hasNext()) {
+           maybeResolveTemplatedType(
+               getJSType(declParam),
+-              getJSType(callParams.next()),
++              var_960,
+               resolvedTypes);
+         }
+       }

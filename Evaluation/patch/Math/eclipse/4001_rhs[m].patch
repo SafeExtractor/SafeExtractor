@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..6f5ed28 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -732,7 +732,8 @@
+                 if (Math.abs(X) * Math.sqrt(d1) < tol[mp1]) {
+                     X = 0.0;
+                 }
+-                if (d1 < this.epsilon || Math.abs(X) < this.epsilon) {
++                double var_4001 = rhs[m];
++				if (d1 < this.epsilon || Math.abs(X) < this.epsilon) {
+                     d[m] = d2;
+                     d[mp1] = d1;
+                     r[m1] = 0.0;
+@@ -743,7 +744,7 @@
+                         r[m2] = X;
+                         ++m2;
+                     }
+-                    X = rhs[m];
++                    X = var_4001;
+                     rhs[m] = rhs[mp1];
+                     rhs[mp1] = X;
+                     bSkipTo40 = true;
+@@ -754,7 +755,7 @@
+                     for (int _i = m1 + 1; _i < m1 + nvars - m - 1; _i++) {
+                         r[_i] /= X;
+                     }
+-                    rhs[m] = rhs[m] / X;
++                    rhs[m] = var_4001 / X;
+                     bSkipTo40 = true;
+                     //break;
+                 }
+@@ -773,7 +774,7 @@
+                         r[m2] = Y - X * r[m2];
+                         ++m2;
+                     }
+-                    Y = rhs[m];
++                    Y = var_4001;
+                     rhs[m] = cbar * rhs[mp1] + sbar * Y;
+                     rhs[mp1] = Y - X * rhs[mp1];
+                 }

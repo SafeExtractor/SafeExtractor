@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/axis/Axis.java b/source/org/jfree/chart/axis/Axis.java
+index cabb331..95c05e9 100644
+--- a/source/org/jfree/chart/axis/Axis.java
++++ b/source/org/jfree/chart/axis/Axis.java
+@@ -1148,7 +1148,8 @@
+             Rectangle2D dataArea, RectangleEdge edge,
+             PlotRenderingInfo plotState) {
+ 
+-        if (plotState == null || plotState.getOwner() == null) {
++        ChartRenderingInfo var_295 = plotState.getOwner();
++		if (plotState == null || var_295 == null) {
+             return;  // no need to create entity if we can´t save it anyways...
+         }
+         Rectangle2D hotspot = null;
+@@ -1170,7 +1171,7 @@
+             hotspot = new Rectangle2D.Double(cursor, dataArea.getY(),
+                     state.getCursor() - cursor, dataArea.getHeight());
+         }
+-        EntityCollection e = plotState.getOwner().getEntityCollection();
++        EntityCollection e = var_295.getEntityCollection();
+         if (e != null) {
+             e.add(new AxisEntity(hotspot, this));
+         }

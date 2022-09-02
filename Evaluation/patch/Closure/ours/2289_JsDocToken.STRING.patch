@@ -1,0 +1,50 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..f057344 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -228,7 +228,8 @@
+               // Mark the beginning of the annotation.
+               jsdocBuilder.markAnnotation(annotationName, lineno, charno);
+ 
+-              switch (annotation) {
++              JsDocToken var_2289 = JsDocToken.STRING;
++			switch (annotation) {
+                 case AUTHOR:
+                   if (jsdocBuilder.shouldParseDocumentation()) {
+                     ExtractionInfo authorInfo = extractSingleLineBlock();
+@@ -437,7 +438,7 @@
+                     matchingRc = true;
+                   }
+ 
+-                  if (token == JsDocToken.STRING) {
++                  if (token == var_2289) {
+                     Node typeNode = parseAndRecordTypeNameNode(
+                         token, lineno, charno, matchingRc);
+ 
+@@ -493,7 +494,7 @@
+                     matchingRc = true;
+                   }
+ 
+-                  if (match(JsDocToken.STRING)) {
++                  if (match(var_2289)) {
+                     token = next();
+                     if (!jsdocBuilder.recordLends(stream.getString())) {
+                       parser.addTypeWarning("msg.jsdoc.lends.incompatible",
+@@ -630,7 +631,7 @@
+                     token = next();
+                   }
+ 
+-                  if (JsDocToken.STRING != token) {
++                  if (var_2289 != token) {
+                     parser.addTypeWarning("msg.missing.variable.name",
+                         lineno, charno);
+                   } else {
+@@ -644,7 +645,7 @@
+                       // system.
+                       if (JsDocToken.EQUALS == token) {
+                         token = next();
+-                        if (JsDocToken.STRING == token) {
++                        if (var_2289 == token) {
+                           token = next();
+                         }
+                       }

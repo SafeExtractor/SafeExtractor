@@ -1,0 +1,44 @@
+diff --git a/source/org/jfree/chart/axis/PeriodAxis.java b/source/org/jfree/chart/axis/PeriodAxis.java
+index 3c0bc0f..84813e3 100644
+--- a/source/org/jfree/chart/axis/PeriodAxis.java
++++ b/source/org/jfree/chart/axis/PeriodAxis.java
+@@ -727,7 +727,8 @@
+         Line2D outside = null;
+         long firstOnAxis = getFirst().getFirstMillisecond();
+         long lastOnAxis = getLast().getLastMillisecond() + 1;
+-        while (t0 <= lastOnAxis) {
++        float var_807 = this.minorTickMarkOutsideLength;
++		while (t0 <= lastOnAxis) {
+             ticks.add(new NumberTick(new Double(t0), "", TextAnchor.CENTER,
+                     TextAnchor.CENTER, 0.0));
+             x0 = valueToJava2D(t0, dataArea, edge);
+@@ -758,13 +759,13 @@
+                         inside = new Line2D.Double(xx0, y0, xx0,
+                                 y0 + this.minorTickMarkInsideLength);
+                         outside = new Line2D.Double(xx0, y0, xx0,
+-                                y0 - this.minorTickMarkOutsideLength);
++                                y0 - var_807);
+                     }
+                     else if (edge == RectangleEdge.BOTTOM) {
+                         inside = new Line2D.Double(xx0, y0, xx0,
+                                 y0 - this.minorTickMarkInsideLength);
+                         outside = new Line2D.Double(xx0, y0, xx0,
+-                                y0 + this.minorTickMarkOutsideLength);
++                                y0 + var_807);
+                     }
+                     if (tt0 >= firstOnAxis) {
+                         g2.setPaint(this.minorTickMarkPaint);
+@@ -783,11 +784,11 @@
+         }
+         if (edge == RectangleEdge.TOP) {
+             state.cursorUp(Math.max(outsideLength,
+-                    this.minorTickMarkOutsideLength));
++                    var_807));
+         }
+         else if (edge == RectangleEdge.BOTTOM) {
+             state.cursorDown(Math.max(outsideLength,
+-                    this.minorTickMarkOutsideLength));
++                    var_807));
+         }
+         state.setTicks(ticks);
+     }

@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/descriptive/rank/Percentile.java b/src/main/java/org/apache/commons/math3/stat/descriptive/rank/Percentile.java
+index db447aa..ecef80a 100644
+--- a/src/main/java/org/apache/commons/math3/stat/descriptive/rank/Percentile.java
++++ b/src/main/java/org/apache/commons/math3/stat/descriptive/rank/Percentile.java
+@@ -321,7 +321,8 @@
+         int end   = work.length;
+         int node  = 0;
+ 
+-        while (end - begin > MIN_SELECT_SIZE) {
++        double var_3811 = work[k];
++		while (end - begin > MIN_SELECT_SIZE) {
+ 
+             final int pivot;
+             if ((node < pivotsHeap.length) && (pivotsHeap[node] >= 0)) {
+@@ -338,7 +339,7 @@
+ 
+             if (k == pivot) {
+                 // the pivot was exactly the element we wanted
+-                return work[k];
++                return var_3811;
+             } else if (k < pivot) {
+                 // the element is in the left partition
+                 end  = pivot;
+@@ -354,7 +355,7 @@
+         // the element is somewhere in the small sub-array
+         // sort the sub-array using insertion sort
+         insertionSort(work, begin, end);
+-        return work[k];
++        return var_3811;
+ 
+     }
+ 

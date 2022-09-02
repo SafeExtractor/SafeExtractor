@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/MatrixUtils.java b/src/main/java/org/apache/commons/math3/linear/MatrixUtils.java
+index 5b91780..28b930e 100644
+--- a/src/main/java/org/apache/commons/math3/linear/MatrixUtils.java
++++ b/src/main/java/org/apache/commons/math3/linear/MatrixUtils.java
+@@ -156,11 +156,12 @@
+      */
+     public static <T extends FieldElement<T>> FieldMatrix<T> createFieldMatrix(T[][] data)
+         throws DimensionMismatchException, NoDataException, NullArgumentException {
+-        if (data == null ||
+-            data[0] == null) {
++        T[] var_2007 = data[0];
++		if (data == null ||
++            var_2007 == null) {
+             throw new NullArgumentException();
+         }
+-        return (data.length * data[0].length <= 4096) ?
++        return (data.length * var_2007.length <= 4096) ?
+                 new Array2DRowFieldMatrix<T>(data) : new BlockFieldMatrix<T>(data);
+     }
+ 

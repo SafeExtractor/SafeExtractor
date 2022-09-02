@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..d55c827 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -852,11 +852,12 @@
+         // create the function value and derivatives
+         // [a^x, ln(a) a^x, ln(a)^2 a^x,, ln(a)^3 a^x, ... ]
+         final double[] function = new double[1 + order];
+-        if (a == 0) {
++        int var_114 = function.length;
++		if (a == 0) {
+             if (operand[operandOffset] == 0) {
+                 function[0] = 1;
+                 double infinity = Double.POSITIVE_INFINITY;
+-                for (int i = 1; i < function.length; ++i) {
++                for (int i = 1; i < var_114; ++i) {
+                     infinity = -infinity;
+                     function[i] = infinity;
+                 }
+@@ -866,7 +867,7 @@
+         } else {
+             function[0] = FastMath.pow(a, operand[operandOffset]);
+             final double lnA = FastMath.log(a);
+-            for (int i = 1; i < function.length; ++i) {
++            for (int i = 1; i < var_114; ++i) {
+                 function[i] = lnA * function[i - 1];
+             }
+         }

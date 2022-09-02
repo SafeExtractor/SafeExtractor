@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/distribution/MultivariateNormalDistribution.java b/src/main/java/org/apache/commons/math3/distribution/MultivariateNormalDistribution.java
+index 75f45b3..bb4cb38 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/MultivariateNormalDistribution.java
++++ b/src/main/java/org/apache/commons/math3/distribution/MultivariateNormalDistribution.java
+@@ -130,8 +130,9 @@
+         final double[] covMatEigenvalues = covMatDec.getRealEigenvalues();
+ 
+         for (int i = 0; i < covMatEigenvalues.length; i++) {
+-            if (covMatEigenvalues[i] < 0) {
+-                throw new NonPositiveDefiniteMatrixException(covMatEigenvalues[i], i, 0);
++            double var_855 = covMatEigenvalues[i];
++			if (var_855 < 0) {
++                throw new NonPositiveDefiniteMatrixException(var_855, i, 0);
+             }
+         }
+ 

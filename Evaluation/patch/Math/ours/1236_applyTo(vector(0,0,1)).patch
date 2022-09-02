@@ -1,0 +1,49 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..8ea8f11 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -491,14 +491,15 @@
+     public T[] getAngles(final RotationOrder order)
+         throws CardanEulerSingularityException {
+ 
+-        if (order == RotationOrder.XYZ) {
++        FieldVector3D<T> var_1236 = applyTo(vector(0, 0, 1));
++		if (order == RotationOrder.XYZ) {
+ 
+             // r (+K) coordinates are :
+             //  sin (theta), -cos (theta) sin (phi), cos (theta) cos (phi)
+             // (-r) (+I) coordinates are :
+             // cos (psi) cos (theta), -sin (psi) cos (theta), sin (theta)
+             final // and we can choose to have theta in the interval [-PI/2 ; +PI/2]
+-            FieldVector3D<T> v1 = applyTo(vector(0, 0, 1));
++            FieldVector3D<T> v1 = var_1236;
+             final FieldVector3D<T> v2 = applyInverseTo(vector(1, 0, 0));
+             if  ((v2.getZ().getReal() < -0.9999999999) || (v2.getZ().getReal() > 0.9999999999)) {
+                 throw new CardanEulerSingularityException(true);
+@@ -530,7 +531,7 @@
+             // (-r) (+J) coordinates are :
+             // sin (psi) cos (phi), cos (psi) cos (phi), -sin (phi)
+             // and we can choose to have phi in the interval [-PI/2 ; +PI/2]
+-            final FieldVector3D<T> v1 = applyTo(vector(0, 0, 1));
++            final FieldVector3D<T> v1 = var_1236;
+             final FieldVector3D<T> v2 = applyInverseTo(vector(0, 1, 0));
+             if ((v2.getZ().getReal() < -0.9999999999) || (v2.getZ().getReal() > 0.9999999999)) {
+                 throw new CardanEulerSingularityException(true);
+@@ -658,7 +659,7 @@
+             // (-r) (+K) coordinates are :
+             // sin (phi) sin (psi2), sin (phi) cos (psi2), cos (phi)
+             // and we can choose to have phi in the interval [0 ; PI]
+-            final FieldVector3D<T> v1 = applyTo(vector(0, 0, 1));
++            final FieldVector3D<T> v1 = var_1236;
+             final FieldVector3D<T> v2 = applyInverseTo(vector(0, 0, 1));
+             if ((v2.getZ().getReal() < -0.9999999999) || (v2.getZ().getReal() > 0.9999999999)) {
+                 throw new CardanEulerSingularityException(false);
+@@ -674,7 +675,7 @@
+             // (-r) (+K) coordinates are :
+             // -sin (theta) cos (psi2), sin (theta) sin (psi2), cos (theta)
+             // and we can choose to have theta in the interval [0 ; PI]
+-            final FieldVector3D<T> v1 = applyTo(vector(0, 0, 1));
++            final FieldVector3D<T> v1 = var_1236;
+             final FieldVector3D<T> v2 = applyInverseTo(vector(0, 0, 1));
+             if ((v2.getZ().getReal() < -0.9999999999) || (v2.getZ().getReal() > 0.9999999999)) {
+                 throw new CardanEulerSingularityException(false);

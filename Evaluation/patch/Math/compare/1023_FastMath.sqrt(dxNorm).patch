@@ -1,0 +1,32 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/1023_FastMath.sqrt(dxNorm).patch b/Users/safe/paper/Evaluation/patch/Math/ours/1023_FastMath.sqrt(dxNorm).patch
+index 6cdfcd5..f9542cb 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/1023_FastMath.sqrt(dxNorm).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/1023_FastMath.sqrt(dxNorm).patch
+@@ -1,23 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
+-index 930eb1e..a1e0639 100644
++index 930eb1e..124d1db 100644
+ --- a/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
+ +++ b/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
+-@@ -643,7 +643,8 @@
+-             work1[pj] = s;
+-             dxNorm += s * s;
+-         }
+--        dxNorm = FastMath.sqrt(dxNorm);
+-+        double var_1023 = FastMath.sqrt(dxNorm);
+-+		dxNorm = var_1023;
+-         double fp = dxNorm - delta;
+-         if (fp <= 0.1 * delta) {
+-             lmPar = 0;
+-@@ -718,7 +719,7 @@
++@@ -718,7 +718,8 @@
+                  work3[pj] = s;
+                  dxNorm += s * s;
+              }
+ -            dxNorm = FastMath.sqrt(dxNorm);
+-+            dxNorm = var_1023;
+++            double var_1023 = FastMath.sqrt(dxNorm);
+++			dxNorm = var_1023;
+              double previousFP = fp;
+              fp = dxNorm - delta;
+  

@@ -1,0 +1,37 @@
+diff --git a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+index 067e1df..9d5510b 100644
+--- a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
++++ b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+@@ -394,18 +394,19 @@
+             throw new IllegalArgumentException("TimeSeriesDataset.addSeries(): "
+                 + "cannot add more series than specified in c'tor");
+         }
+-        if (this.valueHistory[seriesNumber] == null) {
++        int var_4275 = this.historyCount;
++		if (this.valueHistory[seriesNumber] == null) {
+             this.valueHistory[seriesNumber]
+-                = new ValueSequence(this.historyCount);
++                = new ValueSequence(var_4275);
+             this.seriesCount++;
+         }
+         // But if that series array already exists, just overwrite its contents
+ 
+         // Avoid IndexOutOfBoundsException:
+         int srcLength = values.length;
+-        int copyLength = this.historyCount;
++        int copyLength = var_4275;
+         boolean fillNeeded = false;
+-        if (srcLength < this.historyCount) {
++        if (srcLength < var_4275) {
+             fillNeeded = true;
+             copyLength = srcLength;
+         }
+@@ -415,7 +416,7 @@
+             this.valueHistory[seriesNumber].enterData(i, values[i]);
+         }
+         if (fillNeeded) {
+-            for (i = copyLength; i < this.historyCount; i++) {
++            for (i = copyLength; i < var_4275; i++) {
+                 this.valueHistory[seriesNumber].enterData(i, 0.0f);
+             }
+         }

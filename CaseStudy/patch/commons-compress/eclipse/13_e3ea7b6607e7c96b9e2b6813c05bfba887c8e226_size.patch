@@ -1,0 +1,45 @@
+diff --git a/src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java b/src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java
+index 30f7087..c703ec4 100644
+--- a/src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java
++++ b/src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java
+@@ -766,17 +766,18 @@
+         ze.setMethod(ZipShort.getValue(cfhBuf, off));
+         off += SHORT;
+ 
+-        final long time = ZipUtil.dosToJavaTime(ZipLong.getValue(cfhBuf, off));
++        long size = ZipLong.getValue(cfhBuf, off);
++		final long time = ZipUtil.dosToJavaTime(size);
+         ze.setTime(time);
+         off += WORD;
+ 
+-        ze.setCrc(ZipLong.getValue(cfhBuf, off));
++        ze.setCrc(size);
+         off += WORD;
+ 
+-        ze.setCompressedSize(ZipLong.getValue(cfhBuf, off));
++        ze.setCompressedSize(size);
+         off += WORD;
+ 
+-        ze.setSize(ZipLong.getValue(cfhBuf, off));
++        ze.setSize(size);
+         off += WORD;
+ 
+         final int fileNameLen = ZipShort.getValue(cfhBuf, off);
+@@ -794,7 +795,7 @@
+         ze.setInternalAttributes(ZipShort.getValue(cfhBuf, off));
+         off += SHORT;
+ 
+-        ze.setExternalAttributes(ZipLong.getValue(cfhBuf, off));
++        ze.setExternalAttributes(size);
+         off += WORD;
+ 
+         final byte[] fileName = new byte[fileNameLen];
+@@ -802,7 +803,7 @@
+         ze.setName(entryEncoding.decode(fileName), fileName);
+ 
+         // LFH offset,
+-        ze.setLocalHeaderOffset(ZipLong.getValue(cfhBuf, off));
++        ze.setLocalHeaderOffset(size);
+         // data offset will be filled later
+         entries.add(ze);
+ 

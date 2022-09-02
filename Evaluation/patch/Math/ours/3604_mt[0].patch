@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/random/MersenneTwister.java b/src/main/java/org/apache/commons/math3/random/MersenneTwister.java
+index 7b717fe..8c36398 100644
+--- a/src/main/java/org/apache/commons/math3/random/MersenneTwister.java
++++ b/src/main/java/org/apache/commons/math3/random/MersenneTwister.java
+@@ -231,7 +231,8 @@
+         int y;
+ 
+         if (mti >= N) { // generate N words at one time
+-            int mtNext = mt[0];
++            int var_3604 = mt[0];
++			int mtNext = var_3604;
+             for (int k = 0; k < N - M; ++k) {
+                 int mtCurr = mtNext;
+                 mtNext = mt[k + 1];
+@@ -244,7 +245,7 @@
+                 y = (mtCurr & 0x80000000) | (mtNext & 0x7fffffff);
+                 mt[k] = mt[k + (M - N)] ^ (y >>> 1) ^ MAG01[y & 0x1];
+             }
+-            y = (mtNext & 0x80000000) | (mt[0] & 0x7fffffff);
++            y = (mtNext & 0x80000000) | (var_3604 & 0x7fffffff);
+             mt[N - 1] = mt[M - 1] ^ (y >>> 1) ^ MAG01[y & 0x1];
+ 
+             mti = 0;

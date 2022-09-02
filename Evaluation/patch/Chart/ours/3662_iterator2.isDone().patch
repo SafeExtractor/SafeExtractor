@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/util/ShapeUtilities.java b/source/org/jfree/chart/util/ShapeUtilities.java
+index 5c137f7..d3415c3 100644
+--- a/source/org/jfree/chart/util/ShapeUtilities.java
++++ b/source/org/jfree/chart/util/ShapeUtilities.java
+@@ -276,9 +276,10 @@
+         PathIterator iterator2 = p2.getPathIterator(null);
+         double[] d1 = new double[6];
+         double[] d2 = new double[6];
+-        boolean done = iterator1.isDone() && iterator2.isDone();
++        boolean var_3662 = iterator2.isDone();
++		boolean done = iterator1.isDone() && var_3662;
+         while (!done) {
+-            if (iterator1.isDone() != iterator2.isDone()) {
++            if (iterator1.isDone() != var_3662) {
+                 return false;
+             }
+             int seg1 = iterator1.currentSegment(d1);
+@@ -291,7 +292,7 @@
+             }
+             iterator1.next();
+             iterator2.next();
+-            done = iterator1.isDone() && iterator2.isDone();
++            done = iterator1.isDone() && var_3662;
+         }
+         return true;
+     }

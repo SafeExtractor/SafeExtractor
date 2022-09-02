@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..fd2448d 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -1876,15 +1876,16 @@
+             printState(30); // XXX
+             stepsq = ZERO;
+             for (int i = 0; i < n; i++) {
+-                if (xbdi.getEntry(i) != ZERO) {
++                double var_3128 = s.getEntry(i);
++				if (xbdi.getEntry(i) != ZERO) {
+                     s.setEntry(i, ZERO);
+                 } else if (beta == ZERO) {
+                     s.setEntry(i, -gnew.getEntry(i));
+                 } else {
+-                    s.setEntry(i, beta * s.getEntry(i) - gnew.getEntry(i));
++                    s.setEntry(i, beta * var_3128 - gnew.getEntry(i));
+                 }
+                 // Computing 2nd power
+-                final double d1 = s.getEntry(i);
++                final double d1 = var_3128;
+                 stepsq += d1 * d1;
+             }
+             if (stepsq == ZERO) {

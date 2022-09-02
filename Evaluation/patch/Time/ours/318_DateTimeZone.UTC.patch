@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/joda/time/chrono/JulianChronology.java b/src/main/java/org/joda/time/chrono/JulianChronology.java
+index 3433e19..e9d9713 100644
+--- a/src/main/java/org/joda/time/chrono/JulianChronology.java
++++ b/src/main/java/org/joda/time/chrono/JulianChronology.java
+@@ -139,10 +139,11 @@
+                     ("Invalid min days in first week: " + minDaysInFirstWeek);
+             }
+             if (chrono == null) {
+-                if (zone == DateTimeZone.UTC) {
++                DateTimeZone var_318 = DateTimeZone.UTC;
++				if (zone == var_318) {
+                     chrono = new JulianChronology(null, null, minDaysInFirstWeek);
+                 } else {
+-                    chrono = getInstance(DateTimeZone.UTC, minDaysInFirstWeek);
++                    chrono = getInstance(var_318, minDaysInFirstWeek);
+                     chrono = new JulianChronology
+                         (ZonedChronology.getInstance(chrono, zone), null, minDaysInFirstWeek);
+                 }

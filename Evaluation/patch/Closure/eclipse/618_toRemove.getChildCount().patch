@@ -1,0 +1,56 @@
+diff --git a/src/com/google/javascript/jscomp/RemoveUnusedVars.java b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+index 4c84735..6a4325e 100644
+--- a/src/com/google/javascript/jscomp/RemoveUnusedVars.java
++++ b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+@@ -845,27 +845,30 @@
+           parent.isFor() &&
+           parent.getChildCount() < 4) {
+         // foreach iterations have 3 children. Leave them alone.
+-      } else if (toRemove.isVar() &&
+-          nameNode.hasChildren() &&
+-          NodeUtil.mayHaveSideEffects(nameNode.getFirstChild(), compiler)) {
+-        // If this is a single var declaration, we can at least remove the
+-        // declaration itself and just leave the value, e.g.,
+-        // var a = foo(); => foo();
+-        if (toRemove.getChildCount() == 1) {
+-          parent.replaceChild(toRemove,
+-              IR.exprResult(nameNode.removeFirstChild()));
+-          compiler.reportCodeChange();
+-        }
+-      } else if (toRemove.isVar() &&
+-          toRemove.getChildCount() > 1) {
+-        // For var declarations with multiple names (i.e. var a, b, c),
+-        // only remove the unreferenced name
+-        toRemove.removeChild(nameNode);
+-        compiler.reportCodeChange();
+-      } else if (parent != null) {
+-        NodeUtil.removeChild(parent, toRemove);
+-        compiler.reportCodeChange();
+-      }
++      } else {
++		int var_618 = toRemove.getChildCount();
++		if (toRemove.isVar() &&
++		      nameNode.hasChildren() &&
++		      NodeUtil.mayHaveSideEffects(nameNode.getFirstChild(), compiler)) {
++		    // If this is a single var declaration, we can at least remove the
++		    // declaration itself and just leave the value, e.g.,
++		    // var a = foo(); => foo();
++		    if (var_618 == 1) {
++		      parent.replaceChild(toRemove,
++		          IR.exprResult(nameNode.removeFirstChild()));
++		      compiler.reportCodeChange();
++		    }
++		  } else if (toRemove.isVar() &&
++		      var_618 > 1) {
++		    // For var declarations with multiple names (i.e. var a, b, c),
++		    // only remove the unreferenced name
++		    toRemove.removeChild(nameNode);
++		    compiler.reportCodeChange();
++		  } else if (parent != null) {
++		    NodeUtil.removeChild(parent, toRemove);
++		    compiler.reportCodeChange();
++		  }
++	}
+     }
+   }
+ 

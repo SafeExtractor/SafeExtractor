@@ -1,0 +1,136 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..f649d74 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -938,10 +938,11 @@
+     boolean leftLiteral = NodeUtil.isLiteralValue(left, true);
+     boolean rightLiteral = NodeUtil.isLiteralValue(right, true);
+ 
+-    if (!leftLiteral || !rightLiteral) {
++    TernaryValue var_147 = TernaryValue.UNKNOWN;
++	if (!leftLiteral || !rightLiteral) {
+       // We only handle literal operands for LT and GT.
+       if (op != Token.GT && op != Token.LT) {
+-        return TernaryValue.UNKNOWN;
++        return var_147;
+       }
+     }
+ 
+@@ -952,9 +953,9 @@
+     switch (lhType) {
+       case Token.VOID:
+         if (!leftLiteral) {
+-          return TernaryValue.UNKNOWN;
++          return var_147;
+         } else if (!rightLiteral) {
+-          return TernaryValue.UNKNOWN;
++          return var_147;
+         } else {
+           return TernaryValue.forBoolean(compareToUndefined(right, op));
+         }
+@@ -972,7 +973,7 @@
+         if (rhType != Token.TRUE &&
+             rhType != Token.FALSE &&
+             rhType != Token.NULL) {
+-          return TernaryValue.UNKNOWN;
++          return var_147;
+         }
+         switch (op) {
+           case Token.SHEQ:
+@@ -989,11 +990,11 @@
+           case Token.LT:
+             return compareAsNumbers(op, left, right);
+         }
+-        return TernaryValue.UNKNOWN;
++        return var_147;
+ 
+       case Token.THIS:
+         if (!right.isThis()) {
+-          return TernaryValue.UNKNOWN;
++          return var_147;
+         }
+         switch (op) {
+           case Token.SHEQ:
+@@ -1009,7 +1010,7 @@
+         // GT, LT, GE, LE depend on the type of "this" and how it will
+         // be converted to number.  The results are different depending on
+         // whether it is a string, NaN or other number value.
+-        return TernaryValue.UNKNOWN;
++        return var_147;
+ 
+       case Token.STRING:
+         if (undefinedRight) {
+@@ -1019,7 +1020,7 @@
+           return TernaryValue.forBoolean(compareToNull(left, op));
+         }
+         if (Token.STRING != right.getType()) {
+-          return TernaryValue.UNKNOWN;  // Only eval if they are the same type
++          return var_147;  // Only eval if they are the same type
+         }
+ 
+         switch (op) {
+@@ -1032,7 +1033,7 @@
+             return areStringsEqual(left.getString(), right.getString()).not();
+         }
+ 
+-        return TernaryValue.UNKNOWN;
++        return var_147;
+ 
+       case Token.NUMBER:
+         if (undefinedRight) {
+@@ -1042,7 +1043,7 @@
+           return TernaryValue.forBoolean(compareToNull(left, op));
+         }
+         if (Token.NUMBER != right.getType()) {
+-          return TernaryValue.UNKNOWN;  // Only eval if they are the same type
++          return var_147;  // Only eval if they are the same type
+         }
+         return compareAsNumbers(op, left, right);
+ 
+@@ -1062,12 +1063,12 @@
+         }
+ 
+         if (Token.NAME != right.getType()) {
+-          return TernaryValue.UNKNOWN;  // Only eval if they are the same type
++          return var_147;  // Only eval if they are the same type
+         }
+         String ln = left.getString();
+         String rn = right.getString();
+         if (!ln.equals(rn)) {
+-          return TernaryValue.UNKNOWN;  // Not the same value name.
++          return var_147;  // Not the same value name.
+         }
+ 
+         switch (op) {
+@@ -1078,7 +1079,7 @@
+             return TernaryValue.FALSE;
+         }
+ 
+-        return TernaryValue.UNKNOWN;  // don't handle that op
++        return var_147;  // don't handle that op
+ 
+       case Token.NEG:
+         if (leftLiteral) {
+@@ -1090,7 +1091,7 @@
+           }
+         }
+         // Nothing else for now.
+-        return TernaryValue.UNKNOWN;
++        return var_147;
+ 
+       case Token.ARRAYLIT:
+       case Token.OBJECTLIT:
+@@ -1105,11 +1106,11 @@
+           }
+         }
+         // ignore the rest for now.
+-        return TernaryValue.UNKNOWN;
++        return var_147;
+ 
+       default:
+         // assert, this should cover all consts
+-        return TernaryValue.UNKNOWN;
++        return var_147;
+     }
+   }
+ 

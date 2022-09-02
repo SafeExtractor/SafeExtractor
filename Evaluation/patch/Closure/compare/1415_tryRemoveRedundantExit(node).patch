@@ -1,0 +1,36 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1415_tryRemoveRedundantExit(node).patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1415_tryRemoveRedundantExit(node).patch
+index 9de7a78..35cb391 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1415_tryRemoveRedundantExit(node).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1415_tryRemoveRedundantExit(node).patch
+@@ -1,26 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+-index ae568e8..4a7eb19 100644
++index ae568e8..8f107f5 100644
+ --- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+ +++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+-@@ -78,9 +78,10 @@
+-   @Override
+-   @SuppressWarnings("fallthrough")
++@@ -80,7 +80,8 @@
+    public Node optimizeSubtree(Node node) {
+--    switch(node.getType()) {
+-+    Node var_1415 = tryRemoveRedundantExit(node);
+-+	switch(node.getType()) {
++     switch(node.getType()) {
+        case Token.RETURN: {
+ -        Node result = tryRemoveRedundantExit(node);
+-+        Node result = var_1415;
+-         if (result != node) {
+-           return result;
+-         }
+-@@ -92,7 +93,7 @@
+-       }
+- 
+-       case Token.THROW: {
+--        Node result = tryRemoveRedundantExit(node);
+-+        Node result = var_1415;
+++        Node var_1415 = tryRemoveRedundantExit(node);
+++		Node result = var_1415;
+          if (result != node) {
+            return result;
+          }

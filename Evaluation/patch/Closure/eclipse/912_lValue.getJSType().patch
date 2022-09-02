@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/CheckAccessControls.java b/src/com/google/javascript/jscomp/CheckAccessControls.java
+index df50c26..a5f424d 100644
+--- a/src/com/google/javascript/jscomp/CheckAccessControls.java
++++ b/src/com/google/javascript/jscomp/CheckAccessControls.java
+@@ -174,9 +174,10 @@
+   private JSType getClassOfMethod(Node n, Node parent) {
+     if (parent.isAssign()) {
+       Node lValue = parent.getFirstChild();
+-      if (NodeUtil.isGet(lValue)) {
++      JSType var_912 = lValue.getJSType();
++	if (NodeUtil.isGet(lValue)) {
+         // We have an assignment of the form "a.b = ...".
+-        JSType lValueType = lValue.getJSType();
++        JSType lValueType = var_912;
+         if (lValueType != null && lValueType.isNominalConstructor()) {
+           // If a.b is a constructor, then everything in this function
+           // belongs to the "a.b" type.
+@@ -189,7 +190,7 @@
+       } else {
+         // We have an assignment of the form "a = ...", so pull the
+         // type off the "a".
+-        return normalizeClassType(lValue.getJSType());
++        return normalizeClassType(var_912);
+       }
+     } else if (NodeUtil.isFunctionDeclaration(n) ||
+                parent.isName()) {

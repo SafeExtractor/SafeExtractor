@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/plot/ThermometerPlot.java b/source/org/jfree/chart/plot/ThermometerPlot.java
+index d4bd7b7..8f2d86b 100644
+--- a/source/org/jfree/chart/plot/ThermometerPlot.java
++++ b/source/org/jfree/chart/plot/ThermometerPlot.java
+@@ -1423,14 +1423,15 @@
+         Paint result = this.mercuryPaint;
+         if (this.useSubrangePaint) {
+             double value = this.dataset.getValue().doubleValue();
+-            if (inSubrange(NORMAL, value)) {
+-                result = this.subrangePaint[NORMAL];
++            Paint[] var_1443 = this.subrangePaint;
++			if (inSubrange(NORMAL, value)) {
++                result = var_1443[NORMAL];
+             }
+             else if (inSubrange(WARNING, value)) {
+-                result = this.subrangePaint[WARNING];
++                result = var_1443[WARNING];
+             }
+             else if (inSubrange(CRITICAL, value)) {
+-                result = this.subrangePaint[CRITICAL];
++                result = var_1443[CRITICAL];
+             }
+         }
+         return result;

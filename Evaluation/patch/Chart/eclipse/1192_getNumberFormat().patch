@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/labels/IntervalCategoryItemLabelGenerator.java b/source/org/jfree/chart/labels/IntervalCategoryItemLabelGenerator.java
+index bf75b18..0984854 100644
+--- a/source/org/jfree/chart/labels/IntervalCategoryItemLabelGenerator.java
++++ b/source/org/jfree/chart/labels/IntervalCategoryItemLabelGenerator.java
+@@ -112,8 +112,9 @@
+         result[0] = dataset.getRowKey(row).toString();
+         result[1] = dataset.getColumnKey(column).toString();
+         Number value = dataset.getValue(row, column);
+-        if (getNumberFormat() != null) {
+-            result[2] = getNumberFormat().format(value);
++        NumberFormat var_1192 = getNumberFormat();
++		if (var_1192 != null) {
++            result[2] = var_1192.format(value);
+         }
+         else if (getDateFormat() != null) {
+             result[2] = getDateFormat().format(value);
+@@ -123,9 +124,9 @@
+             IntervalCategoryDataset icd = (IntervalCategoryDataset) dataset;
+             Number start = icd.getStartValue(row, column);
+             Number end = icd.getEndValue(row, column);
+-            if (getNumberFormat() != null) {
+-                result[3] = getNumberFormat().format(start);
+-                result[4] = getNumberFormat().format(end);
++            if (var_1192 != null) {
++                result[3] = var_1192.format(start);
++                result[4] = var_1192.format(end);
+             }
+             else if (getDateFormat() != null) {
+                 result[3] = getDateFormat().format(start);

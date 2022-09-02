@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/chart/plot/SpiderWebPlot.java b/source/org/jfree/chart/plot/SpiderWebPlot.java
+index 06e0bc2..aebd09c 100644
+--- a/source/org/jfree/chart/plot/SpiderWebPlot.java
++++ b/source/org/jfree/chart/plot/SpiderWebPlot.java
+@@ -1427,13 +1427,14 @@
+         FontRenderContext frc = g2.getFontRenderContext();
+ 
+         String label = null;
+-        if (this.dataExtractOrder == TableOrder.BY_ROW) {
++        CategoryDataset var_1542 = this.dataset;
++		if (this.dataExtractOrder == TableOrder.BY_ROW) {
+             // if series are in rows, then the categories are the column keys
+-            label = this.labelGenerator.generateColumnLabel(this.dataset, cat);
++            label = this.labelGenerator.generateColumnLabel(var_1542, cat);
+         }
+         else {
+             // if series are in columns, then the categories are the row keys
+-            label = this.labelGenerator.generateRowLabel(this.dataset, cat);
++            label = this.labelGenerator.generateRowLabel(var_1542, cat);
+         }
+ 
+         Rectangle2D labelBounds = getLabelFont().getStringBounds(label, frc);

@@ -1,0 +1,33 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+index c8fbac8..1f882f5 100644
+--- a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
++++ b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+@@ -1519,7 +1519,10 @@
+   /** @see #createFromTypeNodes(Node, String, StaticScope) */
+   private JSType createFromTypeNodesInternal(Node n, String sourceName,
+       StaticScope<JSType> scope) {
+-    switch (n.getType()) {
++    JSType var_2671 = createOptionalType(
++            createFromTypeNodesInternal(
++                n.getFirstChild(), sourceName, scope));
++	switch (n.getType()) {
+       case Token.LC: // Record type.
+         return createRecordTypeFromNodes(
+             n.getFirstChild(), sourceName, scope);
+@@ -1539,14 +1542,10 @@
+                 firstChild, sourceName, scope));
+ 
+       case Token.EQUALS: // Optional
+-        return createOptionalType(
+-            createFromTypeNodesInternal(
+-                n.getFirstChild(), sourceName, scope));
++        return var_2671;
+ 
+       case Token.ELLIPSIS: // Var args
+-        return createOptionalType(
+-            createFromTypeNodesInternal(
+-                n.getFirstChild(), sourceName, scope));
++        return var_2671;
+ 
+       case Token.STAR: // The AllType
+         return getNativeType(ALL_TYPE);

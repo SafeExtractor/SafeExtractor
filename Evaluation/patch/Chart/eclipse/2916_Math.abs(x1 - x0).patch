@@ -1,0 +1,20 @@
+diff --git a/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
+index aa90f2b..0ae6a06 100644
+--- a/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
+@@ -817,11 +817,12 @@
+                         int numX = dataset.getItemCount(series);
+                         double minX = dataset.getXValue(series, 0);
+                         double maxX = dataset.getXValue(series, numX - 1);
+-                        if (this.gapThresholdType == UnitType.ABSOLUTE) {
+-                            drawLine = Math.abs(x1 - x0) <= this.gapThreshold;
++                        double var_2916 = Math.abs(x1 - x0);
++						if (this.gapThresholdType == UnitType.ABSOLUTE) {
++                            drawLine = var_2916 <= this.gapThreshold;
+                         }
+                         else {
+-                            drawLine = Math.abs(x1 - x0) <= ((maxX - minX)
++                            drawLine = var_2916 <= ((maxX - minX)
+                                 / numX * getGapThreshold());
+                         }
+                     }

@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+index a2ea88e..f52a07e 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+@@ -315,10 +315,11 @@
+         // Look for two consecutive small sub-diagonal elements
+         int im = iu - 2;
+         while (im >= il) {
+-            final double z = matrixT[im][im];
++            double[] var_2369 = matrixT[im];
++			final double z = var_2369[im];
+             final double r = shift.x - z;
+             double s = shift.y - z;
+-            hVec[0] = (r * s - shift.w) / matrixT[im + 1][im] + matrixT[im][im + 1];
++            hVec[0] = (r * s - shift.w) / matrixT[im + 1][im] + var_2369[im + 1];
+             hVec[1] = matrixT[im + 1][im + 1] - z - r - s;
+             hVec[2] = matrixT[im + 2][im + 1];
+ 
+@@ -326,7 +327,7 @@
+                 break;
+             }
+ 
+-            final double lhs = FastMath.abs(matrixT[im][im - 1]) * (FastMath.abs(hVec[1]) + FastMath.abs(hVec[2]));
++            final double lhs = FastMath.abs(var_2369[im - 1]) * (FastMath.abs(hVec[1]) + FastMath.abs(hVec[2]));
+             final double rhs = FastMath.abs(hVec[0]) * (FastMath.abs(matrixT[im - 1][im - 1]) +
+                                                         FastMath.abs(z) +
+                                                         FastMath.abs(matrixT[im + 1][im + 1]));

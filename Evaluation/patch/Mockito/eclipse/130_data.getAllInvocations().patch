@@ -1,0 +1,21 @@
+diff --git a/src/org/mockito/internal/verification/Times.java b/src/org/mockito/internal/verification/Times.java
+index 539ddf6..b87823a 100644
+--- a/src/org/mockito/internal/verification/Times.java
++++ b/src/org/mockito/internal/verification/Times.java
+@@ -31,12 +31,13 @@
+     }
+     
+     public void verify(VerificationData data) {
+-        if (wantedCount > 0) {
++        List<Invocation> var_130 = data.getAllInvocations();
++		if (wantedCount > 0) {
+             MissingInvocationChecker missingInvocation = new MissingInvocationChecker();
+-            missingInvocation.check(data.getAllInvocations(), data.getWanted());
++            missingInvocation.check(var_130, data.getWanted());
+         }
+         NumberOfInvocationsChecker numberOfInvocations = new NumberOfInvocationsChecker();
+-        numberOfInvocations.check(data.getAllInvocations(), data.getWanted(), wantedCount);
++        numberOfInvocations.check(var_130, data.getWanted(), wantedCount);
+     }
+     
+     public void verifyInOrder(VerificationDataInOrder data) {

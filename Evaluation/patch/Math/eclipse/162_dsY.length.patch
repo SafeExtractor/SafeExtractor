@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/JacobianFunction.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/JacobianFunction.java
+index 18e9252..b1a5fcb 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/JacobianFunction.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/JacobianFunction.java
+@@ -53,9 +53,10 @@
+         final DerivativeStructure[] dsY = f.value(dsX);
+ 
+         // extract the Jacobian
+-        final double[][] y = new double[dsY.length][point.length];
++        int var_162 = dsY.length;
++		final double[][] y = new double[var_162][point.length];
+         final int[] orders = new int[point.length];
+-        for (int i = 0; i < dsY.length; ++i) {
++        for (int i = 0; i < var_162; ++i) {
+             for (int j = 0; j < point.length; ++j) {
+                 orders[j] = 1;
+                 y[i][j] = dsY[i].getPartialDerivative(orders);

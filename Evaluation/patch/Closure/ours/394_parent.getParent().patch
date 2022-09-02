@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/TransformAMDToCJSModule.java b/src/com/google/javascript/jscomp/TransformAMDToCJSModule.java
+index 709e6f1..dc5e84d 100644
+--- a/src/com/google/javascript/jscomp/TransformAMDToCJSModule.java
++++ b/src/com/google/javascript/jscomp/TransformAMDToCJSModule.java
+@@ -90,11 +90,12 @@
+           // Ignore non-global define.
+           return;
+         }
+-        if (!(parent.isExprResult() && parent.getParent().isScript())) {
++        Node var_394 = parent.getParent();
++		if (!(parent.isExprResult() && var_394.isScript())) {
+           t.report(n, NON_TOP_LEVEL_STATEMENT_DEFINE_ERROR);
+           return;
+         }
+-        Node script = parent.getParent();
++        Node script = var_394;
+         Node requiresNode = null;
+         Node callback = null;
+         int defineArity = n.getChildCount() - 1;

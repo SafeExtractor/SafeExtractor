@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/chart/plot/MultiplePiePlot.java b/source/org/jfree/chart/plot/MultiplePiePlot.java
+index f85acab..0582882 100644
+--- a/source/org/jfree/chart/plot/MultiplePiePlot.java
++++ b/source/org/jfree/chart/plot/MultiplePiePlot.java
+@@ -580,13 +580,14 @@
+         }
+         int section = 0;
+         Iterator iterator = keys.iterator();
+-        while (iterator.hasNext()) {
++        Shape var_1822 = getLegendItemShape();
++		while (iterator.hasNext()) {
+             Comparable key = (Comparable) iterator.next();
+             String label = key.toString();  // TODO: use a generator here
+             String description = label;
+             Paint paint = (Paint) this.sectionPaints.get(key);
+             LegendItem item = new LegendItem(label, description, null,
+-                    null, getLegendItemShape(), paint,
++                    null, var_1822, paint,
+                     Plot.DEFAULT_OUTLINE_STROKE, paint);
+             item.setSeriesKey(key);
+             item.setSeriesIndex(section);
+@@ -597,7 +598,7 @@
+         if (this.limit > 0.0) {
+             LegendItem a = new LegendItem(this.aggregatedItemsKey.toString(),
+                     this.aggregatedItemsKey.toString(), null, null,
+-                    getLegendItemShape(), this.aggregatedItemsPaint,
++                    var_1822, this.aggregatedItemsPaint,
+                     Plot.DEFAULT_OUTLINE_STROKE, this.aggregatedItemsPaint);
+             result.add(a);
+         }

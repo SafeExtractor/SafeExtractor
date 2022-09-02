@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/regex/RegExpTree.java b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+index c0c470a..4906642 100644
+--- a/src/com/google/javascript/jscomp/regex/RegExpTree.java
++++ b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+@@ -1035,7 +1035,8 @@
+         }
+       }
+       // Collapse character alternatives into character sets.
+-      for (int i = 0, n = alternatives.size(); i < n; ++i) {
++      int var_2438 = alternatives.size();
++	for (int i = 0, n = var_2438; i < n; ++i) {
+         RegExpTree alternative = alternatives.get(i);
+         if ((alternative instanceof Text
+              && ((Text) alternative).text.length() == 1)
+@@ -1075,11 +1076,11 @@
+             charAlternatives.clear();
+             charAlternatives.add(
+                 new Charset(chars, ieExplicits).simplify(flags));
+-            n = alternatives.size();
++            n = var_2438;
+           }
+         }
+       }
+-      switch (alternatives.size()) {
++      switch (var_2438) {
+         case 0: return Empty.INSTANCE;
+         case 1: return alternatives.get(0);
+         case 2:

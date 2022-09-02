@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/AstValidator.java b/src/com/google/javascript/jscomp/AstValidator.java
+index dececfe..76d18f9 100644
+--- a/src/com/google/javascript/jscomp/AstValidator.java
++++ b/src/com/google/javascript/jscomp/AstValidator.java
+@@ -773,17 +773,18 @@
+ 
+   private void validateChildCount(Node n, int i) {
+     boolean valid = false;
+-    if (i == 0) {
++    int var_1681 = n.getChildCount();
++	if (i == 0) {
+       valid = !n.hasChildren();
+     } else if (i == 1) {
+       valid = n.hasOneChild();
+     } else {
+-      valid = (n.getChildCount() == i);
++      valid = (var_1681 == i);
+     }
+     if (!valid) {
+       violation(
+           "Expected " + i + " children, but was "
+-              + n.getChildCount(), n);
++              + var_1681, n);
+     }
+   }
+ 

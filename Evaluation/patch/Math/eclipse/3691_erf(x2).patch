@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/special/Erf.java b/src/main/java/org/apache/commons/math3/special/Erf.java
+index c40f6c2..7594940 100644
+--- a/src/main/java/org/apache/commons/math3/special/Erf.java
++++ b/src/main/java/org/apache/commons/math3/special/Erf.java
+@@ -117,14 +117,15 @@
+             return -erf(x2, x1);
+         }
+ 
+-        return
++        double var_3691 = erf(x2);
++		return
+         x1 < -X_CRIT ?
+             x2 < 0.0 ?
+                 erfc(-x2) - erfc(-x1) :
+-                erf(x2) - erf(x1) :
++                var_3691 - erf(x1) :
+             x2 > X_CRIT && x1 > 0.0 ?
+                 erfc(x1) - erfc(x2) :
+-                erf(x2) - erf(x1);
++                var_3691 - erf(x1);
+     }
+ 
+     /**

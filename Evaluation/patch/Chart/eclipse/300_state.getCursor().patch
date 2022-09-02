@@ -1,0 +1,50 @@
+diff --git a/source/org/jfree/chart/axis/Axis.java b/source/org/jfree/chart/axis/Axis.java
+index cabb331..011c814 100644
+--- a/source/org/jfree/chart/axis/Axis.java
++++ b/source/org/jfree/chart/axis/Axis.java
+@@ -1304,7 +1304,8 @@
+         Rectangle2D labelBounds = TextUtilities.getTextBounds(label, g2, fm);
+         Shape hotspot = null;
+ 
+-        if (edge == RectangleEdge.TOP) {
++        double var_300 = state.getCursor();
++		if (edge == RectangleEdge.TOP) {
+             AffineTransform t = AffineTransform.getRotateInstance(
+                     getLabelAngle(), labelBounds.getCenterX(),
+                     labelBounds.getCenterY());
+@@ -1313,7 +1314,7 @@
+             float w = (float) labelBounds.getWidth();
+             float h = (float) labelBounds.getHeight();
+             float labelx = (float) dataArea.getCenterX();
+-            float labely = (float) (state.getCursor() - insets.getBottom()
++            float labely = (float) (var_300 - insets.getBottom()
+                     - h / 2.0);
+             TextUtilities.drawRotatedString(label, g2, labelx, labely,
+                     TextAnchor.CENTER, getLabelAngle(), TextAnchor.CENTER);
+@@ -1331,7 +1332,7 @@
+             float w = (float) labelBounds.getWidth();
+             float h = (float) labelBounds.getHeight();
+             float labelx = (float) dataArea.getCenterX();
+-            float labely = (float) (state.getCursor() + insets.getTop()
++            float labely = (float) (var_300 + insets.getTop()
+                     + h / 2.0);
+             TextUtilities.drawRotatedString(label, g2, labelx, labely,
+                     TextAnchor.CENTER, getLabelAngle(), TextAnchor.CENTER);
+@@ -1348,7 +1349,7 @@
+             labelBounds = rotatedLabelBounds.getBounds2D();
+             float w = (float) labelBounds.getWidth();
+             float h = (float) labelBounds.getHeight();
+-            float labelx = (float) (state.getCursor() - insets.getRight()
++            float labelx = (float) (var_300 - insets.getRight()
+                     - w / 2.0);
+             float labely = (float) dataArea.getCenterY();
+             TextUtilities.drawRotatedString(label, g2, labelx, labely,
+@@ -1368,7 +1369,7 @@
+             labelBounds = rotatedLabelBounds.getBounds2D();
+             float w = (float) labelBounds.getWidth();
+             float h = (float) labelBounds.getHeight();
+-            float labelx = (float) (state.getCursor()
++            float labelx = (float) (var_300
+                             + insets.getLeft() + w / 2.0);
+             float labely = (float) (dataArea.getY() + dataArea.getHeight()
+                     / 2.0);

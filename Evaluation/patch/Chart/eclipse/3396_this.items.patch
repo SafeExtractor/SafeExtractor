@@ -1,0 +1,31 @@
+diff --git a/source/org/jfree/chart/title/LegendTitle.java b/source/org/jfree/chart/title/LegendTitle.java
+index 674edcc..5df8b08 100644
+--- a/source/org/jfree/chart/title/LegendTitle.java
++++ b/source/org/jfree/chart/title/LegendTitle.java
+@@ -400,13 +400,14 @@
+      * Fetches the latest legend items.
+      */
+     protected void fetchLegendItems() {
+-        this.items.clear();
++        BlockContainer var_3396 = this.items;
++		var_3396.clear();
+         RectangleEdge p = getPosition();
+         if (RectangleEdge.isTopOrBottom(p)) {
+-            this.items.setArrangement(this.hLayout);
++            var_3396.setArrangement(this.hLayout);
+         }
+         else {
+-            this.items.setArrangement(this.vLayout);
++            var_3396.setArrangement(this.vLayout);
+         }
+         for (int s = 0; s < this.sources.length; s++) {
+             LegendItemCollection legendItems = this.sources[s].getLegendItems();
+@@ -414,7 +415,7 @@
+                 for (int i = 0; i < legendItems.getItemCount(); i++) {
+                     LegendItem item = legendItems.get(i);
+                     Block block = createLegendItemBlock(item);
+-                    this.items.add(block);
++                    var_3396.add(block);
+                 }
+             }
+         }

@@ -1,0 +1,33 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/hull/GrahamScan.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/hull/GrahamScan.java
+index dc14f0d..39e7b9c 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/hull/GrahamScan.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/hull/GrahamScan.java
+@@ -97,15 +97,16 @@
+ 
+         // push the first two points on the stack
+         final Iterator<Vertex> it = pointsSortedByAngle.iterator();
+-        hullVertices.add(it.next().point);
+-        hullVertices.add(it.next().point);
++        Vector2D p = it.next().point;
++		hullVertices.add(p);
++        hullVertices.add(p);
+ 
+         Vector2D currentPoint = null;
+         while (it.hasNext() || currentPoint != null) {
+             // push the current point to form a line segment if there is only one element
+             final int size = hullVertices.size();
+             if (size == 1) {
+-                hullVertices.add(currentPoint != null ? currentPoint : it.next().point);
++                hullVertices.add(currentPoint != null ? currentPoint : p);
+                 currentPoint = null;
+                 continue;
+             }
+@@ -116,7 +117,7 @@
+             final Line line = new Line(p1, p2, tolerance);
+ 
+             if (currentPoint == null) {
+-                currentPoint = it.next().point;
++                currentPoint = p;
+             }
+ 
+             // test if the current point is to the left of the line

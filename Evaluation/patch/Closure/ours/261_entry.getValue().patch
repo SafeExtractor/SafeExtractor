@@ -1,0 +1,36 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionToBlockMutator.java b/src/com/google/javascript/jscomp/FunctionToBlockMutator.java
+index 2ffddf3..f158bdb 100644
+--- a/src/com/google/javascript/jscomp/FunctionToBlockMutator.java
++++ b/src/com/google/javascript/jscomp/FunctionToBlockMutator.java
+@@ -252,18 +252,19 @@
+       for (Entry<String, Node> entry : argMap.entrySet()) {
+         String name = entry.getKey();
+         if (namesToAlias.contains(name)) {
+-          if (name.equals(THIS_MARKER)) {
++          Node var_261 = entry.getValue();
++		if (name.equals(THIS_MARKER)) {
+             boolean referencesThis = NodeUtil.referencesThis(fnTemplateRoot);
+             // Update "this", this is only necessary if "this" is referenced
+             // and the value of "this" is not Token.THIS, or the value of "this"
+             // has side effects.
+ 
+-            Node value = entry.getValue();
++            Node value = var_261;
+             if (!value.isThis()
+                 && (referencesThis
+                     || NodeUtil.mayHaveSideEffects(value, compiler))) {
+               String newName = getUniqueThisName();
+-              Node newValue = entry.getValue().cloneTree();
++              Node newValue = var_261.cloneTree();
+               Node newNode = NodeUtil.newVarNode(newName, newValue)
+                   .copyInformationFromForTree(newValue);
+               newVars.add(0, newNode);
+@@ -273,7 +274,7 @@
+                       .srcrefTree(newValue));
+             }
+           } else {
+-            Node newValue = entry.getValue().cloneTree();
++            Node newValue = var_261.cloneTree();
+             Node newNode = NodeUtil.newVarNode(name, newValue)
+                 .copyInformationFromForTree(newValue);
+             newVars.add(0, newNode);

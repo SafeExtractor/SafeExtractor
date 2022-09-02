@@ -1,0 +1,35 @@
+diff --git a/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java b/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
+index 8332a80..4b36850 100644
+--- a/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
+@@ -426,7 +426,9 @@
+         if (pass == 0) {
+             //  On first pass render the areas, line and outlines
+ 
+-            if (item == 0) {
++            double var_3010 = rangeAxis.valueToJava2D(ph1, dataArea,
++			        plot.getRangeAxisEdge());
++			if (item == 0) {
+                 // Create a new Area for the series
+                 areaState.setSeriesArea(new Polygon());
+                 areaState.setLastSeriesPoints(
+@@ -434,8 +436,7 @@
+                 areaState.setCurrentSeriesPoints(new Stack());
+ 
+                 // start from previous height (ph1)
+-                double transY2 = rangeAxis.valueToJava2D(ph1, dataArea,
+-                        plot.getRangeAxisEdge());
++                double transY2 = var_3010;
+ 
+                 // The first point is (x, 0)
+                 if (orientation == PlotOrientation.VERTICAL) {
+@@ -487,8 +488,7 @@
+             // items > 0.  We can't draw an area for a single point.
+             if (getPlotArea() && item > 0 && item == (itemCount - 1)) {
+ 
+-                double transY2 = rangeAxis.valueToJava2D(ph1, dataArea,
+-                        plot.getRangeAxisEdge());
++                double transY2 = var_3010;
+ 
+                 if (orientation == PlotOrientation.VERTICAL) {
+                     // Add the last point (x,0)

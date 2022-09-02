@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/VarCheck.java b/src/com/google/javascript/jscomp/VarCheck.java
+index a497232..ee96747 100644
+--- a/src/com/google/javascript/jscomp/VarCheck.java
++++ b/src/com/google/javascript/jscomp/VarCheck.java
+@@ -233,7 +233,8 @@
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+       if (n.isName()) {
+-        switch (parent.getType()) {
++        Scope var_910 = t.getScope();
++		switch (parent.getType()) {
+           case Token.VAR:
+           case Token.FUNCTION:
+           case Token.PARAM_LIST:
+@@ -241,7 +242,7 @@
+             break;
+           case Token.GETPROP:
+             if (n == parent.getFirstChild()) {
+-              Scope scope = t.getScope();
++              Scope scope = var_910;
+               Scope.Var var = scope.getVar(n.getString());
+               if (var == null) {
+                 t.report(n, UNDEFINED_EXTERN_VAR_ERROR, n.getString());
+@@ -252,7 +253,7 @@
+           default:
+             t.report(n, NAME_REFERENCE_IN_EXTERNS_ERROR, n.getString());
+ 
+-            Scope scope = t.getScope();
++            Scope scope = var_910;
+             Scope.Var var = scope.getVar(n.getString());
+             if (var == null) {
+               varsToDeclareInExterns.add(n.getString());

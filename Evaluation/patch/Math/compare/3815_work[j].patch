@@ -1,0 +1,32 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/3815_work[j].patch b/Users/safe/paper/Evaluation/patch/Math/ours/3815_work[j].patch
+index e9d2bf7..a6444a5 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/3815_work[j].patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/3815_work[j].patch
+@@ -1,23 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/stat/descriptive/rank/Percentile.java b/src/main/java/org/apache/commons/math3/stat/descriptive/rank/Percentile.java
+-index db447aa..49a2319 100644
++index db447aa..47c5d79 100644
+ --- a/src/main/java/org/apache/commons/math3/stat/descriptive/rank/Percentile.java
+ +++ b/src/main/java/org/apache/commons/math3/stat/descriptive/rank/Percentile.java
+-@@ -410,7 +410,8 @@
+-         int i = begin + 1;
+-         int j = end - 1;
+-         while (i < j) {
+--            while ((i < j) && (work[j] > value)) {
+-+            double var_3815 = work[j];
+-+			while ((i < j) && (var_3815 > value)) {
+-                 --j;
+-             }
+-             while ((i < j) && (work[i] < value)) {
+-@@ -419,7 +420,7 @@
++@@ -419,7 +419,8 @@
+  
+              if (i < j) {
+                  final double tmp = work[i];
+ -                work[i++] = work[j];
+-+                work[i++] = var_3815;
+++                double var_3815 = work[j];
+++				work[i++] = var_3815;
+                  work[j--] = tmp;
+              }
+          }

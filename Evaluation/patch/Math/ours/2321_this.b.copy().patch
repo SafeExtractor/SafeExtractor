@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+index 7b1dcc7..607aeb8 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
++++ b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+@@ -547,8 +547,9 @@
+              * Set up y for the first Lanczos vector. y and beta1 will be zero
+              * if b = 0.
+              */
+-            this.r1 = this.b.copy();
+-            this.y = this.m == null ? this.b.copy() : this.m.operate(this.r1);
++            RealVector var_2321 = this.b.copy();
++			this.r1 = var_2321;
++            this.y = this.m == null ? var_2321 : this.m.operate(this.r1);
+             if ((this.m != null) && this.check) {
+                 checkSymmetry(this.m, this.r1, this.y, this.m.operate(this.y));
+             }

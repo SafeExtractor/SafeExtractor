@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..bae67b7 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -1339,7 +1339,8 @@
+                                  Marker marker,
+                                  Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        PlotOrientation var_3120 = PlotOrientation.VERTICAL;
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = domainAxis.getRange();
+@@ -1356,7 +1357,7 @@
+                 line = new Line2D.Double(dataArea.getMinX(), v,
+                         dataArea.getMaxX(), v);
+             }
+-            else if (orientation == PlotOrientation.VERTICAL) {
++            else if (orientation == var_3120) {
+                 line = new Line2D.Double(v, dataArea.getMinY(), v,
+                         dataArea.getMaxY());
+             }
+@@ -1410,7 +1411,7 @@
+                         low, dataArea.getWidth(),
+                         high - low);
+             }
+-            else if (orientation == PlotOrientation.VERTICAL) {
++            else if (orientation == var_3120) {
+                 // clip left and right bounds to data area
+                 low = Math.max(low, dataArea.getMinX());
+                 high = Math.min(high, dataArea.getMaxX());
+@@ -1438,7 +1439,7 @@
+ 
+             // now draw the outlines, if visible...
+             if (im.getOutlinePaint() != null && im.getOutlineStroke() != null) {
+-                if (orientation == PlotOrientation.VERTICAL) {
++                if (orientation == var_3120) {
+                     Line2D line = new Line2D.Double();
+                     double y0 = dataArea.getMinY();
+                     double y1 = dataArea.getMaxY();

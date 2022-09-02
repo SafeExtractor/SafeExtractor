@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/lang3/builder/HashCodeBuilder.java b/src/main/java/org/apache/commons/lang3/builder/HashCodeBuilder.java
+index 8b2415a..1f0cd7b 100644
+--- a/src/main/java/org/apache/commons/lang3/builder/HashCodeBuilder.java
++++ b/src/main/java/org/apache/commons/lang3/builder/HashCodeBuilder.java
+@@ -178,8 +178,9 @@
+             final Field[] fields = clazz.getDeclaredFields();
+             AccessibleObject.setAccessible(fields, true);
+             for (final Field field : fields) {
+-                if (!ArrayUtils.contains(excludeFields, field.getName())
+-                    && (field.getName().indexOf('$') == -1)
++                String var_333 = field.getName();
++				if (!ArrayUtils.contains(excludeFields, var_333)
++                    && (var_333.indexOf('$') == -1)
+                     && (useTransients || !Modifier.isTransient(field.getModifiers()))
+                     && (!Modifier.isStatic(field.getModifiers()))) {
+                     try {

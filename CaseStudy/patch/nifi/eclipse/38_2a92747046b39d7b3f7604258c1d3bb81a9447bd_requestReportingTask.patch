@@ -1,0 +1,51 @@
+diff --git a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ControllerResource.java b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ControllerResource.java
+index 4063a72..3e271da 100644
+--- a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ControllerResource.java
++++ b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ControllerResource.java
+@@ -40,6 +40,7 @@
+ import org.apache.nifi.web.Revision;
+ import org.apache.nifi.web.api.dto.ClusterDTO;
+ import org.apache.nifi.web.api.dto.NodeDTO;
++import org.apache.nifi.web.api.dto.ReportingTaskDTO;
+ import org.apache.nifi.web.api.entity.ClusterEntity;
+ import org.apache.nifi.web.api.entity.ControllerConfigurationEntity;
+ import org.apache.nifi.web.api.entity.ControllerServiceEntity;
+@@ -248,7 +249,8 @@
+                     required = true
+             ) final ReportingTaskEntity reportingTaskEntity) {
+ 
+-        if (reportingTaskEntity == null || reportingTaskEntity.getComponent() == null) {
++        ReportingTaskDTO requestReportingTask = reportingTaskEntity.getComponent();
++		if (reportingTaskEntity == null || requestReportingTask == null) {
+             throw new IllegalArgumentException("Reporting task details must be specified.");
+         }
+ 
+@@ -256,11 +258,11 @@
+             throw new IllegalArgumentException("A revision of 0 must be specified when creating a new Reporting task.");
+         }
+ 
+-        if (reportingTaskEntity.getComponent().getId() != null) {
++        if (requestReportingTask.getId() != null) {
+             throw new IllegalArgumentException("Reporting task ID cannot be specified.");
+         }
+ 
+-        if (StringUtils.isBlank(reportingTaskEntity.getComponent().getType())) {
++        if (StringUtils.isBlank(requestReportingTask.getType())) {
+             throw new IllegalArgumentException("The type of reporting task to create must be specified.");
+         }
+ 
+@@ -281,11 +283,11 @@
+         }
+ 
+         // set the processor id as appropriate
+-        reportingTaskEntity.getComponent().setId(generateUuid());
++        requestReportingTask.setId(generateUuid());
+ 
+         // create the reporting task and generate the json
+-        final Revision revision = getRevision(reportingTaskEntity, reportingTaskEntity.getComponent().getId());
+-        final ReportingTaskEntity entity = serviceFacade.createReportingTask(revision, reportingTaskEntity.getComponent());
++        final Revision revision = getRevision(reportingTaskEntity, requestReportingTask.getId());
++        final ReportingTaskEntity entity = serviceFacade.createReportingTask(revision, requestReportingTask);
+         reportingTaskResource.populateRemainingReportingTaskEntityContent(entity);
+ 
+         // build the response

@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..7bb3b50 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -950,10 +950,11 @@
+                 break;
+             }
+         }
+-        if (!needsReorder) {
++        double var_4015 = this.sserr;
++		if (!needsReorder) {
+             return new RegressionResults(
+                     beta, new double[][]{cov}, true, this.nobs, rnk,
+-                    this.sumy, this.sumsqy, this.sserr, this.hasIntercept, false);
++                    this.sumy, this.sumsqy, var_4015, this.hasIntercept, false);
+         } else {
+             double[] betaNew = new double[beta.length];
+             double[] covNew = new double[cov.length];
+@@ -986,7 +987,7 @@
+             }
+             return new RegressionResults(
+                     betaNew, new double[][]{covNew}, true, this.nobs, rnk,
+-                    this.sumy, this.sumsqy, this.sserr, this.hasIntercept, false);
++                    this.sumy, this.sumsqy, var_4015, this.hasIntercept, false);
+         }
+     }
+ 

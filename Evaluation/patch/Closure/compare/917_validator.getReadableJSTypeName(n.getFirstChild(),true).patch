@@ -1,0 +1,35 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/917_validator.getReadableJSTypeName(n.getFirstChild(),true).patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/917_validator.getReadableJSTypeName(n.getFirstChild(),true).patch
+index 3a2c391..8ba50e7 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/917_validator.getReadableJSTypeName(n.getFirstChild(),true).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/917_validator.getReadableJSTypeName(n.getFirstChild(),true).patch
+@@ -1,24 +1,17 @@
+ diff --git a/src/com/google/javascript/jscomp/CheckAccessControls.java b/src/com/google/javascript/jscomp/CheckAccessControls.java
+-index df50c26..bf04695 100644
++index df50c26..db7e8ad 100644
+ --- a/src/com/google/javascript/jscomp/CheckAccessControls.java
+ +++ b/src/com/google/javascript/jscomp/CheckAccessControls.java
+-@@ -316,15 +316,16 @@
+-       if (deprecationInfo != null &&
++@@ -317,9 +317,10 @@
+            shouldEmitDeprecationWarning(t, n, parent)) {
+  
+--        if (!deprecationInfo.isEmpty()) {
+-+        String var_917 = validator.getReadableJSTypeName(n.getFirstChild(), true);
+-+		if (!deprecationInfo.isEmpty()) {
+-           compiler.report(
++         if (!deprecationInfo.isEmpty()) {
++-          compiler.report(
+++          String var_917 = validator.getReadableJSTypeName(n.getFirstChild(), true);
+++		compiler.report(
+                t.makeError(n, DEPRECATED_PROP_REASON, propertyName,
+ -                  validator.getReadableJSTypeName(n.getFirstChild(), true),
+ +                  var_917,
+                    deprecationInfo));
+          } else {
+            compiler.report(
+-               t.makeError(n, DEPRECATED_PROP, propertyName,
+--                  validator.getReadableJSTypeName(n.getFirstChild(), true)));
+-+                  var_917));
+-         }
+-       }
+-     }

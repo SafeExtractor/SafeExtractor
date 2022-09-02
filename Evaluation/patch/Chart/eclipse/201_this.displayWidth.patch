@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/annotations/XYDrawableAnnotation.java b/source/org/jfree/chart/annotations/XYDrawableAnnotation.java
+index 1a40308..998b65e 100644
+--- a/source/org/jfree/chart/annotations/XYDrawableAnnotation.java
++++ b/source/org/jfree/chart/annotations/XYDrawableAnnotation.java
+@@ -157,9 +157,10 @@
+                 domainEdge);
+         float j2DY = (float) rangeAxis.valueToJava2D(this.y, dataArea,
+                 rangeEdge);
+-        Rectangle2D displayArea = new Rectangle2D.Double(
+-                j2DX - this.displayWidth / 2.0,
+-                j2DY - this.displayHeight / 2.0, this.displayWidth,
++        double var_201 = this.displayWidth;
++		Rectangle2D displayArea = new Rectangle2D.Double(
++                j2DX - var_201 / 2.0,
++                j2DY - this.displayHeight / 2.0, var_201,
+                 this.displayHeight);
+ 
+         // here we change the AffineTransform so we can draw the annotation
+@@ -167,11 +168,11 @@
+         // afterwards, the original transform is restored
+         AffineTransform savedTransform = g2.getTransform();
+         Rectangle2D drawArea = new Rectangle2D.Double(0.0, 0.0,
+-                this.displayWidth * this.drawScaleFactor,
++                var_201 * this.drawScaleFactor,
+                 this.displayHeight * this.drawScaleFactor);
+ 
+         g2.scale(1 / this.drawScaleFactor, 1 / this.drawScaleFactor);
+-        g2.translate((j2DX - this.displayWidth / 2.0) * this.drawScaleFactor,
++        g2.translate((j2DX - var_201 / 2.0) * this.drawScaleFactor,
+                 (j2DY - this.displayHeight / 2.0) * this.drawScaleFactor);
+         this.drawable.draw(g2, drawArea);
+         g2.setTransform(savedTransform);

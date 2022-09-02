@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/random/AbstractRandomGenerator.java b/src/main/java/org/apache/commons/math3/random/AbstractRandomGenerator.java
+index 6b9ae70..5458fec 100644
+--- a/src/main/java/org/apache/commons/math3/random/AbstractRandomGenerator.java
++++ b/src/main/java/org/apache/commons/math3/random/AbstractRandomGenerator.java
+@@ -105,14 +105,15 @@
+      */
+     public void nextBytes(byte[] bytes) {
+         int bytesOut = 0;
+-        while (bytesOut < bytes.length) {
++        int var_3596 = bytes.length;
++		while (bytesOut < var_3596) {
+           int randInt = nextInt();
+           for (int i = 0; i < 3; i++) {
+               if ( i > 0) {
+                   randInt = randInt >> 8;
+               }
+               bytes[bytesOut++] = (byte) randInt;
+-              if (bytesOut == bytes.length) {
++              if (bytesOut == var_3596) {
+                   return;
+               }
+           }

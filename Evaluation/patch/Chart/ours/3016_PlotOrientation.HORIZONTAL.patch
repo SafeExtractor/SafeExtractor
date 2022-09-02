@@ -1,0 +1,68 @@
+diff --git a/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java b/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
+index 8332a80..08577e0 100644
+--- a/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
+@@ -423,7 +423,8 @@
+         Paint seriesPaint = getItemPaint(series, item, selected);
+         Stroke seriesStroke = getItemStroke(series, item, selected);
+ 
+-        if (pass == 0) {
++        PlotOrientation var_3016 = PlotOrientation.HORIZONTAL;
++		if (pass == 0) {
+             //  On first pass render the areas, line and outlines
+ 
+             if (item == 0) {
+@@ -442,7 +443,7 @@
+                     areaState.getSeriesArea().addPoint((int) transX1,
+                             (int) transY2);
+                 }
+-                else if (orientation == PlotOrientation.HORIZONTAL) {
++                else if (orientation == var_3016) {
+                     areaState.getSeriesArea().addPoint((int) transY2,
+                             (int) transX1);
+                 }
+@@ -455,7 +456,7 @@
+                         (int) point.getY());
+                 areaState.getCurrentSeriesPoints().push(point);
+             }
+-            else if (orientation == PlotOrientation.HORIZONTAL) {
++            else if (orientation == var_3016) {
+                 areaState.getSeriesArea().addPoint((int) transY1,
+                         (int) transX1);
+             }
+@@ -475,7 +476,7 @@
+                         areaState.getLine().setLine(transX0, transY0, transX1,
+                                 transY1);
+                     }
+-                    else if (orientation == PlotOrientation.HORIZONTAL) {
++                    else if (orientation == var_3016) {
+                         areaState.getLine().setLine(transY0, transX0, transY1,
+                                 transX1);
+                     }
+@@ -495,7 +496,7 @@
+                     areaState.getSeriesArea().addPoint((int) transX1,
+                             (int) transY2);
+                 }
+-                else if (orientation == PlotOrientation.HORIZONTAL) {
++                else if (orientation == var_3016) {
+                     // Add the last point (x,0)
+                     areaState.getSeriesArea().addPoint((int) transY2,
+                             (int) transX1);
+@@ -544,7 +545,7 @@
+                     shape = ShapeUtilities.createTranslatedShape(shape,
+                             transX1, transY1);
+                 }
+-                else if (plot.getOrientation() == PlotOrientation.HORIZONTAL) {
++                else if (plot.getOrientation() == var_3016) {
+                     shape = ShapeUtilities.createTranslatedShape(shape,
+                             transY1, transX1);
+                 }
+@@ -569,7 +570,7 @@
+                     shape = new Rectangle2D.Double(transX1 - 3, transY1 - 3,
+                             6.0, 6.0);
+                 }
+-                else if (plot.getOrientation() == PlotOrientation.HORIZONTAL) {
++                else if (plot.getOrientation() == var_3016) {
+                     shape = new Rectangle2D.Double(transY1 - 3, transX1 - 3,
+                             6.0, 6.0);
+                 }

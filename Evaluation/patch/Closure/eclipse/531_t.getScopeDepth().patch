@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/ScopedAliases.java b/src/com/google/javascript/jscomp/ScopedAliases.java
+index e2f0538..96be0a7 100644
+--- a/src/com/google/javascript/jscomp/ScopedAliases.java
++++ b/src/com/google/javascript/jscomp/ScopedAliases.java
+@@ -251,11 +251,12 @@
+ 
+     @Override
+     public void exitScope(NodeTraversal t) {
+-      if (t.getScopeDepth() > 2) {
++      int var_531 = t.getScopeDepth();
++	if (var_531 > 2) {
+         findNamespaceShadows(t);
+       }
+ 
+-      if (t.getScopeDepth() == 2) {
++      if (var_531 == 2) {
+         renameNamespaceShadows(t);
+         aliases.clear();
+         forbiddenLocals.clear();

@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/plot/FastScatterPlot.java b/source/org/jfree/chart/plot/FastScatterPlot.java
+index c5a3b1d..4991666 100644
+--- a/source/org/jfree/chart/plot/FastScatterPlot.java
++++ b/source/org/jfree/chart/plot/FastScatterPlot.java
+@@ -796,16 +796,17 @@
+     public void zoomDomainAxes(double factor, PlotRenderingInfo info,
+                                Point2D source, boolean useAnchor) {
+ 
+-        if (useAnchor) {
++        ValueAxis var_1367 = this.domainAxis;
++		if (useAnchor) {
+             // get the source coordinate - this plot has always a VERTICAL
+             // orientation
+             double sourceX = source.getX();
+-            double anchorX = this.domainAxis.java2DToValue(sourceX,
++            double anchorX = var_1367.java2DToValue(sourceX,
+                     info.getDataArea(), RectangleEdge.BOTTOM);
+-            this.domainAxis.resizeRange2(factor, anchorX);
++            var_1367.resizeRange2(factor, anchorX);
+         }
+         else {
+-            this.domainAxis.resizeRange(factor);
++            var_1367.resizeRange(factor);
+         }
+ 
+     }

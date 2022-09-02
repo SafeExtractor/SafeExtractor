@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java b/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
+index 3e7fff7..f6702de 100644
+--- a/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
++++ b/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
+@@ -724,10 +724,11 @@
+         } else {
+             Sum.copy(source.sum, dest.sum);
+         }
+-        if (source.variance == source.varianceImpl) {
++        Variance var_3740 = source.variance;
++		if (var_3740 == source.varianceImpl) {
+             dest.variance = (Variance) dest.varianceImpl;
+         } else {
+-            Variance.copy(source.variance, dest.variance);
++            Variance.copy(var_3740, dest.variance);
+         }
+         if (source.sumLog == source.sumLogImpl) {
+             dest.sumLog = (SumOfLogs) dest.sumLogImpl;

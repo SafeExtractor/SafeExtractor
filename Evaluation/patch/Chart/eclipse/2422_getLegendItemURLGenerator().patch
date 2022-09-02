@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java b/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java
+index f154450..33ccc34 100644
+--- a/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java
++++ b/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java
+@@ -103,6 +103,7 @@
+ import org.jfree.chart.axis.ValueAxis;
+ import org.jfree.chart.entity.EntityCollection;
+ import org.jfree.chart.event.RendererChangeEvent;
++import org.jfree.chart.labels.CategorySeriesLabelGenerator;
+ import org.jfree.chart.plot.CategoryPlot;
+ import org.jfree.chart.plot.PlotOrientation;
+ import org.jfree.chart.plot.PlotRenderingInfo;
+@@ -373,8 +374,9 @@
+                     dataset, series);
+         }
+         String urlText = null;
+-        if (getLegendItemURLGenerator() != null) {
+-            urlText = getLegendItemURLGenerator().generateLabel(dataset,
++        CategorySeriesLabelGenerator var_2422 = getLegendItemURLGenerator();
++		if (var_2422 != null) {
++            urlText = var_2422.generateLabel(dataset,
+                     series);
+         }
+         Shape shape = lookupLegendShape(series);

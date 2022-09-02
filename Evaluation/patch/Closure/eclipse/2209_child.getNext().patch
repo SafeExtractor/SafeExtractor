@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/jsonml/Writer.java b/src/com/google/javascript/jscomp/jsonml/Writer.java
+index b357eb9..df1789a 100644
+--- a/src/com/google/javascript/jscomp/jsonml/Writer.java
++++ b/src/com/google/javascript/jscomp/jsonml/Writer.java
+@@ -392,9 +392,10 @@
+ 
+     Node child = node.getFirstChild();
+     // for case, the first child represents its argument
+-    if (type == TagType.Case) {
++    Node var_2209 = child.getNext();
++	if (type == TagType.Case) {
+       processNode(child, element);
+-      child = child.getNext();
++      child = var_2209;
+     }
+ 
+     // it should be a BLOCK which is required by rhino for compatibility
+@@ -404,7 +405,7 @@
+     child = child.getFirstChild();
+     while (child != null) {
+       processNode(child, element);
+-      child = child.getNext();
++      child = var_2209;
+     }
+   }
+ 

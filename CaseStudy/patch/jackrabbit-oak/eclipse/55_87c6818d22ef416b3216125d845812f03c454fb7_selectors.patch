@@ -1,0 +1,14 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/query/QueryImpl.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/query/QueryImpl.java
+index e4d9cec..5410ea9 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/query/QueryImpl.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/query/QueryImpl.java
+@@ -484,7 +484,8 @@
+             return last;
+         }
+         Set<SourceImpl> available = new HashSet<SourceImpl>();
+-        available.addAll(result.getInnerJoinSelectors());
++        List<SourceImpl> selectors = result.getInnerJoinSelectors();
++		available.addAll(selectors);
+         available.add(last);
+         for (JoinConditionImpl j : conditions) {
+             if (j.canEvaluate(available)) {

@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/descriptive/moment/Kurtosis.java b/src/main/java/org/apache/commons/math3/stat/descriptive/moment/Kurtosis.java
+index 7a09750..d8f6f91 100644
+--- a/src/main/java/org/apache/commons/math3/stat/descriptive/moment/Kurtosis.java
++++ b/src/main/java/org/apache/commons/math3/stat/descriptive/moment/Kurtosis.java
+@@ -110,11 +110,12 @@
+     public double getResult() {
+         double kurtosis = Double.NaN;
+         if (moment.getN() > 3) {
+-            double variance = moment.m2 / (moment.n - 1);
+-                if (moment.n <= 3 || variance < 10E-20) {
++            long var_3802 = moment.n;
++			double variance = moment.m2 / (var_3802 - 1);
++                if (var_3802 <= 3 || variance < 10E-20) {
+                     kurtosis = 0.0;
+                 } else {
+-                    double n = moment.n;
++                    double n = var_3802;
+                     kurtosis =
+                         (n * (n + 1) * moment.getResult() -
+                                 3 * moment.m2 * moment.m2 * (n - 1)) /

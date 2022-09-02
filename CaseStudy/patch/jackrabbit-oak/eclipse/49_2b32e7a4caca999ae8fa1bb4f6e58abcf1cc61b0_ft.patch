@@ -1,0 +1,16 @@
+diff --git a/oak-solr-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/solr/query/SolrQueryIndex.java b/oak-solr-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/solr/query/SolrQueryIndex.java
+index 6632b70..b38bcc6 100644
+--- a/oak-solr-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/solr/query/SolrQueryIndex.java
++++ b/oak-solr-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/solr/query/SolrQueryIndex.java
+@@ -107,8 +107,9 @@
+ 
+         StringBuilder queryBuilder = new StringBuilder();
+ 
+-        if (filter.getFullTextConstraint() != null) {
+-            queryBuilder.append(getFullTextQuery(filter.getFullTextConstraint()));
++        FullTextExpression ft = filter.getFullTextConstraint();
++		if (ft != null) {
++            queryBuilder.append(getFullTextQuery(ft));
+             queryBuilder.append(' ');
+         } else if (filter.getFulltextConditions() != null) {
+             Collection<String> fulltextConditions = filter.getFulltextConditions();

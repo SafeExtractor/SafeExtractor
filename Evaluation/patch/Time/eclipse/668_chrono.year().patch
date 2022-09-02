@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+index fa5c164..22f8325 100644
+--- a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
++++ b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+@@ -32,6 +32,7 @@
+ 
+ import org.joda.time.Chronology;
+ import org.joda.time.DateTime;
++import org.joda.time.DateTimeField;
+ import org.joda.time.DateTimeUtils;
+ import org.joda.time.DateTimeZone;
+ import org.joda.time.Period;
+@@ -564,15 +565,16 @@
+             next = chrono.millisOfDay().add(next, iMillisOfDay);
+             next = setDayOfMonthNext(chrono, next);
+ 
+-            if (iDayOfWeek == 0) {
++            DateTimeField var_668 = chrono.year();
++			if (iDayOfWeek == 0) {
+                 if (next <= instant) {
+-                    next = chrono.year().add(next, 1);
++                    next = var_668.add(next, 1);
+                     next = setDayOfMonthNext(chrono, next);
+                 }
+             } else {
+                 next = setDayOfWeek(chrono, next);
+                 if (next <= instant) {
+-                    next = chrono.year().add(next, 1);
++                    next = var_668.add(next, 1);
+                     next = chrono.monthOfYear().set(next, iMonthOfYear);
+                     next = setDayOfMonthNext(chrono, next);
+                     next = setDayOfWeek(chrono, next);

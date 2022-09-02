@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/ReplaceCssNames.java b/src/com/google/javascript/jscomp/ReplaceCssNames.java
+index caaaf08..a3650e1 100644
+--- a/src/com/google/javascript/jscomp/ReplaceCssNames.java
++++ b/src/com/google/javascript/jscomp/ReplaceCssNames.java
+@@ -148,10 +148,11 @@
+           GET_CSS_NAME_FUNCTION.equals(n.getFirstChild().getQualifiedName())) {
+         int count = n.getChildCount();
+         Node first = n.getFirstChild().getNext();
+-        switch (count) {
++        boolean var_1838 = first.isString();
++		switch (count) {
+           case 2:
+             // Replace the function call with the processed argument.
+-            if (first.isString()) {
++            if (var_1838) {
+               processStringNode(t, first);
+               n.removeChild(first);
+               parent.replaceChild(n, first);
+@@ -171,7 +172,7 @@
+             if (!second.isString()) {
+               compiler.report(t.makeError(n, STRING_LITERAL_EXPECTED_ERROR,
+                   Token.name(second.getType())));
+-            } else if (first.isString()) {
++            } else if (var_1838) {
+               compiler.report(t.makeError(
+                   n, UNEXPECTED_STRING_LITERAL_ERROR,
+                   first.getString(), second.getString()));

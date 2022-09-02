@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/axis/SegmentedTimeline.java b/source/org/jfree/chart/axis/SegmentedTimeline.java
+index 3d7dbe0..f3f6715 100644
+--- a/source/org/jfree/chart/axis/SegmentedTimeline.java
++++ b/source/org/jfree/chart/axis/SegmentedTimeline.java
+@@ -595,7 +595,8 @@
+         long groupMilliseconds = rawMilliseconds % this.segmentsGroupSize;
+         long groupIndex = rawMilliseconds / this.segmentsGroupSize;
+ 
+-        if (groupMilliseconds >= this.segmentsIncludedSize) {
++        long var_406 = this.segmentsIncludedSize;
++		if (groupMilliseconds >= var_406) {
+             result = toTimelineValue(this.startTime + this.segmentsGroupSize
+                     * (groupIndex + 1));
+         }
+@@ -624,14 +625,14 @@
+                 //     - ss.getSegmentStart();
+ //                }
+ 
+-                if (x < this.segmentsIncludedSize) {
+-                    result = this.segmentsIncludedSize * y
++                if (x < var_406) {
++                    result = var_406 * y
+                              + x - wholeExceptionsBeforeDomainValue
+                              * this.segmentSize;
+                              // - partialTimeInException;
+                 }
+                 else {
+-                    result = this.segmentsIncludedSize * (y + 1)
++                    result = var_406 * (y + 1)
+                              - wholeExceptionsBeforeDomainValue
+                              * this.segmentSize;
+                              // - partialTimeInException;

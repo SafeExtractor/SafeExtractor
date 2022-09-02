@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/util/SerialUtilities.java b/source/org/jfree/chart/util/SerialUtilities.java
+index 90edcc1..6c0a207 100644
+--- a/source/org/jfree/chart/util/SerialUtilities.java
++++ b/source/org/jfree/chart/util/SerialUtilities.java
+@@ -273,7 +273,8 @@
+             throw new IllegalArgumentException("Null 'stream' argument.");
+         }
+         Shape result = null;
+-        boolean isNull = stream.readBoolean();
++        boolean var_3647 = stream.readBoolean();
++		boolean isNull = var_3647;
+         if (!isNull) {
+             Class c = (Class) stream.readObject();
+             if (c.equals(Line2D.class)) {
+@@ -310,7 +311,7 @@
+             else if (c.equals(GeneralPath.class)) {
+                 GeneralPath gp = new GeneralPath();
+                 float[] args = new float[6];
+-                boolean hasNext = stream.readBoolean();
++                boolean hasNext = var_3647;
+                 while (!hasNext) {
+                     int type = stream.readInt();
+                     for (int i = 0; i < 6; i++) {
+@@ -338,7 +339,7 @@
+                                     "JFreeChart - No path exists");
+                     }
+                     gp.setWindingRule(stream.readInt());
+-                    hasNext = stream.readBoolean();
++                    hasNext = var_3647;
+                 }
+                 result = gp;
+             }

@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..63c5ea2 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -1715,8 +1715,9 @@
+                     final double diff = stepb - stepa;
+                     modelSecondDerivativesValues.setEntry(ih, TWO * (tmp - gradientAtTrustRegionCenter.getEntry(nfxm)) / diff);
+                     gradientAtTrustRegionCenter.setEntry(nfxm, (gradientAtTrustRegionCenter.getEntry(nfxm) * stepb - tmp * stepa) / diff);
+-                    if (stepa * stepb < ZERO && f < fAtInterpolationPoints.getEntry(nfm - n)) {
+-                        fAtInterpolationPoints.setEntry(nfm, fAtInterpolationPoints.getEntry(nfm - n));
++                    double var_3396 = fAtInterpolationPoints.getEntry(nfm - n);
++					if (stepa * stepb < ZERO && f < var_3396) {
++                        fAtInterpolationPoints.setEntry(nfm, var_3396);
+                         fAtInterpolationPoints.setEntry(nfm - n, f);
+                         if (trustRegionCenterInterpolationPointIndex == nfm) {
+                             trustRegionCenterInterpolationPointIndex = nfm - n;

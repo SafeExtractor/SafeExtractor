@@ -1,0 +1,51 @@
+diff --git a/source/org/jfree/data/ComparableObjectSeries.java b/source/org/jfree/data/ComparableObjectSeries.java
+index 02c55ab..e406da6 100644
+--- a/source/org/jfree/data/ComparableObjectSeries.java
++++ b/source/org/jfree/data/ComparableObjectSeries.java
+@@ -217,24 +217,25 @@
+             throw new IllegalArgumentException("Null 'item' argument.");
+         }
+ 
+-        if (this.autoSort) {
+-            int index = Collections.binarySearch(this.data, item);
++        List var_3833 = this.data;
++		if (this.autoSort) {
++            int index = Collections.binarySearch(var_3833, item);
+             if (index < 0) {
+-                this.data.add(-index - 1, item);
++                var_3833.add(-index - 1, item);
+             }
+             else {
+                 if (this.allowDuplicateXValues) {
+                     // need to make sure we are adding *after* any duplicates
+-                    int size = this.data.size();
++                    int size = var_3833.size();
+                     while (index < size
+-                           && item.compareTo(this.data.get(index)) == 0) {
++                           && item.compareTo(var_3833.get(index)) == 0) {
+                         index++;
+                     }
+-                    if (index < this.data.size()) {
+-                        this.data.add(index, item);
++                    if (index < var_3833.size()) {
++                        var_3833.add(index, item);
+                     }
+                     else {
+-                        this.data.add(item);
++                        var_3833.add(item);
+                     }
+                 }
+                 else {
+@@ -251,10 +252,10 @@
+                     throw new SeriesException("X-value already exists.");
+                 }
+             }
+-            this.data.add(item);
++            var_3833.add(item);
+         }
+         if (getItemCount() > this.maximumItemCount) {
+-            this.data.remove(0);
++            var_3833.remove(0);
+         }
+         if (notify) {
+             fireSeriesChanged();

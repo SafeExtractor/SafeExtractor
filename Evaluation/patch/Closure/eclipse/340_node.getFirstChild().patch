@@ -1,0 +1,49 @@
+diff --git a/src/com/google/javascript/jscomp/JsMessageVisitor.java b/src/com/google/javascript/jscomp/JsMessageVisitor.java
+index becd724..8c70224 100644
+--- a/src/com/google/javascript/jscomp/JsMessageVisitor.java
++++ b/src/com/google/javascript/jscomp/JsMessageVisitor.java
+@@ -184,7 +184,8 @@
+     boolean isVar;
+     Node msgNode, msgNodeParent;
+ 
+-    switch (node.getType()) {
++    Node var_340 = node.getFirstChild();
++	switch (node.getType()) {
+       case Token.NAME:
+         // var MSG_HELLO = 'Message'
+         if ((parent != null) && (parent.isVar())) {
+@@ -194,14 +195,14 @@
+           return;
+         }
+ 
+-        msgNode = node.getFirstChild();
++        msgNode = var_340;
+         msgNodeParent = node;
+         break;
+       case Token.ASSIGN:
+         // somenamespace.someclass.MSG_HELLO = 'Message'
+         isVar = false;
+ 
+-        Node getProp = node.getFirstChild();
++        Node getProp = var_340;
+         if (!getProp.isGetProp()) {
+           return;
+         }
+@@ -214,7 +215,7 @@
+         break;
+       case Token.CALL:
+         // goog.getMsg()
+-        String fnName = node.getFirstChild().getQualifiedName();
++        String fnName = var_340.getQualifiedName();
+         if (MSG_FUNCTION_NAME.equals(fnName)) {
+           googMsgNodes.put(node, traversal.getSourceName());
+         } else if (MSG_FALLBACK_FUNCTION_NAME.equals(fnName)) {
+@@ -257,7 +258,7 @@
+       if (isVar) {
+         extractMessageFromVariable(builder, node, parent, parent.getParent());
+       } else {
+-        extractMessageFromProperty(builder, node.getFirstChild(), node);
++        extractMessageFromProperty(builder, var_340, node);
+       }
+     } catch (MalformedException ex) {
+       compiler.report(traversal.makeError(ex.getNode(),

@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/ExpandableStatefulODE.java b/src/main/java/org/apache/commons/math3/ode/ExpandableStatefulODE.java
+index 842e582..bb230a9 100644
+--- a/src/main/java/org/apache/commons/math3/ode/ExpandableStatefulODE.java
++++ b/src/main/java/org/apache/commons/math3/ode/ExpandableStatefulODE.java
+@@ -137,18 +137,19 @@
+     public int addSecondaryEquations(final SecondaryEquations secondary) {
+ 
+         final int firstIndex;
+-        if (components.isEmpty()) {
++        int var_2572 = components.size();
++		if (components.isEmpty()) {
+             // lazy creation of the components list
+             components = new ArrayList<ExpandableStatefulODE.SecondaryComponent>();
+             firstIndex = primary.getDimension();
+         } else {
+-            final SecondaryComponent last = components.get(components.size() - 1);
++            final SecondaryComponent last = components.get(var_2572 - 1);
+             firstIndex = last.mapper.getFirstIndex() + last.mapper.getDimension();
+         }
+ 
+         components.add(new SecondaryComponent(secondary, firstIndex));
+ 
+-        return components.size() - 1;
++        return var_2572 - 1;
+ 
+     }
+ 

@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..e0cf144 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1911,9 +1911,10 @@
+         }
+ 
+         // Test for divide by zero
+-        if (divisor == 0) {
++        Dfp var_679 = newInstance(getZero());
++		if (divisor == 0) {
+             field.setIEEEFlagsBits(DfpField.FLAG_DIV_ZERO);
+-            Dfp result = newInstance(getZero());
++            Dfp result = var_679;
+             result.sign = sign;
+             result.nans = INFINITE;
+             result = dotrap(DfpField.FLAG_DIV_ZERO, DIVIDE_TRAP, getZero(), result);
+@@ -1923,7 +1924,7 @@
+         // range check divisor
+         if (divisor < 0 || divisor >= RADIX) {
+             field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            Dfp result = newInstance(getZero());
++            Dfp result = var_679;
+             result.nans = QNAN;
+             result = dotrap(DfpField.FLAG_INVALID, DIVIDE_TRAP, result, result);
+             return result;

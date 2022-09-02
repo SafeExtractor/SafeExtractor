@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/StrictModeCheck.java b/src/com/google/javascript/jscomp/StrictModeCheck.java
+index b22f3ed..dd9f8ae 100644
+--- a/src/com/google/javascript/jscomp/StrictModeCheck.java
++++ b/src/com/google/javascript/jscomp/StrictModeCheck.java
+@@ -237,11 +237,12 @@
+ 
+     /** Checks for illegal declarations. */
+     private void checkDeclaration(NodeTraversal t, Node n) {
+-      if ("eval".equals(n.getString())) {
++      String var_217 = n.getString();
++	if ("eval".equals(var_217)) {
+         t.report(n, EVAL_DECLARATION);
+-      } else if ("arguments".equals(n.getString())) {
++      } else if ("arguments".equals(var_217)) {
+         t.report(n, ARGUMENTS_DECLARATION);
+-      } else if (n.getString().endsWith("__")) {
++      } else if (var_217.endsWith("__")) {
+         if (!noCajaChecks) {
+           t.report(n, ILLEGAL_NAME);
+         }

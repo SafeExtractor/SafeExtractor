@@ -1,0 +1,39 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..489267d 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -710,13 +710,14 @@
+     Node processFunctionNode(FunctionNode functionNode) {
+       Name name = functionNode.getFunctionName();
+       Boolean isUnnamedFunction = false;
+-      if (name == null) {
++      int var_2250 = functionNode.getLineno();
++	if (name == null) {
+         int functionType = functionNode.getFunctionType();
+         if (functionType != FunctionNode.FUNCTION_EXPRESSION) {
+           errorReporter.error(
+             "unnamed function statement",
+             sourceName,
+-            functionNode.getLineno(), "", 0);
++            var_2250, "", 0);
+ 
+           // Return the bare minimum to put the AST in a valid state.
+           return newNode(Token.EXPR_RESULT, Node.newNumber(0));
+@@ -730,7 +731,7 @@
+       if (isUnnamedFunction) {
+         // Old Rhino tagged the empty name node with the line number of the
+         // declaration.
+-        newName.setLineno(functionNode.getLineno());
++        newName.setLineno(var_2250);
+         // TODO(bowdidge) Mark line number of paren correctly.
+         // Same problem as below - the left paren might not be on the
+         // same line as the function keyword.
+@@ -752,7 +753,7 @@
+       if (fnName != null) {
+         lp.setLineno(fnName.getLineno());
+       } else {
+-        lp.setLineno(functionNode.getLineno());
++        lp.setLineno(var_2250);
+       }
+       int lparenCharno = functionNode.getLp() +
+           functionNode.getAbsolutePosition();

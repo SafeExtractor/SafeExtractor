@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..f574373 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -2344,10 +2344,11 @@
+ 
+         // make sure we don't mix number with different precision
+         if (field.getRadixDigits() != x.field.getRadixDigits()) {
+-            field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
++            int var_718 = DfpField.FLAG_INVALID;
++			field.setIEEEFlagsBits(var_718);
+             final Dfp result = newInstance(getZero());
+             result.nans = QNAN;
+-            return dotrap(DfpField.FLAG_INVALID, NEXT_AFTER_TRAP, x, result);
++            return dotrap(var_718, NEXT_AFTER_TRAP, x, result);
+         }
+ 
+         // if this is greater than x

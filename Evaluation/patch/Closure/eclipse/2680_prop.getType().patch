@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/rhino/jstype/RecordType.java b/src/com/google/javascript/rhino/jstype/RecordType.java
+index c2f0249..d5bb023 100755
+--- a/src/com/google/javascript/rhino/jstype/RecordType.java
++++ b/src/com/google/javascript/rhino/jstype/RecordType.java
+@@ -92,12 +92,13 @@
+         throw new IllegalStateException(
+             "RecordProperty associated with a property should not be null!");
+       }
+-      if (declared) {
++      JSType var_2680 = prop.getType();
++	if (declared) {
+         defineDeclaredProperty(
+-            property, prop.getType(), prop.getPropertyNode());
++            property, var_2680, prop.getPropertyNode());
+       } else {
+         defineSynthesizedProperty(
+-            property, prop.getType(), prop.getPropertyNode());
++            property, var_2680, prop.getPropertyNode());
+       }
+     }
+ 

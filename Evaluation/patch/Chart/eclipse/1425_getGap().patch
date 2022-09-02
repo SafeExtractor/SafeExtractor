@@ -1,0 +1,78 @@
+diff --git a/source/org/jfree/chart/plot/ThermometerPlot.java b/source/org/jfree/chart/plot/ThermometerPlot.java
+index d4bd7b7..b2a712f 100644
+--- a/source/org/jfree/chart/plot/ThermometerPlot.java
++++ b/source/org/jfree/chart/plot/ThermometerPlot.java
+@@ -1143,15 +1143,16 @@
+         Area tempArea = new Area(outerStem);
+         outerThermometer.add(tempArea);
+ 
+-        innerBulb.setFrame(midX - getBulbRadius() + getGap(), stemBottom
+-                + getGap(), getBulbDiameter() - getGap() * 2, getBulbDiameter()
+-                - getGap() * 2);
++        int var_1425 = getGap();
++		innerBulb.setFrame(midX - getBulbRadius() + var_1425, stemBottom
++                + var_1425, getBulbDiameter() - var_1425 * 2, getBulbDiameter()
++                - var_1425 * 2);
+ 
+-        innerStem.setRoundRect(midX - getColumnRadius() + getGap(),
+-                interior.getMinY() + getGap(), getColumnDiameter()
+-                - getGap() * 2, stemBottom + getBulbDiameter() - getGap() * 2
+-                - stemTop, getColumnDiameter() - getGap() * 2,
+-                getColumnDiameter() - getGap() * 2);
++        innerStem.setRoundRect(midX - getColumnRadius() + var_1425,
++                interior.getMinY() + var_1425, getColumnDiameter()
++                - var_1425 * 2, stemBottom + getBulbDiameter() - var_1425 * 2
++                - stemTop, getColumnDiameter() - var_1425 * 2,
++                getColumnDiameter() - var_1425 * 2);
+ 
+         Area innerThermometer = new Area(innerBulb);
+         tempArea = new Area(innerStem);
+@@ -1162,12 +1163,12 @@
+             double ds = this.rangeAxis.valueToJava2D(current, dataArea,
+                     RectangleEdge.LEFT);
+ 
+-            int i = getColumnDiameter() - getGap() * 2; // already calculated
+-            int j = getColumnRadius() - getGap(); // already calculated
++            int i = getColumnDiameter() - var_1425 * 2; // already calculated
++            int j = getColumnRadius() - var_1425; // already calculated
+             int l = (i / 2);
+             int k = (int) Math.round(ds);
+-            if (k < (getGap() + interior.getMinY())) {
+-                k = (int) (getGap() + interior.getMinY());
++            if (k < (var_1425 + interior.getMinY())) {
++                k = (int) (var_1425 + interior.getMinY());
+                 l = getBulbRadius();
+             }
+ 
+@@ -1257,19 +1258,19 @@
+             switch (this.valueLocation) {
+                 case RIGHT:
+                     g2.drawString(this.valueFormat.format(current),
+-                            midX + getColumnRadius() + getGap(), midY);
++                            midX + getColumnRadius() + var_1425, midY);
+                     break;
+                 case LEFT:
+                     String valueString = this.valueFormat.format(current);
+                     int stringWidth = metrics.stringWidth(valueString);
+                     g2.drawString(valueString, midX - getColumnRadius()
+-                            - getGap() - stringWidth, midY);
++                            - var_1425 - stringWidth, midY);
+                     break;
+                 case BULB:
+                     temp = this.valueFormat.format(current);
+                     i = metrics.stringWidth(temp) / 2;
+                     g2.drawString(temp, midX - i,
+-                            stemBottom + getBulbRadius() + getGap());
++                            stemBottom + getBulbRadius() + var_1425);
+                     break;
+                 default:
+             }
+@@ -1281,7 +1282,7 @@
+ 
+         //  draw units indicator
+         metrics = g2.getFontMetrics();
+-        int tickX1 = midX - getColumnRadius() - getGap() * 2
++        int tickX1 = midX - getColumnRadius() - var_1425 * 2
+                      - metrics.stringWidth(UNITS[this.units]);
+         if (tickX1 > area.getMinX()) {
+             g2.drawString(UNITS[this.units], tickX1,

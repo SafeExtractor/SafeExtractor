@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/renderer/category/StackedBarRenderer.java b/source/org/jfree/chart/renderer/category/StackedBarRenderer.java
+index 9181693..f58676b 100644
+--- a/source/org/jfree/chart/renderer/category/StackedBarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/StackedBarRenderer.java
+@@ -299,7 +299,8 @@
+ 
+         double value = dataValue.doubleValue();
+         double total = 0.0;  // only needed if calculating percentages
+-        if (this.renderAsPercentages) {
++        boolean var_2687 = this.renderAsPercentages;
++		if (var_2687) {
+             total = DataUtilities.calculateColumnTotal(dataset, column,
+                     state.getVisibleSeriesArray());
+             value = value / total;
+@@ -317,7 +318,7 @@
+             Number v = dataset.getValue(i, column);
+             if (v != null && isSeriesVisible(i)) {
+                 double d = v.doubleValue();
+-                if (this.renderAsPercentages) {
++                if (var_2687) {
+                     d = d / total;
+                 }
+                 if (d > 0) {

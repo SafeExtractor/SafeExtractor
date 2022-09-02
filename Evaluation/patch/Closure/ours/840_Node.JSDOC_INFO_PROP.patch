@@ -1,0 +1,42 @@
+diff --git a/src/com/google/javascript/jscomp/CheckRequiresForConstructors.java b/src/com/google/javascript/jscomp/CheckRequiresForConstructors.java
+index 097cb28..10f4629 100644
+--- a/src/com/google/javascript/jscomp/CheckRequiresForConstructors.java
++++ b/src/com/google/javascript/jscomp/CheckRequiresForConstructors.java
+@@ -109,9 +109,10 @@
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+       JSDocInfo info;
+-      switch (n.getType()) {
++      int var_840 = Node.JSDOC_INFO_PROP;
++	switch (n.getType()) {
+         case Token.ASSIGN:
+-          info = (JSDocInfo) n.getProp(Node.JSDOC_INFO_PROP);
++          info = (JSDocInfo) n.getProp(var_840);
+           if (info != null && info.isConstructor()) {
+             String qualifiedName = n.getFirstChild().getQualifiedName();
+             constructors.add(qualifiedName);
+@@ -121,21 +122,21 @@
+           if (NodeUtil.isFunctionExpression(n)) {
+             if (parent.isName()) {
+               String functionName = parent.getString();
+-              info = (JSDocInfo) parent.getProp(Node.JSDOC_INFO_PROP);
++              info = (JSDocInfo) parent.getProp(var_840);
+               if (info != null && info.isConstructor()) {
+                 constructors.add(functionName);
+               } else {
+                 Node gramps = parent.getParent();
+                 Preconditions.checkState(
+                     gramps != null && gramps.isVar());
+-                info = (JSDocInfo) gramps.getProp(Node.JSDOC_INFO_PROP);
++                info = (JSDocInfo) gramps.getProp(var_840);
+                 if (info != null && info.isConstructor()) {
+                   constructors.add(functionName);
+                 }
+               }
+             }
+           } else {
+-            info = (JSDocInfo) n.getProp(Node.JSDOC_INFO_PROP);
++            info = (JSDocInfo) n.getProp(var_840);
+             if (info != null && info.isConstructor()) {
+               String functionName = n.getFirstChild().getString();
+               constructors.add(functionName);

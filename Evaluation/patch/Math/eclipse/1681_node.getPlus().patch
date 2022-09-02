@@ -1,0 +1,61 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+index d33ceab..b1fccbd 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+@@ -478,7 +478,8 @@
+         }
+ 
+         final Hyperplane<S> hyperplane = node.getCut().getHyperplane();
+-        switch (sub.side(hyperplane)) {
++        BSPTree<S> var_1681 = node.getPlus();
++		switch (sub.side(hyperplane)) {
+         case PLUS :
+             // the sub-hyperplane is entirely in the plus sub-tree
+             if (node.getCut().side(sub.getHyperplane()) == Side.PLUS) {
+@@ -491,17 +492,17 @@
+                 }
+             }
+             if (!(sides.plusFound() && sides.minusFound())) {
+-                recurseSides(node.getPlus(), sub, sides);
++                recurseSides(var_1681, sub, sides);
+             }
+             break;
+         case MINUS :
+             // the sub-hyperplane is entirely in the minus sub-tree
+             if (node.getCut().side(sub.getHyperplane()) == Side.PLUS) {
+-                if (!isEmpty(node.getPlus())) {
++                if (!isEmpty(var_1681)) {
+                     sides.rememberPlusFound();
+                 }
+             } else {
+-                if (!isEmpty(node.getPlus())) {
++                if (!isEmpty(var_1681)) {
+                     sides.rememberMinusFound();
+                 }
+             }
+@@ -514,7 +515,7 @@
+             final SubHyperplane.SplitSubHyperplane<S> split = sub.split(hyperplane);
+ 
+             // explore first the plus sub-tree
+-            recurseSides(node.getPlus(), split.getPlus(), sides);
++            recurseSides(var_1681, split.getPlus(), sides);
+ 
+             // if needed, explore the minus sub-tree
+             if (!(sides.plusFound() && sides.minusFound())) {
+@@ -524,14 +525,14 @@
+         default :
+             // the sub-hyperplane and the cut sub-hyperplane share the same hyperplane
+             if (node.getCut().getHyperplane().sameOrientationAs(sub.getHyperplane())) {
+-                if ((node.getPlus().getCut() != null) || ((Boolean) node.getPlus().getAttribute())) {
++                if ((var_1681.getCut() != null) || ((Boolean) var_1681.getAttribute())) {
+                     sides.rememberPlusFound();
+                 }
+                 if ((node.getMinus().getCut() != null) || ((Boolean) node.getMinus().getAttribute())) {
+                     sides.rememberMinusFound();
+                 }
+             } else {
+-                if ((node.getPlus().getCut() != null) || ((Boolean) node.getPlus().getAttribute())) {
++                if ((var_1681.getCut() != null) || ((Boolean) var_1681.getAttribute())) {
+                     sides.rememberMinusFound();
+                 }
+                 if ((node.getMinus().getCut() != null) || ((Boolean) node.getMinus().getAttribute())) {

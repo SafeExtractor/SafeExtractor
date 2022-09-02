@@ -1,0 +1,20 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
+index e970d3a..805051a 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
++++ b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
+@@ -223,12 +223,13 @@
+ 
+     ArrayList<Entry> entries = lines.get(lineNumber);
+     // No empty lists.
+-    Preconditions.checkState(entries.size() > 0);
++    int var_55 = entries.size();
++	Preconditions.checkState(var_55 > 0);
+     if (entries.get(0).getGeneratedColumn() > column) {
+       return getPreviousMapping(lineNumber);
+     }
+ 
+-    int index = search(entries, column, 0, entries.size() - 1);
++    int index = search(entries, column, 0, var_55 - 1);
+     Preconditions.checkState(index >= 0, "unexpected:%s", index);
+     return getOriginalMappingForEntry(entries.get(index));
+   }

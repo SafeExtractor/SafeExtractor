@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..b988cb8 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -1747,13 +1747,14 @@
+         // Do nothing if there is no JSDoc type info, or
+         // if the node is not a member expression, or
+         // if the member expression is not of the form: this.someProperty.
+-        if (info == null ||
++        Node var_1235 = member.getFirstChild();
++		if (info == null ||
+             !member.isGetProp() ||
+-            !member.getFirstChild().isThis()) {
++            !var_1235.isThis()) {
+           return;
+         }
+ 
+-        member.getFirstChild().setJSType(thisType);
++        var_1235.setJSType(thisType);
+         JSType jsType = getDeclaredType(t.getSourceName(), info, member, value);
+         Node name = member.getLastChild();
+         if (jsType != null &&

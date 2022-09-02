@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/regex/RegExpTree.java b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+index c0c470a..a9c71ff 100644
+--- a/src/com/google/javascript/jscomp/regex/RegExpTree.java
++++ b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+@@ -311,7 +311,8 @@
+         while (pos < limit && pattern.charAt(pos) != ']') {
+           char ch = pattern.charAt(pos);
+           char start;
+-          if (ch == '\\') {
++          char var_2419 = parseEscapeChar();
++		if (ch == '\\') {
+             ++pos;
+             char possibleGroupName = pattern.charAt(pos);
+             CharRanges group = NAMED_CHAR_GROUPS.get(possibleGroupName);
+@@ -320,7 +321,7 @@
+               ranges = ranges.union(group);
+               continue;
+             }
+-            start = parseEscapeChar();
++            start = var_2419;
+           } else {
+             start = ch;
+             ++pos;
+@@ -332,7 +333,7 @@
+             ch = pattern.charAt(pos);
+             if (ch == '\\') {
+               ++pos;
+-              end = parseEscapeChar();
++              end = var_2419;
+             } else {
+               end = ch;
+               ++pos;

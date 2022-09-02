@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..7df08af 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -1810,7 +1810,8 @@
+     } else if (node.isCatch()) {
+       // The CATCH can can only be removed if there is a finally clause.
+       Node tryNode = node.getParent().getParent();
+-      Preconditions.checkState(NodeUtil.hasFinally(tryNode));
++      boolean var_2074 = NodeUtil.hasFinally(tryNode);
++	Preconditions.checkState(var_2074);
+       node.detachFromParent();
+     } else if (isTryCatchNodeContainer(node)) {
+       // The container node itself can't be removed, but the contained CATCH

@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/CrossModuleMethodMotion.java b/src/com/google/javascript/jscomp/CrossModuleMethodMotion.java
+index 810f309..b600e33 100644
+--- a/src/com/google/javascript/jscomp/CrossModuleMethodMotion.java
++++ b/src/com/google/javascript/jscomp/CrossModuleMethodMotion.java
+@@ -157,7 +157,8 @@
+               IR.name(STUB_METHOD_NAME),
+               IR.number(stubId))
+               .copyInformationFromForTree(value);
+-          stubCall.putBooleanProp(Node.FREE_CALL, true);
++          int var_1865 = Node.FREE_CALL;
++		stubCall.putBooleanProp(var_1865, true);
+ 
+           // stub out the method in the original module
+           // A.prototype.b = JSCompiler_stubMethod(id);
+@@ -170,7 +171,7 @@
+               IR.name(UNSTUB_METHOD_NAME),
+               IR.number(stubId),
+               value);
+-          unstubCall.putBooleanProp(Node.FREE_CALL, true);
++          unstubCall.putBooleanProp(var_1865, true);
+           unstubParent.addChildToFront(
+               // A.prototype.b = JSCompiler_unstubMethod(id, body);
+               IR.exprResult(

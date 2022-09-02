@@ -1,0 +1,35 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..8ee8329 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -3149,17 +3149,18 @@
+   static boolean isExpressionResultUsed(Node expr) {
+     // TODO(johnlenz): consider sharing some code with trySimpleUnusedResult.
+     Node parent = expr.getParent();
+-    switch (parent.getType()) {
++    boolean var_2099 = isExpressionResultUsed(parent);
++	switch (parent.getType()) {
+       case Token.BLOCK:
+       case Token.EXPR_RESULT:
+         return false;
+       case Token.CAST:
+-        return isExpressionResultUsed(parent);
++        return var_2099;
+       case Token.HOOK:
+       case Token.AND:
+       case Token.OR:
+         return (expr == parent.getFirstChild())
+-            ? true : isExpressionResultUsed(parent);
++            ? true : var_2099;
+       case Token.COMMA:
+         Node gramps = parent.getParent();
+         if (gramps.isCall() &&
+@@ -3177,7 +3178,7 @@
+         }
+ 
+         return (expr == parent.getFirstChild())
+-            ? false : isExpressionResultUsed(parent);
++            ? false : var_2099;
+       case Token.FOR:
+         if (!NodeUtil.isForIn(parent)) {
+           // Only an expression whose result is in the condition part of the

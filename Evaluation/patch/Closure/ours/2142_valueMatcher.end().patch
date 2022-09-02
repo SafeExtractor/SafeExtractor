@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/deps/JsFileLineParser.java b/src/com/google/javascript/jscomp/deps/JsFileLineParser.java
+index fcdcce0..03d4436 100644
+--- a/src/com/google/javascript/jscomp/deps/JsFileLineParser.java
++++ b/src/com/google/javascript/jscomp/deps/JsFileLineParser.java
+@@ -249,11 +249,12 @@
+           break;
+         }
+         // Ensure there is a comma after the value.
+-        if (innerValues.charAt(valueMatcher.end()) != ',') {
++        int var_2142 = valueMatcher.end();
++		if (innerValues.charAt(var_2142) != ',') {
+           throw new ParseException("Missing comma in string array", true /* fatal */);
+         }
+         // Move to the next value.
+-        valueMatcher.region(valueMatcher.end() + 1, valueMatcher.regionEnd());
++        valueMatcher.region(var_2142 + 1, valueMatcher.regionEnd());
+       }
+     }
+     return results;

@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/CholeskyDecomposition.java b/src/main/java/org/apache/commons/math3/linear/CholeskyDecomposition.java
+index f03ba0e..0116ea9 100644
+--- a/src/main/java/org/apache/commons/math3/linear/CholeskyDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/CholeskyDecomposition.java
+@@ -138,12 +138,13 @@
+             final double[] ltI = lTData[i];
+ 
+             // check diagonal element
+-            if (ltI[i] <= absolutePositivityThreshold) {
+-                throw new NonPositiveDefiniteMatrixException(ltI[i], i, absolutePositivityThreshold);
++            double var_1881 = ltI[i];
++			if (var_1881 <= absolutePositivityThreshold) {
++                throw new NonPositiveDefiniteMatrixException(var_1881, i, absolutePositivityThreshold);
+             }
+ 
+-            ltI[i] = FastMath.sqrt(ltI[i]);
+-            final double inverse = 1.0 / ltI[i];
++            ltI[i] = FastMath.sqrt(var_1881);
++            final double inverse = 1.0 / var_1881;
+ 
+             for (int q = order - 1; q > i; --q) {
+                 ltI[q] *= inverse;

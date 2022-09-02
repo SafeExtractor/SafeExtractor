@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+index 067e1df..eee6724 100644
+--- a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
++++ b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+@@ -338,13 +338,14 @@
+      */
+     protected void findDomainLimits() {
+ 
+-        long startL = getOldestTime().getFirstMillisecond(this.workingCalendar);
++        Calendar var_4271 = this.workingCalendar;
++		long startL = getOldestTime().getFirstMillisecond(var_4271);
+         long endL;
+         if (this.domainIsPointsInTime) {
+-            endL = getNewestTime().getFirstMillisecond(this.workingCalendar);
++            endL = getNewestTime().getFirstMillisecond(var_4271);
+         }
+         else {
+-            endL = getNewestTime().getLastMillisecond(this.workingCalendar);
++            endL = getNewestTime().getLastMillisecond(var_4271);
+         }
+         this.domainStart = new Long(startL);
+         this.domainEnd = new Long(endL);

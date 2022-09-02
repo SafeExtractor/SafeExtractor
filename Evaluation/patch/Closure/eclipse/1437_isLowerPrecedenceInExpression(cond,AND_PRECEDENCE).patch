@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..42cd97e 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -650,7 +650,8 @@
+     Node elseBranch = thenBranch.getNext();
+ 
+     if (elseBranch == null) {
+-      if (isFoldableExpressBlock(thenBranch)) {
++      boolean var_1437 = isLowerPrecedenceInExpression(cond, AND_PRECEDENCE);
++	if (isFoldableExpressBlock(thenBranch)) {
+         Node expr = getBlockExpression(thenBranch);
+         if (!late && isPropertyAssignmentInExpression(expr)) {
+           // Keep opportunities for CollapseProperties such as
+@@ -679,7 +680,7 @@
+         }
+ 
+         // if(x)foo(); -> x&&foo();
+-        if (isLowerPrecedenceInExpression(cond, AND_PRECEDENCE) &&
++        if (var_1437 &&
+             isLowerPrecedenceInExpression(expr.getFirstChild(),
+                 AND_PRECEDENCE)) {
+           // One additional set of parentheses is worth the change even if
+@@ -709,7 +710,7 @@
+             Node innerElseBranch = innerThenBranch.getNext();
+ 
+             if (innerElseBranch == null &&
+-                 !(isLowerPrecedenceInExpression(cond, AND_PRECEDENCE) &&
++                 !(var_1437 &&
+                    isLowerPrecedenceInExpression(innerCond, AND_PRECEDENCE))) {
+               n.detachChildren();
+               n.addChildToBack(

@@ -1,0 +1,49 @@
+diff --git a/source/org/jfree/chart/block/BorderArrangement.java b/source/org/jfree/chart/block/BorderArrangement.java
+index b3ae54b..55fbda3 100644
+--- a/source/org/jfree/chart/block/BorderArrangement.java
++++ b/source/org/jfree/chart/block/BorderArrangement.java
+@@ -423,7 +423,8 @@
+                                RectangleConstraint constraint) {
+         double[] w = new double[5];
+         double[] h = new double[5];
+-        w[0] = constraint.getWidth();
++        double var_994 = constraint.getWidth();
++		w[0] = var_994;
+         if (this.topBlock != null) {
+             RectangleConstraint c1 = new RectangleConstraint(w[0], null,
+                     LengthConstraintType.FIXED, 0.0,
+@@ -443,7 +444,7 @@
+         h[2] = constraint.getHeight() - h[1] - h[0];
+         if (this.leftBlock != null) {
+             RectangleConstraint c3 = new RectangleConstraint(0.0,
+-                    new Range(0.0, constraint.getWidth()),
++                    new Range(0.0, var_994),
+                     LengthConstraintType.RANGE, h[2], null,
+                     LengthConstraintType.FIXED);
+             Size2D size = this.leftBlock.arrange(g2, c3);
+@@ -452,14 +453,14 @@
+         h[3] = h[2];
+         if (this.rightBlock != null) {
+             RectangleConstraint c4 = new RectangleConstraint(0.0,
+-                    new Range(0.0, Math.max(constraint.getWidth() - w[2], 0.0)),
++                    new Range(0.0, Math.max(var_994 - w[2], 0.0)),
+                     LengthConstraintType.RANGE, h[2], null,
+                     LengthConstraintType.FIXED);
+             Size2D size = this.rightBlock.arrange(g2, c4);
+             w[3] = size.width;
+         }
+         h[4] = h[2];
+-        w[4] = constraint.getWidth() - w[3] - w[2];
++        w[4] = var_994 - w[3] - w[2];
+         RectangleConstraint c5 = new RectangleConstraint(w[4], h[4]);
+         if (this.centerBlock != null) {
+             this.centerBlock.arrange(g2, c5);
+@@ -485,7 +486,7 @@
+             this.centerBlock.setBounds(new Rectangle2D.Double(w[2], h[0], w[4],
+                     h[4]));
+         }
+-        return new Size2D(constraint.getWidth(), constraint.getHeight());
++        return new Size2D(var_994, constraint.getHeight());
+     }
+ 
+     /**

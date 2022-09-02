@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java b/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java
+index 5f2b6ba..0002e2b 100644
+--- a/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java
+@@ -90,6 +90,7 @@
+ import org.jfree.chart.axis.ValueAxis;
+ import org.jfree.chart.entity.EntityCollection;
+ import org.jfree.chart.event.RendererChangeEvent;
++import org.jfree.chart.labels.XYSeriesLabelGenerator;
+ import org.jfree.chart.plot.CrosshairState;
+ import org.jfree.chart.plot.PlotOrientation;
+ import org.jfree.chart.plot.PlotRenderingInfo;
+@@ -1098,8 +1099,9 @@
+                         dataset, series);
+                 String description = label;
+                 String toolTipText = null;
+-                if (getLegendItemToolTipGenerator() != null) {
+-                    toolTipText = getLegendItemToolTipGenerator().generateLabel(
++                XYSeriesLabelGenerator var_3087 = getLegendItemToolTipGenerator();
++				if (var_3087 != null) {
++                    toolTipText = var_3087.generateLabel(
+                             dataset, series);
+                 }
+                 String urlText = null;

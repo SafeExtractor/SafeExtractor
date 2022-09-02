@@ -1,0 +1,36 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYErrorRenderer.java b/source/org/jfree/chart/renderer/xy/XYErrorRenderer.java
+index 4af9465..b56b621 100644
+--- a/source/org/jfree/chart/renderer/xy/XYErrorRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYErrorRenderer.java
+@@ -315,7 +315,8 @@
+                 && getItemVisible(series, item)) {
+             IntervalXYDataset ixyd = (IntervalXYDataset) dataset;
+             PlotOrientation orientation = plot.getOrientation();
+-            if (this.drawXError) {
++            Stroke var_3246 = this.errorStroke;
++			if (this.drawXError) {
+                 // draw the error bar for the x-interval
+                 double x0 = ixyd.getStartXValue(series, item);
+                 double x1 = ixyd.getEndXValue(series, item);
+@@ -345,8 +346,8 @@
+                 else {
+                     g2.setPaint(getItemPaint(series, item, selected));
+                 }
+-                if (this.errorStroke != null) {
+-                    g2.setStroke(this.errorStroke);
++                if (var_3246 != null) {
++                    g2.setStroke(var_3246);
+                 }
+                 else {
+                     g2.setStroke(getItemStroke(series, item, selected));
+@@ -385,8 +386,8 @@
+                 else {
+                     g2.setPaint(getItemPaint(series, item, selected));
+                 }
+-                if (this.errorStroke != null) {
+-                    g2.setStroke(this.errorStroke);
++                if (var_3246 != null) {
++                    g2.setStroke(var_3246);
+                 }
+                 else {
+                     g2.setStroke(getItemStroke(series, item, selected));

@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/plot/SpiderWebPlot.java b/source/org/jfree/chart/plot/SpiderWebPlot.java
+index 06e0bc2..1ccef01 100644
+--- a/source/org/jfree/chart/plot/SpiderWebPlot.java
++++ b/source/org/jfree/chart/plot/SpiderWebPlot.java
+@@ -1289,7 +1289,8 @@
+         }
+ 
+         // plot the data...
+-        for (int cat = 0; cat < catCount; cat++) {
++        Stroke var_1533 = getSeriesOutlineStroke(series);
++		for (int cat = 0; cat < catCount; cat++) {
+ 
+             Number dataValue = getPlotValue(series, cat);
+ 
+@@ -1322,7 +1323,7 @@
+ 
+                     Paint paint = getSeriesPaint(series);
+                     Paint outlinePaint = getSeriesOutlinePaint(series);
+-                    Stroke outlineStroke = getSeriesOutlineStroke(series);
++                    Stroke outlineStroke = var_1533;
+ 
+                     Ellipse2D head = new Ellipse2D.Double(point.getX()
+                             - headW / 2, point.getY() - headH / 2, headW,
+@@ -1373,7 +1374,7 @@
+ 
+         Paint paint = getSeriesPaint(series);
+         g2.setPaint(paint);
+-        g2.setStroke(getSeriesOutlineStroke(series));
++        g2.setStroke(var_1533);
+         g2.draw(polygon);
+ 
+         // Lastly, fill the web polygon if this is required

@@ -1,0 +1,16 @@
+diff --git a/httpcore5-h2/src/main/java/org/apache/hc/core5/http2/impl/nio/ClientHttp2StreamHandler.java b/httpcore5-h2/src/main/java/org/apache/hc/core5/http2/impl/nio/ClientHttp2StreamHandler.java
+index 8811998..70e5d28 100644
+--- a/httpcore5-h2/src/main/java/org/apache/hc/core5/http2/impl/nio/ClientHttp2StreamHandler.java
++++ b/httpcore5-h2/src/main/java/org/apache/hc/core5/http2/impl/nio/ClientHttp2StreamHandler.java
+@@ -182,8 +182,9 @@
+         final HttpResponse response = DefaultH2ResponseConverter.INSTANCE.convert(headers);
+         final EntityDetails entityDetails = endStream ? null : new LazyEntityDetails(response);
+ 
+-        if (response.getCode() < 200) {
+-            if (response.getCode() == HttpStatus.SC_CONTINUE && requestState == MessageState.ACK) {
++        int status = response.getCode();
++		if (status < 200) {
++            if (status == HttpStatus.SC_CONTINUE && requestState == MessageState.ACK) {
+                 requestState = MessageState.BODY;
+                 exchangeHandler.produce(dataChannel);
+             }

@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+index 8d6a50b..565e001 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+@@ -350,7 +350,8 @@
+                 weightedJacobian[k][pk] = diagR[pk];
+             }
+ 
+-            if (firstIteration) {
++            double var_3189 = FastMath.sqrt(xNorm);
++			if (firstIteration) {
+                 // scale the point according to the norms of the columns
+                 // of the initial jacobian
+                 xNorm = 0;
+@@ -363,7 +364,7 @@
+                     xNorm  += xk * xk;
+                     diag[k] = dk;
+                 }
+-                xNorm = FastMath.sqrt(xNorm);
++                xNorm = var_3189;
+ 
+                 // initialize the step bound delta
+                 delta = (xNorm == 0) ? initialStepBoundFactor : (initialStepBoundFactor * xNorm);
+@@ -488,7 +489,7 @@
+                         double xK = diag[k] * currentPoint[k];
+                         xNorm += xK * xK;
+                     }
+-                    xNorm = FastMath.sqrt(xNorm);
++                    xNorm = var_3189;
+ 
+                     // tests for convergence.
+                     if (checker != null && checker.converged(getIterations(), previous, current)) {

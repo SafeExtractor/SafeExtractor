@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/jsoup/nodes/TextNode.java b/src/main/java/org/jsoup/nodes/TextNode.java
+index 23ad9e7..ab78eb3 100644
+--- a/src/main/java/org/jsoup/nodes/TextNode.java
++++ b/src/main/java/org/jsoup/nodes/TextNode.java
+@@ -81,10 +81,11 @@
+     }
+ 
+ 	void outerHtmlHead(Appendable accum, int depth, Document.OutputSettings out) throws IOException {
+-        if (out.prettyPrint() && ((siblingIndex() == 0 && parentNode instanceof Element && ((Element) parentNode).tag().formatAsBlock() && !isBlank()) || (out.outline() && siblingNodes().size()>0 && !isBlank()) ))
++        boolean prettyPrint = out.prettyPrint();
++		if (prettyPrint && ((siblingIndex() == 0 && parentNode instanceof Element && ((Element) parentNode).tag().formatAsBlock() && !isBlank()) || (out.outline() && siblingNodes().size()>0 && !isBlank()) ))
+             indent(accum, depth, out);
+ 
+-        boolean normaliseWhite = out.prettyPrint() && !Element.preserveWhitespace(parent());
++        boolean normaliseWhite = prettyPrint && !Element.preserveWhitespace(parent());
+         Entities.escape(accum, coreValue(), out, false, normaliseWhite, false);
+     }
+ 

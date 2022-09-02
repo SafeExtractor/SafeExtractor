@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/StrictModeCheck.java b/src/com/google/javascript/jscomp/StrictModeCheck.java
+index b22f3ed..24df8bd 100644
+--- a/src/com/google/javascript/jscomp/StrictModeCheck.java
++++ b/src/com/google/javascript/jscomp/StrictModeCheck.java
+@@ -22,6 +22,7 @@
+ import com.google.javascript.rhino.Node;
+ import com.google.javascript.rhino.Token;
+ 
++import java.util.HashSet;
+ import java.util.Set;
+ 
+ /**
+@@ -189,8 +190,9 @@
+ 
+   /** Checks that object literal keys are valid. */
+   private void checkObjectLiteral(NodeTraversal t, Node n) {
+-    Set<String> getters = Sets.newHashSet();
+-    Set<String> setters = Sets.newHashSet();
++    HashSet<String> var_214 = Sets.newHashSet();
++	Set<String> getters = var_214;
++    Set<String> setters = var_214;
+     for (Node key = n.getFirstChild();
+          key != null;
+          key = key.getNext()) {

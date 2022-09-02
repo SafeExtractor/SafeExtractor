@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+index 09e636b..7642756 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+@@ -448,16 +448,17 @@
+                             .toString(seconds));
+                     lastOutputSeconds = true;
+                 } else if (value == S) {
+-                    if (lastOutputSeconds) {
++                    String var_570 = Integer.toString(milliseconds);
++					if (lastOutputSeconds) {
+                         milliseconds += 1000;
+                         final String str = padWithZeros
+-                                ? StringUtils.leftPad(Integer.toString(milliseconds), count, '0')
+-                                : Integer.toString(milliseconds);
++                                ? StringUtils.leftPad(var_570, count, '0')
++                                : var_570;
+                         buffer.append(str.substring(1));
+                     } else {
+                         buffer.append(padWithZeros
+-                                ? StringUtils.leftPad(Integer.toString(milliseconds), count, '0')
+-                                : Integer.toString(milliseconds));
++                                ? StringUtils.leftPad(var_570, count, '0')
++                                : var_570);
+                     }
+                     lastOutputSeconds = false;
+                 }

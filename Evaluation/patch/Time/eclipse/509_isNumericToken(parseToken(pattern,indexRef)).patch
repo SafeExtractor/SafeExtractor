@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/joda/time/format/DateTimeFormat.java b/src/main/java/org/joda/time/format/DateTimeFormat.java
+index 4558eb7..d5a246b 100644
+--- a/src/main/java/org/joda/time/format/DateTimeFormat.java
++++ b/src/main/java/org/joda/time/format/DateTimeFormat.java
+@@ -438,13 +438,14 @@
+             case 'x': // weekyear (number)
+             case 'y': // year (number)
+             case 'Y': // year of era (number)
+-                if (tokenLen == 2) {
++                boolean var_509 = isNumericToken(parseToken(pattern, indexRef));
++				if (tokenLen == 2) {
+                     boolean lenientParse = true;
+ 
+                     // Peek ahead to next token.
+                     if (i + 1 < length) {
+                         indexRef[0]++;
+-                        if (isNumericToken(parseToken(pattern, indexRef))) {
++                        if (var_509) {
+                             // If next token is a number, cannot support
+                             // lenient parse, because it will consume digits
+                             // that it should not.
+@@ -472,7 +473,7 @@
+                     // Peek ahead to next token.
+                     if (i + 1 < length) {
+                         indexRef[0]++;
+-                        if (isNumericToken(parseToken(pattern, indexRef))) {
++                        if (var_509) {
+                             // If next token is a number, cannot support long years.
+                             maxDigits = tokenLen;
+                         }

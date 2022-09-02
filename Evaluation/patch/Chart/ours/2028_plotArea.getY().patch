@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot.java b/source/org/jfree/chart/plot/PiePlot.java
+index 34014e9..3169db5 100644
+--- a/source/org/jfree/chart/plot/PiePlot.java
++++ b/source/org/jfree/chart/plot/PiePlot.java
+@@ -2498,13 +2498,14 @@
+                 + labelReserve) * 2.0;
+         double gapVertical = plotArea.getHeight() * this.interiorGap * 2.0;
+ 
+-        if (DEBUG_DRAW_INTERIOR) {
++        double var_2028 = plotArea.getY();
++		if (DEBUG_DRAW_INTERIOR) {
+             double hGap = plotArea.getWidth() * this.interiorGap;
+             double vGap = plotArea.getHeight() * this.interiorGap;
+ 
+             double igx1 = plotArea.getX() + hGap;
+             double igx2 = plotArea.getMaxX() - hGap;
+-            double igy1 = plotArea.getY() + vGap;
++            double igy1 = var_2028 + vGap;
+             double igy2 = plotArea.getMaxY() - vGap;
+             g2.setPaint(Color.gray);
+             g2.draw(new Rectangle2D.Double(igx1, igy1, igx2 - igx1,
+@@ -2512,7 +2513,7 @@
+         }
+ 
+         double linkX = plotArea.getX() + gapHorizontal / 2;
+-        double linkY = plotArea.getY() + gapVertical / 2;
++        double linkY = var_2028 + gapVertical / 2;
+         double linkW = plotArea.getWidth() - gapHorizontal;
+         double linkH = plotArea.getHeight() - gapVertical;
+ 

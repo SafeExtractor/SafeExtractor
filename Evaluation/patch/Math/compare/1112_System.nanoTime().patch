@@ -1,0 +1,30 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/1112_System.nanoTime().patch b/Users/safe/paper/Evaluation/patch/Math/ours/1112_System.nanoTime().patch
+index 3608bc6..806624b 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/1112_System.nanoTime().patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/1112_System.nanoTime().patch
+@@ -1,19 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/genetics/FixedElapsedTime.java b/src/main/java/org/apache/commons/math3/genetics/FixedElapsedTime.java
+-index 9c699b3..ba09a03 100644
++index 9c699b3..0405a5d 100644
+ --- a/src/main/java/org/apache/commons/math3/genetics/FixedElapsedTime.java
+ +++ b/src/main/java/org/apache/commons/math3/genetics/FixedElapsedTime.java
+-@@ -69,10 +69,11 @@
+-      * @return <code>true</code> IFF the maximum allowed time period has elapsed
++@@ -70,7 +70,8 @@
+       */
+      public boolean isSatisfied(final Population population) {
+--        if (endTime < 0) {
++         if (endTime < 0) {
+ -            endTime = System.nanoTime() + maxTimePeriod;
+-+        long var_1112 = System.nanoTime();
+-+		if (endTime < 0) {
+-+            endTime = var_1112 + maxTimePeriod;
+++            long var_1112 = System.nanoTime();
+++			endTime = var_1112 + maxTimePeriod;
+          }
+  
+--        return System.nanoTime() >= endTime;
+-+        return var_1112 >= endTime;
+-     }
+- }
++         return System.nanoTime() >= endTime;

@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/chart/axis/ValueAxis.java b/source/org/jfree/chart/axis/ValueAxis.java
+index 5972cdd..f802319 100644
+--- a/source/org/jfree/chart/axis/ValueAxis.java
++++ b/source/org/jfree/chart/axis/ValueAxis.java
+@@ -794,13 +794,14 @@
+         if (isTickLabelsVisible()) {
+             g2.setFont(getTickLabelFont());
+             List ticks = refreshTicks(g2, new AxisState(), plotArea, edge);
+-            if (RectangleEdge.isTopOrBottom(edge)) {
++            boolean var_584 = isVerticalTickLabels();
++			if (RectangleEdge.isTopOrBottom(edge)) {
+                 tickLabelHeight = findMaximumTickLabelHeight(ticks, g2,
+-                        plotArea, isVerticalTickLabels());
++                        plotArea, var_584);
+             }
+             else if (RectangleEdge.isLeftOrRight(edge)) {
+                 tickLabelWidth = findMaximumTickLabelWidth(ticks, g2, plotArea,
+-                        isVerticalTickLabels());
++                        var_584);
+             }
+         }
+ 

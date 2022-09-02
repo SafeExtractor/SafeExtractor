@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java b/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java
+index f154450..4f62ea6 100644
+--- a/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java
++++ b/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java
+@@ -103,6 +103,7 @@
+ import org.jfree.chart.axis.ValueAxis;
+ import org.jfree.chart.entity.EntityCollection;
+ import org.jfree.chart.event.RendererChangeEvent;
++import org.jfree.chart.labels.CategorySeriesLabelGenerator;
+ import org.jfree.chart.plot.CategoryPlot;
+ import org.jfree.chart.plot.PlotOrientation;
+ import org.jfree.chart.plot.PlotRenderingInfo;
+@@ -368,8 +369,9 @@
+                 series);
+         String description = label;
+         String toolTipText = null;
+-        if (getLegendItemToolTipGenerator() != null) {
+-            toolTipText = getLegendItemToolTipGenerator().generateLabel(
++        CategorySeriesLabelGenerator var_2421 = getLegendItemToolTipGenerator();
++		if (var_2421 != null) {
++            toolTipText = var_2421.generateLabel(
+                     dataset, series);
+         }
+         String urlText = null;

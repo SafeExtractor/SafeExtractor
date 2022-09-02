@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/ResizableDoubleArray.java b/src/main/java/org/apache/commons/math3/util/ResizableDoubleArray.java
+index 7de3221..71f38eb 100644
+--- a/src/main/java/org/apache/commons/math3/util/ResizableDoubleArray.java
++++ b/src/main/java/org/apache/commons/math3/util/ResizableDoubleArray.java
+@@ -690,15 +690,16 @@
+         // is 1.000000000000000001.  The newly calculated size will be
+         // rounded up to 2 after the multiplication is performed.
+         int newSize = 0;
+-        if (expansionMode == ExpansionMode.MULTIPLICATIVE) {
+-            newSize = (int) FastMath.ceil(internalArray.length * expansionFactor);
++        int var_4107 = internalArray.length;
++		if (expansionMode == ExpansionMode.MULTIPLICATIVE) {
++            newSize = (int) FastMath.ceil(var_4107 * expansionFactor);
+         } else {
+-            newSize = (int) (internalArray.length + FastMath.round(expansionFactor));
++            newSize = (int) (var_4107 + FastMath.round(expansionFactor));
+         }
+         final double[] tempArray = new double[newSize];
+ 
+         // Copy and swap
+-        System.arraycopy(internalArray, 0, tempArray, 0, internalArray.length);
++        System.arraycopy(internalArray, 0, tempArray, 0, var_4107);
+         internalArray = tempArray;
+     }
+ 

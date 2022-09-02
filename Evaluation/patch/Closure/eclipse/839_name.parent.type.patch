@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/CheckGlobalNames.java b/src/com/google/javascript/jscomp/CheckGlobalNames.java
+index d035d9d..9cf128b 100644
+--- a/src/com/google/javascript/jscomp/CheckGlobalNames.java
++++ b/src/com/google/javascript/jscomp/CheckGlobalNames.java
+@@ -20,6 +20,7 @@
+ import com.google.common.collect.Sets;
+ import com.google.javascript.jscomp.CheckLevel;
+ import com.google.javascript.jscomp.GlobalNamespace.Name;
++import com.google.javascript.jscomp.GlobalNamespace.Name.Type;
+ import com.google.javascript.jscomp.GlobalNamespace.Ref;
+ import com.google.javascript.rhino.JSDocInfo;
+ import com.google.javascript.rhino.Node;
+@@ -273,11 +274,12 @@
+       return false;
+     }
+ 
+-    if (name.parent.type == Name.Type.OBJECTLIT) {
++    Type var_839 = name.parent.type;
++	if (var_839 == Name.Type.OBJECTLIT) {
+       return true;
+     }
+ 
+-    if (name.parent.type == Name.Type.FUNCTION &&
++    if (var_839 == Name.Type.FUNCTION &&
+         name.parent.isDeclaredType() &&
+         !functionPrototypeProps.contains(name.getBaseName())) {
+       return true;

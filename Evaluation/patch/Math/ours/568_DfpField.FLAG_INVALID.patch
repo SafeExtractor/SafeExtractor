@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..3095927 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -780,18 +780,19 @@
+     public boolean greaterThan(final Dfp x) {
+ 
+         // make sure we don't mix number with different precision
+-        if (field.getRadixDigits() != x.field.getRadixDigits()) {
+-            field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
++        int var_568 = DfpField.FLAG_INVALID;
++		if (field.getRadixDigits() != x.field.getRadixDigits()) {
++            field.setIEEEFlagsBits(var_568);
+             final Dfp result = newInstance(getZero());
+             result.nans = QNAN;
+-            dotrap(DfpField.FLAG_INVALID, GREATER_THAN_TRAP, x, result);
++            dotrap(var_568, GREATER_THAN_TRAP, x, result);
+             return false;
+         }
+ 
+         /* if a nan is involved, signal invalid and return false */
+         if (isNaN() || x.isNaN()) {
+-            field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            dotrap(DfpField.FLAG_INVALID, GREATER_THAN_TRAP, x, newInstance(getZero()));
++            field.setIEEEFlagsBits(var_568);
++            dotrap(var_568, GREATER_THAN_TRAP, x, newInstance(getZero()));
+             return false;
+         }
+ 

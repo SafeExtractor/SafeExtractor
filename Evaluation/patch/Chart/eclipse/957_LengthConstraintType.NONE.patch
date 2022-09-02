@@ -1,0 +1,44 @@
+diff --git a/source/org/jfree/chart/block/BorderArrangement.java b/source/org/jfree/chart/block/BorderArrangement.java
+index b3ae54b..a7c507c 100644
+--- a/source/org/jfree/chart/block/BorderArrangement.java
++++ b/source/org/jfree/chart/block/BorderArrangement.java
+@@ -276,9 +276,10 @@
+                                double width) {
+         double[] w = new double[5];
+         double[] h = new double[5];
+-        RectangleConstraint c1 = new RectangleConstraint(width, null,
++        LengthConstraintType var_957 = LengthConstraintType.NONE;
++		RectangleConstraint c1 = new RectangleConstraint(width, null,
+                 LengthConstraintType.FIXED, 0.0, null,
+-                LengthConstraintType.NONE);
++                var_957);
+         if (this.topBlock != null) {
+             Size2D size = this.topBlock.arrange(g2, c1);
+             w[0] = size.width;
+@@ -291,7 +292,7 @@
+         }
+         RectangleConstraint c2 = new RectangleConstraint(0.0,
+                 new Range(0.0, width), LengthConstraintType.RANGE,
+-                0.0, null, LengthConstraintType.NONE);
++                0.0, null, var_957);
+         if (this.leftBlock != null) {
+             Size2D size = this.leftBlock.arrange(g2, c2);
+             w[2] = size.width;
+@@ -302,7 +303,7 @@
+             RectangleConstraint c3 = new RectangleConstraint(0.0,
+                     new Range(Math.min(w[2], maxW), maxW),
+                     LengthConstraintType.RANGE, 0.0, null,
+-                    LengthConstraintType.NONE);
++                    var_957);
+             Size2D size = this.rightBlock.arrange(g2, c3);
+             w[3] = size.width;
+             h[3] = size.height;
+@@ -314,7 +315,7 @@
+         if (this.centerBlock != null) {
+             RectangleConstraint c4 = new RectangleConstraint(width - w[2]
+                     - w[3], null, LengthConstraintType.FIXED, 0.0, null,
+-                    LengthConstraintType.NONE);
++                    var_957);
+             Size2D size = this.centerBlock.arrange(g2, c4);
+             w[4] = size.width;
+             h[4] = size.height;

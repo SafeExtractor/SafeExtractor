@@ -1,0 +1,14 @@
+diff --git a/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/LuceneDocumentMaker.java b/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/LuceneDocumentMaker.java
+index 77ce9df..71212d2 100644
+--- a/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/LuceneDocumentMaker.java
++++ b/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/LuceneDocumentMaker.java
+@@ -347,7 +347,8 @@
+         boolean added = false;
+         for (String nodeName : propertNode.getChildNodeNames()) {
+             NodeState dynaTag = propertNode.getChildNode(nodeName);
+-            String dynaTagName = dynaTag.getProperty(DYNAMIC_BOOST_TAG_NAME).getValue(Type.STRING);
++            PropertyState p = dynaTag.getProperty(DYNAMIC_BOOST_TAG_NAME);
++			String dynaTagName = p.getValue(Type.STRING);
+             Double dynaTagConfidence = dynaTag.getProperty(DYNAMIC_BOOST_TAG_CONFIDENCE).getValue(Type.DOUBLE);
+ 
+             List<String> tokens = new ArrayList<>(splitForIndexing(dynaTagName));

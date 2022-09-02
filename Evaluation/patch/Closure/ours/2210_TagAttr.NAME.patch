@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/jsonml/Writer.java b/src/com/google/javascript/jscomp/jsonml/Writer.java
+index b357eb9..c0af277 100644
+--- a/src/com/google/javascript/jscomp/jsonml/Writer.java
++++ b/src/com/google/javascript/jscomp/jsonml/Writer.java
+@@ -457,9 +457,10 @@
+     // the first child represents function's name
+     Node child = node.getFirstChild();
+     String name = child.getString();
+-    if (!name.equals("")) {
++    TagAttr var_2210 = TagAttr.NAME;
++	if (!name.equals("")) {
+       JsonML nameElement = new JsonML(TagType.IdPatt);
+-      nameElement.setAttribute(TagAttr.NAME, name);
++      nameElement.setAttribute(var_2210, name);
+       element.appendChild(nameElement);
+     } else {
+       element.appendChild(new JsonML(TagType.Empty));
+@@ -473,7 +474,7 @@
+     while (it.hasNext()) {
+       JsonML param = new JsonML(TagType.IdPatt);
+       Node nameNode = it.next();
+-      param.setAttribute(TagAttr.NAME, nameNode.getString());
++      param.setAttribute(var_2210, nameNode.getString());
+       params.appendChild(param);
+     }
+ 

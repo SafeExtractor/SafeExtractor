@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/compress/archivers/zip/AsiExtraField.java b/src/main/java/org/apache/commons/compress/archivers/zip/AsiExtraField.java
+index 1909a2f..6ab32ca 100644
+--- a/src/main/java/org/apache/commons/compress/archivers/zip/AsiExtraField.java
++++ b/src/main/java/org/apache/commons/compress/archivers/zip/AsiExtraField.java
+@@ -290,13 +290,14 @@
+         uid = ZipShort.getValue(tmp, 6);
+         gid = ZipShort.getValue(tmp, 8);
+ 
+-        if (linkArray.length == 0) {
++        int linkArrayLength = linkArray.length;
++		if (linkArrayLength == 0) {
+             link = "";
+-        } else if (linkArray.length > tmp.length - 10) {
+-            throw new ZipException("Bad symbolic link name length " + linkArray.length
++        } else if (linkArrayLength > tmp.length - 10) {
++            throw new ZipException("Bad symbolic link name length " + linkArrayLength
+                 + " in ASI extra field");
+         } else {
+-            System.arraycopy(tmp, 10, linkArray, 0, linkArray.length);
++            System.arraycopy(tmp, 10, linkArray, 0, linkArrayLength);
+             link = new String(linkArray); // Uses default charset - see class Javadoc
+         }
+         // CheckStyle:MagicNumber ON

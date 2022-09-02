@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java b/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java
+index 07f397b..54abf8c 100644
+--- a/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java
++++ b/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java
+@@ -373,10 +373,11 @@
+             }
+         }
+ 
+-        double[][] matrix = new double[getHeight() - 1][getWidth() - columnsToDrop.size()];
++        int var_2943 = getWidth();
++		double[][] matrix = new double[getHeight() - 1][var_2943 - columnsToDrop.size()];
+         for (int i = 1; i < getHeight(); i++) {
+             int col = 0;
+-            for (int j = 0; j < getWidth(); j++) {
++            for (int j = 0; j < var_2943; j++) {
+                 if (!columnsToDrop.contains(j)) {
+                     matrix[i - 1][col++] = tableau.getEntry(i, j);
+                 }

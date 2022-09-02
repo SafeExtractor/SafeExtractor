@@ -1,0 +1,100 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..27c869f 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1514,7 +1514,8 @@
+         Dfp result = newInstance(getZero());
+ 
+         /* handle special cases */
+-        if (nans != FINITE || x.nans != FINITE) {
++        int var_646 = mant.length;
++		if (nans != FINITE || x.nans != FINITE) {
+             if (isNaN()) {
+                 return this;
+             }
+@@ -1523,13 +1524,13 @@
+                 return x;
+             }
+ 
+-            if (nans == INFINITE && x.nans == FINITE && x.mant[mant.length-1] != 0) {
++            if (nans == INFINITE && x.nans == FINITE && x.mant[var_646-1] != 0) {
+                 result = newInstance(this);
+                 result.sign = (byte) (sign * x.sign);
+                 return result;
+             }
+ 
+-            if (x.nans == INFINITE && nans == FINITE && mant[mant.length-1] != 0) {
++            if (x.nans == INFINITE && nans == FINITE && mant[var_646-1] != 0) {
+                 result = newInstance(x);
+                 result.sign = (byte) (sign * x.sign);
+                 return result;
+@@ -1541,8 +1542,8 @@
+                 return result;
+             }
+ 
+-            if ( (x.nans == INFINITE && nans == FINITE && mant[mant.length-1] == 0) ||
+-                    (nans == INFINITE && x.nans == FINITE && x.mant[mant.length-1] == 0) ) {
++            if ( (x.nans == INFINITE && nans == FINITE && mant[var_646-1] == 0) ||
++                    (nans == INFINITE && x.nans == FINITE && x.mant[var_646-1] == 0) ) {
+                 field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+                 result = newInstance(getZero());
+                 result.nans = QNAN;
+@@ -1551,23 +1552,23 @@
+             }
+         }
+ 
+-        int[] product = new int[mant.length*2];  // Big enough to hold even the largest result
++        int[] product = new int[var_646*2];  // Big enough to hold even the largest result
+ 
+-        for (int i = 0; i < mant.length; i++) {
++        for (int i = 0; i < var_646; i++) {
+             int rh = 0;  // acts as a carry
+-            for (int j=0; j<mant.length; j++) {
++            for (int j=0; j<var_646; j++) {
+                 int r = mant[i] * x.mant[j];    // multiply the 2 digits
+                 r = r + product[i+j] + rh;  // add to the product digit with carry in
+ 
+                 rh = r / RADIX;
+                 product[i+j] = r - rh * RADIX;
+             }
+-            product[i+mant.length] = rh;
++            product[i+var_646] = rh;
+         }
+ 
+         // Find the most sig digit
+-        int md = mant.length * 2 - 1;  // default, in case result is zero
+-        for (int i = mant.length * 2 - 1; i >= 0; i--) {
++        int md = var_646 * 2 - 1;  // default, in case result is zero
++        for (int i = var_646 * 2 - 1; i >= 0; i--) {
+             if (product[i] != 0) {
+                 md = i;
+                 break;
+@@ -1575,22 +1576,22 @@
+         }
+ 
+         // Copy the digits into the result
+-        for (int i = 0; i < mant.length; i++) {
+-            result.mant[mant.length - i - 1] = product[md - i];
++        for (int i = 0; i < var_646; i++) {
++            result.mant[var_646 - i - 1] = product[md - i];
+         }
+ 
+         // Fixup the exponent.
+-        result.exp = exp + x.exp + md - 2 * mant.length + 1;
++        result.exp = exp + x.exp + md - 2 * var_646 + 1;
+         result.sign = (byte)((sign == x.sign)?1:-1);
+ 
+-        if (result.mant[mant.length-1] == 0) {
++        if (result.mant[var_646-1] == 0) {
+             // if result is zero, set exp to zero
+             result.exp = 0;
+         }
+ 
+         final int excp;
+-        if (md > (mant.length-1)) {
+-            excp = result.round(product[md-mant.length]);
++        if (md > (var_646-1)) {
++            excp = result.round(product[md-var_646]);
+         } else {
+             excp = result.round(0); // has no effect except to check status
+         }

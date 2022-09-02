@@ -1,0 +1,37 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYBoxAndWhiskerRenderer.java b/source/org/jfree/chart/renderer/xy/XYBoxAndWhiskerRenderer.java
+index e7013ab..dbf9c27 100644
+--- a/source/org/jfree/chart/renderer/xy/XYBoxAndWhiskerRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYBoxAndWhiskerRenderer.java
+@@ -643,19 +643,20 @@
+             else if (outlier < boxAndWhiskerData.getMinOutlier(series,
+                     item).doubleValue()) {
+                 outlierListCollection.setLowFarOut(true);
+-            }
+-            else if (outlier > boxAndWhiskerData.getMaxRegularValue(series,
+-                    item).doubleValue()) {
+-                yyOutlier = rangeAxis.valueToJava2D(outlier, dataArea,
++            } else {
++				double var_3261 = rangeAxis.valueToJava2D(outlier, dataArea,
+                         location);
+-                outliers.add(new Outlier(xx, yyOutlier, oRadius));
+-            }
+-            else if (outlier < boxAndWhiskerData.getMinRegularValue(series,
+-                    item).doubleValue()) {
+-                yyOutlier = rangeAxis.valueToJava2D(outlier, dataArea,
+-                        location);
+-                outliers.add(new Outlier(xx, yyOutlier, oRadius));
+-            }
++				if (outlier > boxAndWhiskerData.getMaxRegularValue(series,
++				        item).doubleValue()) {
++				    yyOutlier = var_3261;
++				    outliers.add(new Outlier(xx, yyOutlier, oRadius));
++				}
++				else if (outlier < boxAndWhiskerData.getMinRegularValue(series,
++				        item).doubleValue()) {
++				    yyOutlier = var_3261;
++				    outliers.add(new Outlier(xx, yyOutlier, oRadius));
++				}
++			}
+             Collections.sort(outliers);
+         }
+ 

@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/LiveVariablesAnalysis.java b/src/com/google/javascript/jscomp/LiveVariablesAnalysis.java
+index 888fd39..b067a97 100644
+--- a/src/com/google/javascript/jscomp/LiveVariablesAnalysis.java
++++ b/src/com/google/javascript/jscomp/LiveVariablesAnalysis.java
+@@ -184,7 +184,8 @@
+   private void computeGenKill(Node n, BitSet gen, BitSet kill,
+       boolean conditional) {
+ 
+-    switch (n.getType()) {
++    Node var_973 = NodeUtil.getConditionExpression(n);
++	switch (n.getType()) {
+       case Token.SCRIPT:
+       case Token.BLOCK:
+       case Token.FUNCTION:
+@@ -193,13 +194,13 @@
+       case Token.WHILE:
+       case Token.DO:
+       case Token.IF:
+-        computeGenKill(NodeUtil.getConditionExpression(n), gen, kill,
++        computeGenKill(var_973, gen, kill,
+             conditional);
+         return;
+ 
+       case Token.FOR:
+         if (!NodeUtil.isForIn(n)) {
+-          computeGenKill(NodeUtil.getConditionExpression(n), gen, kill,
++          computeGenKill(var_973, gen, kill,
+               conditional);
+         } else {
+           // for(x in y) {...}

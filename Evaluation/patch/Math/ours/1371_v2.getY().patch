@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
+index fbdafa3..66cb7f9 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
+@@ -286,16 +286,17 @@
+       v1 = v1.normalize();
+ 
+       // buid a matrix transforming the first base into the second one
+-      final double[][] m = new double[][] {
++      double var_1371 = v2.getY();
++	final double[][] m = new double[][] {
+           {
+               MathArrays.linearCombination(u1.getX(), v1.getX(), u2.getX(), v2.getX(), u3.getX(), v3.getX()),
+               MathArrays.linearCombination(u1.getY(), v1.getX(), u2.getY(), v2.getX(), u3.getY(), v3.getX()),
+               MathArrays.linearCombination(u1.getZ(), v1.getX(), u2.getZ(), v2.getX(), u3.getZ(), v3.getX())
+           },
+           {
+-              MathArrays.linearCombination(u1.getX(), v1.getY(), u2.getX(), v2.getY(), u3.getX(), v3.getY()),
+-              MathArrays.linearCombination(u1.getY(), v1.getY(), u2.getY(), v2.getY(), u3.getY(), v3.getY()),
+-              MathArrays.linearCombination(u1.getZ(), v1.getY(), u2.getZ(), v2.getY(), u3.getZ(), v3.getY())
++              MathArrays.linearCombination(u1.getX(), v1.getY(), u2.getX(), var_1371, u3.getX(), v3.getY()),
++              MathArrays.linearCombination(u1.getY(), v1.getY(), u2.getY(), var_1371, u3.getY(), v3.getY()),
++              MathArrays.linearCombination(u1.getZ(), v1.getY(), u2.getZ(), var_1371, u3.getZ(), v3.getY())
+           },
+           {
+               MathArrays.linearCombination(u1.getX(), v1.getZ(), u2.getX(), v2.getZ(), u3.getX(), v3.getZ()),

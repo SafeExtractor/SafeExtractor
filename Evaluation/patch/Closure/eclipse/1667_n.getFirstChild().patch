@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+index bc570e2..2f5aa02 100644
+--- a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
++++ b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+@@ -455,10 +455,11 @@
+       Node root = NodeUtil.getRootOfQualifiedName(ref);
+ 
+       Node n = ref.getParent();
+-      switch (n.getType()) {
++      Node var_1667 = n.getFirstChild();
++	switch (n.getType()) {
+         // Foo.prototype.getBar = function() { ... }
+         case Token.GETPROP:
+-          Node dest = n.getFirstChild().getNext();
++          Node dest = var_1667.getNext();
+           Node parent = n.getParent();
+           Node grandParent = parent.getParent();
+ 
+@@ -477,7 +478,7 @@
+ 
+         // Foo.prototype = { "getBar" : function() { ... } }
+         case Token.ASSIGN:
+-          Node map = n.getFirstChild().getNext();
++          Node map = var_1667.getNext();
+           if (map.isObjectLit()) {
+             for (Node key = map.getFirstChild();
+                  key != null; key = key.getNext()) {

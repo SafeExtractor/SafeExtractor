@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/fraction/Fraction.java b/src/main/java/org/apache/commons/math3/fraction/Fraction.java
+index 002dae9..5b63160 100644
+--- a/src/main/java/org/apache/commons/math3/fraction/Fraction.java
++++ b/src/main/java/org/apache/commons/math3/fraction/Fraction.java
+@@ -625,12 +625,13 @@
+             return ZERO; // normalize zero.
+         }
+         // allow 2^k/-2^31 as a valid fraction (where k>0)
+-        if (denominator==Integer.MIN_VALUE && (numerator&1)==0) {
++        int var_1084 = Integer.MIN_VALUE;
++		if (denominator==var_1084 && (numerator&1)==0) {
+             numerator/=2; denominator/=2;
+         }
+         if (denominator < 0) {
+-            if (numerator==Integer.MIN_VALUE ||
+-                    denominator==Integer.MIN_VALUE) {
++            if (numerator==var_1084 ||
++                    denominator==var_1084) {
+                 throw new MathArithmeticException(LocalizedFormats.OVERFLOW_IN_FRACTION,
+                                                   numerator, denominator);
+             }

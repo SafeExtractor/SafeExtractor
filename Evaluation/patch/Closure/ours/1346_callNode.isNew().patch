@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+index 171eb51..a6d1787 100644
+--- a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
++++ b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+@@ -311,7 +311,8 @@
+           getCallableDefinitions(definitionProvider, name);
+       // Default to side effects, non-local results
+       Node.SideEffectFlags flags = new Node.SideEffectFlags();
+-      if (defs == null) {
++      boolean var_1346 = callNode.isNew();
++	if (defs == null) {
+         flags.setMutatesGlobalState();
+         flags.setThrows();
+         flags.setReturnsTainted();
+@@ -331,7 +332,7 @@
+             flags.setThrows();
+           }
+ 
+-          if (!callNode.isNew()) {
++          if (!var_1346) {
+             if (functionInfo.taintsThis) {
+               flags.setMutatesThis();
+             }
+@@ -353,7 +354,7 @@
+         if (!NodeUtil.functionCallHasSideEffects(callNode, compiler)) {
+           flags.clearSideEffectFlags();
+         }
+-      } else if (callNode.isNew()) {
++      } else if (var_1346) {
+         // Handle known cases now (Object, Date, RegExp, etc)
+         if (!NodeUtil.constructorCallHasSideEffects(callNode)) {
+           flags.clearSideEffectFlags();

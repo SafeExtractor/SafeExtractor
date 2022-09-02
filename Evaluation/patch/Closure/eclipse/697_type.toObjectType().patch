@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/AmbiguateProperties.java b/src/com/google/javascript/jscomp/AmbiguateProperties.java
+index 68c3996..d7e1aec 100644
+--- a/src/com/google/javascript/jscomp/AmbiguateProperties.java
++++ b/src/com/google/javascript/jscomp/AmbiguateProperties.java
+@@ -307,7 +307,8 @@
+     }
+ 
+     // An instance is related to its subclasses.
+-    FunctionType constructor = type.toObjectType().getConstructor();
++    ObjectType var_697 = type.toObjectType();
++	FunctionType constructor = var_697.getConstructor();
+     if (constructor != null && constructor.getSubTypes() != null) {
+       for (FunctionType subType : constructor.getSubTypes()) {
+         addRelatedInstance(subType, related);
+@@ -316,7 +317,7 @@
+ 
+     // An interface is related to its implementors.
+     for (FunctionType implementor : compiler.getTypeRegistry()
+-        .getDirectImplementors(type.toObjectType())) {
++        .getDirectImplementors(var_697)) {
+       addRelatedInstance(implementor, related);
+     }
+   }

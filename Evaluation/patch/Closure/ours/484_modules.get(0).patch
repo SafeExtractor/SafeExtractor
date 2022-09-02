@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+index 5f6b2c5..521e09e 100644
+--- a/src/com/google/javascript/jscomp/Compiler.java
++++ b/src/com/google/javascript/jscomp/Compiler.java
+@@ -445,11 +445,14 @@
+   private void checkFirstModule(List<JSModule> modules) {
+     if (modules.isEmpty()) {
+       report(JSError.make(EMPTY_MODULE_LIST_ERROR));
+-    } else if (modules.get(0).getInputs().isEmpty() && modules.size() > 1) {
+-      // The root module may only be empty if there is exactly 1 module.
+-      report(JSError.make(EMPTY_ROOT_MODULE_ERROR,
+-          modules.get(0).getName()));
+-    }
++    } else {
++		JSModule var_484 = modules.get(0);
++		if (var_484.getInputs().isEmpty() && modules.size() > 1) {
++		  // The root module may only be empty if there is exactly 1 module.
++		  report(JSError.make(EMPTY_ROOT_MODULE_ERROR,
++		      var_484.getName()));
++		}
++	}
+   }
+ 
+   /**

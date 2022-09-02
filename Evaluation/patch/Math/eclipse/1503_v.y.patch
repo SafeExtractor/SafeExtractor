@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java
+index 5371054..1c9d682 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java
+@@ -780,9 +780,10 @@
+      * @return the cross product this ^ v as a new Vector3D
+      */
+     public FieldVector3D<T> crossProduct(final FieldVector3D<T> v) {
+-        return new FieldVector3D<T>(x.linearCombination(y, v.z, z.negate(), v.y),
++        T var_1503 = v.y;
++		return new FieldVector3D<T>(x.linearCombination(y, v.z, z.negate(), var_1503),
+                                     y.linearCombination(z, v.x, x.negate(), v.z),
+-                                    z.linearCombination(x, v.y, y.negate(), v.x));
++                                    z.linearCombination(x, var_1503, y.negate(), v.x));
+     }
+ 
+     /** Compute the cross-product of the instance with another vector.

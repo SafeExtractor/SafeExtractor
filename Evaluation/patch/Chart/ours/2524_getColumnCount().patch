@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java b/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java
+index 326271f..e4be2fb 100644
+--- a/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java
++++ b/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java
+@@ -286,9 +286,10 @@
+         PlotOrientation orientation = plot.getOrientation();
+ 
+         // current data point...
+-        double x1s = domainAxis.getCategoryStart(column, getColumnCount(),
++        int var_2524 = getColumnCount();
++		double x1s = domainAxis.getCategoryStart(column, var_2524,
+                 dataArea, plot.getDomainAxisEdge());
+-        double x1 = domainAxis.getCategoryMiddle(column, getColumnCount(),
++        double x1 = domainAxis.getCategoryMiddle(column, var_2524,
+                 dataArea, plot.getDomainAxisEdge());
+         double x1e = 2 * x1 - x1s; // or: x1s + 2*(x1-x1s)
+         double y1 = rangeAxis.valueToJava2D(value.doubleValue(), dataArea,
+@@ -302,9 +303,9 @@
+                 // previous data point...
+                 double previous = previousValue.doubleValue();
+                 double x0s = domainAxis.getCategoryStart(column - 1,
+-                        getColumnCount(), dataArea, plot.getDomainAxisEdge());
++                        var_2524, dataArea, plot.getDomainAxisEdge());
+                 double x0 = domainAxis.getCategoryMiddle(column - 1,
+-                        getColumnCount(), dataArea, plot.getDomainAxisEdge());
++                        var_2524, dataArea, plot.getDomainAxisEdge());
+                 double x0e = 2 * x0 - x0s; // or: x0s + 2*(x0-x0s)
+                 double y0 = rangeAxis.valueToJava2D(previous, dataArea,
+                         plot.getRangeAxisEdge());

@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java b/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java
+index e374ca0..7b085b3 100644
+--- a/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java
++++ b/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java
+@@ -224,7 +224,8 @@
+    */
+   private void computeMustDef(
+       Node n, Node cfgNode, MustDef output, boolean conditional) {
+-    switch (n.getType()) {
++    Node var_1093 = NodeUtil.getConditionExpression(n);
++	switch (n.getType()) {
+ 
+       case Token.BLOCK:
+       case Token.FUNCTION:
+@@ -234,13 +235,13 @@
+       case Token.DO:
+       case Token.IF:
+         computeMustDef(
+-            NodeUtil.getConditionExpression(n), cfgNode, output, conditional);
++            var_1093, cfgNode, output, conditional);
+         return;
+ 
+       case Token.FOR:
+         if (!NodeUtil.isForIn(n)) {
+           computeMustDef(
+-              NodeUtil.getConditionExpression(n), cfgNode, output, conditional);
++              var_1093, cfgNode, output, conditional);
+         } else {
+           // for(x in y) {...}
+           Node lhs = n.getFirstChild();

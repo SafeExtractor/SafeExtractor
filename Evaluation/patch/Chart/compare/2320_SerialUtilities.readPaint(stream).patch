@@ -1,0 +1,24 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2320_SerialUtilities.readPaint(stream).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/2320_SerialUtilities.readPaint(stream).patch
+index 3fce81b..f42671a 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2320_SerialUtilities.readPaint(stream).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/2320_SerialUtilities.readPaint(stream).patch
+@@ -1,16 +1,14 @@
+ diff --git a/source/org/jfree/chart/plot/dial/StandardDialFrame.java b/source/org/jfree/chart/plot/dial/StandardDialFrame.java
+-index af229d1..87d611c 100644
++index af229d1..a3eabae 100644
+ --- a/source/org/jfree/chart/plot/dial/StandardDialFrame.java
+ +++ b/source/org/jfree/chart/plot/dial/StandardDialFrame.java
+-@@ -352,8 +352,9 @@
++@@ -352,7 +352,8 @@
+      private void readObject(ObjectInputStream stream)
+              throws IOException, ClassNotFoundException {
+          stream.defaultReadObject();
+ -        this.backgroundPaint = SerialUtilities.readPaint(stream);
+--        this.foregroundPaint = SerialUtilities.readPaint(stream);
+ +        Paint var_2320 = SerialUtilities.readPaint(stream);
+ +		this.backgroundPaint = var_2320;
+-+        this.foregroundPaint = var_2320;
++         this.foregroundPaint = SerialUtilities.readPaint(stream);
+          this.stroke = SerialUtilities.readStroke(stream);
+      }
+- 

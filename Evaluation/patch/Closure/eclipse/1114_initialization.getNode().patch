@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/InlineVariables.java b/src/com/google/javascript/jscomp/InlineVariables.java
+index 5c7408d..9b130aa 100644
+--- a/src/com/google/javascript/jscomp/InlineVariables.java
++++ b/src/com/google/javascript/jscomp/InlineVariables.java
+@@ -603,16 +603,17 @@
+       // Check if declaration can be inlined without passing
+       // any side-effect causing nodes.
+       Iterator<Node> it;
+-      if (initialization.getParent().isVar()) {
++      Node var_1114 = initialization.getNode();
++	if (initialization.getParent().isVar()) {
+         it = NodeIterators.LocalVarMotion.forVar(
+-            initialization.getNode(),     // NAME
++            var_1114,     // NAME
+             initialization.getParent(),       // VAR
+             initialization.getGrandparent()); // VAR container
+       } else if (initialization.getParent().isAssign()) {
+         Preconditions.checkState(
+             initialization.getGrandparent().isExprResult());
+         it = NodeIterators.LocalVarMotion.forAssign(
+-            initialization.getNode(),     // NAME
++            var_1114,     // NAME
+             initialization.getParent(),       // ASSIGN
+             initialization.getGrandparent(),  // EXPR_RESULT
+             initialization.getGrandparent().getParent()); // EXPR container

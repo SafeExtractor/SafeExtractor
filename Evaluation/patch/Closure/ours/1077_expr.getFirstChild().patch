@@ -1,0 +1,54 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..b73e1cc 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -1054,7 +1054,8 @@
+     Preconditions.checkNotNull(scope);
+     Preconditions.checkNotNull(expr);
+     ConcreteType ret;
+-    switch (expr.getType()) {
++    Node var_1077 = expr.getFirstChild();
++	switch (expr.getType()) {
+       case Token.NAME:
+         StaticSlot<ConcreteType> slot = scope.getSlot(expr.getString());
+ 
+@@ -1088,18 +1089,18 @@
+         break;
+ 
+       case Token.OR:
+-        ret = inferConcreteType(scope, expr.getFirstChild()).unionWith(
++        ret = inferConcreteType(scope, var_1077).unionWith(
+                    inferConcreteType(scope, expr.getLastChild()));
+         break;
+ 
+       case Token.HOOK:
+         ret = inferConcreteType(scope,
+-                   expr.getFirstChild().getNext()).unionWith(
++                   var_1077.getNext()).unionWith(
+                        inferConcreteType(scope, expr.getLastChild()));
+         break;
+ 
+       case Token.GETPROP:
+-        ConcreteType recvType = inferConcreteType(scope, expr.getFirstChild());
++        ConcreteType recvType = inferConcreteType(scope, var_1077);
+         if (recvType.isAll()) {
+           ret = recvType;
+           break;
+@@ -1130,7 +1131,7 @@
+         // TODO(user): Support apply on functions.
+         // TODO(user): Create goog.bind that curries some arguments.
+         ConcreteType targetType =
+-            inferConcreteType(scope, expr.getFirstChild());
++            inferConcreteType(scope, var_1077);
+         if (targetType.isAll()) {
+           ret = targetType;
+           break;
+@@ -1143,7 +1144,7 @@
+ 
+       case Token.NEW:
+         ConcreteType constructorType =
+-            inferConcreteType(scope, expr.getFirstChild());
++            inferConcreteType(scope, var_1077);
+         if (constructorType.isAll()) {
+           throw new AssertionError("Attempted new call on all type!");
+         }

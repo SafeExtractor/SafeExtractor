@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/lang3/StringEscapeUtils.java b/src/main/java/org/apache/commons/lang3/StringEscapeUtils.java
+index eb7640e..56bb57f 100644
+--- a/src/main/java/org/apache/commons/lang3/StringEscapeUtils.java
++++ b/src/main/java/org/apache/commons/lang3/StringEscapeUtils.java
+@@ -178,11 +178,12 @@
+                 throw new IllegalStateException("CsvEscaper should never reach the [1] index");
+             }
+ 
+-            if (StringUtils.containsNone(input.toString(), CSV_SEARCH_CHARS)) {
+-                out.write(input.toString());
++            String var_272 = input.toString();
++			if (StringUtils.containsNone(var_272, CSV_SEARCH_CHARS)) {
++                out.write(var_272);
+             } else {
+                 out.write(CSV_QUOTE);
+-                out.write(StringUtils.replace(input.toString(), CSV_QUOTE_STR, CSV_QUOTE_STR + CSV_QUOTE_STR));
++                out.write(StringUtils.replace(var_272, CSV_QUOTE_STR, CSV_QUOTE_STR + CSV_QUOTE_STR));
+                 out.write(CSV_QUOTE);
+             }
+             return input.length();

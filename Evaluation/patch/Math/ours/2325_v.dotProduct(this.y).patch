@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+index 7b1dcc7..de8a3d5 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
++++ b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+@@ -579,7 +579,8 @@
+              * or very small if b is an eigenvector.
+              */
+             daxpy(-this.shift, v, this.y);
+-            final double alpha = v.dotProduct(this.y);
++            double var_2325 = v.dotProduct(this.y);
++			final double alpha = var_2325;
+             daxpy(-alpha / this.beta1, this.r1, this.y);
+             /*
+              * At this point
+@@ -587,7 +588,7 @@
+              *   y     = beta[2] * M^(-1) * P' * v[2]
+              */
+             /* Make sure r2 will be orthogonal to the first v. */
+-            final double vty = v.dotProduct(this.y);
++            final double vty = var_2325;
+             final double vtv = v.dotProduct(v);
+             daxpy(-vty / vtv, v, this.y);
+             this.r2 = this.y.copy();

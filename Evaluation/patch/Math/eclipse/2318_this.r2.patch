@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+index 7b1dcc7..8485cc5 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
++++ b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+@@ -591,11 +591,12 @@
+             final double vtv = v.dotProduct(v);
+             daxpy(-vty / vtv, v, this.y);
+             this.r2 = this.y.copy();
+-            if (this.m != null) {
+-                this.y = this.m.operate(this.r2);
++            RealVector var_2318 = this.r2;
++			if (this.m != null) {
++                this.y = this.m.operate(var_2318);
+             }
+             this.oldb = this.beta1;
+-            this.beta = this.r2.dotProduct(this.y);
++            this.beta = var_2318.dotProduct(this.y);
+             if (this.beta < 0.) {
+                 throwNPDLOException(this.m, this.y);
+             }

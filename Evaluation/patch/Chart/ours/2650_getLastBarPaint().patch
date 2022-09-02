@@ -1,0 +1,43 @@
+diff --git a/source/org/jfree/chart/renderer/category/WaterfallBarRenderer.java b/source/org/jfree/chart/renderer/category/WaterfallBarRenderer.java
+index 4a14898..fec68e5 100644
+--- a/source/org/jfree/chart/renderer/category/WaterfallBarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/WaterfallBarRenderer.java
+@@ -396,21 +396,23 @@
+         Paint seriesPaint = getFirstBarPaint();
+         if (column == 0) {
+             seriesPaint = getFirstBarPaint();
+-        }
+-        else if (column == categoryCount - 1) {
+-            seriesPaint = getLastBarPaint();
+-        }
+-        else {
+-            if (valDiff < 0.0) {
+-                seriesPaint = getNegativeBarPaint();
+-            }
+-            else if (valDiff > 0.0) {
+-                seriesPaint = getPositiveBarPaint();
+-            }
+-            else {
+-                seriesPaint = getLastBarPaint();
+-            }
+-        }
++        } else {
++			Paint var_2650 = getLastBarPaint();
++			if (column == categoryCount - 1) {
++			    seriesPaint = var_2650;
++			}
++			else {
++			    if (valDiff < 0.0) {
++			        seriesPaint = getNegativeBarPaint();
++			    }
++			    else if (valDiff > 0.0) {
++			        seriesPaint = getPositiveBarPaint();
++			    }
++			    else {
++			        seriesPaint = var_2650;
++			    }
++			}
++		}
+         if (getGradientPaintTransformer() != null
+                 && seriesPaint instanceof GradientPaint) {
+             GradientPaint gp = (GradientPaint) seriesPaint;

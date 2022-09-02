@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..2fc276c 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -452,7 +452,8 @@
+     // TODO(user): This is meant for a temporary quick win.
+     // In the future, we might want to improve our analysis in
+     // CrossModuleCodeMotion so we don't need to do this.
+-    if (options.crossModuleCodeMotion) {
++    boolean var_1789 = options.crossModuleCodeMotion;
++	if (var_1789) {
+       passes.add(crossModuleCodeMotion);
+     }
+ 
+@@ -480,7 +481,7 @@
+       // fixed point before specializing, then specialize, and then run the
+       // main optimization loop again.
+ 
+-      if (options.crossModuleCodeMotion) {
++      if (var_1789) {
+         passes.add(crossModuleCodeMotion);
+       }
+ 
+@@ -494,7 +495,7 @@
+ 
+     passes.add(createEmptyPass("beforeModuleMotion"));
+ 
+-    if (options.crossModuleCodeMotion) {
++    if (var_1789) {
+       passes.add(crossModuleCodeMotion);
+     }
+ 

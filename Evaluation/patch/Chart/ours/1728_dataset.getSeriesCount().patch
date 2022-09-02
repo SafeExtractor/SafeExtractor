@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..8898b4a 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -3829,10 +3829,11 @@
+             int passCount = renderer.getPassCount();
+ 
+             SeriesRenderingOrder seriesOrder = getSeriesRenderingOrder();
+-            if (seriesOrder == SeriesRenderingOrder.REVERSE) {
++            int var_1728 = dataset.getSeriesCount();
++			if (seriesOrder == SeriesRenderingOrder.REVERSE) {
+                 //render series in reverse order
+                 for (int pass = 0; pass < passCount; pass++) {
+-                    int seriesCount = dataset.getSeriesCount();
++                    int seriesCount = var_1728;
+                     for (int series = seriesCount - 1; series >= 0; series--) {
+                         int firstItem = 0;
+                         int lastItem = dataset.getItemCount(series) - 1;
+@@ -3866,7 +3867,7 @@
+             else {
+                 //render series in forward order
+                 for (int pass = 0; pass < passCount; pass++) {
+-                    int seriesCount = dataset.getSeriesCount();
++                    int seriesCount = var_1728;
+                     for (int series = 0; series < seriesCount; series++) {
+                         int firstItem = 0;
+                         int lastItem = dataset.getItemCount(series) - 1;

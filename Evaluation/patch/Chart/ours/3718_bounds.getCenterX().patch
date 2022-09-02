@@ -1,0 +1,38 @@
+diff --git a/source/org/jfree/chart/util/StandardGradientPaintTransformer.java b/source/org/jfree/chart/util/StandardGradientPaintTransformer.java
+index c15e130..d5a278f 100644
+--- a/source/org/jfree/chart/util/StandardGradientPaintTransformer.java
++++ b/source/org/jfree/chart/util/StandardGradientPaintTransformer.java
+@@ -104,10 +104,11 @@
+         GradientPaint result = paint;
+         Rectangle2D bounds = target.getBounds2D();
+ 
+-        if (this.type.equals(GradientPaintTransformType.VERTICAL)) {
+-            result = new GradientPaint((float) bounds.getCenterX(),
++        double var_3718 = bounds.getCenterX();
++		if (this.type.equals(GradientPaintTransformType.VERTICAL)) {
++            result = new GradientPaint((float) var_3718,
+                     (float) bounds.getMinY(), paint.getColor1(),
+-                    (float) bounds.getCenterX(), (float) bounds.getMaxY(),
++                    (float) var_3718, (float) bounds.getMaxY(),
+                     paint.getColor2());
+         }
+         else if (this.type.equals(GradientPaintTransformType.HORIZONTAL)) {
+@@ -118,15 +119,15 @@
+         }
+         else if (this.type.equals(
+                 GradientPaintTransformType.CENTER_HORIZONTAL)) {
+-            result = new GradientPaint((float) bounds.getCenterX(),
++            result = new GradientPaint((float) var_3718,
+                     (float) bounds.getCenterY(), paint.getColor2(),
+                     (float) bounds.getMaxX(), (float) bounds.getCenterY(),
+                     paint.getColor1(), true);
+         }
+         else if (this.type.equals(GradientPaintTransformType.CENTER_VERTICAL)) {
+-            result = new GradientPaint((float) bounds.getCenterX(),
++            result = new GradientPaint((float) var_3718,
+                     (float) bounds.getMinY(), paint.getColor1(),
+-                    (float) bounds.getCenterX(), (float) bounds.getCenterY(),
++                    (float) var_3718, (float) bounds.getCenterY(),
+                     paint.getColor2(), true);
+         }
+ 

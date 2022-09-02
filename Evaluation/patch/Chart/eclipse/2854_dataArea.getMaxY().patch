@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYShapeRenderer.java b/source/org/jfree/chart/renderer/xy/XYShapeRenderer.java
+index edbbfaf..a02f95d 100644
+--- a/source/org/jfree/chart/renderer/xy/XYShapeRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYShapeRenderer.java
+@@ -432,15 +432,16 @@
+         if ((pass == 0) && this.guideLinesVisible) {
+             g2.setStroke(this.guideLineStroke);
+             g2.setPaint(this.guideLinePaint);
+-            if (orientation == PlotOrientation.HORIZONTAL) {
++            double var_2854 = dataArea.getMaxY();
++			if (orientation == PlotOrientation.HORIZONTAL) {
+                 g2.draw(new Line2D.Double(transY, dataArea.getMinY(), transY,
+-                        dataArea.getMaxY()));
++                        var_2854));
+                 g2.draw(new Line2D.Double(dataArea.getMinX(), transX,
+                         dataArea.getMaxX(), transX));
+             }
+             else {
+                 g2.draw(new Line2D.Double(transX, dataArea.getMinY(), transX,
+-                        dataArea.getMaxY()));
++                        var_2854));
+                 g2.draw(new Line2D.Double(dataArea.getMinX(), transY,
+                         dataArea.getMaxX(), transY));
+             }

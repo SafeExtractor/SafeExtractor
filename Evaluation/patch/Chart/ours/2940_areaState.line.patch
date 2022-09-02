@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYAreaRenderer.java b/source/org/jfree/chart/renderer/xy/XYAreaRenderer.java
+index d05eb2f..d2b314d 100644
+--- a/source/org/jfree/chart/renderer/xy/XYAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYAreaRenderer.java
+@@ -603,13 +603,14 @@
+ 
+         if (getPlotLines()) {
+             if (item > 0) {
+-                if (plot.getOrientation() == PlotOrientation.VERTICAL) {
+-                    areaState.line.setLine(transX0, transY0, transX1, transY1);
++                Line2D var_2940 = areaState.line;
++				if (plot.getOrientation() == PlotOrientation.VERTICAL) {
++                    var_2940.setLine(transX0, transY0, transX1, transY1);
+                 }
+                 else if (plot.getOrientation() == PlotOrientation.HORIZONTAL) {
+-                    areaState.line.setLine(transY0, transX0, transY1, transX1);
++                    var_2940.setLine(transY0, transX0, transY1, transX1);
+                 }
+-                g2.draw(areaState.line);
++                g2.draw(var_2940);
+             }
+         }
+ 

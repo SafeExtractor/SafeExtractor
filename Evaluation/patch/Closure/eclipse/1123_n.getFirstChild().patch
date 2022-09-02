@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/ConstCheck.java b/src/com/google/javascript/jscomp/ConstCheck.java
+index fa8a3ce..d28d9f6 100644
+--- a/src/com/google/javascript/jscomp/ConstCheck.java
++++ b/src/com/google/javascript/jscomp/ConstCheck.java
+@@ -57,7 +57,8 @@
+ 
+   @Override
+   public void visit(NodeTraversal t, Node n, Node parent) {
+-    switch (n.getType()) {
++    Node var_1123 = n.getFirstChild();
++	switch (n.getType()) {
+       case Token.NAME:
+         if (parent != null &&
+             parent.isVar() &&
+@@ -86,7 +87,7 @@
+       case Token.ASSIGN_MUL:
+       case Token.ASSIGN_DIV:
+       case Token.ASSIGN_MOD: {
+-        Node lhs = n.getFirstChild();
++        Node lhs = var_1123;
+         if (lhs.isName()) {
+           String name = lhs.getString();
+           Scope.Var var = t.getScope().getVar(name);
+@@ -103,7 +104,7 @@
+ 
+       case Token.INC:
+       case Token.DEC: {
+-        Node lhs = n.getFirstChild();
++        Node lhs = var_1123;
+         if (lhs.isName()) {
+           String name = lhs.getString();
+           Scope.Var var = t.getScope().getVar(name);

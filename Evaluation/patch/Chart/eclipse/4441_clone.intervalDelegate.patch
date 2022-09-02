@@ -1,0 +1,18 @@
+diff --git a/source/org/jfree/data/xy/CategoryTableXYDataset.java b/source/org/jfree/data/xy/CategoryTableXYDataset.java
+index 9253df8..dbd8a88 100644
+--- a/source/org/jfree/data/xy/CategoryTableXYDataset.java
++++ b/source/org/jfree/data/xy/CategoryTableXYDataset.java
+@@ -399,9 +399,10 @@
+         clone.values = (DefaultKeyedValues2D) this.values.clone();
+         clone.intervalDelegate = new IntervalXYDelegate(clone);
+         // need to configure the intervalDelegate to match the original
+-        clone.intervalDelegate.setFixedIntervalWidth(getIntervalWidth());
+-        clone.intervalDelegate.setAutoWidth(isAutoWidth());
+-        clone.intervalDelegate.setIntervalPositionFactor(
++        IntervalXYDelegate var_4441 = clone.intervalDelegate;
++		var_4441.setFixedIntervalWidth(getIntervalWidth());
++        var_4441.setAutoWidth(isAutoWidth());
++        var_4441.setIntervalPositionFactor(
+                 getIntervalPositionFactor());
+         return clone;
+     }

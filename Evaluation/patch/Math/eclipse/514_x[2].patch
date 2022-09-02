@@ -1,0 +1,36 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/solvers/BracketingNthOrderBrentSolver.java b/src/main/java/org/apache/commons/math3/analysis/solvers/BracketingNthOrderBrentSolver.java
+index c481d20..54da225 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/solvers/BracketingNthOrderBrentSolver.java
++++ b/src/main/java/org/apache/commons/math3/analysis/solvers/BracketingNthOrderBrentSolver.java
+@@ -152,7 +152,8 @@
+         x[0] = getMin();
+         x[1] = getStartValue();
+         x[2] = getMax();
+-        verifySequence(x[0], x[1], x[2]);
++        double var_514 = x[2];
++		verifySequence(x[0], x[1], var_514);
+ 
+         // evaluate initial guess
+         y[1] = computeObjectiveValue(x[1]);
+@@ -179,10 +180,10 @@
+         } else {
+ 
+             // evaluate second endpoint
+-            y[2] = computeObjectiveValue(x[2]);
++            y[2] = computeObjectiveValue(var_514);
+             if (Precision.equals(y[2], 0.0, 1)) {
+                 // return the second endpoint if it is a perfect root.
+-                return x[2];
++                return var_514;
+             }
+ 
+             if (y[1] * y[2] < 0) {
+@@ -190,7 +191,7 @@
+                 nbPoints        = 3;
+                 signChangeIndex = 2;
+             } else {
+-                throw new NoBracketingException(x[0], x[2], y[0], y[2]);
++                throw new NoBracketingException(x[0], var_514, y[0], y[2]);
+             }
+ 
+         }

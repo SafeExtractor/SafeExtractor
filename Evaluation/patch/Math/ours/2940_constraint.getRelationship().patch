@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java b/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java
+index 07f397b..203ded2 100644
+--- a/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java
++++ b/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java
+@@ -282,13 +282,14 @@
+      * @return new equation
+      */
+     private LinearConstraint normalize(final LinearConstraint constraint) {
+-        if (constraint.getValue() < 0) {
++        Relationship var_2940 = constraint.getRelationship();
++		if (constraint.getValue() < 0) {
+             return new LinearConstraint(constraint.getCoefficients().mapMultiply(-1),
+-                                        constraint.getRelationship().oppositeRelationship(),
++                                        var_2940.oppositeRelationship(),
+                                         -1 * constraint.getValue());
+         }
+         return new LinearConstraint(constraint.getCoefficients(),
+-                                    constraint.getRelationship(), constraint.getValue());
++                                    var_2940, constraint.getValue());
+     }
+ 
+     /**

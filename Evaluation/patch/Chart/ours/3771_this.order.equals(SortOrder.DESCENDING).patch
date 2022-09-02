@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/data/KeyedValueComparator.java b/source/org/jfree/data/KeyedValueComparator.java
+index cffc74c..331a413 100644
+--- a/source/org/jfree/data/KeyedValueComparator.java
++++ b/source/org/jfree/data/KeyedValueComparator.java
+@@ -116,11 +116,12 @@
+         KeyedValue kv1 = (KeyedValue) o1;
+         KeyedValue kv2 = (KeyedValue) o2;
+ 
+-        if (this.type == KeyedValueComparatorType.BY_KEY) {
++        boolean var_3771 = this.order.equals(SortOrder.DESCENDING);
++		if (this.type == KeyedValueComparatorType.BY_KEY) {
+             if (this.order.equals(SortOrder.ASCENDING)) {
+                 result = kv1.getKey().compareTo(kv2.getKey());
+             }
+-            else if (this.order.equals(SortOrder.DESCENDING)) {
++            else if (var_3771) {
+                 result = kv2.getKey().compareTo(kv1.getKey());
+             }
+             else {
+@@ -149,7 +150,7 @@
+                     result = 0;
+                 }
+             }
+-            else if (this.order.equals(SortOrder.DESCENDING)) {
++            else if (var_3771) {
+                 if (d1 > d2) {
+                     result = -1;
+                 }

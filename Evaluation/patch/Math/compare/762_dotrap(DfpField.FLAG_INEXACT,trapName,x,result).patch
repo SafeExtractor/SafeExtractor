@@ -1,0 +1,32 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/762_dotrap(DfpField.FLAG_INEXACT,trapName,x,result).patch b/Users/safe/paper/Evaluation/patch/Math/ours/762_dotrap(DfpField.FLAG_INEXACT,trapName,x,result).patch
+index 00e7b79..7378ec1 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/762_dotrap(DfpField.FLAG_INEXACT,trapName,x,result).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/762_dotrap(DfpField.FLAG_INEXACT,trapName,x,result).patch
+@@ -1,23 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+-index 4c20a64..37517a1 100644
++index 4c20a64..32f314a 100644
+ --- a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+ +++ b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+-@@ -353,14 +353,15 @@
+-             }
+-         }
+- 
+--        if (result.classify() == INFINITE && this.classify() != INFINITE) {
+-+        Dfp var_762 = dotrap(DfpField.FLAG_INEXACT, trapName, x, result);
+-+		if (result.classify() == INFINITE && this.classify() != INFINITE) {
+-             getField().setIEEEFlagsBits(DfpField.FLAG_INEXACT);
+--            result = dotrap(DfpField.FLAG_INEXACT, trapName, x, result);
+-+            result = var_762;
+-         }
++@@ -360,7 +360,8 @@
+  
+          if (result.equals(getZero()) && this.equals(getZero()) == false) {
+              getField().setIEEEFlagsBits(DfpField.FLAG_INEXACT);
+ -            result = dotrap(DfpField.FLAG_INEXACT, trapName, x, result);
+-+            result = var_762;
+++            Dfp var_762 = dotrap(DfpField.FLAG_INEXACT, trapName, x, result);
+++			result = var_762;
+          }
+  
+          return result;

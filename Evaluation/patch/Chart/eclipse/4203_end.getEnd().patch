@@ -1,0 +1,37 @@
+diff --git a/source/org/jfree/data/time/TimePeriodValuesCollection.java b/source/org/jfree/data/time/TimePeriodValuesCollection.java
+index ba52bd7..96f19bc 100644
+--- a/source/org/jfree/data/time/TimePeriodValuesCollection.java
++++ b/source/org/jfree/data/time/TimePeriodValuesCollection.java
+@@ -52,6 +52,7 @@
+ package org.jfree.data.time;
+ 
+ import java.io.Serializable;
++import java.util.Date;
+ import java.util.Iterator;
+ import java.util.List;
+ 
+@@ -388,7 +389,8 @@
+                 TimePeriod start = series.getTimePeriod(
+                         series.getMinStartIndex());
+                 TimePeriod end = series.getTimePeriod(series.getMaxEndIndex());
+-                if (!includeInterval) {
++                Date var_4203 = end.getEnd();
++				if (!includeInterval) {
+                     if (this.xPosition == TimePeriodAnchor.START) {
+                         TimePeriod maxStart = series.getTimePeriod(
+                                 series.getMaxStartIndex());
+@@ -411,12 +413,12 @@
+                         TimePeriod minEnd = series.getTimePeriod(
+                                 series.getMinEndIndex());
+                         temp = new Range(minEnd.getEnd().getTime(),
+-                                end.getEnd().getTime());
++                                var_4203.getTime());
+                     }
+                 }
+                 else {
+                     temp = new Range(start.getStart().getTime(),
+-                            end.getEnd().getTime());
++                            var_4203.getTime());
+                 }
+                 result = Range.combine(result, temp);
+             }

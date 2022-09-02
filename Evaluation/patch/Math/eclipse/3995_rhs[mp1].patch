@@ -1,0 +1,43 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..df659b9 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -727,7 +727,8 @@
+             d1 = d[m];
+             d2 = d[mp1];
+             // Special cases.
+-            if (d1 > this.epsilon || d2 > this.epsilon) {
++            double var_3995 = rhs[mp1];
++			if (d1 > this.epsilon || d2 > this.epsilon) {
+                 X = r[m1];
+                 if (Math.abs(X) * Math.sqrt(d1) < tol[mp1]) {
+                     X = 0.0;
+@@ -744,7 +745,7 @@
+                         ++m2;
+                     }
+                     X = rhs[m];
+-                    rhs[m] = rhs[mp1];
++                    rhs[m] = var_3995;
+                     rhs[mp1] = X;
+                     bSkipTo40 = true;
+                     //break;
+@@ -774,8 +775,8 @@
+                         ++m2;
+                     }
+                     Y = rhs[m];
+-                    rhs[m] = cbar * rhs[mp1] + sbar * Y;
+-                    rhs[mp1] = Y - X * rhs[mp1];
++                    rhs[m] = cbar * var_3995 + sbar * Y;
++                    rhs[mp1] = Y - X * var_3995;
+                 }
+             }
+             if (m > 0) {
+@@ -795,7 +796,7 @@
+             X = tol[m];
+             tol[m] = tol[mp1];
+             tol[mp1] = X;
+-            rss[m] = rss[mp1] + d[mp1] * rhs[mp1] * rhs[mp1];
++            rss[m] = rss[mp1] + d[mp1] * var_3995 * var_3995;
+ 
+             m += inc;
+             ++idx;

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/chrono/BuddhistChronology.java b/src/main/java/org/joda/time/chrono/BuddhistChronology.java
+index fc6a1ec..9a40b69 100644
+--- a/src/main/java/org/joda/time/chrono/BuddhistChronology.java
++++ b/src/main/java/org/joda/time/chrono/BuddhistChronology.java
+@@ -229,7 +229,8 @@
+                 fields.year, fields.eras, DateTimeFieldType.yearOfEra());
+             
+             // julian chrono removed zero, but we need to put it back
+-            field = fields.weekyear;
++            DateTimeField var_365 = fields.weekyear;
++			field = var_365;
+             fields.weekyear = new OffsetDateTimeField(
+                     new SkipUndoDateTimeField(this, field), BUDDHIST_OFFSET);
+             
+@@ -244,7 +245,7 @@
+                 field, DateTimeFieldType.yearOfCentury(), 1);
+             
+             field = new RemainderDateTimeField(
+-                fields.weekyear, fields.centuries, DateTimeFieldType.weekyearOfCentury(), 100);
++                var_365, fields.centuries, DateTimeFieldType.weekyearOfCentury(), 100);
+             fields.weekyearOfCentury = new OffsetDateTimeField(
+                 field, DateTimeFieldType.weekyearOfCentury(), 1);
+             

@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/CoalesceVariableNames.java b/src/com/google/javascript/jscomp/CoalesceVariableNames.java
+index 11bb585..db9924b 100644
+--- a/src/com/google/javascript/jscomp/CoalesceVariableNames.java
++++ b/src/com/google/javascript/jscomp/CoalesceVariableNames.java
+@@ -269,8 +269,9 @@
+ 
+           FlowState<LiveVariableLattice> state = cfgNode.getAnnotation();
+           // Check the live states and add edge when possible.
+-          if ((state.getIn().isLive(v1) && state.getIn().isLive(v2)) ||
+-              (state.getOut().isLive(v1) && state.getOut().isLive(v2))) {
++          boolean var_371 = state.getOut().isLive(v2);
++		if ((state.getIn().isLive(v1) && state.getIn().isLive(v2)) ||
++              (state.getOut().isLive(v1) && var_371)) {
+             interferenceGraph.connectIfNotFound(v1, null, v2);
+             continue NEXT_VAR_PAIR;
+           }

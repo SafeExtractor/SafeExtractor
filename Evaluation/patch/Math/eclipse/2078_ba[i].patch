@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/BiDiagonalTransformer.java b/src/main/java/org/apache/commons/math3/linear/BiDiagonalTransformer.java
+index c2c5002..e019a4a 100644
+--- a/src/main/java/org/apache/commons/math3/linear/BiDiagonalTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/BiDiagonalTransformer.java
+@@ -142,14 +142,15 @@
+             final int n = householderVectors[0].length;
+             double[][] ba = new double[m][n];
+             for (int i = 0; i < main.length; ++i) {
+-                ba[i][i] = main[i];
++                double[] var_2078 = ba[i];
++				var_2078[i] = main[i];
+                 if (m < n) {
+                     if (i > 0) {
+-                        ba[i][i-1] = secondary[i - 1];
++                        var_2078[i-1] = secondary[i - 1];
+                     }
+                 } else {
+                     if (i < main.length - 1) {
+-                        ba[i][i+1] = secondary[i];
++                        var_2078[i+1] = secondary[i];
+                     }
+                 }
+             }

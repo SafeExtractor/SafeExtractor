@@ -1,0 +1,39 @@
+diff --git a/src/com/google/javascript/jscomp/ExploitAssigns.java b/src/com/google/javascript/jscomp/ExploitAssigns.java
+index 1f925ba..8882941 100644
+--- a/src/com/google/javascript/jscomp/ExploitAssigns.java
++++ b/src/com/google/javascript/jscomp/ExploitAssigns.java
+@@ -111,7 +111,8 @@
+     Node parent = exprParent;
+     Node next = expr.getNext();
+     while (next != null) {
+-      switch (next.getType()) {
++      Node var_227 = next.getFirstChild();
++	switch (next.getType()) {
+         case Token.AND:
+         case Token.OR:
+         case Token.HOOK:
+@@ -120,12 +121,12 @@
+         case Token.EXPR_RESULT:
+           // Dive down the left side
+           parent = next;
+-          next = next.getFirstChild();
++          next = var_227;
+           break;
+ 
+         case Token.VAR:
+-          if (next.getFirstChild().hasChildren()) {
+-            parent = next.getFirstChild();
++          if (var_227.hasChildren()) {
++            parent = var_227;
+             next = parent.getFirstChild();
+             break;
+           }
+@@ -167,7 +168,7 @@
+           //
+           // To protect against this, we simply only inline when the left side
+           // is guaranteed to evaluate to the same L-value no matter what.
+-          Node leftSide = next.getFirstChild();
++          Node leftSide = var_227;
+           if (leftSide.isName() ||
+               leftSide.isGetProp() &&
+               leftSide.getFirstChild().isThis()) {

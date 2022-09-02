@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/LUDecomposition.java b/src/main/java/org/apache/commons/math3/linear/LUDecomposition.java
+index 65185d3..8f509af 100644
+--- a/src/main/java/org/apache/commons/math3/linear/LUDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/LUDecomposition.java
+@@ -135,7 +135,8 @@
+             }
+ 
+             // Singularity check
+-            if (FastMath.abs(lu[max][col]) < singularityThreshold) {
++            double[] var_2278 = lu[max];
++			if (FastMath.abs(var_2278[col]) < singularityThreshold) {
+                 singular = true;
+                 return;
+             }
+@@ -143,7 +144,7 @@
+             // Pivot if necessary
+             if (max != col) {
+                 double tmp = 0;
+-                final double[] luMax = lu[max];
++                final double[] luMax = var_2278;
+                 final double[] luCol = lu[col];
+                 for (int i = 0; i < m; i++) {
+                     tmp = luMax[i];

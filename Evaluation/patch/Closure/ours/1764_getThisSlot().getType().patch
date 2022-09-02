@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/ConcreteType.java b/src/com/google/javascript/jscomp/ConcreteType.java
+index 7bf7593..c781149 100644
+--- a/src/com/google/javascript/jscomp/ConcreteType.java
++++ b/src/com/google/javascript/jscomp/ConcreteType.java
+@@ -408,10 +408,11 @@
+     @Override public String toString() {
+       StringBuilder b = new StringBuilder(32);
+       b.append("function (");
+-      boolean hasKnownTypeOfThis = !getThisSlot().getType().isNone();
++      ConcreteType var_1764 = getThisSlot().getType();
++	boolean hasKnownTypeOfThis = !var_1764.isNone();
+       if (hasKnownTypeOfThis) {
+         b.append("this:");
+-        b.append(getThisSlot().getType().toString());
++        b.append(var_1764.toString());
+       }
+ 
+       Node n = getFirstParameter();

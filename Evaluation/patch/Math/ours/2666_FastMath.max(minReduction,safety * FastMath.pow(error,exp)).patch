@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
+index 2ff86a0..c45ac7b 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
+@@ -288,9 +288,10 @@
+         error = estimateError(yDotK, y, yTmp, stepSize);
+         if (error >= 1.0) {
+           // reject the step and attempt to reduce error by stepsize control
+-          final double factor =
++          double var_2666 = FastMath.max(minReduction, safety * FastMath.pow(error, exp));
++		final double factor =
+               FastMath.min(maxGrowth,
+-                           FastMath.max(minReduction, safety * FastMath.pow(error, exp)));
++                           var_2666);
+           hNew = filterStep(stepSize * factor, forward, false);
+         }
+ 

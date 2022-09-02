@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..5a5d69a 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1737,11 +1737,12 @@
+ 
+         /* Test for divide by zero */
+         if (divisor.mant[mant.length-1] == 0) {
+-            field.setIEEEFlagsBits(DfpField.FLAG_DIV_ZERO);
++            int var_668 = DfpField.FLAG_DIV_ZERO;
++			field.setIEEEFlagsBits(var_668);
+             result = newInstance(getZero());
+             result.sign = (byte) (sign * divisor.sign);
+             result.nans = INFINITE;
+-            result = dotrap(DfpField.FLAG_DIV_ZERO, DIVIDE_TRAP, divisor, result);
++            result = dotrap(var_668, DIVIDE_TRAP, divisor, result);
+             return result;
+         }
+ 

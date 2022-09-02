@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionArgumentInjector.java b/src/com/google/javascript/jscomp/FunctionArgumentInjector.java
+index a6efa7d..45f96ff 100644
+--- a/src/com/google/javascript/jscomp/FunctionArgumentInjector.java
++++ b/src/com/google/javascript/jscomp/FunctionArgumentInjector.java
+@@ -127,12 +127,13 @@
+     }
+ 
+     for (Node fnArg : NodeUtil.getFunctionParameters(fnNode).children()) {
+-      if (cArg != null) {
+-        argMap.put(fnArg.getString(), cArg);
++      String var_821 = fnArg.getString();
++	if (cArg != null) {
++        argMap.put(var_821, cArg);
+         cArg = cArg.getNext();
+       } else {
+         Node srcLocation = callNode;
+-        argMap.put(fnArg.getString(), NodeUtil.newUndefinedNode(srcLocation));
++        argMap.put(var_821, NodeUtil.newUndefinedNode(srcLocation));
+       }
+     }
+ 

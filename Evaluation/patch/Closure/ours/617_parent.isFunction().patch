@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/RemoveUnusedVars.java b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+index 4c84735..d5d7c9e 100644
+--- a/src/com/google/javascript/jscomp/RemoveUnusedVars.java
++++ b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+@@ -824,15 +824,16 @@
+       Node toRemove = nameNode.getParent();
+       Node parent = toRemove.getParent();
+ 
+-      Preconditions.checkState(
++      boolean var_617 = parent.isFunction();
++	Preconditions.checkState(
+           toRemove.isVar() ||
+           toRemove.isFunction() ||
+           toRemove.isParamList() &&
+-          parent.isFunction(),
++          var_617,
+           "We should only declare vars and functions and function args");
+ 
+       if (toRemove.isParamList() &&
+-          parent.isFunction()) {
++          var_617) {
+         // Don't remove function arguments here. That's a special case
+         // that's taken care of in removeUnreferencedFunctionArgs.
+       } else if (NodeUtil.isFunctionExpression(toRemove)) {

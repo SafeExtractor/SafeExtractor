@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java
+index 56f7bb3..40c61dc 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java
+@@ -90,9 +90,10 @@
+         for (int i = 0; i < value.length; ++i) {
+ 
+             final double[] y = value[i].clone();
+-            if (i > 1) {
++            int var_291 = y.length;
++			if (i > 1) {
+                 double inv = 1.0 / CombinatoricsUtils.factorial(i);
+-                for (int j = 0; j < y.length; ++j) {
++                for (int j = 0; j < var_291; ++j) {
+                     y[j] *= inv;
+                 }
+             }
+@@ -107,7 +108,7 @@
+                 if (Double.isInfinite(inv)) {
+                     throw new ZeroException(LocalizedFormats.DUPLICATED_ABSCISSA_DIVISION_BY_ZERO, x);
+                 }
+-                for (int k = 0; k < y.length; ++k) {
++                for (int k = 0; k < var_291; ++k) {
+                     bottom1[k] = inv * (bottom0[k] - bottom1[k]);
+                 }
+                 bottom0 = bottom1;

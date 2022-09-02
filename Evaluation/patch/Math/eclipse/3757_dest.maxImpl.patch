@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java b/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
+index 3e7fff7..02aa90b 100644
+--- a/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
++++ b/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
+@@ -705,7 +705,8 @@
+             GeometricMean.copy(source.geoMean, dest.geoMean);
+         }
+         if (source.max == source.maxImpl) {
+-            dest.max = (Max) dest.maxImpl;
++            StorelessUnivariateStatistic var_3757 = dest.maxImpl;
++			dest.max = (Max) var_3757;
+         } else {
+             Max.copy(source.max, dest.max);
+         }

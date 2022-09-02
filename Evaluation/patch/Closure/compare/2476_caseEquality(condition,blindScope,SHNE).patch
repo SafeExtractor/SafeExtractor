@@ -1,0 +1,38 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2476_caseEquality(condition,blindScope,SHNE).patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2476_caseEquality(condition,blindScope,SHNE).patch
+index a591de5..1bf0054 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2476_caseEquality(condition,blindScope,SHNE).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2476_caseEquality(condition,blindScope,SHNE).patch
+@@ -1,29 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java b/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java
+-index aa25ddd..9032c55 100644
++index aa25ddd..eaf6ee9 100644
+ --- a/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java
+ +++ b/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java
+-@@ -166,7 +166,8 @@
+-           }
+-         }
+-     }
+--    switch (operatorToken) {
+-+    FlowScope var_2476 = caseEquality(condition, blindScope, SHNE);
+-+	switch (operatorToken) {
+-       case Token.AND:
+-         if (outcome) {
+-           return caseAndOrNotShortCircuiting(condition.getFirstChild(),
+-@@ -203,12 +204,12 @@
++@@ -203,7 +203,8 @@
+          if (outcome) {
+            return caseEquality(condition, blindScope, SHEQ);
+          } else {
+ -          return caseEquality(condition, blindScope, SHNE);
+-+          return var_2476;
+++          FlowScope var_2476 = caseEquality(condition, blindScope, SHNE);
+++		return var_2476;
+          }
+  
+        case Token.SHNE:
+-         if (outcome) {
+--          return caseEquality(condition, blindScope, SHNE);
+-+          return var_2476;
+-         } else {
+-           return caseEquality(condition, blindScope, SHEQ);
+-         }

@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/MultistepIntegrator.java b/src/main/java/org/apache/commons/math3/ode/MultistepIntegrator.java
+index a729441..86b86cf 100644
+--- a/src/main/java/org/apache/commons/math3/ode/MultistepIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/MultistepIntegrator.java
+@@ -380,7 +380,8 @@
+                 primary.insertEquationData(interpolator.getInterpolatedDerivatives(), yDot[count]);
+                 int index = 0;
+                 for (final EquationsMapper secondary : expandable.getSecondaryMappers()) {
+-                    secondary.insertEquationData(interpolator.getInterpolatedSecondaryState(index), y[count]);
++                    double[] var_2554 = interpolator.getInterpolatedSecondaryState(index);
++					secondary.insertEquationData(var_2554, y[count]);
+                     secondary.insertEquationData(interpolator.getInterpolatedSecondaryDerivatives(index), yDot[count]);
+                     ++index;
+                 }

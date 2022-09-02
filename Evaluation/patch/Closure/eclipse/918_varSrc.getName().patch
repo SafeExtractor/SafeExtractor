@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/CheckAccessControls.java b/src/com/google/javascript/jscomp/CheckAccessControls.java
+index df50c26..e483485 100644
+--- a/src/com/google/javascript/jscomp/CheckAccessControls.java
++++ b/src/com/google/javascript/jscomp/CheckAccessControls.java
+@@ -345,9 +345,10 @@
+         if (visibility == Visibility.PRIVATE) {
+           StaticSourceFile varSrc = var.getSourceFile();
+           StaticSourceFile refSrc = name.getStaticSourceFile();
+-          if (varSrc != null &&
++          String var_918 = varSrc.getName();
++		if (varSrc != null &&
+               refSrc != null &&
+-              !varSrc.getName().equals(refSrc.getName())) {
++              !var_918.equals(refSrc.getName())) {
+             if (docInfo.isConstructor() &&
+                 isValidPrivateConstructorAccess(parent)) {
+               return;
+@@ -355,7 +356,7 @@
+ 
+             compiler.report(
+                 t.makeError(name, BAD_PRIVATE_GLOBAL_ACCESS,
+-                    name.getString(), varSrc.getName()));
++                    name.getString(), var_918));
+           }
+         }
+       }

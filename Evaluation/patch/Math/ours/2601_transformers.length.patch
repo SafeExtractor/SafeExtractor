@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/events/EventFilter.java b/src/main/java/org/apache/commons/math3/ode/events/EventFilter.java
+index 1ce89f7..414101b 100644
+--- a/src/main/java/org/apache/commons/math3/ode/events/EventFilter.java
++++ b/src/main/java/org/apache/commons/math3/ode/events/EventFilter.java
+@@ -107,8 +107,9 @@
+         final double rawG = rawHandler.g(t, y);
+ 
+         // search which transformer should be applied to g
+-        if (forward) {
+-            final int last = transformers.length - 1;
++        int var_2601 = transformers.length;
++		if (forward) {
++            final int last = var_2601 - 1;
+             if (extremeT < t) {
+                 // we are at the forward end of the history
+ 
+@@ -162,7 +163,7 @@
+                     // for safety, to ensure the previous transformer is not applied too
+                     // close of the root
+                     System.arraycopy(updates,      0, updates,      1, updates.length - 1);
+-                    System.arraycopy(transformers, 0, transformers, 1, transformers.length - 1);
++                    System.arraycopy(transformers, 0, transformers, 1, var_2601 - 1);
+                     updates[0]      = extremeT;
+                     transformers[0] = next;
+                 }

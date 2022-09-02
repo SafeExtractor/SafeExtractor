@@ -1,0 +1,60 @@
+diff --git a/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java b/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java
+index 522fe94..7dde191 100644
+--- a/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java
++++ b/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java
+@@ -279,7 +279,8 @@
+ 
+     private boolean canInline(final Scope scope) {
+       // Cannot inline a parameter.
+-      if (getDefCfgNode().isFunction()) {
++      Node var_1501 = getDefCfgNode();
++	if (var_1501.isFunction()) {
+         return false;
+       }
+ 
+@@ -292,7 +293,7 @@
+         }
+       }
+ 
+-      getDefinition(getDefCfgNode(), null);
++      getDefinition(var_1501, null);
+       getNumUseInUseCfgNode(useCfgNode, null);
+ 
+       // Definition was not found.
+@@ -309,7 +310,7 @@
+       // The right of the definition has side effect:
+       // Example, for x:
+       // x = readProp(b), modifyProp(b); print(x);
+-      if (checkRightOf(def, getDefCfgNode(), SIDE_EFFECT_PREDICATE)) {
++      if (checkRightOf(def, var_1501, SIDE_EFFECT_PREDICATE)) {
+         return false;
+       }
+ 
+@@ -342,7 +343,7 @@
+       }
+ 
+ 
+-      Collection<Node> uses = reachingUses.getUses(varName, getDefCfgNode());
++      Collection<Node> uses = reachingUses.getUses(varName, var_1501);
+ 
+       if (uses.size() != 1) {
+         return false;
+@@ -394,15 +395,15 @@
+ 
+       // We can skip the side effect check along the paths of two nodes if
+       // they are just next to each other.
+-      if (NodeUtil.isStatementBlock(getDefCfgNode().getParent()) &&
+-          getDefCfgNode().getNext() != useCfgNode) {
++      if (NodeUtil.isStatementBlock(var_1501.getParent()) &&
++          var_1501.getNext() != useCfgNode) {
+         // Similar side effect check as above but this time the side effect is
+         // else where along the path.
+         // x = readProp(b); while(modifyProp(b)) {}; print(x);
+         CheckPathsBetweenNodes<Node, ControlFlowGraph.Branch>
+           pathCheck = new CheckPathsBetweenNodes<Node, ControlFlowGraph.Branch>(
+                  cfg,
+-                 cfg.getDirectedGraphNode(getDefCfgNode()),
++                 cfg.getDirectedGraphNode(var_1501),
+                  cfg.getDirectedGraphNode(useCfgNode),
+                  SIDE_EFFECT_PREDICATE,
+                  Predicates.

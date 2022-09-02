@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/FormatCache.java b/src/main/java/org/apache/commons/lang3/time/FormatCache.java
+index 386baf7..03ec4cc 100644
+--- a/src/main/java/org/apache/commons/lang3/time/FormatCache.java
++++ b/src/main/java/org/apache/commons/lang3/time/FormatCache.java
+@@ -197,13 +197,15 @@
+                 DateFormat formatter;
+                 if (dateStyle == null) {
+                     formatter = DateFormat.getTimeInstance(timeStyle.intValue(), locale);                    
+-                }
+-                else if (timeStyle == null) {
+-                    formatter = DateFormat.getDateInstance(dateStyle.intValue(), locale);                    
+-                }
+-                else {
+-                    formatter = DateFormat.getDateTimeInstance(dateStyle.intValue(), timeStyle.intValue(), locale);
+-                }
++                } else {
++					int var_619 = dateStyle.intValue();
++					if (timeStyle == null) {
++					    formatter = DateFormat.getDateInstance(var_619, locale);                    
++					}
++					else {
++					    formatter = DateFormat.getDateTimeInstance(var_619, timeStyle.intValue(), locale);
++					}
++				}
+                 pattern = ((SimpleDateFormat)formatter).toPattern();
+                 final String previous = cDateTimeInstanceCache.putIfAbsent(key, pattern);
+                 if (previous != null) {

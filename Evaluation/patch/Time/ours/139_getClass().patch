@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/joda/time/base/BaseSingleFieldPeriod.java b/src/main/java/org/joda/time/base/BaseSingleFieldPeriod.java
+index 839d3b8..e5589db 100644
+--- a/src/main/java/org/joda/time/base/BaseSingleFieldPeriod.java
++++ b/src/main/java/org/joda/time/base/BaseSingleFieldPeriod.java
+@@ -329,8 +329,9 @@
+      * @throws ClassCastException if the other period is of a different type
+      */
+     public int compareTo(BaseSingleFieldPeriod other) {
+-        if (other.getClass() != getClass()) {
+-            throw new ClassCastException(getClass() + " cannot be compared to " + other.getClass());
++        Class<? extends BaseSingleFieldPeriod> var_139 = getClass();
++		if (other.getClass() != var_139) {
++            throw new ClassCastException(var_139 + " cannot be compared to " + other.getClass());
+         }
+         int otherValue = other.getValue();
+         int thisValue = getValue();

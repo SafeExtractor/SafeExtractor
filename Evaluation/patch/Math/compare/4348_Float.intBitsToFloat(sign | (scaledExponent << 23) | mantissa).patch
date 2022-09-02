@@ -1,0 +1,44 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/4348_Float.intBitsToFloat(sign | (scaledExponent << 23) | mantissa).patch b/Users/safe/paper/Evaluation/patch/Math/ours/4348_Float.intBitsToFloat(sign | (scaledExponent << 23) | mantissa).patch
+index 3a37843..9de2f0d 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/4348_Float.intBitsToFloat(sign | (scaledExponent << 23) | mantissa).patch	
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/4348_Float.intBitsToFloat(sign | (scaledExponent << 23) | mantissa).patch	
+@@ -1,35 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/util/FastMath.java b/src/main/java/org/apache/commons/math3/util/FastMath.java
+-index 919e39f..6b14995 100644
++index 919e39f..4c7b9a8 100644
+ --- a/src/main/java/org/apache/commons/math3/util/FastMath.java
+ +++ b/src/main/java/org/apache/commons/math3/util/FastMath.java
+-@@ -3165,11 +3165,12 @@
+-         // compute scaled exponent
+-         int scaledExponent = exponent + n;
+- 
+--        if (n < 0) {
+-+        float var_4348 = Float.intBitsToFloat(sign | (scaledExponent << 23) | mantissa);
+-+		if (n < 0) {
+-             // we are really in the case n <= -127
+-             if (scaledExponent > 0) {
+-                 // both the input and the result are normal numbers, we only adjust the exponent
+--                return Float.intBitsToFloat(sign | (scaledExponent << 23) | mantissa);
+-+                return var_4348;
+-             } else if (scaledExponent > -24) {
+-                 // the input is a normal number and the result is a subnormal number
+- 
+-@@ -3202,13 +3203,13 @@
+-                 mantissa = mantissa & 0x007fffff;
+- 
+-                 if (scaledExponent < 255) {
+--                    return Float.intBitsToFloat(sign | (scaledExponent << 23) | mantissa);
+-+                    return var_4348;
+-                 } else {
+-                     return (sign == 0) ? Float.POSITIVE_INFINITY : Float.NEGATIVE_INFINITY;
++@@ -3208,7 +3208,8 @@
+                  }
+  
+              } else if (scaledExponent < 255) {
+ -                return Float.intBitsToFloat(sign | (scaledExponent << 23) | mantissa);
+-+                return var_4348;
+++                float var_4348 = Float.intBitsToFloat(sign | (scaledExponent << 23) | mantissa);
+++				return var_4348;
+              } else {
+                  return (sign == 0) ? Float.POSITIVE_INFINITY : Float.NEGATIVE_INFINITY;
+              }

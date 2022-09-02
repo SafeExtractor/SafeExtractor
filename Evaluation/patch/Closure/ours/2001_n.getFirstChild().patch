@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/AliasExternals.java b/src/com/google/javascript/jscomp/AliasExternals.java
+index fc43f34..a65ae9c 100644
+--- a/src/com/google/javascript/jscomp/AliasExternals.java
++++ b/src/com/google/javascript/jscomp/AliasExternals.java
+@@ -622,12 +622,13 @@
+ 
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      switch (n.getType()) {
++      Node var_2001 = n.getFirstChild();
++	switch (n.getType()) {
+         case Token.FUNCTION:
+-          getGlobalName(t, n.getFirstChild(), n);
++          getGlobalName(t, var_2001, n);
+           break;
+         case Token.VAR:
+-          for (Node varChild = n.getFirstChild();
++          for (Node varChild = var_2001;
+                varChild != null;
+                varChild = varChild.getNext()) {
+             getGlobalName(t, varChild, n);

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/Line.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/Line.java
+index 7ff678c..2ea905c 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/Line.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/Line.java
+@@ -127,7 +127,8 @@
+      */
+     public void reset(final Vector2D p1, final Vector2D p2) {
+         final double dx = p2.getX() - p1.getX();
+-        final double dy = p2.getY() - p1.getY();
++        double var_1605 = p2.getY();
++		final double dy = var_1605 - p1.getY();
+         final double d = FastMath.hypot(dx, dy);
+         if (d == 0.0) {
+             angle        = 0.0;
+@@ -138,7 +139,7 @@
+             angle        = FastMath.PI + FastMath.atan2(-dy, -dx);
+             cos          = FastMath.cos(angle);
+             sin          = FastMath.sin(angle);
+-            originOffset = (p2.getX() * p1.getY() - p1.getX() * p2.getY()) / d;
++            originOffset = (p2.getX() * p1.getY() - p1.getX() * var_1605) / d;
+         }
+     }
+ 

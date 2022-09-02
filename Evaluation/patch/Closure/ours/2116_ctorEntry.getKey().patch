@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/CheckProvides.java b/src/com/google/javascript/jscomp/CheckProvides.java
+index 0b42310..a158ae4 100644
+--- a/src/com/google/javascript/jscomp/CheckProvides.java
++++ b/src/com/google/javascript/jscomp/CheckProvides.java
+@@ -108,7 +108,8 @@
+ 
+     private void visitScriptNode(NodeTraversal t, Node n) {
+       for (Map.Entry<String, Node> ctorEntry : ctors.entrySet()) {
+-        String ctor = ctorEntry.getKey();
++        String var_2116 = ctorEntry.getKey();
++		String ctor = var_2116;
+         int index = -1;
+         boolean found = false;
+         do {
+@@ -123,7 +124,7 @@
+         if (!found) {
+           compiler.report(
+               t.makeError(ctorEntry.getValue(), checkLevel,
+-                  MISSING_PROVIDE_WARNING, ctorEntry.getKey()));
++                  MISSING_PROVIDE_WARNING, var_2116));
+         }
+       }
+       provides.clear();

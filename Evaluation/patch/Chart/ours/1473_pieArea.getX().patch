@@ -1,0 +1,35 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot3D.java b/source/org/jfree/chart/plot/PiePlot3D.java
+index a7aab14..63b6deb 100644
+--- a/source/org/jfree/chart/plot/PiePlot3D.java
++++ b/source/org/jfree/chart/plot/PiePlot3D.java
+@@ -369,7 +369,8 @@
+         }
+ 
+         // establish the coordinates of the top left corner of the drawing area
+-        double arcX = pieArea.getX();
++        double var_1473 = pieArea.getX();
++		double arcX = var_1473;
+         double arcY = pieArea.getY();
+ 
+         //g2.clip(clipArea);
+@@ -422,17 +423,17 @@
+ 
+         Shape oldClip = g2.getClip();
+ 
+-        Ellipse2D top = new Ellipse2D.Double(pieArea.getX(), pieArea.getY(),
++        Ellipse2D top = new Ellipse2D.Double(var_1473, pieArea.getY(),
+                 pieArea.getWidth(), pieArea.getHeight() - depth);
+ 
+-        Ellipse2D bottom = new Ellipse2D.Double(pieArea.getX(), pieArea.getY()
++        Ellipse2D bottom = new Ellipse2D.Double(var_1473, pieArea.getY()
+                 + depth, pieArea.getWidth(), pieArea.getHeight() - depth);
+ 
+         Rectangle2D lower = new Rectangle2D.Double(top.getX(),
+                 top.getCenterY(), pieArea.getWidth(), bottom.getMaxY()
+                 - top.getCenterY());
+ 
+-        Rectangle2D upper = new Rectangle2D.Double(pieArea.getX(), top.getY(),
++        Rectangle2D upper = new Rectangle2D.Double(var_1473, top.getY(),
+                 pieArea.getWidth(), bottom.getCenterY() - top.getY());
+ 
+         Area a = new Area(top);

@@ -1,0 +1,17 @@
+diff --git a/source/org/jfree/data/statistics/Regression.java b/source/org/jfree/data/statistics/Regression.java
+index 962b978..83e5905 100644
+--- a/source/org/jfree/data/statistics/Regression.java
++++ b/source/org/jfree/data/statistics/Regression.java
+@@ -330,9 +330,10 @@
+         int coefficients = matrix[0].length;
+         double[][] result = new double[equations - 1][coefficients - 1];
+         for (int eq = 1; eq < equations; eq++) {
+-            double factor = matrix[0][0] / matrix[eq][0];
++            double[] var_4059 = matrix[eq];
++			double factor = matrix[0][0] / var_4059[0];
+             for (int coe = 1; coe < coefficients; coe++) {
+-                result[eq - 1][coe -1] = matrix[0][coe] - matrix[eq][coe]
++                result[eq - 1][coe -1] = matrix[0][coe] - var_4059[coe]
+                         * factor;
+             }
+         }

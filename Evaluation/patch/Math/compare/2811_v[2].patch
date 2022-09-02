@@ -1,0 +1,39 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/2811_v[2].patch b/Users/safe/paper/Evaluation/patch/Math/ours/2811_v[2].patch
+index 53cd424..3e14a8a 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/2811_v[2].patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/2811_v[2].patch
+@@ -1,27 +1,15 @@
+ diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
+-index 15450f4..23adcf4 100644
++index 15450f4..9731954 100644
+ --- a/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
+ +++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
+-@@ -317,7 +317,8 @@
+-                                           final double oneMinusThetaH)
+-       throws MaxCountExceededException {
++@@ -370,17 +370,18 @@
++     final double dot5 = theta2 * (3 + theta * (-12 + theta * (15 - 6 * theta)));
++     final double dot6 = theta2 * theta * (4 + theta * (-15 + theta * (18 - 7 * theta)));
+  
+--    if (! vectorsInitialized) {
++-    if ((previousState != null) && (theta <= 0.5)) {
+ +    double[] var_2811 = v[2];
+-+	if (! vectorsInitialized) {
+- 
+-       if (v == null) {
+-         v = new double[7][];
+-@@ -347,7 +348,7 @@
+-                     B_08 * yDot8  + B_09 * yDot9 + B_10 * yDot10 +
+-                     B_11 * yDot11 + B_12 * yDot12;
+-           v[1][i] = yDot1 - v[0][i];
+--          v[2][i] = v[0][i] - v[1][i] - yDotK[12][i];
+-+          var_2811[i] = v[0][i] - v[1][i] - yDotK[12][i];
+-           for (int k = 0; k < D.length; ++k) {
+-               v[k+3][i] = D[k][0] * yDot1  + D[k][1]  * yDot6  + D[k][2]  * yDot7  +
+-                           D[k][3] * yDot8  + D[k][4]  * yDot9  + D[k][5]  * yDot10 +
+-@@ -375,12 +376,12 @@
+++	if ((previousState != null) && (theta <= 0.5)) {
++         for (int i = 0; i < interpolatedState.length; ++i) {
+              interpolatedState[i] = previousState[i] +
+                      theta * h * (v[0][i] +
+                              eta * (v[1][i] +

@@ -1,0 +1,27 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/852_a.getOne().patch b/Users/safe/paper/Evaluation/patch/Math/ours/852_a.getOne().patch
+index 087b0f1..05a22cb 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/852_a.getOne().patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/852_a.getOne().patch
+@@ -1,17 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+-index af670fc..39945e7 100644
++index af670fc..c0234bc 100644
+ --- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+ +++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+-@@ -954,9 +954,10 @@
+-             negative = true;
+-         }
++@@ -956,7 +956,8 @@
+  
+--        a = Dfp.copysign(a, a.getOne());  // absolute value
+-+        Dfp var_852 = a.getOne();
+-+		a = Dfp.copysign(a, var_852);  // absolute value
++         a = Dfp.copysign(a, a.getOne());  // absolute value
+  
+ -        result = atan(a.getOne().subtract(a.multiply(a)).sqrt().divide(a));
+-+        result = atan(var_852.subtract(a.multiply(a)).sqrt().divide(a));
+++        Dfp var_852 = a.getOne();
+++		result = atan(var_852.subtract(a.multiply(a)).sqrt().divide(a));
+  
+          if (negative) {
+              result = a.getField().getPi().subtract(result);

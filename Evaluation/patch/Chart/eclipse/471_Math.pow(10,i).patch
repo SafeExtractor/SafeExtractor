@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/axis/LogarithmicAxis.java b/source/org/jfree/chart/axis/LogarithmicAxis.java
+index 1f440bd..dbdad44 100644
+--- a/source/org/jfree/chart/axis/LogarithmicAxis.java
++++ b/source/org/jfree/chart/axis/LogarithmicAxis.java
+@@ -919,9 +919,10 @@
+ 
+             for (int j = 0; j < jEndCount; j++) {
+                 //for each tick to be displayed
+-                if (this.smallLogFlag) {
++                double var_471 = Math.pow(10, i);
++				if (this.smallLogFlag) {
+                     //small log values in use
+-                    tickVal = Math.pow(10, i) + (Math.pow(10, i) * j);
++                    tickVal = var_471 + (var_471 * j);
+                     if (j == 0) {
+                         //first tick of group; create label text
+                         if (this.log10TickLabelsFlag) {
+@@ -967,7 +968,7 @@
+                     if (zeroTickFlag) {      //if did zero tick last iter then
+                         --j;
+                     }               //decrement to do 1.0 tick now
+-                    tickVal = (i >= 0) ? Math.pow(10, i) + (Math.pow(10, i) * j)
++                    tickVal = (i >= 0) ? var_471 + (var_471 * j)
+                              : -(Math.pow(10, -i) - (Math.pow(10, -i - 1) * j));
+                     if (j == 0) {  //first tick of group
+                         if (!zeroTickFlag) {     // did not do zero tick last

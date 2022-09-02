@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/ml/clustering/FuzzyKMeansClusterer.java b/src/main/java/org/apache/commons/math3/ml/clustering/FuzzyKMeansClusterer.java
+index 27aede2..71d41ff 100644
+--- a/src/main/java/org/apache/commons/math3/ml/clustering/FuzzyKMeansClusterer.java
++++ b/src/main/java/org/apache/commons/math3/ml/clustering/FuzzyKMeansClusterer.java
+@@ -358,10 +358,11 @@
+                     sum += FastMath.pow(distA / distB, 2.0 / (fuzziness - 1.0));
+                 }
+ 
+-                membershipMatrix[i][j] = 1.0 / sum;
++                double[] var_2528 = membershipMatrix[i];
++				var_2528[j] = 1.0 / sum;
+ 
+-                if (membershipMatrix[i][j] > maxMembership) {
+-                    maxMembership = membershipMatrix[i][j];
++                if (var_2528[j] > maxMembership) {
++                    maxMembership = var_2528[j];
+                     newCluster = j;
+                 }
+             }

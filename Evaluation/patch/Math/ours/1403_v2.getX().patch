@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
+index fbdafa3..4d60a7b 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
+@@ -688,12 +688,13 @@
+       // and we can choose to have psi in the interval [0 ; PI]
+       Vector3D v1 = applyTo(Vector3D.PLUS_I);
+       Vector3D v2 = applyInverseTo(Vector3D.PLUS_I);
+-      if ((v2.getX() < -0.9999999999) || (v2.getX() > 0.9999999999)) {
++      double var_1403 = v2.getX();
++	if ((var_1403 < -0.9999999999) || (var_1403 > 0.9999999999)) {
+         throw new CardanEulerSingularityException(false);
+       }
+       return new double[] {
+         FastMath.atan2(v1.getZ(), v1.getY()),
+-        FastMath.acos(v2.getX()),
++        FastMath.acos(var_1403),
+         FastMath.atan2(v2.getZ(), -v2.getY())
+       };
+ 

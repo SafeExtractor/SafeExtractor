@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/axis/CategoryAxis.java b/source/org/jfree/chart/axis/CategoryAxis.java
+index 9c5f5bc..a0482dc 100644
+--- a/source/org/jfree/chart/axis/CategoryAxis.java
++++ b/source/org/jfree/chart/axis/CategoryAxis.java
+@@ -979,7 +979,8 @@
+ 
+             int categoryIndex = 0;
+             Iterator iterator = ticks.iterator();
+-            while (iterator.hasNext()) {
++            RectangleEdge var_852 = RectangleEdge.TOP;
++			while (iterator.hasNext()) {
+ 
+                 CategoryTick tick = (CategoryTick) iterator.next();
+                 g2.setFont(getTickLabelFont(tick.getCategory()));
+@@ -991,7 +992,7 @@
+                 double x1 = 0.0;
+                 double y0 = 0.0;
+                 double y1 = 0.0;
+-                if (edge == RectangleEdge.TOP) {
++                if (edge == var_852) {
+                     x0 = getCategoryStart(categoryIndex, ticks.size(),
+                             dataArea, edge);
+                     x1 = getCategoryEnd(categoryIndex, ticks.size(), dataArea,
+@@ -1049,7 +1050,7 @@
+                 categoryIndex++;
+             }
+ 
+-            if (edge.equals(RectangleEdge.TOP)) {
++            if (edge.equals(var_852)) {
+                 double h = state.getMax() + this.categoryLabelPositionOffset;
+                 state.cursorUp(h);
+             }

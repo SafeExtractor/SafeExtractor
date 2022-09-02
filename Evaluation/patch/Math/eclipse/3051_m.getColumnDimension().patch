@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+index c837709..fe1183b 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+@@ -1096,7 +1096,8 @@
+      * matrix representing the diagonal if m is a n-by-n matrix.
+      */
+     private static RealMatrix diag(final RealMatrix m) {
+-        if (m.getColumnDimension() == 1) {
++        int var_3051 = m.getColumnDimension();
++		if (var_3051 == 1) {
+             final double[][] d = new double[m.getRowDimension()][m.getRowDimension()];
+             for (int i = 0; i < m.getRowDimension(); i++) {
+                 d[i][i] = m.getEntry(i, 0);
+@@ -1104,7 +1105,7 @@
+             return new Array2DRowRealMatrix(d, false);
+         } else {
+             final double[][] d = new double[m.getRowDimension()][1];
+-            for (int i = 0; i < m.getColumnDimension(); i++) {
++            for (int i = 0; i < var_3051; i++) {
+                 d[i][0] = m.getEntry(i, i);
+             }
+             return new Array2DRowRealMatrix(d, false);

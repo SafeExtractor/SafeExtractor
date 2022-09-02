@@ -1,0 +1,28 @@
+diff --git a/Users/safe/paper/CaseStudy/patch/commons-codec/eclipse/3_d720e8797233b467f17dc7ebdddfe482d08a374a_asciiLength.patch b/Users/safe/paper/CaseStudy/patch/commons-codec/ours/3_d720e8797233b467f17dc7ebdddfe482d08a374a_asciiLength.patch
+index ea56e84..53f1114 100644
+--- a/Users/safe/paper/CaseStudy/patch/commons-codec/eclipse/3_d720e8797233b467f17dc7ebdddfe482d08a374a_asciiLength.patch
++++ b/Users/safe/paper/CaseStudy/patch/commons-codec/ours/3_d720e8797233b467f17dc7ebdddfe482d08a374a_asciiLength.patch
+@@ -1,19 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/codec/binary/BinaryCodec.java b/src/main/java/org/apache/commons/codec/binary/BinaryCodec.java
+-index 590dd3e..2c06657 100644
++index 590dd3e..bec7200 100644
+ --- a/src/main/java/org/apache/commons/codec/binary/BinaryCodec.java
+ +++ b/src/main/java/org/apache/commons/codec/binary/BinaryCodec.java
+-@@ -109,16 +109,17 @@
+-      * @return the raw encoded binary where each bit corresponds to a char in the char array argument
+-      */
+-     public static byte[] fromAscii(final char[] ascii) {
+--        if (ascii == null || ascii.length == 0) {
+-+        int asciiLength = ascii.length;
+-+		if (ascii == null || asciiLength == 0) {
++@@ -113,12 +113,13 @@
+              return EMPTY_BYTE_ARRAY;
+          }
+          // get length/8 times bytes with 3 bit shifts to the right of the length
+ -        final byte[] l_raw = new byte[ascii.length >> 3];
+-+        final byte[] l_raw = new byte[asciiLength >> 3];
+++        int asciiLength = ascii.length;
+++		final byte[] l_raw = new byte[asciiLength >> 3];
+          /*
+           * We decr index jj by 8 as we go along to not recompute indices using multiplication every time inside the
+           * loop.

@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+index a2ea88e..1d9a845 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+@@ -415,13 +415,14 @@
+                 // Accumulate transformations
+                 final int high = matrixT.length - 1;
+                 for (int i = 0; i <= high; i++) {
+-                    p = shift.x * matrixP[i][k] + shift.y * matrixP[i][k + 1];
++                    double[] var_2379 = matrixP[i];
++					p = shift.x * var_2379[k] + shift.y * var_2379[k + 1];
+                     if (notlast) {
+-                        p = p + z * matrixP[i][k + 2];
+-                        matrixP[i][k + 2] = matrixP[i][k + 2] - p * r;
++                        p = p + z * var_2379[k + 2];
++                        var_2379[k + 2] = var_2379[k + 2] - p * r;
+                     }
+-                    matrixP[i][k] = matrixP[i][k] - p;
+-                    matrixP[i][k + 1] = matrixP[i][k + 1] - p * q;
++                    var_2379[k] = var_2379[k] - p;
++                    var_2379[k + 1] = var_2379[k + 1] - p * q;
+                 }
+             }  // (s != 0)
+         }  // k loop

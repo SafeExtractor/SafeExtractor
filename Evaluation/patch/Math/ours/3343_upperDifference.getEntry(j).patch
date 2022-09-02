@@ -1,0 +1,42 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..bdcf3b7 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -313,20 +313,23 @@
+                     final double deltaOne = upperBound[j] - currentBest.getEntry(j);
+                     upperDifference.setEntry(j, Math.max(deltaOne, initialTrustRegionRadius));
+                 }
+-            } else if (upperDifference.getEntry(j) <= initialTrustRegionRadius) {
+-                if (upperDifference.getEntry(j) <= ZERO) {
+-                    currentBest.setEntry(j, upperBound[j]);
+-                    lowerDifference.setEntry(j, -boundDiff);
+-                    upperDifference.setEntry(j, ZERO);
+-                } else {
+-                    currentBest.setEntry(j, upperBound[j] - initialTrustRegionRadius);
+-                    // Computing MIN
+-                    final double deltaOne = lowerBound[j] - currentBest.getEntry(j);
+-                    final double deltaTwo = -initialTrustRegionRadius;
+-                    lowerDifference.setEntry(j, Math.min(deltaOne, deltaTwo));
+-                    upperDifference.setEntry(j, initialTrustRegionRadius);
+-                }
+-            }
++            } else {
++				double var_3343 = upperDifference.getEntry(j);
++				if (var_3343 <= initialTrustRegionRadius) {
++				    if (var_3343 <= ZERO) {
++				        currentBest.setEntry(j, upperBound[j]);
++				        lowerDifference.setEntry(j, -boundDiff);
++				        upperDifference.setEntry(j, ZERO);
++				    } else {
++				        currentBest.setEntry(j, upperBound[j] - initialTrustRegionRadius);
++				        // Computing MIN
++				        final double deltaOne = lowerBound[j] - currentBest.getEntry(j);
++				        final double deltaTwo = -initialTrustRegionRadius;
++				        lowerDifference.setEntry(j, Math.min(deltaOne, deltaTwo));
++				        upperDifference.setEntry(j, initialTrustRegionRadius);
++				    }
++				}
++			}
+         }
+ 
+         // Make the call of BOBYQB.

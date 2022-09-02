@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/Precision.java b/src/main/java/org/apache/commons/math3/util/Precision.java
+index ef3b57f..e8c6943 100644
+--- a/src/main/java/org/apache/commons/math3/util/Precision.java
++++ b/src/main/java/org/apache/commons/math3/util/Precision.java
+@@ -455,26 +455,27 @@
+                                         double sign,
+                                         int roundingMethod)
+         throws MathArithmeticException, MathIllegalArgumentException {
+-        switch (roundingMethod) {
++        double var_4232 = FastMath.nextAfter(unscaled, Double.NEGATIVE_INFINITY);
++		switch (roundingMethod) {
+         case BigDecimal.ROUND_CEILING :
+             if (sign == -1) {
+-                unscaled = FastMath.floor(FastMath.nextAfter(unscaled, Double.NEGATIVE_INFINITY));
++                unscaled = FastMath.floor(var_4232);
+             } else {
+                 unscaled = FastMath.ceil(FastMath.nextAfter(unscaled, Double.POSITIVE_INFINITY));
+             }
+             break;
+         case BigDecimal.ROUND_DOWN :
+-            unscaled = FastMath.floor(FastMath.nextAfter(unscaled, Double.NEGATIVE_INFINITY));
++            unscaled = FastMath.floor(var_4232);
+             break;
+         case BigDecimal.ROUND_FLOOR :
+             if (sign == -1) {
+                 unscaled = FastMath.ceil(FastMath.nextAfter(unscaled, Double.POSITIVE_INFINITY));
+             } else {
+-                unscaled = FastMath.floor(FastMath.nextAfter(unscaled, Double.NEGATIVE_INFINITY));
++                unscaled = FastMath.floor(var_4232);
+             }
+             break;
+         case BigDecimal.ROUND_HALF_DOWN : {
+-            unscaled = FastMath.nextAfter(unscaled, Double.NEGATIVE_INFINITY);
++            unscaled = var_4232;
+             double fraction = unscaled - FastMath.floor(unscaled);
+             if (fraction > 0.5) {
+                 unscaled = FastMath.ceil(unscaled);

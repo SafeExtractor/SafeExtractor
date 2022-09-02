@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/sampling/NordsieckStepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/sampling/NordsieckStepInterpolator.java
+index 73d0be9..1d50705 100644
+--- a/src/main/java/org/apache/commons/math3/ode/sampling/NordsieckStepInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/ode/sampling/NordsieckStepInterpolator.java
+@@ -210,10 +210,11 @@
+         }
+ 
+         for (int j = 0; j < currentState.length; ++j) {
+-            stateVariation[j] += scaled[j] * normalizedAbscissa;
++            double var_2895 = scaled[j];
++			stateVariation[j] += var_2895 * normalizedAbscissa;
+             interpolatedState[j] = currentState[j] + stateVariation[j];
+             interpolatedDerivatives[j] =
+-                (interpolatedDerivatives[j] + scaled[j] * normalizedAbscissa) / x;
++                (interpolatedDerivatives[j] + var_2895 * normalizedAbscissa) / x;
+         }
+ 
+     }

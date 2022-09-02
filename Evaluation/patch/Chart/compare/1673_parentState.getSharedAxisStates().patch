@@ -1,0 +1,36 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/1673_parentState.getSharedAxisStates().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/1673_parentState.getSharedAxisStates().patch
+index 24c9d9c..e739704 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/1673_parentState.getSharedAxisStates().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/1673_parentState.getSharedAxisStates().patch
+@@ -1,26 +1,14 @@
+ diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+-index cc18077..73e7760 100644
++index cc18077..3f571bb 100644
+ --- a/source/org/jfree/chart/plot/XYPlot.java
+ +++ b/source/org/jfree/chart/plot/XYPlot.java
+-@@ -3306,9 +3306,10 @@
+- 
+-         AxisState domainAxisState = (AxisState) axisStateMap.get(
++@@ -3308,7 +3308,8 @@
+                  getDomainAxis());
+--        if (domainAxisState == null) {
+-+        Map var_1673 = parentState.getSharedAxisStates();
+-+		if (domainAxisState == null) {
++         if (domainAxisState == null) {
+              if (parentState != null) {
+ -                domainAxisState = (AxisState) parentState.getSharedAxisStates()
+-+                domainAxisState = (AxisState) var_1673
+++                Map var_1673 = parentState.getSharedAxisStates();
+++				domainAxisState = (AxisState) var_1673
+                          .get(getDomainAxis());
+              }
+          }
+-@@ -3316,7 +3317,7 @@
+-         AxisState rangeAxisState = (AxisState) axisStateMap.get(getRangeAxis());
+-         if (rangeAxisState == null) {
+-             if (parentState != null) {
+--                rangeAxisState = (AxisState) parentState.getSharedAxisStates()
+-+                rangeAxisState = (AxisState) var_1673
+-                         .get(getRangeAxis());
+-             }
+-         }

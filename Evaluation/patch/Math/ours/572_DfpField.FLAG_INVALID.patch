@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..a79eaf0 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -819,8 +819,9 @@
+     public boolean strictlyNegative() {
+ 
+         if (isNaN()) {
+-            field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            dotrap(DfpField.FLAG_INVALID, LESS_THAN_TRAP, this, newInstance(getZero()));
++            int var_572 = DfpField.FLAG_INVALID;
++			field.setIEEEFlagsBits(var_572);
++            dotrap(var_572, LESS_THAN_TRAP, this, newInstance(getZero()));
+             return false;
+         }
+ 

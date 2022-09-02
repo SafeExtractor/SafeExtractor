@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java b/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
+index 7412a61..40f1f1e 100755
+--- a/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
++++ b/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
+@@ -255,8 +255,9 @@
+         for (Scope s = t.getScope();
+              s.getParent() != null; s = s.getParent()) {
+           Node curRoot = s.getRootNode();
+-          if (curRoot.getParent().isAssign()) {
+-            Node owner = curRoot.getParent().getFirstChild();
++          Node var_584 = curRoot.getParent();
++		if (var_584.isAssign()) {
++            Node owner = var_584.getFirstChild();
+             while (owner.isGetProp()) {
+               owner = owner.getFirstChild();
+             }

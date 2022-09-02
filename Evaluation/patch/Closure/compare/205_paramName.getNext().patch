@@ -1,0 +1,36 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/205_paramName.getNext().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/205_paramName.getNext().patch
+index e720b5e..ab179b0 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/205_paramName.getNext().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/205_paramName.getNext().patch
+@@ -1,26 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/RuntimeTypeCheck.java b/src/com/google/javascript/jscomp/RuntimeTypeCheck.java
+-index 773b7ad..af858a1 100644
++index 773b7ad..473d2f1 100644
+ --- a/src/com/google/javascript/jscomp/RuntimeTypeCheck.java
+ +++ b/src/com/google/javascript/jscomp/RuntimeTypeCheck.java
+-@@ -250,9 +250,10 @@
+-         Node checkNode = createCheckTypeCallNode(
+-             paramType.getJSType(), paramName.cloneTree());
++@@ -252,7 +252,8 @@
+  
+--        if (checkNode == null) {
+-+        Node var_205 = paramName.getNext();
+-+		if (checkNode == null) {
++         if (checkNode == null) {
+            // We don't know how to check this parameter type.
+ -          paramName = paramName.getNext();
+-+          paramName = var_205;
+++          Node var_205 = paramName.getNext();
+++		paramName = var_205;
+            continue;
+          }
+  
+-@@ -264,7 +265,7 @@
+-         }
+- 
+-         compiler.reportCodeChange();
+--        paramName = paramName.getNext();
+-+        paramName = var_205;
+-         insertionPoint = checkNode;
+-       }
+-     }

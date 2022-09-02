@@ -1,0 +1,71 @@
+diff --git a/src/com/google/javascript/jscomp/LiveVariablesAnalysis.java b/src/com/google/javascript/jscomp/LiveVariablesAnalysis.java
+index 888fd39..2352d5e 100644
+--- a/src/com/google/javascript/jscomp/LiveVariablesAnalysis.java
++++ b/src/com/google/javascript/jscomp/LiveVariablesAnalysis.java
+@@ -184,7 +184,8 @@
+   private void computeGenKill(Node n, BitSet gen, BitSet kill,
+       boolean conditional) {
+ 
+-    switch (n.getType()) {
++    Node var_972 = n.getFirstChild();
++	switch (n.getType()) {
+       case Token.SCRIPT:
+       case Token.BLOCK:
+       case Token.FUNCTION:
+@@ -203,7 +204,7 @@
+               conditional);
+         } else {
+           // for(x in y) {...}
+-          Node lhs = n.getFirstChild();
++          Node lhs = var_972;
+           Node rhs = lhs.getNext();
+           if (lhs.isVar()) {
+             // for(var x in y) {...}
+@@ -222,7 +223,7 @@
+         return;
+ 
+       case Token.VAR:
+-        for (Node c = n.getFirstChild(); c != null; c = c.getNext()) {
++        for (Node c = var_972; c != null; c = c.getNext()) {
+           if (c.hasChildren()) {
+             computeGenKill(c.getFirstChild(), gen, kill, conditional);
+             if (!conditional) {
+@@ -234,15 +235,15 @@
+ 
+       case Token.AND:
+       case Token.OR:
+-        computeGenKill(n.getFirstChild(), gen, kill, conditional);
++        computeGenKill(var_972, gen, kill, conditional);
+         // May short circuit.
+         computeGenKill(n.getLastChild(), gen, kill, true);
+         return;
+ 
+       case Token.HOOK:
+-        computeGenKill(n.getFirstChild(), gen, kill, conditional);
++        computeGenKill(var_972, gen, kill, conditional);
+         // Assume both sides are conditional.
+-        computeGenKill(n.getFirstChild().getNext(), gen, kill, true);
++        computeGenKill(var_972.getNext(), gen, kill, true);
+         computeGenKill(n.getLastChild(), gen, kill, true);
+         return;
+ 
+@@ -255,8 +256,8 @@
+         return;
+ 
+       default:
+-        if (NodeUtil.isAssignmentOp(n) && n.getFirstChild().isName()) {
+-          Node lhs = n.getFirstChild();
++        if (NodeUtil.isAssignmentOp(n) && var_972.isName()) {
++          Node lhs = var_972;
+           if (!conditional) {
+             addToSetIfLocal(lhs, kill);
+           }
+@@ -266,7 +267,7 @@
+           }
+           computeGenKill(lhs.getNext(), gen, kill, conditional);
+         } else {
+-          for (Node c = n.getFirstChild(); c != null; c = c.getNext()) {
++          for (Node c = var_972; c != null; c = c.getNext()) {
+             computeGenKill(c, gen, kill, conditional);
+           }
+         }

@@ -1,0 +1,38 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/Precision.java b/src/main/java/org/apache/commons/math3/util/Precision.java
+index ef3b57f..d22e446 100644
+--- a/src/main/java/org/apache/commons/math3/util/Precision.java
++++ b/src/main/java/org/apache/commons/math3/util/Precision.java
+@@ -455,12 +455,13 @@
+                                         double sign,
+                                         int roundingMethod)
+         throws MathArithmeticException, MathIllegalArgumentException {
+-        switch (roundingMethod) {
++        double var_4233 = FastMath.ceil(FastMath.nextAfter(unscaled, Double.POSITIVE_INFINITY));
++		switch (roundingMethod) {
+         case BigDecimal.ROUND_CEILING :
+             if (sign == -1) {
+                 unscaled = FastMath.floor(FastMath.nextAfter(unscaled, Double.NEGATIVE_INFINITY));
+             } else {
+-                unscaled = FastMath.ceil(FastMath.nextAfter(unscaled, Double.POSITIVE_INFINITY));
++                unscaled = var_4233;
+             }
+             break;
+         case BigDecimal.ROUND_DOWN :
+@@ -468,7 +469,7 @@
+             break;
+         case BigDecimal.ROUND_FLOOR :
+             if (sign == -1) {
+-                unscaled = FastMath.ceil(FastMath.nextAfter(unscaled, Double.POSITIVE_INFINITY));
++                unscaled = var_4233;
+             } else {
+                 unscaled = FastMath.floor(FastMath.nextAfter(unscaled, Double.NEGATIVE_INFINITY));
+             }
+@@ -516,7 +517,7 @@
+             }
+             break;
+         case BigDecimal.ROUND_UP :
+-            unscaled = FastMath.ceil(FastMath.nextAfter(unscaled,  Double.POSITIVE_INFINITY));
++            unscaled = var_4233;
+             break;
+         default :
+             throw new MathIllegalArgumentException(LocalizedFormats.INVALID_ROUNDING_METHOD,

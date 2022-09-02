@@ -1,0 +1,16 @@
+diff --git a/src/org/mockito/internal/configuration/InjectingAnnotationEngine.java b/src/org/mockito/internal/configuration/InjectingAnnotationEngine.java
+index b6cd712..80a42b3 100644
+--- a/src/org/mockito/internal/configuration/InjectingAnnotationEngine.java
++++ b/src/org/mockito/internal/configuration/InjectingAnnotationEngine.java
+@@ -52,8 +52,9 @@
+      * @see org.mockito.configuration.AnnotationEngine#process(Class, Object)
+      */
+     public void process(Class<?> clazz, Object testInstance) {
+-        processIndependentAnnotations(testInstance.getClass(), testInstance);
+-        processInjectMocks(testInstance.getClass(), testInstance);
++        Class<? extends Object> var_13 = testInstance.getClass();
++		processIndependentAnnotations(var_13, testInstance);
++        processInjectMocks(var_13, testInstance);
+     }
+ 
+     private void processInjectMocks(final Class<?> clazz, final Object testInstance) {

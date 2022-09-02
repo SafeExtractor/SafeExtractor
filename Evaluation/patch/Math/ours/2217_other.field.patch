@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java b/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java
+index 9468a5e..7ddccf7 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java
++++ b/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java
+@@ -573,11 +573,12 @@
+         @SuppressWarnings("unchecked") // OK, because "else if" check below ensures that
+                                        // other must be the same type as this
+         SparseFieldVector<T> other = (SparseFieldVector<T>) obj;
+-        if (field == null) {
+-            if (other.field != null) {
++        Field<T> var_2217 = other.field;
++		if (field == null) {
++            if (var_2217 != null) {
+                 return false;
+             }
+-        } else if (!field.equals(other.field)) {
++        } else if (!field.equals(var_2217)) {
+             return false;
+         }
+         if (virtualSize != other.virtualSize) {

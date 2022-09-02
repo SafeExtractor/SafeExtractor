@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java b/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java
+index 5f2b6ba..1274549 100644
+--- a/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java
+@@ -1012,9 +1012,10 @@
+         double transX1 = domainAxis.valueToJava2D(x1, dataArea, xAxisLocation);
+         double transY1 = rangeAxis.valueToJava2D(y1, dataArea, yAxisLocation);
+ 
+-        if (getItemShapeVisible(series, item)) {
++        PlotOrientation var_3086 = PlotOrientation.HORIZONTAL;
++		if (getItemShapeVisible(series, item)) {
+             Shape shape = getItemShape(series, item, selected);
+-            if (orientation == PlotOrientation.HORIZONTAL) {
++            if (orientation == var_3086) {
+                 shape = ShapeUtilities.createTranslatedShape(shape, transY1,
+                         transX1);
+             }
+@@ -1049,7 +1050,7 @@
+ 
+         double xx = transX1;
+         double yy = transY1;
+-        if (orientation == PlotOrientation.HORIZONTAL) {
++        if (orientation == var_3086) {
+             xx = transY1;
+             yy = transX1;
+         }

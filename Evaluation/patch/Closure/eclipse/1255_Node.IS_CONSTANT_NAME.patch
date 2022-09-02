@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/Normalize.java b/src/com/google/javascript/jscomp/Normalize.java
+index 98b136e..c8744ac 100644
+--- a/src/com/google/javascript/jscomp/Normalize.java
++++ b/src/com/google/javascript/jscomp/Normalize.java
+@@ -431,7 +431,8 @@
+           (parent.isGetProp() &&
+            parent.getLastChild() == n);
+       if (n.isName() || isProperty) {
+-        boolean isMarkedConstant = n.getBooleanProp(Node.IS_CONSTANT_NAME);
++        int var_1255 = Node.IS_CONSTANT_NAME;
++		boolean isMarkedConstant = n.getBooleanProp(var_1255);
+         if (!isMarkedConstant &&
+             NodeUtil.isConstantByConvention(
+                 compiler.getCodingConvention(), n, parent)) {
+@@ -442,7 +443,7 @@
+                 "  name: "+ name + "\n" +
+                 "  parent:" + n.getParent().toStringTree());
+           }
+-          n.putBooleanProp(Node.IS_CONSTANT_NAME, true);
++          n.putBooleanProp(var_1255, true);
+         }
+       }
+     }

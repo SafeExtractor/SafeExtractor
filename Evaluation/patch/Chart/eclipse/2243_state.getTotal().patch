@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/chart/plot/RingPlot.java b/source/org/jfree/chart/plot/RingPlot.java
+index f540f71..5419ff8 100644
+--- a/source/org/jfree/chart/plot/RingPlot.java
++++ b/source/org/jfree/chart/plot/RingPlot.java
+@@ -351,13 +351,14 @@
+         double angle2 = 0.0;
+ 
+         Rotation direction = getDirection();
+-        if (direction == Rotation.CLOCKWISE) {
++        double var_2243 = state.getTotal();
++		if (direction == Rotation.CLOCKWISE) {
+             angle1 = state.getLatestAngle();
+-            angle2 = angle1 - value / state.getTotal() * 360.0;
++            angle2 = angle1 - value / var_2243 * 360.0;
+         }
+         else if (direction == Rotation.ANTICLOCKWISE) {
+             angle1 = state.getLatestAngle();
+-            angle2 = angle1 + value / state.getTotal() * 360.0;
++            angle2 = angle1 + value / var_2243 * 360.0;
+         }
+         else {
+             throw new IllegalStateException("Rotation type not recognised.");

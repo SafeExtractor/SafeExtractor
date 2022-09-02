@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java b/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java
+index b3412e0..28ffe8e 100644
+--- a/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java
+@@ -246,13 +246,14 @@
+                 if (qrtMinor[minor] != 0.0) {
+                     for (int col = minor; col < m; col++) {
+                         double alpha = 0;
+-                        for (int row = minor; row < m; row++) {
+-                            alpha -= qta[col][row] * qrtMinor[row];
++                        double[] var_2173 = qta[col];
++						for (int row = minor; row < m; row++) {
++                            alpha -= var_2173[row] * qrtMinor[row];
+                         }
+                         alpha /= rDiag[minor] * qrtMinor[minor];
+ 
+                         for (int row = minor; row < m; row++) {
+-                            qta[col][row] += -alpha * qrtMinor[row];
++                            var_2173[row] += -alpha * qrtMinor[row];
+                         }
+                     }
+                 }

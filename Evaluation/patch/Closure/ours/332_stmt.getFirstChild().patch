@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/StatementFusion.java b/src/com/google/javascript/jscomp/StatementFusion.java
+index 381d8b3..9f6e6fd 100644
+--- a/src/com/google/javascript/jscomp/StatementFusion.java
++++ b/src/com/google/javascript/jscomp/StatementFusion.java
+@@ -148,8 +148,9 @@
+   }
+ 
+   private static void fuseExpresssonIntoSecondChild(Node exp, Node stmt) {
+-    Node val = stmt.removeChildAfter(stmt.getFirstChild());
++    Node var_332 = stmt.getFirstChild();
++	Node val = stmt.removeChildAfter(var_332);
+     Node comma = fuseExpressionIntoExpression(exp, val);
+-    stmt.addChildAfter(comma, stmt.getFirstChild());
++    stmt.addChildAfter(comma, var_332);
+   }
+ }

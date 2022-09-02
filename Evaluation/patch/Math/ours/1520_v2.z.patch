@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java
+index 5371054..ac43196 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java
+@@ -994,9 +994,10 @@
+      */
+     public static <T extends RealFieldElement<T>> FieldVector3D<T> crossProduct(final Vector3D v1,
+                                                                                     final FieldVector3D<T> v2) {
+-        return new FieldVector3D<T>(v2.x.linearCombination(v1.getY(), v2.z, -v1.getZ(), v2.y),
+-                                    v2.y.linearCombination(v1.getZ(), v2.x, -v1.getX(), v2.z),
+-                                    v2.z.linearCombination(v1.getX(), v2.y, -v1.getY(), v2.x));
++        T var_1520 = v2.z;
++		return new FieldVector3D<T>(v2.x.linearCombination(v1.getY(), var_1520, -v1.getZ(), v2.y),
++                                    v2.y.linearCombination(v1.getZ(), v2.x, -v1.getX(), var_1520),
++                                    var_1520.linearCombination(v1.getX(), v2.y, -v1.getY(), v2.x));
+     }
+ 
+     /** Compute the distance between two vectors according to the L<sub>1</sub> norm.

@@ -1,0 +1,38 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3200_x_dataset.getYValue(0,l_minuendItem + 1).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/3200_x_dataset.getYValue(0,l_minuendItem + 1).patch
+index 905b123..90df8f9 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3200_x_dataset.getYValue(0,l_minuendItem + 1).patch	
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/3200_x_dataset.getYValue(0,l_minuendItem + 1).patch	
+@@ -1,29 +1,14 @@
+ diff --git a/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java b/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
+-index cd91775..1dea6e3 100644
++index cd91775..4e3733f 100644
+ --- a/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
+ +++ b/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
+-@@ -492,12 +492,13 @@
+- 
+-         // fast-forward through leading tails
+-         boolean b_fastForwardDone = false;
+--        while (!b_fastForwardDone) {
+-+        double var_3200 = x_dataset.getYValue(0, l_minuendItem + 1);
+-+		while (!b_fastForwardDone) {
+-             // get the x and y coordinates
++@@ -497,7 +497,8 @@
+              l_x1 = x_dataset.getXValue(0, l_minuendItem);
+              l_y1 = x_dataset.getYValue(0, l_minuendItem);
+              l_x2 = x_dataset.getXValue(0, l_minuendItem + 1);
+ -            l_y2 = x_dataset.getYValue(0, l_minuendItem + 1);
+-+            l_y2 = var_3200;
+++            double var_3200 = x_dataset.getYValue(0, l_minuendItem + 1);
+++			l_y2 = var_3200;
+  
+              l_minuendCurX  = new Double(l_x1);
+              l_minuendCurY  = new Double(l_y1);
+-@@ -584,7 +585,7 @@
+-                 l_minuendMinY = Math.min(l_minuendMinY, l_y1);
+- 
+-                 l_x2 = x_dataset.getXValue(0, l_minuendItem + 1);
+--                l_y2 = x_dataset.getYValue(0, l_minuendItem + 1);
+-+                l_y2 = var_3200;
+-                 l_minuendNextX = new Double(l_x2);
+-                 l_minuendNextY = new Double(l_y2);
+-             }

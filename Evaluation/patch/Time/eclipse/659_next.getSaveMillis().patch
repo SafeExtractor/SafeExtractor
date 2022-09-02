@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+index fa5c164..97e6597 100644
+--- a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
++++ b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+@@ -354,7 +354,8 @@
+             }
+             addTransition(transitions, next);
+             millis = next.getMillis();
+-            saveMillis = next.getSaveMillis();
++            int var_659 = next.getSaveMillis();
++			saveMillis = var_659;
+ 
+             // Copy it since we're going to destroy it.
+             rs = new RuleSet(rs);
+@@ -367,7 +368,7 @@
+                     }
+                 }
+                 millis = next.getMillis();
+-                saveMillis = next.getSaveMillis();
++                saveMillis = var_659;
+                 if (tailZone == null && i == ruleSetCount - 1) {
+                     tailZone = rs.buildTailZone(id);
+                     // If tailZone is not null, don't break out of main loop until

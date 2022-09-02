@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+index 4e56fef..96f623a 100644
+--- a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
++++ b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+@@ -496,10 +496,11 @@
+                 String token = st.nextToken();
+                 if (token.equalsIgnoreCase("Rule")) {
+                     Rule r = new Rule(st);
+-                    RuleSet rs = iRuleSets.get(r.iName);
++                    String var_633 = r.iName;
++					RuleSet rs = iRuleSets.get(var_633);
+                     if (rs == null) {
+                         rs = new RuleSet(r);
+-                        iRuleSets.put(r.iName, rs);
++                        iRuleSets.put(var_633, rs);
+                     } else {
+                         rs.addRule(r);
+                     }

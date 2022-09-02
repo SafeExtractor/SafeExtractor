@@ -1,0 +1,36 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/sampling/StepNormalizer.java b/src/main/java/org/apache/commons/math3/ode/sampling/StepNormalizer.java
+index 2d2df2d..8ead720 100644
+--- a/src/main/java/org/apache/commons/math3/ode/sampling/StepNormalizer.java
++++ b/src/main/java/org/apache/commons/math3/ode/sampling/StepNormalizer.java
+@@ -203,7 +203,8 @@
+     public void handleStep(final StepInterpolator interpolator, final boolean isLast)
+         throws MaxCountExceededException {
+         // The first time, update the last state with the start information.
+-        if (lastState == null) {
++        double var_2918 = interpolator.getCurrentTime();
++		if (lastState == null) {
+             firstTime = interpolator.getPreviousTime();
+             lastTime = interpolator.getPreviousTime();
+             interpolator.setInterpolatedTime(lastTime);
+@@ -211,7 +212,7 @@
+             lastDerivatives = interpolator.getInterpolatedDerivatives().clone();
+ 
+             // Take the integration direction into account.
+-            forward = interpolator.getCurrentTime() >= lastTime;
++            forward = var_2918 >= lastTime;
+             if (!forward) {
+                 h = -h;
+             }
+@@ -245,10 +246,10 @@
+             // the handler. We may have to output one more step. Only the last
+             // one of those should be flagged as being the last.
+             boolean addLast = bounds.lastIncluded() &&
+-                              lastTime != interpolator.getCurrentTime();
++                              lastTime != var_2918;
+             doNormalizedStep(!addLast);
+             if (addLast) {
+-                storeStep(interpolator, interpolator.getCurrentTime());
++                storeStep(interpolator, var_2918);
+                 doNormalizedStep(true);
+             }
+         }

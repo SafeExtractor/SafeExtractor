@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractSubHyperplane.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractSubHyperplane.java
+index 85c93bb..e9b9a21 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractSubHyperplane.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractSubHyperplane.java
+@@ -130,8 +130,9 @@
+         BoundaryAttribute<T> attribute =
+             (BoundaryAttribute<T>) node.getAttribute();
+         if (attribute != null) {
+-            final SubHyperplane<T> tPO = (attribute.getPlusOutside() == null) ?
+-                null : transform.apply(attribute.getPlusOutside(), hyperplane, transformed);
++            SubHyperplane<T> var_1705 = attribute.getPlusOutside();
++			final SubHyperplane<T> tPO = (var_1705 == null) ?
++                null : transform.apply(var_1705, hyperplane, transformed);
+             final SubHyperplane<T> tPI = (attribute.getPlusInside() == null) ?
+                 null : transform.apply(attribute.getPlusInside(), hyperplane, transformed);
+             attribute = new BoundaryAttribute<T>(tPO, tPI);

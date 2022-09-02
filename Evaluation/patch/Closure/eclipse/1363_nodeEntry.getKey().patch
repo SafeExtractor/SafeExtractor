@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/RenameProperties.java b/src/com/google/javascript/jscomp/RenameProperties.java
+index 7753a36..8bf9533 100644
+--- a/src/com/google/javascript/jscomp/RenameProperties.java
++++ b/src/com/google/javascript/jscomp/RenameProperties.java
+@@ -246,7 +246,8 @@
+     // Update the call nodes.
+     for (Map.Entry<Node, Node> nodeEntry : callNodeToParentMap.entrySet()) {
+       Node parent = nodeEntry.getValue();
+-      Node firstArg = nodeEntry.getKey().getFirstChild().getNext();
++      Node var_1363 = nodeEntry.getKey();
++	Node firstArg = var_1363.getFirstChild().getNext();
+       StringBuilder sb = new StringBuilder();
+       for (String oldName : firstArg.getString().split("[.]")) {
+         Property p = propertyMap.get(oldName);
+@@ -262,7 +263,7 @@
+         }
+         sb.append(replacement);
+       }
+-      parent.replaceChild(nodeEntry.getKey(), IR.string(sb.toString()));
++      parent.replaceChild(var_1363, IR.string(sb.toString()));
+       changed = true;
+     }
+ 

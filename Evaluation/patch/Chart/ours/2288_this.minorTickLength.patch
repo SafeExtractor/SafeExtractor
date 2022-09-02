@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/plot/dial/StandardDialScale.java b/source/org/jfree/chart/plot/dial/StandardDialScale.java
+index b40e93d..f7d5019 100644
+--- a/source/org/jfree/chart/plot/dial/StandardDialScale.java
++++ b/source/org/jfree/chart/plot/dial/StandardDialScale.java
+@@ -768,10 +768,11 @@
+                 this.tickRadius - this.majorTickLength,
+                 this.tickRadius - this.majorTickLength);
+         Rectangle2D arcRectMinor = arcRect;
+-        if (this.minorTickCount > 0 && this.minorTickLength > 0.0) {
++        double var_2288 = this.minorTickLength;
++		if (this.minorTickCount > 0 && var_2288 > 0.0) {
+             arcRectMinor = DialPlot.rectangleByRadius(frame,
+-                    this.tickRadius - this.minorTickLength,
+-                    this.tickRadius - this.minorTickLength);
++                    this.tickRadius - var_2288,
++                    this.tickRadius - var_2288);
+         }
+         Rectangle2D arcRectForLabels = DialPlot.rectangleByRadius(frame,
+                 this.tickRadius - this.tickLabelOffset,
+@@ -810,7 +811,7 @@
+             firstLabel = false;
+ 
+             // now do the minor tick marks
+-            if (this.minorTickCount > 0 && this.minorTickLength > 0.0) {
++            if (this.minorTickCount > 0 && var_2288 > 0.0) {
+                 double minorTickIncrement = this.majorTickIncrement
+                         / (this.minorTickCount + 1);
+                 for (int i = 0; i < this.minorTickCount; i++) {

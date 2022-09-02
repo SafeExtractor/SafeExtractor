@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeCollectPropertyAssignments.java b/src/com/google/javascript/jscomp/PeepholeCollectPropertyAssignments.java
+index decfc10..9d93d6c 100644
+--- a/src/com/google/javascript/jscomp/PeepholeCollectPropertyAssignments.java
++++ b/src/com/google/javascript/jscomp/PeepholeCollectPropertyAssignments.java
+@@ -82,10 +82,11 @@
+   }
+ 
+   private Node getName(Node n) {
+-    if (n.isVar()) {
+-      return n.getFirstChild();
++    Node var_265 = n.getFirstChild();
++	if (n.isVar()) {
++      return var_265;
+     } else if (NodeUtil.isExprAssign(n)) {
+-      return n.getFirstChild().getFirstChild();
++      return var_265.getFirstChild();
+     }
+     throw new IllegalStateException();
+   }

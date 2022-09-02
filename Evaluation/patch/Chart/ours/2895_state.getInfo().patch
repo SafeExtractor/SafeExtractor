@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYBubbleRenderer.java b/source/org/jfree/chart/renderer/xy/XYBubbleRenderer.java
+index f233759..6c0a38e 100644
+--- a/source/org/jfree/chart/renderer/xy/XYBubbleRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYBubbleRenderer.java
+@@ -75,6 +75,7 @@
+ import org.jfree.chart.axis.ValueAxis;
+ import org.jfree.chart.entity.EntityCollection;
+ import org.jfree.chart.plot.PlotOrientation;
++import org.jfree.chart.plot.PlotRenderingInfo;
+ import org.jfree.chart.plot.XYCrosshairState;
+ import org.jfree.chart.plot.XYPlot;
+ import org.jfree.chart.util.PublicCloneable;
+@@ -254,8 +255,9 @@
+ 
+             // add an entity if this info is being collected
+             EntityCollection entities = null;
+-            if (state.getInfo() != null) {
+-                entities = state.getInfo().getOwner().getEntityCollection();
++            PlotRenderingInfo var_2895 = state.getInfo();
++			if (var_2895 != null) {
++                entities = var_2895.getOwner().getEntityCollection();
+                 if (entities != null && circle.intersects(dataArea)) {
+                     addEntity(entities, circle, dataset, series, item,
+                             selected, circle.getCenterX(),

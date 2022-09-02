@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/axis/NumberAxis.java b/source/org/jfree/chart/axis/NumberAxis.java
+index f5426ab..3774e34 100644
+--- a/source/org/jfree/chart/axis/NumberAxis.java
++++ b/source/org/jfree/chart/axis/NumberAxis.java
+@@ -1188,10 +1188,11 @@
+             if (minorTickSpaces <= 0) {
+                 minorTickSpaces = tu.getMinorTickCount();
+             }
+-            for (int minorTick = 1; minorTick < minorTickSpaces; minorTick++) {
++            Range var_627 = getRange();
++			for (int minorTick = 1; minorTick < minorTickSpaces; minorTick++) {
+                 double minorTickValue = lowestTickValue
+                         - size * minorTick / minorTickSpaces;
+-                if (getRange().contains(minorTickValue)){
++                if (var_627.contains(minorTickValue)){
+                     result.add(new NumberTick(TickType.MINOR, minorTickValue,
+                             "", TextAnchor.TOP_CENTER, TextAnchor.CENTER,
+                             0.0));
+@@ -1240,7 +1241,7 @@
+                     double minorTickValue = currentTickValue
+                             + (nextTickValue - currentTickValue)
+                             * minorTick / minorTickSpaces;
+-                    if (getRange().contains(minorTickValue)) {
++                    if (var_627.contains(minorTickValue)) {
+                         result.add(new NumberTick(TickType.MINOR,
+                                 minorTickValue, "", TextAnchor.TOP_CENTER,
+                                 TextAnchor.CENTER, 0.0));

@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/JacobianMatrices.java b/src/main/java/org/apache/commons/math3/ode/JacobianMatrices.java
+index 3a5d11b..f010013 100644
+--- a/src/main/java/org/apache/commons/math3/ode/JacobianMatrices.java
++++ b/src/main/java/org/apache/commons/math3/ode/JacobianMatrices.java
+@@ -389,9 +389,10 @@
+                     boolean found = false;
+                     for (int k = 0 ; (!found) && (k < jacobianProviders.size()); ++k) {
+                         final ParameterJacobianProvider provider = jacobianProviders.get(k);
+-                        if (provider.isSupported(param.getParameterName())) {
++                        String var_2559 = param.getParameterName();
++						if (provider.isSupported(var_2559)) {
+                             provider.computeParameterJacobian(t, y, yDot,
+-                                                              param.getParameterName(), dFdP);
++                                                              var_2559, dFdP);
+                             for (int i = 0; i < stateDim; ++i) {
+                                 final double[] dFdYi = dFdY[i];
+                                 int zIndex = startIndex;

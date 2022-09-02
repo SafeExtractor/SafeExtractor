@@ -1,0 +1,35 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionArgumentInjector.java b/src/com/google/javascript/jscomp/FunctionArgumentInjector.java
+index a6efa7d..cf09c05 100644
+--- a/src/com/google/javascript/jscomp/FunctionArgumentInjector.java
++++ b/src/com/google/javascript/jscomp/FunctionArgumentInjector.java
+@@ -117,9 +117,10 @@
+ 
+     // CALL NODE: [ NAME, ARG1, ARG2, ... ]
+     Node cArg = callNode.getFirstChild().getNext();
+-    if (cArg != null && NodeUtil.isFunctionObjectCall(callNode)) {
++    Node var_820 = cArg.getNext();
++	if (cArg != null && NodeUtil.isFunctionObjectCall(callNode)) {
+       argMap.put(THIS_MARKER, cArg);
+-      cArg = cArg.getNext();
++      cArg = var_820;
+     } else {
+       // 'apply' isn't supported yet.
+       Preconditions.checkState(!NodeUtil.isFunctionObjectApply(callNode));
+@@ -129,7 +130,7 @@
+     for (Node fnArg : NodeUtil.getFunctionParameters(fnNode).children()) {
+       if (cArg != null) {
+         argMap.put(fnArg.getString(), cArg);
+-        cArg = cArg.getNext();
++        cArg = var_820;
+       } else {
+         Node srcLocation = callNode;
+         argMap.put(fnArg.getString(), NodeUtil.newUndefinedNode(srcLocation));
+@@ -143,7 +144,7 @@
+       String uniquePlaceholder =
+         getUniqueAnonymousParameterName(safeNameIdSupplier);
+       argMap.put(uniquePlaceholder, cArg);
+-      cArg = cArg.getNext();
++      cArg = var_820;
+     }
+ 
+     return argMap;

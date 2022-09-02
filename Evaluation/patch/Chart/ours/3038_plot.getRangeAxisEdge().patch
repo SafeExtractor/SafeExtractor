@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/renderer/xy/VectorRenderer.java b/source/org/jfree/chart/renderer/xy/VectorRenderer.java
+index dc9417d..554d086 100644
+--- a/source/org/jfree/chart/renderer/xy/VectorRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/VectorRenderer.java
+@@ -59,6 +59,7 @@
+ import org.jfree.chart.plot.PlotRenderingInfo;
+ import org.jfree.chart.plot.XYPlot;
+ import org.jfree.chart.util.PublicCloneable;
++import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.data.Range;
+ import org.jfree.data.xy.VectorXYDataset;
+ import org.jfree.data.xy.XYDataset;
+@@ -231,12 +232,13 @@
+         }
+         double xx0 = domainAxis.valueToJava2D(x, dataArea,
+                 plot.getDomainAxisEdge());
+-        double yy0 = rangeAxis.valueToJava2D(y, dataArea,
+-                plot.getRangeAxisEdge());
++        RectangleEdge var_3038 = plot.getRangeAxisEdge();
++		double yy0 = rangeAxis.valueToJava2D(y, dataArea,
++                var_3038);
+         double xx1 = domainAxis.valueToJava2D(x + dx, dataArea,
+                 plot.getDomainAxisEdge());
+         double yy1 = rangeAxis.valueToJava2D(y + dy, dataArea,
+-                plot.getRangeAxisEdge());
++                var_3038);
+         Line2D line;
+         PlotOrientation orientation = plot.getOrientation();
+         if (orientation.equals(PlotOrientation.HORIZONTAL)) {

@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/joda/time/format/DateTimeParserBucket.java b/src/main/java/org/joda/time/format/DateTimeParserBucket.java
+index 93dfaa7..844e973 100644
+--- a/src/main/java/org/joda/time/format/DateTimeParserBucket.java
++++ b/src/main/java/org/joda/time/format/DateTimeParserBucket.java
+@@ -446,14 +446,15 @@
+             enclosing.iZone = this.iZone;
+             enclosing.iOffset = this.iOffset;
+             enclosing.iSavedFields = this.iSavedFields;
+-            if (this.iSavedFieldsCount < enclosing.iSavedFieldsCount) {
++            int var_496 = this.iSavedFieldsCount;
++			if (var_496 < enclosing.iSavedFieldsCount) {
+                 // Since count is being restored to a lower count, the
+                 // potential exists for new saved fields to destroy data being
+                 // shared by another state. Set this flag such that the array
+                 // of saved fields is cloned prior to modification.
+                 enclosing.iSavedFieldsShared = true;
+             }
+-            enclosing.iSavedFieldsCount = this.iSavedFieldsCount;
++            enclosing.iSavedFieldsCount = var_496;
+             return true;
+         }
+     }

@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/joda/time/format/ISODateTimeFormat.java b/src/main/java/org/joda/time/format/ISODateTimeFormat.java
+index af53ee4..5bf6041 100644
+--- a/src/main/java/org/joda/time/format/ISODateTimeFormat.java
++++ b/src/main/java/org/joda/time/format/ISODateTimeFormat.java
+@@ -1294,7 +1294,9 @@
+                     })
+                     .toParser();
+ 
+-                return new DateTimeFormatterBuilder()
++                DateTimeFormatterBuilder var_593 = new DateTimeFormatterBuilder()
++				.append(decimalPoint);
++				return new DateTimeFormatterBuilder()
+                     // time-element
+                     .append(hourElement())
+                     .append
+@@ -1308,22 +1310,19 @@
+                             // second-element
+                             .append(secondElement())
+                             // second fraction
+-                            .appendOptional(new DateTimeFormatterBuilder()
+-                                            .append(decimalPoint)
++                            .appendOptional(var_593
+                                             .appendFractionOfSecond(1, 9)
+                                             .toParser())
+                             .toParser(),
+                             // minute fraction
+-                            new DateTimeFormatterBuilder()
+-                            .append(decimalPoint)
++                            var_593
+                             .appendFractionOfMinute(1, 9)
+                             .toParser(),
+                             null
+                         })
+                         .toParser(),
+                         // hour fraction
+-                        new DateTimeFormatterBuilder()
+-                        .append(decimalPoint)
++                        var_593
+                         .appendFractionOfHour(1, 9)
+                         .toParser(),
+                         null

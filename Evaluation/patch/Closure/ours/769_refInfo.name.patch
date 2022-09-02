@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessDefines.java b/src/com/google/javascript/jscomp/ProcessDefines.java
+index e86001d..99cb767 100644
+--- a/src/com/google/javascript/jscomp/ProcessDefines.java
++++ b/src/com/google/javascript/jscomp/ProcessDefines.java
+@@ -288,7 +288,8 @@
+       RefInfo refInfo = allRefInfo.get(n);
+       if (refInfo != null) {
+         Ref ref = refInfo.ref;
+-        Name name = refInfo.name;
++        Name var_769 = refInfo.name;
++		Name name = var_769;
+         String fullName = name.getFullName();
+         switch (ref.type) {
+           case SET_FROM_GLOBAL:
+@@ -308,7 +309,7 @@
+ 
+               // We can't remove the ASSIGN/VAR when we're still visiting its
+               // children, so we'll have to come back later to remove it.
+-              refInfo.name.removeRef(ref);
++              var_769.removeRef(ref);
+               lvalueToRemoveLater = valParent;
+             }
+             break;

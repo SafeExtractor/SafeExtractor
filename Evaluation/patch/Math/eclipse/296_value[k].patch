@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java
+index 56f7bb3..80b1c37 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java
+@@ -209,7 +209,8 @@
+         for (int i = 0; i < topDiagonal.size(); ++i) {
+             double[] dividedDifference = topDiagonal.get(i);
+             for (int k = 0; k < value.length; ++k) {
+-                value[k] = value[k].add(valueCoeff.multiply(dividedDifference[k]));
++                DerivativeStructure var_296 = value[k];
++				value[k] = var_296.add(valueCoeff.multiply(dividedDifference[k]));
+             }
+             final DerivativeStructure deltaX = x.subtract(abscissae.get(i));
+             valueCoeff = valueCoeff.multiply(deltaX);

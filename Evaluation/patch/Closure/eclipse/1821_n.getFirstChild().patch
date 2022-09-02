@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/RenamePrototypes.java b/src/com/google/javascript/jscomp/RenamePrototypes.java
+index c051306..9c460ec 100644
+--- a/src/com/google/javascript/jscomp/RenamePrototypes.java
++++ b/src/com/google/javascript/jscomp/RenamePrototypes.java
+@@ -316,10 +316,11 @@
+ 
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      switch (n.getType()) {
++      Node var_1821 = n.getFirstChild();
++	switch (n.getType()) {
+         case Token.GETPROP:
+         case Token.GETELEM:
+-          Node dest = n.getFirstChild().getNext();
++          Node dest = var_1821.getNext();
+           if (dest.isString()) {
+             String s = dest.getString();
+             if (s.equals("prototype")) {
+@@ -334,7 +335,7 @@
+             // Object literals have their property name/value pairs as a flat
+             // list as their children. We want every other node in order to get
+             // only the property names.
+-            for (Node child = n.getFirstChild();
++            for (Node child = var_1821;
+                  child != null;
+                  child = child.getNext()) {
+ 

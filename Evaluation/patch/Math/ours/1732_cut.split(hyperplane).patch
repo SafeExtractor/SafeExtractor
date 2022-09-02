@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java
+index aca170e..8def68e 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java
+@@ -18,6 +18,7 @@
+ 
+ import org.apache.commons.math3.exception.MathInternalError;
+ import org.apache.commons.math3.geometry.Vector;
++import org.apache.commons.math3.geometry.partitioning.SubHyperplane.SplitSubHyperplane;
+ import org.apache.commons.math3.geometry.Space;
+ import org.apache.commons.math3.util.FastMath;
+ 
+@@ -584,12 +585,13 @@
+ 
+                 // chop off the parts of the inserted tree that extend
+                 // on the wrong side of this parent hyperplane
+-                if (tree == tree.parent.plus) {
+-                    cut = cut.split(hyperplane).getPlus();
++                SplitSubHyperplane<S> var_1732 = cut.split(hyperplane);
++				if (tree == tree.parent.plus) {
++                    cut = var_1732.getPlus();
+                     plus.chopOffMinus(hyperplane);
+                     minus.chopOffMinus(hyperplane);
+                 } else {
+-                    cut = cut.split(hyperplane).getMinus();
++                    cut = var_1732.getMinus();
+                     plus.chopOffPlus(hyperplane);
+                     minus.chopOffPlus(hyperplane);
+                 }

@@ -1,0 +1,18 @@
+diff --git a/source/org/jfree/data/xml/KeyHandler.java b/source/org/jfree/data/xml/KeyHandler.java
+index 1188ba4..aabbde3 100644
+--- a/source/org/jfree/data/xml/KeyHandler.java
++++ b/source/org/jfree/data/xml/KeyHandler.java
+@@ -112,10 +112,11 @@
+                            String qName) throws SAXException {
+ 
+         if (qName.equals(KEY_TAG)) {
+-            this.itemHandler.setKey(getCurrentText());
++            ItemHandler var_4369 = this.itemHandler;
++			var_4369.setKey(getCurrentText());
+             this.rootHandler.popSubHandler();
+             this.rootHandler.pushSubHandler(
+-                new ValueHandler(this.rootHandler, this.itemHandler)
++                new ValueHandler(this.rootHandler, var_4369)
+             );
+         }
+         else {

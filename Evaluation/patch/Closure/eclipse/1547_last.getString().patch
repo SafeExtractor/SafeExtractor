@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..bff65e5 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -144,7 +144,8 @@
+ 
+     cc.startSourceMapping(n);
+ 
+-    switch (type) {
++    String var_1547 = last.getString();
++	switch (type) {
+       case Token.TRY: {
+         Preconditions.checkState(first.getNext().isBlock() &&
+                 !first.getNext().hasMoreThanOneChild());
+@@ -295,7 +296,7 @@
+ 
+         // I only use one .add because whitespace matters
+         if (childCount == 2) {
+-          add(regexp + last.getString());
++          add(regexp + var_1547);
+         } else {
+           Preconditions.checkState(childCount == 1);
+           add(regexp);
+@@ -475,7 +476,7 @@
+           add(")");
+         }
+         add(".");
+-        addIdentifier(last.getString());
++        addIdentifier(var_1547);
+         break;
+       }
+ 

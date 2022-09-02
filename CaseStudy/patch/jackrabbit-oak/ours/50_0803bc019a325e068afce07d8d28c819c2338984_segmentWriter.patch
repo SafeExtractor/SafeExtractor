@@ -1,0 +1,37 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/segment/file/FileStore.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/segment/file/FileStore.java
+index 2053d2a..e547ef4 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/segment/file/FileStore.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/segment/file/FileStore.java
+@@ -63,6 +63,7 @@
+ import org.apache.jackrabbit.oak.plugins.segment.SegmentBlob;
+ import org.apache.jackrabbit.oak.plugins.segment.SegmentId;
+ import org.apache.jackrabbit.oak.plugins.segment.SegmentTracker;
++import org.apache.jackrabbit.oak.plugins.segment.SegmentWriter;
+ import org.apache.jackrabbit.oak.plugins.segment.SegmentNodeState;
+ import org.apache.jackrabbit.oak.plugins.segment.SegmentStore;
+ import org.apache.jackrabbit.oak.spi.blob.BlobStore;
+@@ -383,7 +384,8 @@
+             if (cleanup || !after.equals(before)) {
+                 // needs to happen outside the synchronization block below to
+                 // avoid a deadlock with another thread flushing the writer
+-                tracker.getWriter().flush();
++                SegmentWriter segmentWriter = tracker.getWriter();
++				segmentWriter.flush();
+ 
+                 // needs to happen outside the synchronization block below to
+                 // prevent the flush from stopping concurrent reads and writes
+@@ -399,12 +401,12 @@
+                         long start = System.nanoTime();
+ 
+                         log.debug("TarMK compaction");
+-                        tracker.getWriter().dropCache();
++                        segmentWriter.dropCache();
+                         SegmentNodeState state = new SegmentNodeState(after);
+                         NodeBuilder mem = EmptyNodeState.EMPTY_NODE.builder();
+                         compact(state, "/", 5, mem);
+                         setHead(state,
+-                                tracker.getWriter().writeNode(
++                                segmentWriter.writeNode(
+                                         mem.getNodeState()));
+                         before = null;
+                         after = null;

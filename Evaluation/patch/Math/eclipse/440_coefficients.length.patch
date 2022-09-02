@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunction.java b/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunction.java
+index f00799d..3b1dd85 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunction.java
++++ b/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunction.java
+@@ -233,12 +233,13 @@
+      * @return a new polynomial.
+      */
+     public PolynomialFunction multiply(final PolynomialFunction p) {
+-        double[] newCoefficients = new double[coefficients.length + p.coefficients.length - 1];
++        int var_440 = coefficients.length;
++		double[] newCoefficients = new double[var_440 + p.coefficients.length - 1];
+ 
+         for (int i = 0; i < newCoefficients.length; ++i) {
+             newCoefficients[i] = 0.0;
+             for (int j = FastMath.max(0, i + 1 - p.coefficients.length);
+-                 j < FastMath.min(coefficients.length, i + 1);
++                 j < FastMath.min(var_440, i + 1);
+                  ++j) {
+                 newCoefficients[i] += coefficients[j] * p.coefficients[i-j];
+             }

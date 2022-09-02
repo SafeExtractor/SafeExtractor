@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..ecfd564 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -1715,10 +1715,11 @@
+ 
+       // Functions with explicit 'this' types must be called in a GETPROP
+       // or GETELEM.
+-      if (functionType.isOrdinaryFunction() &&
++      ObjectType var_1015 = functionType.getTypeOfThis().toObjectType();
++	if (functionType.isOrdinaryFunction() &&
+           !functionType.getTypeOfThis().isUnknownType() &&
+-          !(functionType.getTypeOfThis().toObjectType() != null &&
+-          functionType.getTypeOfThis().toObjectType().isNativeObjectType()) &&
++          !(var_1015 != null &&
++          var_1015.isNativeObjectType()) &&
+           !(child.isGetElem() ||
+             child.isGetProp())) {
+         report(t, n, EXPECTED_THIS_TYPE, functionType.toString());

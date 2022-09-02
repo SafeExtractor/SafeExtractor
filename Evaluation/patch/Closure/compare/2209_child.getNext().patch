@@ -1,0 +1,36 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2209_child.getNext().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2209_child.getNext().patch
+index 24c61a0..2948ca0 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2209_child.getNext().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2209_child.getNext().patch
+@@ -1,26 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/jsonml/Writer.java b/src/com/google/javascript/jscomp/jsonml/Writer.java
+-index b357eb9..df1789a 100644
++index b357eb9..09913da 100644
+ --- a/src/com/google/javascript/jscomp/jsonml/Writer.java
+ +++ b/src/com/google/javascript/jscomp/jsonml/Writer.java
+-@@ -392,9 +392,10 @@
+- 
+-     Node child = node.getFirstChild();
++@@ -394,7 +394,8 @@
+      // for case, the first child represents its argument
+--    if (type == TagType.Case) {
+-+    Node var_2209 = child.getNext();
+-+	if (type == TagType.Case) {
++     if (type == TagType.Case) {
+        processNode(child, element);
+ -      child = child.getNext();
+-+      child = var_2209;
+++      Node var_2209 = child.getNext();
+++	child = var_2209;
+      }
+  
+      // it should be a BLOCK which is required by rhino for compatibility
+-@@ -404,7 +405,7 @@
+-     child = child.getFirstChild();
+-     while (child != null) {
+-       processNode(child, element);
+--      child = child.getNext();
+-+      child = var_2209;
+-     }
+-   }
+- 

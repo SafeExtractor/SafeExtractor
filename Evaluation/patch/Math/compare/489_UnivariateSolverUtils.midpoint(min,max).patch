@@ -1,0 +1,32 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/489_UnivariateSolverUtils.midpoint(min,max).patch b/Users/safe/paper/Evaluation/patch/Math/ours/489_UnivariateSolverUtils.midpoint(min,max).patch
+index b311e36..2958432 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/489_UnivariateSolverUtils.midpoint(min,max).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/489_UnivariateSolverUtils.midpoint(min,max).patch
+@@ -1,23 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/analysis/solvers/BisectionSolver.java b/src/main/java/org/apache/commons/math3/analysis/solvers/BisectionSolver.java
+-index 256c933..deac1ea 100644
++index 256c933..a546258 100644
+ --- a/src/main/java/org/apache/commons/math3/analysis/solvers/BisectionSolver.java
+ +++ b/src/main/java/org/apache/commons/math3/analysis/solvers/BisectionSolver.java
+-@@ -71,7 +71,8 @@
+-         double fmin;
+- 
+-         while (true) {
+--            m = UnivariateSolverUtils.midpoint(min, max);
+-+            double var_489 = UnivariateSolverUtils.midpoint(min, max);
+-+			m = var_489;
+-             fmin = computeObjectiveValue(min);
+-             fm = computeObjectiveValue(m);
+- 
+-@@ -84,7 +85,7 @@
++@@ -84,7 +84,8 @@
+              }
+  
+              if (FastMath.abs(max - min) <= absoluteAccuracy) {
+ -                m = UnivariateSolverUtils.midpoint(min, max);
+-+                m = var_489;
+++                double var_489 = UnivariateSolverUtils.midpoint(min, max);
+++				m = var_489;
+                  return m;
+              }
+          }

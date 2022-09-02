@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessTweaks.java b/src/com/google/javascript/jscomp/ProcessTweaks.java
+index e20b902..af71fe1 100644
+--- a/src/com/google/javascript/jscomp/ProcessTweaks.java
++++ b/src/com/google/javascript/jscomp/ProcessTweaks.java
+@@ -372,7 +372,8 @@
+         allTweaks.put(tweakId, tweakInfo);
+       }
+ 
+-      switch (tweakFunc) {
++      boolean var_1393 = tweakInfo.isRegistered();
++	switch (tweakFunc) {
+         case REGISTER_BOOLEAN:
+         case REGISTER_NUMBER:
+         case REGISTER_STRING:
+@@ -389,7 +390,7 @@
+           }
+ 
+           // Ensure tweaks are registered only once.
+-          if (tweakInfo.isRegistered()) {
++          if (var_1393) {
+             compiler.report(
+                 t.makeError(n, TWEAK_MULTIPLY_REGISTERED_ERROR, tweakId));
+             break;
+@@ -407,7 +408,7 @@
+             break;
+           }
+           // Ensure tweak overrides occur before the tweak is registered.
+-          if (tweakInfo.isRegistered()) {
++          if (var_1393) {
+             compiler.report(
+                 t.makeError(n, TWEAK_OVERRIDE_AFTER_REGISTERED_ERROR, tweakId));
+             break;

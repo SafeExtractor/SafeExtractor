@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/CoalesceVariableNames.java b/src/com/google/javascript/jscomp/CoalesceVariableNames.java
+index 11bb585..cc9f813 100644
+--- a/src/com/google/javascript/jscomp/CoalesceVariableNames.java
++++ b/src/com/google/javascript/jscomp/CoalesceVariableNames.java
+@@ -159,7 +159,8 @@
+     }
+     Var coalescedVar = colorings.peek().getPartitionSuperNode(var);
+ 
+-    if (!usePseudoNames) {
++    boolean var_366 = parent.isVar();
++	if (!usePseudoNames) {
+       if (vNode.getValue().equals(coalescedVar)) {
+         // The coalesced name is itself, nothing to do.
+         return;
+@@ -169,7 +170,7 @@
+       n.setString(coalescedVar.name);
+       compiler.reportCodeChange();
+ 
+-      if (parent.isVar()) {
++      if (var_366) {
+         removeVarDeclaration(n);
+       }
+     } else {
+@@ -203,7 +204,7 @@
+       n.setString(pseudoName);
+       compiler.reportCodeChange();
+ 
+-      if (!vNode.getValue().equals(coalescedVar) && parent.isVar()) {
++      if (!vNode.getValue().equals(coalescedVar) && var_366) {
+         removeVarDeclaration(n);
+       }
+     }

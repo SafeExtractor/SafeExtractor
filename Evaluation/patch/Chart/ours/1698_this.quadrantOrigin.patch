@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..545ae32 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -3533,14 +3533,15 @@
+         if (xAxis == null) {  // we can't draw quadrants without a valid x-axis
+             return;
+         }
+-        double x = xAxis.getRange().constrain(this.quadrantOrigin.getX());
++        Point2D var_1698 = this.quadrantOrigin;
++		double x = xAxis.getRange().constrain(var_1698.getX());
+         double xx = xAxis.valueToJava2D(x, area, getDomainAxisEdge());
+ 
+         ValueAxis yAxis = getRangeAxis();
+         if (yAxis == null) {  // we can't draw quadrants without a valid y-axis
+             return;
+         }
+-        double y = yAxis.getRange().constrain(this.quadrantOrigin.getY());
++        double y = yAxis.getRange().constrain(var_1698.getY());
+         double yy = yAxis.valueToJava2D(y, area, getRangeAxisEdge());
+ 
+         double xmin = xAxis.getLowerBound();

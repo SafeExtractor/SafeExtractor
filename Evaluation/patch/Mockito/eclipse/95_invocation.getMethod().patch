@@ -1,0 +1,39 @@
+diff --git a/src/org/mockito/internal/stubbing/defaultanswers/ReturnsEmptyValues.java b/src/org/mockito/internal/stubbing/defaultanswers/ReturnsEmptyValues.java
+index 11304af..0f8df5a 100644
+--- a/src/org/mockito/internal/stubbing/defaultanswers/ReturnsEmptyValues.java
++++ b/src/org/mockito/internal/stubbing/defaultanswers/ReturnsEmptyValues.java
+@@ -6,6 +6,7 @@
+ package org.mockito.internal.stubbing.defaultanswers;
+ 
+ import java.io.Serializable;
++import java.lang.reflect.Method;
+ import java.util.ArrayList;
+ import java.util.Collection;
+ import java.util.HashMap;
+@@ -60,7 +61,8 @@
+      * @see org.mockito.stubbing.Answer#answer(org.mockito.invocation.InvocationOnMock)
+      */
+     public Object answer(InvocationOnMock invocation) {
+-        if (methodsGuru.isToString(invocation.getMethod())) {
++        Method var_95 = invocation.getMethod();
++		if (methodsGuru.isToString(var_95)) {
+             Object mock = invocation.getMock();
+             MockName name = mockUtil.getMockName(mock);
+             if (name.isDefault()) {
+@@ -68,14 +70,14 @@
+             } else {
+                 return name.toString();
+             }
+-        } else if (methodsGuru.isCompareToMethod(invocation.getMethod())) {
++        } else if (methodsGuru.isCompareToMethod(var_95)) {
+             //see issue 184.
+             //mocks by default should return 0 if references are the same, otherwise some other value because they are not the same. Hence we return 1 (anything but 0 is good).
+             //Only for compareTo() method by the Comparable interface
+             return invocation.getMock() == invocation.getArguments()[0] ? 0 : 1;
+         }
+         
+-        Class<?> returnType = invocation.getMethod().getReturnType();
++        Class<?> returnType = var_95.getReturnType();
+         return returnValueFor(returnType);
+     }
+     

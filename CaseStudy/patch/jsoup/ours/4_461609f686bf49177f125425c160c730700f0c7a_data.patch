@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/jsoup/parser/HtmlTreeBuilder.java b/src/main/java/org/jsoup/parser/HtmlTreeBuilder.java
+index b8cc1f0..29137d7 100644
+--- a/src/main/java/org/jsoup/parser/HtmlTreeBuilder.java
++++ b/src/main/java/org/jsoup/parser/HtmlTreeBuilder.java
+@@ -256,10 +256,11 @@
+         Node node;
+         // characters in script and style go in as datanodes, not text nodes
+         String tagName = currentElement().tagName();
+-        if (tagName.equals("script") || tagName.equals("style"))
+-            node = new DataNode(characterToken.getData());
++        String data = characterToken.getData();
++		if (tagName.equals("script") || tagName.equals("style"))
++            node = new DataNode(data);
+         else
+-            node = new TextNode(characterToken.getData());
++            node = new TextNode(data);
+         currentElement().appendChild(node); // doesn't use insertNode, because we don't foster these; and will always have a stack.
+     }
+ 

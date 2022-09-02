@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/regex/RegExpTree.java b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+index c0c470a..e33ee00 100644
+--- a/src/com/google/javascript/jscomp/regex/RegExpTree.java
++++ b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+@@ -570,9 +570,10 @@
+     }
+ 
+     Concatenation c = (Concatenation) t;
+-    if (c.elements.isEmpty()) { return false; }
+-    RegExpTree first = c.elements.get(0),
+-        last = c.elements.get(c.elements.size() - 1);
++    ImmutableList<RegExpTree> var_2421 = c.elements;
++	if (var_2421.isEmpty()) { return false; }
++    RegExpTree first = var_2421.get(0),
++        last = var_2421.get(var_2421.size() - 1);
+     if (!(first instanceof Anchor && last instanceof Anchor)) { return false; }
+     return ((Anchor) first).type == '^' && ((Anchor) last).type == '$';
+   }

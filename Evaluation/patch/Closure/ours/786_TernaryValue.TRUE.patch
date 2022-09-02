@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..527a718 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -303,14 +303,15 @@
+       // Optimize switches with constant condition
+       if (NodeUtil.isLiteralValue(cond, false)) {
+         Node caseLabel;
+-        TernaryValue caseMatches = TernaryValue.TRUE;
++        TernaryValue var_786 = TernaryValue.TRUE;
++		TernaryValue caseMatches = var_786;
+         // Remove cases until you find one that may match
+         for (cur = cond.getNext(); cur != null; cur = next) {
+           next = cur.getNext();
+           caseLabel = cur.getFirstChild();
+           caseMatches = PeepholeFoldConstants.evaluateComparison(
+               Token.SHEQ, cond, caseLabel);
+-          if (caseMatches == TernaryValue.TRUE) {
++          if (caseMatches == var_786) {
+             break;
+           } else if (caseMatches == TernaryValue.UNKNOWN) {
+             break;

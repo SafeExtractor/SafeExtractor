@@ -1,0 +1,38 @@
+diff --git a/src/main/java/org/joda/time/convert/StringConverter.java b/src/main/java/org/joda/time/convert/StringConverter.java
+index ea4553e..04d780c 100644
+--- a/src/main/java/org/joda/time/convert/StringConverter.java
++++ b/src/main/java/org/joda/time/convert/StringConverter.java
+@@ -101,7 +101,8 @@
+         // by the period parser
+         String original = (String) object;
+         String str = original;
+-        int len = str.length();
++        int var_416 = str.length();
++		int len = var_416;
+         if (len >= 4 &&
+             (str.charAt(0) == 'P' || str.charAt(0) == 'p') &&
+             (str.charAt(1) == 'T' || str.charAt(1) == 't') &&
+@@ -113,7 +114,7 @@
+         str = str.substring(2, len - 1);
+         int dot = -1;
+         boolean negative = false;
+-        for (int i = 0; i < str.length(); i++) {
++        for (int i = 0; i < var_416; i++) {
+             if (str.charAt(i) >= '0' && str.charAt(i) <= '9') {
+                 // ok
+             } else if (i == 0 && str.charAt(0) == '-') {
+@@ -131,12 +132,12 @@
+         if (dot > 0) {
+             seconds = Long.parseLong(str.substring(firstDigit, dot));
+             str = str.substring(dot + 1);
+-            if (str.length() != 3) {
++            if (var_416 != 3) {
+                 str = (str + "000").substring(0, 3);
+             }
+             millis = Integer.parseInt(str);
+         } else if (negative) {
+-        	seconds = Long.parseLong(str.substring(firstDigit, str.length()));
++        	seconds = Long.parseLong(str.substring(firstDigit, var_416));
+         } else {
+             seconds = Long.parseLong(str);
+         }

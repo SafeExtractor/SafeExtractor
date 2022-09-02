@@ -1,0 +1,17 @@
+diff --git a/src/org/mockito/internal/creation/util/SearchingClassLoader.java b/src/org/mockito/internal/creation/util/SearchingClassLoader.java
+index 62bd0e4..d959fd5 100644
+--- a/src/org/mockito/internal/creation/util/SearchingClassLoader.java
++++ b/src/org/mockito/internal/creation/util/SearchingClassLoader.java
+@@ -50,9 +50,10 @@
+     }
+     
+     private static ClassLoader combine(List<ClassLoader> parentLoaders) {
+-        ClassLoader loader = parentLoaders.get(parentLoaders.size()-1);
++        int var_20 = parentLoaders.size();
++		ClassLoader loader = parentLoaders.get(var_20-1);
+         
+-        for (int i = parentLoaders.size()-2; i >= 0; i--) {
++        for (int i = var_20-2; i >= 0; i--) {
+             loader = new SearchingClassLoader(parentLoaders.get(i), loader);
+         }
+         

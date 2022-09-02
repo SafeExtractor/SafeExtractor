@@ -1,0 +1,34 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..74c59b1 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -532,10 +532,11 @@
+     }
+ 
+     // Move functions before extracting prototype member declarations.
+-    if (options.moveFunctionDeclarations ||
++    String var_1785 = options.renamePrefixNamespace;
++	if (options.moveFunctionDeclarations ||
+         // renamePrefixNamescape relies on moveFunctionDeclarations
+         // to preserve semantics.
+-        options.renamePrefixNamespace != null) {
++        var_1785 != null) {
+       passes.add(moveFunctionDeclarations);
+     }
+ 
+@@ -661,12 +662,12 @@
+ 
+     passes.add(stripSideEffectProtection);
+ 
+-    if (options.renamePrefixNamespace != null) {
++    if (var_1785 != null) {
+       if (!GLOBAL_SYMBOL_NAMESPACE_PATTERN.matcher(
+-          options.renamePrefixNamespace).matches()) {
++          var_1785).matches()) {
+         throw new IllegalArgumentException(
+             "Illegal character in renamePrefixNamespace name: "
+-            + options.renamePrefixNamespace);
++            + var_1785);
+       }
+       passes.add(rescopeGlobalSymbols);
+     }

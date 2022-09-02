@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/renderer/category/LineRenderer3D.java b/source/org/jfree/chart/renderer/category/LineRenderer3D.java
+index 68c0447..c778556 100644
+--- a/source/org/jfree/chart/renderer/category/LineRenderer3D.java
++++ b/source/org/jfree/chart/renderer/category/LineRenderer3D.java
+@@ -525,9 +525,10 @@
+             return;
+         }
+ 
+-        Rectangle2D adjusted = new Rectangle2D.Double(dataArea.getX(),
++        double var_2572 = getXOffset();
++		Rectangle2D adjusted = new Rectangle2D.Double(dataArea.getX(),
+                 dataArea.getY() + getYOffset(),
+-                dataArea.getWidth() - getXOffset(),
++                dataArea.getWidth() - var_2572,
+                 dataArea.getHeight() - getYOffset());
+ 
+         PlotOrientation orientation = plot.getOrientation();
+@@ -561,9 +562,9 @@
+                     double y0 = rangeAxis.valueToJava2D(previous, adjusted,
+                             plot.getRangeAxisEdge());
+ 
+-                    double x2 = x0 + getXOffset();
++                    double x2 = x0 + var_2572;
+                     double y2 = y0 - getYOffset();
+-                    double x3 = x1 + getXOffset();
++                    double x3 = x1 + var_2572;
+                     double y3 = y1 - getYOffset();
+ 
+                     GeneralPath clip = new GeneralPath();

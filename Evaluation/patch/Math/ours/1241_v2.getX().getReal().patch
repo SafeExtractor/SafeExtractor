@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..f081edd 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -580,7 +580,8 @@
+             // and we can choose to have theta in the interval [-PI/2 ; +PI/2]
+             final FieldVector3D<T> v1 = applyTo(vector(1, 0, 0));
+             final FieldVector3D<T> v2 = applyInverseTo(vector(0, 0, 1));
+-            if ((v2.getX().getReal() < -0.9999999999) || (v2.getX().getReal() > 0.9999999999)) {
++            double var_1241 = v2.getX().getReal();
++			if ((var_1241 < -0.9999999999) || (var_1241 > 0.9999999999)) {
+                 throw new CardanEulerSingularityException(true);
+             }
+             return buildArray(v1.getY().atan2(v1.getX()),

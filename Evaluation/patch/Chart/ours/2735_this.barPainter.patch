@@ -1,0 +1,20 @@
+diff --git a/source/org/jfree/chart/renderer/category/BarRenderer.java b/source/org/jfree/chart/renderer/category/BarRenderer.java
+index 37da044..0d6c137 100644
+--- a/source/org/jfree/chart/renderer/category/BarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/BarRenderer.java
+@@ -1025,11 +1025,12 @@
+             bar = new Rectangle2D.Double(barW0, barL0 - barL0Adj,
+                     state.getBarWidth(), barLength + barLengthAdj);
+         }
+-        if (getShadowsVisible()) {
+-            this.barPainter.paintBarShadow(g2, this, row, column, selected, 
++        BarPainter var_2735 = this.barPainter;
++		if (getShadowsVisible()) {
++            var_2735.paintBarShadow(g2, this, row, column, selected, 
+                     bar, barBase, true);
+         }
+-        this.barPainter.paintBar(g2, this, row, column, selected, bar,
++        var_2735.paintBar(g2, this, row, column, selected, bar,
+                 barBase);
+ 
+         CategoryItemLabelGenerator generator = getItemLabelGenerator(row,

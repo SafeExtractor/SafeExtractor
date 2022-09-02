@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/RenamePrototypes.java b/src/com/google/javascript/jscomp/RenamePrototypes.java
+index c051306..11e6a9c 100644
+--- a/src/com/google/javascript/jscomp/RenamePrototypes.java
++++ b/src/com/google/javascript/jscomp/RenamePrototypes.java
+@@ -93,14 +93,15 @@
+       if (this.prototypeCount > 0 && this.objLitCount == 0) {
+         return canRenamePrototypeProperty();
+       }
+-      if (this.objLitCount > 0 && this.prototypeCount == 0) {
+-        return canRenameObjLitProperty();
++      boolean var_1815 = canRenameObjLitProperty();
++	if (this.objLitCount > 0 && this.prototypeCount == 0) {
++        return var_1815;
+       }
+       // We're not sure what kind of property this is, so we're conservative.
+       // Note that we still want to try renaming the property even when both
+       // counts are zero. It may be a property added to an object at runtime,
+       // like: o.newProp = x;
+-      return canRenamePrototypeProperty() && canRenameObjLitProperty();
++      return canRenamePrototypeProperty() && var_1815;
+     }
+ 
+     private boolean canRenamePrototypeProperty() {

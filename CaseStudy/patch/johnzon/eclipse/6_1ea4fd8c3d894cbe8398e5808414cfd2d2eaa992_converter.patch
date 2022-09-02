@@ -1,0 +1,14 @@
+diff --git a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/reflection/Mappings.java b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/reflection/Mappings.java
+index 60ccace..16f208d 100644
+--- a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/reflection/Mappings.java
++++ b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/reflection/Mappings.java
+@@ -85,7 +85,8 @@
+                     for (final Annotation a : this.constructor.getParameterAnnotations()[i]) {
+                         if (a.annotationType() == JohnzonConverter.class) {
+                             try {
+-                                this.constructorParameterConverters[i] = JohnzonConverter.class.cast(a).value().newInstance();
++                                Converter<?> converter = JohnzonConverter.class.cast(a).value().newInstance();
++								this.constructorParameterConverters[i] = converter;
+                             } catch (final Exception e) {
+                                 throw new IllegalArgumentException(e);
+                             }

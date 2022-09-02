@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..e97cb1c 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -248,13 +248,14 @@
+       addParameterAfter(bind.parameters, callTarget);
+ 
+       // add the this value before the parameters if necessary
+-      if (bind.thisValue != null && !NodeUtil.isUndefined(bind.thisValue)) {
++      Node var_1418 = bind.thisValue;
++	if (var_1418 != null && !NodeUtil.isUndefined(var_1418)) {
+         // rewrite from "fn(a, b)" to "fn.call(thisValue, a, b)"
+         Node newCallTarget = IR.getprop(
+             callTarget.cloneTree(),
+             IR.string("call").srcref(callTarget));
+         n.replaceChild(callTarget, newCallTarget);
+-        n.addChildAfter(bind.thisValue.cloneTree(), newCallTarget);
++        n.addChildAfter(var_1418.cloneTree(), newCallTarget);
+         n.putBooleanProp(Node.FREE_CALL, false);
+       } else {
+         n.putBooleanProp(Node.FREE_CALL, true);

@@ -1,0 +1,48 @@
+diff --git a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+index 4e56fef..75ba182 100644
+--- a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
++++ b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+@@ -24,6 +24,7 @@
+ import java.io.IOException;
+ import java.io.InputStream;
+ import java.io.OutputStream;
++import java.io.PrintStream;
+ import java.util.ArrayList;
+ import java.util.HashMap;
+ import java.util.List;
+@@ -281,7 +282,8 @@
+ 
+         List<Long> transitions = new ArrayList<Long>();
+ 
+-        while (true) {
++        PrintStream var_624 = System.out;
++		while (true) {
+             long next = tz.nextTransition(millis);
+             if (next == millis || next > end) {
+                 break;
+@@ -294,14 +296,14 @@
+ 
+             if (offset == nextOffset
+                 && key.equals(nextKey)) {
+-                System.out.println("*d* Error in " + tz.getID() + " "
++                var_624.println("*d* Error in " + tz.getID() + " "
+                                    + new DateTime(millis,
+                                                   ISOChronology.getInstanceUTC()));
+                 return false;
+             }
+ 
+             if (nextKey == null || (nextKey.length() < 3 && !"??".equals(nextKey))) {
+-                System.out.println("*s* Error in " + tz.getID() + " "
++                var_624.println("*s* Error in " + tz.getID() + " "
+                                    + new DateTime(millis,
+                                                   ISOChronology.getInstanceUTC())
+                                    + ", nameKey=" + nextKey);
+@@ -330,7 +332,7 @@
+             long trans = transitions.get(i).longValue();
+             
+             if (trans - 1 != millis) {
+-                System.out.println("*r* Error in " + tz.getID() + " "
++                var_624.println("*r* Error in " + tz.getID() + " "
+                                    + new DateTime(millis,
+                                                   ISOChronology.getInstanceUTC()) + " != "
+                                    + new DateTime(trans - 1,

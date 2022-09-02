@@ -1,0 +1,34 @@
+diff --git a/src/com/google/javascript/jscomp/RemoveUnusedVars.java b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+index 4c84735..fc1c254 100644
+--- a/src/com/google/javascript/jscomp/RemoveUnusedVars.java
++++ b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+@@ -824,8 +824,9 @@
+       Node toRemove = nameNode.getParent();
+       Node parent = toRemove.getParent();
+ 
+-      Preconditions.checkState(
+-          toRemove.isVar() ||
++      boolean var_616 = toRemove.isVar();
++	Preconditions.checkState(
++          var_616 ||
+           toRemove.isFunction() ||
+           toRemove.isParamList() &&
+           parent.isFunction(),
+@@ -845,7 +846,7 @@
+           parent.isFor() &&
+           parent.getChildCount() < 4) {
+         // foreach iterations have 3 children. Leave them alone.
+-      } else if (toRemove.isVar() &&
++      } else if (var_616 &&
+           nameNode.hasChildren() &&
+           NodeUtil.mayHaveSideEffects(nameNode.getFirstChild(), compiler)) {
+         // If this is a single var declaration, we can at least remove the
+@@ -856,7 +857,7 @@
+               IR.exprResult(nameNode.removeFirstChild()));
+           compiler.reportCodeChange();
+         }
+-      } else if (toRemove.isVar() &&
++      } else if (var_616 &&
+           toRemove.getChildCount() > 1) {
+         // For var declarations with multiple names (i.e. var a, b, c),
+         // only remove the unreferenced name

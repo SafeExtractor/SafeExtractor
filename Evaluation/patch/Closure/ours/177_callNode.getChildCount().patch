@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/ClosureCodingConvention.java b/src/com/google/javascript/jscomp/ClosureCodingConvention.java
+index f78afdb..38c4bab 100644
+--- a/src/com/google/javascript/jscomp/ClosureCodingConvention.java
++++ b/src/com/google/javascript/jscomp/ClosureCodingConvention.java
+@@ -110,12 +110,13 @@
+       // SubClass.mixin(SuperClass.prototype)
+       // goog.mixin(SubClass.prototype, SuperClass.prototype)
+       // goog$mixin(SubClass.prototype, SuperClass.prototype)
+-      boolean isDeprecatedCall = callNode.getChildCount() == 2 &&
++      int var_177 = callNode.getChildCount();
++	boolean isDeprecatedCall = var_177 == 2 &&
+           callName.isGetProp();
+       if (isDeprecatedCall) {
+         // SubClass.inherits(SuperClass)
+         subclass = callName.getFirstChild();
+-      } else if (callNode.getChildCount() == 3) {
++      } else if (var_177 == 3) {
+         // goog.inherits(SubClass, SuperClass)
+         subclass = callName.getNext();
+       } else {

@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/random/ValueServer.java b/src/main/java/org/apache/commons/math3/random/ValueServer.java
+index bfc3189..a8dd8e7 100644
+--- a/src/main/java/org/apache/commons/math3/random/ValueServer.java
++++ b/src/main/java/org/apache/commons/math3/random/ValueServer.java
+@@ -27,6 +27,7 @@
+ import org.apache.commons.math3.exception.NullArgumentException;
+ import org.apache.commons.math3.exception.ZeroException;
+ import org.apache.commons.math3.exception.util.LocalizedFormats;
++import org.apache.commons.math3.stat.descriptive.StatisticalSummary;
+ 
+ /**
+  * Generates values for use in simulation applications.
+@@ -218,8 +219,9 @@
+     public void computeDistribution(int binCount) throws NullArgumentException, IOException, ZeroException {
+         empiricalDistribution = new EmpiricalDistribution(binCount, randomData);
+         empiricalDistribution.load(valuesFileURL);
+-        mu = empiricalDistribution.getSampleStats().getMean();
+-        sigma = empiricalDistribution.getSampleStats().getStandardDeviation();
++        StatisticalSummary var_3615 = empiricalDistribution.getSampleStats();
++		mu = var_3615.getMean();
++        sigma = var_3615.getStandardDeviation();
+     }
+ 
+     /**

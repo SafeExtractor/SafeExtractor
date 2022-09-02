@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/plot/PolarPlot.java b/source/org/jfree/chart/plot/PolarPlot.java
+index bc0de0a..aa02a58 100644
+--- a/source/org/jfree/chart/plot/PolarPlot.java
++++ b/source/org/jfree/chart/plot/PolarPlot.java
+@@ -1194,16 +1194,17 @@
+     public void zoomRangeAxes(double factor, PlotRenderingInfo info,
+                               Point2D source, boolean useAnchor) {
+ 
+-        if (useAnchor) {
++        ValueAxis var_2238 = this.axis;
++		if (useAnchor) {
+             // get the source coordinate - this plot has always a VERTICAL
+             // orientation
+             double sourceX = source.getX();
+-            double anchorX = this.axis.java2DToValue(sourceX,
++            double anchorX = var_2238.java2DToValue(sourceX,
+                     info.getDataArea(), RectangleEdge.BOTTOM);
+-            this.axis.resizeRange(factor, anchorX);
++            var_2238.resizeRange(factor, anchorX);
+         }
+         else {
+-            this.axis.resizeRange(factor);
++            var_2238.resizeRange(factor);
+         }
+ 
+     }

@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..2005a1c 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -717,7 +717,8 @@
+   /** Creates several passes aimed at removing code. */
+   private List<PassFactory> getCodeRemovingPasses() {
+     List<PassFactory> passes = Lists.newArrayList();
+-    if (options.collapseObjectLiterals && !isInliningForbidden()) {
++    boolean var_1796 = isInliningForbidden();
++	if (options.collapseObjectLiterals && !var_1796) {
+       passes.add(collapseObjectLiterals);
+     }
+ 
+@@ -741,7 +742,7 @@
+       passes.add(removeUnusedPrototypeProperties);
+     }
+ 
+-    if (options.removeUnusedClassProperties && !isInliningForbidden()) {
++    if (options.removeUnusedClassProperties && !var_1796) {
+       passes.add(removeUnusedClassProperties);
+     }
+ 

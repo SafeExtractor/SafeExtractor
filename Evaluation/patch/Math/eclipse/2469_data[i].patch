@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java b/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java
+index 786e707..0a4fe9c 100644
+--- a/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java
+@@ -592,7 +592,8 @@
+         final T[][] out = MathArrays.buildArray(getField(), nRows, getColumnDimension());
+         // can't copy 2-d array in one shot, otherwise get row references
+         for (int i = 0; i < nRows; i++) {
+-            System.arraycopy(data[i], 0, out[i], 0, data[i].length);
++            T[] var_2469 = data[i];
++			System.arraycopy(var_2469, 0, out[i], 0, var_2469.length);
+         }
+         return out;
+     }

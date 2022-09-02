@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/Normalize.java b/src/com/google/javascript/jscomp/Normalize.java
+index 98b136e..c2e4430 100644
+--- a/src/com/google/javascript/jscomp/Normalize.java
++++ b/src/com/google/javascript/jscomp/Normalize.java
+@@ -236,13 +236,14 @@
+     public void visit(NodeTraversal t, Node n, Node parent) {
+       // Note: Constant properties annotations are not propagated.
+       if (n.isName()) {
+-        if (n.getString().isEmpty()) {
++        String var_1252 = n.getString();
++		if (var_1252.isEmpty()) {
+           return;
+         }
+ 
+         JSDocInfo info = null;
+         // Find the JSDocInfo for a top-level variable.
+-        Var var = t.getScope().getVar(n.getString());
++        Var var = t.getScope().getVar(var_1252);
+         if (var != null) {
+           info = var.getJSDocInfo();
+         }
+@@ -254,7 +255,7 @@
+         boolean isMarkedConstant = n.getBooleanProp(Node.IS_CONSTANT_NAME);
+         if (shouldBeConstant && !isMarkedConstant) {
+           if (assertOnChange) {
+-            String name = n.getString();
++            String name = var_1252;
+             throw new IllegalStateException(
+                 "Unexpected const change.\n" +
+                 "  name: "+ name + "\n" +

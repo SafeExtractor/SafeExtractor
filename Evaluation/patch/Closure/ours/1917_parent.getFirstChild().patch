@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..df0b2bb 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -716,7 +716,8 @@
+     }
+ 
+     // If we are just before a IF/WHILE/DO/FOR:
+-    switch (parent.getType()) {
++    Node var_1917 = parent.getFirstChild();
++	switch (parent.getType()) {
+       // The follow() of any of the path from IF would be what follows IF.
+       case Token.IF:
+         return computeFollowNode(fromNode, parent, cfa);
+@@ -740,14 +741,14 @@
+         if (NodeUtil.isForIn(parent)) {
+           return parent;
+         } else {
+-          return parent.getFirstChild().getNext().getNext();
++          return var_1917.getNext().getNext();
+         }
+       case Token.WHILE:
+       case Token.DO:
+         return parent;
+       case Token.TRY:
+         // If we are coming out of the TRY block...
+-        if (parent.getFirstChild() == node) {
++        if (var_1917 == node) {
+           if (NodeUtil.hasFinally(parent)) { // and have FINALLY block.
+             return computeFallThrough(parent.getLastChild());
+           } else { // and have no FINALLY.

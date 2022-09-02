@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+index fa5c164..eb7c989 100644
+--- a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
++++ b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+@@ -380,14 +380,15 @@
+         }
+ 
+         // Check if a simpler zone implementation can be returned.
+-        if (transitions.size() == 0) {
++        int var_658 = transitions.size();
++		if (var_658 == 0) {
+             if (tailZone != null) {
+                 // This shouldn't happen, but handle just in case.
+                 return tailZone;
+             }
+             return buildFixedZone(id, "UTC", 0, 0);
+         }
+-        if (transitions.size() == 1 && tailZone == null) {
++        if (var_658 == 1 && tailZone == null) {
+             Transition tr = transitions.get(0);
+             return buildFixedZone(id, tr.getNameKey(),
+                                   tr.getWallOffset(), tr.getStandardOffset());

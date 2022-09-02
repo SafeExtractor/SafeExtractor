@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/block/FlowArrangement.java b/source/org/jfree/chart/block/FlowArrangement.java
+index ac17808..660eaca 100644
+--- a/source/org/jfree/chart/block/FlowArrangement.java
++++ b/source/org/jfree/chart/block/FlowArrangement.java
+@@ -52,6 +52,7 @@
+ import org.jfree.chart.util.HorizontalAlignment;
+ import org.jfree.chart.util.Size2D;
+ import org.jfree.chart.util.VerticalAlignment;
++import org.jfree.data.Range;
+ 
+ /**
+  * Arranges blocks in a flow layout.  This class is immutable.
+@@ -238,12 +239,13 @@
+                                RectangleConstraint constraint) {
+ 
+         Size2D s = arrangeFN(container, g2, constraint);
+-        if (constraint.getHeightRange().contains(s.height)) {
++        Range var_1019 = constraint.getHeightRange();
++		if (var_1019.contains(s.height)) {
+             return s;
+         }
+         else {
+             RectangleConstraint c = constraint.toFixedHeight(
+-                constraint.getHeightRange().constrain(s.getHeight())
++                var_1019.constrain(s.getHeight())
+             );
+             return arrangeFF(container, g2, c);
+         }

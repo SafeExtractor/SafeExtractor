@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+index 3dc8ec6..96692d6 100644
+--- a/src/com/google/javascript/jscomp/TypeInference.java
++++ b/src/com/google/javascript/jscomp/TypeInference.java
+@@ -872,10 +872,13 @@
+       FunctionType fnType = functionType.toMaybeFunctionType();
+       n.setJSType(fnType.getReturnType());
+       backwardsInferenceFromCallSite(n, fnType);
+-    } else if (functionType.isEquivalentTo(
+-        getNativeType(CHECKED_UNKNOWN_TYPE))) {
+-      n.setJSType(getNativeType(CHECKED_UNKNOWN_TYPE));
+-    }
++    } else {
++		JSType var_954 = getNativeType(CHECKED_UNKNOWN_TYPE);
++		if (functionType.isEquivalentTo(
++		    var_954)) {
++		  n.setJSType(var_954);
++		}
++	}
+ 
+     scope = tightenTypesAfterAssertions(scope, n);
+     return scope;

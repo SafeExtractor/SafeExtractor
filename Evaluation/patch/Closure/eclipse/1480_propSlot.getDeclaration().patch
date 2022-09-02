@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/TypeValidator.java b/src/com/google/javascript/jscomp/TypeValidator.java
+index 5feecd0..b05c63d 100644
+--- a/src/com/google/javascript/jscomp/TypeValidator.java
++++ b/src/com/google/javascript/jscomp/TypeValidator.java
+@@ -38,6 +38,7 @@
+ import com.google.javascript.rhino.jstype.JSTypeNative;
+ import com.google.javascript.rhino.jstype.JSTypeRegistry;
+ import com.google.javascript.rhino.jstype.ObjectType;
++import com.google.javascript.rhino.jstype.StaticReference;
+ import com.google.javascript.rhino.jstype.StaticSlot;
+ import com.google.javascript.rhino.jstype.UnknownType;
+ 
+@@ -608,8 +609,9 @@
+           INTERFACE_METHOD_NOT_IMPLEMENTED,
+           prop, implementedInterface.toString(), instance.toString())));
+     } else {
+-      Node propNode = propSlot.getDeclaration() == null ?
+-          null : propSlot.getDeclaration().getNode();
++      StaticReference<JSType> var_1480 = propSlot.getDeclaration();
++	Node propNode = var_1480 == null ?
++          null : var_1480.getNode();
+ 
+       // Fall back on the constructor node if we can't find a node for the
+       // property.

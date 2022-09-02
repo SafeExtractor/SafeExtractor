@@ -1,0 +1,35 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/FastMath.java b/src/main/java/org/apache/commons/math3/util/FastMath.java
+index 919e39f..e9e4d17 100644
+--- a/src/main/java/org/apache/commons/math3/util/FastMath.java
++++ b/src/main/java/org/apache/commons/math3/util/FastMath.java
+@@ -3081,11 +3081,12 @@
+         // compute scaled exponent
+         int scaledExponent = exponent + n;
+ 
+-        if (n < 0) {
++        double var_4344 = Double.longBitsToDouble(sign | (((long) scaledExponent) << 52) | mantissa);
++		if (n < 0) {
+             // we are really in the case n <= -1023
+             if (scaledExponent > 0) {
+                 // both the input and the result are normal numbers, we only adjust the exponent
+-                return Double.longBitsToDouble(sign | (((long) scaledExponent) << 52) | mantissa);
++                return var_4344;
+             } else if (scaledExponent > -53) {
+                 // the input is a normal number and the result is a subnormal number
+ 
+@@ -3118,13 +3119,13 @@
+                 mantissa = mantissa & 0x000fffffffffffffL;
+ 
+                 if (scaledExponent < 2047) {
+-                    return Double.longBitsToDouble(sign | (((long) scaledExponent) << 52) | mantissa);
++                    return var_4344;
+                 } else {
+                     return (sign == 0L) ? Double.POSITIVE_INFINITY : Double.NEGATIVE_INFINITY;
+                 }
+ 
+             } else if (scaledExponent < 2047) {
+-                return Double.longBitsToDouble(sign | (((long) scaledExponent) << 52) | mantissa);
++                return var_4344;
+             } else {
+                 return (sign == 0L) ? Double.POSITIVE_INFINITY : Double.NEGATIVE_INFINITY;
+             }

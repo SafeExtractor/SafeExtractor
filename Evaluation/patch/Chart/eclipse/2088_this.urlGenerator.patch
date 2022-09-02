@@ -1,0 +1,17 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot.java b/source/org/jfree/chart/plot/PiePlot.java
+index 34014e9..3177564 100644
+--- a/source/org/jfree/chart/plot/PiePlot.java
++++ b/source/org/jfree/chart/plot/PiePlot.java
+@@ -3655,9 +3655,10 @@
+         if (clone.dataset != null) {
+             clone.dataset.addChangeListener(clone);
+         }
+-        if (this.urlGenerator instanceof PublicCloneable) {
++        PieURLGenerator var_2088 = this.urlGenerator;
++		if (var_2088 instanceof PublicCloneable) {
+             clone.urlGenerator = (PieURLGenerator) ObjectUtilities.clone(
+-                    this.urlGenerator);
++                    var_2088);
+         }
+         clone.legendItemShape = ShapeUtilities.clone(this.legendItemShape);
+         if (this.legendLabelGenerator != null) {

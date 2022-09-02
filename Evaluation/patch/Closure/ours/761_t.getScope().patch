@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/DataFlowAnalysis.java b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+index 5b39646..96b40fc 100644
+--- a/src/com/google/javascript/jscomp/DataFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+@@ -551,12 +551,13 @@
+     AbstractPostOrderCallback finder = new AbstractPostOrderCallback() {
+       @Override
+       public void visit(NodeTraversal t, Node n, Node parent) {
+-        if (jsScope == t.getScope() || !n.isName()
++        Scope var_761 = t.getScope();
++		if (jsScope == var_761 || !n.isName()
+             || parent.isFunction()) {
+           return;
+         }
+         String name = n.getString();
+-        Var var = t.getScope().getVar(name);
++        Var var = var_761.getVar(name);
+         if (var != null && var.scope == jsScope) {
+           escaped.add(jsScope.getVar(name));
+         }

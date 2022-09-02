@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/InlineProperties.java b/src/com/google/javascript/jscomp/InlineProperties.java
+index 185c38e..47b7785 100644
+--- a/src/com/google/javascript/jscomp/InlineProperties.java
++++ b/src/com/google/javascript/jscomp/InlineProperties.java
+@@ -168,9 +168,10 @@
+     public void visit(NodeTraversal t, Node n, Node parent) {
+       boolean invalidatingPropRef = false;
+       String propName = null;
+-      if (n.isGetProp()) {
++      boolean var_592 = t.getInput().isExtern();
++	if (n.isGetProp()) {
+         propName = n.getLastChild().getString();
+-        if (t.getInput().isExtern()) {
++        if (var_592) {
+           // Any extern reference invalidates
+           invalidatingPropRef = true;
+         } else if (parent.isAssign()) {
+@@ -187,7 +188,7 @@
+         }
+       } else if (n.isStringKey()) {
+         propName = n.getString();
+-        if (t.getInput().isExtern()) {
++        if (var_592) {
+           // Any extern reference invalidates
+           invalidatingPropRef = true;
+         } else {

@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/random/EmpiricalDistribution.java b/src/main/java/org/apache/commons/math3/random/EmpiricalDistribution.java
+index fd80280..2c22b43 100644
+--- a/src/main/java/org/apache/commons/math3/random/EmpiricalDistribution.java
++++ b/src/main/java/org/apache/commons/math3/random/EmpiricalDistribution.java
+@@ -254,8 +254,9 @@
+     public void load(URL url) throws IOException, NullArgumentException, ZeroException {
+         MathUtils.checkNotNull(url);
+         Charset charset = Charset.forName(FILE_CHARSET);
+-        BufferedReader in =
+-            new BufferedReader(new InputStreamReader(url.openStream(), charset));
++        InputStream var_3612 = url.openStream();
++		BufferedReader in =
++            new BufferedReader(new InputStreamReader(var_3612, charset));
+         try {
+             DataAdapter da = new StreamDataAdapter(in);
+             da.computeStats();
+@@ -263,7 +264,7 @@
+                 throw new ZeroException(LocalizedFormats.URL_CONTAINS_NO_DATA, url);
+             }
+             // new adapter for the second pass
+-            in = new BufferedReader(new InputStreamReader(url.openStream(), charset));
++            in = new BufferedReader(new InputStreamReader(var_3612, charset));
+             fillBinStats(new StreamDataAdapter(in));
+             loaded = true;
+         } finally {

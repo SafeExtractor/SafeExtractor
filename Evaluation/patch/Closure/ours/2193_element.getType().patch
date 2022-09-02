@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/jsonml/Reader.java b/src/com/google/javascript/jscomp/jsonml/Reader.java
+index 9b7e760..9fcc9f3 100644
+--- a/src/com/google/javascript/jscomp/jsonml/Reader.java
++++ b/src/com/google/javascript/jscomp/jsonml/Reader.java
+@@ -526,14 +526,15 @@
+ 
+     // in theory it should be always EmptyStmt, but due to possible
+     // compatibility issues Empty element is allowed as well
+-    if (element.getType() == TagType.EmptyStmt ||
+-        element.getType() == TagType.Empty) {
++    TagType var_2193 = element.getType();
++	if (var_2193 == TagType.EmptyStmt ||
++        var_2193 == TagType.Empty) {
+       nodeIndex++;
+       // Empty elements are only replaced by BLOCK node
+       Node block = IR.block();
+       parent.addChildToBack(block);
+       block.putBooleanProp(Node.EMPTY_BLOCK, true);
+-    } else if (element.getType() != TagType.BlockStmt) {
++    } else if (var_2193 != TagType.BlockStmt) {
+       Node block = IR.block();
+       parent.addChildToBack(block);
+       boolean state = insertExprResultState;

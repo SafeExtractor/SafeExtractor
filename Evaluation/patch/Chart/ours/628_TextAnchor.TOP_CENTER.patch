@@ -1,0 +1,40 @@
+diff --git a/source/org/jfree/chart/axis/NumberAxis.java b/source/org/jfree/chart/axis/NumberAxis.java
+index f5426ab..3979ad6 100644
+--- a/source/org/jfree/chart/axis/NumberAxis.java
++++ b/source/org/jfree/chart/axis/NumberAxis.java
+@@ -1188,12 +1188,13 @@
+             if (minorTickSpaces <= 0) {
+                 minorTickSpaces = tu.getMinorTickCount();
+             }
+-            for (int minorTick = 1; minorTick < minorTickSpaces; minorTick++) {
++            TextAnchor var_628 = TextAnchor.TOP_CENTER;
++			for (int minorTick = 1; minorTick < minorTickSpaces; minorTick++) {
+                 double minorTickValue = lowestTickValue
+                         - size * minorTick / minorTickSpaces;
+                 if (getRange().contains(minorTickValue)){
+                     result.add(new NumberTick(TickType.MINOR, minorTickValue,
+-                            "", TextAnchor.TOP_CENTER, TextAnchor.CENTER,
++                            "", var_628, TextAnchor.CENTER,
+                             0.0));
+                 }
+             }
+@@ -1226,8 +1227,8 @@
+                         rotationAnchor = TextAnchor.BOTTOM_CENTER;
+                     }
+                     else {
+-                        anchor = TextAnchor.TOP_CENTER;
+-                        rotationAnchor = TextAnchor.TOP_CENTER;
++                        anchor = var_628;
++                        rotationAnchor = var_628;
+                     }
+                 }
+ 
+@@ -1242,7 +1243,7 @@
+                             * minorTick / minorTickSpaces;
+                     if (getRange().contains(minorTickValue)) {
+                         result.add(new NumberTick(TickType.MINOR,
+-                                minorTickValue, "", TextAnchor.TOP_CENTER,
++                                minorTickValue, "", var_628,
+                                 TextAnchor.CENTER, 0.0));
+                     }
+                 }

@@ -1,0 +1,31 @@
+diff --git a/source/org/jfree/chart/plot/PolarPlot.java b/source/org/jfree/chart/plot/PolarPlot.java
+index bc0de0a..48584af 100644
+--- a/source/org/jfree/chart/plot/PolarPlot.java
++++ b/source/org/jfree/chart/plot/PolarPlot.java
+@@ -345,20 +345,21 @@
+     public void setDataset(XYDataset dataset) {
+         // if there is an existing dataset, remove the plot from the list of
+         // change listeners...
+-        XYDataset existing = this.dataset;
++        XYDataset var_2208 = this.dataset;
++		XYDataset existing = var_2208;
+         if (existing != null) {
+             existing.removeChangeListener(this);
+         }
+ 
+         // set the new dataset, and register the chart as a change listener...
+         this.dataset = dataset;
+-        if (this.dataset != null) {
+-            setDatasetGroup(this.dataset.getGroup());
+-            this.dataset.addChangeListener(this);
++        if (var_2208 != null) {
++            setDatasetGroup(var_2208.getGroup());
++            var_2208.addChangeListener(this);
+         }
+ 
+         // send a dataset change event to self...
+-        DatasetChangeEvent event = new DatasetChangeEvent(this, this.dataset,
++        DatasetChangeEvent event = new DatasetChangeEvent(this, var_2208,
+                 new DatasetChangeInfo());
+         // TODO: fill in real dataset change type
+         datasetChanged(event);

@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+index 3dc8ec6..ab7cb4f 100644
+--- a/src/com/google/javascript/jscomp/TypeInference.java
++++ b/src/com/google/javascript/jscomp/TypeInference.java
+@@ -587,7 +587,8 @@
+       registry.registerPropertyOnType(propName, nodeType);
+     } else {
+       // Don't add the property to @struct objects outside a constructor
+-      if (nodeType.isStruct() && !objectType.hasProperty(propName)) {
++      boolean var_944 = objectType.hasProperty(propName);
++	if (nodeType.isStruct() && !var_944) {
+         if (!(obj.isThis() &&
+               getJSType(syntacticScope.getRootNode()).isConstructor())) {
+           return;
+@@ -611,7 +612,7 @@
+         // 4) If this is a stub, define it.
+         // 5) Otherwise, do not define the type, but declare it in the registry
+         //    so that we can use it for missing property checks.
+-        if (objectType.hasProperty(propName) || !objectType.isInstanceType()) {
++        if (var_944 || !objectType.isInstanceType()) {
+           if ("prototype".equals(propName)) {
+             objectType.defineDeclaredProperty(propName, rightType, getprop);
+           } else {

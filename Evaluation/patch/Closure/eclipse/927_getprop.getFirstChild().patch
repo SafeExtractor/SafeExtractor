@@ -1,0 +1,34 @@
+diff --git a/src/com/google/javascript/jscomp/CheckAccessControls.java b/src/com/google/javascript/jscomp/CheckAccessControls.java
+index df50c26..70af04f 100644
+--- a/src/com/google/javascript/jscomp/CheckAccessControls.java
++++ b/src/com/google/javascript/jscomp/CheckAccessControls.java
+@@ -448,8 +448,9 @@
+    */
+   private void checkPropertyVisibility(NodeTraversal t,
+       Node getprop, Node parent) {
+-    ObjectType objectType =
+-        ObjectType.cast(dereference(getprop.getFirstChild().getJSType()));
++    Node var_927 = getprop.getFirstChild();
++	ObjectType objectType =
++        ObjectType.cast(dereference(var_927.getJSType()));
+     String propertyName = getprop.getLastChild().getString();
+ 
+     if (objectType != null) {
+@@ -524,7 +525,7 @@
+                   BAD_PRIVATE_PROPERTY_ACCESS,
+                   propertyName,
+                   validator.getReadableJSTypeName(
+-                      getprop.getFirstChild(), true)));
++                      var_927, true)));
+         } else if (visibility == Visibility.PROTECTED) {
+           // There are 3 types of legal accesses of a protected property:
+           // 1) Accesses in the same file
+@@ -536,7 +537,7 @@
+                 t.makeError(getprop,  BAD_PROTECTED_PROPERTY_ACCESS,
+                     propertyName,
+                     validator.getReadableJSTypeName(
+-                        getprop.getFirstChild(), true)));
++                        var_927, true)));
+           }
+         }
+       }

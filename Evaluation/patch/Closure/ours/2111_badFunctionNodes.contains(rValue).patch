@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/ChainCalls.java b/src/com/google/javascript/jscomp/ChainCalls.java
+index 2a1d792..2d9f241 100644
+--- a/src/com/google/javascript/jscomp/ChainCalls.java
++++ b/src/com/google/javascript/jscomp/ChainCalls.java
+@@ -129,12 +129,13 @@
+         if (rValue == null) {
+           return;
+         }
+-        if (badFunctionNodes.contains(rValue)) {
++        boolean var_2111 = badFunctionNodes.contains(rValue);
++		if (var_2111) {
+           return;
+         }
+         if (!goodFunctionNodes.contains(rValue)) {
+           NodeTraversal.traverse(compiler, rValue, gatherFunctions);
+-          if (badFunctionNodes.contains(rValue)) {
++          if (var_2111) {
+             return;
+           }
+         }

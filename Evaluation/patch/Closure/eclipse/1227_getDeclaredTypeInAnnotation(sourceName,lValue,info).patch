@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..d8bc975 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -1282,8 +1282,9 @@
+      */
+     private JSType getDeclaredType(String sourceName, JSDocInfo info,
+         Node lValue, @Nullable Node rValue) {
+-      if (info != null && info.hasType()) {
+-        return getDeclaredTypeInAnnotation(sourceName, lValue, info);
++      JSType var_1227 = getDeclaredTypeInAnnotation(sourceName, lValue, info);
++	if (info != null && info.hasType()) {
++        return var_1227;
+       } else if (rValue != null && rValue.isFunction() &&
+           shouldUseFunctionLiteralType(
+               JSType.toMaybeFunctionType(rValue.getJSType()), info, lValue)) {
+@@ -1333,7 +1334,7 @@
+         }
+       }
+ 
+-      return getDeclaredTypeInAnnotation(sourceName, lValue, info);
++      return var_1227;
+     }
+ 
+     private FunctionType getFunctionType(@Nullable Var v) {

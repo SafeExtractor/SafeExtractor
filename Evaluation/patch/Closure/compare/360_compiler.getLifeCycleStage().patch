@@ -1,0 +1,30 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/360_compiler.getLifeCycleStage().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/360_compiler.getLifeCycleStage().patch
+index 6373bd1..3419409 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/360_compiler.getLifeCycleStage().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/360_compiler.getLifeCycleStage().patch
+@@ -1,5 +1,5 @@
+ diff --git a/src/com/google/javascript/jscomp/SanityCheck.java b/src/com/google/javascript/jscomp/SanityCheck.java
+-index 3aa9784..5c9a355 100644
++index 3aa9784..5861cdb 100644
+ --- a/src/com/google/javascript/jscomp/SanityCheck.java
+ +++ b/src/com/google/javascript/jscomp/SanityCheck.java
+ @@ -16,6 +16,7 @@
+@@ -10,7 +10,7 @@ index 3aa9784..5c9a355 100644
+  import com.google.javascript.rhino.Node;
+  
+  /**
+-@@ -119,10 +120,11 @@
++@@ -119,7 +120,8 @@
+      // Exceptions into Errors so that it is easier to find the root cause
+      // when there are cascading issues.
+      new PrepareAst(compiler, true).process(null, root);
+@@ -19,8 +19,4 @@ index 3aa9784..5c9a355 100644
+ +	if (var_360.isNormalized()) {
+        (new Normalize(compiler, true)).process(externs, root);
+  
+--      if (compiler.getLifeCycleStage().isNormalizedUnobfuscated()) {
+-+      if (var_360.isNormalizedUnobfuscated()) {
+-         boolean checkUserDeclarations = true;
+-         CompilerPass pass = new Normalize.VerifyConstants(
+-             compiler, checkUserDeclarations);
++       if (compiler.getLifeCycleStage().isNormalizedUnobfuscated()) {

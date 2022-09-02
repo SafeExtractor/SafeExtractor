@@ -1,0 +1,48 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+index 4c20a64..d26fb1e 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+@@ -164,13 +164,14 @@
+     @Override
+     protected int round(int in) {
+ 
+-        int msb = mant[mant.length-1];
++        int var_755 = mant.length;
++		int msb = mant[var_755-1];
+         if (msb == 0) {
+             // special case -- this == zero
+             return 0;
+         }
+ 
+-        int cmaxdigits = mant.length * 4;
++        int cmaxdigits = var_755 * 4;
+         int lsbthreshold = 1000;
+         while (lsbthreshold > msb) {
+             lsbthreshold /= 10;
+@@ -189,7 +190,7 @@
+ 
+         final int lsb = mant[lsd];
+ 
+-        if (lsbthreshold <= 1 && digits == 4 * mant.length - 3) {
++        if (lsbthreshold <= 1 && digits == 4 * var_755 - 3) {
+             return super.round(in);
+         }
+ 
+@@ -255,7 +256,7 @@
+         if (inc) {
+             // increment if necessary
+             int rh = lsbthreshold;
+-            for (int i = lsd; i < mant.length; i++) {
++            for (int i = lsd; i < var_755; i++) {
+                 final int r = mant[i] + rh;
+                 rh = r / RADIX;
+                 mant[i] = r % RADIX;
+@@ -263,7 +264,7 @@
+ 
+             if (rh != 0) {
+                 shiftRight();
+-                mant[mant.length-1]=rh;
++                mant[var_755-1]=rh;
+             }
+         }
+ 

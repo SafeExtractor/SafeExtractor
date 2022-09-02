@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/title/LegendGraphic.java b/source/org/jfree/chart/title/LegendGraphic.java
+index 3db85f5..8471051 100644
+--- a/source/org/jfree/chart/title/LegendGraphic.java
++++ b/source/org/jfree/chart/title/LegendGraphic.java
+@@ -589,11 +589,12 @@
+         area = trimBorder(area);
+         area = trimPadding(area);
+ 
+-        if (this.lineVisible) {
++        RectangleAnchor var_3449 = this.shapeAnchor;
++		if (this.lineVisible) {
+             Point2D location = RectangleAnchor.coordinates(area,
+                     this.shapeLocation);
+             Shape aLine = ShapeUtilities.createTranslatedShape(getLine(),
+-                    this.shapeAnchor, location.getX(), location.getY());
++                    var_3449, location.getX(), location.getY());
+             g2.setPaint(this.linePaint);
+             g2.setStroke(this.lineStroke);
+             g2.draw(aLine);
+@@ -604,7 +605,7 @@
+                     this.shapeLocation);
+ 
+             Shape s = ShapeUtilities.createTranslatedShape(this.shape,
+-                    this.shapeAnchor, location.getX(), location.getY());
++                    var_3449, location.getX(), location.getY());
+             if (this.shapeFilled) {
+                 Paint p = this.fillPaint;
+                 if (p instanceof GradientPaint) {

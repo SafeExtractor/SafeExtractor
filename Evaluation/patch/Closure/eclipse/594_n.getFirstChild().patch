@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/InlineProperties.java b/src/com/google/javascript/jscomp/InlineProperties.java
+index 185c38e..f3795c6 100644
+--- a/src/com/google/javascript/jscomp/InlineProperties.java
++++ b/src/com/google/javascript/jscomp/InlineProperties.java
+@@ -274,14 +274,15 @@
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+       if (n.isGetProp() && !NodeUtil.isLValue(n)) {
+-        Node target = n.getFirstChild();
++        Node var_594 = n.getFirstChild();
++		Node target = var_594;
+         String propName = n.getLastChild().getString();
+         PropertyInfo info = props.get(propName);
+         if (info != null
+             && info != INVALIDATED
+             && isMatchingType(target, info.type)) {
+           Node replacement = info.value.cloneTree();
+-          if (NodeUtil.mayHaveSideEffects(n.getFirstChild(), compiler)) {
++          if (NodeUtil.mayHaveSideEffects(var_594, compiler)) {
+             replacement = IR.comma(n.removeFirstChild(), replacement).srcref(n);
+           }
+           parent.replaceChild(n, replacement);

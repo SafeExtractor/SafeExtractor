@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/regex/RegExpTree.java b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+index c0c470a..473271c 100644
+--- a/src/com/google/javascript/jscomp/regex/RegExpTree.java
++++ b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+@@ -258,7 +258,8 @@
+         ++pos;
+         boolean capturing = true;
+         int type = 0;
+-        if (pos < limit && pattern.charAt(pos) == '?') {
++        String var_2410 = pattern.substring(start);
++		if (pos < limit && pattern.charAt(pos) == '?') {
+           if (pos + 1 < limit) {
+             capturing = false;
+             char ch = pattern.charAt(pos + 1);
+@@ -273,7 +274,7 @@
+                 break;
+               default:
+                 throw new IllegalArgumentException(
+-                    "Malformed parenthetical: " + pattern.substring(start));
++                    "Malformed parenthetical: " + var_2410);
+             }
+           }
+         }
+@@ -282,7 +283,7 @@
+           ++pos;
+         } else {
+           throw new IllegalArgumentException(
+-              "Unclosed parenthetical group: " + pattern.substring(start));
++              "Unclosed parenthetical group: " + var_2410);
+         }
+         if (capturing) {
+           ++numCapturingGroups;

@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..d310f21 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -340,9 +340,10 @@
+       return 0.0;
+     }
+ 
+-    if (s.length() > 2
++    char var_2040 = s.charAt(1);
++	if (s.length() > 2
+         && s.charAt(0) == '0'
+-        && (s.charAt(1) == 'x' || s.charAt(1) == 'X')) {
++        && (var_2040 == 'x' || var_2040 == 'X')) {
+       // Attempt to convert hex numbers.
+       try {
+         return Double.valueOf(Integer.parseInt(s.substring(2), 16));
+@@ -353,7 +354,7 @@
+ 
+     if (s.length() > 3
+         && (s.charAt(0) == '-' || s.charAt(0) == '+')
+-        && s.charAt(1) == '0'
++        && var_2040 == '0'
+         && (s.charAt(2) == 'x' || s.charAt(2) == 'X')) {
+       // hex numbers with explicit signs vary between browsers.
+       return null;

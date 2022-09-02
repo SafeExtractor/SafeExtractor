@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/MinimizeExitPoints.java b/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+index 317947b..037dafc 100644
+--- a/src/com/google/javascript/jscomp/MinimizeExitPoints.java
++++ b/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+@@ -122,7 +122,8 @@
+ 
+     // Just an 'if'.
+     if (n.isIf()) {
+-      Node ifBlock = n.getFirstChild().getNext();
++      Node var_573 = n.getFirstChild();
++	Node ifBlock = var_573.getNext();
+       tryMinimizeExits(ifBlock, exitType, labelName);
+       Node elseBlock = ifBlock.getNext();
+       if (elseBlock != null) {

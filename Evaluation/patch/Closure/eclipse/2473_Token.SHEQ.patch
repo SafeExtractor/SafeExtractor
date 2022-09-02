@@ -1,0 +1,36 @@
+diff --git a/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java b/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java
+index aa25ddd..50643fc 100644
+--- a/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java
++++ b/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java
+@@ -126,10 +126,11 @@
+       FlowScope blindScope, boolean outcome) {
+     // Check for the typeof operator.
+     int operatorToken = condition.getType();
+-    switch (operatorToken) {
++    final int var_2473 = Token.SHEQ;
++	switch (operatorToken) {
+       case Token.EQ:
+       case Token.NE:
+-      case Token.SHEQ:
++      case var_2473:
+       case Token.SHNE:
+       case Token.CASE:
+         Node left;
+@@ -157,7 +158,7 @@
+           JSType operandType = getTypeIfRefinable(operandNode, blindScope);
+           if (operandType != null) {
+             boolean resultEqualsValue = operatorToken == Token.EQ ||
+-                operatorToken == Token.SHEQ || operatorToken == Token.CASE;
++                operatorToken == var_2473 || operatorToken == Token.CASE;
+             if (!outcome) {
+               resultEqualsValue = !resultEqualsValue;
+             }
+@@ -199,7 +200,7 @@
+           return caseEquality(condition, blindScope, EQ);
+         }
+ 
+-      case Token.SHEQ:
++      case var_2473:
+         if (outcome) {
+           return caseEquality(condition, blindScope, SHEQ);
+         } else {

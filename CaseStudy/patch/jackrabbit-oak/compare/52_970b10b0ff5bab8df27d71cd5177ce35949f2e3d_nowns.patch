@@ -1,0 +1,24 @@
+diff --git a/Users/safe/paper/CaseStudy/patch/jackrabbit-oak/eclipse/52_970b10b0ff5bab8df27d71cd5177ce35949f2e3d_nowns.patch b/Users/safe/paper/CaseStudy/patch/jackrabbit-oak/ours/52_970b10b0ff5bab8df27d71cd5177ce35949f2e3d_nowns.patch
+index fd34b87..d0946d8 100644
+--- a/Users/safe/paper/CaseStudy/patch/jackrabbit-oak/eclipse/52_970b10b0ff5bab8df27d71cd5177ce35949f2e3d_nowns.patch
++++ b/Users/safe/paper/CaseStudy/patch/jackrabbit-oak/ours/52_970b10b0ff5bab8df27d71cd5177ce35949f2e3d_nowns.patch
+@@ -1,5 +1,5 @@
+ diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/stats/Clock.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/stats/Clock.java
+-index a0b6b7d..6d6b3e8 100644
++index a0b6b7d..df9a43b 100644
+ --- a/oak-core/src/main/java/org/apache/jackrabbit/oak/stats/Clock.java
+ +++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/stats/Clock.java
+ @@ -168,7 +168,8 @@
+@@ -12,12 +12,3 @@ index a0b6b7d..6d6b3e8 100644
+              long msIncrease = nsIncrease / NS_IN_MS;
+              if (ACCURATE_CLOCK_GRANULARITY > 1) {
+                  msIncrease -= msIncrease % ACCURATE_CLOCK_GRANULARITY;
+-@@ -177,7 +178,7 @@
+-             long now = ms + msIncrease;
+-             if (now > ms + SYNC_INTERVAL) {
+-                 ms = SIMPLE.getTime();
+--                ns = System.nanoTime();
+-+                ns = nowns;
+-                 // Check whether the system time jumped ahead or back
+-                 // from what we'd expect based on the nanosecond interval.
+-                 // If the jump was small, it was probably caused by low

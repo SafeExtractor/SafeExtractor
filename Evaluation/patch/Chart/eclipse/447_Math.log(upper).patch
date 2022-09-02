@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/axis/LogarithmicAxis.java b/source/org/jfree/chart/axis/LogarithmicAxis.java
+index 1f440bd..b644885 100644
+--- a/source/org/jfree/chart/axis/LogarithmicAxis.java
++++ b/source/org/jfree/chart/axis/LogarithmicAxis.java
+@@ -559,9 +559,10 @@
+ 
+              //apply upper margin by increasing upper bound:
+             final double upperMargin;
+-            if (upper > 0.0 && (upperMargin = getUpperMargin()) > 0.0) {
++            double var_447 = Math.log(upper);
++			if (upper > 0.0 && (upperMargin = getUpperMargin()) > 0.0) {
+                    //upper bound and margin OK; get log10 of upper bound
+-                final double logUpper = (Math.log(upper) / LOG10_VALUE);
++                final double logUpper = (var_447 / LOG10_VALUE);
+                 double logAbs;      //get absolute value of log10 value
+                 if ((logAbs = Math.abs(logUpper)) < 1.0) {
+                     logAbs = 1.0;     //if less than 1.0 then make it 1.0
+@@ -574,7 +575,7 @@
+                 //negatives not allowed and upper bound between 0 & 1
+                 //round up to nearest significant digit for bound:
+                 //get negative exponent:
+-                double expVal = Math.log(upper) / LOG10_VALUE;
++                double expVal = var_447 / LOG10_VALUE;
+                 expVal = Math.ceil(-expVal + 0.001); //get positive exponent
+                 expVal = Math.pow(10, expVal);      //create multiplier value
+                 //multiply, round up, and divide for bound value:

@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/renderer/category/IntervalBarRenderer.java b/source/org/jfree/chart/renderer/category/IntervalBarRenderer.java
+index 4dbfd3f..d5008bf 100644
+--- a/source/org/jfree/chart/renderer/category/IntervalBarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/IntervalBarRenderer.java
+@@ -219,10 +219,11 @@
+         double rectHeight = Math.abs(java2dValue1 - java2dValue0);
+ 
+         RectangleEdge barBase = RectangleEdge.LEFT;
+-        if (orientation == PlotOrientation.HORIZONTAL) {
++        double var_2510 = domainAxis.getCategoryStart(column, getColumnCount(),
++		        dataArea, domainAxisLocation);
++		if (orientation == PlotOrientation.HORIZONTAL) {
+             // BAR Y
+-            rectY = domainAxis.getCategoryStart(column, getColumnCount(),
+-                    dataArea, domainAxisLocation);
++            rectY = var_2510;
+             if (seriesCount > 1) {
+                 double seriesGap = dataArea.getHeight() * getItemMargin()
+                                    / (categoryCount * (seriesCount - 1));
+@@ -240,8 +241,7 @@
+         }
+         else if (orientation == PlotOrientation.VERTICAL) {
+             // BAR X
+-            rectX = domainAxis.getCategoryStart(column, getColumnCount(),
+-                    dataArea, domainAxisLocation);
++            rectX = var_2510;
+ 
+             if (seriesCount > 1) {
+                 double seriesGap = dataArea.getWidth() * getItemMargin()

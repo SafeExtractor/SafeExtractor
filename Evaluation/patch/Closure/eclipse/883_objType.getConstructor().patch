@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/DisambiguateProperties.java b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+index c64c178..bdeb290 100644
+--- a/src/com/google/javascript/jscomp/DisambiguateProperties.java
++++ b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+@@ -820,9 +820,10 @@
+         return type.toMaybeUnionType().getAlternates();
+       } else {
+         ObjectType objType = type.toObjectType();
+-        if (objType != null &&
+-            objType.getConstructor() != null &&
+-            objType.getConstructor().isInterface()) {
++        FunctionType var_883 = objType.getConstructor();
++		if (objType != null &&
++            var_883 != null &&
++            var_883.isInterface()) {
+           List<JSType> list = Lists.newArrayList();
+           for (FunctionType impl
+                    : registry.getDirectImplementors(objType)) {

@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/LiveVariablesAnalysis.java b/src/com/google/javascript/jscomp/LiveVariablesAnalysis.java
+index 888fd39..800e5c9 100644
+--- a/src/com/google/javascript/jscomp/LiveVariablesAnalysis.java
++++ b/src/com/google/javascript/jscomp/LiveVariablesAnalysis.java
+@@ -151,8 +151,9 @@
+ 
+   @Override
+   LiveVariableLattice flowThrough(Node node, LiveVariableLattice input) {
+-    final BitSet gen = new BitSet(input.liveSet.size());
+-    final BitSet kill = new BitSet(input.liveSet.size());
++    BitSet var_967 = input.liveSet;
++	final BitSet gen = new BitSet(var_967.size());
++    final BitSet kill = new BitSet(var_967.size());
+ 
+     // Make kills conditional if the node can end abruptly by an exception.
+     boolean conditional = false;

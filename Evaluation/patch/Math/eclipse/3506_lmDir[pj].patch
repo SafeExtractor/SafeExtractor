@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
+index edf07d5..a67171c 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
+@@ -407,9 +407,10 @@
+                 double lmNorm = 0;
+                 for (int j = 0; j < solvedCols; ++j) {
+                     int pj = permutation[j];
+-                    lmDir[pj] = -lmDir[pj];
+-                    currentPoint[pj] = oldX[pj] + lmDir[pj];
+-                    double s = diag[pj] * lmDir[pj];
++                    double var_3506 = lmDir[pj];
++					lmDir[pj] = -var_3506;
++                    currentPoint[pj] = oldX[pj] + var_3506;
++                    double s = diag[pj] * var_3506;
+                     lmNorm  += s * s;
+                 }
+                 lmNorm = FastMath.sqrt(lmNorm);

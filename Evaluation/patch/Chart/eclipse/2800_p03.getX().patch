@@ -1,0 +1,31 @@
+diff --git a/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java b/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java
+index 311459c..4b1175a 100644
+--- a/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java
++++ b/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java
+@@ -776,14 +776,15 @@
+         GeneralPath left = new GeneralPath();
+         left.moveTo((float) p0.getX(), (float) p0.getY());
+         left.lineTo((float) p00.getX(), (float) p00.getY());
+-        left.lineTo((float) p03.getX(), (float) p03.getY());
++        double var_2800 = p03.getX();
++		left.lineTo((float) var_2800, (float) p03.getY());
+         left.lineTo((float) p3.getX(), (float) p3.getY());
+         left.closePath();
+ 
+         GeneralPath back = new GeneralPath();
+         back.moveTo((float) p2.getX(), (float) p2.getY());
+         back.lineTo((float) p02.getX(), (float) p02.getY());
+-        back.lineTo((float) p03.getX(), (float) p03.getY());
++        back.lineTo((float) var_2800, (float) p03.getY());
+         back.lineTo((float) p3.getX(), (float) p3.getY());
+         back.closePath();
+ 
+@@ -805,7 +806,7 @@
+         bottom.moveTo((float) p00.getX(), (float) p00.getY());
+         bottom.lineTo((float) p01.getX(), (float) p01.getY());
+         bottom.lineTo((float) p02.getX(), (float) p02.getY());
+-        bottom.lineTo((float) p03.getX(), (float) p03.getY());
++        bottom.lineTo((float) var_2800, (float) p03.getY());
+         bottom.closePath();
+ 
+         result[0] = bottom;

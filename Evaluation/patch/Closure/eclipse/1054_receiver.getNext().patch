@@ -1,0 +1,42 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..e6df5ef 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -702,31 +702,32 @@
+         case Token.NEW:
+         case Token.CALL:
+           Node receiver = n.getFirstChild();
+-          if (receiver.isGetProp()) {
++          Node var_1054 = receiver.getNext();
++		if (receiver.isGetProp()) {
+             Node first = receiver.getFirstChild();
+             // Special case the call() function.
+             if ("call".equals(first.getNext().getString())) {
+               if (first.isGetProp()) {
+                 // foo.bar.call()
+-                addAction(new FunctionCallBuilder(first, receiver.getNext())
++                addAction(new FunctionCallBuilder(first, var_1054)
+                     .setPropName(first.getFirstChild().getNext().getString())
+                     .setIsCallFunction()
+                     .build());
+               } else {
+                 // bar.call()
+                 addAction(new FunctionCallBuilder(
+-                    first, receiver.getNext()).setIsCallFunction()
++                    first, var_1054).setIsCallFunction()
+                           .build());
+               }
+             } else {
+               // foo.bar()
+-              addAction(new FunctionCallBuilder(first, receiver.getNext())
++              addAction(new FunctionCallBuilder(first, var_1054)
+                   .setPropName(first.getNext().getString())
+                   .build());
+             }
+           } else {
+             // foo() or new Foo()
+-            addAction(new FunctionCallBuilder(receiver, receiver.getNext())
++            addAction(new FunctionCallBuilder(receiver, var_1054)
+                       .setIsNewCall(n.isNew())
+                       .build());
+           }

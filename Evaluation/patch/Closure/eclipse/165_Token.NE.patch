@@ -1,0 +1,39 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..d90ccd8 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -974,13 +974,14 @@
+             rhType != Token.NULL) {
+           return TernaryValue.UNKNOWN;
+         }
+-        switch (op) {
++        final int var_165 = Token.NE;
++		switch (op) {
+           case Token.SHEQ:
+           case Token.EQ:
+             return TernaryValue.forBoolean(lhType == rhType);
+ 
+           case Token.SHNE:
+-          case Token.NE:
++          case var_165:
+             return TernaryValue.forBoolean(lhType != rhType);
+ 
+           case Token.GE:
+@@ -1001,7 +1002,7 @@
+             return TernaryValue.TRUE;
+ 
+           case Token.SHNE:
+-          case Token.NE:
++          case var_165:
+             return TernaryValue.FALSE;
+         }
+ 
+@@ -1028,7 +1029,7 @@
+             return areStringsEqual(left.getString(), right.getString());
+ 
+           case Token.SHNE:
+-          case Token.NE:
++          case var_165:
+             return areStringsEqual(left.getString(), right.getString()).not();
+         }
+ 

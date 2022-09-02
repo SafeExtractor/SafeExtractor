@@ -1,0 +1,37 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/240_className.length().patch b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/240_className.length().patch
+index 100cb17..5c17e64 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/240_className.length().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/240_className.length().patch
+@@ -1,24 +1,18 @@
+ diff --git a/src/main/java/org/apache/commons/lang3/ClassUtils.java b/src/main/java/org/apache/commons/lang3/ClassUtils.java
+-index 015e6dd..072a14a 100644
++index 015e6dd..3b40185 100644
+ --- a/src/main/java/org/apache/commons/lang3/ClassUtils.java
+ +++ b/src/main/java/org/apache/commons/lang3/ClassUtils.java
+-@@ -1109,14 +1109,15 @@
+-             if (dim < 1) {
++@@ -1110,10 +1110,11 @@
+                  return className;
+              } else {
+--                if (className.startsWith("L")) {
+-+                int var_240 = className.length();
+-+				if (className.startsWith("L")) {
+-                     className = className.substring(
++                 if (className.startsWith("L")) {
++-                    className = className.substring(
+++                    int var_240 = className.length();
+++					className = className.substring(
+                          1,
+                          className.endsWith(";")
+ -                            ? className.length() - 1
+--                            : className.length());
+ +                            ? var_240 - 1
+-+                            : var_240);
++                             : className.length());
+                  } else {
+--                    if (className.length() > 0) {
+-+                    if (var_240 > 0) {
+-                         className = reverseAbbreviationMap.get(className.substring(0, 1));
+-                     }
+-                 }
++                     if (className.length() > 0) {

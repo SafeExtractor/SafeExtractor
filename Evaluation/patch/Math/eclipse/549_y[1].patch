@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java b/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
+index 372c699..b7bed09 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
++++ b/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
+@@ -199,7 +199,8 @@
+         // evaluate initial guess
+         evaluations.incrementCount();
+         y[1] = f.value(x[1]);
+-        if (y[1].isZero()) {
++        Dfp var_549 = y[1];
++		if (var_549.isZero()) {
+             // return the initial guess if it is a perfect root.
+             return x[1];
+         }
+@@ -214,7 +215,7 @@
+ 
+         int nbPoints;
+         int signChangeIndex;
+-        if (y[0].multiply(y[1]).negativeOrNull()) {
++        if (y[0].multiply(var_549).negativeOrNull()) {
+ 
+             // reduce interval if it brackets the root
+             nbPoints        = 2;
+@@ -230,7 +231,7 @@
+                 return x[2];
+             }
+ 
+-            if (y[1].multiply(y[2]).negativeOrNull()) {
++            if (var_549.multiply(y[2]).negativeOrNull()) {
+                 // use all computed point as a start sampling array for solving
+                 nbPoints        = 3;
+                 signChangeIndex = 2;

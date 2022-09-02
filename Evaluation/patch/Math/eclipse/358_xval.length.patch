@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/SmoothingPolynomialBicubicSplineInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/SmoothingPolynomialBicubicSplineInterpolator.java
+index 0c62e89..00b0b14 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/SmoothingPolynomialBicubicSplineInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/SmoothingPolynomialBicubicSplineInterpolator.java
+@@ -98,14 +98,15 @@
+                                                           final double[][] fval)
+         throws NoDataException, NullArgumentException,
+                DimensionMismatchException, NonMonotonicSequenceException {
+-        if (xval.length == 0 || yval.length == 0 || fval.length == 0) {
++        int var_358 = xval.length;
++		if (var_358 == 0 || yval.length == 0 || fval.length == 0) {
+             throw new NoDataException();
+         }
+-        if (xval.length != fval.length) {
+-            throw new DimensionMismatchException(xval.length, fval.length);
++        if (var_358 != fval.length) {
++            throw new DimensionMismatchException(var_358, fval.length);
+         }
+ 
+-        final int xLen = xval.length;
++        final int xLen = var_358;
+         final int yLen = yval.length;
+ 
+         for (int i = 0; i < xLen; i++) {

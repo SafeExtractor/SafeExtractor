@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/data/time/TimePeriodValuesCollection.java b/source/org/jfree/data/time/TimePeriodValuesCollection.java
+index ba52bd7..375a18a 100644
+--- a/source/org/jfree/data/time/TimePeriodValuesCollection.java
++++ b/source/org/jfree/data/time/TimePeriodValuesCollection.java
+@@ -389,13 +389,14 @@
+                         series.getMinStartIndex());
+                 TimePeriod end = series.getTimePeriod(series.getMaxEndIndex());
+                 if (!includeInterval) {
+-                    if (this.xPosition == TimePeriodAnchor.START) {
++                    TimePeriodAnchor var_4205 = this.xPosition;
++					if (var_4205 == TimePeriodAnchor.START) {
+                         TimePeriod maxStart = series.getTimePeriod(
+                                 series.getMaxStartIndex());
+                         temp = new Range(start.getStart().getTime(),
+                                 maxStart.getStart().getTime());
+                     }
+-                    else if (this.xPosition == TimePeriodAnchor.MIDDLE) {
++                    else if (var_4205 == TimePeriodAnchor.MIDDLE) {
+                         TimePeriod minMiddle = series.getTimePeriod(
+                                 series.getMinMiddleIndex());
+                         long s1 = minMiddle.getStart().getTime();
+@@ -407,7 +408,7 @@
+                         temp = new Range(s1 + (e1 - s1) / 2,
+                                 s2 + (e2 - s2) / 2);
+                     }
+-                    else if (this.xPosition == TimePeriodAnchor.END) {
++                    else if (var_4205 == TimePeriodAnchor.END) {
+                         TimePeriod minEnd = series.getTimePeriod(
+                                 series.getMinEndIndex());
+                         temp = new Range(minEnd.getEnd().getTime(),

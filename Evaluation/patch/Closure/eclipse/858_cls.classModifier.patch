@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/ClosureRewriteClass.java b/src/com/google/javascript/jscomp/ClosureRewriteClass.java
+index 4c1fcea..a85a4f6 100644
+--- a/src/com/google/javascript/jscomp/ClosureRewriteClass.java
++++ b/src/com/google/javascript/jscomp/ClosureRewriteClass.java
+@@ -362,16 +362,17 @@
+       maybeRewriteClassDefinition(block.getLastChild());
+     }
+ 
+-    if (cls.classModifier != null) {
++    Node var_858 = cls.classModifier;
++	if (var_858 != null) {
+       // example: modifier(ctr)
+       block.addChildToBack(
+           IR.exprResult(
+               fixupFreeCall(
+                   IR.call(
+-                      cls.classModifier,
++                      var_858,
+                       cls.name.cloneTree())
+-                      .srcref(cls.classModifier)))
+-              .srcref(cls.classModifier));
++                      .srcref(var_858)))
++              .srcref(var_858));
+     }
+ 
+     exprRoot.getParent().replaceChild(exprRoot, block);

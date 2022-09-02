@@ -1,0 +1,31 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1133_maybeAssign.getParent().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1133_maybeAssign.getParent().patch
+index 09cd115..36bf392 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1133_maybeAssign.getParent().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1133_maybeAssign.getParent().patch
+@@ -1,21 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+-index 6219d26..7eaec14 100644
++index 6219d26..9646ca1 100644
+ --- a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+ +++ b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+-@@ -153,12 +153,13 @@
+-     // If so, leave it intact.
++@@ -154,7 +154,8 @@
+      if(NodeUtil.isLValue(n)) {
+        Node maybeAssign = n.getParent();
+--      while (!NodeUtil.isStatement(maybeAssign) && !maybeAssign.isAssign()) {
++       while (!NodeUtil.isStatement(maybeAssign) && !maybeAssign.isAssign()) {
+ -        maybeAssign = maybeAssign.getParent();
+-+      Node var_1133 = maybeAssign.getParent();
+-+	while (!NodeUtil.isStatement(maybeAssign) && !maybeAssign.isAssign()) {
+-+        maybeAssign = var_1133;
+++        Node var_1133 = maybeAssign.getParent();
+++		maybeAssign = var_1133;
+        }
+  
+        if (maybeAssign.isAssign()) {
+--        maybeAssign = maybeAssign.getParent();
+-+        maybeAssign = var_1133;
+-         if (maybeAssign.isBlock() || maybeAssign.isScript() ||
+-             NodeUtil.isStatement(maybeAssign)) {
+-           return;

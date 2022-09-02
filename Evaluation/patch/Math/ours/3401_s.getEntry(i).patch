@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..b63baca 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -2094,13 +2094,14 @@
+                     // Computing 2nd power
+                     double d1 = trialStepPoint.getEntry(i);
+                     // Computing 2nd power
+-                    double d2 = s.getEntry(i);
++                    double var_3401 = s.getEntry(i);
++					double d2 = var_3401;
+                     ssq = d1 * d1 + d2 * d2;
+                     // Computing 2nd power
+                     d1 = trustRegionCenterOffset.getEntry(i) - lowerDifference.getEntry(i);
+                     temp = ssq - d1 * d1;
+                     if (temp > ZERO) {
+-                        temp = Math.sqrt(temp) - s.getEntry(i);
++                        temp = Math.sqrt(temp) - var_3401;
+                         if (angbd * temp > tempa) {
+                             angbd = tempa / temp;
+                             iact = i;
+@@ -2111,7 +2112,7 @@
+                     d1 = upperDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i);
+                     temp = ssq - d1 * d1;
+                     if (temp > ZERO) {
+-                        temp = Math.sqrt(temp) + s.getEntry(i);
++                        temp = Math.sqrt(temp) + var_3401;
+                         if (angbd * temp > tempb) {
+                             angbd = tempb / temp;
+                             iact = i;

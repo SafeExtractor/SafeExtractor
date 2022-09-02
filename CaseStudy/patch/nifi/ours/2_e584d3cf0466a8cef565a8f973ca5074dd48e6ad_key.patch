@@ -1,0 +1,14 @@
+diff --git a/nifi-nar-bundles/nifi-enrich-bundle/nifi-enrich-processors/src/main/java/org/apache/nifi/processors/enrich/AbstractEnrichProcessor.java b/nifi-nar-bundles/nifi-enrich-bundle/nifi-enrich-processors/src/main/java/org/apache/nifi/processors/enrich/AbstractEnrichProcessor.java
+index e0307a0..58eba90 100644
+--- a/nifi-nar-bundles/nifi-enrich-bundle/nifi-enrich-processors/src/main/java/org/apache/nifi/processors/enrich/AbstractEnrichProcessor.java
++++ b/nifi-nar-bundles/nifi-enrich-bundle/nifi-enrich-processors/src/main/java/org/apache/nifi/processors/enrich/AbstractEnrichProcessor.java
+@@ -207,7 +207,8 @@
+                     String[] splitResult = line.split(queryRegex);
+ 
+                     for (int r = 0; r < splitResult.length; r++) {
+-                        results.put(splitResult[ lookupKey - 1 ], "enrich." + schema + recordPosition + ".group" + String.valueOf(r), splitResult[r]);
++                        String key = splitResult[ lookupKey - 1 ];
++						results.put(key, "enrich." + schema + recordPosition + ".group" + String.valueOf(r), splitResult[r]);
+                     }
+                 }
+                 break;

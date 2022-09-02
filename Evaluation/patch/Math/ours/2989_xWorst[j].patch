@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/NelderMeadSimplex.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/NelderMeadSimplex.java
+index 4848ab3..2443554 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/NelderMeadSimplex.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/NelderMeadSimplex.java
+@@ -211,7 +211,8 @@
+         // compute the reflection point
+         final double[] xR = new double[n];
+         for (int j = 0; j < n; j++) {
+-            xR[j] = centroid[j] + rho * (centroid[j] - xWorst[j]);
++            double var_2989 = xWorst[j];
++			xR[j] = centroid[j] + rho * (centroid[j] - var_2989);
+         }
+         final PointValuePair reflected
+             = new PointValuePair(xR, evaluationFunction.value(xR), false);

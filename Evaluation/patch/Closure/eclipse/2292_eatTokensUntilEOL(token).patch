@@ -1,0 +1,95 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..a12701b 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -228,7 +228,8 @@
+               // Mark the beginning of the annotation.
+               jsdocBuilder.markAnnotation(annotationName, lineno, charno);
+ 
+-              switch (annotation) {
++              JsDocToken var_2292 = eatTokensUntilEOL(token);
++			switch (annotation) {
+                 case AUTHOR:
+                   if (jsdocBuilder.shouldParseDocumentation()) {
+                     ExtractionInfo authorInfo = extractSingleLineBlock();
+@@ -242,7 +243,7 @@
+                     }
+                     token = authorInfo.token;
+                   } else {
+-                    token = eatTokensUntilEOL(token);
++                    token = var_2292;
+                   }
+                   continue retry;
+ 
+@@ -345,7 +346,7 @@
+ 
+                     token = fileOverviewInfo.token;
+                   } else {
+-                    token = eatTokensUntilEOL(token);
++                    token = var_2292;
+                   }
+ 
+                   if (!jsdocBuilder.recordFileOverview(fileOverview)) {
+@@ -389,7 +390,7 @@
+                     parser.addTypeWarning(
+                         "msg.jsdoc.incompat.type", lineno, charno);
+                   }
+-                  token = eatTokensUntilEOL(token);
++                  token = var_2292;
+                   continue retry;
+ 
+                 case EXPORT:
+@@ -473,7 +474,7 @@
+                   } else {
+                     parser.addTypeWarning("msg.no.type.name", lineno, charno);
+                   }
+-                  token = eatTokensUntilEOL(token);
++                  token = var_2292;
+                   continue retry;
+ 
+                 case HIDDEN:
+@@ -597,7 +598,7 @@
+ 
+                     token = descriptionInfo.token;
+                   } else {
+-                    token = eatTokensUntilEOL(token);
++                    token = var_2292;
+                   }
+                   continue retry;
+ 
+@@ -675,7 +676,7 @@
+                   }
+ 
+                   if (name == null) {
+-                    token = eatTokensUntilEOL(token);
++                    token = var_2292;
+                     continue retry;
+                   }
+ 
+@@ -695,7 +696,7 @@
+ 
+                     token = paramDescriptionInfo.token;
+                   } else {
+-                    token = eatTokensUntilEOL(token);
++                    token = var_2292;
+                   }
+                   continue retry;
+ 
+@@ -749,7 +750,7 @@
+ 
+                     token = referenceInfo.token;
+                   } else {
+-                    token = eatTokensUntilEOL(token);
++                    token = var_2292;
+                   }
+                   continue retry;
+ 
+@@ -926,7 +927,7 @@
+ 
+                           token = returnDescriptionInfo.token;
+                         } else {
+-                          token = eatTokensUntilEOL(token);
++                          token = var_2292;
+                         }
+                         continue retry;
+ 

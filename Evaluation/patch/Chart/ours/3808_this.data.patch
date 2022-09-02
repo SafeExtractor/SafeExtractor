@@ -1,0 +1,33 @@
+diff --git a/source/org/jfree/data/KeyedObjects.java b/source/org/jfree/data/KeyedObjects.java
+index e8dc01f..c09e14e 100644
+--- a/source/org/jfree/data/KeyedObjects.java
++++ b/source/org/jfree/data/KeyedObjects.java
+@@ -226,7 +226,8 @@
+      * @since 1.0.7
+      */
+     public void insertValue(int position, Comparable key, Object value) {
+-        if (position < 0 || position > this.data.size()) {
++        List var_3808 = this.data;
++		if (position < 0 || position > var_3808.size()) {
+             throw new IllegalArgumentException("'position' out of bounds.");
+         }
+         if (key == null) {
+@@ -234,14 +235,14 @@
+         }
+         int pos = getIndex(key);
+         if (pos >= 0) {
+-            this.data.remove(pos);
++            var_3808.remove(pos);
+         }
+         KeyedObject item = new KeyedObject(key, value);
+-        if (position <= this.data.size()) {
+-            this.data.add(position, item);
++        if (position <= var_3808.size()) {
++            var_3808.add(position, item);
+         }
+         else {
+-            this.data.add(item);
++            var_3808.add(item);
+         }
+     }
+ 

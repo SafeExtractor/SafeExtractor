@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/data/general/DatasetUtilities.java b/source/org/jfree/data/general/DatasetUtilities.java
+index 548d684..b5b70a6 100644
+--- a/source/org/jfree/data/general/DatasetUtilities.java
++++ b/source/org/jfree/data/general/DatasetUtilities.java
+@@ -747,7 +747,8 @@
+         int seriesCount = dataset.getSeriesCount();
+         double lvalue;
+         double uvalue;
+-        if (includeInterval && dataset instanceof IntervalXYDataset) {
++        boolean var_3893 = Double.isNaN(lvalue);
++		if (includeInterval && dataset instanceof IntervalXYDataset) {
+             IntervalXYDataset intervalXYData = (IntervalXYDataset) dataset;
+             for (int series = 0; series < seriesCount; series++) {
+                 int itemCount = dataset.getItemCount(series);
+@@ -759,7 +760,7 @@
+                         minimum = Math.min(minimum, value);
+                         maximum = Math.max(maximum, value);
+                     }
+-                    if (!Double.isNaN(lvalue)) {
++                    if (!var_3893) {
+                         minimum = Math.min(minimum, lvalue);
+                         maximum = Math.max(maximum, lvalue);
+                     }
+@@ -776,7 +777,7 @@
+                 for (int item = 0; item < itemCount; item++) {
+                     lvalue = dataset.getXValue(series, item);
+                     uvalue = lvalue;
+-                    if (!Double.isNaN(lvalue)) {
++                    if (!var_3893) {
+                         minimum = Math.min(minimum, lvalue);
+                         maximum = Math.max(maximum, uvalue);
+                     }

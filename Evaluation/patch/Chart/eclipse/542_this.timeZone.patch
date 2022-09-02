@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/axis/DateAxis.java b/source/org/jfree/chart/axis/DateAxis.java
+index 059bc3a..ee0a911 100644
+--- a/source/org/jfree/chart/axis/DateAxis.java
++++ b/source/org/jfree/chart/axis/DateAxis.java
+@@ -1733,7 +1733,8 @@
+                     this.tickMarkPosition);
+ 
+             long lowestTickTime = tickDate.getTime();
+-            long distance = unit.addToDate(tickDate, this.timeZone).getTime()
++            TimeZone var_542 = this.timeZone;
++			long distance = unit.addToDate(tickDate, var_542).getTime()
+                     - lowestTickTime;
+             int minorTickSpaces = getMinorTickCount();
+             if (minorTickSpaces <= 0) {
+@@ -1787,7 +1788,7 @@
+                         rotationAnchor, angle);
+                 result.add(tick);
+                 long currentTickTime = tickDate.getTime();
+-                tickDate = unit.addToDate(tickDate, this.timeZone);
++                tickDate = unit.addToDate(tickDate, var_542);
+                 long nextTickTime = tickDate.getTime();
+                 for (int minorTick = 1; minorTick < minorTickSpaces;
+                         minorTick++){
+@@ -1804,7 +1805,7 @@
+                 }
+             }
+             else {
+-                tickDate = unit.rollDate(tickDate, this.timeZone);
++                tickDate = unit.rollDate(tickDate, var_542);
+             }
+         }
+         return result;

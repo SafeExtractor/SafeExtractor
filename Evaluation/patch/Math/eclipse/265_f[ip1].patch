@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java
+index 7437838..7a1e945 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java
+@@ -250,11 +250,12 @@
+                 for (int k = 0; k < lastK; k++) {
+                     final int kp1 = k + 1;
+ 
+-                    final double[] beta = new double[] {
+-                        f[i][j][k], f[ip1][j][k],
+-                        f[i][jp1][k], f[ip1][jp1][k],
+-                        f[i][j][kp1], f[ip1][j][kp1],
+-                        f[i][jp1][kp1], f[ip1][jp1][kp1],
++                    double[][] var_265 = f[ip1];
++					final double[] beta = new double[] {
++                        f[i][j][k], var_265[j][k],
++                        f[i][jp1][k], var_265[jp1][k],
++                        f[i][j][kp1], var_265[j][kp1],
++                        f[i][jp1][kp1], var_265[jp1][kp1],
+ 
+                         dFdX[i][j][k], dFdX[ip1][j][k],
+                         dFdX[i][jp1][k], dFdX[ip1][jp1][k],

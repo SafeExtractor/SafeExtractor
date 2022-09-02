@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SphericalCoordinates.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SphericalCoordinates.java
+index de58d7b..a932f96 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SphericalCoordinates.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SphericalCoordinates.java
+@@ -207,21 +207,22 @@
+         // beware we use ONLY the lower-left part of sHessian
+         hj[0][0] = sHessian[0][0] * jacobian[0][0] + sHessian[1][0] * jacobian[1][0] + sHessian[2][0] * jacobian[2][0];
+         hj[0][1] = sHessian[0][0] * jacobian[0][1] + sHessian[1][0] * jacobian[1][1] + sHessian[2][0] * jacobian[2][1];
+-        hj[0][2] = sHessian[0][0] * jacobian[0][2]                                   + sHessian[2][0] * jacobian[2][2];
++        double var_1573 = jacobian[2][2];
++		hj[0][2] = sHessian[0][0] * jacobian[0][2]                                   + sHessian[2][0] * var_1573;
+         hj[1][0] = sHessian[1][0] * jacobian[0][0] + sHessian[1][1] * jacobian[1][0] + sHessian[2][1] * jacobian[2][0];
+         hj[1][1] = sHessian[1][0] * jacobian[0][1] + sHessian[1][1] * jacobian[1][1] + sHessian[2][1] * jacobian[2][1];
+         // don't compute hj[1][2] as it is not used below
+         hj[2][0] = sHessian[2][0] * jacobian[0][0] + sHessian[2][1] * jacobian[1][0] + sHessian[2][2] * jacobian[2][0];
+         hj[2][1] = sHessian[2][0] * jacobian[0][1] + sHessian[2][1] * jacobian[1][1] + sHessian[2][2] * jacobian[2][1];
+-        hj[2][2] = sHessian[2][0] * jacobian[0][2]                                   + sHessian[2][2] * jacobian[2][2];
++        hj[2][2] = sHessian[2][0] * jacobian[0][2]                                   + sHessian[2][2] * var_1573;
+ 
+         // compute lower-left part of J^T . H_f . J
+         cHessian[0][0] = jacobian[0][0] * hj[0][0] + jacobian[1][0] * hj[1][0] + jacobian[2][0] * hj[2][0];
+         cHessian[1][0] = jacobian[0][1] * hj[0][0] + jacobian[1][1] * hj[1][0] + jacobian[2][1] * hj[2][0];
+-        cHessian[2][0] = jacobian[0][2] * hj[0][0]                             + jacobian[2][2] * hj[2][0];
++        cHessian[2][0] = jacobian[0][2] * hj[0][0]                             + var_1573 * hj[2][0];
+         cHessian[1][1] = jacobian[0][1] * hj[0][1] + jacobian[1][1] * hj[1][1] + jacobian[2][1] * hj[2][1];
+-        cHessian[2][1] = jacobian[0][2] * hj[0][1]                             + jacobian[2][2] * hj[2][1];
+-        cHessian[2][2] = jacobian[0][2] * hj[0][2]                             + jacobian[2][2] * hj[2][2];
++        cHessian[2][1] = jacobian[0][2] * hj[0][1]                             + var_1573 * hj[2][1];
++        cHessian[2][2] = jacobian[0][2] * hj[0][2]                             + var_1573 * hj[2][2];
+ 
+         // add gradient contribution
+         cHessian[0][0] += sGradient[0] * rHessian[0][0] + sGradient[1] * thetaHessian[0][0] + sGradient[2] * phiHessian[0][0];

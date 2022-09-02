@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/deps/PathUtil.java b/src/com/google/javascript/jscomp/deps/PathUtil.java
+index 68efd2a..0900709 100644
+--- a/src/com/google/javascript/jscomp/deps/PathUtil.java
++++ b/src/com/google/javascript/jscomp/deps/PathUtil.java
+@@ -60,10 +60,11 @@
+ 
+     String[] srcFragments = path.split("/");
+     List<String> dstFragments = Lists.newArrayList();
+-    for (String fragment : srcFragments) {
++    int var_2143 = dstFragments.size();
++	for (String fragment : srcFragments) {
+       if (fragment.equals("..")) {
+         if (!dstFragments.isEmpty()) {
+-          dstFragments.remove(dstFragments.size() - 1);
++          dstFragments.remove(var_2143 - 1);
+         }
+       } else if (!fragment.equals(".")) {
+         dstFragments.add(fragment);
+@@ -71,7 +72,7 @@
+     }
+ 
+     // Special case for Join.join([""]); -> "/"
+-    if (dstFragments.size() == 1 && dstFragments.get(0).isEmpty()) {
++    if (var_2143 == 1 && dstFragments.get(0).isEmpty()) {
+       return "/";
+     }
+     return Joiner.on("/").join(dstFragments);

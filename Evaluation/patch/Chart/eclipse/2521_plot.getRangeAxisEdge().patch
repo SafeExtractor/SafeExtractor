@@ -1,0 +1,33 @@
+diff --git a/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java b/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java
+index 326271f..fd5be15 100644
+--- a/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java
++++ b/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java
+@@ -69,6 +69,7 @@
+ import org.jfree.chart.plot.PlotRenderingInfo;
+ import org.jfree.chart.renderer.xy.XYStepRenderer;
+ import org.jfree.chart.util.PublicCloneable;
++import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.data.category.CategoryDataset;
+ 
+ /**
+@@ -291,8 +292,9 @@
+         double x1 = domainAxis.getCategoryMiddle(column, getColumnCount(),
+                 dataArea, plot.getDomainAxisEdge());
+         double x1e = 2 * x1 - x1s; // or: x1s + 2*(x1-x1s)
+-        double y1 = rangeAxis.valueToJava2D(value.doubleValue(), dataArea,
+-                plot.getRangeAxisEdge());
++        RectangleEdge var_2521 = plot.getRangeAxisEdge();
++		double y1 = rangeAxis.valueToJava2D(value.doubleValue(), dataArea,
++                var_2521);
+         g2.setPaint(getItemPaint(row, column, selected));
+         g2.setStroke(getItemStroke(row, column, selected));
+ 
+@@ -307,7 +309,7 @@
+                         getColumnCount(), dataArea, plot.getDomainAxisEdge());
+                 double x0e = 2 * x0 - x0s; // or: x0s + 2*(x0-x0s)
+                 double y0 = rangeAxis.valueToJava2D(previous, dataArea,
+-                        plot.getRangeAxisEdge());
++                        var_2521);
+                 if (getStagger()) {
+                     int xStagger = row * STAGGER_WIDTH;
+                     if (xStagger > (x1s - x0e)) {

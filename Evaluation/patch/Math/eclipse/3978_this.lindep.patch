@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..0ecb625 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -494,8 +494,9 @@
+             return null;
+         }
+         double rnk = 0.0;
+-        for (int i = 0; i < nreq; i++) {
+-            if (!this.lindep[i]) {
++        boolean[] var_3978 = this.lindep;
++		for (int i = 0; i < nreq; i++) {
++            if (!var_3978[i]) {
+                 rnk += 1.0;
+             }
+         }
+@@ -510,9 +511,9 @@
+         double total = 0;
+         for (int row = 0; row < nreq; row++) {
+             pos2 = start;
+-            if (!this.lindep[row]) {
++            if (!var_3978[row]) {
+                 for (int col = row; col < nreq; col++) {
+-                    if (!this.lindep[col]) {
++                    if (!var_3978[col]) {
+                         pos1 = start + col - row;
+                         if (row == col) {
+                             total = 1.0 / d[col];
+@@ -520,7 +521,7 @@
+                             total = rinv[pos1 - 1] / d[col];
+                         }
+                         for (int k = col + 1; k < nreq; k++) {
+-                            if (!this.lindep[k]) {
++                            if (!var_3978[k]) {
+                                 total += rinv[pos1] * rinv[pos2] / d[k];
+                             }
+                             ++pos1;

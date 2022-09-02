@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/ClosureCodeRemoval.java b/src/com/google/javascript/jscomp/ClosureCodeRemoval.java
+index 4507c94..0a3b9fe 100644
+--- a/src/com/google/javascript/jscomp/ClosureCodeRemoval.java
++++ b/src/com/google/javascript/jscomp/ClosureCodeRemoval.java
+@@ -139,14 +139,15 @@
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+       if (n.isAssign()) {
+-        Node nameNode = n.getFirstChild();
++        Node var_1953 = n.getFirstChild();
++		Node nameNode = var_1953;
+         Node valueNode = n.getLastChild();
+ 
+         if (nameNode.isQualifiedName() &&
+             valueNode.isQualifiedName() &&
+             ABSTRACT_METHOD_NAME.equals(valueNode.getQualifiedName())) {
+           abstractMethodAssignmentNodes.add(new RemovableAssignment(
+-              n.getFirstChild(), n, t));
++              var_1953, n, t));
+         }
+       }
+     }

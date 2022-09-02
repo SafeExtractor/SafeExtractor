@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+index 3dc8ec6..e13ae95 100644
+--- a/src/com/google/javascript/jscomp/TypeInference.java
++++ b/src/com/google/javascript/jscomp/TypeInference.java
+@@ -1119,14 +1119,15 @@
+       Iterator<Node> declParams,
+       Iterator<Node> callParams,
+       Map<TemplateType, JSType> resolvedTypes) {
+-    while (declParams.hasNext() && callParams.hasNext()) {
++    boolean var_961 = callParams.hasNext();
++	while (declParams.hasNext() && var_961) {
+       Node declParam = declParams.next();
+       maybeResolveTemplatedType(
+           getJSType(declParam),
+           getJSType(callParams.next()),
+           resolvedTypes);
+       if (declParam.isVarArgs()) {
+-        while (callParams.hasNext()) {
++        while (var_961) {
+           maybeResolveTemplatedType(
+               getJSType(declParam),
+               getJSType(callParams.next()),

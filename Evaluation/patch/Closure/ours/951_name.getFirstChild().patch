@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+index 3dc8ec6..fb8b8f2 100644
+--- a/src/com/google/javascript/jscomp/TypeInference.java
++++ b/src/com/google/javascript/jscomp/TypeInference.java
+@@ -758,10 +758,11 @@
+         NodeUtil.getBestLValue(n));
+     for (Node name = n.getFirstChild(); name != null;
+          name = name.getNext()) {
+-      Node value = name.getFirstChild();
++      Node var_951 = name.getFirstChild();
++	Node value = var_951;
+       String memberName = NodeUtil.getObjectLitKeyName(name);
+       if (memberName != null) {
+-        JSType rawValueType =  name.getFirstChild().getJSType();
++        JSType rawValueType =  var_951.getJSType();
+         JSType valueType = NodeUtil.getObjectLitKeyTypeFromValueType(
+             name, rawValueType);
+         if (valueType == null) {

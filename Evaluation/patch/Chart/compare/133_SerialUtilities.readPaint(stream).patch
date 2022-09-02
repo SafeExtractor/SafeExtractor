@@ -1,0 +1,24 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/133_SerialUtilities.readPaint(stream).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/133_SerialUtilities.readPaint(stream).patch
+index 86f7491..8752c96 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/133_SerialUtilities.readPaint(stream).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/133_SerialUtilities.readPaint(stream).patch
+@@ -1,16 +1,14 @@
+ diff --git a/source/org/jfree/chart/ChartPanel.java b/source/org/jfree/chart/ChartPanel.java
+-index 001049a..cd3b7b3 100644
++index 001049a..a22546c 100644
+ --- a/source/org/jfree/chart/ChartPanel.java
+ +++ b/source/org/jfree/chart/ChartPanel.java
+-@@ -2969,8 +2969,9 @@
++@@ -2969,7 +2969,8 @@
+      private void readObject(ObjectInputStream stream)
+          throws IOException, ClassNotFoundException {
+          stream.defaultReadObject();
+ -        this.zoomFillPaint = SerialUtilities.readPaint(stream);
+--        this.zoomOutlinePaint = SerialUtilities.readPaint(stream);
+ +        Paint var_133 = SerialUtilities.readPaint(stream);
+ +		this.zoomFillPaint = var_133;
+-+        this.zoomOutlinePaint = var_133;
++         this.zoomOutlinePaint = SerialUtilities.readPaint(stream);
+  
+          // we create a new but empty chartMouseListeners list
+-         this.chartMouseListeners = new EventListenerList();

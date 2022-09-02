@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..006fdf6 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -756,8 +756,9 @@
+       // note - we ignore any cases with "return;", technically this
+       // can be converted to "return undefined;" or some variant, but
+       // that does not help code size.
+-      Node returnNode = IR.returnNode(
+-                            IR.hook(cond, thenExpr, elseExpr)
++      Node var_1441 = IR.hook(cond, thenExpr, elseExpr);
++	Node returnNode = IR.returnNode(
++                            var_1441
+                                 .srcref(n));
+       parent.replaceChild(n, returnNode);
+       reportCodeChange();

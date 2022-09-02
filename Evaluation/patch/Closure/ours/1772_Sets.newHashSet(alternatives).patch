@@ -1,0 +1,36 @@
+diff --git a/src/com/google/javascript/jscomp/ConcreteType.java b/src/com/google/javascript/jscomp/ConcreteType.java
+index 7bf7593..d28e1fc 100644
+--- a/src/com/google/javascript/jscomp/ConcreteType.java
++++ b/src/com/google/javascript/jscomp/ConcreteType.java
+@@ -31,6 +31,7 @@
+ 
+ import java.util.Collection;
+ import java.util.Collections;
++import java.util.HashSet;
+ import java.util.List;
+ import java.util.Set;
+ 
+@@ -566,11 +567,12 @@
+     @Override ConcreteUnionType toUnion() { return this; }
+ 
+     @Override ConcreteType unionWith(ConcreteType other) {
+-      if (other.isSingleton()) {
++      HashSet<ConcreteType> var_1772 = Sets.newHashSet(alternatives);
++	if (other.isSingleton()) {
+         if (alternatives.contains(other)) {
+           return this;
+         } else {
+-          Set<ConcreteType> alts = Sets.newHashSet(alternatives);
++          Set<ConcreteType> alts = var_1772;
+           alts.add(other);
+           return new ConcreteUnionType(alts);
+         }
+@@ -581,7 +583,7 @@
+         } else if (otherUnion.alternatives.containsAll(alternatives)) {
+           return otherUnion;
+         } else {
+-          Set<ConcreteType> alts = Sets.newHashSet(alternatives);
++          Set<ConcreteType> alts = var_1772;
+           alts.addAll(otherUnion.alternatives);
+           return new ConcreteUnionType(alts);
+         }

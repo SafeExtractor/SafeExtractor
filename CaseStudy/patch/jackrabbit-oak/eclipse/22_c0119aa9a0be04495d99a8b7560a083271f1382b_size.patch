@@ -1,0 +1,20 @@
+diff --git a/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/file/TarReader.java b/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/file/TarReader.java
+index 38b2a92..39decbf 100644
+--- a/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/file/TarReader.java
++++ b/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/file/TarReader.java
+@@ -845,10 +845,11 @@
+         TarWriter writer = new TarWriter(newFile);
+         for (TarEntry entry : entries) {
+             if (entry != null) {
+-                byte[] data = new byte[entry.size()];
+-                ioMonitor.onSegmentRead(file, entry.msb(), entry.lsb(), entry.size());
+-                access.read(entry.offset(), entry.size()).get(data);
+-                writer.writeEntry(entry.msb(), entry.lsb(), data, 0, entry.size(), entry.generation());
++                int size = entry.size();
++				byte[] data = new byte[size];
++                ioMonitor.onSegmentRead(file, entry.msb(), entry.lsb(), size);
++                access.read(entry.offset(), size).get(data);
++                writer.writeEntry(entry.msb(), entry.lsb(), data, 0, size, entry.generation());
+             }
+         }
+ 

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/Partial.java b/src/main/java/org/joda/time/Partial.java
+index cd4383b..a51ef5f 100644
+--- a/src/main/java/org/joda/time/Partial.java
++++ b/src/main/java/org/joda/time/Partial.java
+@@ -228,7 +228,8 @@
+                     throw new IllegalArgumentException("Types array must be in order largest-smallest: " +
+                             types[i - 1].getName() + " < " + loopType.getName());
+                 } else if (compare == 0 && lastUnitField.equals(loopUnitField)) {
+-                    if (types[i - 1].getRangeDurationType() == null) {
++                    DurationFieldType lastRangeType = types[i - 1].getRangeDurationType();
++					if (lastRangeType == null) {
+                         if (loopType.getRangeDurationType() == null) {
+                             throw new IllegalArgumentException("Types array must not contain duplicate: " +
+                                             types[i - 1].getName() + " and " + loopType.getName());
+@@ -238,7 +239,7 @@
+                             throw new IllegalArgumentException("Types array must be in order largest-smallest: " +
+                                     types[i - 1].getName() + " < " + loopType.getName());
+                         }
+-                        DurationField lastRangeField = types[i - 1].getRangeDurationType().getField(iChronology);
++                        DurationField lastRangeField = lastRangeType.getField(iChronology);
+                         DurationField loopRangeField = loopType.getRangeDurationType().getField(iChronology);
+                         if (lastRangeField.compareTo(loopRangeField) < 0) {
+                             throw new IllegalArgumentException("Types array must be in order largest-smallest: " +

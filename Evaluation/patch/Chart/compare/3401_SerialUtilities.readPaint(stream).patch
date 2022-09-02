@@ -1,0 +1,24 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3401_SerialUtilities.readPaint(stream).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/3401_SerialUtilities.readPaint(stream).patch
+index eb343c6..5fd67ff 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3401_SerialUtilities.readPaint(stream).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/3401_SerialUtilities.readPaint(stream).patch
+@@ -1,16 +1,14 @@
+ diff --git a/source/org/jfree/chart/title/LegendTitle.java b/source/org/jfree/chart/title/LegendTitle.java
+-index 674edcc..c502605 100644
++index 674edcc..294cf95 100644
+ --- a/source/org/jfree/chart/title/LegendTitle.java
+ +++ b/source/org/jfree/chart/title/LegendTitle.java
+-@@ -648,8 +648,9 @@
++@@ -648,7 +648,8 @@
+      private void readObject(ObjectInputStream stream)
+          throws IOException, ClassNotFoundException {
+          stream.defaultReadObject();
+ -        this.backgroundPaint = SerialUtilities.readPaint(stream);
+--        this.itemPaint = SerialUtilities.readPaint(stream);
+ +        Paint var_3401 = SerialUtilities.readPaint(stream);
+ +		this.backgroundPaint = var_3401;
+-+        this.itemPaint = var_3401;
++         this.itemPaint = SerialUtilities.readPaint(stream);
+      }
+  
+- }

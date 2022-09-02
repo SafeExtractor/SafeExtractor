@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java b/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
+index 372c699..ee21db9 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
++++ b/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
+@@ -224,10 +224,11 @@
+ 
+             // evaluate second endpoint
+             evaluations.incrementCount();
+-            y[2] = f.value(x[2]);
++            Dfp var_540 = x[2];
++			y[2] = f.value(var_540);
+             if (y[2].isZero()) {
+                 // return the second endpoint if it is a perfect root.
+-                return x[2];
++                return var_540;
+             }
+ 
+             if (y[1].multiply(y[2]).negativeOrNull()) {
+@@ -235,7 +236,7 @@
+                 nbPoints        = 3;
+                 signChangeIndex = 2;
+             } else {
+-                throw new NoBracketingException(x[0].toDouble(), x[2].toDouble(),
++                throw new NoBracketingException(x[0].toDouble(), var_540.toDouble(),
+                                                 y[0].toDouble(), y[2].toDouble());
+             }
+ 

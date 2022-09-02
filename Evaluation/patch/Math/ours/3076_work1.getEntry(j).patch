@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..eeeecad 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -603,9 +603,10 @@
+                         final int ip = i + npt;
+                         final double temp = work1.getEntry(i);
+                         for (int j = 0; j <= i; j++) {
+-                            bMatrix.setEntry(ip, j,
++                            double var_3076 = work1.getEntry(j);
++							bMatrix.setEntry(ip, j,
+                                           bMatrix.getEntry(ip, j)
+-                                          + temp * work1.getEntry(j));
++                                          + temp * var_3076);
+                         }
+                     }
+                 }

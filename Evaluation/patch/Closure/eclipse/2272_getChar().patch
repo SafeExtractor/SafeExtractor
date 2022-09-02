@@ -1,0 +1,59 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocTokenStream.java b/src/com/google/javascript/jscomp/parsing/JsDocTokenStream.java
+index 0fc2b3b..3b90965 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocTokenStream.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocTokenStream.java
+@@ -61,9 +61,10 @@
+     stringBufferTop = 0;
+     for (;;) {
+       // eat white spaces
+-      for (;;) {
++      int var_2272 = getChar();
++	for (;;) {
+         charno = -1;
+-        c = getChar();
++        c = var_2272;
+         if (c == EOF_CHAR) {
+           return JsDocToken.EOF;
+         } else if (c == '\n') {
+@@ -77,7 +78,7 @@
+         // annotation, e.g. @type or @constructor
+         case '@':
+           do {
+-            c = getChar();
++            c = var_2272;
+             if (isAlpha(c)) {
+               addToString(c);
+             } else {
+@@ -136,12 +137,12 @@
+           return JsDocToken.PIPE;
+ 
+         case '.':
+-          c = getChar();
++          c = var_2272;
+           if (c == '<') {
+             return JsDocToken.LT;
+           } else {
+             if (c == '.') {
+-              c = getChar();
++              c = var_2272;
+               if (c == '.') {
+                 return JsDocToken.ELLIPSIS;
+               } else {
+@@ -159,7 +160,7 @@
+           // a non-JsDoc comment char, e.g. Array.<
+           int c1 = c;
+           addToString(c);
+-          int c2 = getChar();
++          int c2 = var_2272;
+           if (!isJSDocString(c2)) {
+             ungetChar(c2);
+             this.string = getStringFromBuffer();
+@@ -168,7 +169,7 @@
+           } else {
+             do {
+               c1 = c2;
+-              c2 = getChar();
++              c2 = var_2272;
+               if (c1 == '.' && c2 == '<') {
+                 ungetChar(c2);
+                 ungetChar(c1);

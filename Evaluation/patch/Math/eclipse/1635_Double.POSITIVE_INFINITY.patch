@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+index 5d8a992..9b34007 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+@@ -522,11 +522,12 @@
+ 
+         final Vector2D[][] v = getVertices();
+ 
+-        if (v.length == 0) {
++        double var_1635 = Double.POSITIVE_INFINITY;
++		if (v.length == 0) {
+             final BSPTree<Euclidean2D> tree = getTree(false);
+             if (tree.getCut() == null && (Boolean) tree.getAttribute()) {
+                 // the instance covers the whole space
+-                setSize(Double.POSITIVE_INFINITY);
++                setSize(var_1635);
+                 setBarycenter(Vector2D.NaN);
+             } else {
+                 setSize(0);
+@@ -534,7 +535,7 @@
+             }
+         } else if (v[0][0] == null) {
+             // there is at least one open-loop: the polygon is infinite
+-            setSize(Double.POSITIVE_INFINITY);
++            setSize(var_1635);
+             setBarycenter(Vector2D.NaN);
+         } else {
+             // all loops are closed, we compute some integrals around the shape
+@@ -560,7 +561,7 @@
+ 
+             if (sum < 0) {
+                 // the polygon as a finite outside surrounded by an infinite inside
+-                setSize(Double.POSITIVE_INFINITY);
++                setSize(var_1635);
+                 setBarycenter(Vector2D.NaN);
+             } else {
+                 setSize(sum / 2);

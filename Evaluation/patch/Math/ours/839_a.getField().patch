@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..f28bbc2 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -782,8 +782,9 @@
+      * @return cos(a)
+      */
+     public static Dfp cos(Dfp a) {
+-        final Dfp pi = a.getField().getPi();
+-        final Dfp zero = a.getField().getZero();
++        DfpField var_839 = a.getField();
++		final Dfp pi = var_839.getPi();
++        final Dfp zero = var_839.getZero();
+         boolean neg = false;
+ 
+         /* First reduce the argument to the range of +/- PI */
+@@ -813,7 +814,7 @@
+             y = cosInternal(c);
+         } else {
+             final Dfp c[] = new Dfp[2];
+-            final Dfp[] piSplit = a.getField().getPiSplit();
++            final Dfp[] piSplit = var_839.getPiSplit();
+             c[0] = piSplit[0].divide(2).subtract(x);
+             c[1] = piSplit[1].divide(2);
+             y = sinInternal(c);

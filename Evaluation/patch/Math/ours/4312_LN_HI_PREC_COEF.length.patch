@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/FastMath.java b/src/main/java/org/apache/commons/math3/util/FastMath.java
+index 919e39f..e62b3a9 100644
+--- a/src/main/java/org/apache/commons/math3/util/FastMath.java
++++ b/src/main/java/org/apache/commons/math3/util/FastMath.java
+@@ -1258,11 +1258,12 @@
+             xb += aa / denom;
+ 
+             /* Remez polynomial evaluation */
+-            final double[] lnCoef_last = LN_HI_PREC_COEF[LN_HI_PREC_COEF.length-1];
++            int var_4312 = LN_HI_PREC_COEF.length;
++			final double[] lnCoef_last = LN_HI_PREC_COEF[var_4312-1];
+             double ya = lnCoef_last[0];
+             double yb = lnCoef_last[1];
+ 
+-            for (int i = LN_HI_PREC_COEF.length - 2; i >= 0; i--) {
++            for (int i = var_4312 - 2; i >= 0; i--) {
+                 /* Multiply a = y * x */
+                 aa = ya * xa;
+                 ab = ya * xb + yb * xa + yb * xb;

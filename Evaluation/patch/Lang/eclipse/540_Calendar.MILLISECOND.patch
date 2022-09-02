@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DateUtils.java b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+index b16af53..215c260 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DateUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+@@ -1696,7 +1696,8 @@
+                 break;
+         }
+ 
+-        switch (fragment) {
++        int var_540 = Calendar.MILLISECOND;
++		switch (fragment) {
+             // Number of days already calculated for these cases
+             case Calendar.YEAR:
+             case Calendar.MONTH:
+@@ -1713,9 +1714,9 @@
+                 result += (calendar.get(Calendar.SECOND) * MILLIS_PER_SECOND) / millisPerUnit;
+                 //$FALL-THROUGH$
+             case Calendar.SECOND:
+-                result += (calendar.get(Calendar.MILLISECOND) * 1) / millisPerUnit;
++                result += (calendar.get(var_540) * 1) / millisPerUnit;
+                 break;
+-            case Calendar.MILLISECOND: break;//never useful
++            case var_540: break;//never useful
+                 default: throw new IllegalArgumentException("The fragment " + fragment + " is not supported");
+         }
+         return result;

@@ -1,0 +1,138 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot3D.java b/source/org/jfree/chart/plot/PiePlot3D.java
+index a7aab14..d2f27a8 100644
+--- a/source/org/jfree/chart/plot/PiePlot3D.java
++++ b/source/org/jfree/chart/plot/PiePlot3D.java
+@@ -633,7 +633,8 @@
+         g2.setStroke(outlineStroke);
+ 
+         // for CLOCKWISE charts, the extent will be negative...
+-        if (extent < 0.0) {
++        double var_1503 = arc.getStartPoint().getX();
++		if (extent < 0.0) {
+ 
+             if (isAngleAtFront(start)) {  // start at front
+ 
+@@ -644,7 +645,7 @@
+                         if (drawFront) {
+                             Area side = new Area(new Rectangle2D.Double(
+                                     arc.getEndPoint().getX(), plotArea.getY(),
+-                                    arc.getStartPoint().getX()
++                                    var_1503
+                                     - arc.getEndPoint().getX(),
+                                     plotArea.getHeight()));
+                             side.intersect(front);
+@@ -659,7 +660,7 @@
+                             // the back and finishes at the front again
+                         Area side1 = new Area(new Rectangle2D.Double(
+                                 plotArea.getX(), plotArea.getY(),
+-                                arc.getStartPoint().getX() - plotArea.getX(),
++                                var_1503 - plotArea.getX(),
+                                 plotArea.getHeight()));
+                         side1.intersect(front);
+ 
+@@ -709,7 +710,7 @@
+                     if (drawFront) {
+                         Area side1 = new Area(new Rectangle2D.Double(
+                                 plotArea.getX(), plotArea.getY(),
+-                                arc.getStartPoint().getX() - plotArea.getX(),
++                                var_1503 - plotArea.getX(),
+                                 plotArea.getHeight()));
+                         side1.intersect(front);
+                         g2.setPaint(paint);
+@@ -726,9 +727,9 @@
+                     if (extent > -180.0) {  // whole segment stays at the back
+                         if (drawBack) {
+                             Area side = new Area(new Rectangle2D.Double(
+-                                    arc.getStartPoint().getX(), plotArea.getY(),
++                                    var_1503, plotArea.getY(),
+                                     arc.getEndPoint().getX()
+-                                    - arc.getStartPoint().getX(),
++                                    - var_1503,
+                                     plotArea.getHeight()));
+                             side.intersect(back);
+                             g2.setPaint(paint);
+@@ -740,8 +741,8 @@
+                     else {  // starts at the back, wraps around front, and
+                             // finishes at back again
+                         Area side1 = new Area(new Rectangle2D.Double(
+-                                arc.getStartPoint().getX(), plotArea.getY(),
+-                                plotArea.getMaxX() - arc.getStartPoint().getX(),
++                                var_1503, plotArea.getY(),
++                                plotArea.getMaxX() - var_1503,
+                                 plotArea.getHeight()));
+                         side1.intersect(back);
+ 
+@@ -778,8 +779,8 @@
+ 
+                     if (drawBack) {
+                         Area side1 = new Area(new Rectangle2D.Double(
+-                                arc.getStartPoint().getX(), plotArea.getY(),
+-                                plotArea.getMaxX() - arc.getStartPoint().getX(),
++                                var_1503, plotArea.getY(),
++                                plotArea.getMaxX() - var_1503,
+                                 plotArea.getHeight()));
+                         side1.intersect(back);
+                         g2.setPaint(paint);
+@@ -812,9 +813,9 @@
+                     if (extent < 180.0) {  // segment only occupies the front
+                         if (drawFront) {
+                             Area side = new Area(new Rectangle2D.Double(
+-                                    arc.getStartPoint().getX(), plotArea.getY(),
++                                    var_1503, plotArea.getY(),
+                                     arc.getEndPoint().getX()
+-                                    - arc.getStartPoint().getX(),
++                                    - var_1503,
+                                     plotArea.getHeight()));
+                             side.intersect(front);
+                             g2.setPaint(paint);
+@@ -825,8 +826,8 @@
+                     }
+                     else {  // segments wraps right around the back...
+                         Area side1 = new Area(new Rectangle2D.Double(
+-                                arc.getStartPoint().getX(), plotArea.getY(),
+-                                plotArea.getMaxX() - arc.getStartPoint().getX(),
++                                var_1503, plotArea.getY(),
++                                plotArea.getMaxX() - var_1503,
+                                 plotArea.getHeight()));
+                         side1.intersect(front);
+ 
+@@ -873,8 +874,8 @@
+ 
+                     if (drawFront) {
+                         Area side1 = new Area(new Rectangle2D.Double(
+-                                arc.getStartPoint().getX(), plotArea.getY(),
+-                                plotArea.getMaxX() - arc.getStartPoint().getX(),
++                                var_1503, plotArea.getY(),
++                                plotArea.getMaxX() - var_1503,
+                                 plotArea.getHeight()));
+                         side1.intersect(front);
+                         g2.setPaint(paint);
+@@ -891,7 +892,7 @@
+                         if (drawBack) {
+                             Area side = new Area(new Rectangle2D.Double(
+                                     arc.getEndPoint().getX(), plotArea.getY(),
+-                                    arc.getStartPoint().getX()
++                                    var_1503
+                                     - arc.getEndPoint().getX(),
+                                     plotArea.getHeight()));
+                             side.intersect(back);
+@@ -904,8 +905,8 @@
+                     else {  // starts at back and wraps right around to the
+                             // back again
+                         Area side1 = new Area(new Rectangle2D.Double(
+-                                arc.getStartPoint().getX(), plotArea.getY(),
+-                                plotArea.getX() - arc.getStartPoint().getX(),
++                                var_1503, plotArea.getY(),
++                                plotArea.getX() - var_1503,
+                                 plotArea.getHeight()));
+                         side1.intersect(back);
+ 
+@@ -942,7 +943,7 @@
+                     if (drawBack) {
+                         Area side1 = new Area(new Rectangle2D.Double(
+                                 plotArea.getX(), plotArea.getY(),
+-                                arc.getStartPoint().getX() - plotArea.getX(),
++                                var_1503 - plotArea.getX(),
+                                 plotArea.getHeight()));
+                         side1.intersect(back);
+                         g2.setPaint(paint);

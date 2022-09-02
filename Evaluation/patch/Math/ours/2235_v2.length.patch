@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java b/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java
+index 4ffd794..0a30fdf 100644
+--- a/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java
++++ b/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java
+@@ -391,12 +391,13 @@
+             throws NullArgumentException, ZeroException {
+         MathUtils.checkNotNull(v1);
+         MathUtils.checkNotNull(v2);
+-        if (v1.length + v2.length == 0) {
++        int var_2235 = v2.length;
++		if (v1.length + var_2235 == 0) {
+             throw new ZeroException(LocalizedFormats.VECTOR_MUST_HAVE_AT_LEAST_ONE_ELEMENT);
+         }
+-        data = MathArrays.buildArray(v1[0].getField(), v1.length + v2.length);
++        data = MathArrays.buildArray(v1[0].getField(), v1.length + var_2235);
+         System.arraycopy(v1, 0, data, 0, v1.length);
+-        System.arraycopy(v2, 0, data, v1.length, v2.length);
++        System.arraycopy(v2, 0, data, v1.length, var_2235);
+         field = data[0].getField();
+     }
+ 

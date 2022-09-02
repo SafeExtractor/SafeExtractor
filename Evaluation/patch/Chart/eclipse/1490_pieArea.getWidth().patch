@@ -1,0 +1,63 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot3D.java b/source/org/jfree/chart/plot/PiePlot3D.java
+index a7aab14..9cf728a 100644
+--- a/source/org/jfree/chart/plot/PiePlot3D.java
++++ b/source/org/jfree/chart/plot/PiePlot3D.java
+@@ -327,7 +327,8 @@
+         state.setPieArea(pieArea);
+         state.setPieCenterX(pieArea.getCenterX());
+         state.setPieCenterY(pieArea.getCenterY() - depth / 2.0);
+-        state.setPieWRadius(pieArea.getWidth() / 2.0);
++        double var_1490 = pieArea.getWidth();
++		state.setPieWRadius(var_1490 / 2.0);
+         state.setPieHRadius((pieArea.getHeight() - depth) / 2.0);
+ 
+         // get the data source - return if null;
+@@ -411,7 +412,7 @@
+                     * 360) / totalValue;
+             if (Math.abs(angle2 - angle1) > getMinimumArcAngleToDraw()) {
+                 arcList.add(new Arc2D.Double(arcX, arcY + depth,
+-                        pieArea.getWidth(), pieArea.getHeight() - depth,
++                        var_1490, pieArea.getHeight() - depth,
+                         angle1, angle2 - angle1, Arc2D.PIE));
+             }
+             else {
+@@ -423,17 +424,17 @@
+         Shape oldClip = g2.getClip();
+ 
+         Ellipse2D top = new Ellipse2D.Double(pieArea.getX(), pieArea.getY(),
+-                pieArea.getWidth(), pieArea.getHeight() - depth);
++                var_1490, pieArea.getHeight() - depth);
+ 
+         Ellipse2D bottom = new Ellipse2D.Double(pieArea.getX(), pieArea.getY()
+-                + depth, pieArea.getWidth(), pieArea.getHeight() - depth);
++                + depth, var_1490, pieArea.getHeight() - depth);
+ 
+         Rectangle2D lower = new Rectangle2D.Double(top.getX(),
+-                top.getCenterY(), pieArea.getWidth(), bottom.getMaxY()
++                top.getCenterY(), var_1490, bottom.getMaxY()
+                 - top.getCenterY());
+ 
+         Rectangle2D upper = new Rectangle2D.Double(pieArea.getX(), top.getY(),
+-                pieArea.getWidth(), bottom.getCenterY() - top.getY());
++                var_1490, bottom.getCenterY() - top.getY());
+ 
+         Area a = new Area(top);
+         a.add(new Area(lower));
+@@ -451,7 +452,7 @@
+         // draw the bottom circle
+         int[] xs;
+         int[] ys;
+-        arc = new Arc2D.Double(arcX, arcY + depth, pieArea.getWidth(),
++        arc = new Arc2D.Double(arcX, arcY + depth, var_1490,
+                 pieArea.getHeight() - depth, 0, 360, Arc2D.PIE);
+ 
+         int categoryCount = arcList.size();
+@@ -535,7 +536,7 @@
+             if (arc == null) {
+                 continue;
+             }
+-            upperArc = new Arc2D.Double(arcX, arcY, pieArea.getWidth(),
++            upperArc = new Arc2D.Double(arcX, arcY, var_1490,
+                     pieArea.getHeight() - depth, arc.getAngleStart(),
+                     arc.getAngleExtent(), Arc2D.PIE);
+ 

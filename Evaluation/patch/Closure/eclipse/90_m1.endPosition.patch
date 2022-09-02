@@ -1,0 +1,17 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapGeneratorV3.java b/src/com/google/debugging/sourcemap/SourceMapGeneratorV3.java
+index 5ba6e4b..1b5e53c 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapGeneratorV3.java
++++ b/src/com/google/debugging/sourcemap/SourceMapGeneratorV3.java
+@@ -539,9 +539,10 @@
+      */
+     private boolean isOverlapped(Mapping m1, Mapping m2) {
+       // No need to use adjusted values here, relative positions are sufficient.
+-      int l1 = m1.endPosition.getLine();
++      FilePosition var_90 = m1.endPosition;
++	int l1 = var_90.getLine();
+       int l2 = m2.startPosition.getLine();
+-      int c1 = m1.endPosition.getColumn();
++      int c1 = var_90.getColumn();
+       int c2 = m2.startPosition.getColumn();
+ 
+       return (l1 == l2 && c1 >= c2) || l1 > l2;

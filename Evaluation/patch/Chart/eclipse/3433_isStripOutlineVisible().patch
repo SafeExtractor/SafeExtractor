@@ -1,0 +1,50 @@
+diff --git a/source/org/jfree/chart/title/PaintScaleLegend.java b/source/org/jfree/chart/title/PaintScaleLegend.java
+index c489277..2798e27 100644
+--- a/source/org/jfree/chart/title/PaintScaleLegend.java
++++ b/source/org/jfree/chart/title/PaintScaleLegend.java
+@@ -547,7 +547,8 @@
+         double increment = this.axis.getRange().getLength() / this.subdivisions;
+         Rectangle2D r = new Rectangle2D.Double();
+ 
+-        if (RectangleEdge.isTopOrBottom(getPosition())) {
++        boolean var_3433 = isStripOutlineVisible();
++		if (RectangleEdge.isTopOrBottom(getPosition())) {
+             RectangleEdge axisEdge = Plot.resolveRangeAxisLocation(
+                     this.axisLocation, PlotOrientation.HORIZONTAL);
+             if (axisEdge == RectangleEdge.TOP) {
+@@ -564,7 +565,7 @@
+                     g2.setPaint(p);
+                     g2.fill(r);
+                 }
+-                if (isStripOutlineVisible()) {
++                if (var_3433) {
+                     g2.setPaint(this.stripOutlinePaint);
+                     g2.setStroke(this.stripOutlineStroke);
+                     g2.draw(new Rectangle2D.Double(target.getMinX(),
+@@ -589,7 +590,7 @@
+                     g2.setPaint(p);
+                     g2.fill(r);
+                 }
+-                if (isStripOutlineVisible()) {
++                if (var_3433) {
+                     g2.setPaint(this.stripOutlinePaint);
+                     g2.setStroke(this.stripOutlineStroke);
+                     g2.draw(new Rectangle2D.Double(target.getMinX(),
+@@ -618,7 +619,7 @@
+                     g2.setPaint(p);
+                     g2.fill(r);
+                 }
+-                if (isStripOutlineVisible()) {
++                if (var_3433) {
+                     g2.setPaint(this.stripOutlinePaint);
+                     g2.setStroke(this.stripOutlineStroke);
+                     g2.draw(new Rectangle2D.Double(target.getMaxX()
+@@ -643,7 +644,7 @@
+                     g2.setPaint(p);
+                     g2.fill(r);
+                 }
+-                if (isStripOutlineVisible()) {
++                if (var_3433) {
+                     g2.setPaint(this.stripOutlinePaint);
+                     g2.setStroke(this.stripOutlineStroke);
+                     g2.draw(new Rectangle2D.Double(target.getMinX(),

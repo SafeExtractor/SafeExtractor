@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java b/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java
+index e0466ea..9530b8f 100644
+--- a/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java
++++ b/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java
+@@ -140,7 +140,8 @@
+       }
+ 
+       // Only care about var nodes
+-      if (!n.isVar() && !canBeRedeclared(n, t.getScope())) return;
++      boolean var_464 = canBeRedeclared(n, t.getScope());
++	if (!n.isVar() && !var_464) return;
+ 
+       // If we've already looked at this node, skip it
+       if (nodesToCollapse.contains(n)) return;

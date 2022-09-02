@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/RescopeGlobalSymbols.java b/src/com/google/javascript/jscomp/RescopeGlobalSymbols.java
+index 72b9653..2e3d8d7 100644
+--- a/src/com/google/javascript/jscomp/RescopeGlobalSymbols.java
++++ b/src/com/google/javascript/jscomp/RescopeGlobalSymbols.java
+@@ -238,14 +238,15 @@
+       // As opposed to regular var nodes, there are always assignments
+       // because the previous traversal in RewriteScopeCallback creates
+       // them.
+-      for (Node c : n.children()) {
++      boolean var_829 = parent.isFor();
++	for (Node c : n.children()) {
+         if (c.isAssign() ||
+-            parent.isFor()) {
++            var_829) {
+           interestingChildren.add(c);
+         }
+       }
+       for (Node c : interestingChildren) {
+-        if (parent.isFor() && parent.getFirstChild() == n) {
++        if (var_829 && parent.getFirstChild() == n) {
+           commas.add(c.cloneTree());
+         } else {
+           // Var statement outside of for-loop.

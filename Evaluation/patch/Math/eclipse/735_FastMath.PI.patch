@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..d595981 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -2751,7 +2751,8 @@
+ 
+             // compute atan2(y, x) = +/- pi - 2 atan(y / (r - x))
+             final Dfp tmp = getTwo().multiply(divide(r.subtract(x)).atan());
+-            final Dfp pmPi = newInstance((tmp.sign <= 0) ? -FastMath.PI : FastMath.PI);
++            double var_735 = FastMath.PI;
++			final Dfp pmPi = newInstance((tmp.sign <= 0) ? -var_735 : var_735);
+             return pmPi.subtract(tmp);
+ 
+         }

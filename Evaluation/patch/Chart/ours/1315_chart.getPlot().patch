@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/panel/PanHandler.java b/source/org/jfree/chart/panel/PanHandler.java
+index 49ce1fe..002be26 100644
+--- a/source/org/jfree/chart/panel/PanHandler.java
++++ b/source/org/jfree/chart/panel/PanHandler.java
+@@ -121,9 +121,10 @@
+         }
+         double wPercent = -dx / this.panW;
+         double hPercent = dy / this.panH;
+-        boolean old = chart.getPlot().isNotify();
+-        chart.getPlot().setNotify(false);
+-        Pannable p = (Pannable) chart.getPlot();
++        Plot var_1315 = chart.getPlot();
++		boolean old = var_1315.isNotify();
++        var_1315.setNotify(false);
++        Pannable p = (Pannable) var_1315;
+         PlotRenderingInfo info = panel.getChartRenderingInfo().getPlotInfo();
+         if (p.getOrientation() == PlotOrientation.VERTICAL) {
+             p.panDomainAxes(wPercent, info, this.panLast);
+@@ -134,7 +135,7 @@
+             p.panRangeAxes(wPercent, info, this.panLast);
+         }
+         this.panLast = e.getPoint();
+-        chart.getPlot().setNotify(old);
++        var_1315.setNotify(old);
+         return;
+     }
+ 

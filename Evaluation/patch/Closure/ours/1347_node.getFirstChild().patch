@@ -1,0 +1,45 @@
+diff --git a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+index 171eb51..21fb8da 100644
+--- a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
++++ b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+@@ -415,10 +415,11 @@
+             functionSideEffectMap.get(enclosingFunction);
+         Preconditions.checkNotNull(sideEffectInfo);
+ 
+-        if (NodeUtil.isAssignmentOp(node)) {
++        Node var_1347 = node.getFirstChild();
++		if (NodeUtil.isAssignmentOp(node)) {
+           visitAssignmentOrUnaryOperator(
+               sideEffectInfo, traversal.getScope(),
+-              node, node.getFirstChild(), node.getLastChild());
++              node, var_1347, node.getLastChild());
+         } else {
+           switch(node.getType()) {
+             case Token.CALL:
+@@ -430,7 +431,7 @@
+             case Token.INC:
+               visitAssignmentOrUnaryOperator(
+                   sideEffectInfo, traversal.getScope(),
+-                  node, node.getFirstChild(), null);
++                  node, var_1347, null);
+               break;
+             case Token.NAME:
+               // Variable definition are not side effects.
+@@ -438,7 +439,7 @@
+               // variable declaration.
+               Preconditions.checkArgument(
+                   NodeUtil.isVarDeclaration(node));
+-              Node value = node.getFirstChild();
++              Node value = var_1347;
+               // Assignment to local, if the value isn't a safe local value,
+               // new object creation or literal or known primitive result
+               // value, add it to the local blacklist.
+@@ -453,7 +454,7 @@
+               break;
+             case Token.RETURN:
+               if (node.hasChildren()
+-                  && !NodeUtil.evaluatesToLocalValue(node.getFirstChild())) {
++                  && !NodeUtil.evaluatesToLocalValue(var_1347)) {
+                 sideEffectInfo.setTaintsReturn();
+               }
+               break;

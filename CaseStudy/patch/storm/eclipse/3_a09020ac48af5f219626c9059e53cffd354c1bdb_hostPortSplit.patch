@@ -1,0 +1,14 @@
+diff --git a/storm-webapp/src/main/java/org/apache/storm/daemon/logviewer/handler/LogviewerProfileHandler.java b/storm-webapp/src/main/java/org/apache/storm/daemon/logviewer/handler/LogviewerProfileHandler.java
+index 58b883a..23c96cf 100644
+--- a/storm-webapp/src/main/java/org/apache/storm/daemon/logviewer/handler/LogviewerProfileHandler.java
++++ b/storm-webapp/src/main/java/org/apache/storm/daemon/logviewer/handler/LogviewerProfileHandler.java
+@@ -111,7 +111,8 @@
+      * @see {@link org.apache.storm.daemon.logviewer.utils.LogFileDownloader#downloadFile(String, String, String, boolean)}
+      */
+     public Response downloadDumpFile(String host, String topologyId, String hostPort, String fileName, String user) throws IOException {
+-        String portStr = hostPort.split(":")[1];
++        String[] hostPortSplit = hostPort.split(":");
++		String portStr = hostPortSplit[1];
+         Path rawFile = logRoot.resolve(topologyId).resolve(portStr).resolve(fileName);
+         Path absFile = rawFile.toAbsolutePath().normalize();
+         if (!absFile.startsWith(logRoot) || !rawFile.normalize().toString().equals(rawFile.toString())) {

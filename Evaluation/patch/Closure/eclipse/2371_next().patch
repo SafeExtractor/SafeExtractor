@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..89f9974 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -2088,13 +2088,14 @@
+     boolean hasVarArgs = false;
+ 
+     do {
+-      if (arg != null) {
++      JsDocToken var_2371 = next();
++	if (arg != null) {
+         next();
+         skipEOLs();
+-        token = next();
++        token = var_2371;
+       }
+       if (token == JsDocToken.ELLIPSIS) {
+-        arg = wrapNode(Token.ELLIPSIS, parseTypeExpression(next()));
++        arg = wrapNode(Token.ELLIPSIS, parseTypeExpression(var_2371));
+         hasVarArgs = true;
+       } else {
+         arg = parseTypeExpression(token);

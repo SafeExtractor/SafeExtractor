@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java b/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
+index 04d88ae..1f8a511 100644
+--- a/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
++++ b/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
+@@ -172,17 +172,18 @@
+   private void extractInstance(ExtractionInstance instance) {
+     PrototypeMemberDeclaration first = instance.declarations.getFirst();
+     String className = first.qualifiedClassName;
+-    if (pattern == Pattern.USE_GLOBAL_TEMP) {
++    Node var_2007 = instance.parent;
++	if (pattern == Pattern.USE_GLOBAL_TEMP) {
+       // Use the temp variable to hold the prototype.
+       Node stmt = new Node(first.node.getType(),
+          IR.assign(
+               IR.name(prototypeAlias),
+               NodeUtil.newQualifiedNameNode(
+                   compiler.getCodingConvention(), className + ".prototype",
+-                  instance.parent, className + ".prototype")))
++                  var_2007, className + ".prototype")))
+           .copyInformationFromForTree(first.node);
+ 
+-      instance.parent.addChildBefore(stmt, first.node);
++      var_2007.addChildBefore(stmt, first.node);
+     } else if (pattern == Pattern.USE_ANON_FUNCTION){
+       Node block = IR.block();
+       Node func = IR.function(
+@@ -193,12 +194,12 @@
+       Node call = IR.call(func,
+            NodeUtil.newQualifiedNameNode(
+                compiler.getCodingConvention(), className + ".prototype",
+-               instance.parent, className + ".prototype"));
++               var_2007, className + ".prototype"));
+       call.putIntProp(Node.FREE_CALL, 1);
+ 
+       Node stmt = new Node(first.node.getType(), call);
+       stmt.copyInformationFromForTree(first.node);
+-      instance.parent.addChildBefore(stmt, first.node);
++      var_2007.addChildBefore(stmt, first.node);
+       for (PrototypeMemberDeclaration declar : instance.declarations) {
+         block.addChildToBack(declar.node.detachFromParent());
+       }

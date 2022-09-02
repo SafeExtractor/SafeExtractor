@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/util/SerialUtilities.java b/source/org/jfree/chart/util/SerialUtilities.java
+index 90edcc1..720cc67 100644
+--- a/source/org/jfree/chart/util/SerialUtilities.java
++++ b/source/org/jfree/chart/util/SerialUtilities.java
+@@ -316,7 +316,8 @@
+                     for (int i = 0; i < 6; i++) {
+                         args[i] = stream.readFloat();
+                     }
+-                    switch (type) {
++                    float var_3644 = args[3];
++					switch (type) {
+                         case PathIterator.SEG_MOVETO :
+                             gp.moveTo(args[0], args[1]);
+                             break;
+@@ -325,10 +326,10 @@
+                             break;
+                         case PathIterator.SEG_CUBICTO :
+                             gp.curveTo(args[0], args[1], args[2],
+-                                    args[3], args[4], args[5]);
++                                    var_3644, args[4], args[5]);
+                             break;
+                         case PathIterator.SEG_QUADTO :
+-                            gp.quadTo(args[0], args[1], args[2], args[3]);
++                            gp.quadTo(args[0], args[1], args[2], var_3644);
+                             break;
+                         case PathIterator.SEG_CLOSE :
+                             gp.closePath();

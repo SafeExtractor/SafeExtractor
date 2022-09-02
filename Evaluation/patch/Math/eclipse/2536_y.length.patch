@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java b/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java
+index 3898435..18303d1 100644
+--- a/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java
+@@ -232,8 +232,9 @@
+         if (y0.length != equations.getDimension()) {
+             throw new DimensionMismatchException(y0.length, equations.getDimension());
+         }
+-        if (y.length != equations.getDimension()) {
+-            throw new DimensionMismatchException(y.length, equations.getDimension());
++        int var_2536 = y.length;
++		if (var_2536 != equations.getDimension()) {
++            throw new DimensionMismatchException(var_2536, equations.getDimension());
+         }
+ 
+         // prepare expandable stateful equations
+@@ -245,7 +246,7 @@
+         integrate(expandableODE, t);
+ 
+         // extract results back from the stateful equations
+-        System.arraycopy(expandableODE.getPrimaryState(), 0, y, 0, y.length);
++        System.arraycopy(expandableODE.getPrimaryState(), 0, y, 0, var_2536);
+         return expandableODE.getTime();
+ 
+     }

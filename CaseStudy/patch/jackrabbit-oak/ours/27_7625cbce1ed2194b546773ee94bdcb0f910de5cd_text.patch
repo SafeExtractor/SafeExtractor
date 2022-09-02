@@ -1,0 +1,18 @@
+diff --git a/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/LuceneIndex.java b/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/LuceneIndex.java
+index cf78ca1..c1e8342 100644
+--- a/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/LuceneIndex.java
++++ b/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/LuceneIndex.java
+@@ -494,10 +494,11 @@
+         for (IndexableField field : searcher.getIndexReader().document(doc.doc).getFields())
+             if (!FieldNames.SUGGEST.equals(field.name())) {
+                 try {
+-                    TokenStream tokenStream = analyzer.tokenStream(field.name(), field.stringValue());
++                    Object text = field.stringValue();
++					TokenStream tokenStream = analyzer.tokenStream(field.name(), text);
+                     tokenStream.reset();
+                     CachingTokenFilter cachingTokenFilter = new CachingTokenFilter(tokenStream);
+-                    TextFragment[] textFragments = highlighter.getBestTextFragments(cachingTokenFilter, field.stringValue(), true, 2);
++                    TextFragment[] textFragments = highlighter.getBestTextFragments(cachingTokenFilter, text, true, 2);
+                     if (textFragments != null && textFragments.length > 0) {
+                         for (TextFragment fragment : textFragments) {
+                             if (excerpt.length() > 0) {

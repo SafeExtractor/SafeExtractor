@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/ResizableDoubleArray.java b/src/main/java/org/apache/commons/math3/util/ResizableDoubleArray.java
+index 7de3221..6134504 100644
+--- a/src/main/java/org/apache/commons/math3/util/ResizableDoubleArray.java
++++ b/src/main/java/org/apache/commons/math3/util/ResizableDoubleArray.java
+@@ -25,6 +25,7 @@
+ import org.apache.commons.math3.exception.NullArgumentException;
+ import org.apache.commons.math3.exception.NotStrictlyPositiveException;
+ import org.apache.commons.math3.exception.NumberIsTooSmallException;
++import org.apache.commons.math3.exception.util.ExceptionContext;
+ import org.apache.commons.math3.exception.util.LocalizedFormats;
+ 
+ /**
+@@ -556,7 +557,8 @@
+         throws NumberIsTooSmallException {
+         if (contraction < expansion) {
+             final NumberIsTooSmallException e = new NumberIsTooSmallException(contraction, 1, true);
+-            e.getContext().addMessage(LocalizedFormats.CONTRACTION_CRITERIA_SMALLER_THAN_EXPANSION_FACTOR,
++            ExceptionContext var_4106 = e.getContext();
++			var_4106.addMessage(LocalizedFormats.CONTRACTION_CRITERIA_SMALLER_THAN_EXPANSION_FACTOR,
+                                       contraction, expansion);
+             throw e;
+         }

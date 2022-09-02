@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..1a2d3b3 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -87,10 +87,11 @@
+     Node finallyBlock = catchBlock.getNext();
+ 
+     // Removes TRYs that had its CATCH removed and/or empty FINALLY.
+-    if (!catchBlock.hasChildren() &&
++    Node var_776 = n.getParent();
++	if (!catchBlock.hasChildren() &&
+         (finallyBlock == null || !finallyBlock.hasChildren())) {
+       n.removeChild(body);
+-      n.getParent().replaceChild(n, body);
++      var_776.replaceChild(n, body);
+       reportCodeChange();
+       return body;
+     }
+@@ -100,9 +101,9 @@
+       NodeUtil.redeclareVarsInsideBranch(catchBlock);
+       if (finallyBlock != null) {
+         n.removeChild(finallyBlock);
+-        n.getParent().replaceChild(n, finallyBlock);
++        var_776.replaceChild(n, finallyBlock);
+       } else {
+-        n.getParent().removeChild(n);
++        var_776.removeChild(n);
+       }
+       reportCodeChange();
+       return finallyBlock;

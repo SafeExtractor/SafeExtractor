@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..699d67f 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -1459,7 +1459,8 @@
+             subtract(tmp1, 0, x, xOffset, tmp2, 0);     // r - x
+             divide(y, yOffset, tmp2, 0, tmp1, 0);       // y /(r - x)
+             atan(tmp1, 0, tmp2, 0);                     // atan(y / (r - x))
+-            result[resultOffset] =
++            double var_138 = result[resultOffset];
++			result[resultOffset] =
+                     ((tmp2[0] <= 0) ? -FastMath.PI : FastMath.PI) - 2 * tmp2[0]; // +/-pi - 2 * atan(y / (r - x))
+             for (int i = 1; i < tmp2.length; ++i) {
+                 result[resultOffset + i] = -2 * tmp2[i]; // +/-pi - 2 * atan(y / (r - x))

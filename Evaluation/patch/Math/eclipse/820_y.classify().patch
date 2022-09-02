@@ -1,0 +1,59 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..7aed7bb 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -539,7 +539,8 @@
+         }
+ 
+         // X == 0
+-        if (x.equals(zero)) {
++        int var_820 = y.classify();
++		if (x.equals(zero)) {
+             if (Dfp.copysign(one, x).greaterThan(zero)) {
+                 // X == +0
+                 if (y.greaterThan(zero)) {
+@@ -549,7 +550,7 @@
+                 }
+             } else {
+                 // X == -0
+-                if (y.classify() == Dfp.FINITE && y.rint().equals(y) && !y.remainder(two).equals(zero)) {
++                if (var_820 == Dfp.FINITE && y.rint().equals(y) && !y.remainder(two).equals(zero)) {
+                     // If y is odd integer
+                     if (y.greaterThan(zero)) {
+                         return x.newInstance(zero.negate());
+@@ -573,7 +574,7 @@
+             invert = true;
+         }
+ 
+-        if (x.greaterThan(one) && y.classify() == Dfp.INFINITE) {
++        if (x.greaterThan(one) && var_820 == Dfp.INFINITE) {
+             if (y.greaterThan(zero)) {
+                 return y;
+             } else {
+@@ -581,7 +582,7 @@
+             }
+         }
+ 
+-        if (x.lessThan(one) && y.classify() == Dfp.INFINITE) {
++        if (x.lessThan(one) && var_820 == Dfp.INFINITE) {
+             if (y.greaterThan(zero)) {
+                 return x.newInstance(zero);
+             } else {
+@@ -589,7 +590,7 @@
+             }
+         }
+ 
+-        if (x.equals(one) && y.classify() == Dfp.INFINITE) {
++        if (x.equals(one) && var_820 == Dfp.INFINITE) {
+             x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+             return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x.newInstance((byte)1, Dfp.QNAN));
+         }
+@@ -598,7 +599,7 @@
+             // x = +/- inf
+             if (invert) {
+                 // negative infinity
+-                if (y.classify() == Dfp.FINITE && y.rint().equals(y) && !y.remainder(two).equals(zero)) {
++                if (var_820 == Dfp.FINITE && y.rint().equals(y) && !y.remainder(two).equals(zero)) {
+                     // If y is odd integer
+                     if (y.greaterThan(zero)) {
+                         return x.newInstance(x.newInstance((byte)-1, Dfp.INFINITE));

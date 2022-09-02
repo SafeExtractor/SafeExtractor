@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/lang3/CharSet.java b/src/main/java/org/apache/commons/lang3/CharSet.java
+index 82f0b9a..1241805 100644
+--- a/src/main/java/org/apache/commons/lang3/CharSet.java
++++ b/src/main/java/org/apache/commons/lang3/CharSet.java
+@@ -179,13 +179,14 @@
+         int pos = 0;
+         while (pos < len) {
+             final int remainder = len - pos;
+-            if (remainder >= 4 && str.charAt(pos) == '^' && str.charAt(pos + 2) == '-') {
++            char var_244 = str.charAt(pos + 2);
++			if (remainder >= 4 && str.charAt(pos) == '^' && var_244 == '-') {
+                 // negated range
+                 set.add(CharRange.isNotIn(str.charAt(pos + 1), str.charAt(pos + 3)));
+                 pos += 4;
+             } else if (remainder >= 3 && str.charAt(pos + 1) == '-') {
+                 // range
+-                set.add(CharRange.isIn(str.charAt(pos), str.charAt(pos + 2)));
++                set.add(CharRange.isIn(str.charAt(pos), var_244));
+                 pos += 3;
+             } else if (remainder >= 2 && str.charAt(pos) == '^') {
+                 // negated char

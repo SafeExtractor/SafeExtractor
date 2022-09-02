@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..7d951ba 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -622,7 +622,8 @@
+             ConcreteType type = inferConcreteType(getTopScope(), n);
+             // We only need to set a type if one hasn't been assigned by
+             // something else, e.g. an ASSIGN node.
+-            if (type.isNone()) {
++            boolean var_1053 = type.isNone();
++			if (var_1053) {
+               ConcreteScope scope =
+                   (ConcreteScope) inferConcreteType(getTopScope(),
+                       n.getFirstChild()).getScope();

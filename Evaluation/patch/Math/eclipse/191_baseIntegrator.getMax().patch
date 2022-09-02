@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/integration/TrapezoidIntegrator.java b/src/main/java/org/apache/commons/math3/analysis/integration/TrapezoidIntegrator.java
+index d5b73be..6841c83 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/integration/TrapezoidIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/integration/TrapezoidIntegrator.java
+@@ -117,8 +117,9 @@
+     double stage(final BaseAbstractUnivariateIntegrator baseIntegrator, final int n)
+         throws TooManyEvaluationsException {
+ 
+-        if (n == 0) {
+-            final double max = baseIntegrator.getMax();
++        double var_191 = baseIntegrator.getMax();
++		if (n == 0) {
++            final double max = var_191;
+             final double min = baseIntegrator.getMin();
+             s = 0.5 * (max - min) *
+                       (baseIntegrator.computeObjectiveValue(min) +
+@@ -127,7 +128,7 @@
+         } else {
+             final long np = 1L << (n-1);           // number of new points in this stage
+             double sum = 0;
+-            final double max = baseIntegrator.getMax();
++            final double max = var_191;
+             final double min = baseIntegrator.getMin();
+             // spacing between adjacent new points
+             final double spacing = (max - min) / np;

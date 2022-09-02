@@ -1,0 +1,49 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..9e68292 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -290,8 +290,9 @@
+     if (defaultCase == null) {
+       Node cond = n.getFirstChild(), prev = null, next = null, cur;
+ 
+-      for (cur = cond.getNext(); cur != null; cur = next) {
+-        next = cur.getNext();
++      Node var_785 = cur.getNext();
++	for (cur = cond.getNext(); cur != null; cur = next) {
++        next = var_785;
+         if (!mayHaveSideEffects(cur.getFirstChild()) &&
+             isUselessCase(cur, prev)) {
+           removeCase(n, cur);
+@@ -306,7 +307,7 @@
+         TernaryValue caseMatches = TernaryValue.TRUE;
+         // Remove cases until you find one that may match
+         for (cur = cond.getNext(); cur != null; cur = next) {
+-          next = cur.getNext();
++          next = var_785;
+           caseLabel = cur.getFirstChild();
+           caseMatches = PeepholeFoldConstants.evaluateComparison(
+               Token.SHEQ, cond, caseLabel);
+@@ -324,7 +325,7 @@
+           while (cur != null) {
+             block = cur.getLastChild();
+             lastStm = block.getLastChild();
+-            cur = cur.getNext();
++            cur = var_785;
+             if (lastStm != null && lastStm.isBreak()) {
+               block.removeChild(lastStm);
+               reportCodeChange();
+@@ -333,12 +334,12 @@
+           }
+           // Remove any remaining cases
+           for (; cur != null; cur = next) {
+-            next = cur.getNext();
++            next = var_785;
+             removeCase(n, cur);
+           }
+           // If there is one case left, we may be able to fold it
+           cur = cond.getNext();
+-          if (cur != null && cur.getNext() == null) {
++          if (cur != null && var_785 == null) {
+             block = cur.getLastChild();
+             if (!(NodeUtil.containsType(block, Token.BREAK,
+                 NodeUtil.MATCH_NOT_FUNCTION))) {

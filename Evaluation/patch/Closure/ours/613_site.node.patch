@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/RemoveUnusedVars.java b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+index 4c84735..d00aa17 100644
+--- a/src/com/google/javascript/jscomp/RemoveUnusedVars.java
++++ b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+@@ -644,7 +644,8 @@
+ 
+       Collection<UseSite> useSites = defFinder.getUseSites(definition);
+       for (UseSite site : useSites) {
+-        Node parent = site.node.getParent();
++        Node var_613 = site.node;
++		Node parent = var_613.getParent();
+ 
+         // This was a use site removed by something else before we run.
+         // 1. By another pass before us which means the definition graph is
+@@ -676,7 +677,7 @@
+ 
+         // Multiple definitions prevent rewrite.
+         // Attempt to validate the state of the simple definition finder.
+-        Node nameNode = site.node;
++        Node nameNode = var_613;
+         Collection<Definition> singleSiteDefinitions =
+             defFinder.getDefinitionsReferencedAt(nameNode);
+         Preconditions.checkState(singleSiteDefinitions.size() == 1);

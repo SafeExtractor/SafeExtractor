@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java b/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java
+index e33e9a5..8e68b0a 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java
++++ b/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java
+@@ -197,8 +197,9 @@
+         RealVector objectiveCoefficients =
+             maximize ? f.getCoefficients().mapMultiply(-1) : f.getCoefficients();
+         copyArray(objectiveCoefficients.toArray(), matrix.getDataRef()[zIndex]);
+-        matrix.setEntry(zIndex, width - 1,
+-            maximize ? f.getConstantTerm() : -1 * f.getConstantTerm());
++        double var_3567 = f.getConstantTerm();
++		matrix.setEntry(zIndex, width - 1,
++            maximize ? var_3567 : -1 * var_3567);
+ 
+         if (!restrictToNonNegative) {
+             matrix.setEntry(zIndex, getSlackVariableOffset() - 1,

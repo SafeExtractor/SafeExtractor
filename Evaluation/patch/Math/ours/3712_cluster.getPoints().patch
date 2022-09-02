@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/clustering/KMeansPlusPlusClusterer.java b/src/main/java/org/apache/commons/math3/stat/clustering/KMeansPlusPlusClusterer.java
+index 8b12d23..8cddbfe 100644
+--- a/src/main/java/org/apache/commons/math3/stat/clustering/KMeansPlusPlusClusterer.java
++++ b/src/main/java/org/apache/commons/math3/stat/clustering/KMeansPlusPlusClusterer.java
+@@ -386,12 +386,13 @@
+         double maxVariance = Double.NEGATIVE_INFINITY;
+         Cluster<T> selected = null;
+         for (final Cluster<T> cluster : clusters) {
+-            if (!cluster.getPoints().isEmpty()) {
++            List<T> var_3712 = cluster.getPoints();
++			if (!var_3712.isEmpty()) {
+ 
+                 // compute the distance variance of the current cluster
+                 final T center = cluster.getCenter();
+                 final Variance stat = new Variance();
+-                for (final T point : cluster.getPoints()) {
++                for (final T point : var_3712) {
+                     stat.increment(point.distanceFrom(center));
+                 }
+                 final double variance = stat.getResult();

@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYBlockRenderer.java b/source/org/jfree/chart/renderer/xy/XYBlockRenderer.java
+index 476d601..08c55b4 100644
+--- a/source/org/jfree/chart/renderer/xy/XYBlockRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYBlockRenderer.java
+@@ -61,6 +61,7 @@
+ import org.jfree.chart.renderer.PaintScale;
+ import org.jfree.chart.util.PublicCloneable;
+ import org.jfree.chart.util.RectangleAnchor;
++import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.data.Range;
+ import org.jfree.data.general.DatasetUtilities;
+ import org.jfree.data.xy.XYDataset;
+@@ -359,12 +360,13 @@
+         Paint p = this.paintScale.getPaint(z);
+         double xx0 = domainAxis.valueToJava2D(x + this.xOffset, dataArea,
+                 plot.getDomainAxisEdge());
+-        double yy0 = rangeAxis.valueToJava2D(y + this.yOffset, dataArea,
+-                plot.getRangeAxisEdge());
++        RectangleEdge var_3182 = plot.getRangeAxisEdge();
++		double yy0 = rangeAxis.valueToJava2D(y + this.yOffset, dataArea,
++                var_3182);
+         double xx1 = domainAxis.valueToJava2D(x + this.blockWidth
+                 + this.xOffset, dataArea, plot.getDomainAxisEdge());
+         double yy1 = rangeAxis.valueToJava2D(y + this.blockHeight
+-                + this.yOffset, dataArea, plot.getRangeAxisEdge());
++                + this.yOffset, dataArea, var_3182);
+         Rectangle2D block;
+         PlotOrientation orientation = plot.getOrientation();
+         if (orientation.equals(PlotOrientation.HORIZONTAL)) {

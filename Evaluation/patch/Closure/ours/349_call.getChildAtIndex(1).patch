@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/JsMessageVisitor.java b/src/com/google/javascript/jscomp/JsMessageVisitor.java
+index becd724..09a3796 100644
+--- a/src/com/google/javascript/jscomp/JsMessageVisitor.java
++++ b/src/com/google/javascript/jscomp/JsMessageVisitor.java
+@@ -780,14 +780,15 @@
+   private void visitFallbackFunctionCall(NodeTraversal t, Node call) {
+     // Check to make sure the function call looks like:
+     // goog.getMsgWithFallback(MSG_1, MSG_2);
+-    if (call.getChildCount() != 3 ||
+-        !call.getChildAtIndex(1).isName() ||
++    Node var_349 = call.getChildAtIndex(1);
++	if (call.getChildCount() != 3 ||
++        !var_349.isName() ||
+         !call.getChildAtIndex(2).isName()) {
+       compiler.report(t.makeError(call, BAD_FALLBACK_SYNTAX));
+       return;
+     }
+ 
+-    Node firstArg = call.getChildAtIndex(1);
++    Node firstArg = var_349;
+     JsMessage firstMessage = getTrackedMessage(t, firstArg.getString());
+     if (firstMessage == null) {
+       compiler.report(

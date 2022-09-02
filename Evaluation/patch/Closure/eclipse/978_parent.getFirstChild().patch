@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..50cd4a7 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -482,7 +482,8 @@
+     // To be explicitly set to false if the node is not typeable.
+     boolean typeable = true;
+ 
+-    switch (n.getType()) {
++    Node var_978 = parent.getFirstChild();
++	switch (n.getType()) {
+       case Token.CAST:
+         Node expr = n.getFirstChild();
+         ensureTyped(t, n, getJSType(expr));
+@@ -549,7 +550,7 @@
+       case Token.GETPROP:
+         visitGetProp(t, n, parent);
+         typeable = !(parent.isAssign() &&
+-                     parent.getFirstChild() == n);
++                     var_978 == n);
+         break;
+ 
+       case Token.GETELEM:
+@@ -760,7 +761,7 @@
+         break;
+ 
+       case Token.CASE:
+-        JSType switchType = getJSType(parent.getFirstChild());
++        JSType switchType = getJSType(var_978);
+         JSType caseType = getJSType(n.getFirstChild());
+         validator.expectSwitchMatchesCase(t, n, switchType, caseType);
+         typeable = false;

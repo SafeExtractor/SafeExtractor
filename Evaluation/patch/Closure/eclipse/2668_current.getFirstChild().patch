@@ -1,0 +1,34 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+index c8fbac8..d11ebd7 100644
+--- a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
++++ b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+@@ -1519,7 +1519,8 @@
+   /** @see #createFromTypeNodes(Node, String, StaticScope) */
+   private JSType createFromTypeNodesInternal(Node n, String sourceName,
+       StaticScope<JSType> scope) {
+-    switch (n.getType()) {
++    Node var_2668 = current.getFirstChild();
++	switch (n.getType()) {
+       case Token.LC: // Record type.
+         return createRecordTypeFromNodes(
+             n.getFirstChild(), sourceName, scope);
+@@ -1606,7 +1607,7 @@
+         Node current = n.getFirstChild();
+         if (current.getType() == Token.THIS ||
+             current.getType() == Token.NEW) {
+-          Node contextNode = current.getFirstChild();
++          Node contextNode = var_2668;
+           thisType =
+               ObjectType.cast(
+                   createFromTypeNodesInternal(
+@@ -1629,8 +1630,8 @@
+         FunctionParamBuilder paramBuilder = new FunctionParamBuilder(this);
+ 
+         if (current.getType() == Token.PARAM_LIST) {
+-          Node args = current.getFirstChild();
+-          for (Node arg = current.getFirstChild(); arg != null;
++          Node args = var_2668;
++          for (Node arg = var_2668; arg != null;
+                arg = arg.getNext()) {
+             if (arg.getType() == Token.ELLIPSIS) {
+               if (arg.getChildCount() == 0) {

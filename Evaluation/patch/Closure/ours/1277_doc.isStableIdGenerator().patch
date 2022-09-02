@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/ReplaceIdGenerators.java b/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
+index c6e4271..ce81e4d 100644
+--- a/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
++++ b/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
+@@ -188,10 +188,11 @@
+         return;
+       }
+ 
+-      int numGeneratorAnnotations =
++      boolean var_1277 = doc.isStableIdGenerator();
++	int numGeneratorAnnotations =
+           (doc.isConsistentIdGenerator() ? 1 : 0) +
+           (doc.isIdGenerator() ? 1 : 0) +
+-          (doc.isStableIdGenerator() ? 1 : 0);
++          (var_1277 ? 1 : 0);
+       if (numGeneratorAnnotations == 0) {
+         return;
+       } else if (numGeneratorAnnotations > 1) {
+@@ -214,7 +215,7 @@
+         consistNameMap.put(name, Maps.<String, String>newLinkedHashMap());
+         nameGenerators.put(
+             name, createNameSupplier(RenameStrategy.CONSISTENT, previousMap.get(name)));
+-      } else if (doc.isStableIdGenerator()) {
++      } else if (var_1277) {
+         nameGenerators.put(
+             name, createNameSupplier(RenameStrategy.STABLE, previousMap.get(name)));
+       } else {

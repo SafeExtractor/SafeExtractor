@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/math3/distribution/PoissonDistribution.java b/src/main/java/org/apache/commons/math3/distribution/PoissonDistribution.java
+index 4aa5706..852db4f 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/PoissonDistribution.java
++++ b/src/main/java/org/apache/commons/math3/distribution/PoissonDistribution.java
+@@ -330,13 +330,14 @@
+             double qa = 0;
+             for (;;) {
+                 final double u = random.nextDouble();
+-                if (u <= p1) {
++                double var_875 = FastMath.ceil(x);
++				if (u <= p1) {
+                     final double n = random.nextGaussian();
+                     x = n * FastMath.sqrt(lambda + halfDelta) - 0.5d;
+                     if (x > delta || x < -lambda) {
+                         continue;
+                     }
+-                    y = x < 0 ? FastMath.floor(x) : FastMath.ceil(x);
++                    y = x < 0 ? FastMath.floor(x) : var_875;
+                     final double e = exponential.sample();
+                     v = -e - (n * n / 2) + c1;
+                 } else {
+@@ -345,7 +346,7 @@
+                         break;
+                     } else {
+                         x = delta + (twolpd / delta) * exponential.sample();
+-                        y = FastMath.ceil(x);
++                        y = var_875;
+                         v = -exponential.sample() - delta * (x + 1) / twolpd;
+                     }
+                 }

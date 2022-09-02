@@ -1,0 +1,38 @@
+diff --git a/source/org/jfree/chart/plot/CategoryPlot.java b/source/org/jfree/chart/plot/CategoryPlot.java
+index 24a84fd..ae7b39a 100644
+--- a/source/org/jfree/chart/plot/CategoryPlot.java
++++ b/source/org/jfree/chart/plot/CategoryPlot.java
+@@ -3686,11 +3686,12 @@
+         }
+ 
+         // draw the markers...
+-        for (int i = 0; i < this.renderers.size(); i++) {
+-            drawDomainMarkers(g2, dataArea, i, Layer.BACKGROUND);
++        Layer var_1905 = Layer.BACKGROUND;
++		for (int i = 0; i < this.renderers.size(); i++) {
++            drawDomainMarkers(g2, dataArea, i, var_1905);
+         }
+         for (int i = 0; i < this.renderers.size(); i++) {
+-            drawRangeMarkers(g2, dataArea, i, Layer.BACKGROUND);
++            drawRangeMarkers(g2, dataArea, i, var_1905);
+         }
+ 
+         // now render data items...
+@@ -3712,7 +3713,7 @@
+                     CategoryAxis domainAxis = getDomainAxisForDataset(i);
+                     ValueAxis rangeAxis = getRangeAxisForDataset(i);
+                     r.drawAnnotations(g2, dataArea, domainAxis, rangeAxis,
+-                            Layer.BACKGROUND, state);
++                            var_1905, state);
+                 }
+             }
+ 
+@@ -3742,7 +3743,7 @@
+                     CategoryAxis domainAxis = getDomainAxisForDataset(i);
+                     ValueAxis rangeAxis = getRangeAxisForDataset(i);
+                     r.drawAnnotations(g2, dataArea, domainAxis, rangeAxis,
+-                            Layer.BACKGROUND, state);
++                            var_1905, state);
+                 }
+             }
+ 

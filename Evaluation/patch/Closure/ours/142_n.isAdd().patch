@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..c4cbd69 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -790,12 +790,13 @@
+    */
+   private Node tryFoldLeftChildOp(Node n, Node left, Node right) {
+     int opType = n.getType();
+-    Preconditions.checkState(
++    boolean var_142 = n.isAdd();
++	Preconditions.checkState(
+         (NodeUtil.isAssociative(opType) && NodeUtil.isCommutative(opType))
+-        || n.isAdd());
++        || var_142);
+ 
+     Preconditions.checkState(
+-        !n.isAdd()|| !NodeUtil.mayBeString(n));
++        !var_142|| !NodeUtil.mayBeString(n));
+ 
+     // Use getNumberValue to handle constants like "NaN" and "Infinity"
+     // other values are converted to numbers elsewhere.

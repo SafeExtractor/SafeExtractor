@@ -1,0 +1,44 @@
+diff --git a/src/java/org/apache/commons/math/geometry/Rotation.java b/src/java/org/apache/commons/math/geometry/Rotation.java
+index fe32c60..8fda720 100644
+--- a/src/java/org/apache/commons/math/geometry/Rotation.java
++++ b/src/java/org/apache/commons/math/geometry/Rotation.java
+@@ -967,9 +967,10 @@
+       o[0][0] = x00 - 0.5 * (x00 * mx00 + x01 * mx10 + x02 * mx20 - m[0][0]);
+       o[0][1] = x01 - 0.5 * (x00 * mx01 + x01 * mx11 + x02 * mx21 - m[0][1]);
+       o[0][2] = x02 - 0.5 * (x00 * mx02 + x01 * mx12 + x02 * mx22 - m[0][2]);
+-      o[1][0] = x10 - 0.5 * (x10 * mx00 + x11 * mx10 + x12 * mx20 - m[1][0]);
+-      o[1][1] = x11 - 0.5 * (x10 * mx01 + x11 * mx11 + x12 * mx21 - m[1][1]);
+-      o[1][2] = x12 - 0.5 * (x10 * mx02 + x11 * mx12 + x12 * mx22 - m[1][2]);
++      double[] o1 = o[1];
++	o1[0] = x10 - 0.5 * (x10 * mx00 + x11 * mx10 + x12 * mx20 - m[1][0]);
++      o1[1] = x11 - 0.5 * (x10 * mx01 + x11 * mx11 + x12 * mx21 - m[1][1]);
++      o1[2] = x12 - 0.5 * (x10 * mx02 + x11 * mx12 + x12 * mx22 - m[1][2]);
+       o[2][0] = x20 - 0.5 * (x20 * mx00 + x21 * mx10 + x22 * mx20 - m[2][0]);
+       o[2][1] = x21 - 0.5 * (x20 * mx01 + x21 * mx11 + x22 * mx21 - m[2][1]);
+       o[2][2] = x22 - 0.5 * (x20 * mx02 + x21 * mx12 + x22 * mx22 - m[2][2]);
+@@ -978,9 +979,9 @@
+       double corr00 = o[0][0] - m[0][0];
+       double corr01 = o[0][1] - m[0][1];
+       double corr02 = o[0][2] - m[0][2];
+-      double corr10 = o[1][0] - m[1][0];
+-      double corr11 = o[1][1] - m[1][1];
+-      double corr12 = o[1][2] - m[1][2];
++      double corr10 = o1[0] - m[1][0];
++      double corr11 = o1[1] - m[1][1];
++      double corr12 = o1[2] - m[1][2];
+       double corr20 = o[2][0] - m[2][0];
+       double corr21 = o[2][1] - m[2][1];
+       double corr22 = o[2][2] - m[2][2];
+@@ -998,9 +999,9 @@
+       x00 = o[0][0];
+       x01 = o[0][1];
+       x02 = o[0][2];
+-      x10 = o[1][0];
+-      x11 = o[1][1];
+-      x12 = o[1][2];
++      x10 = o1[0];
++      x11 = o1[1];
++      x12 = o1[2];
+       x20 = o[2][0];
+       x21 = o[2][1];
+       x22 = o[2][2];

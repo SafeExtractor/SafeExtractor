@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+index 63538e3..9f6c3ac 100644
+--- a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
++++ b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+@@ -255,7 +255,8 @@
+     // stringVal must be a valid string.
+     String stringVal = null;
+     Double checkVal;
+-    if (firstArg.isNumber()) {
++    Node var_1715 = n.getParent();
++	if (firstArg.isNumber()) {
+       checkVal = NodeUtil.getNumberValue(firstArg);
+       if (!(radix == 0 || radix == 10) && isParseInt) {
+         //Convert a numeric first argument to a different base
+@@ -271,7 +272,7 @@
+         } else {
+           numericNode = IR.number(checkVal);
+         }
+-        n.getParent().replaceChild(n, numericNode);
++        var_1715.replaceChild(n, numericNode);
+         reportCodeChange();
+         return numericNode;
+       }
+@@ -343,7 +344,7 @@
+       }
+     }
+ 
+-    n.getParent().replaceChild(n, newNode);
++    var_1715.replaceChild(n, newNode);
+ 
+     reportCodeChange();
+ 

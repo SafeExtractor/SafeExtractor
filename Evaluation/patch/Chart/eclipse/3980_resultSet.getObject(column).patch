@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/data/jdbc/JDBCCategoryDataset.java b/source/org/jfree/data/jdbc/JDBCCategoryDataset.java
+index e9c9c03..07a8d5c 100644
+--- a/source/org/jfree/data/jdbc/JDBCCategoryDataset.java
++++ b/source/org/jfree/data/jdbc/JDBCCategoryDataset.java
+@@ -236,7 +236,8 @@
+                     Comparable columnKey = metaData.getColumnName(column);
+                     int columnType = metaData.getColumnType(column);
+ 
+-                    switch (columnType) {
++                    Object var_3980 = resultSet.getObject(column);
++					switch (columnType) {
+                         case Types.TINYINT:
+                         case Types.SMALLINT:
+                         case Types.INTEGER:
+@@ -246,7 +247,7 @@
+                         case Types.DECIMAL:
+                         case Types.NUMERIC:
+                         case Types.REAL: {
+-                            Number value = (Number) resultSet.getObject(column);
++                            Number value = (Number) var_3980;
+                             if (this.transpose) {
+                                 setValue(value, columnKey, rowKey);
+                             }
+@@ -258,7 +259,7 @@
+                         case Types.DATE:
+                         case Types.TIME:
+                         case Types.TIMESTAMP: {
+-                            Date date = (Date) resultSet.getObject(column);
++                            Date date = (Date) var_3980;
+                             Number value = new Long(date.getTime());
+                             if (this.transpose) {
+                                 setValue(value, columnKey, rowKey);
+@@ -272,7 +273,7 @@
+                         case Types.VARCHAR:
+                         case Types.LONGVARCHAR: {
+                             String string
+-                                = (String) resultSet.getObject(column);
++                                = (String) var_3980;
+                             try {
+                                 Number value = Double.valueOf(string);
+                                 if (this.transpose) {

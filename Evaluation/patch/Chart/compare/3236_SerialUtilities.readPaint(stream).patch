@@ -1,0 +1,24 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3236_SerialUtilities.readPaint(stream).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/3236_SerialUtilities.readPaint(stream).patch
+index edb2cd8..6bda2c4 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3236_SerialUtilities.readPaint(stream).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/3236_SerialUtilities.readPaint(stream).patch
+@@ -1,16 +1,14 @@
+ diff --git a/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java b/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
+-index cd91775..94b7960 100644
++index cd91775..32881fe 100644
+ --- a/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
+ +++ b/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
+-@@ -1218,8 +1218,9 @@
++@@ -1218,7 +1218,8 @@
+      private void readObject(ObjectInputStream stream)
+          throws IOException, ClassNotFoundException {
+          stream.defaultReadObject();
+ -        this.positivePaint = SerialUtilities.readPaint(stream);
+--        this.negativePaint = SerialUtilities.readPaint(stream);
+ +        Paint var_3236 = SerialUtilities.readPaint(stream);
+ +		this.positivePaint = var_3236;
+-+        this.negativePaint = var_3236;
++         this.negativePaint = SerialUtilities.readPaint(stream);
+          this.legendLine = SerialUtilities.readShape(stream);
+      }
+- 

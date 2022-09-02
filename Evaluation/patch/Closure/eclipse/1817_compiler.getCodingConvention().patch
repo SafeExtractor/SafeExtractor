@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/RenamePrototypes.java b/src/com/google/javascript/jscomp/RenamePrototypes.java
+index c051306..98faf38 100644
+--- a/src/com/google/javascript/jscomp/RenamePrototypes.java
++++ b/src/com/google/javascript/jscomp/RenamePrototypes.java
+@@ -129,12 +129,13 @@
+     }
+ 
+     private boolean canRenameObjLitProperty() {
+-      if (compiler.getCodingConvention().isExported(oldName)) {
++      CodingConvention var_1817 = compiler.getCodingConvention();
++	if (var_1817.isExported(oldName)) {
+         // an externally visible name should not be renamed.
+         return false;
+       }
+ 
+-      if (compiler.getCodingConvention().isPrivate(oldName)) {
++      if (var_1817.isPrivate(oldName)) {
+         // private names can be safely renamed. Rename!
+         return true;
+       }

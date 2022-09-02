@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+index 6219d26..b5149ac 100644
+--- a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
++++ b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+@@ -205,10 +205,11 @@
+     // encapsulate the new statements in a new block.
+     Node fncBlock = IR.block().srcref(n);
+ 
+-    if (ensureObjectDefined) {
+-      Node assignVal = IR.or(objectToExtend.cloneTree(),
++    Node var_1136 = objectToExtend.cloneTree();
++	if (ensureObjectDefined) {
++      Node assignVal = IR.or(var_1136,
+           IR.objectlit().srcref(n)).srcref(n);
+-      Node assign = IR.assign(objectToExtend.cloneTree(), assignVal).srcref(n);
++      Node assign = IR.assign(var_1136, assignVal).srcref(n);
+       fncBlock.addChildrenToFront(IR.exprResult(assign).srcref(n));
+     }
+ 
+@@ -220,10 +221,10 @@
+ 
+       Node newProp;
+       if(currentProp.isQuotedString()) {
+-        newProp = IR.getelem(objectToExtend.cloneTree(),
++        newProp = IR.getelem(var_1136,
+             currentProp).srcref(currentProp);
+       } else {
+-        newProp = IR.getprop(objectToExtend.cloneTree(),
++        newProp = IR.getprop(var_1136,
+             currentProp).srcref(currentProp);
+       }
+ 

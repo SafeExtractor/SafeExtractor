@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+index 5d8a992..138540e 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+@@ -621,7 +621,8 @@
+                 int i = 0;
+ 
+                 for (final List<ComparableSegment> loop : loops) {
+-                    if (loop.size() < 2) {
++                    int var_1640 = loop.size();
++					if (var_1640 < 2) {
+                         // single infinite line
+                         final Line line = loop.get(0).getLine();
+                         vertices[i++] = new Vector2D[] {
+@@ -631,7 +632,7 @@
+                         };
+                     } else if (loop.get(0).getStart() == null) {
+                         // open loop with at least one real point
+-                        final Vector2D[] array = new Vector2D[loop.size() + 2];
++                        final Vector2D[] array = new Vector2D[var_1640 + 2];
+                         int j = 0;
+                         for (Segment segment : loop) {
+ 
+@@ -658,7 +659,7 @@
+                         }
+                         vertices[i++] = array;
+                     } else {
+-                        final Vector2D[] array = new Vector2D[loop.size()];
++                        final Vector2D[] array = new Vector2D[var_1640];
+                         int j = 0;
+                         for (Segment segment : loop) {
+                             array[j++] = segment.getStart();

@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..becb9a2 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -1504,9 +1504,10 @@
+ 
+       // Determining type for #1 + #2 + #3 + #4
+       JSType valueType = getDeclaredType(t.getSourceName(), info, n, rhsValue);
+-      if (valueType == null && rhsValue != null) {
++      JSType var_1233 = rhsValue.getJSType();
++	if (valueType == null && rhsValue != null) {
+         // Determining type for #5
+-        valueType = rhsValue.getJSType();
++        valueType = var_1233;
+       }
+ 
+       // Function prototypes are special.
+@@ -1527,7 +1528,7 @@
+               rhsValue != null &&
+               rhsValue.isObjectLit()) {
+             typeRegistry.resetImplicitPrototype(
+-                rhsValue.getJSType(), qVarType.getImplicitPrototype());
++                var_1233, qVarType.getImplicitPrototype());
+           } else if (!qVar.isTypeInferred()) {
+             // If the programmer has declared that F inherits from Super,
+             // and they assign F.prototype to some arbitrary expression,

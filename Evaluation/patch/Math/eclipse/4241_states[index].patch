@@ -1,0 +1,53 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java b/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java
+index fd55902..b33ab53 100644
+--- a/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java
++++ b/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java
+@@ -281,29 +281,30 @@
+                                           final int key, final int mask) {
+         final int hash = hashOf(key);
+         int index = hash & mask;
+-        if (states[index] == FREE) {
++        byte var_4241 = states[index];
++		if (var_4241 == FREE) {
+             return index;
+-        } else if (states[index] == FULL && keys[index] == key) {
++        } else if (var_4241 == FULL && keys[index] == key) {
+             return changeIndexSign(index);
+         }
+ 
+         int perturb = perturb(hash);
+         int j = index;
+-        if (states[index] == FULL) {
++        if (var_4241 == FULL) {
+             while (true) {
+                 j = probe(perturb, j);
+                 index = j & mask;
+                 perturb >>= PERTURB_SHIFT;
+ 
+-                if (states[index] != FULL || keys[index] == key) {
++                if (var_4241 != FULL || keys[index] == key) {
+                     break;
+                 }
+             }
+         }
+ 
+-        if (states[index] == FREE) {
++        if (var_4241 == FREE) {
+             return index;
+-        } else if (states[index] == FULL) {
++        } else if (var_4241 == FULL) {
+             // due to the loop exit condition,
+             // if (states[index] == FULL) then keys[index] == key
+             return changeIndexSign(index);
+@@ -314,9 +315,9 @@
+             j = probe(perturb, j);
+             index = j & mask;
+ 
+-            if (states[index] == FREE) {
++            if (var_4241 == FREE) {
+                 return firstRemoved;
+-            } else if (states[index] == FULL && keys[index] == key) {
++            } else if (var_4241 == FULL && keys[index] == key) {
+                 return changeIndexSign(index);
+             }
+ 

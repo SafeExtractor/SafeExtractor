@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveInputStream.java b/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveInputStream.java
+index 32bb562..9cb0a87 100644
+--- a/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveInputStream.java
++++ b/src/main/java/org/apache/commons/compress/archivers/zip/ZipArchiveInputStream.java
+@@ -434,7 +434,8 @@
+                     throw new ZipException("archive contains corrupted zip64 extra field");
+                 }
+ 
+-                current.entry.setCompressedSize(z64.getCompressedSize().getLongValue());
++                long s = z64.getCompressedSize().getLongValue();
++				current.entry.setCompressedSize(s);
+                 current.entry.setSize(z64.getSize().getLongValue());
+             } else if (cSize != null && size != null) {
+                 current.entry.setCompressedSize(cSize.getValue());

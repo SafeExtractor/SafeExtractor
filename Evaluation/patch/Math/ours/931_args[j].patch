@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/exception/util/ExceptionContext.java b/src/main/java/org/apache/commons/math3/exception/util/ExceptionContext.java
+index ce7a873..99cd033 100644
+--- a/src/main/java/org/apache/commons/math3/exception/util/ExceptionContext.java
++++ b/src/main/java/org/apache/commons/math3/exception/util/ExceptionContext.java
+@@ -234,12 +234,13 @@
+             // Step 4.
+             out.writeInt(aLen);
+             for (int j = 0; j < aLen; j++) {
+-                if (args[j] instanceof Serializable) {
++                Object var_931 = args[j];
++				if (var_931 instanceof Serializable) {
+                     // Step 5a.
+-                    out.writeObject(args[j]);
++                    out.writeObject(var_931);
+                 } else {
+                     // Step 5b.
+-                    out.writeObject(nonSerializableReplacement(args[j]));
++                    out.writeObject(nonSerializableReplacement(var_931));
+                 }
+             }
+         }

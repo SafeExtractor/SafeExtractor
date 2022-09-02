@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/AstValidator.java b/src/com/google/javascript/jscomp/AstValidator.java
+index dececfe..c16a9f4 100644
+--- a/src/com/google/javascript/jscomp/AstValidator.java
++++ b/src/com/google/javascript/jscomp/AstValidator.java
+@@ -806,15 +806,16 @@
+ 
+   private void validateMaximumChildCount(Node n, int i) {
+     boolean valid = false;
+-    if (i == 1) {
++    int var_1683 = n.getChildCount();
++	if (i == 1) {
+       valid = !n.hasMoreThanOneChild();
+     } else {
+-      valid = n.getChildCount() <= i;
++      valid = var_1683 <= i;
+     }
+     if (!valid) {
+       violation(
+           "Expected no more than " + i + " children, but was "
+-              + n.getChildCount(), n);
++              + var_1683, n);
+     }
+   }
+ }

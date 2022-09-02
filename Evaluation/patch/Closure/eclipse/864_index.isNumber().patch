@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/OptimizeArgumentsArray.java b/src/com/google/javascript/jscomp/OptimizeArgumentsArray.java
+index 03e257f..facedda 100644
+--- a/src/com/google/javascript/jscomp/OptimizeArgumentsArray.java
++++ b/src/com/google/javascript/jscomp/OptimizeArgumentsArray.java
+@@ -209,7 +209,8 @@
+ 
+       // We have something like arguments[x] where x is not a constant. That
+       // means at least one of the access is not known.
+-      if (!index.isNumber()) {
++      boolean var_864 = index.isNumber();
++	if (!var_864) {
+         // TODO(user): Its possible not to give up just yet. The type
+         // inference did a 'semi value propagation'. If we know that string
+         // is never a subclass of the type of the index. We'd know that

@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..45c6fe7 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -891,7 +891,8 @@
+   private void visitAssign(NodeTraversal t, Node assign) {
+     JSDocInfo info = assign.getJSDocInfo();
+     Node lvalue = assign.getFirstChild();
+-    Node rvalue = assign.getLastChild();
++    Node var_994 = assign.getLastChild();
++	Node rvalue = var_994;
+ 
+     // Check property sets to 'object.property' when 'object' is known.
+     if (lvalue.isGetProp()) {
+@@ -970,7 +971,7 @@
+     JSType leftType = getJSType(lvalue);
+     if (lvalue.isQualifiedName()) {
+       // variable with inferred type case
+-      JSType rvalueType = getJSType(assign.getLastChild());
++      JSType rvalueType = getJSType(var_994);
+       Var var = t.getScope().getVar(lvalue.getQualifiedName());
+       if (var != null) {
+         if (var.isTypeInferred()) {
+@@ -990,7 +991,7 @@
+     }
+ 
+     // Fall through case for arbitrary LHS and arbitrary RHS.
+-    Node rightChild = assign.getLastChild();
++    Node rightChild = var_994;
+     JSType rightType = getJSType(rightChild);
+     if (validator.expectCanAssignTo(
+             t, assign, rightType, leftType, "assignment")) {

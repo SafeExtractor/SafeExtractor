@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..f9b1744 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -194,10 +194,11 @@
+   }
+ 
+   private void tryReduceOperandsForOp(Node n) {
+-    switch (n.getType()) {
++    Node var_129 = n.getLastChild();
++	switch (n.getType()) {
+       case Token.ADD:
+         Node left = n.getFirstChild();
+-        Node right = n.getLastChild();
++        Node right = var_129;
+         if (!NodeUtil.mayBeString(left) && !NodeUtil.mayBeString(right)) {
+           tryConvertOperandsToNumber(n);
+         }
+@@ -213,7 +214,7 @@
+       case Token.ASSIGN_MUL:
+       case Token.ASSIGN_MOD:
+       case Token.ASSIGN_DIV:
+-        tryConvertToNumber(n.getLastChild());
++        tryConvertToNumber(var_129);
+         break;
+       case Token.BITNOT:
+       case Token.BITOR:

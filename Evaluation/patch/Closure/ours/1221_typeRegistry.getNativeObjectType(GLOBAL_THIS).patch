@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..66c8200 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -1176,9 +1176,10 @@
+         }
+       }
+ 
+-      if (shouldDeclareOnGlobalThis) {
++      ObjectType var_1221 = typeRegistry.getNativeObjectType(GLOBAL_THIS);
++	if (shouldDeclareOnGlobalThis) {
+         ObjectType globalThis =
+-            typeRegistry.getNativeObjectType(GLOBAL_THIS);
++            var_1221;
+         if (inferred) {
+           globalThis.defineInferredProperty(variableName,
+               type == null ?
+@@ -1195,7 +1196,7 @@
+           && type.isFunctionType()
+           && type.isConstructor()) {
+         FunctionType globalThisCtor =
+-            typeRegistry.getNativeObjectType(GLOBAL_THIS).getConstructor();
++            var_1221.getConstructor();
+         globalThisCtor.getInstanceType().clearCachedValues();
+         globalThisCtor.getPrototype().clearCachedValues();
+         globalThisCtor

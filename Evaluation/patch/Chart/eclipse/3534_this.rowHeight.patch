@@ -1,0 +1,31 @@
+diff --git a/source/org/jfree/chart/ui/LCBLayout.java b/source/org/jfree/chart/ui/LCBLayout.java
+index b63c82b..9b4537d 100644
+--- a/source/org/jfree/chart/ui/LCBLayout.java
++++ b/source/org/jfree/chart/ui/LCBLayout.java
+@@ -100,21 +100,22 @@
+             Insets insets = parent.getInsets();
+             int ncomponents = parent.getComponentCount();
+             int nrows = ncomponents / COLUMNS;
+-            for (int c = 0; c < COLUMNS; c++) {
++            int[] var_3534 = this.rowHeight;
++			for (int c = 0; c < COLUMNS; c++) {
+                 for (int r = 0; r < nrows; r++) {
+                     Component component = parent.getComponent(r * COLUMNS + c);
+                     Dimension d = component.getPreferredSize();
+                     if (this.colWidth[c] < d.width) {
+                         this.colWidth[c] = d.width;
+                     }
+-                    if (this.rowHeight[r] < d.height) {
+-                        this.rowHeight[r] = d.height;
++                    if (var_3534[r] < d.height) {
++                        var_3534[r] = d.height;
+                     }
+                 }
+             }
+             int totalHeight = this.vGap * (nrows - 1);
+             for (int r = 0; r < nrows; r++) {
+-                totalHeight = totalHeight + this.rowHeight[r];
++                totalHeight = totalHeight + var_3534[r];
+             }
+             int totalWidth = this.colWidth[0] + this.labelGap
+                     + this.colWidth[1] + this.buttonGap + this.colWidth[2];

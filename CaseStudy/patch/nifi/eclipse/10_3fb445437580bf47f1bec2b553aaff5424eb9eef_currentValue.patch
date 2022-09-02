@@ -1,0 +1,21 @@
+diff --git a/nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors/src/main/java/org/apache/nifi/processors/standard/PutDatabaseRecord.java b/nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors/src/main/java/org/apache/nifi/processors/standard/PutDatabaseRecord.java
+index 3046cbf..2d9ceef 100644
+--- a/nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors/src/main/java/org/apache/nifi/processors/standard/PutDatabaseRecord.java
++++ b/nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors/src/main/java/org/apache/nifi/processors/standard/PutDatabaseRecord.java
+@@ -702,11 +702,12 @@
+                         // If there's no index map, assume all values are included and set them in order
+                         for (int i = 0; i < values.length; i++) {
+                             // If DELETE type, insert the object twice because of the null check (see generateDelete for details)
+-                            if (DELETE_TYPE.equalsIgnoreCase(statementType)) {
+-                                ps.setObject(i * 2 + 1, values[i]);
+-                                ps.setObject(i * 2 + 2, values[i]);
++                            Object currentValue = values[i];
++							if (DELETE_TYPE.equalsIgnoreCase(statementType)) {
++                                ps.setObject(i * 2 + 1, currentValue);
++                                ps.setObject(i * 2 + 2, currentValue);
+                             } else {
+-                                ps.setObject(i + 1, values[i]);
++                                ps.setObject(i + 1, currentValue);
+                             }
+                         }
+                     }

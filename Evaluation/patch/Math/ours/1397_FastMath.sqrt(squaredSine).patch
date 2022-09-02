@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
+index fbdafa3..123bc12 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
+@@ -492,13 +492,14 @@
+    */
+   public Vector3D getAxis() {
+     double squaredSine = q1 * q1 + q2 * q2 + q3 * q3;
+-    if (squaredSine == 0) {
++    double var_1397 = FastMath.sqrt(squaredSine);
++	if (squaredSine == 0) {
+       return new Vector3D(1, 0, 0);
+     } else if (q0 < 0) {
+-      double inverse = 1 / FastMath.sqrt(squaredSine);
++      double inverse = 1 / var_1397;
+       return new Vector3D(q1 * inverse, q2 * inverse, q3 * inverse);
+     }
+-    double inverse = -1 / FastMath.sqrt(squaredSine);
++    double inverse = -1 / var_1397;
+     return new Vector3D(q1 * inverse, q2 * inverse, q3 * inverse);
+   }
+ 

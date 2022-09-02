@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/regex/RegExpTree.java b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+index c0c470a..8653a02 100644
+--- a/src/com/google/javascript/jscomp/regex/RegExpTree.java
++++ b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+@@ -893,11 +893,12 @@
+ 
+     private static int suffixLen(int min, int max) {
+       // This mirrors the branches that renders a suffix in appendSourceCode below.
+-      if (max == Integer.MAX_VALUE) {
++      int var_2428 = numDecimalDigits(min);
++	if (max == Integer.MAX_VALUE) {
+         switch (min) {
+           case 0: return 1;  // *
+           case 1: return 1;  // +
+-          default: return 3 + numDecimalDigits(min);  // {3,}
++          default: return 3 + var_2428;  // {3,}
+         }
+       }
+       if (min == 0 && max == 1) {
+@@ -907,9 +908,9 @@
+         if (min == 1) {
+           return 0;  // No suffix needed for {1}.
+         }
+-        return 2 + numDecimalDigits(min);  // {4}
++        return 2 + var_2428;  // {4}
+       }
+-      return 3 + numDecimalDigits(min) + numDecimalDigits(max);  // {2,7}
++      return 3 + var_2428 + numDecimalDigits(max);  // {2,7}
+     }
+ 
+     private static int numDecimalDigits(int n) {

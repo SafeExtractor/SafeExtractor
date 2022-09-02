@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+index fa5c164..68d7003 100644
+--- a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
++++ b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+@@ -107,7 +107,8 @@
+      * @param id time zone id to assign
+      */
+     public static DateTimeZone readFrom(DataInput in, String id) throws IOException {
+-        switch (in.readUnsignedByte()) {
++        PrecalculatedZone var_652 = PrecalculatedZone.readFrom(in, id);
++		switch (in.readUnsignedByte()) {
+         case 'F':
+             DateTimeZone fixed = new FixedDateTimeZone
+                 (id, in.readUTF(), (int)readMillis(in), (int)readMillis(in));
+@@ -116,9 +117,9 @@
+             }
+             return fixed;
+         case 'C':
+-            return CachedDateTimeZone.forZone(PrecalculatedZone.readFrom(in, id));
++            return CachedDateTimeZone.forZone(var_652);
+         case 'P':
+-            return PrecalculatedZone.readFrom(in, id);
++            return var_652;
+         default:
+             throw new IOException("Invalid encoding");
+         }

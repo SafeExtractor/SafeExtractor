@@ -1,0 +1,85 @@
+diff --git a/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java b/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java
+index e374ca0..df235e5 100644
+--- a/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java
++++ b/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java
+@@ -224,7 +224,8 @@
+    */
+   private void computeMustDef(
+       Node n, Node cfgNode, MustDef output, boolean conditional) {
+-    switch (n.getType()) {
++    Node var_1092 = n.getFirstChild();
++	switch (n.getType()) {
+ 
+       case Token.BLOCK:
+       case Token.FUNCTION:
+@@ -243,7 +244,7 @@
+               NodeUtil.getConditionExpression(n), cfgNode, output, conditional);
+         } else {
+           // for(x in y) {...}
+-          Node lhs = n.getFirstChild();
++          Node lhs = var_1092;
+           Node rhs = lhs.getNext();
+           if (lhs.isVar()) {
+             lhs = lhs.getLastChild(); // for(var x in y) {...}
+@@ -256,18 +257,18 @@
+ 
+       case Token.AND:
+       case Token.OR:
+-        computeMustDef(n.getFirstChild(), cfgNode, output, conditional);
++        computeMustDef(var_1092, cfgNode, output, conditional);
+         computeMustDef(n.getLastChild(), cfgNode, output, true);
+         return;
+ 
+       case Token.HOOK:
+-        computeMustDef(n.getFirstChild(), cfgNode, output, conditional);
+-        computeMustDef(n.getFirstChild().getNext(), cfgNode, output, true);
++        computeMustDef(var_1092, cfgNode, output, conditional);
++        computeMustDef(var_1092.getNext(), cfgNode, output, true);
+         computeMustDef(n.getLastChild(), cfgNode, output, true);
+         return;
+ 
+       case Token.VAR:
+-        for (Node c = n.getFirstChild(); c != null; c = c.getNext()) {
++        for (Node c = var_1092; c != null; c = c.getNext()) {
+           if (c.hasChildren()) {
+             computeMustDef(c.getFirstChild(), cfgNode, output, conditional);
+             addToDefIfLocal(c.getString(), conditional ? null : cfgNode,
+@@ -278,16 +279,16 @@
+ 
+       default:
+         if (NodeUtil.isAssignmentOp(n)) {
+-          if (n.getFirstChild().isName()) {
+-            Node name = n.getFirstChild();
++          if (var_1092.isName()) {
++            Node name = var_1092;
+             computeMustDef(name.getNext(), cfgNode, output, conditional);
+             addToDefIfLocal(name.getString(), conditional ? null : cfgNode,
+               n.getLastChild(), output);
+             return;
+-          } else if (NodeUtil.isGet(n.getFirstChild())) {
++          } else if (NodeUtil.isGet(var_1092)) {
+             // Treat all assignments to arguments as redefining the
+             // parameters itself.
+-            Node obj = n.getFirstChild().getFirstChild();
++            Node obj = var_1092.getFirstChild();
+             if (obj.isName() && "arguments".equals(obj.getString())) {
+               // TODO(user): More accuracy can be introduced
+               // i.e. We know exactly what arguments[x] is if x is a constant
+@@ -303,7 +304,7 @@
+ 
+         // DEC and INC actually defines the variable.
+         if (n.isDec() || n.isInc()) {
+-          Node target = n.getFirstChild();
++          Node target = var_1092;
+           if (target.isName()) {
+             addToDefIfLocal(target.getString(),
+                 conditional ? null : cfgNode, null, output);
+@@ -311,7 +312,7 @@
+           }
+         }
+ 
+-        for (Node c = n.getFirstChild(); c != null; c = c.getNext()) {
++        for (Node c = var_1092; c != null; c = c.getNext()) {
+           computeMustDef(c, cfgNode, output, conditional);
+         }
+     }

@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/LinkedFlowScope.java b/src/com/google/javascript/jscomp/LinkedFlowScope.java
+index a97d855..ff130a5 100644
+--- a/src/com/google/javascript/jscomp/LinkedFlowScope.java
++++ b/src/com/google/javascript/jscomp/LinkedFlowScope.java
+@@ -421,8 +421,9 @@
+ 
+       // Always prefer the "real" function scope to the faked-out
+       // bottom scope.
+-      functionScope = joinedScopeA.flowsFromBottom() ?
+-          joinedScopeB.getFunctionScope() : joinedScopeA.getFunctionScope();
++      Scope var_1854 = joinedScopeA.getFunctionScope();
++	functionScope = joinedScopeA.flowsFromBottom() ?
++          joinedScopeB.getFunctionScope() : var_1854;
+ 
+       Map<String, StaticSlot<JSType>> slotsA = joinedScopeA.allFlowSlots();
+       Map<String, StaticSlot<JSType>> slotsB = joinedScopeB.allFlowSlots();
+@@ -460,7 +461,7 @@
+           }
+         } else if (slotA == null || slotA.getType() == null) {
+           StaticSlot<JSType> fnSlot
+-              = joinedScopeA.getFunctionScope().getSlot(name);
++              = var_1854.getSlot(name);
+           JSType fnSlotType = fnSlot == null ? null : fnSlot.getType();
+           if (fnSlotType == null) {
+             // Case #2

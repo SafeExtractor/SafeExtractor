@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+index a2ea88e..95f06aa 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+@@ -359,8 +359,9 @@
+ 
+         for (int k = im; k <= iu - 1; k++) {
+             boolean notlast = k != (iu - 1);
+-            if (k != im) {
+-                p = matrixT[k][k - 1];
++            double var_2385 = matrixT[k][k - 1];
++			if (k != im) {
++                p = var_2385;
+                 q = matrixT[k + 1][k - 1];
+                 r = notlast ? matrixT[k + 2][k - 1] : 0.0;
+                 shift.x = FastMath.abs(p) + FastMath.abs(q) + FastMath.abs(r);
+@@ -381,7 +382,7 @@
+                 if (k != im) {
+                     matrixT[k][k - 1] = -s * shift.x;
+                 } else if (il != im) {
+-                    matrixT[k][k - 1] = -matrixT[k][k - 1];
++                    matrixT[k][k - 1] = -var_2385;
+                 }
+                 p = p + s;
+                 shift.x = p / s;

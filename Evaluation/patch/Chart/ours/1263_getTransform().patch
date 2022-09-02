@@ -1,0 +1,35 @@
+diff --git a/source/org/jfree/chart/needle/ArrowNeedle.java b/source/org/jfree/chart/needle/ArrowNeedle.java
+index 276b983..f02bcee 100644
+--- a/source/org/jfree/chart/needle/ArrowNeedle.java
++++ b/source/org/jfree/chart/needle/ArrowNeedle.java
+@@ -47,6 +47,7 @@
+ 
+ import java.awt.Graphics2D;
+ import java.awt.Shape;
++import java.awt.geom.AffineTransform;
+ import java.awt.geom.GeneralPath;
+ import java.awt.geom.Line2D;
+ import java.awt.geom.Point2D;
+@@ -112,9 +113,10 @@
+         shape1.lineTo(x - getSize(), minY);
+         shape1.closePath();
+ 
+-        if ((rotate != null) && (angle != 0)) {
+-            getTransform().setToRotation(angle, rotate.getX(), rotate.getY());
+-            d = getTransform().createTransformedShape(shape);
++        AffineTransform var_1263 = getTransform();
++		if ((rotate != null) && (angle != 0)) {
++            var_1263.setToRotation(angle, rotate.getX(), rotate.getY());
++            d = var_1263.createTransformedShape(shape);
+         }
+         else {
+             d = shape;
+@@ -122,7 +124,7 @@
+         defaultDisplay(g2, d);
+ 
+         if ((rotate != null) && (angle != 0)) {
+-            d = getTransform().createTransformedShape(shape1);
++            d = var_1263.createTransformedShape(shape1);
+         }
+         else {
+             d = shape1;

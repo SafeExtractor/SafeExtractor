@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/renderer/xy/ClusteredXYBarRenderer.java b/source/org/jfree/chart/renderer/xy/ClusteredXYBarRenderer.java
+index ee3e0b4..718c979 100644
+--- a/source/org/jfree/chart/renderer/xy/ClusteredXYBarRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/ClusteredXYBarRenderer.java
+@@ -226,7 +226,8 @@
+ 
+         double y0;
+         double y1;
+-        if (getUseYInterval()) {
++        boolean var_3021 = getUseYInterval();
++		if (var_3021) {
+             y0 = intervalDataset.getStartYValue(series, item);
+             y1 = intervalDataset.getEndYValue(series, item);
+         }
+@@ -309,7 +310,7 @@
+         }
+         if (pass == 0 && getShadowsVisible()) {
+             getBarPainter().paintBarShadow(g2, this, series, item, selected, 
+-                    bar, barBase, !getUseYInterval());
++                    bar, barBase, !var_3021);
+         }
+         if (pass == 1) {
+             getBarPainter().paintBar(g2, this, series, item, selected, bar,

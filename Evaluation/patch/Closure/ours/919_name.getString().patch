@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/CheckAccessControls.java b/src/com/google/javascript/jscomp/CheckAccessControls.java
+index df50c26..58cc2c8 100644
+--- a/src/com/google/javascript/jscomp/CheckAccessControls.java
++++ b/src/com/google/javascript/jscomp/CheckAccessControls.java
+@@ -336,7 +336,8 @@
+    * @param name The name node.
+    */
+   private void checkNameVisibility(NodeTraversal t, Node name, Node parent) {
+-    Var var = t.getScope().getVar(name.getString());
++    String var_919 = name.getString();
++	Var var = t.getScope().getVar(var_919);
+     if (var != null) {
+       JSDocInfo docInfo = var.getJSDocInfo();
+       if (docInfo != null) {
+@@ -355,7 +356,7 @@
+ 
+             compiler.report(
+                 t.makeError(name, BAD_PRIVATE_GLOBAL_ACCESS,
+-                    name.getString(), varSrc.getName()));
++                    var_919, varSrc.getName()));
+           }
+         }
+       }

@@ -1,0 +1,17 @@
+diff --git a/src/org/mockito/internal/verification/NoMoreInteractions.java b/src/org/mockito/internal/verification/NoMoreInteractions.java
+index 9b7642f..9cbbf3d 100644
+--- a/src/org/mockito/internal/verification/NoMoreInteractions.java
++++ b/src/org/mockito/internal/verification/NoMoreInteractions.java
+@@ -19,9 +19,10 @@
+ 
+     @SuppressWarnings("unchecked")
+     public void verify(VerificationData data) {
+-        Invocation unverified = new InvocationsFinder().findFirstUnverified(data.getAllInvocations());
++        List<Invocation> var_125 = data.getAllInvocations();
++		Invocation unverified = new InvocationsFinder().findFirstUnverified(var_125);
+         if (unverified != null) {
+-            new Reporter().noMoreInteractionsWanted(unverified, (List) data.getAllInvocations());
++            new Reporter().noMoreInteractionsWanted(unverified, (List) var_125);
+         }
+     }
+ 

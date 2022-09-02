@@ -1,0 +1,50 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/Precision.java b/src/main/java/org/apache/commons/math3/util/Precision.java
+index ef3b57f..fde32b5 100644
+--- a/src/main/java/org/apache/commons/math3/util/Precision.java
++++ b/src/main/java/org/apache/commons/math3/util/Precision.java
+@@ -455,7 +455,8 @@
+                                         double sign,
+                                         int roundingMethod)
+         throws MathArithmeticException, MathIllegalArgumentException {
+-        switch (roundingMethod) {
++        double var_4226 = FastMath.ceil(unscaled);
++		switch (roundingMethod) {
+         case BigDecimal.ROUND_CEILING :
+             if (sign == -1) {
+                 unscaled = FastMath.floor(FastMath.nextAfter(unscaled, Double.NEGATIVE_INFINITY));
+@@ -477,7 +478,7 @@
+             unscaled = FastMath.nextAfter(unscaled, Double.NEGATIVE_INFINITY);
+             double fraction = unscaled - FastMath.floor(unscaled);
+             if (fraction > 0.5) {
+-                unscaled = FastMath.ceil(unscaled);
++                unscaled = var_4226;
+             } else {
+                 unscaled = FastMath.floor(unscaled);
+             }
+@@ -486,7 +487,7 @@
+         case BigDecimal.ROUND_HALF_EVEN : {
+             double fraction = unscaled - FastMath.floor(unscaled);
+             if (fraction > 0.5) {
+-                unscaled = FastMath.ceil(unscaled);
++                unscaled = var_4226;
+             } else if (fraction < 0.5) {
+                 unscaled = FastMath.floor(unscaled);
+             } else {
+@@ -495,7 +496,7 @@
+                     .floor(unscaled) / 2.0)) { // even
+                     unscaled = FastMath.floor(unscaled);
+                 } else { // odd
+-                    unscaled = FastMath.ceil(unscaled);
++                    unscaled = var_4226;
+                 }
+             }
+             break;
+@@ -504,7 +505,7 @@
+             unscaled = FastMath.nextAfter(unscaled, Double.POSITIVE_INFINITY);
+             double fraction = unscaled - FastMath.floor(unscaled);
+             if (fraction >= 0.5) {
+-                unscaled = FastMath.ceil(unscaled);
++                unscaled = var_4226;
+             } else {
+                 unscaled = FastMath.floor(unscaled);
+             }

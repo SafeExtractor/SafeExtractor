@@ -1,0 +1,45 @@
+diff --git a/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java b/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
+index 7412a61..050f95b 100755
+--- a/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
++++ b/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
+@@ -331,18 +331,19 @@
+   private boolean maybeProcessDeclaration(NodeTraversal t, Node name,
+       Node parent, NamedInfo info) {
+     Node gramps = parent.getParent();
+-    switch (parent.getType()) {
++    JSModule var_586 = t.getModule();
++	switch (parent.getType()) {
+       case Token.VAR:
+         if (canMoveValue(name.getFirstChild())) {
+           return info.addDeclaration(
+-              new Declaration(t.getModule(), name, parent, gramps));
++              new Declaration(var_586, name, parent, gramps));
+         }
+         return false;
+ 
+       case Token.FUNCTION:
+         if (NodeUtil.isFunctionDeclaration(parent)) {
+           return info.addDeclaration(
+-              new Declaration(t.getModule(), name, parent, gramps));
++              new Declaration(var_586, name, parent, gramps));
+         }
+         return false;
+ 
+@@ -361,7 +362,7 @@
+             if (currentParent.isExprResult() &&
+                 canMoveValue(current.getLastChild())) {
+               return info.addDeclaration(
+-                  new Declaration(t.getModule(), current, currentParent,
++                  new Declaration(var_586, current, currentParent,
+                       currentParent.getParent()));
+             }
+           } else {
+@@ -379,7 +380,7 @@
+           if (relationship != null &&
+               name.getString().equals(relationship.subclassName)) {
+             return info.addDeclaration(
+-                new Declaration(t.getModule(), parent, gramps,
++                new Declaration(var_586, parent, gramps,
+                     gramps.getParent()));
+           }
+         }

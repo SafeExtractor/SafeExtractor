@@ -1,0 +1,53 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..b7bbf77 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -2343,9 +2343,10 @@
+     public Dfp nextAfter(final Dfp x) {
+ 
+         // make sure we don't mix number with different precision
+-        if (field.getRadixDigits() != x.field.getRadixDigits()) {
++        Dfp var_715 = getZero();
++		if (field.getRadixDigits() != x.field.getRadixDigits()) {
+             field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            final Dfp result = newInstance(getZero());
++            final Dfp result = newInstance(var_715);
+             result.nans = QNAN;
+             return dotrap(DfpField.FLAG_INVALID, NEXT_AFTER_TRAP, x, result);
+         }
+@@ -2360,7 +2361,7 @@
+             return newInstance(x);
+         }
+ 
+-        if (lessThan(getZero())) {
++        if (lessThan(var_715)) {
+             up = !up;
+         }
+ 
+@@ -2371,7 +2372,7 @@
+             inc.exp = this.exp-mant.length+1;
+             inc.sign = this.sign;
+ 
+-            if (this.equals(getZero())) {
++            if (this.equals(var_715)) {
+                 inc.exp = MIN_EXP-mant.length;
+             }
+ 
+@@ -2387,7 +2388,7 @@
+                 inc.exp = this.exp-mant.length+1;
+             }
+ 
+-            if (this.equals(getZero())) {
++            if (this.equals(var_715)) {
+                 inc.exp = MIN_EXP-mant.length;
+             }
+ 
+@@ -2399,7 +2400,7 @@
+             result = dotrap(DfpField.FLAG_INEXACT, NEXT_AFTER_TRAP, x, result);
+         }
+ 
+-        if (result.equals(getZero()) && this.equals(getZero()) == false) {
++        if (result.equals(var_715) && this.equals(var_715) == false) {
+             field.setIEEEFlagsBits(DfpField.FLAG_INEXACT);
+             result = dotrap(DfpField.FLAG_INEXACT, NEXT_AFTER_TRAP, x, result);
+         }

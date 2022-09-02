@@ -1,0 +1,35 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot3D.java b/source/org/jfree/chart/plot/PiePlot3D.java
+index a7aab14..658abe5 100644
+--- a/source/org/jfree/chart/plot/PiePlot3D.java
++++ b/source/org/jfree/chart/plot/PiePlot3D.java
+@@ -390,9 +390,10 @@
+         Stroke outlineStroke;
+ 
+         Iterator iterator = sectionKeys.iterator();
+-        while (iterator.hasNext()) {
++        Object var_1491 = iterator.next();
++		while (iterator.hasNext()) {
+ 
+-            Comparable currentKey = (Comparable) iterator.next();
++            Comparable currentKey = (Comparable) var_1491;
+             Number dataValue = dataset.getValue(currentKey);
+             if (dataValue == null) {
+                 arcList.add(null);
+@@ -497,7 +498,7 @@
+         int cat = 0;
+         iterator = arcList.iterator();
+         while (iterator.hasNext()) {
+-            Arc2D segment = (Arc2D) iterator.next();
++            Arc2D segment = (Arc2D) var_1491;
+             if (segment != null) {
+                 Comparable key = getSectionKey(cat);
+                 paint = lookupSectionPaint(key, false);
+@@ -513,7 +514,7 @@
+         cat = 0;
+         iterator = arcList.iterator();
+         while (iterator.hasNext()) {
+-            Arc2D segment = (Arc2D) iterator.next();
++            Arc2D segment = (Arc2D) var_1491;
+             if (segment != null) {
+                 Comparable key = getSectionKey(cat);
+                 paint = lookupSectionPaint(key, false);

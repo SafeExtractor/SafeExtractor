@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/DividedDifferenceInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/DividedDifferenceInterpolator.java
+index 3e1c96c..e27e50e 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/DividedDifferenceInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/DividedDifferenceInterpolator.java
+@@ -106,13 +106,14 @@
+ 
+         final int n = x.length;
+         final double[] a = new double [n];
+-        a[0] = divdiff[0];
++        double var_398 = divdiff[0];
++		a[0] = var_398;
+         for (int i = 1; i < n; i++) {
+             for (int j = 0; j < n-i; j++) {
+                 final double denominator = x[j+i] - x[j];
+                 divdiff[j] = (divdiff[j+1] - divdiff[j]) / denominator;
+             }
+-            a[i] = divdiff[0];
++            a[i] = var_398;
+         }
+ 
+         return a;

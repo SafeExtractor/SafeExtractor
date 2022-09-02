@@ -1,0 +1,34 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..abc07ff 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -3338,7 +3338,8 @@
+         Graphics2D savedG2 = g2;
+         Rectangle2D savedDataArea = dataArea;
+         BufferedImage dataImage = null;
+-        if (this.shadowGenerator != null) {
++        ShadowGenerator var_1676 = this.shadowGenerator;
++		if (var_1676 != null) {
+             dataImage = new BufferedImage((int) dataArea.getWidth(),
+                     (int)dataArea.getHeight(), BufferedImage.TYPE_INT_ARGB);
+             g2 = dataImage.createGraphics();
+@@ -3483,15 +3484,15 @@
+         }
+ 
+         drawAnnotations(g2, dataArea, info);
+-        if (this.shadowGenerator != null) {
++        if (var_1676 != null) {
+             BufferedImage shadowImage
+-                    = this.shadowGenerator.createDropShadow(dataImage);
++                    = var_1676.createDropShadow(dataImage);
+             g2 = savedG2;
+             dataArea = savedDataArea;
+             g2.drawImage(shadowImage, (int) savedDataArea.getX()
+-                    + this.shadowGenerator.calculateOffsetX(),
++                    + var_1676.calculateOffsetX(),
+                     (int) savedDataArea.getY()
+-                    + this.shadowGenerator.calculateOffsetY(), null);
++                    + var_1676.calculateOffsetY(), null);
+             g2.drawImage(dataImage, (int) savedDataArea.getX(),
+                     (int) savedDataArea.getY(), null);
+         }

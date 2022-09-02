@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java b/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java
+index e33e9a5..671b638 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java
++++ b/src/main/java/org/apache/commons/math3/optimization/linear/SimplexTableau.java
+@@ -200,8 +200,9 @@
+         matrix.setEntry(zIndex, width - 1,
+             maximize ? f.getConstantTerm() : -1 * f.getConstantTerm());
+ 
+-        if (!restrictToNonNegative) {
+-            matrix.setEntry(zIndex, getSlackVariableOffset() - 1,
++        int var_3568 = getSlackVariableOffset();
++		if (!restrictToNonNegative) {
++            matrix.setEntry(zIndex, var_3568 - 1,
+                 getInvertedCoefficientSum(objectiveCoefficients));
+         }
+ 
+@@ -217,7 +218,7 @@
+ 
+             // x-
+             if (!restrictToNonNegative) {
+-                matrix.setEntry(row, getSlackVariableOffset() - 1,
++                matrix.setEntry(row, var_3568 - 1,
+                     getInvertedCoefficientSum(constraint.getCoefficients()));
+             }
+ 
+@@ -226,9 +227,9 @@
+ 
+             // slack variables
+             if (constraint.getRelationship() == Relationship.LEQ) {
+-                matrix.setEntry(row, getSlackVariableOffset() + slackVar++, 1);  // slack
++                matrix.setEntry(row, var_3568 + slackVar++, 1);  // slack
+             } else if (constraint.getRelationship() == Relationship.GEQ) {
+-                matrix.setEntry(row, getSlackVariableOffset() + slackVar++, -1); // excess
++                matrix.setEntry(row, var_3568 + slackVar++, -1); // excess
+             }
+ 
+             // artificial variables

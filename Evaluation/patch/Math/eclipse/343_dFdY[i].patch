@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java
+index 1bb4776..bc49ad1 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java
+@@ -137,8 +137,9 @@
+             if (dFdX[i].length != yLen) {
+                 throw new DimensionMismatchException(dFdX[i].length, yLen);
+             }
+-            if (dFdY[i].length != yLen) {
+-                throw new DimensionMismatchException(dFdY[i].length, yLen);
++            double[] var_343 = dFdY[i];
++			if (var_343.length != yLen) {
++                throw new DimensionMismatchException(var_343.length, yLen);
+             }
+             if (d2FdXdY[i].length != yLen) {
+                 throw new DimensionMismatchException(d2FdXdY[i].length, yLen);
+@@ -149,7 +150,7 @@
+                 final double[] beta = new double[] {
+                     f[i][j], f[ip1][j], f[i][jp1], f[ip1][jp1],
+                     dFdX[i][j], dFdX[ip1][j], dFdX[i][jp1], dFdX[ip1][jp1],
+-                    dFdY[i][j], dFdY[ip1][j], dFdY[i][jp1], dFdY[ip1][jp1],
++                    var_343[j], dFdY[ip1][j], var_343[jp1], dFdY[ip1][jp1],
+                     d2FdXdY[i][j], d2FdXdY[ip1][j], d2FdXdY[i][jp1], d2FdXdY[ip1][jp1]
+                 };
+ 

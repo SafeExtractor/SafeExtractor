@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/DataFlowAnalysis.java b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+index 5b39646..70210da 100644
+--- a/src/com/google/javascript/jscomp/DataFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+@@ -201,7 +201,8 @@
+   final void analyze(int maxSteps) {
+     initialize();
+     int step = 0;
+-    while (!orderedWorkSet.isEmpty()) {
++    boolean var_746 = isForward();
++	while (!orderedWorkSet.isEmpty()) {
+       if (step > maxSteps) {
+         throw new MaxIterationsExceededException(
+           "Analysis did not terminate after " + maxSteps + " iterations");
+@@ -212,7 +213,7 @@
+       if (flow(curNode)) {
+         // If there is a change in the current node, we want to grab the list
+         // of nodes that this node affects.
+-        List<DiGraphNode<N, Branch>> nextNodes = isForward() ?
++        List<DiGraphNode<N, Branch>> nextNodes = var_746 ?
+             cfg.getDirectedSuccNodes(curNode) :
+             cfg.getDirectedPredNodes(curNode);
+         for (DiGraphNode<N, Branch> nextNode : nextNodes) {
+@@ -223,7 +224,7 @@
+       }
+       step++;
+     }
+-    if (isForward()) {
++    if (var_746) {
+       joinInputs(getCfg().getImplicitReturn());
+     }
+   }

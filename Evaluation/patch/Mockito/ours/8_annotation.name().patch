@@ -1,0 +1,18 @@
+diff --git a/src/org/mockito/internal/configuration/MockAnnotationProcessor.java b/src/org/mockito/internal/configuration/MockAnnotationProcessor.java
+index 40cb992..745ba69 100644
+--- a/src/org/mockito/internal/configuration/MockAnnotationProcessor.java
++++ b/src/org/mockito/internal/configuration/MockAnnotationProcessor.java
+@@ -19,10 +19,11 @@
+         if (annotation.extraInterfaces().length > 0) { // never null
+             mockSettings.extraInterfaces(annotation.extraInterfaces());
+         }
+-        if ("".equals(annotation.name())) {
++        String var_8 = annotation.name();
++		if ("".equals(var_8)) {
+             mockSettings.name(field.getName());
+         } else {
+-            mockSettings.name(annotation.name());
++            mockSettings.name(var_8);
+         }
+         if(annotation.serializable()){
+             mockSettings.serializable();

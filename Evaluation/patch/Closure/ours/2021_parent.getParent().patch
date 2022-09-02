@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/StripCode.java b/src/com/google/javascript/jscomp/StripCode.java
+index 94c384a..b319af4 100644
+--- a/src/com/google/javascript/jscomp/StripCode.java
++++ b/src/com/google/javascript/jscomp/StripCode.java
+@@ -178,7 +178,8 @@
+      */
+     void maybeRemoveReferenceToRemovedVariable(NodeTraversal t, Node n,
+                                                Node parent) {
+-      switch (parent.getType()) {
++      Node var_2021 = parent.getParent();
++	switch (parent.getType()) {
+         case Token.VAR:
+           // This is a variable declaration, not a reference.
+           break;
+@@ -192,7 +193,7 @@
+           //   NAME
+           //   NUMBER|STRING|NAME|...
+           if (parent.getFirstChild() == n && isReferenceToRemovedVar(t, n)) {
+-            replaceHighestNestedCallWithNull(parent, parent.getParent());
++            replaceHighestNestedCallWithNull(parent, var_2021);
+           }
+           break;
+ 
+@@ -210,7 +211,7 @@
+         case Token.ASSIGN_MOD:
+           if (isReferenceToRemovedVar(t, n)) {
+             if (parent.getFirstChild() == n) {
+-              Node gramps = parent.getParent();
++              Node gramps = var_2021;
+               if (gramps.isExprResult()) {
+                 // Remove the assignment.
+                 Node greatGramps = gramps.getParent();

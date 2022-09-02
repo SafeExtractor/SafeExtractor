@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..5577ef1 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -3965,7 +3965,8 @@
+                                        List ticks) {
+ 
+         // no renderer, no gridlines...
+-        if (getRenderer() == null) {
++        XYItemRenderer var_1735 = getRenderer();
++		if (var_1735 == null) {
+             return;
+         }
+ 
+@@ -3990,7 +3991,7 @@
+                     gridPaint = getDomainGridlinePaint();
+                     paintLine = true;
+                 }
+-                XYItemRenderer r = getRenderer();
++                XYItemRenderer r = var_1735;
+                 if ((r instanceof AbstractXYItemRenderer) && paintLine) {
+                     ((AbstractXYItemRenderer) r).drawDomainLine(g2, this,
+                             getDomainAxis(), dataArea, tick.getValue(),

@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..2352c01 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -1054,7 +1054,8 @@
+     Preconditions.checkNotNull(scope);
+     Preconditions.checkNotNull(expr);
+     ConcreteType ret;
+-    switch (expr.getType()) {
++    ConcreteType var_1076 = ConcreteType.ALL;
++	switch (expr.getType()) {
+       case Token.NAME:
+         StaticSlot<ConcreteType> slot = scope.getSlot(expr.getString());
+ 
+@@ -1063,7 +1064,7 @@
+         } else {
+           // This should occur only for extern variables, which we are assuming
+           // do not ever get assigned instances of user types.
+-          ret = ConcreteType.ALL;
++          ret = var_1076;
+         }
+         break;
+ 
+@@ -1123,7 +1124,7 @@
+         break;
+ 
+       case Token.GETELEM:
+-        ret = ConcreteType.ALL;
++        ret = var_1076;
+         break;
+ 
+       case Token.CALL:
+@@ -1166,7 +1167,7 @@
+           allInstantiatedTypes.add(inst);
+           ret = inst;
+         } else {
+-          ret = ConcreteType.ALL;
++          ret = var_1076;
+         }
+         break;
+ 

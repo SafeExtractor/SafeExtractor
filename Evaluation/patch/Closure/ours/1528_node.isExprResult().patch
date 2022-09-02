@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+index 2e75bce..fb0f313 100644
+--- a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
++++ b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+@@ -821,11 +821,12 @@
+      * assignment so it repurposed later.
+      */
+     void addDefinition(Node node, JSModule module) {
+-      Preconditions.checkArgument(node.isExprResult() || // assign
++      boolean var_1528 = node.isExprResult();
++	Preconditions.checkArgument(var_1528 || // assign
+                                   node.isFunction() ||
+                                   node.isVar());
+       Preconditions.checkArgument(explicitNode != node);
+-      if ((candidateDefinition == null) || !node.isExprResult()) {
++      if ((candidateDefinition == null) || !var_1528) {
+         candidateDefinition = node;
+         updateMinimumModule(module);
+       }

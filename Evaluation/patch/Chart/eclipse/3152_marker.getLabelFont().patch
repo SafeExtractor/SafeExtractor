@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..a4a9510 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -1539,7 +1539,8 @@
+                                 Marker marker,
+                                 Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        Font var_3152 = marker.getLabelFont();
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = rangeAxis.getRange();
+@@ -1570,7 +1571,7 @@
+             String label = marker.getLabel();
+             RectangleAnchor anchor = marker.getLabelAnchor();
+             if (label != null) {
+-                Font labelFont = marker.getLabelFont();
++                Font labelFont = var_3152;
+                 g2.setFont(labelFont);
+                 g2.setPaint(marker.getLabelPaint());
+                 Point2D coordinates = calculateRangeMarkerTextAnchorPoint(
+@@ -1672,7 +1673,7 @@
+             String label = marker.getLabel();
+             RectangleAnchor anchor = marker.getLabelAnchor();
+             if (label != null) {
+-                Font labelFont = marker.getLabelFont();
++                Font labelFont = var_3152;
+                 g2.setFont(labelFont);
+                 g2.setPaint(marker.getLabelPaint());
+                 Point2D coordinates = calculateRangeMarkerTextAnchorPoint(

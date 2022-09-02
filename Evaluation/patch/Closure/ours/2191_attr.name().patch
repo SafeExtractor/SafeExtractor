@@ -1,0 +1,39 @@
+diff --git a/src/com/google/javascript/jscomp/jsonml/Reader.java b/src/com/google/javascript/jscomp/jsonml/Reader.java
+index 9b7e760..325c972 100644
+--- a/src/com/google/javascript/jscomp/jsonml/Reader.java
++++ b/src/com/google/javascript/jscomp/jsonml/Reader.java
+@@ -166,13 +166,14 @@
+       boolean optional) throws JsonMLException {
+     Object value = element.getAttribute(attr);
+ 
+-    if (value == null) {
++    String var_2191 = attr.name();
++	if (value == null) {
+       if (type == null || optional) {
+         return null;
+       }
+ 
+       throw new JsonMLException(
+-          "Missing " + attr.name() + " attribute for "
++          "Missing " + var_2191 + " attribute for "
+           + element.getType().name() + " element.");
+     }
+ 
+@@ -187,7 +188,7 @@
+       }
+ 
+       throw new JsonMLException(
+-          "Wrong type of " + attr.name() + " attribute. "
++          "Wrong type of " + var_2191 + " attribute. "
+           + "Received: " + value.getClass() + ". Expected: " + type.getName());
+     }
+ 
+@@ -196,7 +197,7 @@
+     }
+ 
+     throw new JsonMLException(
+-        "Wrong type of " + attr.name() + "attribute. "
++        "Wrong type of " + var_2191 + "attribute. "
+         + "Received: " + value.getClass() + ". Expected: " + type.getName());
+   }
+ 

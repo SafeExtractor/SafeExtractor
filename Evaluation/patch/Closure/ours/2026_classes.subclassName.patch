@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/StripCode.java b/src/com/google/javascript/jscomp/StripCode.java
+index 94c384a..cac6092 100644
+--- a/src/com/google/javascript/jscomp/StripCode.java
++++ b/src/com/google/javascript/jscomp/StripCode.java
+@@ -535,7 +535,8 @@
+       if (classes != null) {
+         // It's okay to strip a type that inherits from a non-stripped type
+         // e.g. goog.inherits(goog.debug.Logger, Object)
+-        if (qualifiedNameBeginsWithStripType(classes.subclassName)) {
++        String var_2026 = classes.subclassName;
++		if (qualifiedNameBeginsWithStripType(var_2026)) {
+           return true;
+         }
+ 
+@@ -543,7 +544,7 @@
+         // strip type.
+         if (qualifiedNameBeginsWithStripType(classes.superclassName)) {
+           t.report(callNode, STRIP_TYPE_INHERIT_ERROR,
+-                   classes.subclassName, classes.superclassName);
++                   var_2026, classes.superclassName);
+         }
+       }
+ 

@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionInjector.java b/src/com/google/javascript/jscomp/FunctionInjector.java
+index ddfb4ed..45e5164 100644
+--- a/src/com/google/javascript/jscomp/FunctionInjector.java
++++ b/src/com/google/javascript/jscomp/FunctionInjector.java
+@@ -551,8 +551,9 @@
+       return true;
+     } else if (block.hasOneChild()) {
+       // Only inline functions that return something.
+-      if (block.getFirstChild().isReturn()
+-          && block.getFirstChild().getFirstChild() != null) {
++      Node var_1193 = block.getFirstChild();
++	if (var_1193.isReturn()
++          && var_1193.getFirstChild() != null) {
+         return true;
+       }
+     }

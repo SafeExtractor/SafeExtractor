@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/ReplaceIdGenerators.java b/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
+index c6e4271..2a68f6c 100644
+--- a/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
++++ b/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
+@@ -31,6 +31,7 @@
+ import java.io.IOException;
+ import java.io.StringReader;
+ import java.util.Collections;
++import java.util.LinkedHashMap;
+ import java.util.Map;
+ import java.util.Set;
+ 
+@@ -77,8 +78,9 @@
+     this.compiler = compiler;
+     this.generatePseudoNames = generatePseudoNames;
+     nameGenerators = Maps.newLinkedHashMap();
+-    idGeneratorMaps = Maps.newLinkedHashMap();
+-    consistNameMap = Maps.newLinkedHashMap();
++    LinkedHashMap<String, Map<String, String>> var_1274 = Maps.newLinkedHashMap();
++	idGeneratorMaps = var_1274;
++    consistNameMap = var_1274;
+ 
+     Map<String, BiMap<String, String>> previousMap;
+     previousMap = parsePreviousResults(previousMapSerialized);

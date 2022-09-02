@@ -1,0 +1,77 @@
+diff --git a/src/main/java/org/apache/commons/lang3/math/NumberUtils.java b/src/main/java/org/apache/commons/lang3/math/NumberUtils.java
+index 70b8d64..529f2fc 100644
+--- a/src/main/java/org/apache/commons/lang3/math/NumberUtils.java
++++ b/src/main/java/org/apache/commons/lang3/math/NumberUtils.java
+@@ -1363,18 +1363,19 @@
+         int i = start;
+         // loop to the next to last char or to the last char if we need another digit to
+         // make a valid number (e.g. chars[0..5] = "1234E")
+-        while (i < sz || (i < sz + 1 && allowSigns && !foundDigit)) {
+-            if (chars[i] >= '0' && chars[i] <= '9') {
++        char var_384 = chars[i];
++		while (i < sz || (i < sz + 1 && allowSigns && !foundDigit)) {
++            if (var_384 >= '0' && var_384 <= '9') {
+                 foundDigit = true;
+                 allowSigns = false;
+ 
+-            } else if (chars[i] == '.') {
++            } else if (var_384 == '.') {
+                 if (hasDecPoint || hasExp) {
+                     // two decimal points or dec in exponent   
+                     return false;
+                 }
+                 hasDecPoint = true;
+-            } else if (chars[i] == 'e' || chars[i] == 'E') {
++            } else if (var_384 == 'e' || var_384 == 'E') {
+                 // we've already taken care of hex.
+                 if (hasExp) {
+                     // two E's
+@@ -1385,7 +1386,7 @@
+                 }
+                 hasExp = true;
+                 allowSigns = true;
+-            } else if (chars[i] == '+' || chars[i] == '-') {
++            } else if (var_384 == '+' || var_384 == '-') {
+                 if (!allowSigns) {
+                     return false;
+                 }
+@@ -1397,15 +1398,15 @@
+             i++;
+         }
+         if (i < chars.length) {
+-            if (chars[i] >= '0' && chars[i] <= '9') {
++            if (var_384 >= '0' && var_384 <= '9') {
+                 // no type qualifier, OK
+                 return true;
+             }
+-            if (chars[i] == 'e' || chars[i] == 'E') {
++            if (var_384 == 'e' || var_384 == 'E') {
+                 // can't have an E at the last byte
+                 return false;
+             }
+-            if (chars[i] == '.') {
++            if (var_384 == '.') {
+                 if (hasDecPoint || hasExp) {
+                     // two decimal points or dec in exponent
+                     return false;
+@@ -1414,14 +1415,14 @@
+                 return foundDigit;
+             }
+             if (!allowSigns
+-                && (chars[i] == 'd'
+-                    || chars[i] == 'D'
+-                    || chars[i] == 'f'
+-                    || chars[i] == 'F')) {
++                && (var_384 == 'd'
++                    || var_384 == 'D'
++                    || var_384 == 'f'
++                    || var_384 == 'F')) {
+                 return foundDigit;
+             }
+-            if (chars[i] == 'l'
+-                || chars[i] == 'L') {
++            if (var_384 == 'l'
++                || var_384 == 'L') {
+                 // not allowing L with an exponent or decimal point
+                 return foundDigit && !hasExp && !hasDecPoint;
+             }

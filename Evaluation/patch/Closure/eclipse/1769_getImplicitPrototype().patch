@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ConcreteType.java b/src/com/google/javascript/jscomp/ConcreteType.java
+index 7bf7593..c8ddbd1 100644
+--- a/src/com/google/javascript/jscomp/ConcreteType.java
++++ b/src/com/google/javascript/jscomp/ConcreteType.java
+@@ -503,11 +503,14 @@
+           return getConstructorType().getPrototypeType();
+         }
+         return this;
+-      } else if (getImplicitPrototype() != null) {
+-        return getImplicitPrototype().getInstanceTypeWithProperty(propName);
+       } else {
+-        return null;
+-      }
++		ConcreteInstanceType var_1769 = getImplicitPrototype();
++		if (var_1769 != null) {
++		    return var_1769.getInstanceTypeWithProperty(propName);
++		  } else {
++		    return null;
++		  }
++	}
+     }
+ 
+     /** Returns the type representing the implicit prototype. */

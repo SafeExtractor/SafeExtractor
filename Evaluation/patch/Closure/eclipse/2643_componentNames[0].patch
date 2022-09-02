@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/rhino/jstype/NamedType.java b/src/com/google/javascript/rhino/jstype/NamedType.java
+index 9fb2191..7b81b5f 100644
+--- a/src/com/google/javascript/rhino/jstype/NamedType.java
++++ b/src/com/google/javascript/rhino/jstype/NamedType.java
+@@ -266,10 +266,11 @@
+   private JSType lookupViaProperties( ErrorReporter t,
+       StaticScope<JSType> enclosing) {
+     String[] componentNames = reference.split("\\.", -1);
+-    if (componentNames[0].length() == 0) {
++    String var_2643 = componentNames[0];
++	if (var_2643.length() == 0) {
+       return null;
+     }
+-    StaticSlot<JSType> slot = enclosing.getSlot(componentNames[0]);
++    StaticSlot<JSType> slot = enclosing.getSlot(var_2643);
+     if (slot == null) {
+       return null;
+     }
+@@ -280,7 +281,7 @@
+     if (slotType == null || slotType.isAllType() || slotType.isNoType()) {
+       return null;
+     }
+-    JSType value = getTypedefType(t, slot, componentNames[0]);
++    JSType value = getTypedefType(t, slot, var_2643);
+     if (value == null) {
+       return null;
+     }

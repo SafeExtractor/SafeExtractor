@@ -1,0 +1,35 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+index 104bdf5..c0c8440 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+@@ -836,7 +836,9 @@
+             // minor correction if hsig==false
+             double oldFac = hsig ? 0 : ccov1 * cc * (2 - cc);
+             oldFac += 1 - ccov1 - ccovmu;
+-            if (isActiveCMA) {
++            RealMatrix var_3271 = C.scalarMultiply(oldFac) // regard old matrix
++			    .add(roneu);
++			if (isActiveCMA) {
+                 // Adapt covariance matrix C active CMA
+                 negccov = (1 - ccovmu) * 0.25 * mueff /
+                     (Math.pow(dimension + 2, 1.5) + 2 * mueff);
+@@ -866,8 +868,7 @@
+                 final RealMatrix artmp = BD.multiply(arzneg);
+                 final RealMatrix Cneg = artmp.multiply(diag(weights)).multiply(artmp.transpose());
+                 oldFac += negalphaold * negccov;
+-                C = C.scalarMultiply(oldFac)
+-                    .add(roneu) // regard old matrix
++                C = var_3271 // regard old matrix
+                     .add(arpos.scalarMultiply( // plus rank one update
+                                               ccovmu + (1 - negalphaold) * negccov) // plus rank mu update
+                          .multiply(times(repmat(weights, 1, dimension),
+@@ -875,8 +876,7 @@
+                     .subtract(Cneg.scalarMultiply(negccov));
+             } else {
+                 // Adapt covariance matrix C - nonactive
+-                C = C.scalarMultiply(oldFac) // regard old matrix
+-                    .add(roneu) // plus rank one update
++                C = var_3271 // plus rank one update
+                     .add(arpos.scalarMultiply(ccovmu) // plus rank mu update
+                          .multiply(times(repmat(weights, 1, dimension),
+                                          arpos.transpose())));

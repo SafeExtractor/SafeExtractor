@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DateUtils.java b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+index b16af53..02c5358 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DateUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+@@ -1074,17 +1074,18 @@
+                     }
+                     break;
+             }
+-            if (!offsetSet) {
++            int var_524 = val.get(aField[0]);
++			if (!offsetSet) {
+                 final int min = val.getActualMinimum(aField[0]);
+                 final int max = val.getActualMaximum(aField[0]);
+                 //Calculate the offset from the minimum allowed value
+-                offset = val.get(aField[0]) - min;
++                offset = var_524 - min;
+                 //Set roundUp if this is more than half way between the minimum and maximum
+                 roundUp = offset > ((max - min) / 2);
+             }
+             //We need to remove this field
+             if (offset != 0) {
+-                val.set(aField[0], val.get(aField[0]) - offset);
++                val.set(aField[0], var_524 - offset);
+             }
+         }
+         throw new IllegalArgumentException("The field " + field + " is not supported");

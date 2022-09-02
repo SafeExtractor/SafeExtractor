@@ -1,0 +1,62 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2981_x[2].patch b/Users/safe/paper/Evaluation/patch/Chart/ours/2981_x[2].patch
+index c0fd661..d2e01b9 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2981_x[2].patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/2981_x[2].patch
+@@ -1,17 +1,17 @@
+ diff --git a/source/org/jfree/chart/renderer/xy/CyclicXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/CyclicXYItemRenderer.java
+-index bdc095b..7ddb9f0 100644
++index bdc095b..8702c0d 100644
+ --- a/source/org/jfree/chart/renderer/xy/CyclicXYItemRenderer.java
+ +++ b/source/org/jfree/chart/renderer/xy/CyclicXYItemRenderer.java
+-@@ -201,7 +201,8 @@
+-             }
+-         }
+- 
+--        if (rangeAxis instanceof CyclicNumberAxis) {
+-+        double var_2981 = x[2];
+-+		if (rangeAxis instanceof CyclicNumberAxis) {
+-             cnay = (CyclicNumberAxis) rangeAxis;
+-             ycycleBound = cnay.getCycleBound();
++@@ -207,7 +207,8 @@
+              yBoundMapping = cnay.isBoundMappedToLastCycle();
++             // The split may occur in either x splitted segments, if any, but
++             // not in both
++-            if ((y[0] != y[1]) && ((ycycleBound >= y[0])
+++            double var_2981 = x[2];
+++			if ((y[0] != y[1]) && ((ycycleBound >= y[0])
++                     && (ycycleBound <= y[1])
++                     || (ycycleBound >= y[1]) && (ycycleBound <= y[0]))) {
++                 double[] nx = new double[x.length + 1];
+ @@ -217,7 +218,7 @@
+                  nx[1] = (x[1] - x[0]) * (ycycleBound - y[0])
+                          / (y[1] - y[0]) + x[0];
+@@ -34,29 +34,3 @@ index bdc095b..7ddb9f0 100644
+                          / (y[2] - y[1]) + x[1];
+                  x = nx; y = ny;
+              }
+-@@ -265,9 +266,9 @@
+- 
+-         if (cnax != null) {
+-             if (xcycleBound == x[1]) {
+--                cnax.setBoundMappedToLastCycle(x[2] <= xcycleBound);
+-+                cnax.setBoundMappedToLastCycle(var_2981 <= xcycleBound);
+-             }
+--            if (xcycleBound == x[2]) {
+-+            if (xcycleBound == var_2981) {
+-                 cnax.setBoundMappedToLastCycle(x[1] <= xcycleBound);
+-             }
+-         }
+-@@ -284,11 +285,11 @@
+- 
+-         if (x.length == 4) {
+-             if (cnax != null) {
+--                if (xcycleBound == x[2]) {
+-+                if (xcycleBound == var_2981) {
+-                     cnax.setBoundMappedToLastCycle(x[3] <= xcycleBound);
+-                 }
+-                 if (xcycleBound == x[3]) {
+--                    cnax.setBoundMappedToLastCycle(x[2] <= xcycleBound);
+-+                    cnax.setBoundMappedToLastCycle(var_2981 <= xcycleBound);
+-                 }
+-             }
+-             if (cnay != null) {

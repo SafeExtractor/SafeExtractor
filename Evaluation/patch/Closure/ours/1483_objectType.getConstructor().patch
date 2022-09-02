@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/TypeValidator.java b/src/com/google/javascript/jscomp/TypeValidator.java
+index 5feecd0..4063634 100644
+--- a/src/com/google/javascript/jscomp/TypeValidator.java
++++ b/src/com/google/javascript/jscomp/TypeValidator.java
+@@ -713,8 +713,9 @@
+       ObjectType objectType = getJSType(n.getFirstChild()).dereference();
+       if (objectType != null) {
+         String propName = n.getLastChild().getString();
+-        if (objectType.getConstructor() != null &&
+-            objectType.getConstructor().isInterface()) {
++        FunctionType var_1483 = objectType.getConstructor();
++		if (var_1483 != null &&
++            var_1483.isInterface()) {
+           objectType = FunctionType.getTopDefiningInterface(
+               objectType, propName);
+         } else {

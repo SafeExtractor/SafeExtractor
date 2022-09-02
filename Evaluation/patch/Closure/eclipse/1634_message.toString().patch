@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/ReplaceMessages.java b/src/com/google/javascript/jscomp/ReplaceMessages.java
+index bd435ec..c9d8be8 100644
+--- a/src/com/google/javascript/jscomp/ReplaceMessages.java
++++ b/src/com/google/javascript/jscomp/ReplaceMessages.java
+@@ -113,14 +113,15 @@
+    */
+   private Node getNewValueNode(JsMessage message, Node origValueNode)
+       throws MalformedException {
+-    switch (origValueNode.getType()) {
++    String var_1634 = message.toString();
++	switch (origValueNode.getType()) {
+       case Token.FUNCTION:
+         // The message is a function. Modify the function node.
+         updateFunctionNode(message, origValueNode);
+         return origValueNode;
+       case Token.STRING:
+         // The message is a simple string. Modify the string node.
+-        String newString = message.toString();
++        String newString = var_1634;
+         if (!origValueNode.getString().equals(newString)) {
+           origValueNode.setString(newString);
+           compiler.reportCodeChange();
+@@ -128,7 +129,7 @@
+         return origValueNode;
+       case Token.ADD:
+         // The message is a simple string. Create a string node.
+-        return IR.string(message.toString());
++        return IR.string(var_1634);
+       case Token.CALL:
+         // The message is a function call. Replace it with a string expression.
+         return replaceCallNode(message, origValueNode);

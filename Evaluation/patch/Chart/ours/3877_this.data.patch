@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/data/gantt/TaskSeriesCollection.java b/source/org/jfree/data/gantt/TaskSeriesCollection.java
+index 882799a..31afedb 100644
+--- a/source/org/jfree/data/gantt/TaskSeriesCollection.java
++++ b/source/org/jfree/data/gantt/TaskSeriesCollection.java
+@@ -319,14 +319,15 @@
+ 
+         // deregister the collection as a change listener to each series in
+         // the collection.
+-        Iterator iterator = this.data.iterator();
++        List var_3877 = this.data;
++		Iterator iterator = var_3877.iterator();
+         while (iterator.hasNext()) {
+             TaskSeries series = (TaskSeries) iterator.next();
+             series.removeChangeListener(this);
+         }
+ 
+         // remove all the series from the collection and notify listeners.
+-        this.data.clear();
++        var_3877.clear();
+         fireDatasetChanged(new DatasetChangeInfo());
+         //TODO: fill in real change info
+ 

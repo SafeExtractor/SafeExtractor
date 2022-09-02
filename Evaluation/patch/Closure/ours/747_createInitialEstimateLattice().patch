@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/DataFlowAnalysis.java b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+index 5b39646..fad7c0f 100644
+--- a/src/com/google/javascript/jscomp/DataFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+@@ -251,8 +251,9 @@
+     // call analyze.
+     orderedWorkSet.clear();
+     for (DiGraphNode<N, Branch> node : cfg.getDirectedGraphNodes()) {
+-      node.setAnnotation(new FlowState<L>(createInitialEstimateLattice(),
+-          createInitialEstimateLattice()));
++      L var_747 = createInitialEstimateLattice();
++	node.setAnnotation(new FlowState<L>(var_747,
++          var_747));
+       if (node != cfg.getImplicitReturn()) {
+         orderedWorkSet.add(node);
+       }

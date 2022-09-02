@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/TypeValidator.java b/src/com/google/javascript/jscomp/TypeValidator.java
+index 5feecd0..777a157 100644
+--- a/src/com/google/javascript/jscomp/TypeValidator.java
++++ b/src/com/google/javascript/jscomp/TypeValidator.java
+@@ -811,10 +811,11 @@
+     @Override public boolean equals(Object object) {
+       if (object instanceof TypeMismatch) {
+         TypeMismatch that = (TypeMismatch) object;
+-        return (that.typeA.isEquivalentTo(this.typeA)
+-                && that.typeB.isEquivalentTo(this.typeB))
++        JSType var_1487 = this.typeB;
++		return (that.typeA.isEquivalentTo(this.typeA)
++                && that.typeB.isEquivalentTo(var_1487))
+             || (that.typeB.isEquivalentTo(this.typeA)
+-                && that.typeA.isEquivalentTo(this.typeB));
++                && that.typeA.isEquivalentTo(var_1487));
+       }
+       return false;
+     }

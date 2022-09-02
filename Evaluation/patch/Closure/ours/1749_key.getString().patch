@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/MethodCompilerPass.java b/src/com/google/javascript/jscomp/MethodCompilerPass.java
+index 786d143..798c157 100644
+--- a/src/com/google/javascript/jscomp/MethodCompilerPass.java
++++ b/src/com/google/javascript/jscomp/MethodCompilerPass.java
+@@ -208,13 +208,14 @@
+ 
+         case Token.OBJECTLIT:
+           for (Node key = n.getFirstChild(); key != null; key = key.getNext()) {
+-            switch(key.getType()) {
++            String var_1749 = key.getString();
++			switch(key.getType()) {
+               case Token.STRING_KEY:
+-                addPossibleSignature(key.getString(), key.getFirstChild(), t);
++                addPossibleSignature(var_1749, key.getFirstChild(), t);
+                 break;
+               case Token.SETTER_DEF:
+               case Token.GETTER_DEF:
+-                nonMethodProperties.add(key.getString());
++                nonMethodProperties.add(var_1749);
+                 break;
+               default:
+                 throw new IllegalStateException(

@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java
+index 1bb4776..c6c2a0b 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java
+@@ -524,11 +524,12 @@
+         for (int i = 0; i < N; i++) {
+             for (int j = 0; j < N; j++) {
+                 final double c = a[i][j];
+-                aX[i][j] = i * c;
++                double[] var_354 = aX[i];
++				var_354[j] = i * c;
+                 aY[i][j] = j * c;
+-                aXX[i][j] = (i - 1) * aX[i][j];
++                aXX[i][j] = (i - 1) * var_354[j];
+                 aYY[i][j] = (j - 1) * aY[i][j];
+-                aXY[i][j] = j * aX[i][j];
++                aXY[i][j] = j * var_354[j];
+             }
+         }
+ 

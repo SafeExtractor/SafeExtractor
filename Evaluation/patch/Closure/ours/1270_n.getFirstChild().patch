@@ -1,0 +1,37 @@
+diff --git a/src/com/google/javascript/jscomp/NameReferenceGraphConstruction.java b/src/com/google/javascript/jscomp/NameReferenceGraphConstruction.java
+index d61f9e9..634d602 100644
+--- a/src/com/google/javascript/jscomp/NameReferenceGraphConstruction.java
++++ b/src/com/google/javascript/jscomp/NameReferenceGraphConstruction.java
+@@ -262,18 +262,21 @@
+       if (n.isGetProp()) {
+         // var foo = bar[0].baz;
+         defineAndAlias(n.getLastChild().getString());
+-      } else if (n.isAssign()) {
+-        // In case of nested assignment, we only consider the name of the
+-        // immediate neighbor.
+-        safeAlias(n.getFirstChild());
+-      } else if (n.hasChildren()) {
+-        Node cur = n.getFirstChild();
+-        do {
+-          safeAlias(cur);
+-        } while ((cur = cur.getNext()) != null);
+       } else {
+-        // No name to alias
+-      }
++		Node var_1270 = n.getFirstChild();
++		if (n.isAssign()) {
++		    // In case of nested assignment, we only consider the name of the
++		    // immediate neighbor.
++		    safeAlias(var_1270);
++		  } else if (n.hasChildren()) {
++		    Node cur = var_1270;
++		    do {
++		      safeAlias(cur);
++		    } while ((cur = cur.getNext()) != null);
++		  } else {
++		    // No name to alias
++		  }
++	}
+     }
+ 
+     private void maybeAliasNamesOnAssign(Node lhs, Node rhs) {

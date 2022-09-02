@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..10f2b89 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -3116,8 +3116,9 @@
+     if (lValue == null || lValue.getParent() == null) {
+       return null;
+     }
+-    if (isObjectLitKey(lValue, lValue.getParent())) {
+-      return getBestLValue(lValue.getParent());
++    Node var_2095 = lValue.getParent();
++	if (isObjectLitKey(lValue, var_2095)) {
++      return getBestLValue(var_2095);
+     } else if (isGet(lValue)) {
+       return lValue.getFirstChild();
+     }

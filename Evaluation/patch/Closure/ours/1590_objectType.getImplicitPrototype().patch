@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionTypeBuilder.java b/src/com/google/javascript/jscomp/FunctionTypeBuilder.java
+index db990fa..ac2f76e 100644
+--- a/src/com/google/javascript/jscomp/FunctionTypeBuilder.java
++++ b/src/com/google/javascript/jscomp/FunctionTypeBuilder.java
+@@ -750,9 +750,10 @@
+    */
+   private static boolean hasMoreTagsToResolve(ObjectType objectType) {
+     Preconditions.checkArgument(objectType.isUnknownType());
+-    if (objectType.getImplicitPrototype() != null) {
++    ObjectType var_1590 = objectType.getImplicitPrototype();
++	if (var_1590 != null) {
+       // constructor extends class
+-      if (objectType.getImplicitPrototype().isResolved()) {
++      if (var_1590.isResolved()) {
+         return false;
+       } else {
+         return true;

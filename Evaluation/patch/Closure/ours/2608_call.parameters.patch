@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/rhino/jstype/FunctionType.java b/src/com/google/javascript/rhino/jstype/FunctionType.java
+index 7388448..8412b25 100644
+--- a/src/com/google/javascript/rhino/jstype/FunctionType.java
++++ b/src/com/google/javascript/rhino/jstype/FunctionType.java
+@@ -932,7 +932,8 @@
+ 
+     StringBuilder b = new StringBuilder(32);
+     b.append("function (");
+-    int paramNum = call.parameters.getChildCount();
++    Node var_2608 = call.parameters;
++	int paramNum = var_2608.getChildCount();
+     boolean hasKnownTypeOfThis = !(typeOfThis instanceof UnknownType);
+     if (hasKnownTypeOfThis) {
+       if (isConstructor()) {
+@@ -946,7 +947,7 @@
+       if (hasKnownTypeOfThis) {
+         b.append(", ");
+       }
+-      Node p = call.parameters.getFirstChild();
++      Node p = var_2608.getFirstChild();
+       appendArgString(b, p, forAnnotations);
+ 
+       p = p.getNext();

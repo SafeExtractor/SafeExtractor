@@ -1,0 +1,41 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1721_sb.length().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1721_sb.length().patch
+index b68f5a3..2f3249c 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1721_sb.length().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1721_sb.length().patch
+@@ -1,32 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+-index 63538e3..297d693 100644
++index 63538e3..ba98518 100644
+ --- a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+ +++ b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+-@@ -426,7 +426,8 @@
+-     Node prev = null;
+-     Node elem = arrayNode.getFirstChild();
+-     // Merges adjacent String nodes.
+--    while (elem != null) {
+-+    int var_1721 = sb.length();
+-+	while (elem != null) {
+-       if (NodeUtil.isImmutableValue(elem) || elem.isEmpty()) {
+-         if (sb == null) {
+-           sb = new StringBuilder();
+-@@ -438,7 +439,7 @@
++@@ -438,7 +438,8 @@
+          if (sb != null) {
+            Preconditions.checkNotNull(prev);
+            // + 2 for the quotes.
+ -          foldedSize += sb.length() + 2;
+-+          foldedSize += var_1721 + 2;
+++          int var_1721 = sb.length();
+++		foldedSize += var_1721 + 2;
+            arrayFoldedChildren.add(
+                IR.string(sb.toString()).copyInformationFrom(prev));
+            sb = null;
+-@@ -453,7 +454,7 @@
+-     if (sb != null) {
+-       Preconditions.checkNotNull(prev);
+-       // + 2 for the quotes.
+--      foldedSize += sb.length() + 2;
+-+      foldedSize += var_1721 + 2;
+-       arrayFoldedChildren.add(
+-           IR.string(sb.toString()).copyInformationFrom(prev));
+-     }

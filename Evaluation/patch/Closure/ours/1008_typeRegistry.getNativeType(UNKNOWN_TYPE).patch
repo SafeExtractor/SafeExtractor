@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..db35ddf 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -1412,7 +1412,8 @@
+     // properties where we've checked that it exists, or for properties on
+     // objects that aren't in this binary).
+     JSType propType = getJSType(n);
+-    if (propType.isEquivalentTo(typeRegistry.getNativeType(UNKNOWN_TYPE))) {
++    JSType var_1008 = typeRegistry.getNativeType(UNKNOWN_TYPE);
++	if (propType.isEquivalentTo(var_1008)) {
+       childType = childType.autobox();
+       ObjectType objectType = ObjectType.cast(childType);
+       if (objectType != null) {
+@@ -1421,7 +1422,7 @@
+         // faster in most cases).
+         if (!objectType.hasProperty(propName) ||
+             objectType.isEquivalentTo(
+-                typeRegistry.getNativeType(UNKNOWN_TYPE))) {
++                var_1008)) {
+           if (objectType instanceof EnumType) {
+             report(t, n, INEXISTENT_ENUM_ELEMENT, propName);
+           } else {

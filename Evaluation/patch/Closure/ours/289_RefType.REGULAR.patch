@@ -1,0 +1,56 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 781fc3c..f1b6b28 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -922,8 +922,9 @@
+ 
+       // An externally referenceable name must always be defined, so we add a
+       // reference to it from the global scope (a.k.a. window).
+-      if (nameInfo.isExternallyReferenceable) {
+-        recordReference(WINDOW, name, RefType.REGULAR);
++      RefType var_289 = RefType.REGULAR;
++	if (nameInfo.isExternallyReferenceable) {
++        recordReference(WINDOW, name, var_289);
+         maybeRecordAlias(name, parent, referring, referringName);
+         return;
+       }
+@@ -932,7 +933,7 @@
+       // For example, foo references bar in: function foo() {bar=5}.
+       if (NodeUtil.isVarOrSimpleAssignLhs(n, parent)) {
+         if (referring != null) {
+-          recordReference(referringName, name, RefType.REGULAR);
++          recordReference(referringName, name, var_289);
+         }
+         return;
+       }
+@@ -942,10 +943,10 @@
+             getEnclosingFunctionDependencyScope(t);
+         if (!functionScopes.isEmpty()) {
+           for (NameInformation functionScope : functionScopes) {
+-            recordReference(functionScope.name, name, RefType.REGULAR);
++            recordReference(functionScope.name, name, var_289);
+           }
+         } else {
+-          recordReference(WINDOW, name, RefType.REGULAR);
++          recordReference(WINDOW, name, var_289);
+           if (referring != null) {
+             maybeRecordAlias(name, parent, referring, referringName);
+           }
+@@ -953,7 +954,7 @@
+       } else if (referring != null) {
+         if (!maybeRecordAlias(name, parent, referring, referringName)) {
+           RefType depType = referring.onlyAffectsClassDef ?
+-              RefType.INHERITANCE : RefType.REGULAR;
++              RefType.INHERITANCE : var_289;
+           recordReference(referringName, name, depType);
+         }
+       } else {
+@@ -964,7 +965,7 @@
+         for (Node ancestor : n.getAncestors()) {
+           if (NodeUtil.isAssignmentOp(ancestor) ||
+               ancestor.isFunction()) {
+-            recordReference(WINDOW, name, RefType.REGULAR);
++            recordReference(WINDOW, name, var_289);
+             break;
+           }
+         }

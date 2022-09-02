@@ -1,0 +1,35 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/635_newInstance(this).patch b/Users/safe/paper/Evaluation/patch/Math/ours/635_newInstance(this).patch
+index 9353c76..a785710 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/635_newInstance(this).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/635_newInstance(this).patch
+@@ -1,25 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+-index e6de61f..0e4769e 100644
++index e6de61f..0230bf6 100644
+ --- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+ +++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+-@@ -1523,8 +1523,9 @@
+-                 return x;
++@@ -1524,7 +1524,8 @@
+              }
+  
+--            if (nans == INFINITE && x.nans == FINITE && x.mant[mant.length-1] != 0) {
++             if (nans == INFINITE && x.nans == FINITE && x.mant[mant.length-1] != 0) {
+ -                result = newInstance(this);
+-+            Dfp var_635 = newInstance(this);
+-+			if (nans == INFINITE && x.nans == FINITE && x.mant[mant.length-1] != 0) {
+-+                result = var_635;
+-                 result.sign = (byte) (sign * x.sign);
+-                 return result;
+-             }
+-@@ -1536,7 +1537,7 @@
+-             }
+- 
+-             if (x.nans == INFINITE && nans == INFINITE) {
+--                result = newInstance(this);
+-+                result = var_635;
+++                Dfp var_635 = newInstance(this);
+++				result = var_635;
+                  result.sign = (byte) (sign * x.sign);
+                  return result;
+              }

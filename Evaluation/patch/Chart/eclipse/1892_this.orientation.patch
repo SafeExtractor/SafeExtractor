@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/plot/CategoryPlot.java b/source/org/jfree/chart/plot/CategoryPlot.java
+index 24a84fd..8e0e1e2 100644
+--- a/source/org/jfree/chart/plot/CategoryPlot.java
++++ b/source/org/jfree/chart/plot/CategoryPlot.java
+@@ -3446,14 +3446,15 @@
+         }
+ 
+         // reserve some space for the domain axis...
+-        if (this.fixedDomainAxisSpace != null) {
+-            if (this.orientation == PlotOrientation.HORIZONTAL) {
++        PlotOrientation var_1892 = this.orientation;
++		if (this.fixedDomainAxisSpace != null) {
++            if (var_1892 == PlotOrientation.HORIZONTAL) {
+                 space.ensureAtLeast(
+                     this.fixedDomainAxisSpace.getLeft(), RectangleEdge.LEFT);
+                 space.ensureAtLeast(this.fixedDomainAxisSpace.getRight(),
+                         RectangleEdge.RIGHT);
+             }
+-            else if (this.orientation == PlotOrientation.VERTICAL) {
++            else if (var_1892 == PlotOrientation.VERTICAL) {
+                 space.ensureAtLeast(this.fixedDomainAxisSpace.getTop(),
+                         RectangleEdge.TOP);
+                 space.ensureAtLeast(this.fixedDomainAxisSpace.getBottom(),
+@@ -3463,7 +3464,7 @@
+         else {
+             // reserve space for the primary domain axis...
+             RectangleEdge domainEdge = Plot.resolveDomainAxisLocation(
+-                    getDomainAxisLocation(), this.orientation);
++                    getDomainAxisLocation(), var_1892);
+             if (this.drawSharedDomainAxis) {
+                 space = getDomainAxis().reserveSpace(g2, this, plotArea,
+                         domainEdge, space);

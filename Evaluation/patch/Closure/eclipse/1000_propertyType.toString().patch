@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..bf9a6d7 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -1230,7 +1230,8 @@
+     }
+ 
+     // @override is present and we have to check that it is ok
+-    if (superClassHasDeclaredProperty) {
++    String var_1000 = propertyType.toString();
++	if (superClassHasDeclaredProperty) {
+       // there is a superclass implementation
+       JSType superClassPropType =
+           superClass.getInstanceType().getPropertyType(propertyName);
+@@ -1238,7 +1239,7 @@
+         compiler.report(
+             t.makeError(n, HIDDEN_SUPERCLASS_PROPERTY_MISMATCH,
+                 propertyName, topInstanceType.toString(),
+-                superClassPropType.toString(), propertyType.toString()));
++                superClassPropType.toString(), var_1000));
+       }
+     } else if (superInterfaceHasDeclaredProperty) {
+       // there is an super interface property
+@@ -1253,7 +1254,7 @@
+                 t.makeError(n, HIDDEN_SUPERCLASS_PROPERTY_MISMATCH,
+                     propertyName, topInstanceType.toString(),
+                     superPropertyType.toString(),
+-                    propertyType.toString()));
++                    var_1000));
+           }
+         }
+       }

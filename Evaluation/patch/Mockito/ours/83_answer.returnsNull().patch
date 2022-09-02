@@ -1,0 +1,19 @@
+diff --git a/src/org/mockito/internal/stubbing/answers/AnswersValidator.java b/src/org/mockito/internal/stubbing/answers/AnswersValidator.java
+index ea12b44..24ea182 100644
+--- a/src/org/mockito/internal/stubbing/answers/AnswersValidator.java
++++ b/src/org/mockito/internal/stubbing/answers/AnswersValidator.java
+@@ -65,11 +65,12 @@
+             reporter.cannotStubVoidMethodWithAReturnValue(methodInfo.getMethodName());
+         }
+ 
+-        if (answer.returnsNull() && methodInfo.returnsPrimitive()) {
++        boolean var_83 = answer.returnsNull();
++		if (var_83 && methodInfo.returnsPrimitive()) {
+             reporter.wrongTypeOfReturnValue(methodInfo.printMethodReturnType(), "null", methodInfo.getMethodName());
+         }
+ 
+-        if (!answer.returnsNull() && !methodInfo.isValidReturnType(answer.getReturnType())) {
++        if (!var_83 && !methodInfo.isValidReturnType(answer.getReturnType())) {
+             reporter.wrongTypeOfReturnValue(methodInfo.printMethodReturnType(), answer.printReturnType(), methodInfo.getMethodName());
+         }
+     }

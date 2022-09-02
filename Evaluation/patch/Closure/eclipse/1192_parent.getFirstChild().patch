@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionInjector.java b/src/com/google/javascript/jscomp/FunctionInjector.java
+index ddfb4ed..1995028 100644
+--- a/src/com/google/javascript/jscomp/FunctionInjector.java
++++ b/src/com/google/javascript/jscomp/FunctionInjector.java
+@@ -470,9 +470,10 @@
+     // to replace
+     String resultName = null;
+     boolean needsDefaultReturnResult = true;
+-    switch (callSiteType) {
++    Node var_1192 = parent.getFirstChild();
++	switch (callSiteType) {
+       case SIMPLE_ASSIGNMENT:
+-        resultName = parent.getFirstChild().getString();
++        resultName = var_1192.getString();
+         break;
+ 
+       case VAR_DECL_SIMPLE_ASSIGNMENT:
+@@ -510,8 +511,8 @@
+     switch (callSiteType) {
+       case VAR_DECL_SIMPLE_ASSIGNMENT:
+         // Remove the call from the name node.
+-        parent.removeChild(parent.getFirstChild());
+-        Preconditions.checkState(parent.getFirstChild() == null);
++        parent.removeChild(var_1192);
++        Preconditions.checkState(var_1192 == null);
+         // Add the call, after the VAR.
+         greatGrandParent.addChildAfter(newBlock, grandParent);
+         break;

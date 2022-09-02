@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/Tracer.java b/src/com/google/javascript/jscomp/Tracer.java
+index 5298e98..81a25cd 100644
+--- a/src/com/google/javascript/jscomp/Tracer.java
++++ b/src/com/google/javascript/jscomp/Tracer.java
+@@ -933,15 +933,16 @@
+       long etime = -1;
+       long max_time = 0;
+       for (Event e : events) {
+-        if (etime != -1) {
+-          long time = e.eventTime() - etime;
++        long var_1949 = e.eventTime();
++		if (etime != -1) {
++          long time = var_1949 - etime;
+           max_time = Math.max(max_time, time);
+         }
+         if (!e.isStart) {
+           long time = e.tracer.stopTimeMs - e.tracer.startTimeMs;
+           max_time = Math.max(max_time, time);
+         }
+-        etime = e.eventTime();
++        etime = var_1949;
+       }
+       // Minimum is 3 to preserve an indent even when max is small.
+       return Math.max(3, numDigits(max_time));

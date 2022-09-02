@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/solvers/UnivariateSolverUtils.java b/src/main/java/org/apache/commons/math3/analysis/solvers/UnivariateSolverUtils.java
+index ec20578..520b765 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/solvers/UnivariateSolverUtils.java
++++ b/src/main/java/org/apache/commons/math3/analysis/solvers/UnivariateSolverUtils.java
+@@ -115,7 +115,8 @@
+         double xLo        = FastMath.max(min, baseRoot - step);
+         double fLo        = f.value(xLo);
+         double xHi        = FastMath.min(max, baseRoot + step);
+-        double fHi        = f.value(xHi);
++        double var_491 = f.value(xHi);
++		double fHi        = var_491;
+         int remainingEval = maxEval - 2;
+         while (remainingEval > 0) {
+ 
+@@ -157,7 +158,7 @@
+             // update the higher bound
+             if (changeHi) {
+                 xHi = FastMath.min(max, xHi + step);
+-                fHi  = f.value(xHi);
++                fHi  = var_491;
+                 remainingEval--;
+             }
+ 

@@ -1,0 +1,20 @@
+diff --git a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+index 067e1df..b84dd88 100644
+--- a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
++++ b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+@@ -340,11 +340,12 @@
+ 
+         long startL = getOldestTime().getFirstMillisecond(this.workingCalendar);
+         long endL;
+-        if (this.domainIsPointsInTime) {
+-            endL = getNewestTime().getFirstMillisecond(this.workingCalendar);
++        RegularTimePeriod var_4272 = getNewestTime();
++		if (this.domainIsPointsInTime) {
++            endL = var_4272.getFirstMillisecond(this.workingCalendar);
+         }
+         else {
+-            endL = getNewestTime().getLastMillisecond(this.workingCalendar);
++            endL = var_4272.getLastMillisecond(this.workingCalendar);
+         }
+         this.domainStart = new Long(startL);
+         this.domainEnd = new Long(endL);

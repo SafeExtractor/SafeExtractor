@@ -1,0 +1,18 @@
+diff --git a/source/org/jfree/chart/axis/PeriodAxis.java b/source/org/jfree/chart/axis/PeriodAxis.java
+index 3c0bc0f..9715da6 100644
+--- a/source/org/jfree/chart/axis/PeriodAxis.java
++++ b/source/org/jfree/chart/axis/PeriodAxis.java
+@@ -1160,9 +1160,10 @@
+     public Object clone() throws CloneNotSupportedException {
+         PeriodAxis clone = (PeriodAxis) super.clone();
+         clone.timeZone = (TimeZone) this.timeZone.clone();
+-        clone.labelInfo = new PeriodAxisLabelInfo[this.labelInfo.length];
+-        for (int i = 0; i < this.labelInfo.length; i++) {
+-            clone.labelInfo[i] = this.labelInfo[i];  // copy across references
++        PeriodAxisLabelInfo[] var_836 = this.labelInfo;
++		clone.labelInfo = new PeriodAxisLabelInfo[var_836.length];
++        for (int i = 0; i < var_836.length; i++) {
++            clone.labelInfo[i] = var_836[i];  // copy across references
+                                                      // to immutable objs
+         }
+         return clone;

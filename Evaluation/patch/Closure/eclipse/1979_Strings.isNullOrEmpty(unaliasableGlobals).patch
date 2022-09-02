@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/AliasExternals.java b/src/com/google/javascript/jscomp/AliasExternals.java
+index fc43f34..6839e33 100644
+--- a/src/com/google/javascript/jscomp/AliasExternals.java
++++ b/src/com/google/javascript/jscomp/AliasExternals.java
+@@ -176,14 +176,15 @@
+     this.compiler = compiler;
+     this.moduleGraph = moduleGraph;
+ 
+-    if (!Strings.isNullOrEmpty(unaliasableGlobals) &&
++    boolean var_1979 = Strings.isNullOrEmpty(unaliasableGlobals);
++	if (!var_1979 &&
+         !Strings.isNullOrEmpty(aliasableGlobals)) {
+       throw new IllegalArgumentException(
+           "Cannot pass in both unaliasable and aliasable globals; you must " +
+           "choose one or the other.");
+     }
+ 
+-    if (!Strings.isNullOrEmpty(unaliasableGlobals)) {
++    if (!var_1979) {
+       this.unaliasableGlobals.addAll(
+           Arrays.asList(unaliasableGlobals.split(",")));
+     }

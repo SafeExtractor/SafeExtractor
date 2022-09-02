@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+index 7b1dcc7..2d2ce68 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
++++ b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+@@ -570,9 +570,10 @@
+              *   beta1 = beta[1].
+              */
+             final RealVector v = this.y.mapMultiply(1. / this.beta1);
+-            this.y = this.a.operate(v);
++            RealLinearOperator var_2315 = this.a;
++			this.y = var_2315.operate(v);
+             if (this.check) {
+-                checkSymmetry(this.a, v, this.y, this.a.operate(this.y));
++                checkSymmetry(var_2315, v, this.y, var_2315.operate(this.y));
+             }
+             /*
+              * Set up y for the second Lanczos vector. y and beta will be zero
+@@ -620,7 +621,7 @@
+             this.gmin = this.gmax;
+ 
+             if (this.goodb) {
+-                this.wbar = new ArrayRealVector(this.a.getRowDimension());
++                this.wbar = new ArrayRealVector(var_2315.getRowDimension());
+                 this.wbar.set(0.);
+             } else {
+                 this.wbar = v;

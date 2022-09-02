@@ -1,0 +1,28 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/security/user/UserInitializer.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/security/user/UserInitializer.java
+index 4b784fc..16bbf36 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/security/user/UserInitializer.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/security/user/UserInitializer.java
+@@ -33,6 +33,7 @@
+ import org.apache.jackrabbit.oak.spi.commit.EmptyHook;
+ import org.apache.jackrabbit.oak.spi.lifecycle.WorkspaceInitializer;
+ import org.apache.jackrabbit.oak.spi.query.QueryIndexProvider;
++import org.apache.jackrabbit.oak.spi.security.ConfigurationParameters;
+ import org.apache.jackrabbit.oak.spi.security.OpenSecurityProvider;
+ import org.apache.jackrabbit.oak.spi.security.SecurityProvider;
+ import org.apache.jackrabbit.oak.spi.security.user.UserConfiguration;
+@@ -119,12 +120,13 @@
+                 IndexUtils.createIndexDefinition(index, "members", false, new String[]{UserConstants.REP_MEMBERS}, null);
+             }
+ 
+-            String adminId = userConfiguration.getConfigurationParameters().getConfigValue(PARAM_ADMIN_ID, DEFAULT_ADMIN_ID);
++            ConfigurationParameters params = userConfiguration.getConfigurationParameters();
++			String adminId = params.getConfigValue(PARAM_ADMIN_ID, DEFAULT_ADMIN_ID);
+             if (userManager.getAuthorizable(adminId) == null) {
+                 // TODO: init admin with null password and force application to set it.
+                 userManager.createUser(adminId, adminId);
+             }
+-            String anonymousId = userConfiguration.getConfigurationParameters().getConfigValue(PARAM_ANONYMOUS_ID, DEFAULT_ANONYMOUS_ID);
++            String anonymousId = params.getConfigValue(PARAM_ANONYMOUS_ID, DEFAULT_ANONYMOUS_ID);
+             if (userManager.getAuthorizable(anonymousId) == null) {
+                 userManager.createUser(anonymousId, null);
+             }

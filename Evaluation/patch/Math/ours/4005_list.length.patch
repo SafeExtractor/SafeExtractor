@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..bf9c2e3 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -821,18 +821,19 @@
+         int next;
+         int i;
+         int l;
+-        if (list.length < 1 || list.length > nvars + 1 - pos1) {
++        int var_4005 = list.length;
++		if (var_4005 < 1 || var_4005 > nvars + 1 - pos1) {
+             return -1;
+         }
+         next = pos1;
+         i = pos1;
+         while (i < nvars) {
+             l = vorder[i];
+-            for (int j = 0; j < list.length; j++) {
++            for (int j = 0; j < var_4005; j++) {
+                 if (l == list[j] && i > next) {
+                     this.vmove(i, next);
+                     ++next;
+-                    if (next >= list.length + pos1) {
++                    if (next >= var_4005 + pos1) {
+                         return 0;
+                     } else {
+                         break;

@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/ClosureCodeRemoval.java b/src/com/google/javascript/jscomp/ClosureCodeRemoval.java
+index 4507c94..1bb3436 100644
+--- a/src/com/google/javascript/jscomp/ClosureCodeRemoval.java
++++ b/src/com/google/javascript/jscomp/ClosureCodeRemoval.java
+@@ -105,12 +105,13 @@
+       this.parent = assignNode;
+ 
+       Node ancestor = assignNode;
+-      do {
+-        ancestor = ancestor.getParent();
++      Node var_1952 = ancestor.getParent();
++	do {
++        ancestor = var_1952;
+         assignAncestors.add(ancestor);
+       } while (ancestor.isAssign() &&
+                ancestor.getFirstChild().isQualifiedName());
+-      lastAncestor = ancestor.getParent();
++      lastAncestor = var_1952;
+     }
+ 
+     /**

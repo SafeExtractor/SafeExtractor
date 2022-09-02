@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/JFreeChart.java b/source/org/jfree/chart/JFreeChart.java
+index 625eca5..5ae0339 100644
+--- a/source/org/jfree/chart/JFreeChart.java
++++ b/source/org/jfree/chart/JFreeChart.java
+@@ -1173,15 +1173,16 @@
+             g2.fill(chartArea);
+         }
+ 
+-        if (this.backgroundImage != null) {
++        Image var_16 = this.backgroundImage;
++		if (var_16 != null) {
+             Composite originalComposite = g2.getComposite();
+             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
+                     this.backgroundImageAlpha));
+             Rectangle2D dest = new Rectangle2D.Double(0.0, 0.0,
+-                    this.backgroundImage.getWidth(null),
+-                    this.backgroundImage.getHeight(null));
++                    var_16.getWidth(null),
++                    var_16.getHeight(null));
+             Align.align(dest, chartArea, this.backgroundImageAlignment);
+-            g2.drawImage(this.backgroundImage, (int) dest.getX(),
++            g2.drawImage(var_16, (int) dest.getX(),
+                     (int) dest.getY(), (int) dest.getWidth(),
+                     (int) dest.getHeight(), null);
+             g2.setComposite(originalComposite);

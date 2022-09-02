@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/axis/DateTickMarkPosition.java b/source/org/jfree/chart/axis/DateTickMarkPosition.java
+index b64db68..a2efb25 100644
+--- a/source/org/jfree/chart/axis/DateTickMarkPosition.java
++++ b/source/org/jfree/chart/axis/DateTickMarkPosition.java
+@@ -119,13 +119,15 @@
+     private Object readResolve() throws ObjectStreamException {
+         if (this.equals(DateTickMarkPosition.START)) {
+             return DateTickMarkPosition.START;
+-        }
+-        else if (this.equals(DateTickMarkPosition.MIDDLE)) {
+-            return DateTickMarkPosition.MIDDLE;
+-        }
+-        else if (this.equals(DateTickMarkPosition.END)) {
+-            return DateTickMarkPosition.END;
+-        }
++        } else {
++			DateTickMarkPosition var_606 = DateTickMarkPosition.MIDDLE;
++			if (this.equals(var_606)) {
++			    return var_606;
++			}
++			else if (this.equals(DateTickMarkPosition.END)) {
++			    return DateTickMarkPosition.END;
++			}
++		}
+         return null;
+     }
+ 

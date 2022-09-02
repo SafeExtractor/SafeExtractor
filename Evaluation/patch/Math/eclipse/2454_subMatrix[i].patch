@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java b/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java
+index 786e707..8446331 100644
+--- a/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java
+@@ -348,10 +348,11 @@
+             }
+             data = MathArrays.buildArray(getField(), subMatrix.length, nCols);
+             for (int i = 0; i < data.length; ++i) {
+-                if (subMatrix[i].length != nCols) {
+-                    throw new DimensionMismatchException(nCols, subMatrix[i].length);
++                T[] var_2454 = subMatrix[i];
++				if (var_2454.length != nCols) {
++                    throw new DimensionMismatchException(nCols, var_2454.length);
+                 }
+-                System.arraycopy(subMatrix[i], 0, data[i + row], column, nCols);
++                System.arraycopy(var_2454, 0, data[i + row], column, nCols);
+             }
+         } else {
+             super.setSubMatrix(subMatrix, row, column);

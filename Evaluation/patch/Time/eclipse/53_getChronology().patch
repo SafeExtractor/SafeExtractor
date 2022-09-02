@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/joda/time/YearMonth.java b/src/main/java/org/joda/time/YearMonth.java
+index 3d4fd4e..58b0b8b 100644
+--- a/src/main/java/org/joda/time/YearMonth.java
++++ b/src/main/java/org/joda/time/YearMonth.java
+@@ -369,8 +369,9 @@
+      * @return the resolved object, not null
+      */
+     private Object readResolve() {
+-        if (DateTimeZone.UTC.equals(getChronology().getZone()) == false) {
+-            return new YearMonth(this, getChronology().withUTC());
++        Chronology var_53 = getChronology();
++		if (DateTimeZone.UTC.equals(var_53.getZone()) == false) {
++            return new YearMonth(this, var_53.withUTC());
+         }
+         return this;
+     }

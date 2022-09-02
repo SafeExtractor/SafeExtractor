@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/inference/GTest.java b/src/main/java/org/apache/commons/math3/stat/inference/GTest.java
+index 78ab705..fc3e262 100644
+--- a/src/main/java/org/apache/commons/math3/stat/inference/GTest.java
++++ b/src/main/java/org/apache/commons/math3/stat/inference/GTest.java
+@@ -369,13 +369,14 @@
+         final long[][] k = new long[2][observed1.length];
+ 
+         for (int i = 0; i < observed1.length; i++) {
+-            if (observed1[i] == 0 && observed2[i] == 0) {
++            long var_3832 = observed1[i];
++			if (var_3832 == 0 && observed2[i] == 0) {
+                 throw new ZeroException(LocalizedFormats.OBSERVED_COUNTS_BOTTH_ZERO_FOR_ENTRY, i);
+             } else {
+-                countSum1 += observed1[i];
++                countSum1 += var_3832;
+                 countSum2 += observed2[i];
+-                collSums[i] = observed1[i] + observed2[i];
+-                k[0][i] = observed1[i];
++                collSums[i] = var_3832 + observed2[i];
++                k[0][i] = var_3832;
+                 k[1][i] = observed2[i];
+             }
+         }

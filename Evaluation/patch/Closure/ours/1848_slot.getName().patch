@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/LinkedFlowScope.java b/src/com/google/javascript/jscomp/LinkedFlowScope.java
+index a97d855..a569f9d 100644
+--- a/src/com/google/javascript/jscomp/LinkedFlowScope.java
++++ b/src/com/google/javascript/jscomp/LinkedFlowScope.java
+@@ -292,10 +292,11 @@
+       Map<String, StaticSlot<JSType>> otherFlowSlots = that.allFlowSlots();
+ 
+       for (StaticSlot<JSType> slot : myFlowSlots.values()) {
+-        if (diffSlots(slot, otherFlowSlots.get(slot.getName()))) {
++        String var_1848 = slot.getName();
++		if (diffSlots(slot, otherFlowSlots.get(var_1848))) {
+           return false;
+         }
+-        otherFlowSlots.remove(slot.getName());
++        otherFlowSlots.remove(var_1848);
+       }
+       for (StaticSlot<JSType> slot : otherFlowSlots.values()) {
+         if (diffSlots(slot, myFlowSlots.get(slot.getName()))) {

@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..c12994e 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1729,7 +1729,8 @@
+             if (divisor.nans == INFINITE && nans == INFINITE) {
+                 field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+                 result = newInstance(getZero());
+-                result.nans = QNAN;
++                byte var_675 = result.nans;
++				result.nans = QNAN;
+                 result = dotrap(DfpField.FLAG_INVALID, DIVIDE_TRAP, divisor, result);
+                 return result;
+             }

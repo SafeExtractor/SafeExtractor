@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..b8e5f91 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -1968,10 +1968,11 @@
+                 ggsav = gredsq;
+                 gredsq = ZERO;
+                 for (int i = 0; i < n; i++) {
+-                    gnew.setEntry(i, gnew.getEntry(i) + stplen * hs.getEntry(i));
++                    double var_3136 = gnew.getEntry(i);
++					gnew.setEntry(i, var_3136 + stplen * hs.getEntry(i));
+                     if (xbdi.getEntry(i) == ZERO) {
+                         // Computing 2nd power
+-                        final double d1 = gnew.getEntry(i);
++                        final double d1 = var_3136;
+                         gredsq += d1 * d1;
+                     }
+                     trialStepPoint.setEntry(i, trialStepPoint.getEntry(i) + stplen * s.getEntry(i));

@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/axis/DateAxis.java b/source/org/jfree/chart/axis/DateAxis.java
+index 059bc3a..6e6ce75 100644
+--- a/source/org/jfree/chart/axis/DateAxis.java
++++ b/source/org/jfree/chart/axis/DateAxis.java
+@@ -1739,10 +1739,11 @@
+             if (minorTickSpaces <= 0) {
+                 minorTickSpaces = unit.getMinorTickCount();
+             }
+-            for (int minorTick = 1; minorTick < minorTickSpaces; minorTick++) {
++            Range var_535 = getRange();
++			for (int minorTick = 1; minorTick < minorTickSpaces; minorTick++) {
+                 long minorTickTime = lowestTickTime - distance
+                         * minorTick / minorTickSpaces;
+-                if (minorTickTime > 0 && getRange().contains(minorTickTime)
++                if (minorTickTime > 0 && var_535.contains(minorTickTime)
+                         && (!isHiddenValue(minorTickTime))) {
+                     result.add(new DateTick(TickType.MINOR,
+                             new Date(minorTickTime), "", TextAnchor.TOP_CENTER,
+@@ -1794,7 +1795,7 @@
+                     long minorTickTime = currentTickTime
+                             + (nextTickTime - currentTickTime)
+                             * minorTick / minorTickSpaces;
+-                    if (getRange().contains(minorTickTime)
++                    if (var_535.contains(minorTickTime)
+                             && (!isHiddenValue(minorTickTime))) {
+                         result.add(new DateTick(TickType.MINOR,
+                                 new Date(minorTickTime), "",

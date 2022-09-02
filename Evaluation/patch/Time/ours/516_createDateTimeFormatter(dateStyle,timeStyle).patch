@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/format/DateTimeFormat.java b/src/main/java/org/joda/time/format/DateTimeFormat.java
+index 4558eb7..1e41c82 100644
+--- a/src/main/java/org/joda/time/format/DateTimeFormat.java
++++ b/src/main/java/org/joda/time/format/DateTimeFormat.java
+@@ -736,14 +736,15 @@
+     private static DateTimeFormatter createFormatterForStyleIndex(int dateStyle, int timeStyle) {
+         int index = ((dateStyle << 2) + dateStyle) + timeStyle;
+         // Should never happen but do a double check...
+-        if (index >= STYLE_CACHE.length) {
+-            return createDateTimeFormatter(dateStyle, timeStyle);
++        DateTimeFormatter var_516 = createDateTimeFormatter(dateStyle, timeStyle);
++		if (index >= STYLE_CACHE.length) {
++            return var_516;
+         }
+         DateTimeFormatter f = null;
+         synchronized (STYLE_CACHE) {
+             f = STYLE_CACHE[index];
+             if (f == null) {
+-                f = createDateTimeFormatter(dateStyle, timeStyle);
++                f = var_516;
+                 STYLE_CACHE[index] = f;
+             }
+         }

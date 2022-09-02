@@ -1,0 +1,42 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..382ee61 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -2309,15 +2309,16 @@
+ 
+         // Apply the rotations that put zeros in the KNEW-th row of ZMAT.
+ 
+-        for (int j = 1; j < nptm; j++) {
++        double var_3145 = zMatrix.getEntry(knew, 0);
++		for (int j = 1; j < nptm; j++) {
+             final double d1 = zMatrix.getEntry(knew, j);
+             if (Math.abs(d1) > ztest) {
+                 // Computing 2nd power
+-                final double d2 = zMatrix.getEntry(knew, 0);
++                final double d2 = var_3145;
+                 // Computing 2nd power
+                 final double d3 = zMatrix.getEntry(knew, j);
+                 final double d4 = Math.sqrt(d2 * d2 + d3 * d3);
+-                final double d5 = zMatrix.getEntry(knew, 0) / d4;
++                final double d5 = var_3145 / d4;
+                 final double d6 = zMatrix.getEntry(knew, j) / d4;
+                 for (int i = 0; i < npt; i++) {
+                     final double d7 = d5 * zMatrix.getEntry(i, 0) + d6 * zMatrix.getEntry(i, j);
+@@ -2332,7 +2333,7 @@
+         // and calculate the parameters of the updating formula.
+ 
+         for (int i = 0; i < npt; i++) {
+-            work.setEntry(i, zMatrix.getEntry(knew, 0) * zMatrix.getEntry(i, 0));
++            work.setEntry(i, var_3145 * zMatrix.getEntry(i, 0));
+         }
+         final double alpha = work.getEntry(knew);
+         final double tau = lagrangeValuesAtNewPoint.getEntry(knew);
+@@ -2342,7 +2343,7 @@
+ 
+         final double sqrtDenom = Math.sqrt(denom);
+         final double d1 = tau / sqrtDenom;
+-        final double d2 = zMatrix.getEntry(knew, 0) / sqrtDenom;
++        final double d2 = var_3145 / sqrtDenom;
+         for (int i = 0; i < npt; i++) {
+             zMatrix.setEntry(i, 0,
+                           d1 * zMatrix.getEntry(i, 0) - d2 * lagrangeValuesAtNewPoint.getEntry(i));

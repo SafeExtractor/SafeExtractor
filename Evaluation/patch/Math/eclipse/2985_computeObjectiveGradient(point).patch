@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/gradient/NonLinearConjugateGradientOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/gradient/NonLinearConjugateGradientOptimizer.java
+index 6b6afa2..174e04c 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/gradient/NonLinearConjugateGradientOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/gradient/NonLinearConjugateGradientOptimizer.java
+@@ -194,7 +194,8 @@
+         final double[] point = getStartPoint();
+         final GoalType goal = getGoalType();
+         final int n = point.length;
+-        double[] r = computeObjectiveGradient(point);
++        double[] var_2985 = computeObjectiveGradient(point);
++		double[] r = var_2985;
+         if (goal == GoalType.MINIMIZE) {
+             for (int i = 0; i < n; i++) {
+                 r[i] = -r[i];
+@@ -237,7 +238,7 @@
+                 point[i] += step * searchDirection[i];
+             }
+ 
+-            r = computeObjectiveGradient(point);
++            r = var_2985;
+             if (goal == GoalType.MINIMIZE) {
+                 for (int i = 0; i < n; ++i) {
+                     r[i] = -r[i];

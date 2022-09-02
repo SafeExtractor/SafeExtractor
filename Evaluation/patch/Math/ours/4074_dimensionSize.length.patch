@@ -1,0 +1,35 @@
+diff --git a/src/main/java/org/apache/commons/math3/transform/FastFourierTransformer.java b/src/main/java/org/apache/commons/math3/transform/FastFourierTransformer.java
+index 22d8a3d..51afd0b 100644
+--- a/src/main/java/org/apache/commons/math3/transform/FastFourierTransformer.java
++++ b/src/main/java/org/apache/commons/math3/transform/FastFourierTransformer.java
+@@ -555,23 +555,24 @@
+         public Complex get(int... vector)
+                 throws DimensionMismatchException {
+ 
+-            if (vector == null) {
+-                if (dimensionSize.length > 0) {
++            int var_4074 = dimensionSize.length;
++			if (vector == null) {
++                if (var_4074 > 0) {
+                     throw new DimensionMismatchException(
+                             0,
+-                            dimensionSize.length);
++                            var_4074);
+                 }
+                 return null;
+             }
+-            if (vector.length != dimensionSize.length) {
++            if (vector.length != var_4074) {
+                 throw new DimensionMismatchException(
+                         vector.length,
+-                        dimensionSize.length);
++                        var_4074);
+             }
+ 
+             Object lastDimension = multiDimensionalComplexArray;
+ 
+-            for (int i = 0; i < dimensionSize.length; i++) {
++            for (int i = 0; i < var_4074; i++) {
+                 lastDimension = ((Object[]) lastDimension)[vector[i]];
+             }
+             return (Complex) lastDimension;

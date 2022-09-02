@@ -1,0 +1,31 @@
+diff --git a/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java b/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
+index 722d3b5..f9991ba 100644
+--- a/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
++++ b/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
+@@ -156,7 +156,8 @@
+         final char[] c = pattern.toCharArray();
+         int fmtCount = 0;
+         while (pos.getIndex() < pattern.length()) {
+-            switch (c[pos.getIndex()]) {
++            ParsePosition var_477 = next(pos);
++			switch (c[pos.getIndex()]) {
+             case QUOTE:
+                 appendQuotedString(pattern, pos, stripCustom, true);
+                 break;
+@@ -164,14 +165,14 @@
+                 fmtCount++;
+                 seekNonWs(pattern, pos);
+                 final int start = pos.getIndex();
+-                final int index = readArgumentIndex(pattern, next(pos));
++                final int index = readArgumentIndex(pattern, var_477);
+                 stripCustom.append(START_FE).append(index);
+                 seekNonWs(pattern, pos);
+                 Format format = null;
+                 String formatDescription = null;
+                 if (c[pos.getIndex()] == START_FMT) {
+                     formatDescription = parseFormatDescription(pattern,
+-                            next(pos));
++                            var_477);
+                     format = getFormat(formatDescription);
+                     if (format == null) {
+                         stripCustom.append(START_FMT).append(formatDescription);

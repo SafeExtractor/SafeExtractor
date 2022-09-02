@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/CreateSyntheticBlocks.java b/src/com/google/javascript/jscomp/CreateSyntheticBlocks.java
+index 3be8a6b..38374f6 100644
+--- a/src/com/google/javascript/jscomp/CreateSyntheticBlocks.java
++++ b/src/com/google/javascript/jscomp/CreateSyntheticBlocks.java
+@@ -196,17 +196,17 @@
+         return;
+       }
+ 
+-      if (markerStack.isEmpty()) {
+-        compiler.report(t.makeError(n, UNMATCHED_END_MARKER,
+-            startMarkerName, endMarkerName));
++      JSError var_1132 = t.makeError(n, UNMATCHED_END_MARKER,
++	    startMarkerName, endMarkerName);
++	if (markerStack.isEmpty()) {
++        compiler.report(var_1132);
+         return;
+       }
+ 
+       Node startMarkerNode = markerStack.pop();
+       if (endMarkerNode.getParent() != startMarkerNode.getParent()) {
+         // The end marker isn't in the same block as the start marker.
+-        compiler.report(t.makeError(n, UNMATCHED_END_MARKER,
+-            startMarkerName, endMarkerName));
++        compiler.report(var_1132);
+         return;
+       }
+ 

@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/editor/DefaultNumberAxisEditor.java b/source/org/jfree/chart/editor/DefaultNumberAxisEditor.java
+index 420a59d..f2081b5 100644
+--- a/source/org/jfree/chart/editor/DefaultNumberAxisEditor.java
++++ b/source/org/jfree/chart/editor/DefaultNumberAxisEditor.java
+@@ -319,18 +319,19 @@
+      */
+     public void validateMaximum() {
+         double newMax;
+-        try {
++        double var_1091 = this.maximumValue;
++		try {
+             newMax = Double.parseDouble(this.maximumRangeValue.getText());
+             if (newMax <= this.minimumValue) {
+-                newMax = this.maximumValue;
++                newMax = var_1091;
+             }
+         }
+         catch (NumberFormatException e) {
+-            newMax = this.maximumValue;
++            newMax = var_1091;
+         }
+ 
+         this.maximumValue = newMax;
+-        this.maximumRangeValue.setText(Double.toString(this.maximumValue));
++        this.maximumRangeValue.setText(Double.toString(var_1091));
+     }
+ 
+     /**

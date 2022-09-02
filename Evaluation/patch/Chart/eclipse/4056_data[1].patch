@@ -1,0 +1,44 @@
+diff --git a/source/org/jfree/data/statistics/Regression.java b/source/org/jfree/data/statistics/Regression.java
+index 962b978..b723876 100644
+--- a/source/org/jfree/data/statistics/Regression.java
++++ b/source/org/jfree/data/statistics/Regression.java
+@@ -255,12 +255,13 @@
+         }
+         int validItems = 0;
+         double[][] data = new double[2][itemCount];
+-        for(int item = 0; item < itemCount; item++){
++        double[] var_4056 = data[1];
++		for(int item = 0; item < itemCount; item++){
+             double x = dataset.getXValue(series, item);
+             double y = dataset.getYValue(series, item);
+             if (!Double.isNaN(x) && !Double.isNaN(y)){
+                 data[0][validItems] = x;
+-                data[1][validItems] = y;
++                var_4056[validItems] = y;
+                 validItems++;
+             }
+         }
+@@ -276,12 +277,12 @@
+ 
+         for(int item = 0; item < validItems; item++){
+             sumX += data[0][item];
+-            sumY += data[1][item];
++            sumY += var_4056[item];
+             for(int eq = 0; eq < equations; eq++){
+                 for(int coe = 0; coe < coefficients - 1; coe++){
+                     matrix[eq][coe] += Math.pow(data[0][item],eq + coe);
+                 }
+-                matrix[eq][coefficients - 1] += data[1][item]
++                matrix[eq][coefficients - 1] += var_4056[item]
+                         * Math.pow(data[0][item],eq);
+             }
+         }
+@@ -308,7 +309,7 @@
+                 yCalc += result[eq] * Math.pow(data[0][item],eq);
+             }
+             yRegSquare += Math.pow(yCalc - meanY, 2);
+-            yObsSquare += Math.pow(data[1][item] - meanY, 2);
++            yObsSquare += Math.pow(var_4056[item] - meanY, 2);
+         }
+         double rSquare = yRegSquare / yObsSquare;
+         result[equations] = rSquare;

@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+index a2ea88e..3390fb5 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+@@ -191,8 +191,9 @@
+                     // Accumulate transformations
+                     for (int i = 0; i <= n - 1; i++) {
+                         z = matrixP[i][iu - 1];
+-                        matrixP[i][iu - 1] = q * z + p * matrixP[i][iu];
+-                        matrixP[i][iu] = q * matrixP[i][iu] - p * z;
++                        double var_2355 = matrixP[i][iu];
++						matrixP[i][iu - 1] = q * z + p * var_2355;
++                        matrixP[i][iu] = q * var_2355 - p * z;
+                     }
+                 }
+                 iu -= 2;

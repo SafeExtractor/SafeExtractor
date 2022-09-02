@@ -1,0 +1,50 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+index 09e636b..69cd79e 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+@@ -172,36 +172,37 @@
+         // there are a series of tweaks and special cases that require 
+         // trickery to replicate.
+         String duration = formatDuration(durationMillis, "d' days 'H' hours 'm' minutes 's' seconds'");
+-        if (suppressLeadingZeroElements) {
++        int var_549 = duration.length();
++		if (suppressLeadingZeroElements) {
+             // this is a temporary marker on the front. Like ^ in regexp.
+             duration = " " + duration;
+             String tmp = StringUtils.replaceOnce(duration, " 0 days", "");
+-            if (tmp.length() != duration.length()) {
++            if (tmp.length() != var_549) {
+                 duration = tmp;
+                 tmp = StringUtils.replaceOnce(duration, " 0 hours", "");
+-                if (tmp.length() != duration.length()) {
++                if (tmp.length() != var_549) {
+                     duration = tmp;
+                     tmp = StringUtils.replaceOnce(duration, " 0 minutes", "");
+                     duration = tmp;
+-                    if (tmp.length() != duration.length()) {
++                    if (tmp.length() != var_549) {
+                         duration = StringUtils.replaceOnce(tmp, " 0 seconds", "");
+                     }
+                 }
+             }
+-            if (duration.length() != 0) {
++            if (var_549 != 0) {
+                 // strip the space off again
+                 duration = duration.substring(1);
+             }
+         }
+         if (suppressTrailingZeroElements) {
+             String tmp = StringUtils.replaceOnce(duration, " 0 seconds", "");
+-            if (tmp.length() != duration.length()) {
++            if (tmp.length() != var_549) {
+                 duration = tmp;
+                 tmp = StringUtils.replaceOnce(duration, " 0 minutes", "");
+-                if (tmp.length() != duration.length()) {
++                if (tmp.length() != var_549) {
+                     duration = tmp;
+                     tmp = StringUtils.replaceOnce(duration, " 0 hours", "");
+-                    if (tmp.length() != duration.length()) {
++                    if (tmp.length() != var_549) {
+                         duration = StringUtils.replaceOnce(tmp, " 0 days", "");
+                     }
+                 }

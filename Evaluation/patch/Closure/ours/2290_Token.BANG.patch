@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..a615805 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -228,7 +228,8 @@
+               // Mark the beginning of the annotation.
+               jsdocBuilder.markAnnotation(annotationName, lineno, charno);
+ 
+-              switch (annotation) {
++              int var_2290 = Token.BANG;
++			switch (annotation) {
+                 case AUTHOR:
+                   if (jsdocBuilder.shouldParseDocumentation()) {
+                     ExtractionInfo authorInfo = extractSingleLineBlock();
+@@ -444,7 +445,7 @@
+                     lineno = stream.getLineno();
+                     charno = stream.getCharno();
+ 
+-                    typeNode = wrapNode(Token.BANG, typeNode);
++                    typeNode = wrapNode(var_2290, typeNode);
+                     type = createJSTypeExpression(typeNode);
+ 
+                     if (annotation == Annotation.EXTENDS) {
+@@ -837,7 +838,7 @@
+                     typeNode = parseAndRecordTypeNode(token);
+ 
+                     if (annotation == Annotation.THIS) {
+-                      typeNode = wrapNode(Token.BANG, typeNode);
++                      typeNode = wrapNode(var_2290, typeNode);
+                     }
+                     type = createJSTypeExpression(typeNode);
+                   }

@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialSplineFunction.java b/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialSplineFunction.java
+index 48d683e..e735527 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialSplineFunction.java
++++ b/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialSplineFunction.java
+@@ -106,16 +106,17 @@
+             polynomials == null) {
+             throw new NullArgumentException();
+         }
+-        if (knots.length < 2) {
++        int var_483 = knots.length;
++		if (var_483 < 2) {
+             throw new NumberIsTooSmallException(LocalizedFormats.NOT_ENOUGH_POINTS_IN_SPLINE_PARTITION,
+-                                                2, knots.length, false);
++                                                2, var_483, false);
+         }
+-        if (knots.length - 1 != polynomials.length) {
+-            throw new DimensionMismatchException(polynomials.length, knots.length);
++        if (var_483 - 1 != polynomials.length) {
++            throw new DimensionMismatchException(polynomials.length, var_483);
+         }
+         MathArrays.checkOrder(knots);
+ 
+-        this.n = knots.length -1;
++        this.n = var_483 -1;
+         this.knots = new double[n + 1];
+         System.arraycopy(knots, 0, this.knots, 0, n + 1);
+         this.polynomials = new PolynomialFunction[n];

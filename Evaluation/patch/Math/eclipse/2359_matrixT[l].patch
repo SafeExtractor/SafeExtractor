@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+index a2ea88e..f4118e5 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+@@ -242,11 +242,12 @@
+     private int findSmallSubDiagonalElement(final int startIdx, final double norm) {
+         int l = startIdx;
+         while (l > 0) {
+-            double s = FastMath.abs(matrixT[l - 1][l - 1]) + FastMath.abs(matrixT[l][l]);
++            double[] var_2359 = matrixT[l];
++			double s = FastMath.abs(matrixT[l - 1][l - 1]) + FastMath.abs(var_2359[l]);
+             if (s == 0.0) {
+                 s = norm;
+             }
+-            if (FastMath.abs(matrixT[l][l - 1]) < epsilon * s) {
++            if (FastMath.abs(var_2359[l - 1]) < epsilon * s) {
+                 break;
+             }
+             l--;

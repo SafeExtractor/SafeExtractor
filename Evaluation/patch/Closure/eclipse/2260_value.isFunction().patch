@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..fce0fec 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -915,15 +915,16 @@
+         key.setType(Token.STRING_KEY);
+ 
+         Node value = transform(el.getRight());
+-        if (el.isGetter()) {
++        boolean var_2260 = value.isFunction();
++		if (el.isGetter()) {
+           key.setType(Token.GETTER_DEF);
+-          Preconditions.checkState(value.isFunction());
++          Preconditions.checkState(var_2260);
+           if (getFnParamNode(value).hasChildren()) {
+             reportGetterParam(el.getLeft());
+           }
+         } else if (el.isSetter()) {
+           key.setType(Token.SETTER_DEF);
+-          Preconditions.checkState(value.isFunction());
++          Preconditions.checkState(var_2260);
+           if (!getFnParamNode(value).hasOneChild()) {
+             reportSetterParam(el.getLeft());
+           }

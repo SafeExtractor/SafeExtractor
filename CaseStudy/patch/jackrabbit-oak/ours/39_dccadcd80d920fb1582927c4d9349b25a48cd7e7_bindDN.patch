@@ -1,0 +1,16 @@
+diff --git a/oak-auth-ldap/src/main/java/org/apache/jackrabbit/oak/security/authentication/ldap/impl/LdapIdentityProvider.java b/oak-auth-ldap/src/main/java/org/apache/jackrabbit/oak/security/authentication/ldap/impl/LdapIdentityProvider.java
+index f963d33..29bc6a6 100644
+--- a/oak-auth-ldap/src/main/java/org/apache/jackrabbit/oak/security/authentication/ldap/impl/LdapIdentityProvider.java
++++ b/oak-auth-ldap/src/main/java/org/apache/jackrabbit/oak/security/authentication/ldap/impl/LdapIdentityProvider.java
+@@ -150,8 +150,9 @@
+ 
+         // setup admin connection pool
+         LdapConnectionConfig cc = createConnectionConfig();
+-        if (!config.getBindDN().isEmpty()) {
+-            cc.setName(config.getBindDN());
++        String bindDN = config.getBindDN();
++		if (!bindDN.isEmpty()) {
++            cc.setName(bindDN);
+             cc.setCredentials(config.getBindPassword());
+         }
+         adminConnectionFactory = new PoolableLdapConnectionFactory(cc);

@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot.java b/source/org/jfree/chart/plot/PiePlot.java
+index 34014e9..33a5b6f 100644
+--- a/source/org/jfree/chart/plot/PiePlot.java
++++ b/source/org/jfree/chart/plot/PiePlot.java
+@@ -2531,12 +2531,13 @@
+                 linkH);
+         result[0] = linkArea;
+ 
+-        if (DEBUG_DRAW_LINK_AREA) {
++        double var_2025 = linkArea.getWidth();
++		if (DEBUG_DRAW_LINK_AREA) {
+             g2.setPaint(Color.blue);
+             g2.draw(linkArea);
+             g2.setPaint(Color.yellow);
+             g2.draw(new Ellipse2D.Double(linkArea.getX(), linkArea.getY(),
+-                    linkArea.getWidth(), linkArea.getHeight()));
++                    var_2025, linkArea.getHeight()));
+         }
+ 
+         // the explode area defines the max circle/ellipse for the exploded
+@@ -2546,7 +2547,7 @@
+         if (!this.simpleLabels) {
+             lm = this.labelLinkMargin;
+         }
+-        double hh = linkArea.getWidth() * lm * 2.0;
++        double hh = var_2025 * lm * 2.0;
+         double vv = linkArea.getHeight() * lm * 2.0;
+         Rectangle2D explodeArea = new Rectangle2D.Double(linkX + hh / 2.0,
+                 linkY + vv / 2.0, linkW - hh, linkH - vv);

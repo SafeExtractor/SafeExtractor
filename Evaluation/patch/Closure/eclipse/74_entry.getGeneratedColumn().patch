@@ -1,0 +1,26 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
+index e970d3a..e14a19d 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
++++ b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
+@@ -695,9 +695,10 @@
+         final int entryCount = line.size();
+         for (int j = 0; j < entryCount; j++) {
+           Entry entry = line.get(j);
+-          if (pending) {
++          int var_74 = entry.getGeneratedColumn();
++		if (pending) {
+             FilePosition endPosition = new FilePosition(
+-                i, entry.getGeneratedColumn());
++                i, var_74);
+             visitor.visit(
+                 sourceName,
+                 symbolName,
+@@ -715,7 +716,7 @@
+             sourceStartPosition = new FilePosition(
+                 entry.getSourceLine(), entry.getSourceColumn());
+             startPosition = new FilePosition(
+-                i, entry.getGeneratedColumn());
++                i, var_74);
+           }
+         }
+       }

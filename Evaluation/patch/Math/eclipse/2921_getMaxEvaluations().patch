@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/BaseMultiStartMultivariateOptimizer.java b/src/main/java/org/apache/commons/math3/optim/BaseMultiStartMultivariateOptimizer.java
+index 329dc75..01cd72c 100644
+--- a/src/main/java/org/apache/commons/math3/optim/BaseMultiStartMultivariateOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/BaseMultiStartMultivariateOptimizer.java
+@@ -165,7 +165,8 @@
+         totalEvaluations = 0;
+         clear();
+ 
+-        final int maxEval = getMaxEvaluations();
++        int var_2921 = getMaxEvaluations();
++		final int maxEval = var_2921;
+         final double[] min = getLowerBound();
+         final double[] max = getUpperBound();
+         final double[] startPoint = getStartPoint();
+@@ -183,8 +184,8 @@
+                 } else {
+                     int attempts = 0;
+                     while (s == null) {
+-                        if (attempts++ >= getMaxEvaluations()) {
+-                            throw new TooManyEvaluationsException(getMaxEvaluations());
++                        if (attempts++ >= var_2921) {
++                            throw new TooManyEvaluationsException(var_2921);
+                         }
+                         s = generator.nextVector();
+                         for (int k = 0; s != null && k < s.length; ++k) {

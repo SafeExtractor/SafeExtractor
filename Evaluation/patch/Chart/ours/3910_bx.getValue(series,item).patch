@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/data/general/DatasetUtilities.java b/source/org/jfree/data/general/DatasetUtilities.java
+index 548d684..3f6932e 100644
+--- a/source/org/jfree/data/general/DatasetUtilities.java
++++ b/source/org/jfree/data/general/DatasetUtilities.java
+@@ -1072,12 +1072,13 @@
+                 int itemCount = dataset.getColumnCount();
+                 for (int item = 0; item < itemCount; item++) {
+                     Number lvalue = bx.getMinRegularValue(series, item);
+-                    if (lvalue == null) {
+-                        lvalue = bx.getValue(series, item);
++                    Number var_3910 = bx.getValue(series, item);
++					if (lvalue == null) {
++                        lvalue = var_3910;
+                     }
+                     Number uvalue = bx.getMaxRegularValue(series, item);
+                     if (uvalue == null) {
+-                        uvalue = bx.getValue(series, item);
++                        uvalue = var_3910;
+                     }
+                     if (lvalue != null) {
+                         minimum = Math.min(minimum, lvalue.doubleValue());

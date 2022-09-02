@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java b/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
+index c6b1a04..d51da4e 100644
+--- a/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
+@@ -502,7 +502,8 @@
+             // safety check
+             checkMultiplicationCompatible(m);
+ 
+-            final BlockFieldMatrix<T> out = new BlockFieldMatrix<T>(getField(), rows, m.getColumnDimension());
++            int var_1930 = m.getColumnDimension();
++			final BlockFieldMatrix<T> out = new BlockFieldMatrix<T>(getField(), rows, var_1930);
+             final T zero = getField().getZero();
+ 
+             // perform multiplication block-wise, to ensure good cache behavior
+@@ -515,7 +516,7 @@
+                 for (int jBlock = 0; jBlock < out.blockColumns; ++jBlock) {
+ 
+                     final int qStart = jBlock * BLOCK_SIZE;
+-                    final int qEnd   = FastMath.min(qStart + BLOCK_SIZE, m.getColumnDimension());
++                    final int qEnd   = FastMath.min(qStart + BLOCK_SIZE, var_1930);
+ 
+                     // select current block
+                     final T[] outBlock = out.blocks[blockIndex];

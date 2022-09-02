@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..80bd777 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -29,6 +29,7 @@
+ import java.util.ArrayDeque;
+ import java.util.Comparator;
+ import java.util.Deque;
++import java.util.HashMap;
+ import java.util.Iterator;
+ import java.util.List;
+ import java.util.Map;
+@@ -149,7 +150,8 @@
+   public void process(Node externs, Node root) {
+     this.root = root;
+     astPositionCounter = 0;
+-    astPosition = Maps.newHashMap();
++    HashMap<Node, Integer> var_1886 = Maps.newHashMap();
++	astPosition = var_1886;
+     nodePriorities = Maps.newHashMap();
+     cfg = new AstControlFlowGraph(computeFallThrough(root), nodePriorities,
+                                   edgeAnnotations);

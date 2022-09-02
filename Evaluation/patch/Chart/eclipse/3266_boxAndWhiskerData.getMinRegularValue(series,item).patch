@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYBoxAndWhiskerRenderer.java b/source/org/jfree/chart/renderer/xy/XYBoxAndWhiskerRenderer.java
+index e7013ab..a40818f 100644
+--- a/source/org/jfree/chart/renderer/xy/XYBoxAndWhiskerRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYBoxAndWhiskerRenderer.java
+@@ -523,7 +523,8 @@
+ 
+         Number x = boxAndWhiskerData.getX(series, item);
+         Number yMax = boxAndWhiskerData.getMaxRegularValue(series, item);
+-        Number yMin = boxAndWhiskerData.getMinRegularValue(series, item);
++        Number var_3266 = boxAndWhiskerData.getMinRegularValue(series, item);
++		Number yMin = var_3266;
+         Number yMedian = boxAndWhiskerData.getMedianValue(series, item);
+         Number yAverage = boxAndWhiskerData.getMeanValue(series, item);
+         Number yQ1Median = boxAndWhiskerData.getQ1Value(series, item);
+@@ -650,8 +651,7 @@
+                         location);
+                 outliers.add(new Outlier(xx, yyOutlier, oRadius));
+             }
+-            else if (outlier < boxAndWhiskerData.getMinRegularValue(series,
+-                    item).doubleValue()) {
++            else if (outlier < var_3266.doubleValue()) {
+                 yyOutlier = rangeAxis.valueToJava2D(outlier, dataArea,
+                         location);
+                 outliers.add(new Outlier(xx, yyOutlier, oRadius));

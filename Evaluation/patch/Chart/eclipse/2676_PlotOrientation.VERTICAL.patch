@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java b/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java
+index 882b0f1..c5f04c5 100644
+--- a/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java
++++ b/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java
+@@ -762,7 +762,8 @@
+         double y1 = rangeAxis.valueToJava2D(value, dataArea,
+                 plot.getRangeAxisEdge());
+ 
+-        if (pass == 0 && getItemLineVisible(row, column)) {
++        PlotOrientation var_2676 = PlotOrientation.VERTICAL;
++		if (pass == 0 && getItemLineVisible(row, column)) {
+             if (column != 0) {
+                 Number previousValue = dataset.getValue(row, column - 1);
+                 if (previousValue != null) {
+@@ -788,7 +789,7 @@
+                     if (orientation == PlotOrientation.HORIZONTAL) {
+                         line = new Line2D.Double(y0, x0, y1, x1);
+                     }
+-                    else if (orientation == PlotOrientation.VERTICAL) {
++                    else if (orientation == var_2676) {
+                         line = new Line2D.Double(x0, y0, x1, y1);
+                     }
+                     g2.setPaint(getItemPaint(row, column, selected));
+@@ -803,7 +804,7 @@
+             if (orientation == PlotOrientation.HORIZONTAL) {
+                 shape = ShapeUtilities.createTranslatedShape(shape, y1, x1);
+             }
+-            else if (orientation == PlotOrientation.VERTICAL) {
++            else if (orientation == var_2676) {
+                 shape = ShapeUtilities.createTranslatedShape(shape, x1, y1);
+             }
+ 
+@@ -836,7 +837,7 @@
+                     drawItemLabel(g2, orientation, dataset, row, column, 
+                             selected, y1, x1, (value < 0.0));
+                 }
+-                else if (orientation == PlotOrientation.VERTICAL) {
++                else if (orientation == var_2676) {
+                     drawItemLabel(g2, orientation, dataset, row, column, 
+                             selected, x1, y1, (value < 0.0));
+                 }

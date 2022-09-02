@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/InlineFunctions.java b/src/com/google/javascript/jscomp/InlineFunctions.java
+index 008ffe5..fb73215 100644
+--- a/src/com/google/javascript/jscomp/InlineFunctions.java
++++ b/src/com/google/javascript/jscomp/InlineFunctions.java
+@@ -564,8 +564,9 @@
+       // JSCompiler_ObjectPropertyString are not aliases of a value, but
+       // a reference to the name itself, as such the value of the name is
+       // unknown and can not be inlined.
+-      if (parent.isNew()) {
+-        Node target = parent.getFirstChild();
++      Node var_1176 = parent.getFirstChild();
++	if (parent.isNew()) {
++        Node target = var_1176;
+         if (target.isName() && target.getString().equals(
+             ObjectPropertyStringPreprocess.EXTERN_OBJECT_PROPERTY_STRING)) {
+           // This method is going to be replaced so don't inline it anywhere.
+@@ -574,7 +575,7 @@
+       }
+ 
+       // If the name is being assigned to it can not be inlined.
+-      if (parent.isAssign() && parent.getFirstChild() == n) {
++      if (parent.isAssign() && var_1176 == n) {
+         // e.g. bar = something; <== we can't inline "bar"
+         // so mark the function as uninlinable.
+         // TODO(johnlenz): Should we just remove it from fns here?

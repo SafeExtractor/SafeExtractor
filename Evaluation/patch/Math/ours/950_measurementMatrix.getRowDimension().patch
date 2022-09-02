@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java b/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
+index 423689d..709d2a2 100644
+--- a/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
++++ b/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
+@@ -351,9 +351,10 @@
+ 
+         // sanity checks
+         MathUtils.checkNotNull(z);
+-        if (z.getDimension() != measurementMatrix.getRowDimension()) {
++        int var_950 = measurementMatrix.getRowDimension();
++		if (z.getDimension() != var_950) {
+             throw new DimensionMismatchException(z.getDimension(),
+-                                                 measurementMatrix.getRowDimension());
++                                                 var_950);
+         }
+ 
+         // S = H * P(k) - * H' + R

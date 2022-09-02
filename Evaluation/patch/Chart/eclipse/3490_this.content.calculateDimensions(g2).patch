@@ -1,0 +1,31 @@
+diff --git a/source/org/jfree/chart/title/TextTitle.java b/source/org/jfree/chart/title/TextTitle.java
+index 74e534a..7bf6421 100644
+--- a/source/org/jfree/chart/title/TextTitle.java
++++ b/source/org/jfree/chart/title/TextTitle.java
+@@ -627,14 +627,15 @@
+     protected Size2D arrangeRR(Graphics2D g2, Range widthRange,
+             Range heightRange) {
+         RectangleEdge position = getPosition();
+-        if (position == RectangleEdge.TOP || position == RectangleEdge.BOTTOM) {
++        Size2D var_3490 = this.content.calculateDimensions(g2);
++		if (position == RectangleEdge.TOP || position == RectangleEdge.BOTTOM) {
+             float maxWidth = (float) widthRange.getUpperBound();
+             g2.setFont(this.font);
+             this.content = TextUtilities.createTextBlock(this.text, this.font,
+                     this.paint, maxWidth, this.maximumLinesToDisplay,
+                     new G2TextMeasurer(g2));
+             this.content.setLineAlignment(this.textAlignment);
+-            Size2D contentSize = this.content.calculateDimensions(g2);
++            Size2D contentSize = var_3490;
+             if (this.expandToFitSpace) {
+                 return new Size2D(maxWidth, contentSize.getHeight());
+             }
+@@ -650,7 +651,7 @@
+                     this.paint, maxWidth, this.maximumLinesToDisplay,
+                     new G2TextMeasurer(g2));
+             this.content.setLineAlignment(this.textAlignment);
+-            Size2D contentSize = this.content.calculateDimensions(g2);
++            Size2D contentSize = var_3490;
+ 
+             // transpose the dimensions, because the title is rotated
+             if (this.expandToFitSpace) {

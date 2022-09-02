@@ -1,0 +1,35 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..edcd6ed 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -144,7 +144,8 @@
+ 
+     cc.startSourceMapping(n);
+ 
+-    switch (type) {
++    final int var_1563 = Token.COMMA;
++	switch (type) {
+       case Token.TRY: {
+         Preconditions.checkState(first.getNext().isBlock() &&
+                 !first.getNext().hasMoreThanOneChild());
+@@ -236,9 +237,9 @@
+         add(")");
+         break;
+ 
+-      case Token.COMMA:
++      case var_1563:
+         Preconditions.checkState(childCount == 2);
+-        unrollBinaryOperator(n, Token.COMMA, ",", context, Context.OTHER, 0, 0);
++        unrollBinaryOperator(n, var_1563, ",", context, Context.OTHER, 0, 0);
+         break;
+ 
+       case Token.NUMBER:
+@@ -528,7 +529,7 @@
+         if (isIndirectEval(first)
+             || n.getBooleanProp(Node.FREE_CALL) && NodeUtil.isGet(first)) {
+           add("(0,");
+-          addExpr(first, NodeUtil.precedence(Token.COMMA), Context.OTHER);
++          addExpr(first, NodeUtil.precedence(var_1563), Context.OTHER);
+           add(")");
+         } else {
+           addExpr(first, NodeUtil.precedence(type), context);

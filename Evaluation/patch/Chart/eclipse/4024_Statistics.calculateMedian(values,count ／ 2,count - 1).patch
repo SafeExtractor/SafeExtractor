@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/data/statistics/BoxAndWhiskerCalculator.java b/source/org/jfree/data/statistics/BoxAndWhiskerCalculator.java
+index 6ed0a41..91460e9 100644
+--- a/source/org/jfree/data/statistics/BoxAndWhiskerCalculator.java
++++ b/source/org/jfree/data/statistics/BoxAndWhiskerCalculator.java
+@@ -220,18 +220,18 @@
+         double result = Double.NaN;
+         int count = values.size();
+         if (count > 0) {
+-            if (count % 2 == 1) {
++            double var_4024 = Statistics.calculateMedian(values, count / 2,
++			        count - 1);
++			if (count % 2 == 1) {
+                 if (count > 1) {
+-                    result = Statistics.calculateMedian(values, count / 2,
+-                            count - 1);
++                    result = var_4024;
+                 }
+                 else {
+                     result = Statistics.calculateMedian(values, 0, 0);
+                 }
+             }
+             else {
+-                result = Statistics.calculateMedian(values, count / 2,
+-                        count - 1);
++                result = var_4024;
+             }
+         }
+         return result;

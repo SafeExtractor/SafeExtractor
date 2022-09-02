@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/lang3/concurrent/AtomicInitializer.java b/src/main/java/org/apache/commons/lang3/concurrent/AtomicInitializer.java
+index b735c24..42a2106 100644
+--- a/src/main/java/org/apache/commons/lang3/concurrent/AtomicInitializer.java
++++ b/src/main/java/org/apache/commons/lang3/concurrent/AtomicInitializer.java
+@@ -79,13 +79,14 @@
+      */
+     @Override
+     public T get() throws ConcurrentException {
+-        T result = reference.get();
++        T var_338 = reference.get();
++		T result = var_338;
+ 
+         if (result == null) {
+             result = initialize();
+             if (!reference.compareAndSet(null, result)) {
+                 // another thread has initialized the reference
+-                result = reference.get();
++                result = var_338;
+             }
+         }
+ 

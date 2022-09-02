@@ -1,0 +1,37 @@
+diff --git a/src/com/google/javascript/jscomp/NodeIterators.java b/src/com/google/javascript/jscomp/NodeIterators.java
+index e6b5d04..94d13fa 100644
+--- a/src/com/google/javascript/jscomp/NodeIterators.java
++++ b/src/com/google/javascript/jscomp/NodeIterators.java
+@@ -69,11 +69,12 @@
+     @Override
+     public Node next() {
+       Node current = ancestors.pop();
+-      if (current.getNext() == null) {
++      boolean var_1334 = current.isFunction();
++	if (current.getNext() == null) {
+         current = ancestors.peek();
+ 
+         // If this is a function node, skip it.
+-        if (current.isFunction()) {
++        if (var_1334) {
+           return next();
+         }
+       } else {
+@@ -81,7 +82,7 @@
+         ancestors.push(current);
+ 
+         // If this is a function node, skip it.
+-        if (current.isFunction()) {
++        if (var_1334) {
+           return next();
+         }
+ 
+@@ -90,7 +91,7 @@
+           ancestors.push(current);
+ 
+           // If this is a function node, skip it.
+-          if (current.isFunction()) {
++          if (var_1334) {
+             return next();
+           }
+         }

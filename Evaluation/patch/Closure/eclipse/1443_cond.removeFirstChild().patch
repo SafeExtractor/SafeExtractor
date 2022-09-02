@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..a1a1982 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -649,7 +649,8 @@
+     Node thenBranch = cond.getNext();
+     Node elseBranch = thenBranch.getNext();
+ 
+-    if (elseBranch == null) {
++    Node var_1443 = cond.removeFirstChild();
++	if (elseBranch == null) {
+       if (isFoldableExpressBlock(thenBranch)) {
+         Node expr = getBlockExpression(thenBranch);
+         if (!late && isPropertyAssignmentInExpression(expr)) {
+@@ -669,7 +670,7 @@
+           }
+ 
+           Node or = IR.or(
+-              cond.removeFirstChild(),
++              var_1443,
+               expr.removeFirstChild()).srcref(n);
+           Node newExpr = NodeUtil.newExpr(or);
+           parent.replaceChild(n, newExpr);
+@@ -738,7 +739,7 @@
+     // if(!x)foo();else bar(); -> if(x)bar();else foo();
+     // An additional set of curly braces isn't worth it.
+     if (cond.isNot() && !consumesDanglingElse(elseBranch)) {
+-      n.replaceChild(cond, cond.removeFirstChild());
++      n.replaceChild(cond, var_1443);
+       n.removeChild(thenBranch);
+       n.addChildToBack(thenBranch);
+       reportCodeChange();

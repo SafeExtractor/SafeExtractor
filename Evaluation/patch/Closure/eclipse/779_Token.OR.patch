@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..acee383 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -171,7 +171,8 @@
+     Node result = n;
+ 
+     // Simplify the results of conditional expressions
+-    switch (n.getType()) {
++    int var_779 = Token.OR;
++	switch (n.getType()) {
+       case Token.HOOK:
+         Node trueNode = trySimplifyUnusedResult(n.getFirstChild().getNext());
+         Node falseNode = trySimplifyUnusedResult(n.getLastChild());
+@@ -182,7 +183,7 @@
+         //    x() ? 1 : 1 --> x()
+         //    x ? 1 : 1 --> null
+         if (trueNode == null && falseNode != null) {
+-          n.setType(Token.OR);
++          n.setType(var_779);
+           Preconditions.checkState(n.getChildCount() == 2);
+         } else if (trueNode != null && falseNode == null) {
+           n.setType(Token.AND);
+@@ -195,7 +196,7 @@
+         }
+         break;
+       case Token.AND:
+-      case Token.OR:
++      case var_779:
+         // Try to remove the second operand from a AND or OR operations:
+         //    x() || f --> x()
+         //    x() && f --> x()

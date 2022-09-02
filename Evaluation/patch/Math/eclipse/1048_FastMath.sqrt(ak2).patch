@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
+index 930eb1e..7660479 100644
+--- a/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
+@@ -975,7 +975,8 @@
+ 
+             // choose alpha such that Hk.u = alpha ek
+             double akk = weightedJacobian[k][pk];
+-            double alpha = (akk > 0) ? -FastMath.sqrt(ak2) : FastMath.sqrt(ak2);
++            double var_1048 = FastMath.sqrt(ak2);
++			double alpha = (akk > 0) ? -var_1048 : var_1048;
+             double betak = 1.0 / (ak2 - akk * alpha);
+             beta[pk] = betak;
+ 

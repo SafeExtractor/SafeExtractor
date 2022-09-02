@@ -1,0 +1,34 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/201_info.getSuppressions().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/201_info.getSuppressions().patch
+index d038be9..ff5a98f 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/201_info.getSuppressions().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/201_info.getSuppressions().patch
+@@ -1,5 +1,5 @@
+ diff --git a/src/com/google/javascript/jscomp/SyntacticScopeCreator.java b/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
+-index e1caa71..025a58a 100644
++index e1caa71..1bbd435 100644
+ --- a/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
+ +++ b/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
+ @@ -16,6 +16,8 @@
+@@ -11,22 +11,3 @@ index e1caa71..025a58a 100644
+  import com.google.common.base.Preconditions;
+  import com.google.javascript.rhino.InputId;
+  import com.google.javascript.rhino.JSDocInfo;
+-@@ -260,7 +262,8 @@
+-     if (info == null) {
+-       info = parent.getJSDocInfo();
+-     }
+--    if (info != null && info.getSuppressions().contains("duplicate")) {
+-+    Set<String> var_201 = info.getSuppressions();
+-+	if (info != null && var_201.contains("duplicate")) {
+-       return true;
+-     }
+- 
+-@@ -268,7 +271,7 @@
+-     if (info == null) {
+-       info = origParent.getJSDocInfo();
+-     }
+--    return (info != null && info.getSuppressions().contains("duplicate"));
+-+    return (info != null && var_201.contains("duplicate"));
+-   }
+- 
+-   /**

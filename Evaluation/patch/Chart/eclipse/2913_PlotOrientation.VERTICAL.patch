@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
+index aa90f2b..07c2e23 100644
+--- a/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
+@@ -764,7 +764,8 @@
+         double transX1 = domainAxis.valueToJava2D(x1, dataArea, xAxisLocation);
+         double transY1 = rangeAxis.valueToJava2D(y1, dataArea, yAxisLocation);
+ 
+-        if (getPlotLines()) {
++        PlotOrientation var_2913 = PlotOrientation.VERTICAL;
++		if (getPlotLines()) {
+             if (this.drawSeriesLineAsPath) {
+                 State s = (State) state;
+                 if (s.getSeriesIndex() != series) {
+@@ -841,7 +842,7 @@
+                             state.workingLine.setLine(transY0, transX0,
+                                     transY1, transX1);
+                         }
+-                        else if (orientation == PlotOrientation.VERTICAL) {
++                        else if (orientation == var_2913) {
+                             state.workingLine.setLine(transX0, transY0,
+                                     transX1, transY1);
+                         }
+@@ -868,7 +869,7 @@
+                 shape = ShapeUtilities.createTranslatedShape(shape, transY1,
+                         transX1);
+             }
+-            else if (orientation == PlotOrientation.VERTICAL) {
++            else if (orientation == var_2913) {
+                 shape = ShapeUtilities.createTranslatedShape(shape, transX1,
+                         transY1);
+             }

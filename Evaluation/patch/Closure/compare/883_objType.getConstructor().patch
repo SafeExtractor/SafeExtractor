@@ -1,0 +1,23 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/883_objType.getConstructor().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/883_objType.getConstructor().patch
+index 8a496f5..e69de29 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/883_objType.getConstructor().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/883_objType.getConstructor().patch
+@@ -1,18 +0,0 @@
+-diff --git a/src/com/google/javascript/jscomp/DisambiguateProperties.java b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+-index c64c178..bdeb290 100644
+---- a/src/com/google/javascript/jscomp/DisambiguateProperties.java
+-+++ b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+-@@ -820,9 +820,10 @@
+-         return type.toMaybeUnionType().getAlternates();
+-       } else {
+-         ObjectType objType = type.toObjectType();
+--        if (objType != null &&
+--            objType.getConstructor() != null &&
+--            objType.getConstructor().isInterface()) {
+-+        FunctionType var_883 = objType.getConstructor();
+-+		if (objType != null &&
+-+            var_883 != null &&
+-+            var_883.isInterface()) {
+-           List<JSType> list = Lists.newArrayList();
+-           for (FunctionType impl
+-                    : registry.getDirectImplementors(objType)) {

@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..4b28415 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -1826,7 +1826,8 @@
+     JSType leftType = getJSType(left);
+     Node right = n.getLastChild();
+     JSType rightType = getJSType(right);
+-    switch (op) {
++    String var_1022 = NodeUtil.opToStr(n.getType());
++	switch (op) {
+       case Token.ASSIGN_LSH:
+       case Token.ASSIGN_RSH:
+       case Token.LSH:
+@@ -1835,11 +1836,11 @@
+       case Token.URSH:
+         if (!leftType.matchesInt32Context()) {
+           report(t, left, BIT_OPERATION,
+-                   NodeUtil.opToStr(n.getType()), leftType.toString());
++                   var_1022, leftType.toString());
+         }
+         if (!rightType.matchesUint32Context()) {
+           report(t, right, BIT_OPERATION,
+-                   NodeUtil.opToStr(n.getType()), rightType.toString());
++                   var_1022, rightType.toString());
+         }
+         break;
+ 

@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/CheckRequiresForConstructors.java b/src/com/google/javascript/jscomp/CheckRequiresForConstructors.java
+index 097cb28..b8909cf 100644
+--- a/src/com/google/javascript/jscomp/CheckRequiresForConstructors.java
++++ b/src/com/google/javascript/jscomp/CheckRequiresForConstructors.java
+@@ -109,11 +109,12 @@
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+       JSDocInfo info;
+-      switch (n.getType()) {
++      Node var_843 = n.getFirstChild();
++	switch (n.getType()) {
+         case Token.ASSIGN:
+           info = (JSDocInfo) n.getProp(Node.JSDOC_INFO_PROP);
+           if (info != null && info.isConstructor()) {
+-            String qualifiedName = n.getFirstChild().getQualifiedName();
++            String qualifiedName = var_843.getQualifiedName();
+             constructors.add(qualifiedName);
+           }
+           break;
+@@ -137,7 +138,7 @@
+           } else {
+             info = (JSDocInfo) n.getProp(Node.JSDOC_INFO_PROP);
+             if (info != null && info.isConstructor()) {
+-              String functionName = n.getFirstChild().getString();
++              String functionName = var_843.getString();
+               constructors.add(functionName);
+             }
+           }

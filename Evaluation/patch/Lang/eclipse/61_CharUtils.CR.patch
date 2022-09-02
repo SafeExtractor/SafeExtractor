@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/lang3/StringUtils.java b/src/main/java/org/apache/commons/lang3/StringUtils.java
+index 04b53fa..741afc3 100644
+--- a/src/main/java/org/apache/commons/lang3/StringUtils.java
++++ b/src/main/java/org/apache/commons/lang3/StringUtils.java
+@@ -4891,9 +4891,10 @@
+             return str;
+         }
+ 
+-        if (str.length() == 1) {
++        char var_61 = CharUtils.CR;
++		if (str.length() == 1) {
+             final char ch = str.charAt(0);
+-            if (ch == CharUtils.CR || ch == CharUtils.LF) {
++            if (ch == var_61 || ch == CharUtils.LF) {
+                 return EMPTY;
+             }
+             return str;
+@@ -4903,10 +4904,10 @@
+         final char last = str.charAt(lastIdx);
+ 
+         if (last == CharUtils.LF) {
+-            if (str.charAt(lastIdx - 1) == CharUtils.CR) {
++            if (str.charAt(lastIdx - 1) == var_61) {
+                 lastIdx--;
+             }
+-        } else if (last != CharUtils.CR) {
++        } else if (last != var_61) {
+             lastIdx++;
+         }
+         return str.substring(0, lastIdx);

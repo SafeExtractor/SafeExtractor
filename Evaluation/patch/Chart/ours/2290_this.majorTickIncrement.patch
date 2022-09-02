@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/plot/dial/StandardDialScale.java b/source/org/jfree/chart/plot/dial/StandardDialScale.java
+index b40e93d..d4f1899 100644
+--- a/source/org/jfree/chart/plot/dial/StandardDialScale.java
++++ b/source/org/jfree/chart/plot/dial/StandardDialScale.java
+@@ -781,8 +781,9 @@
+ 
+         Arc2D arc = new Arc2D.Double();
+         Line2D workingLine = new Line2D.Double();
+-        for (double v = this.lowerBound; v <= this.upperBound;
+-                v += this.majorTickIncrement) {
++        double var_2290 = this.majorTickIncrement;
++		for (double v = this.lowerBound; v <= this.upperBound;
++                v += var_2290) {
+             arc.setArc(arcRect, this.startAngle, valueToAngle(v)
+                     - this.startAngle, Arc2D.OPEN);
+             Point2D pt0 = arc.getEndPoint();
+@@ -811,7 +812,7 @@
+ 
+             // now do the minor tick marks
+             if (this.minorTickCount > 0 && this.minorTickLength > 0.0) {
+-                double minorTickIncrement = this.majorTickIncrement
++                double minorTickIncrement = var_2290
+                         / (this.minorTickCount + 1);
+                 for (int i = 0; i < this.minorTickCount; i++) {
+                     double vv = v + ((i + 1) * minorTickIncrement);

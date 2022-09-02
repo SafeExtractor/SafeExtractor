@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
+index c3dd8cc..af169bc 100644
+--- a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
++++ b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
+@@ -1190,7 +1190,8 @@
+             boolean mustParse = (iPrintZeroSetting == PRINT_ZERO_ALWAYS);
+ 
+             // Shortcut test.
+-            if (position >= text.length()) {
++            int var_546 = text.length();
++			if (position >= var_546) {
+                 return mustParse ? ~position : position;
+             }
+ 
+@@ -1241,7 +1242,7 @@
+             if (suffixPos > 0) {
+                 limit = Math.min(iMaxParsedDigits, suffixPos - position);
+             } else {
+-                limit = Math.min(iMaxParsedDigits, text.length() - position);
++                limit = Math.min(iMaxParsedDigits, var_546 - position);
+             }
+ 
+             // validate input number
+@@ -1268,7 +1269,7 @@
+                         position++;
+                     }
+                     // Expand the limit to disregard the sign character.
+-                    limit = Math.min(limit + 1, text.length() - position);
++                    limit = Math.min(limit + 1, var_546 - position);
+                     continue;
+                 }
+                 // main number
+@@ -1283,7 +1284,7 @@
+                         }
+                         fractPos = position + length + 1;
+                         // Expand the limit to disregard the decimal point.
+-                        limit = Math.min(limit + 1, text.length() - position);
++                        limit = Math.min(limit + 1, var_546 - position);
+                     } else {
+                         break;
+                     }

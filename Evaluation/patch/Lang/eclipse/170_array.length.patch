@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/lang3/ArrayUtils.java b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+index a0a499a..b5cdc7d 100644
+--- a/src/main/java/org/apache/commons/lang3/ArrayUtils.java
++++ b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+@@ -2423,9 +2423,12 @@
+         }
+         if (startIndex < 0) {
+             return INDEX_NOT_FOUND;
+-        } else if (startIndex >= array.length) {
+-            startIndex = array.length - 1;
+-        }
++        } else {
++			int var_170 = array.length;
++			if (startIndex >= var_170) {
++			    startIndex = var_170 - 1;
++			}
++		}
+         final double min = valueToFind - tolerance;
+         final double max = valueToFind + tolerance;
+         for (int i = startIndex; i >= 0; i--) {

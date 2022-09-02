@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..7e5bdb7 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -1195,7 +1195,8 @@
+         }
+         case 720: {
+             printState(720); // XXX
+-            if (fAtInterpolationPoints.getEntry(trustRegionCenterInterpolationPointIndex) <= fsave) {
++            double var_3361 = fAtInterpolationPoints.getEntry(trustRegionCenterInterpolationPointIndex);
++			if (var_3361 <= fsave) {
+                 for (int i = 0; i < n; i++) {
+                     // Computing MIN
+                     // Computing MAX
+@@ -1211,7 +1212,7 @@
+                         currentBest.setEntry(i, upperBound[i]);
+                     }
+                 }
+-                f = fAtInterpolationPoints.getEntry(trustRegionCenterInterpolationPointIndex);
++                f = var_3361;
+             }
+             return f;
+         }

@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java b/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java
+index b3412e0..9e7a15d 100644
+--- a/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java
+@@ -194,9 +194,10 @@
+             double[][] ra = new double[m][n];
+             // copy the diagonal from rDiag and the upper triangle of qr
+             for (int row = FastMath.min(m, n) - 1; row >= 0; row--) {
+-                ra[row][row] = rDiag[row];
++                double[] var_2168 = ra[row];
++				var_2168[row] = rDiag[row];
+                 for (int col = row + 1; col < n; col++) {
+-                    ra[row][col] = qrt[col][row];
++                    var_2168[col] = qrt[col][row];
+                 }
+             }
+             cachedR = MatrixUtils.createRealMatrix(ra);

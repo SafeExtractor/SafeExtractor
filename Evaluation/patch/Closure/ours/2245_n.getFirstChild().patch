@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..38c8b97 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -571,9 +571,10 @@
+       if (n == null) return false;
+ 
+       int nType = n.getType();
+-      return nType == Token.EXPR_RESULT &&
+-          n.getFirstChild().isString() &&
+-          ALLOWED_DIRECTIVES.contains(n.getFirstChild().getString());
++      Node var_2245 = n.getFirstChild();
++	return nType == Token.EXPR_RESULT &&
++          var_2245.isString() &&
++          ALLOWED_DIRECTIVES.contains(var_2245.getString());
+     }
+ 
+     @Override

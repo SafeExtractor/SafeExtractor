@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/random/MersenneTwister.java b/src/main/java/org/apache/commons/math3/random/MersenneTwister.java
+index 7b717fe..4ae2411 100644
+--- a/src/main/java/org/apache/commons/math3/random/MersenneTwister.java
++++ b/src/main/java/org/apache/commons/math3/random/MersenneTwister.java
+@@ -173,9 +173,10 @@
+         int i = 1;
+         int j = 0;
+ 
+-        for (int k = FastMath.max(N, seed.length); k != 0; k--) {
++        int var_3601 = mt[i-1];
++		for (int k = FastMath.max(N, seed.length); k != 0; k--) {
+             long l0 = (mt[i] & 0x7fffffffl)   | ((mt[i]   < 0) ? 0x80000000l : 0x0l);
+-            long l1 = (mt[i-1] & 0x7fffffffl) | ((mt[i-1] < 0) ? 0x80000000l : 0x0l);
++            long l1 = (var_3601 & 0x7fffffffl) | ((var_3601 < 0) ? 0x80000000l : 0x0l);
+             long l  = (l0 ^ ((l1 ^ (l1 >> 30)) * 1664525l)) + seed[j] + j; // non linear
+             mt[i]   = (int) (l & 0xffffffffl);
+             i++; j++;
+@@ -190,7 +191,7 @@
+ 
+         for (int k = N - 1; k != 0; k--) {
+             long l0 = (mt[i] & 0x7fffffffl)   | ((mt[i]   < 0) ? 0x80000000l : 0x0l);
+-            long l1 = (mt[i-1] & 0x7fffffffl) | ((mt[i-1] < 0) ? 0x80000000l : 0x0l);
++            long l1 = (var_3601 & 0x7fffffffl) | ((var_3601 < 0) ? 0x80000000l : 0x0l);
+             long l  = (l0 ^ ((l1 ^ (l1 >> 30)) * 1566083941l)) - i; // non linear
+             mt[i]   = (int) (l & 0xffffffffL);
+             i++;

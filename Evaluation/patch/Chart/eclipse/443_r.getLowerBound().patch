@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/axis/LogarithmicAxis.java b/source/org/jfree/chart/axis/LogarithmicAxis.java
+index 1f440bd..1a919b4 100644
+--- a/source/org/jfree/chart/axis/LogarithmicAxis.java
++++ b/source/org/jfree/chart/axis/LogarithmicAxis.java
+@@ -515,14 +515,15 @@
+ 
+             double lower;
+             Range r = vap.getDataRange(this);
+-            if (r == null) {
++            double var_443 = r.getLowerBound();
++			if (r == null) {
+                    //no real data present
+                 r = getDefaultAutoRange();
+-                lower = r.getLowerBound();    //get lower bound value
++                lower = var_443;    //get lower bound value
+             }
+             else {
+                 //actual data is present
+-                lower = r.getLowerBound();    //get lower bound value
++                lower = var_443;    //get lower bound value
+                 if (this.strictValuesFlag
+                         && !this.allowNegativesFlag && lower <= 0.0) {
+                     //strict flag set, allow-negatives not set and values <= 0
+@@ -552,7 +553,7 @@
+             if (!this.allowNegativesFlag && lower >= 0.0
+                     && lower < SMALL_LOG_VALUE) {
+                 //negatives not allowed and lower range bound is zero
+-                lower = r.getLowerBound();    //use data range bound instead
++                lower = var_443;    //use data range bound instead
+             }
+ 
+             double upper = r.getUpperBound();

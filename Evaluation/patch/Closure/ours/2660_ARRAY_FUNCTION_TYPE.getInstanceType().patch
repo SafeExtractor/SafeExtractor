@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+index c8fbac8..72644ef 100644
+--- a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
++++ b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+@@ -317,13 +317,14 @@
+       new FunctionType(this, "Array", null,
+           createArrowType(createParametersWithVarArgs(ALL_TYPE), null),
+           null, null, true, true);
+-    ARRAY_FUNCTION_TYPE.getInternalArrowType().returnType =
+-        ARRAY_FUNCTION_TYPE.getInstanceType();
++    ObjectType var_2660 = ARRAY_FUNCTION_TYPE.getInstanceType();
++	ARRAY_FUNCTION_TYPE.getInternalArrowType().returnType =
++        var_2660;
+ 
+     ObjectType arrayPrototype = ARRAY_FUNCTION_TYPE.getPrototype();
+     registerNativeType(JSTypeNative.ARRAY_FUNCTION_TYPE, ARRAY_FUNCTION_TYPE);
+ 
+-    ObjectType ARRAY_TYPE = ARRAY_FUNCTION_TYPE.getInstanceType();
++    ObjectType ARRAY_TYPE = var_2660;
+     registerNativeType(JSTypeNative.ARRAY_TYPE, ARRAY_TYPE);
+ 
+     // Boolean

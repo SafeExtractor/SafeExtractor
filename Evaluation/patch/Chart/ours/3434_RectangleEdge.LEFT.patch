@@ -1,0 +1,44 @@
+diff --git a/source/org/jfree/chart/title/PaintScaleLegend.java b/source/org/jfree/chart/title/PaintScaleLegend.java
+index c489277..6fdb547 100644
+--- a/source/org/jfree/chart/title/PaintScaleLegend.java
++++ b/source/org/jfree/chart/title/PaintScaleLegend.java
+@@ -604,14 +604,15 @@
+         else {
+             RectangleEdge axisEdge = Plot.resolveRangeAxisLocation(
+                     this.axisLocation, PlotOrientation.VERTICAL);
+-            if (axisEdge == RectangleEdge.LEFT) {
++            RectangleEdge var_3434 = RectangleEdge.LEFT;
++			if (axisEdge == var_3434) {
+                 for (int i = 0; i < this.subdivisions; i++) {
+                     double v = base + (i * increment);
+                     Paint p = this.scale.getPaint(v);
+                     double vv0 = this.axis.valueToJava2D(v, target,
+-                            RectangleEdge.LEFT);
++                            var_3434);
+                     double vv1 = this.axis.valueToJava2D(v + increment, target,
+-                            RectangleEdge.LEFT);
++                            var_3434);
+                     double hh = Math.abs(vv1 - vv0) + 1.0;
+                     r.setRect(target.getMaxX() - this.stripWidth,
+                             Math.min(vv0, vv1), this.stripWidth, hh);
+@@ -626,7 +627,7 @@
+                             this.stripWidth, target.getHeight()));
+                 }
+                 this.axis.draw(g2, target.getMaxX() - this.stripWidth
+-                        - this.axisOffset, target, target, RectangleEdge.LEFT,
++                        - this.axisOffset, target, target, var_3434,
+                         null);
+             }
+             else if (axisEdge == RectangleEdge.RIGHT) {
+@@ -634,9 +635,9 @@
+                     double v = base + (i * increment);
+                     Paint p = this.scale.getPaint(v);
+                     double vv0 = this.axis.valueToJava2D(v, target,
+-                            RectangleEdge.LEFT);
++                            var_3434);
+                     double vv1 = this.axis.valueToJava2D(v + increment, target,
+-                            RectangleEdge.LEFT);
++                            var_3434);
+                     double hh = Math.abs(vv1 - vv0) + 1.0;
+                     r.setRect(target.getMinX(), Math.min(vv0, vv1),
+                             this.stripWidth, hh);

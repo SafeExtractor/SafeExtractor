@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/plot/MultiplePiePlot.java b/source/org/jfree/chart/plot/MultiplePiePlot.java
+index f85acab..afee74c 100644
+--- a/source/org/jfree/chart/plot/MultiplePiePlot.java
++++ b/source/org/jfree/chart/plot/MultiplePiePlot.java
+@@ -457,7 +457,8 @@
+             else {
+                 title = this.dataset.getColumnKey(pieIndex).toString();
+             }
+-            this.pieChart.setTitle(title);
++            JFreeChart var_1807 = this.pieChart;
++			var_1807.setTitle(title);
+ 
+             PieDataset piedataset = null;
+             PieDataset dd = new CategoryToPieDataset(this.dataset,
+@@ -469,7 +470,7 @@
+             else {
+                 piedataset = dd;
+             }
+-            PiePlot piePlot = (PiePlot) this.pieChart.getPlot();
++            PiePlot piePlot = (PiePlot) var_1807.getPlot();
+             piePlot.setDataset(piedataset);
+             piePlot.setPieIndex(pieIndex);
+ 
+@@ -490,7 +491,7 @@
+             if (info != null) {
+                 subinfo = new ChartRenderingInfo();
+             }
+-            this.pieChart.draw(g2, rect, subinfo);
++            var_1807.draw(g2, rect, subinfo);
+             if (info != null) {
+                 info.getOwner().getEntityCollection().addAll(
+                         subinfo.getEntityCollection());

@@ -1,0 +1,19 @@
+diff --git a/src/org/mockito/internal/util/ObjectMethodsGuru.java b/src/org/mockito/internal/util/ObjectMethodsGuru.java
+index ebfa69c..10cc4f7 100644
+--- a/src/org/mockito/internal/util/ObjectMethodsGuru.java
++++ b/src/org/mockito/internal/util/ObjectMethodsGuru.java
+@@ -36,9 +36,10 @@
+     }
+ 
+     public boolean isCompareToMethod(Method method) {
+-        return Comparable.class.isAssignableFrom(method.getDeclaringClass())
++        Class<?>[] var_102 = method.getParameterTypes();
++		return Comparable.class.isAssignableFrom(method.getDeclaringClass())
+                 && method.getName().equals("compareTo")
+-                && method.getParameterTypes().length == 1
+-                && method.getParameterTypes()[0] == method.getDeclaringClass();
++                && var_102.length == 1
++                && var_102[0] == method.getDeclaringClass();
+     }
+ }
+\ No newline at end of file

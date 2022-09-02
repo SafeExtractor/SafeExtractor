@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+index 104bdf5..8f2f2f0 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+@@ -1073,12 +1073,13 @@
+ 
+             final double[] repaired = new double[x.length];
+             for (int i = 0; i < x.length; i++) {
+-                if (x[i] < lB[i]) {
++                double var_3284 = x[i];
++				if (var_3284 < lB[i]) {
+                     repaired[i] = lB[i];
+-                } else if (x[i] > uB[i]) {
++                } else if (var_3284 > uB[i]) {
+                     repaired[i] = uB[i];
+                 } else {
+-                    repaired[i] = x[i];
++                    repaired[i] = var_3284;
+                 }
+             }
+             return repaired;

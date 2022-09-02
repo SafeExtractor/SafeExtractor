@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/axis/CyclicNumberAxis.java b/source/org/jfree/chart/axis/CyclicNumberAxis.java
+index 114e296..019f1e2 100644
+--- a/source/org/jfree/chart/axis/CyclicNumberAxis.java
++++ b/source/org/jfree/chart/axis/CyclicNumberAxis.java
+@@ -447,8 +447,9 @@
+         CycleBoundTick lastTick = null;
+         float lastX = 0.0f;
+ 
+-        if (upperValue == cycleBound) {
+-            currentTickValue = calculateLowestVisibleTickValue();
++        double var_675 = calculateLowestVisibleTickValue();
++		if (upperValue == cycleBound) {
++            currentTickValue = var_675;
+             cycled = true;
+             this.boundMappedToLastCycle = true;
+         }
+@@ -553,7 +554,7 @@
+             currentTickValue += unit;
+ 
+             if (cyclenow) {
+-                currentTickValue = calculateLowestVisibleTickValue();
++                currentTickValue = var_675;
+                 upperValue = cycleBound;
+                 cycled = true;
+                 this.boundMappedToLastCycle = true;

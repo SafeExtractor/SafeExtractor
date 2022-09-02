@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..8232393 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -1876,10 +1876,11 @@
+      * Traverse the scope root and build it.
+      */
+     void build() {
+-      NodeTraversal.traverse(compiler, scope.getRootNode(), this);
++      Node var_1237 = scope.getRootNode();
++	NodeTraversal.traverse(compiler, var_1237, this);
+ 
+       AstFunctionContents contents =
+-          getFunctionAnalysisResults(scope.getRootNode());
++          getFunctionAnalysisResults(var_1237);
+       if (contents != null) {
+         for (String varName : contents.getEscapedVarNames()) {
+           Var v = scope.getVar(varName);

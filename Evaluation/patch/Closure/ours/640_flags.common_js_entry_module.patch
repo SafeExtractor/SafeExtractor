@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/CommandLineRunner.java b/src/com/google/javascript/jscomp/CommandLineRunner.java
+index 2d3b139..7eafc0a 100644
+--- a/src/com/google/javascript/jscomp/CommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/CommandLineRunner.java
+@@ -692,13 +692,14 @@
+     if (flags.process_common_js_modules) {
+       flags.process_closure_primitives = true;
+       flags.manage_closure_dependencies = true;
+-      if (flags.common_js_entry_module == null) {
++      String var_640 = flags.common_js_entry_module;
++	if (var_640 == null) {
+         err.println("Please specify --common_js_entry_module.");
+         err.flush();
+         isConfigValid = false;
+       }
+       flags.closure_entry_point = Lists.newArrayList(
+-          ProcessCommonJSModules.toModuleName(flags.common_js_entry_module));
++          ProcessCommonJSModules.toModuleName(var_640));
+     }
+ 
+     if (!isConfigValid || flags.display_help) {

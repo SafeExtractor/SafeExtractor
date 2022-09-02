@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+index 8d6a50b..f536c50 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+@@ -904,7 +904,8 @@
+ 
+             // choose alpha such that Hk.u = alpha ek
+             double akk   = weightedJacobian[k][pk];
+-            double alpha = (akk > 0) ? -FastMath.sqrt(ak2) : FastMath.sqrt(ak2);
++            double var_3226 = FastMath.sqrt(ak2);
++			double alpha = (akk > 0) ? -var_3226 : var_3226;
+             double betak = 1.0 / (ak2 - akk * alpha);
+             beta[pk]     = betak;
+ 

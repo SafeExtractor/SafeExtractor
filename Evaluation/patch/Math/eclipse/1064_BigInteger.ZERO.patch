@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/fraction/BigFraction.java b/src/main/java/org/apache/commons/math3/fraction/BigFraction.java
+index 4ca33eb..e92e2e4 100644
+--- a/src/main/java/org/apache/commons/math3/fraction/BigFraction.java
++++ b/src/main/java/org/apache/commons/math3/fraction/BigFraction.java
+@@ -120,11 +120,12 @@
+     public BigFraction(BigInteger num, BigInteger den) {
+         MathUtils.checkNotNull(num, LocalizedFormats.NUMERATOR);
+         MathUtils.checkNotNull(den, LocalizedFormats.DENOMINATOR);
+-        if (BigInteger.ZERO.equals(den)) {
++        BigInteger var_1064 = BigInteger.ZERO;
++		if (var_1064.equals(den)) {
+             throw new ZeroException(LocalizedFormats.ZERO_DENOMINATOR);
+         }
+-        if (BigInteger.ZERO.equals(num)) {
+-            numerator   = BigInteger.ZERO;
++        if (var_1064.equals(num)) {
++            numerator   = var_1064;
+             denominator = BigInteger.ONE;
+         } else {
+ 
+@@ -136,7 +137,7 @@
+             }
+ 
+             // move sign to numerator
+-            if (BigInteger.ZERO.compareTo(den) > 0) {
++            if (var_1064.compareTo(den) > 0) {
+                 num = num.negate();
+                 den = den.negate();
+             }

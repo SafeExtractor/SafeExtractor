@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..7fd45d5 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -294,14 +294,15 @@
+     private double smartAdd(double a, double b) {
+         final double _a = FastMath.abs(a);
+         final double _b = FastMath.abs(b);
+-        if (_a > _b) {
+-            final double eps = _a * Precision.EPSILON;
++        double var_3966 = Precision.EPSILON;
++		if (_a > _b) {
++            final double eps = _a * var_3966;
+             if (_b > eps) {
+                 return a + b;
+             }
+             return a;
+         } else {
+-            final double eps = _b * Precision.EPSILON;
++            final double eps = _b * var_3966;
+             if (_a > eps) {
+                 return a + b;
+             }

@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..7b52de9 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -305,20 +305,21 @@
+         Node caseLabel;
+         TernaryValue caseMatches = TernaryValue.TRUE;
+         // Remove cases until you find one that may match
+-        for (cur = cond.getNext(); cur != null; cur = next) {
++        TernaryValue var_787 = TernaryValue.UNKNOWN;
++		for (cur = cond.getNext(); cur != null; cur = next) {
+           next = cur.getNext();
+           caseLabel = cur.getFirstChild();
+           caseMatches = PeepholeFoldConstants.evaluateComparison(
+               Token.SHEQ, cond, caseLabel);
+           if (caseMatches == TernaryValue.TRUE) {
+             break;
+-          } else if (caseMatches == TernaryValue.UNKNOWN) {
++          } else if (caseMatches == var_787) {
+             break;
+           } else {
+             removeCase(n, cur);
+           }
+         }
+-        if (caseMatches != TernaryValue.UNKNOWN) {
++        if (caseMatches != var_787) {
+           Node block, lastStm;
+           // Skip cases until you find one whose last stm is a break
+           while (cur != null) {

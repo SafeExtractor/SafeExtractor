@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java b/src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java
+index fa7d47d..428d387 100644
+--- a/src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java
++++ b/src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java
+@@ -117,13 +117,14 @@
+    * @return The current type of the node if it can be refined, null otherwise.
+    */
+   protected JSType getTypeIfRefinable(Node node, FlowScope scope) {
+-    switch (node.getType()) {
++    JSType var_2459 = node.getJSType();
++	switch (node.getType()) {
+       case Token.NAME:
+         StaticSlot<JSType> nameVar = scope.getSlot(node.getString());
+         if (nameVar != null) {
+           JSType nameVarType = nameVar.getType();
+           if (nameVarType == null) {
+-            nameVarType = node.getJSType();
++            nameVarType = var_2459;
+           }
+           return nameVarType;
+         }
+@@ -140,7 +141,7 @@
+           propVarType = propVar.getType();
+         }
+         if (propVarType == null) {
+-          propVarType = node.getJSType();
++          propVarType = var_2459;
+         }
+         if (propVarType == null) {
+           propVarType = getNativeType(UNKNOWN_TYPE);

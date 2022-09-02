@@ -1,0 +1,55 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYAreaRenderer.java b/source/org/jfree/chart/renderer/xy/XYAreaRenderer.java
+index d05eb2f..eccf59c 100644
+--- a/source/org/jfree/chart/renderer/xy/XYAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYAreaRenderer.java
+@@ -113,6 +113,7 @@
+ import org.jfree.chart.util.GradientPaintTransformer;
+ import org.jfree.chart.util.HashUtilities;
+ import org.jfree.chart.util.PublicCloneable;
++import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.chart.util.SerialUtilities;
+ import org.jfree.chart.util.ShapeUtilities;
+ import org.jfree.chart.util.StandardGradientPaintTransformer;
+@@ -504,8 +505,9 @@
+         }
+         double transX1 = domainAxis.valueToJava2D(x1, dataArea,
+                 plot.getDomainAxisEdge());
+-        double transY1 = rangeAxis.valueToJava2D(y1, dataArea,
+-                plot.getRangeAxisEdge());
++        RectangleEdge var_2946 = plot.getRangeAxisEdge();
++		double transY1 = rangeAxis.valueToJava2D(y1, dataArea,
++                var_2946);
+ 
+         // get the previous point and the next point so we can calculate a
+         // "hot spot" for the area (used by the chart entity)...
+@@ -518,7 +520,7 @@
+         double transX0 = domainAxis.valueToJava2D(x0, dataArea,
+                 plot.getDomainAxisEdge());
+         double transY0 = rangeAxis.valueToJava2D(y0, dataArea,
+-                plot.getRangeAxisEdge());
++                var_2946);
+ 
+         double x2 = dataset.getXValue(series, Math.min(item + 1,
+                 itemCount - 1));
+@@ -530,10 +532,10 @@
+         double transX2 = domainAxis.valueToJava2D(x2, dataArea,
+                 plot.getDomainAxisEdge());
+         double transY2 = rangeAxis.valueToJava2D(y2, dataArea,
+-                plot.getRangeAxisEdge());
++                var_2946);
+ 
+         double transZero = rangeAxis.valueToJava2D(0.0, dataArea,
+-                plot.getRangeAxisEdge());
++                var_2946);
+         Polygon hotspot = null;
+         if (plot.getOrientation() == PlotOrientation.HORIZONTAL) {
+             hotspot = new Polygon();
+@@ -564,7 +566,7 @@
+             areaState.area = new Polygon();
+             // the first point is (x, 0)
+             double zero = rangeAxis.valueToJava2D(0.0, dataArea,
+-                    plot.getRangeAxisEdge());
++                    var_2946);
+             if (plot.getOrientation() == PlotOrientation.VERTICAL) {
+                 areaState.area.addPoint((int) transX1, (int) zero);
+             }

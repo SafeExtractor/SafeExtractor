@@ -1,0 +1,50 @@
+diff --git a/source/org/jfree/chart/renderer/xy/HighLowRenderer.java b/source/org/jfree/chart/renderer/xy/HighLowRenderer.java
+index 878a686..f0b939c 100644
+--- a/source/org/jfree/chart/renderer/xy/HighLowRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/HighLowRenderer.java
+@@ -340,7 +340,8 @@
+         g2.setPaint(itemPaint);
+         g2.setStroke(itemStroke);
+ 
+-        if (dataset instanceof OHLCDataset) {
++        PlotOrientation var_3254 = PlotOrientation.HORIZONTAL;
++		if (dataset instanceof OHLCDataset) {
+             OHLCDataset hld = (OHLCDataset) dataset;
+ 
+             double yHigh = hld.getHighValue(series, item);
+@@ -350,7 +351,7 @@
+                         location);
+                 double yyLow = rangeAxis.valueToJava2D(yLow, dataArea,
+                         location);
+-                if (orientation == PlotOrientation.HORIZONTAL) {
++                if (orientation == var_3254) {
+                     g2.draw(new Line2D.Double(yyLow, xx, yyHigh, xx));
+                     entityArea = new Rectangle2D.Double(Math.min(yyLow, yyHigh),
+                             xx - 1.0, Math.abs(yyHigh - yyLow), 2.0);
+@@ -378,7 +379,7 @@
+                     else {
+                         g2.setPaint(itemPaint);
+                     }
+-                    if (orientation == PlotOrientation.HORIZONTAL) {
++                    if (orientation == var_3254) {
+                         g2.draw(new Line2D.Double(yyOpen, xx + delta, yyOpen,
+                                 xx));
+                     }
+@@ -400,7 +401,7 @@
+                     else {
+                         g2.setPaint(itemPaint);
+                     }
+-                    if (orientation == PlotOrientation.HORIZONTAL) {
++                    if (orientation == var_3254) {
+                         g2.draw(new Line2D.Double(yyClose, xx, yyClose,
+                                 xx - delta));
+                     }
+@@ -426,7 +427,7 @@
+                         plot.getDomainAxisEdge());
+                 double yy0 = rangeAxis.valueToJava2D(y0, dataArea, location);
+                 double yy = rangeAxis.valueToJava2D(y, dataArea, location);
+-                if (orientation == PlotOrientation.HORIZONTAL) {
++                if (orientation == var_3254) {
+                     g2.draw(new Line2D.Double(yy0, xx0, yy, xx));
+                 }
+                 else if (orientation == PlotOrientation.VERTICAL) {

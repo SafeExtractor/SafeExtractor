@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYAreaRenderer2.java b/source/org/jfree/chart/renderer/xy/XYAreaRenderer2.java
+index d34a512..69fe263 100644
+--- a/source/org/jfree/chart/renderer/xy/XYAreaRenderer2.java
++++ b/source/org/jfree/chart/renderer/xy/XYAreaRenderer2.java
+@@ -323,7 +323,8 @@
+         double transZero = rangeAxis.valueToJava2D(0.0, dataArea,
+                 plot.getRangeAxisEdge());
+         Polygon hotspot = null;
+-        if (plot.getOrientation() == PlotOrientation.HORIZONTAL) {
++        PlotOrientation var_2832 = plot.getOrientation();
++		if (var_2832 == PlotOrientation.HORIZONTAL) {
+             hotspot = new Polygon();
+             hotspot.addPoint((int) transZero,
+                     (int) ((transX0 + transX1) / 2.0));
+@@ -348,7 +349,7 @@
+                     (int) transZero);
+         }
+ 
+-        PlotOrientation orientation = plot.getOrientation();
++        PlotOrientation orientation = var_2832;
+         Paint paint = getItemPaint(series, item, selected);
+         Stroke stroke = getItemStroke(series, item, selected);
+         g2.setPaint(paint);

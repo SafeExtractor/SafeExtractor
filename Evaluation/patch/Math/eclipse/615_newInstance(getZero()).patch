@@ -1,0 +1,35 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..fe0095f 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1259,9 +1259,10 @@
+     public Dfp add(final Dfp x) {
+ 
+         // make sure we don't mix number with different precision
+-        if (field.getRadixDigits() != x.field.getRadixDigits()) {
++        Dfp var_615 = newInstance(getZero());
++		if (field.getRadixDigits() != x.field.getRadixDigits()) {
+             field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            final Dfp result = newInstance(getZero());
++            final Dfp result = var_615;
+             result.nans = QNAN;
+             return dotrap(DfpField.FLAG_INVALID, ADD_TRAP, x, result);
+         }
+@@ -1290,7 +1291,7 @@
+ 
+             if (x.nans == INFINITE && nans == INFINITE && sign != x.sign) {
+                 field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-                Dfp result = newInstance(getZero());
++                Dfp result = var_615;
+                 result.nans = QNAN;
+                 result = dotrap(DfpField.FLAG_INVALID, ADD_TRAP, x, result);
+                 return result;
+@@ -1302,7 +1303,7 @@
+         Dfp b = newInstance(x);
+ 
+         /* initialize the result object */
+-        Dfp result = newInstance(getZero());
++        Dfp result = var_615;
+ 
+         /* Make all numbers positive, but remember their sign */
+         final byte asign = a.sign;

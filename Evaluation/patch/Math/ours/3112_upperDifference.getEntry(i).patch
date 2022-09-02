@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..8d5b0a7 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -1435,8 +1435,9 @@
+             for (int i = 0; i < n; i++) {
+                 final double glagValue = glag.getEntry(i);
+                 work1.setEntry(i, ZERO);
+-                if (Math.min(trustRegionCenterOffset.getEntry(i) - lowerDifference.getEntry(i), glagValue) > ZERO ||
+-                    Math.max(trustRegionCenterOffset.getEntry(i) - upperDifference.getEntry(i), glagValue) < ZERO) {
++                double var_3112 = upperDifference.getEntry(i);
++				if (Math.min(trustRegionCenterOffset.getEntry(i) - lowerDifference.getEntry(i), glagValue) > ZERO ||
++                    Math.max(trustRegionCenterOffset.getEntry(i) - var_3112, glagValue) < ZERO) {
+                     work1.setEntry(i, bigstp);
+                     // Computing 2nd power
+                     ggfree += glagValue * glagValue;

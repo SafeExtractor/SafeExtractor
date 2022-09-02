@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..9e5a9a7 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -1323,9 +1323,10 @@
+                 boolean namesMatch = firstClause.isName()
+                     && lValue.isName()
+                     && firstClause.getString().equals(lValue.getString());
+-                if (namesMatch && secondClause.getJSType() != null
+-                    && !secondClause.getJSType().isUnknownType()) {
+-                  return secondClause.getJSType();
++                JSType var_1226 = secondClause.getJSType();
++				if (namesMatch && var_1226 != null
++                    && !var_1226.isUnknownType()) {
++                  return var_1226;
+                 }
+               }
+             }

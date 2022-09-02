@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..cd936ce 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1514,7 +1514,8 @@
+         Dfp result = newInstance(getZero());
+ 
+         /* handle special cases */
+-        if (nans != FINITE || x.nans != FINITE) {
++        int[] var_639 = x.mant;
++		if (nans != FINITE || x.nans != FINITE) {
+             if (isNaN()) {
+                 return this;
+             }
+@@ -1523,7 +1524,7 @@
+                 return x;
+             }
+ 
+-            if (nans == INFINITE && x.nans == FINITE && x.mant[mant.length-1] != 0) {
++            if (nans == INFINITE && x.nans == FINITE && var_639[mant.length-1] != 0) {
+                 result = newInstance(this);
+                 result.sign = (byte) (sign * x.sign);
+                 return result;
+@@ -1542,7 +1543,7 @@
+             }
+ 
+             if ( (x.nans == INFINITE && nans == FINITE && mant[mant.length-1] == 0) ||
+-                    (nans == INFINITE && x.nans == FINITE && x.mant[mant.length-1] == 0) ) {
++                    (nans == INFINITE && x.nans == FINITE && var_639[mant.length-1] == 0) ) {
+                 field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+                 result = newInstance(getZero());
+                 result.nans = QNAN;
+@@ -1556,7 +1557,7 @@
+         for (int i = 0; i < mant.length; i++) {
+             int rh = 0;  // acts as a carry
+             for (int j=0; j<mant.length; j++) {
+-                int r = mant[i] * x.mant[j];    // multiply the 2 digits
++                int r = mant[i] * var_639[j];    // multiply the 2 digits
+                 r = r + product[i+j] + rh;  // add to the product digit with carry in
+ 
+                 rh = r / RADIX;

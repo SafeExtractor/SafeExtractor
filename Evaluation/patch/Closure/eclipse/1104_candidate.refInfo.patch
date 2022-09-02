@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/InlineVariables.java b/src/com/google/javascript/jscomp/InlineVariables.java
+index 5c7408d..0be8b14 100644
+--- a/src/com/google/javascript/jscomp/InlineVariables.java
++++ b/src/com/google/javascript/jscomp/InlineVariables.java
+@@ -309,12 +309,13 @@
+             if (!staleVars.contains(candidate.alias) &&
+                 !isVarInlineForbidden(candidate.alias)) {
+               Reference aliasInit;
+-              aliasInit = candidate.refInfo.getInitializingReference();
++              ReferenceCollection var_1104 = candidate.refInfo;
++			aliasInit = var_1104.getInitializingReference();
+               Node value = aliasInit.getAssignedValue();
+               Preconditions.checkNotNull(value);
+               inlineWellDefinedVariable(candidate.alias,
+                   value,
+-                  candidate.refInfo.references);
++                  var_1104.references);
+               staleVars.add(candidate.alias);
+             }
+           }

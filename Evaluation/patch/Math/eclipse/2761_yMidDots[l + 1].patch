@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+index ed2ddda..12d6e9d 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+@@ -811,8 +811,9 @@
+           final int l2 = l / 2;
+           double factor = FastMath.pow(0.5 * sequence[l2], l);
+           int middleIndex = fk[l2].length / 2;
+-          for (int i = 0; i < y0.length; ++i) {
+-            yMidDots[l+1][i] = factor * fk[l2][middleIndex + l][i];
++          double[] var_2761 = yMidDots[l+1];
++		for (int i = 0; i < y0.length; ++i) {
++            var_2761[i] = factor * fk[l2][middleIndex + l][i];
+           }
+           for (int j = 1; j <= k - l2; ++j) {
+             factor = FastMath.pow(0.5 * sequence[j + l2], l);
+@@ -820,10 +821,10 @@
+             for (int i = 0; i < y0.length; ++i) {
+               diagonal[j-1][i] = factor * fk[l2+j][middleIndex+l][i];
+             }
+-            extrapolate(l2, j, diagonal, yMidDots[l+1]);
++            extrapolate(l2, j, diagonal, var_2761);
+           }
+           for (int i = 0; i < y0.length; ++i) {
+-            yMidDots[l+1][i] *= stepSize;
++            var_2761[i] *= stepSize;
+           }
+ 
+           // compute centered differences to evaluate next derivatives

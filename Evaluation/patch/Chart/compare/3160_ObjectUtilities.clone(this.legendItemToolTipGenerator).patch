@@ -1,0 +1,35 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3160_ObjectUtilities.clone(this.legendItemToolTipGenerator).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/3160_ObjectUtilities.clone(this.legendItemToolTipGenerator).patch
+index 47cf4a7..9a5e36a 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3160_ObjectUtilities.clone(this.legendItemToolTipGenerator).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/3160_ObjectUtilities.clone(this.legendItemToolTipGenerator).patch
+@@ -1,25 +1,15 @@
+ diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+-index a558724..6cf65d3 100644
++index a558724..650cb7d 100644
+ --- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+ +++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+-@@ -1753,9 +1753,10 @@
+-             clone.legendItemLabelGenerator = (XYSeriesLabelGenerator)
++@@ -1754,8 +1754,9 @@
+                      ObjectUtilities.clone(this.legendItemLabelGenerator);
+          }
+--        if (clone.legendItemToolTipGenerator instanceof PublicCloneable) {
+-+        Object var_3160 = ObjectUtilities.clone(this.legendItemToolTipGenerator);
+-+		if (clone.legendItemToolTipGenerator instanceof PublicCloneable) {
+-             clone.legendItemToolTipGenerator = (XYSeriesLabelGenerator)
+--                    ObjectUtilities.clone(this.legendItemToolTipGenerator);
+-+                    var_3160;
+-         }
+-         if (clone.legendItemURLGenerator instanceof PublicCloneable) {
+-             clone.legendItemURLGenerator = (XYSeriesLabelGenerator)
+-@@ -1773,7 +1774,7 @@
+-         }
+          if (clone.legendItemToolTipGenerator instanceof PublicCloneable) {
+-             clone.legendItemToolTipGenerator = (XYSeriesLabelGenerator)
++-            clone.legendItemToolTipGenerator = (XYSeriesLabelGenerator)
+ -                    ObjectUtilities.clone(this.legendItemToolTipGenerator);
+++            Object var_3160 = ObjectUtilities.clone(this.legendItemToolTipGenerator);
+++			clone.legendItemToolTipGenerator = (XYSeriesLabelGenerator)
+ +                    var_3160;
+          }
+          if (clone.legendItemURLGenerator instanceof PublicCloneable) {

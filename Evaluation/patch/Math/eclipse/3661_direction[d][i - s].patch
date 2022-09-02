@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/random/SobolSequenceGenerator.java b/src/main/java/org/apache/commons/math3/random/SobolSequenceGenerator.java
+index a8ed30a..f28a69d 100644
+--- a/src/main/java/org/apache/commons/math3/random/SobolSequenceGenerator.java
++++ b/src/main/java/org/apache/commons/math3/random/SobolSequenceGenerator.java
+@@ -247,7 +247,8 @@
+             direction[d][i] = ((long) m[i]) << (BITS - i);
+         }
+         for (int i = s + 1; i <= BITS; i++) {
+-            direction[d][i] = direction[d][i - s] ^ (direction[d][i - s] >> s);
++            long var_3661 = direction[d][i - s];
++			direction[d][i] = var_3661 ^ (var_3661 >> s);
+             for (int k = 1; k <= s - 1; k++) {
+                 direction[d][i] ^= ((a >> (s - 1 - k)) & 1) * direction[d][i - k];
+             }

@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+index 4a54655..b6a03c1 100644
+--- a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
++++ b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+@@ -1183,7 +1183,8 @@
+                                 Marker marker,
+                                 Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        PlotOrientation var_2482 = PlotOrientation.VERTICAL;
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = axis.getRange();
+@@ -1204,7 +1205,7 @@
+                 line = new Line2D.Double(v, dataArea.getMinY(), v,
+                         dataArea.getMaxY());
+             }
+-            else if (orientation == PlotOrientation.VERTICAL) {
++            else if (orientation == var_2482) {
+                 line = new Line2D.Double(dataArea.getMinX(), v,
+                         dataArea.getMaxX(), v);
+             }
+@@ -1259,7 +1260,7 @@
+                         dataArea.getMinY(), high - low,
+                         dataArea.getHeight());
+             }
+-            else if (orientation == PlotOrientation.VERTICAL) {
++            else if (orientation == var_2482) {
+                 // clip top and bottom bounds to data area
+                 low = Math.max(low, dataArea.getMinY());
+                 high = Math.min(high, dataArea.getMaxY());
+@@ -1283,7 +1284,7 @@
+ 
+             // now draw the outlines, if visible...
+             if (im.getOutlinePaint() != null && im.getOutlineStroke() != null) {
+-                if (orientation == PlotOrientation.VERTICAL) {
++                if (orientation == var_2482) {
+                     Line2D line = new Line2D.Double();
+                     double x0 = dataArea.getMinX();
+                     double x1 = dataArea.getMaxX();

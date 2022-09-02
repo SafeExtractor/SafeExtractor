@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java
+index 5371054..f6548e8 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java
+@@ -624,10 +624,11 @@
+         if ((dot.getReal() < -threshold) || (dot.getReal() > threshold)) {
+             // the vectors are almost aligned, compute using the sine
+             FieldVector3D<T> v3 = crossProduct(v1, v2);
+-            if (dot.getReal() >= 0) {
+-                return v3.getNorm().divide(normProduct).asin();
++            T var_1498 = v3.getNorm();
++			if (dot.getReal() >= 0) {
++                return var_1498.divide(normProduct).asin();
+             }
+-            return v3.getNorm().divide(normProduct).asin().subtract(FastMath.PI).negate();
++            return var_1498.divide(normProduct).asin().subtract(FastMath.PI).negate();
+         }
+ 
+         // the vectors are sufficiently separated to use the cosine

@@ -1,0 +1,50 @@
+diff --git a/src/com/google/javascript/jscomp/VariableReferenceCheck.java b/src/com/google/javascript/jscomp/VariableReferenceCheck.java
+index c934263..0461ed9 100644
+--- a/src/com/google/javascript/jscomp/VariableReferenceCheck.java
++++ b/src/com/google/javascript/jscomp/VariableReferenceCheck.java
+@@ -131,7 +131,8 @@
+         boolean allowDupe =
+             SyntacticScopeCreator.hasDuplicateDeclarationSuppression(
+                 reference.getNode(), v);
+-        if (isDeclaration && !allowDupe) {
++        String var_225 = v.name;
++		if (isDeclaration && !allowDupe) {
+           // Look through all the declarations we've found so far, and
+           // check if any of them are before this block.
+           for (BasicBlock declaredBlock : blocksWithDeclarations) {
+@@ -145,7 +146,7 @@
+                   JSError.make(filename,
+                       reference.getNode(),
+                       checkLevel,
+-                      REDECLARED_VARIABLE, v.name));
++                      REDECLARED_VARIABLE, var_225));
+               break;
+             }
+           }
+@@ -160,7 +161,7 @@
+               compiler.report(
+                   JSError.make(filename,
+                       reference.getNode(),
+-                      AMBIGUOUS_FUNCTION_DECL, v.name));
++                      AMBIGUOUS_FUNCTION_DECL, var_225));
+               break;
+             }
+           }
+@@ -172,7 +173,7 @@
+             // Special case to deal with var goog = goog || {}
+             Node grandparent = reference.getGrandparent();
+             if (grandparent.isName()
+-                && grandparent.getString() == v.name) {
++                && grandparent.getString() == var_225) {
+               continue;
+             }
+ 
+@@ -184,7 +185,7 @@
+                   JSError.make(filename,
+                                reference.getNode(),
+                                checkLevel,
+-                               UNDECLARED_REFERENCE, v.name));
++                               UNDECLARED_REFERENCE, var_225));
+             }
+           }
+         }

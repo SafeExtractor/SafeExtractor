@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..bab989c 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -1342,8 +1342,9 @@
+    * @return false if the all type was encountered, else true.
+    */
+   private boolean getSubTypes(FunctionType type, Set<ConcreteType> set) {
+-    if (type.getSubTypes() != null) {
+-      for (FunctionType sub : type.getSubTypes()) {
++    List<FunctionType> var_1083 = type.getSubTypes();
++	if (var_1083 != null) {
++      for (FunctionType sub : var_1083) {
+         ConcreteType concrete = createType(sub);
+         if (concrete.isFunction()
+             && concrete.toFunction().getInstanceType() != null) {

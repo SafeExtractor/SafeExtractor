@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..f589077 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -502,8 +502,9 @@
+       updateObjLitOrFunctionDeclaration(n, alias, canCollapseChildNames);
+     }
+ 
+-    if (n.props != null) {
+-      for (Name p : n.props) {
++    List<Name> var_726 = n.props;
++	if (var_726 != null) {
++      for (Name p : var_726) {
+         // Recurse first so that saved node ancestries are intact when needed.
+         collapseDeclarationOfNameAndDescendants(
+             p, appendPropForAlias(alias, p.getBaseName()));

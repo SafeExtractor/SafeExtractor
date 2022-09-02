@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/ExportTestFunctions.java b/src/com/google/javascript/jscomp/ExportTestFunctions.java
+index 4bfceee..88fb9c0 100644
+--- a/src/com/google/javascript/jscomp/ExportTestFunctions.java
++++ b/src/com/google/javascript/jscomp/ExportTestFunctions.java
+@@ -118,8 +118,9 @@
+   private void exportTestFunctionAsSymbol(String testFunctionName, Node node,
+       Node scriptNode) {
+ 
+-    Node exportCallTarget = NodeUtil.newQualifiedNameNode(
+-        compiler.getCodingConvention(),
++    CodingConvention var_1699 = compiler.getCodingConvention();
++	Node exportCallTarget = NodeUtil.newQualifiedNameNode(
++        var_1699,
+         exportSymbolFunction, node, testFunctionName);
+     Node call = IR.call( exportCallTarget);
+     if (exportCallTarget.isName()) {
+@@ -127,7 +128,7 @@
+     }
+     call.addChildToBack(IR.string(testFunctionName));
+     call.addChildToBack(NodeUtil.newQualifiedNameNode(
+-        compiler.getCodingConvention(),
++        var_1699,
+         testFunctionName, node, testFunctionName));
+ 
+     Node expression = IR.exprResult(call);

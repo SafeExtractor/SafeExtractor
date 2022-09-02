@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..c158644 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -822,8 +822,9 @@
+                           final double[] result, final int resultOffset) {
+ 
+         // compute k such that lhs % rhs = lhs - k rhs
+-        final double rem = FastMath.IEEEremainder(lhs[lhsOffset], rhs[rhsOffset]);
+-        final double k   = FastMath.rint((lhs[lhsOffset] - rem) / rhs[rhsOffset]);
++        double var_110 = rhs[rhsOffset];
++		final double rem = FastMath.IEEEremainder(lhs[lhsOffset], var_110);
++        final double k   = FastMath.rint((lhs[lhsOffset] - rem) / var_110);
+ 
+         // set up value
+         result[resultOffset] = rem;

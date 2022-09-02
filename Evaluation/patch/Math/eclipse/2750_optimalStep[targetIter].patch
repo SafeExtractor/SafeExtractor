@@ -1,0 +1,50 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+index ed2ddda..d0e7827 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+@@ -656,7 +656,8 @@
+ 
+       // iterate over several substep sizes
+       int k = -1;
+-      for (boolean loop = true; loop; ) {
++      double var_2750 = optimalStep[targetIter];
++	for (boolean loop = true; loop; ) {
+ 
+         ++k;
+ 
+@@ -733,7 +734,7 @@
+                            orderControl1 * costPerTimeUnit[targetIter])) {
+                         --targetIter;
+                       }
+-                      hNew = optimalStep[targetIter];
++                      hNew = var_2750;
+                     }
+                   }
+                 }
+@@ -758,7 +759,7 @@
+                          orderControl1 * costPerTimeUnit[targetIter])) {
+                       --targetIter;
+                     }
+-                    hNew = optimalStep[targetIter];
++                    hNew = var_2750;
+                   }
+                 }
+                 break;
+@@ -771,7 +772,7 @@
+                        orderControl1 * costPerTimeUnit[targetIter])) {
+                     --targetIter;
+                   }
+-                  hNew = optimalStep[targetIter];
++                  hNew = var_2750;
+                 }
+                 loop = false;
+                 break;
+@@ -899,7 +900,7 @@
+           // after a rejected step neither order nor stepsize
+           // should increase
+           targetIter = FastMath.min(optimalIter, k);
+-          hNew = FastMath.min(FastMath.abs(stepSize), optimalStep[targetIter]);
++          hNew = FastMath.min(FastMath.abs(stepSize), var_2750);
+         } else {
+           // stepsize control
+           if (optimalIter <= k) {

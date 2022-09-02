@@ -1,0 +1,42 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYAreaRenderer2.java b/source/org/jfree/chart/renderer/xy/XYAreaRenderer2.java
+index d34a512..ce6b4bf 100644
+--- a/source/org/jfree/chart/renderer/xy/XYAreaRenderer2.java
++++ b/source/org/jfree/chart/renderer/xy/XYAreaRenderer2.java
+@@ -105,6 +105,7 @@
+ import org.jfree.chart.plot.XYPlot;
+ import org.jfree.chart.urls.XYURLGenerator;
+ import org.jfree.chart.util.PublicCloneable;
++import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.chart.util.SerialUtilities;
+ import org.jfree.chart.util.ShapeUtilities;
+ import org.jfree.data.xy.XYDataset;
+@@ -290,8 +291,9 @@
+             y1 = 0.0;
+         }
+ 
+-        double transX1 = domainAxis.valueToJava2D(x1, dataArea,
+-                plot.getDomainAxisEdge());
++        RectangleEdge var_2831 = plot.getDomainAxisEdge();
++		double transX1 = domainAxis.valueToJava2D(x1, dataArea,
++                var_2831);
+         double transY1 = rangeAxis.valueToJava2D(y1, dataArea,
+                 plot.getRangeAxisEdge());
+ 
+@@ -303,7 +305,7 @@
+             y0 = 0.0;
+         }
+         double transX0 = domainAxis.valueToJava2D(x0, dataArea,
+-                plot.getDomainAxisEdge());
++                var_2831);
+         double transY0 = rangeAxis.valueToJava2D(y0, dataArea,
+                 plot.getRangeAxisEdge());
+ 
+@@ -316,7 +318,7 @@
+             y2 = 0.0;
+         }
+         double transX2 = domainAxis.valueToJava2D(x2, dataArea,
+-                plot.getDomainAxisEdge());
++                var_2831);
+         double transY2 = rangeAxis.valueToJava2D(y2, dataArea,
+                 plot.getRangeAxisEdge());
+ 

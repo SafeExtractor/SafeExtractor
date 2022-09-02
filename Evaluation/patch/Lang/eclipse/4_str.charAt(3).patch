@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/lang3/LocaleUtils.java b/src/main/java/org/apache/commons/lang3/LocaleUtils.java
+index 7be8730..85e8795 100644
+--- a/src/main/java/org/apache/commons/lang3/LocaleUtils.java
++++ b/src/main/java/org/apache/commons/lang3/LocaleUtils.java
+@@ -97,7 +97,8 @@
+             throw new IllegalArgumentException("Invalid locale format: " + str);
+         }
+         final char ch0 = str.charAt(0);
+-        if (ch0 == '_') {
++        char var_4 = str.charAt(3);
++		if (ch0 == '_') {
+             if (len < 3) {
+                 throw new IllegalArgumentException("Invalid locale format: " + str);
+             }
+@@ -112,7 +113,7 @@
+             if (len < 5) {
+                 throw new IllegalArgumentException("Invalid locale format: " + str);
+             }
+-            if (str.charAt(3) != '_') {
++            if (var_4 != '_') {
+                 throw new IllegalArgumentException("Invalid locale format: " + str);
+             }
+             return new Locale("", str.substring(1, 3), str.substring(4));
+@@ -130,7 +131,7 @@
+         if (str.charAt(2) != '_') {
+             throw new IllegalArgumentException("Invalid locale format: " + str);
+         }
+-        final char ch3 = str.charAt(3);
++        final char ch3 = var_4;
+         if (ch3 == '_') {
+             return new Locale(str.substring(0, 2), "", str.substring(4));
+         }

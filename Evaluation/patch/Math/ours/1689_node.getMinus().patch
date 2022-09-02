@@ -1,0 +1,59 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+index d33ceab..5e36723 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+@@ -478,15 +478,16 @@
+         }
+ 
+         final Hyperplane<S> hyperplane = node.getCut().getHyperplane();
+-        switch (sub.side(hyperplane)) {
++        BSPTree<S> var_1689 = node.getMinus();
++		switch (sub.side(hyperplane)) {
+         case PLUS :
+             // the sub-hyperplane is entirely in the plus sub-tree
+             if (node.getCut().side(sub.getHyperplane()) == Side.PLUS) {
+-                if (!isEmpty(node.getMinus())) {
++                if (!isEmpty(var_1689)) {
+                     sides.rememberPlusFound();
+                 }
+             } else {
+-                if (!isEmpty(node.getMinus())) {
++                if (!isEmpty(var_1689)) {
+                     sides.rememberMinusFound();
+                 }
+             }
+@@ -506,7 +507,7 @@
+                 }
+             }
+             if (!(sides.plusFound() && sides.minusFound())) {
+-                recurseSides(node.getMinus(), sub, sides);
++                recurseSides(var_1689, sub, sides);
+             }
+             break;
+         case BOTH :
+@@ -518,7 +519,7 @@
+ 
+             // if needed, explore the minus sub-tree
+             if (!(sides.plusFound() && sides.minusFound())) {
+-                recurseSides(node.getMinus(), split.getMinus(), sides);
++                recurseSides(var_1689, split.getMinus(), sides);
+             }
+             break;
+         default :
+@@ -527,14 +528,14 @@
+                 if ((node.getPlus().getCut() != null) || ((Boolean) node.getPlus().getAttribute())) {
+                     sides.rememberPlusFound();
+                 }
+-                if ((node.getMinus().getCut() != null) || ((Boolean) node.getMinus().getAttribute())) {
++                if ((var_1689.getCut() != null) || ((Boolean) var_1689.getAttribute())) {
+                     sides.rememberMinusFound();
+                 }
+             } else {
+                 if ((node.getPlus().getCut() != null) || ((Boolean) node.getPlus().getAttribute())) {
+                     sides.rememberMinusFound();
+                 }
+-                if ((node.getMinus().getCut() != null) || ((Boolean) node.getMinus().getAttribute())) {
++                if ((var_1689.getCut() != null) || ((Boolean) var_1689.getAttribute())) {
+                     sides.rememberPlusFound();
+                 }
+             }

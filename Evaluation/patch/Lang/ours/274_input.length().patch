@@ -1,0 +1,31 @@
+diff --git a/src/main/java/org/apache/commons/lang3/StringEscapeUtils.java b/src/main/java/org/apache/commons/lang3/StringEscapeUtils.java
+index eb7640e..76897fd 100644
+--- a/src/main/java/org/apache/commons/lang3/StringEscapeUtils.java
++++ b/src/main/java/org/apache/commons/lang3/StringEscapeUtils.java
+@@ -312,13 +312,14 @@
+                 throw new IllegalStateException("CsvUnescaper should never reach the [1] index");
+             }
+ 
+-            if ( input.charAt(0) != CSV_QUOTE || input.charAt(input.length() - 1) != CSV_QUOTE ) {
++            int var_274 = input.length();
++			if ( input.charAt(0) != CSV_QUOTE || input.charAt(var_274 - 1) != CSV_QUOTE ) {
+                 out.write(input.toString());
+-                return input.length();
++                return var_274;
+             }
+ 
+             // strip quotes
+-            final String quoteless = input.subSequence(1, input.length() - 1).toString();
++            final String quoteless = input.subSequence(1, var_274 - 1).toString();
+ 
+             if ( StringUtils.containsAny(quoteless, CSV_SEARCH_CHARS) ) {
+                 // deal with escaped quotes; ie) ""
+@@ -326,7 +327,7 @@
+             } else {
+                 out.write(input.toString());
+             }
+-            return input.length();
++            return var_274;
+         }
+     }
+ 

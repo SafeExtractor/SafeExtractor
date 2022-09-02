@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java
+index aca170e..296cf81 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java
+@@ -580,11 +580,12 @@
+             for (BSPTree<S> tree = this; tree.parent != null; tree = tree.parent) {
+ 
+                 // this is an hyperplane of some parent node
+-                final Hyperplane<S> hyperplane = tree.parent.cut.getHyperplane();
++                BSPTree<S> var_1733 = tree.parent;
++				final Hyperplane<S> hyperplane = var_1733.cut.getHyperplane();
+ 
+                 // chop off the parts of the inserted tree that extend
+                 // on the wrong side of this parent hyperplane
+-                if (tree == tree.parent.plus) {
++                if (tree == var_1733.plus) {
+                     cut = cut.split(hyperplane).getPlus();
+                     plus.chopOffMinus(hyperplane);
+                     minus.chopOffMinus(hyperplane);

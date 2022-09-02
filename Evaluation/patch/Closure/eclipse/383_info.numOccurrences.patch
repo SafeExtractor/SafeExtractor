@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/AliasStrings.java b/src/com/google/javascript/jscomp/AliasStrings.java
+index 437c030..b46aa17 100644
+--- a/src/com/google/javascript/jscomp/AliasStrings.java
++++ b/src/com/google/javascript/jscomp/AliasStrings.java
+@@ -277,7 +277,8 @@
+     // Optimize for application performance.  If there are any uses of the
+     // string that are not 'infrequent uses', assume they are frequent and
+     // create an alias.
+-    if (info.numOccurrences > info.numOccurrencesInfrequentlyExecuted) {
++    int var_383 = info.numOccurrences;
++	if (var_383 > info.numOccurrencesInfrequentlyExecuted) {
+       return true;
+     }
+ 
+@@ -293,11 +294,11 @@
+     // strings more than 32k apart.
+ 
+     int sizeOfLiteral = 2 + str.length();
+-    int sizeOfStrings = info.numOccurrences * sizeOfLiteral;
++    int sizeOfStrings = var_383 * sizeOfLiteral;
+     int sizeOfVariable = 3;
+     //  '6' comes from: 'var =;' in var XXX="...";
+     int sizeOfAliases = 6 + sizeOfVariable + sizeOfLiteral    // declaration
+-        + info.numOccurrences * sizeOfVariable;               // + uses
++        + var_383 * sizeOfVariable;               // + uses
+ 
+     return sizeOfAliases < sizeOfStrings;
+   }

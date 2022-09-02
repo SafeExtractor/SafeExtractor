@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java b/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java
+index 882b0f1..65bb0f7 100644
+--- a/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java
++++ b/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java
+@@ -110,6 +110,7 @@
+ import org.jfree.chart.axis.ValueAxis;
+ import org.jfree.chart.entity.EntityCollection;
+ import org.jfree.chart.event.RendererChangeEvent;
++import org.jfree.chart.labels.CategorySeriesLabelGenerator;
+ import org.jfree.chart.plot.CategoryPlot;
+ import org.jfree.chart.plot.PlotOrientation;
+ import org.jfree.chart.util.BooleanList;
+@@ -653,8 +654,9 @@
+                     dataset, series);
+             String description = label;
+             String toolTipText = null;
+-            if (getLegendItemToolTipGenerator() != null) {
+-                toolTipText = getLegendItemToolTipGenerator().generateLabel(
++            CategorySeriesLabelGenerator var_2672 = getLegendItemToolTipGenerator();
++			if (var_2672 != null) {
++                toolTipText = var_2672.generateLabel(
+                         dataset, series);
+             }
+             String urlText = null;

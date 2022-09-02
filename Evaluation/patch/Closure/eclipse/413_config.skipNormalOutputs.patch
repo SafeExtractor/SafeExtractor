@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..c9b7c29 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -292,19 +292,20 @@
+     outputCharset2 = getOutputCharset2();
+     inputCharset = getInputCharset();
+ 
+-    if (config.jsOutputFile.length() > 0) {
+-      if (config.skipNormalOutputs) {
++    boolean var_413 = config.skipNormalOutputs;
++	if (config.jsOutputFile.length() > 0) {
++      if (var_413) {
+         throw new FlagUsageException("skip_normal_outputs and js_output_file"
+             + " cannot be used together.");
+       }
+     }
+ 
+-    if (config.skipNormalOutputs && config.printAst) {
++    if (var_413 && config.printAst) {
+       throw new FlagUsageException("skip_normal_outputs and print_ast cannot"
+           + " be used together.");
+     }
+ 
+-    if (config.skipNormalOutputs && config.printTree) {
++    if (var_413 && config.printTree) {
+       throw new FlagUsageException("skip_normal_outputs and print_tree cannot"
+           + " be used together.");
+     }

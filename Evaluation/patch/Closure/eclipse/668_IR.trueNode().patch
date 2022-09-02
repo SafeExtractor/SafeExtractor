@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/InlineObjectLiterals.java b/src/com/google/javascript/jscomp/InlineObjectLiterals.java
+index d03988c..0cd7409 100644
+--- a/src/com/google/javascript/jscomp/InlineObjectLiterals.java
++++ b/src/com/google/javascript/jscomp/InlineObjectLiterals.java
+@@ -357,12 +357,13 @@
+       }
+ 
+       Node replacement;
+-      if (nodes.isEmpty()) {
+-        replacement = IR.trueNode();
++      Node var_668 = IR.trueNode();
++	if (nodes.isEmpty()) {
++        replacement = var_668;
+       } else {
+         // All assignments evaluate to true, so make sure that the
+         // expr statement evaluates to true in case it matters.
+-        nodes.add(IR.trueNode());
++        nodes.add(var_668);
+ 
+         // Join these using COMMA.  A COMMA node must have 2 children, so we
+         // create a tree. In the tree the first child be the COMMA to match

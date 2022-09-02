@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+index 104bdf5..21c7b24 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+@@ -875,7 +875,8 @@
+                     .subtract(Cneg.scalarMultiply(negccov));
+             } else {
+                 // Adapt covariance matrix C - nonactive
+-                C = C.scalarMultiply(oldFac) // regard old matrix
++                RealMatrix var_3268 = C.scalarMultiply(oldFac);
++				C = var_3268 // regard old matrix
+                     .add(roneu) // plus rank one update
+                     .add(arpos.scalarMultiply(ccovmu) // plus rank mu update
+                          .multiply(times(repmat(weights, 1, dimension),

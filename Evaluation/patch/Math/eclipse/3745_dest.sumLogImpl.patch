@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java b/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
+index 3e7fff7..421ba83 100644
+--- a/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
++++ b/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
+@@ -691,8 +691,9 @@
+         } else {
+             dest.meanImpl = source.meanImpl.copy();
+         }
+-        if (source.getGeoMeanImpl() instanceof GeometricMean) {
+-            dest.geoMeanImpl = new GeometricMean((SumOfLogs) dest.sumLogImpl);
++        StorelessUnivariateStatistic var_3745 = dest.sumLogImpl;
++		if (source.getGeoMeanImpl() instanceof GeometricMean) {
++            dest.geoMeanImpl = new GeometricMean((SumOfLogs) var_3745);
+         } else {
+             dest.geoMeanImpl = source.geoMeanImpl.copy();
+         }
+@@ -730,7 +731,7 @@
+             Variance.copy(source.variance, dest.variance);
+         }
+         if (source.sumLog == source.sumLogImpl) {
+-            dest.sumLog = (SumOfLogs) dest.sumLogImpl;
++            dest.sumLog = (SumOfLogs) var_3745;
+         } else {
+             SumOfLogs.copy(source.sumLog, dest.sumLog);
+         }

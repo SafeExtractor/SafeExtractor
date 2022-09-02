@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java b/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java
+index 6016825..e67bee9 100644
+--- a/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java
+@@ -104,8 +104,9 @@
+                 final double[] hK = householderVectors[k - 1];
+                 qta[k][k] = 1;
+                 if (hK[k] != 0.0) {
+-                    final double inv = 1.0 / (secondary[k - 1] * hK[k]);
+-                    double beta = 1.0 / secondary[k - 1];
++                    double var_1860 = secondary[k - 1];
++					final double inv = 1.0 / (var_1860 * hK[k]);
++                    double beta = 1.0 / var_1860;
+                     qta[k][k] = 1 + beta * hK[k];
+                     for (int i = k + 1; i < m; ++i) {
+                         qta[k][i] = beta * hK[i];

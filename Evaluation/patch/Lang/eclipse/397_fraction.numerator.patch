@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/lang3/math/Fraction.java b/src/main/java/org/apache/commons/lang3/math/Fraction.java
+index a722ffe..dfc8e08 100644
+--- a/src/main/java/org/apache/commons/lang3/math/Fraction.java
++++ b/src/main/java/org/apache/commons/lang3/math/Fraction.java
+@@ -745,7 +745,8 @@
+         if (numerator == 0) {
+             return isAdd ? fraction : fraction.negate();
+         }
+-        if (fraction.numerator == 0) {
++        int var_397 = fraction.numerator;
++		if (var_397 == 0) {
+             return this;
+         }     
+         // if denominators are randomly distributed, d1 will be 1 about 61%
+@@ -754,7 +755,7 @@
+         if (d1==1) {
+             // result is ( (u*v' +/- u'v) / u'v')
+             final int uvp = mulAndCheck(numerator, fraction.denominator);
+-            final int upv = mulAndCheck(fraction.numerator, denominator);
++            final int upv = mulAndCheck(var_397, denominator);
+             return new Fraction
+                 (isAdd ? addAndCheck(uvp, upv) : subAndCheck(uvp, upv),
+                  mulPosAndCheck(denominator, fraction.denominator));
+@@ -764,7 +765,7 @@
+         // t = u(v'/d1) +/- v(u'/d1)
+         final BigInteger uvp = BigInteger.valueOf(numerator)
+             .multiply(BigInteger.valueOf(fraction.denominator/d1));
+-        final BigInteger upv = BigInteger.valueOf(fraction.numerator)
++        final BigInteger upv = BigInteger.valueOf(var_397)
+             .multiply(BigInteger.valueOf(denominator/d1));
+         final BigInteger t = isAdd ? uvp.add(upv) : uvp.subtract(upv);
+         // but d2 doesn't need extra precision because

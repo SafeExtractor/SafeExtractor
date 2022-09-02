@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..6fa84f9 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -613,11 +613,12 @@
+    */
+   private Node getSimpleAssignmentName(Node n) {
+     Preconditions.checkState(isSimpleAssignment(n));
+-    if (NodeUtil.isExprAssign(n)) {
+-      return n.getFirstChild().getFirstChild();
++    Node var_797 = n.getFirstChild();
++	if (NodeUtil.isExprAssign(n)) {
++      return var_797.getFirstChild();
+     } else {
+       // A var declaration.
+-      return n.getFirstChild();
++      return var_797;
+     }
+   }
+ 

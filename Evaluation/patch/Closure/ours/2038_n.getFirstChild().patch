@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..e35b344 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -270,7 +270,8 @@
+    * <code>Number()</code> JavaScript cast function.
+    */
+   static Double getNumberValue(Node n) {
+-    switch (n.getType()) {
++    Node var_2038 = n.getFirstChild();
++	switch (n.getType()) {
+       case Token.TRUE:
+         return 1.0;
+ 
+@@ -282,7 +283,7 @@
+         return n.getDouble();
+ 
+       case Token.VOID:
+-        if (mayHaveSideEffects(n.getFirstChild())) {
++        if (mayHaveSideEffects(var_2038)) {
+           return null;
+         } else {
+           return Double.NaN;
+@@ -303,14 +304,14 @@
+         return null;
+ 
+       case Token.NEG:
+-        if (n.getChildCount() == 1 && n.getFirstChild().isName()
+-            && n.getFirstChild().getString().equals("Infinity")) {
++        if (n.getChildCount() == 1 && var_2038.isName()
++            && var_2038.getString().equals("Infinity")) {
+           return Double.NEGATIVE_INFINITY;
+         }
+         return null;
+ 
+       case Token.NOT:
+-        TernaryValue child = getPureBooleanValue(n.getFirstChild());
++        TernaryValue child = getPureBooleanValue(var_2038);
+         if (child != TernaryValue.UNKNOWN) {
+           return child.toBoolean(true) ? 0.0 : 1.0; // reversed.
+         }

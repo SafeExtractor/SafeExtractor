@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/InlineSimpleMethods.java b/src/com/google/javascript/jscomp/InlineSimpleMethods.java
+index 7de631f..59dff43 100644
+--- a/src/com/google/javascript/jscomp/InlineSimpleMethods.java
++++ b/src/com/google/javascript/jscomp/InlineSimpleMethods.java
+@@ -72,7 +72,8 @@
+       }
+ 
+       Collection<Node> definitions = methodDefinitions.get(callName);
+-      if (definitions == null || definitions.size() == 0) {
++      int var_1629 = definitions.size();
++	if (definitions == null || var_1629 == 0) {
+         return;
+       }
+ 
+@@ -81,7 +82,7 @@
+       Node firstDefinition = definitions.iterator().next();
+ 
+       // Check any multiple definitions
+-      if (definitions.size() == 1 || allDefinitionsEquivalent(definitions)) {
++      if (var_1629 == 1 || allDefinitionsEquivalent(definitions)) {
+ 
+         if (!argsMayHaveSideEffects(callNode)) {
+           // Verify this is a trivial return

@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/FastDateParser.java b/src/main/java/org/apache/commons/lang3/time/FastDateParser.java
+index b9bb413..8b438a8 100644
+--- a/src/main/java/org/apache/commons/lang3/time/FastDateParser.java
++++ b/src/main/java/org/apache/commons/lang3/time/FastDateParser.java
+@@ -424,10 +424,11 @@
+      * @return The Strategy that will handle parsing for the field
+      */
+     private Strategy getStrategy(String formatField, final Calendar definingCalendar) {
+-        switch(formatField.charAt(0)) {
++        int var_591 = formatField.length();
++		switch(formatField.charAt(0)) {
+         case '\'':
+-            if(formatField.length()>2) {
+-                formatField= formatField.substring(1, formatField.length()-1);
++            if(var_591>2) {
++                formatField= formatField.substring(1, var_591-1);
+             }
+             //$FALL-THROUGH$
+         default:
+@@ -445,7 +446,7 @@
+         case 'K':
+             return HOUR_STRATEGY;
+         case 'M':
+-            return formatField.length()>=3 ?getLocaleSpecificStrategy(Calendar.MONTH, definingCalendar) :NUMBER_MONTH_STRATEGY;
++            return var_591>=3 ?getLocaleSpecificStrategy(Calendar.MONTH, definingCalendar) :NUMBER_MONTH_STRATEGY;
+         case 'S':
+             return MILLISECOND_STRATEGY;
+         case 'W':
+@@ -465,7 +466,7 @@
+         case 'w':
+             return WEEK_OF_YEAR_STRATEGY;
+         case 'y':
+-            return formatField.length()>2 ?LITERAL_YEAR_STRATEGY :ABBREVIATED_YEAR_STRATEGY;
++            return var_591>2 ?LITERAL_YEAR_STRATEGY :ABBREVIATED_YEAR_STRATEGY;
+         case 'Z':
+         case 'z':
+             return getLocaleSpecificStrategy(Calendar.ZONE_OFFSET, definingCalendar);

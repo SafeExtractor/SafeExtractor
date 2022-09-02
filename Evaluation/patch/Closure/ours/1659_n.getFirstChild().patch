@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+index bc570e2..bc30681 100644
+--- a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
++++ b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+@@ -248,8 +248,9 @@
+ 
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      if (n.isGetProp()) {
+-        String propName = n.getFirstChild().getNext().getString();
++      Node var_1659 = n.getFirstChild();
++	if (n.isGetProp()) {
++        String propName = var_1659.getNext().getString();
+ 
+         if (n.isQualifiedName()) {
+           if (propName.equals("prototype")) {
+@@ -283,7 +284,7 @@
+ 
+         // var x = {a: 1, b: 2}
+         // should count as a use of property a and b.
+-        for (Node propNameNode = n.getFirstChild(); propNameNode != null;
++        for (Node propNameNode = var_1659; propNameNode != null;
+              propNameNode = propNameNode.getNext()) {
+           // May be STRING, GET, or SET, but NUMBER isn't interesting.
+           if (!propNameNode.isQuotedString()) {

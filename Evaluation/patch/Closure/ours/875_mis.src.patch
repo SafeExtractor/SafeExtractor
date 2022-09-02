@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/DisambiguateProperties.java b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+index c64c178..51fe895 100644
+--- a/src/com/google/javascript/jscomp/DisambiguateProperties.java
++++ b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+@@ -311,8 +311,9 @@
+     Preconditions.checkState(
+         compiler.getLifeCycleStage() == LifeCycleStage.NORMALIZED);
+     for (TypeMismatch mis : compiler.getTypeValidator().getMismatches()) {
+-      addInvalidatingType(mis.typeA, mis.src);
+-      addInvalidatingType(mis.typeB, mis.src);
++      JSError var_875 = mis.src;
++	addInvalidatingType(mis.typeA, var_875);
++      addInvalidatingType(mis.typeB, var_875);
+     }
+ 
+     StaticScope<T> scope = typeSystem.getRootScope();

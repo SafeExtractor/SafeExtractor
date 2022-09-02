@@ -1,0 +1,14 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/kernel/JsonSerializer.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/kernel/JsonSerializer.java
+index a0dd74a..0a8c7e2 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/kernel/JsonSerializer.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/kernel/JsonSerializer.java
+@@ -96,7 +96,8 @@
+                     break;
+                 }
+ 
+-                json.key(child.getName());
++                String name = child.getName();
++				json.key(name);
+                 if (depth > 0) {
+                     getChildSerializer().serialize(child.getNodeState());
+                 } else {

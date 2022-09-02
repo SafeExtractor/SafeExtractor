@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+index fa5c164..9b41164 100644
+--- a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
++++ b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+@@ -687,14 +687,15 @@
+          * If month-day is 02-29 and year isn't leap, retreats to previous leap year.
+          */
+         private long setDayOfMonthPrevious(Chronology chrono, long prev) {
+-            try {
+-                prev = setDayOfMonth(chrono, prev);
++            long var_677 = setDayOfMonth(chrono, prev);
++			try {
++                prev = var_677;
+             } catch (IllegalArgumentException e) {
+                 if (iMonthOfYear == 2 && iDayOfMonth == 29) {
+                     while (chrono.year().isLeap(prev) == false) {
+                         prev = chrono.year().add(prev, -1);
+                     }
+-                    prev = setDayOfMonth(chrono, prev);
++                    prev = var_677;
+                 } else {
+                     throw e;
+                 }

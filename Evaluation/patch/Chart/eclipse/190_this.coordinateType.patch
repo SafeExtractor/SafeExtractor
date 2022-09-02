@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/annotations/XYTitleAnnotation.java b/source/org/jfree/chart/annotations/XYTitleAnnotation.java
+index 2178436..2b32451 100644
+--- a/source/org/jfree/chart/annotations/XYTitleAnnotation.java
++++ b/source/org/jfree/chart/annotations/XYTitleAnnotation.java
+@@ -258,7 +258,8 @@
+         Range yRange = rangeAxis.getRange();
+         double anchorX = 0.0;
+         double anchorY = 0.0;
+-        if (this.coordinateType == XYCoordinateType.RELATIVE) {
++        XYCoordinateType var_190 = this.coordinateType;
++		if (var_190 == XYCoordinateType.RELATIVE) {
+             anchorX = xRange.getLowerBound() + (this.x * xRange.getLength());
+             anchorY = yRange.getLowerBound() + (this.y * yRange.getLength());
+         }
+@@ -284,7 +285,7 @@
+ 
+         double maxW = dataArea.getWidth();
+         double maxH = dataArea.getHeight();
+-        if (this.coordinateType == XYCoordinateType.RELATIVE) {
++        if (var_190 == XYCoordinateType.RELATIVE) {
+             if (this.maxWidth > 0.0) {
+                 maxW = maxW * this.maxWidth;
+             }
+@@ -292,7 +293,7 @@
+                 maxH = maxH * this.maxHeight;
+             }
+         }
+-        if (this.coordinateType == XYCoordinateType.DATA) {
++        if (var_190 == XYCoordinateType.DATA) {
+             maxW = this.maxWidth;
+             maxH = this.maxHeight;
+         }

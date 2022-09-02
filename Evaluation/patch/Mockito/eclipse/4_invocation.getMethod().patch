@@ -1,0 +1,23 @@
+diff --git a/src/org/mockito/exceptions/Reporter.java b/src/org/mockito/exceptions/Reporter.java
+index 6e0b3bd..86a12b6 100644
+--- a/src/org/mockito/exceptions/Reporter.java
++++ b/src/org/mockito/exceptions/Reporter.java
+@@ -736,7 +736,8 @@
+     }
+ 
+     private StringBuilder possibleArgumentTypesOf(InvocationOnMock invocation) {
+-        Class<?>[] parameterTypes = invocation.getMethod().getParameterTypes();
++        Method var_4 = invocation.getMethod();
++		Class<?>[] parameterTypes = var_4.getParameterTypes();
+         if (parameterTypes.length == 0) {
+             return new StringBuilder("the method has no arguments.\n");
+         }
+@@ -745,7 +746,7 @@
+         for (int i = 0, parameterTypesLength = parameterTypes.length; i < parameterTypesLength; i++) {
+             stringBuilder.append("    [").append(i);
+ 
+-            if (invocation.getMethod().isVarArgs() && i == parameterTypesLength - 1) {
++            if (var_4.isVarArgs() && i == parameterTypesLength - 1) {
+                 stringBuilder.append("+] ").append(parameterTypes[i].getComponentType().getSimpleName()).append("  <- Vararg").append("\n");
+             } else {
+                 stringBuilder.append("] ").append(parameterTypes[i].getSimpleName()).append("\n");

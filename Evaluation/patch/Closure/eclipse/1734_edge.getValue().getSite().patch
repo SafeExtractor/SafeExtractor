@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/NameReferenceGraphReport.java b/src/com/google/javascript/jscomp/NameReferenceGraphReport.java
+index 86a5203..3629fc5 100644
+--- a/src/com/google/javascript/jscomp/NameReferenceGraphReport.java
++++ b/src/com/google/javascript/jscomp/NameReferenceGraphReport.java
+@@ -232,14 +232,15 @@
+     builder.append(srcDeclName);
+     builder.append("</a> ");
+ 
+-    Node def = edge.getValue().getSite();
++    Node var_1734 = edge.getValue().getSite();
++	Node def = var_1734;
+     int lineNumber = def.getLineno();
+     int columnNumber = def.getCharno();
+     String sourceFile = getSourceFile(def);
+ 
+     generateSourceReferenceLink(builder, sourceFile, lineNumber, columnNumber);
+ 
+-    JSType defType = edge.getValue().getSite().getJSType();
++    JSType defType = var_1734.getJSType();
+     generateType(builder, defType);
+   }
+ 

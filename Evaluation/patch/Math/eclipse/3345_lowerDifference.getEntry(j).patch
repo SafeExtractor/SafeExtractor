@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..7de1568 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -301,8 +301,9 @@
+             final double boundDiff = boundDifference[j];
+             lowerDifference.setEntry(j, lowerBound[j] - currentBest.getEntry(j));
+             upperDifference.setEntry(j, upperBound[j] - currentBest.getEntry(j));
+-            if (lowerDifference.getEntry(j) >= -initialTrustRegionRadius) {
+-                if (lowerDifference.getEntry(j) >= ZERO) {
++            double var_3345 = lowerDifference.getEntry(j);
++			if (var_3345 >= -initialTrustRegionRadius) {
++                if (var_3345 >= ZERO) {
+                     currentBest.setEntry(j, lowerBound[j]);
+                     lowerDifference.setEntry(j, ZERO);
+                     upperDifference.setEntry(j, boundDiff);

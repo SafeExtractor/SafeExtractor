@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/DataFlowAnalysis.java b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+index 5b39646..0346093 100644
+--- a/src/com/google/javascript/jscomp/DataFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+@@ -457,19 +457,20 @@
+     @Override
+     protected void joinInputs(DiGraphNode<N, Branch> node) {
+       BranchedFlowState<L> state = node.getAnnotation();
+-      List<DiGraphNode<N, Branch>> predNodes =
+-          getCfg().getDirectedPredNodes(node);
++      ControlFlowGraph<N> var_760 = getCfg();
++	List<DiGraphNode<N, Branch>> predNodes =
++          var_760.getDirectedPredNodes(node);
+       List<L> values = new ArrayList<L>(predNodes.size());
+ 
+       for (DiGraphNode<N, Branch> predNode : predNodes) {
+         BranchedFlowState<L> predNodeState = predNode.getAnnotation();
+ 
+         L in = predNodeState.out.get(
+-            getCfg().getDirectedSuccNodes(predNode).indexOf(node));
++            var_760.getDirectedSuccNodes(predNode).indexOf(node));
+ 
+         values.add(in);
+       }
+-      if (getCfg().getEntry() == node) {
++      if (var_760.getEntry() == node) {
+         state.setIn(createEntryLattice());
+       } else if (!values.isEmpty()) {
+         state.setIn(joinOp.apply(values));

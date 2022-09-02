@@ -1,0 +1,37 @@
+diff --git a/source/org/jfree/chart/title/PaintScaleLegend.java b/source/org/jfree/chart/title/PaintScaleLegend.java
+index c489277..8a7f53c 100644
+--- a/source/org/jfree/chart/title/PaintScaleLegend.java
++++ b/source/org/jfree/chart/title/PaintScaleLegend.java
+@@ -605,7 +605,8 @@
+             RectangleEdge axisEdge = Plot.resolveRangeAxisLocation(
+                     this.axisLocation, PlotOrientation.VERTICAL);
+             if (axisEdge == RectangleEdge.LEFT) {
+-                for (int i = 0; i < this.subdivisions; i++) {
++                double var_3414 = target.getMaxX();
++				for (int i = 0; i < this.subdivisions; i++) {
+                     double v = base + (i * increment);
+                     Paint p = this.scale.getPaint(v);
+                     double vv0 = this.axis.valueToJava2D(v, target,
+@@ -613,7 +614,7 @@
+                     double vv1 = this.axis.valueToJava2D(v + increment, target,
+                             RectangleEdge.LEFT);
+                     double hh = Math.abs(vv1 - vv0) + 1.0;
+-                    r.setRect(target.getMaxX() - this.stripWidth,
++                    r.setRect(var_3414 - this.stripWidth,
+                             Math.min(vv0, vv1), this.stripWidth, hh);
+                     g2.setPaint(p);
+                     g2.fill(r);
+@@ -621,11 +622,11 @@
+                 if (isStripOutlineVisible()) {
+                     g2.setPaint(this.stripOutlinePaint);
+                     g2.setStroke(this.stripOutlineStroke);
+-                    g2.draw(new Rectangle2D.Double(target.getMaxX()
++                    g2.draw(new Rectangle2D.Double(var_3414
+                             - this.stripWidth, target.getMinY(),
+                             this.stripWidth, target.getHeight()));
+                 }
+-                this.axis.draw(g2, target.getMaxX() - this.stripWidth
++                this.axis.draw(g2, var_3414 - this.stripWidth
+                         - this.axisOffset, target, target, RectangleEdge.LEFT,
+                         null);
+             }

@@ -1,0 +1,33 @@
+diff --git a/src/com/google/javascript/jscomp/ReplaceIdGenerators.java b/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
+index c6e4271..d2b358f 100644
+--- a/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
++++ b/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
+@@ -31,6 +31,7 @@
+ import java.io.IOException;
+ import java.io.StringReader;
+ import java.util.Collections;
++import java.util.LinkedHashMap;
+ import java.util.Map;
+ import java.util.Set;
+ 
+@@ -210,8 +211,9 @@
+         }
+       }
+ 
+-      if (doc.isConsistentIdGenerator()) {
+-        consistNameMap.put(name, Maps.<String, String>newLinkedHashMap());
++      LinkedHashMap<String, String> var_1278 = Maps.<String, String>newLinkedHashMap();
++	if (doc.isConsistentIdGenerator()) {
++        consistNameMap.put(name, var_1278);
+         nameGenerators.put(
+             name, createNameSupplier(RenameStrategy.CONSISTENT, previousMap.get(name)));
+       } else if (doc.isStableIdGenerator()) {
+@@ -221,7 +223,7 @@
+         nameGenerators.put(
+             name, createNameSupplier(RenameStrategy.INCONSISTENT, previousMap.get(name)));
+       }
+-      idGeneratorMaps.put(name, Maps.<String, String>newLinkedHashMap());
++      idGeneratorMaps.put(name, var_1278);
+     }
+   }
+ 

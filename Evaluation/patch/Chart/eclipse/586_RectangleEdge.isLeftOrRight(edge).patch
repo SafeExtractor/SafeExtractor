@@ -1,0 +1,31 @@
+diff --git a/source/org/jfree/chart/axis/ValueAxis.java b/source/org/jfree/chart/axis/ValueAxis.java
+index 5972cdd..62052f7 100644
+--- a/source/org/jfree/chart/axis/ValueAxis.java
++++ b/source/org/jfree/chart/axis/ValueAxis.java
+@@ -791,14 +791,15 @@
+         // calculate the max size of the tick labels (if visible)...
+         double tickLabelHeight = 0.0;
+         double tickLabelWidth = 0.0;
+-        if (isTickLabelsVisible()) {
++        boolean var_586 = RectangleEdge.isLeftOrRight(edge);
++		if (isTickLabelsVisible()) {
+             g2.setFont(getTickLabelFont());
+             List ticks = refreshTicks(g2, new AxisState(), plotArea, edge);
+             if (RectangleEdge.isTopOrBottom(edge)) {
+                 tickLabelHeight = findMaximumTickLabelHeight(ticks, g2,
+                         plotArea, isVerticalTickLabels());
+             }
+-            else if (RectangleEdge.isLeftOrRight(edge)) {
++            else if (var_586) {
+                 tickLabelWidth = findMaximumTickLabelWidth(ticks, g2, plotArea,
+                         isVerticalTickLabels());
+             }
+@@ -812,7 +813,7 @@
+             labelHeight = labelEnclosure.getHeight();
+             space.add(labelHeight + tickLabelHeight, edge);
+         }
+-        else if (RectangleEdge.isLeftOrRight(edge)) {
++        else if (var_586) {
+             labelWidth = labelEnclosure.getWidth();
+             space.add(labelWidth + tickLabelWidth, edge);
+         }

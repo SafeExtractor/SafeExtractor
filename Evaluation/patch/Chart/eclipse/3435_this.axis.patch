@@ -1,0 +1,100 @@
+diff --git a/source/org/jfree/chart/title/PaintScaleLegend.java b/source/org/jfree/chart/title/PaintScaleLegend.java
+index c489277..a89bb20 100644
+--- a/source/org/jfree/chart/title/PaintScaleLegend.java
++++ b/source/org/jfree/chart/title/PaintScaleLegend.java
+@@ -543,8 +543,9 @@
+         getFrame().draw(g2, target);
+         getFrame().getInsets().trim(target);
+         target = trimPadding(target);
+-        double base = this.axis.getLowerBound();
+-        double increment = this.axis.getRange().getLength() / this.subdivisions;
++        ValueAxis var_3435 = this.axis;
++		double base = var_3435.getLowerBound();
++        double increment = var_3435.getRange().getLength() / this.subdivisions;
+         Rectangle2D r = new Rectangle2D.Double();
+ 
+         if (RectangleEdge.isTopOrBottom(getPosition())) {
+@@ -554,9 +555,9 @@
+                 for (int i = 0; i < this.subdivisions; i++) {
+                     double v = base + (i * increment);
+                     Paint p = this.scale.getPaint(v);
+-                    double vv0 = this.axis.valueToJava2D(v, target,
++                    double vv0 = var_3435.valueToJava2D(v, target,
+                             RectangleEdge.TOP);
+-                    double vv1 = this.axis.valueToJava2D(v + increment, target,
++                    double vv1 = var_3435.valueToJava2D(v + increment, target,
+                             RectangleEdge.TOP);
+                     double ww = Math.abs(vv1 - vv0) + 1.0;
+                     r.setRect(Math.min(vv0, vv1), target.getMaxY()
+@@ -571,7 +572,7 @@
+                             target.getMaxY() - this.stripWidth,
+                             target.getWidth(), this.stripWidth));
+                 }
+-                this.axis.draw(g2, target.getMaxY() - this.stripWidth
++                var_3435.draw(g2, target.getMaxY() - this.stripWidth
+                         - this.axisOffset, target, target, RectangleEdge.TOP,
+                         null);
+             }
+@@ -579,9 +580,9 @@
+                 for (int i = 0; i < this.subdivisions; i++) {
+                     double v = base + (i * increment);
+                     Paint p = this.scale.getPaint(v);
+-                    double vv0 = this.axis.valueToJava2D(v, target,
++                    double vv0 = var_3435.valueToJava2D(v, target,
+                             RectangleEdge.BOTTOM);
+-                    double vv1 = this.axis.valueToJava2D(v + increment, target,
++                    double vv1 = var_3435.valueToJava2D(v + increment, target,
+                             RectangleEdge.BOTTOM);
+                     double ww = Math.abs(vv1 - vv0) + 1.0;
+                     r.setRect(Math.min(vv0, vv1), target.getMinY(), ww,
+@@ -596,7 +597,7 @@
+                             target.getMinY(), target.getWidth(),
+                             this.stripWidth));
+                 }
+-                this.axis.draw(g2, target.getMinY() + this.stripWidth
++                var_3435.draw(g2, target.getMinY() + this.stripWidth
+                         + this.axisOffset, target, target,
+                         RectangleEdge.BOTTOM, null);
+             }
+@@ -608,9 +609,9 @@
+                 for (int i = 0; i < this.subdivisions; i++) {
+                     double v = base + (i * increment);
+                     Paint p = this.scale.getPaint(v);
+-                    double vv0 = this.axis.valueToJava2D(v, target,
++                    double vv0 = var_3435.valueToJava2D(v, target,
+                             RectangleEdge.LEFT);
+-                    double vv1 = this.axis.valueToJava2D(v + increment, target,
++                    double vv1 = var_3435.valueToJava2D(v + increment, target,
+                             RectangleEdge.LEFT);
+                     double hh = Math.abs(vv1 - vv0) + 1.0;
+                     r.setRect(target.getMaxX() - this.stripWidth,
+@@ -625,7 +626,7 @@
+                             - this.stripWidth, target.getMinY(),
+                             this.stripWidth, target.getHeight()));
+                 }
+-                this.axis.draw(g2, target.getMaxX() - this.stripWidth
++                var_3435.draw(g2, target.getMaxX() - this.stripWidth
+                         - this.axisOffset, target, target, RectangleEdge.LEFT,
+                         null);
+             }
+@@ -633,9 +634,9 @@
+                 for (int i = 0; i < this.subdivisions; i++) {
+                     double v = base + (i * increment);
+                     Paint p = this.scale.getPaint(v);
+-                    double vv0 = this.axis.valueToJava2D(v, target,
++                    double vv0 = var_3435.valueToJava2D(v, target,
+                             RectangleEdge.LEFT);
+-                    double vv1 = this.axis.valueToJava2D(v + increment, target,
++                    double vv1 = var_3435.valueToJava2D(v + increment, target,
+                             RectangleEdge.LEFT);
+                     double hh = Math.abs(vv1 - vv0) + 1.0;
+                     r.setRect(target.getMinX(), Math.min(vv0, vv1),
+@@ -650,7 +651,7 @@
+                             target.getMinY(), this.stripWidth,
+                             target.getHeight()));
+                 }
+-                this.axis.draw(g2, target.getMinX() + this.stripWidth
++                var_3435.draw(g2, target.getMinX() + this.stripWidth
+                         + this.axisOffset, target, target, RectangleEdge.RIGHT,
+                         null);
+             }

@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/MatrixUtils.java b/src/main/java/org/apache/commons/math3/linear/MatrixUtils.java
+index 5b91780..a4333c9 100644
+--- a/src/main/java/org/apache/commons/math3/linear/MatrixUtils.java
++++ b/src/main/java/org/apache/commons/math3/linear/MatrixUtils.java
+@@ -927,16 +927,17 @@
+     public static void solveLowerTriangularSystem(RealMatrix rm, RealVector b)
+         throws DimensionMismatchException, MathArithmeticException,
+         NonSquareMatrixException {
+-        if ((rm == null) || (b == null) || ( rm.getRowDimension() != b.getDimension())) {
++        int var_2024 = rm.getRowDimension();
++		if ((rm == null) || (b == null) || ( var_2024 != b.getDimension())) {
+             throw new DimensionMismatchException(
+-                    (rm == null) ? 0 : rm.getRowDimension(),
++                    (rm == null) ? 0 : var_2024,
+                     (b == null) ? 0 : b.getDimension());
+         }
+-        if( rm.getColumnDimension() != rm.getRowDimension() ){
+-            throw new NonSquareMatrixException(rm.getRowDimension(),
++        if( rm.getColumnDimension() != var_2024 ){
++            throw new NonSquareMatrixException(var_2024,
+                                                rm.getColumnDimension());
+         }
+-        int rows = rm.getRowDimension();
++        int rows = var_2024;
+         for( int i = 0 ; i < rows ; i++ ){
+             double diag = rm.getEntry(i, i);
+             if( FastMath.abs(diag) < Precision.SAFE_MIN ){

@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/renderer/xy/CyclicXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/CyclicXYItemRenderer.java
+index bdc095b..3634889 100644
+--- a/source/org/jfree/chart/renderer/xy/CyclicXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/CyclicXYItemRenderer.java
+@@ -153,7 +153,8 @@
+         double xn = dataset.getXValue(series, item - 1);
+         double yn = dataset.getYValue(series, item - 1);
+         // If null, don't draw line => then delegate to parent
+-        if (Double.isNaN(yn)) {
++        boolean var_2966 = Double.isNaN(yn);
++		if (var_2966) {
+             super.drawItem(g2, state, dataArea, plot, domainAxis,
+                     rangeAxis, dataset, series, item, selected, pass);
+             return;
+@@ -167,7 +168,7 @@
+         xn = dataset.getXValue(series, item);
+         yn = dataset.getYValue(series, item);
+         // If null, don't draw line at all
+-        if (Double.isNaN(yn)) {
++        if (var_2966) {
+             return;
+         }
+         x[1] = xn;

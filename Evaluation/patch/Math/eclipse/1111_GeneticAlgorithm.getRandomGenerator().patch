@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/genetics/RandomKeyMutation.java b/src/main/java/org/apache/commons/math3/genetics/RandomKeyMutation.java
+index eef8cba..fb80a7d 100644
+--- a/src/main/java/org/apache/commons/math3/genetics/RandomKeyMutation.java
++++ b/src/main/java/org/apache/commons/math3/genetics/RandomKeyMutation.java
+@@ -21,6 +21,7 @@
+ 
+ import org.apache.commons.math3.exception.MathIllegalArgumentException;
+ import org.apache.commons.math3.exception.util.LocalizedFormats;
++import org.apache.commons.math3.random.RandomGenerator;
+ 
+ /**
+  * Mutation operator for {@link RandomKey}s. Changes a randomly chosen element
+@@ -44,10 +45,11 @@
+ 
+         RandomKey<?> originalRk = (RandomKey<?>) original;
+         List<Double> repr = originalRk.getRepresentation();
+-        int rInd = GeneticAlgorithm.getRandomGenerator().nextInt(repr.size());
++        RandomGenerator var_1111 = GeneticAlgorithm.getRandomGenerator();
++		int rInd = var_1111.nextInt(repr.size());
+ 
+         List<Double> newRepr = new ArrayList<Double> (repr);
+-        newRepr.set(rInd, GeneticAlgorithm.getRandomGenerator().nextDouble());
++        newRepr.set(rInd, var_1111.nextDouble());
+ 
+         return originalRk.newFixedLengthChromosome(newRepr);
+     }

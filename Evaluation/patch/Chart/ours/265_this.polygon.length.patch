@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/annotations/XYPolygonAnnotation.java b/source/org/jfree/chart/annotations/XYPolygonAnnotation.java
+index e6fbbd8..a63d47e 100644
+--- a/source/org/jfree/chart/annotations/XYPolygonAnnotation.java
++++ b/source/org/jfree/chart/annotations/XYPolygonAnnotation.java
+@@ -211,7 +211,8 @@
+                      int rendererIndex, PlotRenderingInfo info) {
+ 
+         // if we don't have at least 2 (x, y) coordinates, just return
+-        if (this.polygon.length < 4) {
++        int var_265 = this.polygon.length;
++		if (var_265 < 4) {
+             return;
+         }
+         PlotOrientation orientation = plot.getOrientation();
+@@ -227,7 +228,7 @@
+                 rangeEdge);
+         if (orientation == PlotOrientation.HORIZONTAL) {
+             area.moveTo((float) y, (float) x);
+-            for (int i = 2; i < this.polygon.length; i += 2) {
++            for (int i = 2; i < var_265; i += 2) {
+                 x = domainAxis.valueToJava2D(this.polygon[i], dataArea,
+                         domainEdge);
+                 y = rangeAxis.valueToJava2D(this.polygon[i + 1], dataArea,
+@@ -238,7 +239,7 @@
+         }
+         else if (orientation == PlotOrientation.VERTICAL) {
+             area.moveTo((float) x, (float) y);
+-            for (int i = 2; i < this.polygon.length; i += 2) {
++            for (int i = 2; i < var_265; i += 2) {
+                 x = domainAxis.valueToJava2D(this.polygon[i], dataArea,
+                         domainEdge);
+                 y = rangeAxis.valueToJava2D(this.polygon[i + 1], dataArea,

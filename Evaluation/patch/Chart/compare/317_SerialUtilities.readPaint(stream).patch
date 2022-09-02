@@ -1,0 +1,31 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/317_SerialUtilities.readPaint(stream).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/317_SerialUtilities.readPaint(stream).patch
+index 444a647..3711027 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/317_SerialUtilities.readPaint(stream).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/317_SerialUtilities.readPaint(stream).patch
+@@ -1,22 +1,14 @@
+ diff --git a/source/org/jfree/chart/axis/Axis.java b/source/org/jfree/chart/axis/Axis.java
+-index cabb331..62b8d62 100644
++index cabb331..2e59846 100644
+ --- a/source/org/jfree/chart/axis/Axis.java
+ +++ b/source/org/jfree/chart/axis/Axis.java
+-@@ -1566,12 +1566,13 @@
++@@ -1566,7 +1566,8 @@
+      private void readObject(ObjectInputStream stream)
+          throws IOException, ClassNotFoundException {
+          stream.defaultReadObject();
+ -        this.labelPaint = SerialUtilities.readPaint(stream);
+--        this.tickLabelPaint = SerialUtilities.readPaint(stream);
+ +        Paint var_317 = SerialUtilities.readPaint(stream);
+ +		this.labelPaint = var_317;
+-+        this.tickLabelPaint = var_317;
++         this.tickLabelPaint = SerialUtilities.readPaint(stream);
+          this.axisLineStroke = SerialUtilities.readStroke(stream);
+--        this.axisLinePaint = SerialUtilities.readPaint(stream);
+-+        this.axisLinePaint = var_317;
+-         this.tickMarkStroke = SerialUtilities.readStroke(stream);
+--        this.tickMarkPaint = SerialUtilities.readPaint(stream);
+-+        this.tickMarkPaint = var_317;
+-         this.listenerList = new EventListenerList();
+-     }
+- 
++         this.axisLinePaint = SerialUtilities.readPaint(stream);

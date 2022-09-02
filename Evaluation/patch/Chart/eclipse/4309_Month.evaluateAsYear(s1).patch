@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/data/time/Month.java b/source/org/jfree/data/time/Month.java
+index 08655c1..8660b77 100644
+--- a/source/org/jfree/data/time/Month.java
++++ b/source/org/jfree/data/time/Month.java
+@@ -456,7 +456,8 @@
+         boolean yearIsFirst;
+         // if there is no separator, we assume the first four characters
+         // are YYYY
+-        if (i == -1) {
++        Year var_4309 = Month.evaluateAsYear(s1);
++		if (i == -1) {
+             yearIsFirst = true;
+             s1 = s.substring(0, 5);
+             s2 = s.substring(5);
+@@ -465,7 +466,7 @@
+             s1 = s.substring(0, i).trim();
+             s2 = s.substring(i + 1, s.length()).trim();
+             // now it is trickier to determine if the month or year is first
+-            Year y1 = Month.evaluateAsYear(s1);
++            Year y1 = var_4309;
+             if (y1 == null) {
+                 yearIsFirst = false;
+             }
+@@ -482,7 +483,7 @@
+         Year year;
+         int month;
+         if (yearIsFirst) {
+-            year = Month.evaluateAsYear(s1);
++            year = var_4309;
+             month = SerialDate.stringToMonthCode(s2);
+         }
+         else {

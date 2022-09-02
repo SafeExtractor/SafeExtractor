@@ -1,0 +1,19 @@
+diff --git a/source/org/jfree/data/statistics/Regression.java b/source/org/jfree/data/statistics/Regression.java
+index 962b978..9fb9266 100644
+--- a/source/org/jfree/data/statistics/Regression.java
++++ b/source/org/jfree/data/statistics/Regression.java
+@@ -278,10 +278,11 @@
+             sumX += data[0][item];
+             sumY += data[1][item];
+             for(int eq = 0; eq < equations; eq++){
+-                for(int coe = 0; coe < coefficients - 1; coe++){
+-                    matrix[eq][coe] += Math.pow(data[0][item],eq + coe);
++                double[] var_4049 = matrix[eq];
++				for(int coe = 0; coe < coefficients - 1; coe++){
++                    var_4049[coe] += Math.pow(data[0][item],eq + coe);
+                 }
+-                matrix[eq][coefficients - 1] += data[1][item]
++                var_4049[coefficients - 1] += data[1][item]
+                         * Math.pow(data[0][item],eq);
+             }
+         }

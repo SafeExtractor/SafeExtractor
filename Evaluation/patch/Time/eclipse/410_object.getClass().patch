@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/joda/time/convert/ConverterManager.java b/src/main/java/org/joda/time/convert/ConverterManager.java
+index 0b029aa..ac5f76c 100644
+--- a/src/main/java/org/joda/time/convert/ConverterManager.java
++++ b/src/main/java/org/joda/time/convert/ConverterManager.java
+@@ -331,13 +331,14 @@
+      * equally well
+      */
+     public DurationConverter getDurationConverter(Object object) {
+-        DurationConverter converter =
+-            (DurationConverter)iDurationConverters.select(object == null ? null : object.getClass());
++        Class<? extends Object> var_410 = object.getClass();
++		DurationConverter converter =
++            (DurationConverter)iDurationConverters.select(object == null ? null : var_410);
+         if (converter != null) {
+             return converter;
+         }
+         throw new IllegalArgumentException("No duration converter found for type: " +
+-            (object == null ? "null" : object.getClass().getName()));
++            (object == null ? "null" : var_410.getName()));
+     }
+     
+     //-----------------------------------------------------------------------

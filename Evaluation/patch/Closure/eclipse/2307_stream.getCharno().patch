@@ -1,0 +1,420 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..06a9ced 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -212,18 +212,19 @@
+ 
+     // Parse the actual JsDoc.
+     retry: for (;;) {
+-      switch (token) {
++      int var_2307 = stream.getCharno();
++	switch (token) {
+         case ANNOTATION:
+           if (state == State.SEARCHING_ANNOTATION) {
+             state = State.SEARCHING_NEWLINE;
+             lineno = stream.getLineno();
+-            charno = stream.getCharno();
++            charno = var_2307;
+ 
+             String annotationName = stream.getString();
+             Annotation annotation = annotationNames.get(annotationName);
+             if (annotation == null) {
+               parser.addParserWarning("msg.bad.jsdoc.tag", annotationName,
+-                  stream.getLineno(), stream.getCharno());
++                  stream.getLineno(), var_2307);
+             } else {
+               // Mark the beginning of the annotation.
+               jsdocBuilder.markAnnotation(annotationName, lineno, charno);
+@@ -236,7 +237,7 @@
+ 
+                     if (author.length() == 0) {
+                       parser.addParserWarning("msg.jsdoc.authormissing",
+-                          stream.getLineno(), stream.getCharno());
++                          stream.getLineno(), var_2307);
+                     } else {
+                       jsdocBuilder.addAuthor(author);
+                     }
+@@ -249,7 +250,7 @@
+                 case CONSISTENTIDGENERATOR:
+                   if (!jsdocBuilder.recordConsistentIdGenerator()) {
+                     parser.addParserWarning("msg.jsdoc.consistidgen",
+-                      stream.getLineno(), stream.getCharno());
++                      stream.getLineno(), var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -258,7 +259,7 @@
+                   if (!jsdocBuilder.recordStruct()) {
+                     parser.addTypeWarning("msg.jsdoc.incompat.type",
+                                           stream.getLineno(),
+-                                          stream.getCharno());
++                                          var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -267,7 +268,7 @@
+                   if (!jsdocBuilder.recordDict()) {
+                     parser.addTypeWarning("msg.jsdoc.incompat.type",
+                                           stream.getLineno(),
+-                                          stream.getCharno());
++                                          var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -276,10 +277,10 @@
+                   if (!jsdocBuilder.recordConstructor()) {
+                     if (jsdocBuilder.isInterfaceRecorded()) {
+                       parser.addTypeWarning("msg.jsdoc.interface.constructor",
+-                          stream.getLineno(), stream.getCharno());
++                          stream.getLineno(), var_2307);
+                     } else {
+                       parser.addTypeWarning("msg.jsdoc.incompat.type",
+-                          stream.getLineno(), stream.getCharno());
++                          stream.getLineno(), var_2307);
+                     }
+                   }
+                   token = eatTokensUntilEOL();
+@@ -288,7 +289,7 @@
+                 case DEPRECATED:
+                   if (!jsdocBuilder.recordDeprecated()) {
+                     parser.addParserWarning("msg.jsdoc.deprecated",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+ 
+                   // Find the reason/description, if any.
+@@ -308,10 +309,10 @@
+                   if (!jsdocBuilder.recordInterface()) {
+                     if (jsdocBuilder.isConstructorRecorded()) {
+                       parser.addTypeWarning("msg.jsdoc.interface.constructor",
+-                          stream.getLineno(), stream.getCharno());
++                          stream.getLineno(), var_2307);
+                     } else {
+                       parser.addTypeWarning("msg.jsdoc.incompat.type",
+-                          stream.getLineno(), stream.getCharno());
++                          stream.getLineno(), var_2307);
+                     }
+                   }
+                   token = eatTokensUntilEOL();
+@@ -320,7 +321,7 @@
+                 case DESC:
+                   if (jsdocBuilder.isDescriptionRecorded()) {
+                     parser.addParserWarning("msg.jsdoc.desc.extra",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                     token = eatTokensUntilEOL();
+                     continue retry;
+                   } else {
+@@ -350,7 +351,7 @@
+ 
+                   if (!jsdocBuilder.recordFileOverview(fileOverview)) {
+                     parser.addParserWarning("msg.jsdoc.fileoverview.extra",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+                   continue retry;
+ 
+@@ -374,7 +375,7 @@
+                 case ENUM:
+                   token = next();
+                   lineno = stream.getLineno();
+-                  charno = stream.getCharno();
++                  charno = var_2307;
+ 
+                   type = null;
+                   if (token != JsDocToken.EOL && token != JsDocToken.EOC) {
+@@ -395,7 +396,7 @@
+                 case EXPORT:
+                   if (!jsdocBuilder.recordExport()) {
+                     parser.addParserWarning("msg.jsdoc.export",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -403,7 +404,7 @@
+                 case EXPOSE:
+                   if (!jsdocBuilder.recordExpose()) {
+                     parser.addParserWarning("msg.jsdoc.expose",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -411,7 +412,7 @@
+                 case EXTERNS:
+                   if (!jsdocBuilder.recordExterns()) {
+                     parser.addParserWarning("msg.jsdoc.externs",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -419,7 +420,7 @@
+                 case JAVA_DISPATCH:
+                   if (!jsdocBuilder.recordJavaDispatch()) {
+                     parser.addParserWarning("msg.jsdoc.javadispatch",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -429,7 +430,7 @@
+                   skipEOLs();
+                   token = next();
+                   lineno = stream.getLineno();
+-                  charno = stream.getCharno();
++                  charno = var_2307;
+                   boolean matchingRc = false;
+ 
+                   if (token == JsDocToken.LC) {
+@@ -442,7 +443,7 @@
+                         token, lineno, charno, matchingRc);
+ 
+                     lineno = stream.getLineno();
+-                    charno = stream.getCharno();
++                    charno = var_2307;
+ 
+                     typeNode = wrapNode(Token.BANG, typeNode);
+                     type = createJSTypeExpression(typeNode);
+@@ -450,7 +451,7 @@
+                     if (annotation == Annotation.EXTENDS) {
+                       // record the extended type, check later
+                       extendedTypes.add(new ExtendedTypeInfo(
+-                          type, stream.getLineno(), stream.getCharno()));
++                          type, stream.getLineno(), var_2307));
+                     } else {
+                       Preconditions.checkState(
+                           annotation == Annotation.IMPLEMENTS);
+@@ -463,12 +464,12 @@
+                     if (matchingRc) {
+                       if (token != JsDocToken.RC) {
+                         parser.addTypeWarning("msg.jsdoc.missing.rc",
+-                            stream.getLineno(), stream.getCharno());
++                            stream.getLineno(), var_2307);
+                       }
+                     } else if (token != JsDocToken.EOL &&
+                         token != JsDocToken.EOF && token != JsDocToken.EOC) {
+                       parser.addTypeWarning("msg.end.annotation.expected",
+-                          stream.getLineno(), stream.getCharno());
++                          stream.getLineno(), var_2307);
+                     }
+                   } else {
+                     parser.addTypeWarning("msg.no.type.name", lineno, charno);
+@@ -479,7 +480,7 @@
+                 case HIDDEN:
+                   if (!jsdocBuilder.recordHiddenness()) {
+                     parser.addParserWarning("msg.jsdoc.hidden",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -497,16 +498,16 @@
+                     token = next();
+                     if (!jsdocBuilder.recordLends(stream.getString())) {
+                       parser.addTypeWarning("msg.jsdoc.lends.incompatible",
+-                          stream.getLineno(), stream.getCharno());
++                          stream.getLineno(), var_2307);
+                     }
+                   } else {
+                     parser.addTypeWarning("msg.jsdoc.lends.missing",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+ 
+                   if (matchingRc && !match(JsDocToken.RC)) {
+                     parser.addTypeWarning("msg.jsdoc.missing.rc",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -518,14 +519,14 @@
+                   token = meaningInfo.token;
+                   if (!jsdocBuilder.recordMeaning(meaning)) {
+                     parser.addParserWarning("msg.jsdoc.meaning.extra",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+                   continue retry;
+ 
+                 case NO_ALIAS:
+                   if (!jsdocBuilder.recordNoAlias()) {
+                     parser.addParserWarning("msg.jsdoc.noalias",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -533,7 +534,7 @@
+                 case NO_COMPILE:
+                   if (!jsdocBuilder.recordNoCompile()) {
+                     parser.addParserWarning("msg.jsdoc.nocompile",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -541,7 +542,7 @@
+                 case NO_TYPE_CHECK:
+                   if (!jsdocBuilder.recordNoTypeCheck()) {
+                     parser.addParserWarning("msg.jsdoc.nocheck",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -554,7 +555,7 @@
+                 case OVERRIDE:
+                   if (!jsdocBuilder.recordOverride()) {
+                     parser.addTypeWarning("msg.jsdoc.override",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -563,7 +564,7 @@
+                   skipEOLs();
+                   token = next();
+                   lineno = stream.getLineno();
+-                  charno = stream.getCharno();
++                  charno = var_2307;
+                   type = null;
+ 
+                   if (token == JsDocToken.LC) {
+@@ -605,7 +606,7 @@
+                   skipEOLs();
+                   token = next();
+                   lineno = stream.getLineno();
+-                  charno = stream.getCharno();
++                  charno = var_2307;
+                   type = null;
+ 
+                   if (token == JsDocToken.LC) {
+@@ -621,7 +622,7 @@
+                     skipEOLs();
+                     token = next();
+                     lineno = stream.getLineno();
+-                    charno = stream.getCharno();
++                    charno = var_2307;
+                   }
+ 
+                   String name = null;
+@@ -702,7 +703,7 @@
+                 case PRESERVE_TRY:
+                   if (!jsdocBuilder.recordPreserveTry()) {
+                     parser.addParserWarning("msg.jsdoc.preservertry",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -710,7 +711,7 @@
+                 case NO_SHADOW:
+                   if (!jsdocBuilder.recordNoShadow()) {
+                     parser.addParserWarning("msg.jsdoc.noshadow",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -718,7 +719,7 @@
+                 case NO_SIDE_EFFECTS:
+                   if (!jsdocBuilder.recordNoSideEffects()) {
+                     parser.addParserWarning("msg.jsdoc.nosideeffects",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -730,7 +731,7 @@
+                 case IMPLICIT_CAST:
+                   if (!jsdocBuilder.recordImplicitCast()) {
+                     parser.addTypeWarning("msg.jsdoc.implicitcast",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -742,7 +743,7 @@
+ 
+                     if (reference.length() == 0) {
+                       parser.addParserWarning("msg.jsdoc.seemissing",
+-                          stream.getLineno(), stream.getCharno());
++                          stream.getLineno(), var_2307);
+                     } else {
+                       jsdocBuilder.addReference(reference);
+                     }
+@@ -756,7 +757,7 @@
+                 case STABLEIDGENERATOR:
+                   if (!jsdocBuilder.recordStableIdGenerator()) {
+                     parser.addParserWarning("msg.jsdoc.stableidgen",
+-                      stream.getLineno(), stream.getCharno());
++                      stream.getLineno(), var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -774,10 +775,10 @@
+ 
+                   if (names.size() == 0 || names.get(0).length() == 0) {
+                     parser.addTypeWarning("msg.jsdoc.templatemissing",
+-                          stream.getLineno(), stream.getCharno());
++                          stream.getLineno(), var_2307);
+                   } else if (!jsdocBuilder.recordTemplateTypeNames(names)) {
+                     parser.addTypeWarning("msg.jsdoc.template.at.most.once",
+-                        stream.getLineno(), stream.getCharno());
++                        stream.getLineno(), var_2307);
+                   }
+ 
+                   token = templateInfo.token;
+@@ -786,7 +787,7 @@
+                 case IDGENERATOR:
+                   if (!jsdocBuilder.recordIdGenerator()) {
+                     parser.addParserWarning("msg.jsdoc.idgen",
+-                      stream.getLineno(), stream.getCharno());
++                      stream.getLineno(), var_2307);
+                   }
+                   token = eatTokensUntilEOL();
+                   continue retry;
+@@ -797,11 +798,11 @@
+ 
+                   if (version.length() == 0) {
+                     parser.addParserWarning("msg.jsdoc.versionmissing",
+-                          stream.getLineno(), stream.getCharno());
++                          stream.getLineno(), var_2307);
+                   } else {
+                     if (!jsdocBuilder.recordVersion(version)) {
+                        parser.addParserWarning("msg.jsdoc.extraversion",
+-                          stream.getLineno(), stream.getCharno());
++                          stream.getLineno(), var_2307);
+                     }
+                   }
+ 
+@@ -818,7 +819,7 @@
+                 case TYPE:
+                 case TYPEDEF:
+                   lineno = stream.getLineno();
+-                  charno = stream.getCharno();
++                  charno = var_2307;
+ 
+                   Node typeNode = null;
+                   boolean hasType = lookAheadForTypeAnnotation();
+@@ -865,7 +866,7 @@
+                       case CONSTANT:
+                         if (!jsdocBuilder.recordConstancy()) {
+                           parser.addParserWarning("msg.jsdoc.const",
+-                              stream.getLineno(), stream.getCharno());
++                              stream.getLineno(), var_2307);
+                         }
+                         break;
+ 
+@@ -964,7 +965,7 @@
+           // discard any accumulated information
+           jsdocBuilder.build(null);
+           parser.addParserWarning("msg.unexpected.eof",
+-              stream.getLineno(), stream.getCharno());
++              stream.getLineno(), var_2307);
+           checkExtendedTypes(extendedTypes);
+           return false;
+ 

@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+index 8d6a50b..7fb057e 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+@@ -627,7 +627,8 @@
+             int pj = permutation[j];
+             double sum = 0;
+             for (int i = 0; i <= j; ++i) {
+-                sum += weightedJacobian[i][pj] * qy[i];
++                double[] var_3197 = weightedJacobian[i];
++				sum += var_3197[pj] * qy[i];
+             }
+             sum /= diag[pj];
+             sum2 += sum * sum;

@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+index c837709..662f5d8 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+@@ -1035,9 +1035,10 @@
+      * @return Matrix where the elements of m and n are element-wise divided.
+      */
+     private static RealMatrix divide(final RealMatrix m, final RealMatrix n) {
+-        final double[][] d = new double[m.getRowDimension()][m.getColumnDimension()];
++        int var_3044 = m.getColumnDimension();
++		final double[][] d = new double[m.getRowDimension()][var_3044];
+         for (int r = 0; r < m.getRowDimension(); r++) {
+-            for (int c = 0; c < m.getColumnDimension(); c++) {
++            for (int c = 0; c < var_3044; c++) {
+                 d[r][c] = m.getEntry(r, c) / n.getEntry(r, c);
+             }
+         }

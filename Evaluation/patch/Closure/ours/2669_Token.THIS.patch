@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+index c8fbac8..223d2bf 100644
+--- a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
++++ b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+@@ -1604,7 +1604,8 @@
+         ObjectType thisType = null;
+         boolean isConstructor = false;
+         Node current = n.getFirstChild();
+-        if (current.getType() == Token.THIS ||
++        int var_2669 = Token.THIS;
++		if (current.getType() == var_2669 ||
+             current.getType() == Token.NEW) {
+           Node contextNode = current.getFirstChild();
+           thisType =
+@@ -1615,7 +1616,7 @@
+           if (thisType == null) {
+             reporter.warning(
+                 ScriptRuntime.getMessage0(
+-                    current.getType() == Token.THIS ?
++                    current.getType() == var_2669 ?
+                     "msg.jsdoc.function.thisnotobject" :
+                     "msg.jsdoc.function.newnotobject"),
+                 sourceName,

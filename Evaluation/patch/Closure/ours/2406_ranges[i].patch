@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/regex/CharRanges.java b/src/com/google/javascript/jscomp/regex/CharRanges.java
+index 0736d68..1896631 100644
+--- a/src/com/google/javascript/jscomp/regex/CharRanges.java
++++ b/src/com/google/javascript/jscomp/regex/CharRanges.java
+@@ -400,9 +400,10 @@
+     StringBuilder sb = new StringBuilder();
+     sb.append('[');
+     for (int i = 0; i < ranges.length; ++i) {
+-      if ((i & 1) != 0 && ranges[i] == ranges[i - 1] + 1) { continue; }
++      int var_2406 = ranges[i];
++	if ((i & 1) != 0 && var_2406 == ranges[i - 1] + 1) { continue; }
+       if (i != 0) { sb.append((i & 1) == 0 ? ' ' : '-'); }
+-      sb.append("0x").append(Integer.toString(ranges[i] - (i & 1), 16));
++      sb.append("0x").append(Integer.toString(var_2406 - (i & 1), 16));
+     }
+     sb.append(']');
+     return sb.toString();

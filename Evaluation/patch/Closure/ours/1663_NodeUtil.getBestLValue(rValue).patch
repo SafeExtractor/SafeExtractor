@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+index bc570e2..f06ddb1 100644
+--- a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
++++ b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+@@ -388,7 +388,8 @@
+      * a prototype property assignment in a more complex expression).
+      */
+     private String getPrototypePropertyNameFromRValue(Node rValue) {
+-      Node lValue = NodeUtil.getBestLValue(rValue);
++      Node var_1663 = NodeUtil.getBestLValue(rValue);
++	Node lValue = var_1663;
+       if (lValue == null ||
+           lValue.getParent() == null ||
+           lValue.getParent().getParent() == null ||
+@@ -398,7 +399,7 @@
+       }
+ 
+       String lValueName =
+-          NodeUtil.getBestLValueName(NodeUtil.getBestLValue(rValue));
++          NodeUtil.getBestLValueName(var_1663);
+       if (lValueName == null) {
+         return null;
+       }

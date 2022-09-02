@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java b/src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java
+index 8f76f06..373c56f 100644
+--- a/src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java
++++ b/src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java
+@@ -318,12 +318,13 @@
+ 
+         DateTimeParser[] copyOfParsers = new DateTimeParser[length];
+         int i;
+-        for (i = 0; i < length - 1; i++) {
+-            if ((copyOfParsers[i] = parsers[i]) == null) {
++        DateTimeParser var_455 = parsers[i];
++		for (i = 0; i < length - 1; i++) {
++            if ((copyOfParsers[i] = var_455) == null) {
+                 throw new IllegalArgumentException("Incomplete parser array");
+             }
+         }
+-        copyOfParsers[i] = parsers[i];
++        copyOfParsers[i] = var_455;
+ 
+         return append0(printer, new MatchingParser(copyOfParsers));
+     }

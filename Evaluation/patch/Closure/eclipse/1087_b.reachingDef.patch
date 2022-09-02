@@ -1,0 +1,34 @@
+diff --git a/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java b/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java
+index e374ca0..6d8a966 100644
+--- a/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java
++++ b/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java
+@@ -151,7 +151,8 @@
+       Map<Var, Definition> resultMap = result.reachingDef;
+ 
+       // Take the join of all variables that are not TOP in this.
+-      for (Map.Entry<Var, Definition> varEntry : a.reachingDef.entrySet()) {
++      Map<Var, Definition> var_1087 = b.reachingDef;
++	for (Map.Entry<Var, Definition> varEntry : a.reachingDef.entrySet()) {
+         Var var = varEntry.getKey();
+         Definition aDef = varEntry.getValue();
+ 
+@@ -165,8 +166,8 @@
+ 
+         Node aNode = aDef.node;
+ 
+-        if (b.reachingDef.containsKey(var)) {
+-          Definition bDef = b.reachingDef.get(var);
++        if (var_1087.containsKey(var)) {
++          Definition bDef = var_1087.get(var);
+ 
+           if (aDef.equals(bDef)) {
+             resultMap.put(var, aDef);
+@@ -180,7 +181,7 @@
+ 
+       // Take the join of all variables that are not TOP in other but it is TOP
+       // in this.
+-      for (Map.Entry<Var, Definition> entry : b.reachingDef.entrySet()) {
++      for (Map.Entry<Var, Definition> entry : var_1087.entrySet()) {
+         Var var = entry.getKey();
+         if (!a.reachingDef.containsKey(var)) {
+           resultMap.put(var, entry.getValue());

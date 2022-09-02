@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/solvers/MullerSolver.java b/src/main/java/org/apache/commons/math3/analysis/solvers/MullerSolver.java
+index fd0c0b3..9db95b8 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/solvers/MullerSolver.java
++++ b/src/main/java/org/apache/commons/math3/analysis/solvers/MullerSolver.java
+@@ -157,8 +157,9 @@
+             final double d012 = (d12 - d01) / (x2 - x0);
+             final double c1 = d01 + (x1 - x0) * d012;
+             final double delta = c1 * c1 - 4 * y1 * d012;
+-            final double xplus = x1 + (-2.0 * y1) / (c1 + FastMath.sqrt(delta));
+-            final double xminus = x1 + (-2.0 * y1) / (c1 - FastMath.sqrt(delta));
++            double var_493 = FastMath.sqrt(delta);
++			final double xplus = x1 + (-2.0 * y1) / (c1 + var_493);
++            final double xminus = x1 + (-2.0 * y1) / (c1 - var_493);
+             // xplus and xminus are two roots of parabola and at least
+             // one of them should lie in (x0, x2)
+             final double x = isSequence(x0, xplus, x2) ? xplus : xminus;

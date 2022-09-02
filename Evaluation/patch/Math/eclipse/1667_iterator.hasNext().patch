@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+index d33ceab..cd0e78a 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+@@ -178,21 +178,22 @@
+ 
+         // build the current level
+         Hyperplane<S> inserted = null;
+-        while ((inserted == null) && iterator.hasNext()) {
++        boolean var_1667 = iterator.hasNext();
++		while ((inserted == null) && var_1667) {
+             inserted = iterator.next().getHyperplane();
+             if (!node.insertCut(inserted.copySelf())) {
+                 inserted = null;
+             }
+         }
+ 
+-        if (!iterator.hasNext()) {
++        if (!var_1667) {
+             return;
+         }
+ 
+         // distribute the remaining edges in the two sub-trees
+         final ArrayList<SubHyperplane<S>> plusList  = new ArrayList<SubHyperplane<S>>();
+         final ArrayList<SubHyperplane<S>> minusList = new ArrayList<SubHyperplane<S>>();
+-        while (iterator.hasNext()) {
++        while (var_1667) {
+             final SubHyperplane<S> other = iterator.next();
+             switch (other.side(inserted)) {
+             case PLUS:

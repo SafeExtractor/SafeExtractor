@@ -1,0 +1,31 @@
+diff --git a/source/org/jfree/chart/annotations/XYPointerAnnotation.java b/source/org/jfree/chart/annotations/XYPointerAnnotation.java
+index 5ea9d1e..d222285 100644
+--- a/source/org/jfree/chart/annotations/XYPointerAnnotation.java
++++ b/source/org/jfree/chart/annotations/XYPointerAnnotation.java
+@@ -394,13 +394,14 @@
+             j2DY = temp;
+         }
+         double startX = j2DX + Math.cos(this.angle) * this.baseRadius;
+-        double startY = j2DY + Math.sin(this.angle) * this.baseRadius;
++        double var_237 = Math.sin(this.angle);
++		double startY = j2DY + var_237 * this.baseRadius;
+ 
+         double endX = j2DX + Math.cos(this.angle) * this.tipRadius;
+-        double endY = j2DY + Math.sin(this.angle) * this.tipRadius;
++        double endY = j2DY + var_237 * this.tipRadius;
+ 
+         double arrowBaseX = endX + Math.cos(this.angle) * this.arrowLength;
+-        double arrowBaseY = endY + Math.sin(this.angle) * this.arrowLength;
++        double arrowBaseY = endY + var_237 * this.arrowLength;
+ 
+         double arrowLeftX = arrowBaseX
+                 + Math.cos(this.angle + Math.PI / 2.0) * this.arrowWidth;
+@@ -427,7 +428,7 @@
+         // draw the label
+         double labelX = j2DX + Math.cos(this.angle) * (this.baseRadius
+                 + this.labelOffset);
+-        double labelY = j2DY + Math.sin(this.angle) * (this.baseRadius
++        double labelY = j2DY + var_237 * (this.baseRadius
+                 + this.labelOffset);
+         g2.setFont(getFont());
+         Shape hotspot = TextUtilities.calculateRotatedStringBounds(

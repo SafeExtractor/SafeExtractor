@@ -1,0 +1,36 @@
+diff --git a/source/org/jfree/chart/title/PaintScaleLegend.java b/source/org/jfree/chart/title/PaintScaleLegend.java
+index c489277..f2f1aa5 100644
+--- a/source/org/jfree/chart/title/PaintScaleLegend.java
++++ b/source/org/jfree/chart/title/PaintScaleLegend.java
+@@ -551,7 +551,8 @@
+             RectangleEdge axisEdge = Plot.resolveRangeAxisLocation(
+                     this.axisLocation, PlotOrientation.HORIZONTAL);
+             if (axisEdge == RectangleEdge.TOP) {
+-                for (int i = 0; i < this.subdivisions; i++) {
++                double var_3416 = target.getMaxY();
++				for (int i = 0; i < this.subdivisions; i++) {
+                     double v = base + (i * increment);
+                     Paint p = this.scale.getPaint(v);
+                     double vv0 = this.axis.valueToJava2D(v, target,
+@@ -559,7 +560,7 @@
+                     double vv1 = this.axis.valueToJava2D(v + increment, target,
+                             RectangleEdge.TOP);
+                     double ww = Math.abs(vv1 - vv0) + 1.0;
+-                    r.setRect(Math.min(vv0, vv1), target.getMaxY()
++                    r.setRect(Math.min(vv0, vv1), var_3416
+                             - this.stripWidth, ww, this.stripWidth);
+                     g2.setPaint(p);
+                     g2.fill(r);
+@@ -568,10 +569,10 @@
+                     g2.setPaint(this.stripOutlinePaint);
+                     g2.setStroke(this.stripOutlineStroke);
+                     g2.draw(new Rectangle2D.Double(target.getMinX(),
+-                            target.getMaxY() - this.stripWidth,
++                            var_3416 - this.stripWidth,
+                             target.getWidth(), this.stripWidth));
+                 }
+-                this.axis.draw(g2, target.getMaxY() - this.stripWidth
++                this.axis.draw(g2, var_3416 - this.stripWidth
+                         - this.axisOffset, target, target, RectangleEdge.TOP,
+                         null);
+             }

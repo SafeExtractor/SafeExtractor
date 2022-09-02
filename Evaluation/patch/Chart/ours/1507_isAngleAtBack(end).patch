@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot3D.java b/source/org/jfree/chart/plot/PiePlot3D.java
+index a7aab14..e10bc81 100644
+--- a/source/org/jfree/chart/plot/PiePlot3D.java
++++ b/source/org/jfree/chart/plot/PiePlot3D.java
+@@ -633,11 +633,12 @@
+         g2.setStroke(outlineStroke);
+ 
+         // for CLOCKWISE charts, the extent will be negative...
+-        if (extent < 0.0) {
++        boolean var_1507 = isAngleAtBack(end);
++		if (extent < 0.0) {
+ 
+             if (isAngleAtFront(start)) {  // start at front
+ 
+-                if (!isAngleAtBack(end)) {
++                if (!var_1507) {
+ 
+                     if (extent > -180.0) {  // the segment is entirely at the
+                                             // front of the chart
+@@ -807,7 +808,7 @@
+ 
+             if (isAngleAtFront(start)) {  // segment starts at the front
+ 
+-                if (!isAngleAtBack(end)) {  // and finishes at the front
++                if (!var_1507) {  // and finishes at the front
+ 
+                     if (extent < 180.0) {  // segment only occupies the front
+                         if (drawFront) {

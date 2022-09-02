@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..d68e6f1 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -493,13 +493,16 @@
+       Node ret;
+       if (n instanceof Name) {
+         ret = transformNameAsString((Name)n);
+-      } else if (n instanceof NumberLiteral) {
+-        ret = transformNumberAsString((NumberLiteral)n);
+-        ret.putBooleanProp(Node.QUOTED_PROP, true);
+       } else {
+-        ret = transform(n);
+-        ret.putBooleanProp(Node.QUOTED_PROP, true);
+-      }
++		int var_2244 = Node.QUOTED_PROP;
++		if (n instanceof NumberLiteral) {
++		    ret = transformNumberAsString((NumberLiteral)n);
++		    ret.putBooleanProp(var_2244, true);
++		  } else {
++		    ret = transform(n);
++		    ret.putBooleanProp(var_2244, true);
++		  }
++	}
+       Preconditions.checkState(ret.isString());
+       return ret;
+     }

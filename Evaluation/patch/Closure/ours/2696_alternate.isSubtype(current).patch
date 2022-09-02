@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/rhino/jstype/UnionTypeBuilder.java b/src/com/google/javascript/rhino/jstype/UnionTypeBuilder.java
+index 69b6567..cd11c4e 100644
+--- a/src/com/google/javascript/rhino/jstype/UnionTypeBuilder.java
++++ b/src/com/google/javascript/rhino/jstype/UnionTypeBuilder.java
+@@ -189,7 +189,8 @@
+             // building the subtype.
+             //
+ 
+-            if (alternate.isParameterizedType() || current.isParameterizedType()) {
++            boolean var_2696 = alternate.isSubtype(current);
++			if (alternate.isParameterizedType() || current.isParameterizedType()) {
+               // Cases:
+               // 1) alternate:Array.<string> and current:Object ==> Object
+               // 2) alternate:Array.<string> and current:Array ==> Array
+@@ -207,7 +208,7 @@
+               //    current:Object.<string> ==> Object.<string>|Array.<string>
+ 
+               if (!current.isParameterizedType()) {
+-                if (alternate.isSubtype(current)) {
++                if (var_2696) {
+                   // case 1, 2
+                   return this;
+                 }
+@@ -243,7 +244,7 @@
+                 // case 9: leave current, add alternate
+               }
+               // Otherwise leave both parameterized types.
+-            } else if (alternate.isSubtype(current)) {
++            } else if (var_2696) {
+               // Alternate is unnecessary.
+               return this;
+             } else if (current.isSubtype(alternate)) {

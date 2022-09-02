@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/distribution/MixtureMultivariateRealDistribution.java b/src/main/java/org/apache/commons/math3/distribution/MixtureMultivariateRealDistribution.java
+index f0750ed..f368447 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/MixtureMultivariateRealDistribution.java
++++ b/src/main/java/org/apache/commons/math3/distribution/MixtureMultivariateRealDistribution.java
+@@ -71,8 +71,9 @@
+         double weightSum = 0;
+         for (int i = 0; i < numComp; i++) {
+             final Pair<Double, T> comp = components.get(i);
+-            if (comp.getSecond().getDimension() != dim) {
+-                throw new DimensionMismatchException(comp.getSecond().getDimension(), dim);
++            T var_903 = comp.getSecond();
++			if (var_903.getDimension() != dim) {
++                throw new DimensionMismatchException(var_903.getDimension(), dim);
+             }
+             if (comp.getFirst() < 0) {
+                 throw new NotPositiveException(comp.getFirst());

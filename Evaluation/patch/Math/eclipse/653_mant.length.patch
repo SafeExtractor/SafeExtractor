@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..e9a8ddb 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1653,7 +1653,8 @@
+         }
+ 
+         int rh = 0;
+-        for (int i = 0; i < mant.length; i++) {
++        int var_653 = mant.length;
++		for (int i = 0; i < var_653; i++) {
+             final int r = mant[i] * x + rh;
+             rh = r / RADIX;
+             result.mant[i] = r - rh * RADIX;
+@@ -1663,10 +1664,10 @@
+         if (rh != 0) {
+             lostdigit = result.mant[0];
+             result.shiftRight();
+-            result.mant[mant.length-1] = rh;
++            result.mant[var_653-1] = rh;
+         }
+ 
+-        if (result.mant[mant.length-1] == 0) { // if result is zero, set exp to zero
++        if (result.mant[var_653-1] == 0) { // if result is zero, set exp to zero
+             result.exp = 0;
+         }
+ 

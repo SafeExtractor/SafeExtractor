@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java b/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java
+index e0466ea..6407e13 100644
+--- a/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java
++++ b/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java
+@@ -135,12 +135,13 @@
+ 
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      if (n.isVar()) {
++      boolean var_465 = n.isVar();
++	if (var_465) {
+         blacklistStubVars(t, n);
+       }
+ 
+       // Only care about var nodes
+-      if (!n.isVar() && !canBeRedeclared(n, t.getScope())) return;
++      if (!var_465 && !canBeRedeclared(n, t.getScope())) return;
+ 
+       // If we've already looked at this node, skip it
+       if (nodesToCollapse.contains(n)) return;
+@@ -151,7 +152,7 @@
+ 
+       Node varNode = n;
+ 
+-      boolean hasVar = n.isVar();
++      boolean hasVar = var_465;
+ 
+       // Find variable declarations that follow this one (if any)
+       n = n.getNext();
+@@ -159,9 +160,9 @@
+       boolean hasNodesToCollapse = false;
+ 
+       while (n != null &&
+-          (n.isVar() || canBeRedeclared(n, t.getScope()))) {
++          (var_465 || canBeRedeclared(n, t.getScope()))) {
+ 
+-        if (n.isVar()) {
++        if (var_465) {
+           blacklistStubVars(t, n);
+           hasVar = true;
+         }

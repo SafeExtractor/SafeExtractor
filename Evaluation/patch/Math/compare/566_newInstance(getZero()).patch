@@ -1,0 +1,36 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/566_newInstance(getZero()).patch b/Users/safe/paper/Evaluation/patch/Math/ours/566_newInstance(getZero()).patch
+index 8fcebb8..40aa435 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/566_newInstance(getZero()).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/566_newInstance(getZero()).patch
+@@ -1,26 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+-index e6de61f..bcab0df 100644
++index e6de61f..0f76340 100644
+ --- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+ +++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+-@@ -755,9 +755,10 @@
+-     public boolean lessThan(final Dfp x) {
+- 
++@@ -757,7 +757,8 @@
+          // make sure we don't mix number with different precision
+--        if (field.getRadixDigits() != x.field.getRadixDigits()) {
+-+        Dfp var_566 = newInstance(getZero());
+-+		if (field.getRadixDigits() != x.field.getRadixDigits()) {
++         if (field.getRadixDigits() != x.field.getRadixDigits()) {
+              field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+ -            final Dfp result = newInstance(getZero());
+-+            final Dfp result = var_566;
+++            Dfp var_566 = newInstance(getZero());
+++			final Dfp result = var_566;
+              result.nans = QNAN;
+              dotrap(DfpField.FLAG_INVALID, LESS_THAN_TRAP, x, result);
+              return false;
+-@@ -766,7 +767,7 @@
+-         /* if a nan is involved, signal invalid and return false */
+-         if (isNaN() || x.isNaN()) {
+-             field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+--            dotrap(DfpField.FLAG_INVALID, LESS_THAN_TRAP, x, newInstance(getZero()));
+-+            dotrap(DfpField.FLAG_INVALID, LESS_THAN_TRAP, x, var_566);
+-             return false;
+-         }
+- 

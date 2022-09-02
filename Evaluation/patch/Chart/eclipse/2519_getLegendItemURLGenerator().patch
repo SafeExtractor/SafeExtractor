@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java b/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java
+index 326271f..0597d37 100644
+--- a/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java
++++ b/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java
+@@ -64,6 +64,7 @@
+ import org.jfree.chart.axis.ValueAxis;
+ import org.jfree.chart.entity.EntityCollection;
+ import org.jfree.chart.event.RendererChangeEvent;
++import org.jfree.chart.labels.CategorySeriesLabelGenerator;
+ import org.jfree.chart.plot.CategoryPlot;
+ import org.jfree.chart.plot.PlotOrientation;
+ import org.jfree.chart.plot.PlotRenderingInfo;
+@@ -188,8 +189,9 @@
+                     dataset, series);
+         }
+         String urlText = null;
+-        if (getLegendItemURLGenerator() != null) {
+-            urlText = getLegendItemURLGenerator().generateLabel(dataset,
++        CategorySeriesLabelGenerator var_2519 = getLegendItemURLGenerator();
++		if (var_2519 != null) {
++            urlText = var_2519.generateLabel(dataset,
+                     series);
+         }
+         Shape shape = lookupLegendShape(series);

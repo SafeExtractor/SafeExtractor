@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/NelderMeadSimplex.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/NelderMeadSimplex.java
+index 4848ab3..2cb71a8 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/NelderMeadSimplex.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/NelderMeadSimplex.java
+@@ -241,7 +241,8 @@
+                 // Perform an outside contraction.
+                 final double[] xC = new double[n];
+                 for (int j = 0; j < n; j++) {
+-                    xC[j] = centroid[j] + gamma * (xR[j] - centroid[j]);
++                    double var_2994 = xC[j];
++					xC[j] = centroid[j] + gamma * (xR[j] - centroid[j]);
+                 }
+                 final PointValuePair outContracted
+                     = new PointValuePair(xC, evaluationFunction.value(xC), false);

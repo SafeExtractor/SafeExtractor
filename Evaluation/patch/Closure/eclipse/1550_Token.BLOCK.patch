@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..97ab247 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -144,7 +144,8 @@
+ 
+     cc.startSourceMapping(n);
+ 
+-    switch (type) {
++    final int var_1550 = Token.BLOCK;
++	switch (type) {
+       case Token.TRY: {
+         Preconditions.checkState(first.getNext().isBlock() &&
+                 !first.getNext().hasMoreThanOneChild());
+@@ -370,7 +371,7 @@
+         break;
+ 
+       case Token.SCRIPT:
+-      case Token.BLOCK: {
++      case var_1550: {
+         if (n.getClass() != Node.class) {
+           throw new Error("Unexpected Node subclass.");
+         }
+@@ -381,7 +382,7 @@
+ 
+         boolean preferLineBreaks =
+             type == Token.SCRIPT ||
+-            (type == Token.BLOCK &&
++            (type == var_1550 &&
+                 !preserveBlock &&
+                 n.getParent() != null &&
+                 n.getParent().isScript());

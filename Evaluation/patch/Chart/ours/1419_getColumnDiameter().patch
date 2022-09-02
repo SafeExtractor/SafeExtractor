@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/plot/ThermometerPlot.java b/source/org/jfree/chart/plot/ThermometerPlot.java
+index d4bd7b7..f23f9c2 100644
+--- a/source/org/jfree/chart/plot/ThermometerPlot.java
++++ b/source/org/jfree/chart/plot/ThermometerPlot.java
+@@ -1135,9 +1135,10 @@
+         outerBulb.setFrame(midX - getBulbRadius(), stemBottom,
+                 getBulbDiameter(), getBulbDiameter());
+ 
+-        outerStem.setRoundRect(midX - getColumnRadius(), interior.getMinY(),
+-                getColumnDiameter(), stemBottom + getBulbDiameter() - stemTop,
+-                getColumnDiameter(), getColumnDiameter());
++        int var_1419 = getColumnDiameter();
++		outerStem.setRoundRect(midX - getColumnRadius(), interior.getMinY(),
++                var_1419, stemBottom + getBulbDiameter() - stemTop,
++                var_1419, var_1419);
+ 
+         Area outerThermometer = new Area(outerBulb);
+         Area tempArea = new Area(outerStem);
+@@ -1148,10 +1149,10 @@
+                 - getGap() * 2);
+ 
+         innerStem.setRoundRect(midX - getColumnRadius() + getGap(),
+-                interior.getMinY() + getGap(), getColumnDiameter()
++                interior.getMinY() + getGap(), var_1419
+                 - getGap() * 2, stemBottom + getBulbDiameter() - getGap() * 2
+-                - stemTop, getColumnDiameter() - getGap() * 2,
+-                getColumnDiameter() - getGap() * 2);
++                - stemTop, var_1419 - getGap() * 2,
++                var_1419 - getGap() * 2);
+ 
+         Area innerThermometer = new Area(innerBulb);
+         tempArea = new Area(innerStem);
+@@ -1162,7 +1163,7 @@
+             double ds = this.rangeAxis.valueToJava2D(current, dataArea,
+                     RectangleEdge.LEFT);
+ 
+-            int i = getColumnDiameter() - getGap() * 2; // already calculated
++            int i = var_1419 - getGap() * 2; // already calculated
+             int j = getColumnRadius() - getGap(); // already calculated
+             int l = (i / 2);
+             int k = (int) Math.round(ds);

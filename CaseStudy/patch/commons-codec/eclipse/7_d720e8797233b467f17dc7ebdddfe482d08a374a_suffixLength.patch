@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/codec/language/bm/Rule.java b/src/main/java/org/apache/commons/codec/language/bm/Rule.java
+index 644614a..b9624c6 100644
+--- a/src/main/java/org/apache/commons/codec/language/bm/Rule.java
++++ b/src/main/java/org/apache/commons/codec/language/bm/Rule.java
+@@ -262,10 +262,11 @@
+     }
+ 
+     private static boolean endsWith(final CharSequence input, final CharSequence suffix) {
+-        if (suffix.length() > input.length()) {
++        int suffixLength = suffix.length();
++		if (suffixLength > input.length()) {
+             return false;
+         }
+-        for (int i = input.length() - 1, j = suffix.length() - 1; j >= 0; i--, j--) {
++        for (int i = input.length() - 1, j = suffixLength - 1; j >= 0; i--, j--) {
+             if (input.charAt(i) != suffix.charAt(j)) {
+                 return false;
+             }

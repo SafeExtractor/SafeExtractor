@@ -1,0 +1,42 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java b/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java
+index 8b9d8e0..52c66d1 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java
+@@ -112,26 +112,27 @@
+         this.rank = rank;
+         this.containsConstant = containsConstant;
+         this.globalFitInfo = new double[5];
+-        Arrays.fill(this.globalFitInfo, Double.NaN);
++        double[] var_3885 = this.globalFitInfo;
++		Arrays.fill(var_3885, Double.NaN);
+ 
+         if (rank > 0) {
+-            this.globalFitInfo[SST_IDX] = containsConstant ?
++            var_3885[SST_IDX] = containsConstant ?
+                     (sumysq - sumy * sumy / nobs) : sumysq;
+         }
+ 
+-        this.globalFitInfo[SSE_IDX] = sse;
+-        this.globalFitInfo[MSE_IDX] = this.globalFitInfo[SSE_IDX] /
++        var_3885[SSE_IDX] = sse;
++        var_3885[MSE_IDX] = var_3885[SSE_IDX] /
+                 (nobs - rank);
+-        this.globalFitInfo[RSQ_IDX] = 1.0 -
+-                this.globalFitInfo[SSE_IDX] /
+-                this.globalFitInfo[SST_IDX];
++        var_3885[RSQ_IDX] = 1.0 -
++                var_3885[SSE_IDX] /
++                var_3885[SST_IDX];
+ 
+         if (!containsConstant) {
+-            this.globalFitInfo[ADJRSQ_IDX] = 1.0-
+-                    (1.0 - this.globalFitInfo[RSQ_IDX]) *
++            var_3885[ADJRSQ_IDX] = 1.0-
++                    (1.0 - var_3885[RSQ_IDX]) *
+                     ( (double) nobs / ( (double) (nobs - rank)));
+         } else {
+-            this.globalFitInfo[ADJRSQ_IDX] = 1.0 - (sse * (nobs - 1.0)) /
++            var_3885[ADJRSQ_IDX] = 1.0 - (sse * (nobs - 1.0)) /
+                     (globalFitInfo[SST_IDX] * (nobs - rank));
+         }
+     }

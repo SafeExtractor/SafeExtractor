@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/compress/compressors/bzip2/BZip2CompressorInputStream.java b/src/main/java/org/apache/commons/compress/compressors/bzip2/BZip2CompressorInputStream.java
+index 1de731d..9290799 100644
+--- a/src/main/java/org/apache/commons/compress/compressors/bzip2/BZip2CompressorInputStream.java
++++ b/src/main/java/org/apache/commons/compress/compressors/bzip2/BZip2CompressorInputStream.java
+@@ -521,7 +521,8 @@
+                 }
+                 zvec = (zvec << 1) | zj;
+             }
+-            nextSym = perm[zt][zvec - base[zt][zn]];
++            int[] base_zt = base[zt];
++			nextSym = perm[zt][zvec - base_zt[zn]];
+         }
+ 
+         while (true) {

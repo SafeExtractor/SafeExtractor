@@ -1,0 +1,42 @@
+diff --git a/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java b/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java
+index 311459c..3461cad 100644
+--- a/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java
++++ b/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java
+@@ -763,8 +763,9 @@
+         Point2D p1 = new Point2D.Double(x0 + width, y1);
+         Point2D p2 = new Point2D.Double(p1.getX() + getXOffset(),
+                 p1.getY() - getYOffset());
+-        Point2D p3 = new Point2D.Double(p0.getX() + getXOffset(),
+-                p0.getY() - getYOffset());
++        double var_2795 = p0.getY();
++		Point2D p3 = new Point2D.Double(p0.getX() + getXOffset(),
++                var_2795 - getYOffset());
+ 
+         GeneralPath right = new GeneralPath();
+         right.moveTo((float) p1.getX(), (float) p1.getY());
+@@ -774,7 +775,7 @@
+         right.closePath();
+ 
+         GeneralPath left = new GeneralPath();
+-        left.moveTo((float) p0.getX(), (float) p0.getY());
++        left.moveTo((float) p0.getX(), (float) var_2795);
+         left.lineTo((float) p00.getX(), (float) p00.getY());
+         left.lineTo((float) p03.getX(), (float) p03.getY());
+         left.lineTo((float) p3.getX(), (float) p3.getY());
+@@ -788,14 +789,14 @@
+         back.closePath();
+ 
+         GeneralPath front = new GeneralPath();
+-        front.moveTo((float) p0.getX(), (float) p0.getY());
++        front.moveTo((float) p0.getX(), (float) var_2795);
+         front.lineTo((float) p1.getX(), (float) p1.getY());
+         front.lineTo((float) p01.getX(), (float) p01.getY());
+         front.lineTo((float) p00.getX(), (float) p00.getY());
+         front.closePath();
+ 
+         GeneralPath top = new GeneralPath();
+-        top.moveTo((float) p0.getX(), (float) p0.getY());
++        top.moveTo((float) p0.getX(), (float) var_2795);
+         top.lineTo((float) p1.getX(), (float) p1.getY());
+         top.lineTo((float) p2.getX(), (float) p2.getY());
+         top.lineTo((float) p3.getX(), (float) p3.getY());

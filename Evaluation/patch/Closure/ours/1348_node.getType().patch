@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+index 171eb51..efd6639 100644
+--- a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
++++ b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+@@ -420,7 +420,8 @@
+               sideEffectInfo, traversal.getScope(),
+               node, node.getFirstChild(), node.getLastChild());
+         } else {
+-          switch(node.getType()) {
++          int var_1348 = node.getType();
++		switch(var_1348) {
+             case Token.CALL:
+             case Token.NEW:
+               visitCall(sideEffectInfo, node);
+@@ -460,7 +461,7 @@
+             default:
+               throw new IllegalArgumentException(
+                   "Unhandled side effect node type " +
+-                  Token.name(node.getType()));
++                  Token.name(var_1348));
+           }
+         }
+       }

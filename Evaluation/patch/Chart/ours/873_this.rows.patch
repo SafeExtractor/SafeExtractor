@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/block/GridArrangement.java b/source/org/jfree/chart/block/GridArrangement.java
+index 7aa4631..59f8a8b 100644
+--- a/source/org/jfree/chart/block/GridArrangement.java
++++ b/source/org/jfree/chart/block/GridArrangement.java
+@@ -184,10 +184,11 @@
+     protected Size2D arrangeFF(BlockContainer container, Graphics2D g2,
+                                RectangleConstraint constraint) {
+         double width = constraint.getWidth() / this.columns;
+-        double height = constraint.getHeight() / this.rows;
++        int var_873 = this.rows;
++		double height = constraint.getHeight() / var_873;
+         List blocks = container.getBlocks();
+         for (int c = 0; c < this.columns; c++) {
+-            for (int r = 0; r < this.rows; r++) {
++            for (int r = 0; r < var_873; r++) {
+                 int index = r * this.columns + c;
+                 if (index >= blocks.size()) {
+                     break;
+@@ -199,7 +200,7 @@
+                 }
+             }
+         }
+-        return new Size2D(this.columns * width, this.rows * height);
++        return new Size2D(this.columns * width, var_873 * height);
+     }
+ 
+     /**

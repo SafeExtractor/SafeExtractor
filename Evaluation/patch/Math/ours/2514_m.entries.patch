@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/OpenMapRealMatrix.java b/src/main/java/org/apache/commons/math3/linear/OpenMapRealMatrix.java
+index 31c5863..dedceef 100644
+--- a/src/main/java/org/apache/commons/math3/linear/OpenMapRealMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/OpenMapRealMatrix.java
+@@ -223,10 +223,11 @@
+             final int k        = key % columns;
+             for (int j = 0; j < outCols; ++j) {
+                 final int rightKey = m.computeKey(k, j);
+-                if (m.entries.containsKey(rightKey)) {
++                OpenIntToDoubleHashMap var_2514 = m.entries;
++				if (var_2514.containsKey(rightKey)) {
+                     final int outKey = out.computeKey(i, j);
+                     final double outValue =
+-                        out.entries.get(outKey) + value * m.entries.get(rightKey);
++                        out.entries.get(outKey) + value * var_2514.get(rightKey);
+                     if (outValue == 0.0) {
+                         out.entries.remove(outKey);
+                     } else {

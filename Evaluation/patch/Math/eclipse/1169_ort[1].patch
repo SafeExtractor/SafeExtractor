@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..5ff55ab 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -176,11 +176,12 @@
+         final T[][] ort = orthogonalizeMatrix(m, threshold);
+ 
+         // check the sign of the determinant
+-        final T d0 = ort[1][1].multiply(ort[2][2]).subtract(ort[2][1].multiply(ort[1][2]));
++        T[] var_1169 = ort[1];
++		final T d0 = var_1169[1].multiply(ort[2][2]).subtract(ort[2][1].multiply(var_1169[2]));
+         final T d1 = ort[0][1].multiply(ort[2][2]).subtract(ort[2][1].multiply(ort[0][2]));
+-        final T d2 = ort[0][1].multiply(ort[1][2]).subtract(ort[1][1].multiply(ort[0][2]));
++        final T d2 = ort[0][1].multiply(var_1169[2]).subtract(var_1169[1].multiply(ort[0][2]));
+         final T det =
+-                ort[0][0].multiply(d0).subtract(ort[1][0].multiply(d1)).add(ort[2][0].multiply(d2));
++                ort[0][0].multiply(d0).subtract(var_1169[0].multiply(d1)).add(ort[2][0].multiply(d2));
+         if (det.getReal() < 0.0) {
+             throw new NotARotationMatrixException(
+                                                   LocalizedFormats.CLOSEST_ORTHOGONAL_MATRIX_HAS_NEGATIVE_DETERMINANT,

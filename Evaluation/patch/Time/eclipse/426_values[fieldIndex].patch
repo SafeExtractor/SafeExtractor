@@ -1,0 +1,48 @@
+diff --git a/src/main/java/org/joda/time/field/BaseDateTimeField.java b/src/main/java/org/joda/time/field/BaseDateTimeField.java
+index c86bf1c..8a8329f 100644
+--- a/src/main/java/org/joda/time/field/BaseDateTimeField.java
++++ b/src/main/java/org/joda/time/field/BaseDateTimeField.java
+@@ -303,9 +303,10 @@
+         // adding/removing one from the larger field at a time
+         DateTimeField nextField = null;
+         
+-        while (valueToAdd > 0) {
++        int var_426 = values[fieldIndex];
++		while (valueToAdd > 0) {
+             int max = getMaximumValue(instant, values);
+-            long proposed = values[fieldIndex] + valueToAdd;
++            long proposed = var_426 + valueToAdd;
+             if (proposed <= max) {
+                 values[fieldIndex] = (int) proposed;
+                 break;
+@@ -320,13 +321,13 @@
+                     throw new IllegalArgumentException("Fields invalid for add");
+                 }
+             }
+-            valueToAdd -= (max + 1) - values[fieldIndex];  // reduce the amount to add
++            valueToAdd -= (max + 1) - var_426;  // reduce the amount to add
+             values = nextField.add(instant, fieldIndex - 1, values, 1);  // add 1 to next bigger field
+             values[fieldIndex] = getMinimumValue(instant, values);  // reset this field to zero
+         }
+         while (valueToAdd < 0) {
+             int min = getMinimumValue(instant, values);
+-            long proposed = values[fieldIndex] + valueToAdd;
++            long proposed = var_426 + valueToAdd;
+             if (proposed >= min) {
+                 values[fieldIndex] = (int) proposed;
+                 break;
+@@ -340,12 +341,12 @@
+                     throw new IllegalArgumentException("Fields invalid for add");
+                 }
+             }
+-            valueToAdd -= (min - 1) - values[fieldIndex];  // reduce the amount to add
++            valueToAdd -= (min - 1) - var_426;  // reduce the amount to add
+             values = nextField.add(instant, fieldIndex - 1, values, -1);  // subtract 1 from next bigger field
+             values[fieldIndex] = getMaximumValue(instant, values);  // reset this field to max value
+         }
+         
+-        return set(instant, fieldIndex, values, values[fieldIndex]);  // adjusts smaller fields
++        return set(instant, fieldIndex, values, var_426);  // adjusts smaller fields
+     }
+ 
+     /**

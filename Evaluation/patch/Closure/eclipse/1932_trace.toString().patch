@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/Tracer.java b/src/com/google/javascript/jscomp/Tracer.java
+index 5298e98..496c220 100644
+--- a/src/com/google/javascript/jscomp/Tracer.java
++++ b/src/com/google/javascript/jscomp/Tracer.java
+@@ -255,11 +255,12 @@
+     }
+ 
+     // Check if we are creating too many Tracers.
+-    if (trace.events.size() >= MAX_TRACE_SIZE) {
++    String var_1932 = trace.toString();
++	if (trace.events.size() >= MAX_TRACE_SIZE) {
+       logger.log(Level.WARNING,
+                   "Giant thread trace. Too many Tracers created. "
+                     + "Clearing to avoid memory leak.",
+-                  new Throwable(trace.toString()));
++                  new Throwable(var_1932));
+       trace.truncateEvents();
+     }
+ 
+@@ -270,7 +271,7 @@
+                     + "or Tracer.stop() is not wrapped in a "
+                     + "try/finally block. "
+                     + "Clearing to avoid memory leak.",
+-                  new Throwable(trace.toString()));
++                  new Throwable(var_1932));
+       trace.truncateOutstandingEvents();
+     }
+ 

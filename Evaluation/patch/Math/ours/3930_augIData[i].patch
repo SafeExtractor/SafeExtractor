@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/OLSMultipleLinearRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/OLSMultipleLinearRegression.java
+index af33fb5..bbb77f2 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/OLSMultipleLinearRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/OLSMultipleLinearRegression.java
+@@ -111,10 +111,11 @@
+         double[][] augIData = augI.getDataRef();
+         for (int i = 0; i < n; i++) {
+             for (int j =0; j < n; j++) {
+-                if (i == j && i < p) {
+-                    augIData[i][j] = 1d;
++                double[] var_3930 = augIData[i];
++				if (i == j && i < p) {
++                    var_3930[j] = 1d;
+                 } else {
+-                    augIData[i][j] = 0d;
++                    var_3930[j] = 0d;
+                 }
+             }
+         }

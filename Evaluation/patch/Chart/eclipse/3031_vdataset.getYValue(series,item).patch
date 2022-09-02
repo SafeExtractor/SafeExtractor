@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/chart/renderer/xy/VectorRenderer.java b/source/org/jfree/chart/renderer/xy/VectorRenderer.java
+index dc9417d..edaf1ae 100644
+--- a/source/org/jfree/chart/renderer/xy/VectorRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/VectorRenderer.java
+@@ -170,12 +170,13 @@
+                 int itemCount = dataset.getItemCount(series);
+                 for (int item = 0; item < itemCount; item++) {
+                     double delta = vdataset.getVectorYValue(series, item);
+-                    if (delta < 0.0) {
+-                        uvalue = vdataset.getYValue(series, item);
++                    double var_3031 = vdataset.getYValue(series, item);
++					if (delta < 0.0) {
++                        uvalue = var_3031;
+                         lvalue = uvalue + delta;
+                     }
+                     else {
+-                        lvalue = vdataset.getYValue(series, item);
++                        lvalue = var_3031;
+                         uvalue = lvalue + delta;
+                     }
+                     minimum = Math.min(minimum, lvalue);

@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/clustering/KMeansPlusPlusClusterer.java b/src/main/java/org/apache/commons/math3/stat/clustering/KMeansPlusPlusClusterer.java
+index 8b12d23..a42e8dc 100644
+--- a/src/main/java/org/apache/commons/math3/stat/clustering/KMeansPlusPlusClusterer.java
++++ b/src/main/java/org/apache/commons/math3/stat/clustering/KMeansPlusPlusClusterer.java
+@@ -165,8 +165,9 @@
+         MathUtils.checkNotNull(points);
+ 
+         // number of clusters has to be smaller or equal the number of data points
+-        if (points.size() < k) {
+-            throw new NumberIsTooSmallException(points.size(), k, false);
++        int var_3707 = points.size();
++		if (var_3707 < k) {
++            throw new NumberIsTooSmallException(var_3707, k, false);
+         }
+ 
+         // create the initial clusters
+@@ -174,7 +175,7 @@
+ 
+         // create an array containing the latest assignment of a point to a cluster
+         // no need to initialize the array, as it will be filled with the first assignment
+-        int[] assignments = new int[points.size()];
++        int[] assignments = new int[var_3707];
+         assignPointsToClusters(clusters, points, assignments);
+ 
+         // iterate through updating the centers until we're done

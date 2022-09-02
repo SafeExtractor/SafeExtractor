@@ -1,0 +1,53 @@
+diff --git a/src/main/java/org/apache/commons/lang3/ClassUtils.java b/src/main/java/org/apache/commons/lang3/ClassUtils.java
+index 015e6dd..47be995 100644
+--- a/src/main/java/org/apache/commons/lang3/ClassUtils.java
++++ b/src/main/java/org/apache/commons/lang3/ClassUtils.java
+@@ -643,13 +643,14 @@
+             if (toClass.isPrimitive() == false) {
+                 return false;
+             }
+-            if (Integer.TYPE.equals(cls)) {
++            Class<Float> var_226 = Float.TYPE;
++			if (Integer.TYPE.equals(cls)) {
+                 return Long.TYPE.equals(toClass)
+-                    || Float.TYPE.equals(toClass)
++                    || var_226.equals(toClass)
+                     || Double.TYPE.equals(toClass);
+             }
+             if (Long.TYPE.equals(cls)) {
+-                return Float.TYPE.equals(toClass)
++                return var_226.equals(toClass)
+                     || Double.TYPE.equals(toClass);
+             }
+             if (Boolean.TYPE.equals(cls)) {
+@@ -658,26 +659,26 @@
+             if (Double.TYPE.equals(cls)) {
+                 return false;
+             }
+-            if (Float.TYPE.equals(cls)) {
++            if (var_226.equals(cls)) {
+                 return Double.TYPE.equals(toClass);
+             }
+             if (Character.TYPE.equals(cls)) {
+                 return Integer.TYPE.equals(toClass)
+                     || Long.TYPE.equals(toClass)
+-                    || Float.TYPE.equals(toClass)
++                    || var_226.equals(toClass)
+                     || Double.TYPE.equals(toClass);
+             }
+             if (Short.TYPE.equals(cls)) {
+                 return Integer.TYPE.equals(toClass)
+                     || Long.TYPE.equals(toClass)
+-                    || Float.TYPE.equals(toClass)
++                    || var_226.equals(toClass)
+                     || Double.TYPE.equals(toClass);
+             }
+             if (Byte.TYPE.equals(cls)) {
+                 return Short.TYPE.equals(toClass)
+                     || Integer.TYPE.equals(toClass)
+                     || Long.TYPE.equals(toClass)
+-                    || Float.TYPE.equals(toClass)
++                    || var_226.equals(toClass)
+                     || Double.TYPE.equals(toClass);
+             }
+             // should never get here

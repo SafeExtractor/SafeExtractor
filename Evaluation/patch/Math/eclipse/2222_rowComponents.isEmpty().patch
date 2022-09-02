@@ -1,0 +1,35 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/RealMatrixFormat.java b/src/main/java/org/apache/commons/math3/linear/RealMatrixFormat.java
+index d99277d..159d60b 100644
+--- a/src/main/java/org/apache/commons/math3/linear/RealMatrixFormat.java
++++ b/src/main/java/org/apache/commons/math3/linear/RealMatrixFormat.java
+@@ -318,9 +318,10 @@
+         // parse components
+         List<List<Number>> matrix = new ArrayList<List<Number>>();
+         List<Number> rowComponents = new ArrayList<Number>();
+-        for (boolean loop = true; loop;){
++        boolean var_2222 = rowComponents.isEmpty();
++		for (boolean loop = true; loop;){
+ 
+-            if (!rowComponents.isEmpty()) {
++            if (!var_2222) {
+                 CompositeFormat.parseAndIgnoreWhitespace(source, pos);
+                 if (!CompositeFormat.parseFixedstring(source, trimmedColumnSeparator, pos)) {
+                     if (trimmedRowSuffix.length() != 0 &&
+@@ -351,7 +352,7 @@
+                 if (component != null) {
+                     rowComponents.add(component);
+                 } else {
+-                    if (rowComponents.isEmpty()) {
++                    if (var_2222) {
+                         loop = false;
+                     } else {
+                         // invalid component
+@@ -364,7 +365,7 @@
+ 
+         }
+ 
+-        if (!rowComponents.isEmpty()) {
++        if (!var_2222) {
+             matrix.add(rowComponents);
+         }
+ 

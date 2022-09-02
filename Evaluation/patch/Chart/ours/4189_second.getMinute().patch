@@ -1,0 +1,18 @@
+diff --git a/source/org/jfree/data/time/Millisecond.java b/source/org/jfree/data/time/Millisecond.java
+index 5dada5d..44e091a 100644
+--- a/source/org/jfree/data/time/Millisecond.java
++++ b/source/org/jfree/data/time/Millisecond.java
+@@ -114,9 +114,10 @@
+     public Millisecond(int millisecond, Second second) {
+         this.millisecond = millisecond;
+         this.second = (byte) second.getSecond();
+-        this.minute = (byte) second.getMinute().getMinute();
+-        this.hour = (byte) second.getMinute().getHourValue();
+-        this.day = second.getMinute().getDay();
++        Minute var_4189 = second.getMinute();
++		this.minute = (byte) var_4189.getMinute();
++        this.hour = (byte) var_4189.getHourValue();
++        this.day = var_4189.getDay();
+         peg(Calendar.getInstance());
+     }
+ 

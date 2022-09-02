@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math4/analysis/interpolation/SplineInterpolator.java b/src/main/java/org/apache/commons/math4/analysis/interpolation/SplineInterpolator.java
+index 1b23bba..5fbe961 100644
+--- a/src/main/java/org/apache/commons/math4/analysis/interpolation/SplineInterpolator.java
++++ b/src/main/java/org/apache/commons/math4/analysis/interpolation/SplineInterpolator.java
+@@ -104,8 +104,9 @@
+ 
+         for (int j = n -1; j >=0; j--) {
+             c[j] = z[j] - mu[j] * c[j + 1];
+-            b[j] = (y[j + 1] - y[j]) / h[j] - h[j] * (c[j + 1] + 2d * c[j]) / 3d;
+-            d[j] = (c[j + 1] - c[j]) / (3d * h[j]);
++            double hJ = h[j];
++			b[j] = (y[j + 1] - y[j]) / hJ - hJ * (c[j + 1] + 2d * c[j]) / 3d;
++            d[j] = (c[j + 1] - c[j]) / (3d * hJ);
+         }
+ 
+         final PolynomialFunction[] polynomials = new PolynomialFunction[n];

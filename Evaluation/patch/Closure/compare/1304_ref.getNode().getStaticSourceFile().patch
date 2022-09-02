@@ -1,0 +1,30 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1304_ref.getNode().getStaticSourceFile().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1304_ref.getNode().getStaticSourceFile().patch
+index 7496ee6..8d5eaab 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1304_ref.getNode().getStaticSourceFile().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1304_ref.getNode().getStaticSourceFile().patch
+@@ -1,5 +1,5 @@
+ diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+-index 5f0a14c..0b302db 100644
++index 5f0a14c..a918b9c 100644
+ --- a/src/com/google/javascript/jscomp/SymbolTable.java
+ +++ b/src/com/google/javascript/jscomp/SymbolTable.java
+ @@ -41,6 +41,7 @@
+@@ -10,18 +10,3 @@ index 5f0a14c..0b302db 100644
+  import com.google.javascript.rhino.jstype.StaticSymbolTable;
+  import com.google.javascript.rhino.jstype.UnionType;
+  
+-@@ -617,10 +618,11 @@
+-    * acceptable. A reference must be in the normal source tree.
+-    */
+-   private boolean isGoodRefToAdd(@Nullable StaticReference<JSType> ref) {
+--    return ref != null && ref.getNode() != null
+--        && ref.getNode().getStaticSourceFile() != null
+-+    StaticSourceFile var_1304 = ref.getNode().getStaticSourceFile();
+-+	return ref != null && ref.getNode() != null
+-+        && var_1304 != null
+-         && !Compiler.SYNTHETIC_EXTERNS.equals(
+--            ref.getNode().getStaticSourceFile().getName());
+-+            var_1304.getName());
+-   }
+- 
+-   private Symbol copySymbolTo(StaticSlot<JSType> sym, SymbolScope scope) {

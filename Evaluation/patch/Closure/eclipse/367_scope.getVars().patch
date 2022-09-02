@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/CoalesceVariableNames.java b/src/com/google/javascript/jscomp/CoalesceVariableNames.java
+index 11bb585..3d14918 100644
+--- a/src/com/google/javascript/jscomp/CoalesceVariableNames.java
++++ b/src/com/google/javascript/jscomp/CoalesceVariableNames.java
+@@ -216,7 +216,8 @@
+     Scope scope = t.getScope();
+ 
+     // First create a node for each non-escaped variable.
+-    for (Iterator<Var> i = scope.getVars(); i.hasNext();) {
++    Iterator<Var> var_367 = scope.getVars();
++	for (Iterator<Var> i = var_367; i.hasNext();) {
+       Var v = i.next();
+       if (!escaped.contains(v)) {
+ 
+@@ -233,11 +234,11 @@
+     }
+ 
+     // Go through each variable and try to connect them.
+-    for (Iterator<Var> i1 = scope.getVars(); i1.hasNext();) {
++    for (Iterator<Var> i1 = var_367; i1.hasNext();) {
+       Var v1 = i1.next();
+ 
+       NEXT_VAR_PAIR:
+-      for (Iterator<Var> i2 = scope.getVars(); i2.hasNext();) {
++      for (Iterator<Var> i2 = var_367; i2.hasNext();) {
+         Var v2 = i2.next();
+ 
+         // Skip duplicate pairs.

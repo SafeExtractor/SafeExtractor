@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/chart/panel/ZoomHandler.java b/source/org/jfree/chart/panel/ZoomHandler.java
+index ab08810..dfc894a 100644
+--- a/source/org/jfree/chart/panel/ZoomHandler.java
++++ b/source/org/jfree/chart/panel/ZoomHandler.java
+@@ -176,11 +176,12 @@
+                 // for mouseReleased event, (horizontalZoom || verticalZoom)
+                 // will be true, so we can just test for either being false;
+                 // otherwise both are true
+-                if (!vZoom) {
++                double var_1338 = Math.min(this.zoomRectangle.getWidth(),
++				        maxX - this.zoomPoint.getX());
++				if (!vZoom) {
+                     x = this.zoomPoint.getX();
+                     y = screenDataArea.getMinY();
+-                    w = Math.min(this.zoomRectangle.getWidth(),
+-                            maxX - this.zoomPoint.getX());
++                    w = var_1338;
+                     h = screenDataArea.getHeight();
+                 }
+                 else if (!hZoom) {
+@@ -193,8 +194,7 @@
+                 else {
+                     x = this.zoomPoint.getX();
+                     y = this.zoomPoint.getY();
+-                    w = Math.min(this.zoomRectangle.getWidth(),
+-                            maxX - this.zoomPoint.getX());
++                    w = var_1338;
+                     h = Math.min(this.zoomRectangle.getHeight(),
+                             maxY - this.zoomPoint.getY());
+                 }

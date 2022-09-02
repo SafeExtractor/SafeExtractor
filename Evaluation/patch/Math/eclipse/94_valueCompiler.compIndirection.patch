@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..fbf50f6 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -419,12 +419,13 @@
+             return new int[][][] { { { 1, 0 } } };
+         }
+ 
+-        final int vSize = valueCompiler.compIndirection.length;
++        int[][][] var_94 = valueCompiler.compIndirection;
++		final int vSize = var_94.length;
+         final int dSize = derivativeCompiler.compIndirection.length;
+         final int[][][] compIndirection = new int[vSize + dSize][][];
+ 
+         // the composition rules from the value part can be reused as is
+-        System.arraycopy(valueCompiler.compIndirection, 0, compIndirection, 0, vSize);
++        System.arraycopy(var_94, 0, compIndirection, 0, vSize);
+ 
+         // the composition rules for the derivative part are deduced by
+         // differentiation the rules from the underlying compiler once

@@ -1,0 +1,17 @@
+diff --git a/oak-run/src/main/java/org/apache/jackrabbit/oak/console/Console.java b/oak-run/src/main/java/org/apache/jackrabbit/oak/console/Console.java
+index 582d1c7..e632633 100644
+--- a/oak-run/src/main/java/org/apache/jackrabbit/oak/console/Console.java
++++ b/oak-run/src/main/java/org/apache/jackrabbit/oak/console/Console.java
+@@ -83,9 +83,10 @@
+                 System.exit(1);
+             }
+             MongoConnection mongo = new MongoConnection(uri.getURI());
+-            DocumentNodeStore store = new DocumentMK.Builder().
++            Object builder = new DocumentMK.Builder().
+                     setMongoDB(mongo.getDB()).
+-                    setClusterId(clusterId.value(options)).getNodeStore();
++                    setClusterId(clusterId.value(options));
++			DocumentNodeStore store = builder.getNodeStore();
+             fixture = new MongoFixture(store);
+         } else if (nonOptions.get(0).startsWith("jdbc")) {
+             DataSource ds = RDBDataSourceFactory.forJdbcUrl(nonOptions.get(0), rdbjdbcuser.value(options),

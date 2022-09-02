@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..0f161f3 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -251,9 +251,10 @@
+       if (name.isNamespace() &&
+           (name.aliasingGets > 0 || name.localSets + name.globalSets > 1 ||
+            name.deleteProps > 0)) {
+-        boolean initialized = name.getDeclaration() != null;
++        Ref var_712 = name.getDeclaration();
++		boolean initialized = var_712 != null;
+         for (Ref ref : name.getRefs()) {
+-          if (ref == name.getDeclaration()) {
++          if (ref == var_712) {
+             continue;
+           }
+ 

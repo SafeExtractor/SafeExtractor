@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..450ec1e 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -1109,7 +1109,8 @@
+         operand.setDouble(-operand.getDouble());
+         return operand;
+       } else {
+-        if (type == Token.DELPROP &&
++        int var_2269 = operand.getLineno();
++		if (type == Token.DELPROP &&
+             !(operand.isGetProp() ||
+               operand.isGetElem() ||
+               operand.isName())) {
+@@ -1118,7 +1119,7 @@
+           errorReporter.error(
+               msg,
+               sourceName,
+-              operand.getLineno(), "", 0);
++              var_2269, "", 0);
+         } else  if (type == Token.INC || type == Token.DEC) {
+           if (!validAssignmentTarget(operand)) {
+             String msg = (type == Token.INC)
+@@ -1127,7 +1128,7 @@
+             errorReporter.error(
+                 msg,
+                 sourceName,
+-                operand.getLineno(), "", 0);
++                var_2269, "", 0);
+           }
+         }
+ 

@@ -1,0 +1,32 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2371_next().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2371_next().patch
+index 8531abe..fe7f621 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2371_next().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2371_next().patch
+@@ -1,22 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+-index 5ef8850..89f9974 100644
++index 5ef8850..a072f94 100644
+ --- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+ +++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+-@@ -2088,13 +2088,14 @@
+-     boolean hasVarArgs = false;
+- 
+-     do {
+--      if (arg != null) {
+-+      JsDocToken var_2371 = next();
+-+	if (arg != null) {
+-         next();
+-         skipEOLs();
+--        token = next();
+-+        token = var_2371;
++@@ -2094,7 +2094,8 @@
++         token = next();
+        }
+        if (token == JsDocToken.ELLIPSIS) {
+ -        arg = wrapNode(Token.ELLIPSIS, parseTypeExpression(next()));
+-+        arg = wrapNode(Token.ELLIPSIS, parseTypeExpression(var_2371));
+++        JsDocToken var_2371 = next();
+++		arg = wrapNode(Token.ELLIPSIS, parseTypeExpression(var_2371));
+          hasVarArgs = true;
+        } else {
+          arg = parseTypeExpression(token);

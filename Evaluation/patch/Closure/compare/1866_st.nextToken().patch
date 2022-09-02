@@ -1,0 +1,42 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1866_st.nextToken().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1866_st.nextToken().patch
+index 4bd00f3..c644a2c 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1866_st.nextToken().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1866_st.nextToken().patch
+@@ -1,33 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/JvmMetrics.java b/src/com/google/javascript/jscomp/JvmMetrics.java
+-index c7ec381..f8a9666 100644
++index c7ec381..f106ac3 100644
+ --- a/src/com/google/javascript/jscomp/JvmMetrics.java
+ +++ b/src/com/google/javascript/jscomp/JvmMetrics.java
+-@@ -47,15 +47,16 @@
+-     boolean prettyMode = false;
+-     StringTokenizer st = new StringTokenizer(options, ":");
+-     // options are grouped in order 'detail:format:types'
+--    if (st.hasMoreTokens()) {
+--      String mode = st.nextToken();
+-+    String var_1866 = st.nextToken();
+-+	if (st.hasMoreTokens()) {
+-+      String mode = var_1866;
+-       if (mode.equalsIgnoreCase("verbose")) {
+-         verboseMode = true;
+-       }
++@@ -55,7 +55,8 @@
+      }
+  
+      if (st.hasMoreTokens()) {
+ -      String mode = st.nextToken();
+-+      String mode = var_1866;
+++      String var_1866 = st.nextToken();
+++	String mode = var_1866;
+        if (mode.equalsIgnoreCase("pretty")) {
+          prettyMode = true;
+        }
+-@@ -63,7 +64,7 @@
+- 
+-     if (st.hasMoreTokens()) {
+-       while (st.hasMoreTokens()) {
+--        String types = st.nextToken();
+-+        String types = var_1866;
+-         StringTokenizer typeSt = new StringTokenizer(types, ",");
+-         while (typeSt.hasMoreElements()) {
+-           String type = typeSt.nextToken();

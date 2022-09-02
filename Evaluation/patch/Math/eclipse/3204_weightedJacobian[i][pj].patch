@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+index 8d6a50b..d4f6190 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+@@ -737,7 +737,8 @@
+         for (int j = 0; j < solvedCols; ++j) {
+             int pj = permutation[j];
+             for (int i = j + 1; i < solvedCols; ++i) {
+-                weightedJacobian[i][pj] = weightedJacobian[j][permutation[i]];
++                double var_3204 = weightedJacobian[i][pj];
++				weightedJacobian[i][pj] = weightedJacobian[j][permutation[i]];
+             }
+             lmDir[j] = diagR[pj];
+             work[j]  = qy[j];

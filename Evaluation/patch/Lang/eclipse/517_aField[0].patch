@@ -1,0 +1,62 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DateUtils.java b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+index b16af53..e218bc2 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DateUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+@@ -1005,7 +1005,8 @@
+ 
+         boolean roundUp = false;
+         for (final int[] aField : fields) {
+-            for (final int element : aField) {
++            int var_517 = aField[0];
++			for (final int element : aField) {
+                 if (element == field) {
+                     //This is our field... we stop looping
+                     if (modType == MODIFY_CEILING || (modType == MODIFY_ROUND && roundUp)) {
+@@ -1034,7 +1035,7 @@
+                         } else {
+                             //We need at add one to this field since the
+                             //  last number causes us to round up
+-                            val.add(aField[0], 1);
++                            val.add(var_517, 1);
+                         }
+                     }
+                     return;
+@@ -1046,7 +1047,7 @@
+             //These are special types of fields that require different rounding rules
+             switch (field) {
+                 case DateUtils.SEMI_MONTH:
+-                    if (aField[0] == Calendar.DATE) {
++                    if (var_517 == Calendar.DATE) {
+                         //If we're going to drop the DATE field's value,
+                         //  we want to do this our own way.
+                         //We need to subtrace 1 since the date has a minimum of 1
+@@ -1062,7 +1063,7 @@
+                     }
+                     break;
+                 case Calendar.AM_PM:
+-                    if (aField[0] == Calendar.HOUR_OF_DAY) {
++                    if (var_517 == Calendar.HOUR_OF_DAY) {
+                         //If we're going to drop the HOUR field's value,
+                         //  we want to do this our own way.
+                         offset = val.get(Calendar.HOUR_OF_DAY);
+@@ -1075,16 +1076,16 @@
+                     break;
+             }
+             if (!offsetSet) {
+-                final int min = val.getActualMinimum(aField[0]);
+-                final int max = val.getActualMaximum(aField[0]);
++                final int min = val.getActualMinimum(var_517);
++                final int max = val.getActualMaximum(var_517);
+                 //Calculate the offset from the minimum allowed value
+-                offset = val.get(aField[0]) - min;
++                offset = val.get(var_517) - min;
+                 //Set roundUp if this is more than half way between the minimum and maximum
+                 roundUp = offset > ((max - min) / 2);
+             }
+             //We need to remove this field
+             if (offset != 0) {
+-                val.set(aField[0], val.get(aField[0]) - offset);
++                val.set(var_517, val.get(var_517) - offset);
+             }
+         }
+         throw new IllegalArgumentException("The field " + field + " is not supported");

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
+index edf07d5..1dcb80f 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
+@@ -504,7 +504,8 @@
+                 }
+ 
+                 // Default convergence criteria.
+-                if ((FastMath.abs(actRed) <= costRelativeTolerance &&
++                double var_3496 = FastMath.abs(actRed);
++				if ((var_3496 <= costRelativeTolerance &&
+                      preRed <= costRelativeTolerance &&
+                      ratio <= 2.0) ||
+                     delta <= parRelativeTolerance * xNorm) {
+@@ -516,7 +517,7 @@
+ 
+                 // tests for termination and stringent tolerances
+                 // (2.2204e-16 is the machine epsilon for IEEE754)
+-                if ((FastMath.abs(actRed) <= 2.2204e-16) && (preRed <= 2.2204e-16) && (ratio <= 2.0)) {
++                if ((var_3496 <= 2.2204e-16) && (preRed <= 2.2204e-16) && (ratio <= 2.0)) {
+                     throw new ConvergenceException(LocalizedFormats.TOO_SMALL_COST_RELATIVE_TOLERANCE,
+                                                    costRelativeTolerance);
+                 } else if (delta <= 2.2204e-16 * xNorm) {

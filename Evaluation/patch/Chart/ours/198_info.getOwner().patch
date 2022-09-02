@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/annotations/XYTitleAnnotation.java b/source/org/jfree/chart/annotations/XYTitleAnnotation.java
+index 2178436..7db1a3f 100644
+--- a/source/org/jfree/chart/annotations/XYTitleAnnotation.java
++++ b/source/org/jfree/chart/annotations/XYTitleAnnotation.java
+@@ -50,6 +50,8 @@
+ import java.awt.geom.Point2D;
+ import java.awt.geom.Rectangle2D;
+ import java.io.Serializable;
++
++import org.jfree.chart.ChartRenderingInfo;
+ import org.jfree.chart.axis.AxisLocation;
+ import org.jfree.chart.axis.ValueAxis;
+ import org.jfree.chart.block.BlockParams;
+@@ -309,7 +311,8 @@
+         titleRect.setRect(xx, yy, titleRect.getWidth(), titleRect.getHeight());
+         BlockParams p = new BlockParams();
+         if (info != null) {
+-            if (info.getOwner().getEntityCollection() != null) {
++            ChartRenderingInfo var_198 = info.getOwner();
++			if (var_198.getEntityCollection() != null) {
+                 p.setGenerateEntities(true);
+             }
+         }

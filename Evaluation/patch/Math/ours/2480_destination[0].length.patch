@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/AbstractFieldMatrix.java b/src/main/java/org/apache/commons/math3/linear/AbstractFieldMatrix.java
+index 581b69d..ac05422 100644
+--- a/src/main/java/org/apache/commons/math3/linear/AbstractFieldMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/AbstractFieldMatrix.java
+@@ -433,10 +433,11 @@
+         NullArgumentException, OutOfRangeException {
+         // safety checks
+         checkSubMatrixIndex(selectedRows, selectedColumns);
+-        if ((destination.length < selectedRows.length) ||
+-            (destination[0].length < selectedColumns.length)) {
++        int var_2480 = destination[0].length;
++		if ((destination.length < selectedRows.length) ||
++            (var_2480 < selectedColumns.length)) {
+             throw new MatrixDimensionMismatchException(destination.length,
+-                                                       destination[0].length,
++                                                       var_2480,
+                                                        selectedRows.length,
+                                                        selectedColumns.length);
+         }

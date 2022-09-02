@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..e1e5cc7 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -482,15 +482,16 @@
+     // To be explicitly set to false if the node is not typeable.
+     boolean typeable = true;
+ 
+-    switch (n.getType()) {
++    JSType var_983 = getJSType(expr);
++	switch (n.getType()) {
+       case Token.CAST:
+         Node expr = n.getFirstChild();
+-        ensureTyped(t, n, getJSType(expr));
++        ensureTyped(t, n, var_983);
+ 
+         // If the cast, tightens the type apply it, so it is available post
+         // normalization.
+         JSType castType = getJSType(n);
+-        JSType exprType = getJSType(expr);
++        JSType exprType = var_983;
+         if (castType.isSubtype(exprType)) {
+           expr.setJSType(castType);
+         }

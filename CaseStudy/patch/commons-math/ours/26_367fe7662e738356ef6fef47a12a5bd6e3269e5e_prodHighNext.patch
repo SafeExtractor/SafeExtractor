@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math/util/MathUtils.java b/src/main/java/org/apache/commons/math/util/MathUtils.java
+index e54b04c..f2c0b4d 100644
+--- a/src/main/java/org/apache/commons/math/util/MathUtils.java
++++ b/src/main/java/org/apache/commons/math/util/MathUtils.java
+@@ -2654,9 +2654,10 @@
+         final int lenMinusOne = len - 1;
+         final double[] sHigh = new double[lenMinusOne];
+ 
+-        sHigh[0] = prodHigh[0] + prodHigh[1];
+-        double sPrime = sHigh[0] - prodHigh[1];
+-        double sLowSum = (prodHigh[1] - (sHigh[0] - sPrime)) + (prodHigh[0] - sPrime);
++        double prodHighNext = prodHigh[1];
++		sHigh[0] = prodHigh[0] + prodHighNext;
++        double sPrime = sHigh[0] - prodHighNext;
++        double sLowSum = (prodHighNext - (sHigh[0] - sPrime)) + (prodHigh[0] - sPrime);
+ 
+         for (int i = 1; i < lenMinusOne; i++) {
+             final int prev = i - 1;

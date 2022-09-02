@@ -1,0 +1,16 @@
+diff --git a/src/org/mockito/internal/util/MockUtil.java b/src/org/mockito/internal/util/MockUtil.java
+index 6047e1c..48b6903 100644
+--- a/src/org/mockito/internal/util/MockUtil.java
++++ b/src/org/mockito/internal/util/MockUtil.java
+@@ -81,8 +81,9 @@
+     public void maybeRedefineMockName(Object mock, String newName) {
+         MockName mockName = getMockName(mock);
+         //TODO SF hacky...
+-        if (mockName.isDefault() && getMockHandler(mock).getMockSettings() instanceof CreationSettings) {
+-            ((CreationSettings) getMockHandler(mock).getMockSettings()).setMockName(new MockNameImpl(newName));
++        InternalMockHandler<Object> var_104 = getMockHandler(mock);
++		if (mockName.isDefault() && var_104.getMockSettings() instanceof CreationSettings) {
++            ((CreationSettings) var_104.getMockSettings()).setMockName(new MockNameImpl(newName));
+         }
+     }
+ 

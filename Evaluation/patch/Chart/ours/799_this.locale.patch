@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/axis/PeriodAxis.java b/source/org/jfree/chart/axis/PeriodAxis.java
+index 3c0bc0f..a775444 100644
+--- a/source/org/jfree/chart/axis/PeriodAxis.java
++++ b/source/org/jfree/chart/axis/PeriodAxis.java
+@@ -720,8 +720,9 @@
+         double y0 = state.getCursor();
+         double insideLength = getTickMarkInsideLength();
+         double outsideLength = getTickMarkOutsideLength();
+-        RegularTimePeriod t = createInstance(this.majorTickTimePeriodClass,
+-                this.first.getStart(), getTimeZone(), this.locale);
++        Locale var_799 = this.locale;
++		RegularTimePeriod t = createInstance(this.majorTickTimePeriodClass,
++                this.first.getStart(), getTimeZone(), var_799);
+         long t0 = t.getFirstMillisecond();
+         Line2D inside = null;
+         Line2D outside = null;
+@@ -749,7 +750,7 @@
+             if (this.minorTickMarksVisible) {
+                 RegularTimePeriod tminor = createInstance(
+                         this.minorTickTimePeriodClass, new Date(t0),
+-                        getTimeZone(), this.locale);
++                        getTimeZone(), var_799);
+                 long tt0 = tminor.getFirstMillisecond();
+                 while (tt0 < t.getLastMillisecond()
+                         && tt0 < lastOnAxis) {

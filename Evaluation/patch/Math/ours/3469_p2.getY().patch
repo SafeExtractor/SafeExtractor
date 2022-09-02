@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/fitting/GaussianFitter.java b/src/main/java/org/apache/commons/math3/optimization/fitting/GaussianFitter.java
+index 4b370ec..9e036e5 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/fitting/GaussianFitter.java
++++ b/src/main/java/org/apache/commons/math3/optimization/fitting/GaussianFitter.java
+@@ -294,11 +294,12 @@
+             if (p1.getY() == y) {
+                 return p1.getX();
+             }
+-            if (p2.getY() == y) {
++            double var_3469 = p2.getY();
++			if (var_3469 == y) {
+                 return p2.getX();
+             }
+             return p1.getX() + (((y - p1.getY()) * (p2.getX() - p1.getX())) /
+-                                (p2.getY() - p1.getY()));
++                                (var_3469 - p1.getY()));
+         }
+ 
+         /**

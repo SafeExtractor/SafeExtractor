@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/FastMathCalc.java b/src/main/java/org/apache/commons/math3/util/FastMathCalc.java
+index 07c0bdc..cf73ee5 100644
+--- a/src/main/java/org/apache/commons/math3/util/FastMathCalc.java
++++ b/src/main/java/org/apache/commons/math3/util/FastMathCalc.java
+@@ -343,17 +343,18 @@
+      * on output
+      */
+     private static void resplit(final double a[]) {
+-        final double c = a[0] + a[1];
+-        final double d = -(c - a[0] - a[1]);
++        double var_4179 = a[0];
++		final double c = var_4179 + a[1];
++        final double d = -(c - var_4179 - a[1]);
+ 
+         if (c < 8e298 && c > -8e298) { // MAGIC NUMBER
+             double z = c * HEX_40000000;
+             a[0] = (c + z) - z;
+-            a[1] = c - a[0] + d;
++            a[1] = c - var_4179 + d;
+         } else {
+             double z = c * 9.31322574615478515625E-10;
+             a[0] = (c + z - c) * HEX_40000000;
+-            a[1] = c - a[0] + d;
++            a[1] = c - var_4179 + d;
+         }
+     }
+ 

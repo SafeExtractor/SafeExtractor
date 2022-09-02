@@ -1,0 +1,33 @@
+diff --git a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+index bc570e2..d9693c2 100644
+--- a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
++++ b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+@@ -311,16 +311,19 @@
+           // If it is not a global, it might be accessing a local of the outer
+           // scope. If that's the case the functions between the variable's
+           // declaring scope and the variable reference scope cannot be moved.
+-          } else if (var.getScope() != t.getScope()){
+-            for (int i = symbolStack.size() - 1; i >= 0; i--) {
+-              NameContext context = symbolStack.get(i);
+-              if (context.scope == var.getScope()) {
+-                break;
+-              }
++          } else {
++			Scope var_1657 = var.getScope();
++			if (var_1657 != t.getScope()){
++			    for (int i = symbolStack.size() - 1; i >= 0; i--) {
++			      NameContext context = symbolStack.get(i);
++			      if (context.scope == var_1657) {
++			        break;
++			      }
+ 
+-              context.name.readClosureVariables = true;
+-            }
+-          }
++			      context.name.readClosureVariables = true;
++			    }
++			  }
++		}
+         }
+       }
+ 

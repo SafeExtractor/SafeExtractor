@@ -1,0 +1,31 @@
+diff --git a/src/main/java/org/apache/commons/lang3/CharSet.java b/src/main/java/org/apache/commons/lang3/CharSet.java
+index 82f0b9a..4e33f0e 100644
+--- a/src/main/java/org/apache/commons/lang3/CharSet.java
++++ b/src/main/java/org/apache/commons/lang3/CharSet.java
+@@ -179,21 +179,22 @@
+         int pos = 0;
+         while (pos < len) {
+             final int remainder = len - pos;
+-            if (remainder >= 4 && str.charAt(pos) == '^' && str.charAt(pos + 2) == '-') {
++            char var_242 = str.charAt(pos);
++			if (remainder >= 4 && var_242 == '^' && str.charAt(pos + 2) == '-') {
+                 // negated range
+                 set.add(CharRange.isNotIn(str.charAt(pos + 1), str.charAt(pos + 3)));
+                 pos += 4;
+             } else if (remainder >= 3 && str.charAt(pos + 1) == '-') {
+                 // range
+-                set.add(CharRange.isIn(str.charAt(pos), str.charAt(pos + 2)));
++                set.add(CharRange.isIn(var_242, str.charAt(pos + 2)));
+                 pos += 3;
+-            } else if (remainder >= 2 && str.charAt(pos) == '^') {
++            } else if (remainder >= 2 && var_242 == '^') {
+                 // negated char
+                 set.add(CharRange.isNot(str.charAt(pos + 1)));
+                 pos += 2;
+             } else {
+                 // char
+-                set.add(CharRange.is(str.charAt(pos)));
++                set.add(CharRange.is(var_242));
+                 pos += 1;
+             }
+         }

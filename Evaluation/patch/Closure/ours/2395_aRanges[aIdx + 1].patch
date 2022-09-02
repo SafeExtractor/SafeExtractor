@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/regex/CharRanges.java b/src/com/google/javascript/jscomp/regex/CharRanges.java
+index 0736d68..752d63b 100644
+--- a/src/com/google/javascript/jscomp/regex/CharRanges.java
++++ b/src/com/google/javascript/jscomp/regex/CharRanges.java
+@@ -247,7 +247,8 @@
+     int intersectionIdx = 0;
+     int pos = Math.min(aRanges[0], bRanges[0]);
+     while (aIdx < aLen && bIdx < bLen) {
+-      if (aRanges[aIdx + 1] <= pos) {
++      int var_2395 = aRanges[aIdx + 1];
++	if (var_2395 <= pos) {
+         aIdx += 2;
+       } else if (bRanges[bIdx + 1] <= pos) {
+         bIdx += 2;
+@@ -258,7 +259,7 @@
+         } else {
+           // Now we know that pos is less than the ends of the two ranges and
+           // greater or equal to the starts of the two ranges.
+-          int end = Math.min(aRanges[aIdx + 1], bRanges[bIdx + 1]);
++          int end = Math.min(var_2395, bRanges[bIdx + 1]);
+           if (intersectionIdx != 0
+               && pos == intersection[intersectionIdx - 1]) {
+             intersection[intersectionIdx - 1] = end;

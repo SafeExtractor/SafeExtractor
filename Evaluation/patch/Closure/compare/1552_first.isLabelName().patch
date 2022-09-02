@@ -1,0 +1,50 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1552_first.isLabelName().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1552_first.isLabelName().patch
+index 5721f88..5b4f94c 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1552_first.isLabelName().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1552_first.isLabelName().patch
+@@ -1,41 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+-index 2270c17..e39b3df 100644
++index 2270c17..819cffe 100644
+ --- a/src/com/google/javascript/jscomp/CodeGenerator.java
+ +++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+-@@ -144,7 +144,8 @@
+- 
+-     cc.startSourceMapping(n);
+- 
+--    switch (type) {
+-+    boolean var_1552 = first.isLabelName();
+-+	switch (type) {
+-       case Token.TRY: {
+-         Preconditions.checkState(first.getNext().isBlock() &&
+-                 !first.getNext().hasMoreThanOneChild());
+-@@ -590,7 +591,7 @@
++@@ -590,7 +590,8 @@
+          Preconditions.checkState(childCount <= 1);
+          add("continue");
+          if (childCount == 1) {
+ -          if (!first.isLabelName()) {
+-+          if (!var_1552) {
+++          boolean var_1552 = first.isLabelName();
+++		if (!var_1552) {
+              throw new Error("Unexpected token type. Should be LABEL_NAME.");
+            }
+            add(" ");
+-@@ -609,7 +610,7 @@
+-         Preconditions.checkState(childCount <= 1);
+-         add("break");
+-         if (childCount == 1) {
+--          if (!first.isLabelName()) {
+-+          if (!var_1552) {
+-             throw new Error("Unexpected token type. Should be LABEL_NAME.");
+-           }
+-           add(" ");
+-@@ -733,7 +734,7 @@
+- 
+-       case Token.LABEL:
+-         Preconditions.checkState(childCount == 2);
+--        if (!first.isLabelName()) {
+-+        if (!var_1552) {
+-           throw new Error("Unexpected token type. Should be LABEL_NAME.");
+-         }
+-         add(first);

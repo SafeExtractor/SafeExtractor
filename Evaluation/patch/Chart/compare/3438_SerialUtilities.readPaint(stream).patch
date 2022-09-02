@@ -1,0 +1,24 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3438_SerialUtilities.readPaint(stream).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/3438_SerialUtilities.readPaint(stream).patch
+index f2b1725..402604b 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3438_SerialUtilities.readPaint(stream).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/3438_SerialUtilities.readPaint(stream).patch
+@@ -1,16 +1,14 @@
+ diff --git a/source/org/jfree/chart/title/PaintScaleLegend.java b/source/org/jfree/chart/title/PaintScaleLegend.java
+-index c489277..98720a0 100644
++index c489277..bc644f1 100644
+ --- a/source/org/jfree/chart/title/PaintScaleLegend.java
+ +++ b/source/org/jfree/chart/title/PaintScaleLegend.java
+-@@ -729,8 +729,9 @@
++@@ -729,7 +729,8 @@
+      private void readObject(ObjectInputStream stream)
+              throws IOException, ClassNotFoundException {
+          stream.defaultReadObject();
+ -        this.backgroundPaint = SerialUtilities.readPaint(stream);
+--        this.stripOutlinePaint = SerialUtilities.readPaint(stream);
+ +        Paint var_3438 = SerialUtilities.readPaint(stream);
+ +		this.backgroundPaint = var_3438;
+-+        this.stripOutlinePaint = var_3438;
++         this.stripOutlinePaint = SerialUtilities.readPaint(stream);
+          this.stripOutlineStroke = SerialUtilities.readStroke(stream);
+      }
+- 

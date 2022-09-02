@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/StatementFusion.java b/src/com/google/javascript/jscomp/StatementFusion.java
+index 381d8b3..5d18c92 100644
+--- a/src/com/google/javascript/jscomp/StatementFusion.java
++++ b/src/com/google/javascript/jscomp/StatementFusion.java
+@@ -83,14 +83,15 @@
+   }
+ 
+   private void fuseIntoOneStatement(Node block) {
+-    Node cur = block.removeFirstChild();
++    Node var_331 = block.removeFirstChild();
++	Node cur = var_331;
+ 
+     // Starts building a tree.
+     Node commaTree = cur.removeFirstChild();
+ 
+ 
+     while (block.hasMoreThanOneChild()) {
+-      Node next = block.removeFirstChild().removeFirstChild();
++      Node next = var_331.removeFirstChild();
+       commaTree = fuseExpressionIntoExpression(commaTree, next);
+     }
+ 

@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/MakeDeclaredNamesUnique.java b/src/com/google/javascript/jscomp/MakeDeclaredNamesUnique.java
+index 3743287..dea1363 100644
+--- a/src/com/google/javascript/jscomp/MakeDeclaredNamesUnique.java
++++ b/src/com/google/javascript/jscomp/MakeDeclaredNamesUnique.java
+@@ -543,14 +543,15 @@
+         return name;
+       }
+ 
+-      if (name.indexOf(ContextualRenamer.UNIQUE_ID_SEPARATOR) != -1) {
++      String var_235 = ContextualRenamer.UNIQUE_ID_SEPARATOR;
++	if (name.indexOf(var_235) != -1) {
+           name = name.substring(
+-              0, name.lastIndexOf(ContextualRenamer.UNIQUE_ID_SEPARATOR));
++              0, name.lastIndexOf(var_235));
+       }
+ 
+       // By using the same separator the id will be stripped if it isn't
+       // needed when variable renaming is turned off.
+-      return name + ContextualRenamer.UNIQUE_ID_SEPARATOR
++      return name + var_235
+           + idPrefix + uniqueIdSupplier.get();
+     }
+ 

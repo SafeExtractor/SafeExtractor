@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/fraction/ProperFractionFormat.java b/src/main/java/org/apache/commons/math3/fraction/ProperFractionFormat.java
+index 4b1a8bc..06b40e3 100644
+--- a/src/main/java/org/apache/commons/math3/fraction/ProperFractionFormat.java
++++ b/src/main/java/org/apache/commons/math3/fraction/ProperFractionFormat.java
+@@ -167,7 +167,8 @@
+             return null;
+         }
+ 
+-        if (num.intValue() < 0) {
++        int var_1086 = num.intValue();
++		if (var_1086 < 0) {
+             // minus signs should be leading, invalid expression
+             pos.setIndex(initialIndex);
+             return null;
+@@ -180,7 +181,7 @@
+         case 0 :
+             // no '/'
+             // return num as a fraction
+-            return new Fraction(num.intValue(), 1);
++            return new Fraction(var_1086, 1);
+         case '/' :
+             // found '/', continue parsing denominator
+             break;
+@@ -213,7 +214,7 @@
+         }
+ 
+         int w = whole.intValue();
+-        int n = num.intValue();
++        int n = var_1086;
+         int d = den.intValue();
+         return new Fraction(((Math.abs(w) * d) + n) * MathUtils.copySign(1, w), d);
+     }

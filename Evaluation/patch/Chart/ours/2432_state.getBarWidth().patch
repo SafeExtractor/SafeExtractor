@@ -1,0 +1,123 @@
+diff --git a/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java b/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java
+index f154450..85c7bd5 100644
+--- a/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java
++++ b/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java
+@@ -679,20 +679,21 @@
+         int seriesCount = getRowCount();
+         int categoryCount = getColumnCount();
+ 
+-        if (seriesCount > 1) {
++        double var_2432 = state.getBarWidth();
++		if (seriesCount > 1) {
+             double seriesGap = dataArea.getWidth() * getItemMargin()
+                                / (categoryCount * (seriesCount - 1));
+-            double usedWidth = (state.getBarWidth() * seriesCount)
++            double usedWidth = (var_2432 * seriesCount)
+                                + (seriesGap * (seriesCount - 1));
+             // offset the start of the boxes if the total width used is smaller
+             // than the category width
+             double offset = (categoryWidth - usedWidth) / 2;
+-            xx = xx + offset + (row * (state.getBarWidth() + seriesGap));
++            xx = xx + offset + (row * (var_2432 + seriesGap));
+         }
+         else {
+             // offset the start of the box if the box width is smaller than the
+             // category width
+-            double offset = (categoryWidth - state.getBarWidth()) / 2;
++            double offset = (categoryWidth - var_2432) / 2;
+             xx = xx + offset;
+         }
+ 
+@@ -723,21 +724,21 @@
+                     dataArea, location);
+             double yyMin = rangeAxis.valueToJava2D(yMin.doubleValue(),
+                     dataArea, location);
+-            double xxmid = xx + state.getBarWidth() / 2.0;
++            double xxmid = xx + var_2432 / 2.0;
+ 
+             // draw the upper shadow...
+             g2.draw(new Line2D.Double(xxmid, yyMax, xxmid, yyQ3));
+-            g2.draw(new Line2D.Double(xx, yyMax, xx + state.getBarWidth(),
++            g2.draw(new Line2D.Double(xx, yyMax, xx + var_2432,
+                     yyMax));
+ 
+             // draw the lower shadow...
+             g2.draw(new Line2D.Double(xxmid, yyMin, xxmid, yyQ1));
+-            g2.draw(new Line2D.Double(xx, yyMin, xx + state.getBarWidth(),
++            g2.draw(new Line2D.Double(xx, yyMin, xx + var_2432,
+                     yyMin));
+ 
+             // draw the body...
+             box = new Rectangle2D.Double(xx, Math.min(yyQ1, yyQ3),
+-                    state.getBarWidth(), Math.abs(yyQ1 - yyQ3));
++                    var_2432, Math.abs(yyQ1 - yyQ3));
+             if (this.fillBox) {
+                 g2.fill(box);
+             }
+@@ -754,7 +755,7 @@
+             if (yMean != null) {
+                 yyAverage = rangeAxis.valueToJava2D(yMean.doubleValue(),
+                         dataArea, location);
+-                aRadius = state.getBarWidth() / 4;
++                aRadius = var_2432 / 4;
+                 // here we check that the average marker will in fact be
+                 // visible before drawing it...
+                 if ((yyAverage > (dataArea.getMinY() - aRadius))
+@@ -774,7 +775,7 @@
+             if (yMedian != null) {
+                 double yyMedian = rangeAxis.valueToJava2D(
+                         yMedian.doubleValue(), dataArea, location);
+-                g2.draw(new Line2D.Double(xx, yyMedian, xx + state.getBarWidth(),
++                g2.draw(new Line2D.Double(xx, yyMedian, xx + var_2432,
+                         yyMedian));
+             }
+         }
+@@ -788,7 +789,7 @@
+         g2.setPaint(itemPaint);
+ 
+         // draw outliers
+-        double oRadius = state.getBarWidth() / 3;    // outlier radius
++        double oRadius = var_2432 / 3;    // outlier radius
+         List outliers = new ArrayList();
+         OutlierListCollection outlierListCollection
+                 = new OutlierListCollection();
+@@ -813,13 +814,13 @@
+                 else if (outlier > maxRegular.doubleValue()) {
+                     yyOutlier = rangeAxis.valueToJava2D(outlier, dataArea,
+                             location);
+-                    outliers.add(new Outlier(xx + state.getBarWidth() / 2.0,
++                    outliers.add(new Outlier(xx + var_2432 / 2.0,
+                             yyOutlier, oRadius));
+                 }
+                 else if (outlier < minRegular.doubleValue()) {
+                     yyOutlier = rangeAxis.valueToJava2D(outlier, dataArea,
+                             location);
+-                    outliers.add(new Outlier(xx + state.getBarWidth() / 2.0,
++                    outliers.add(new Outlier(xx + var_2432 / 2.0,
+                             yyOutlier, oRadius));
+                 }
+                 Collections.sort(outliers);
+@@ -839,7 +840,7 @@
+                 Point2D point = outlier.getPoint();
+ 
+                 if (list.isMultiple()) {
+-                    drawMultipleEllipse(point, state.getBarWidth(), oRadius,
++                    drawMultipleEllipse(point, var_2432, oRadius,
+                             g2);
+                 }
+                 else {
+@@ -850,12 +851,12 @@
+             // draw farout indicators
+             if (outlierListCollection.isHighFarOut()) {
+                 drawHighFarOut(aRadius / 2.0, g2,
+-                        xx + state.getBarWidth() / 2.0, maxAxisValue);
++                        xx + var_2432 / 2.0, maxAxisValue);
+             }
+ 
+             if (outlierListCollection.isLowFarOut()) {
+                 drawLowFarOut(aRadius / 2.0, g2,
+-                        xx + state.getBarWidth() / 2.0, minAxisValue);
++                        xx + var_2432 / 2.0, minAxisValue);
+             }
+         }
+         // collect entity and tool tip information...

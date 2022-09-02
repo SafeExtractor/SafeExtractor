@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+index 5f0a14c..a0e1454 100644
+--- a/src/com/google/javascript/jscomp/SymbolTable.java
++++ b/src/com/google/javascript/jscomp/SymbolTable.java
+@@ -663,10 +663,11 @@
+ 
+   private void removeSymbol(Symbol s) {
+     SymbolScope scope = getScope(s);
+-    if (scope.ownSymbols.remove(s.getName()) != s) {
++    String var_1305 = s.getName();
++	if (scope.ownSymbols.remove(var_1305) != s) {
+       throw new IllegalStateException("Symbol not found in scope " + s);
+     }
+-    if (symbols.remove(s.getDeclaration().getNode(), s.getName()) != s) {
++    if (symbols.remove(s.getDeclaration().getNode(), var_1305) != s) {
+       throw new IllegalStateException("Symbol not found in table " + s);
+     }
+   }

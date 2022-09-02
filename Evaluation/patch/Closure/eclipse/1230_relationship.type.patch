@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..f0f8091 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -1376,14 +1376,15 @@
+           superCtor = superClass.getConstructor();
+           subCtor = subClass.getConstructor();
+ 
+-          if (relationship.type == SubclassType.INHERITS &&
++          SubclassType var_1230 = relationship.type;
++		if (var_1230 == SubclassType.INHERITS &&
+               !superClass.isEmptyType() && !subClass.isEmptyType()) {
+             validator.expectSuperType(t, n, superClass, subClass);
+           }
+ 
+           if (superCtor != null && subCtor != null) {
+             codingConvention.applySubclassRelationship(
+-                superCtor, subCtor, relationship.type);
++                superCtor, subCtor, var_1230);
+           }
+         }
+       }

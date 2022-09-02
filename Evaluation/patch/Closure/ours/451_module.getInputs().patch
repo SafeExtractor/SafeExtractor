@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..194e22b 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -1450,7 +1450,8 @@
+         out.append("\n");
+       }
+ 
+-      if (isManifest) {
++      List<CompilerInput> var_451 = module.getInputs();
++	if (isManifest) {
+         // See CommandLineRunnerTest to see what the format of this
+         // manifest looks like.
+         String dependencies = commas.join(module.getSortedDependencyNames());
+@@ -1458,9 +1459,9 @@
+             String.format("{%s%s}\n",
+                 module.getName(),
+                 dependencies.isEmpty() ? "" : ":" + dependencies));
+-        printManifestTo(module.getInputs(), out);
++        printManifestTo(var_451, out);
+       } else {
+-        printBundleTo(module.getInputs(), out);
++        printBundleTo(var_451, out);
+       }
+       requiresNewline = true;
+     }

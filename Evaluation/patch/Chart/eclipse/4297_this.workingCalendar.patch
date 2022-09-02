@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+index 067e1df..96bdd15 100644
+--- a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
++++ b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+@@ -900,15 +900,16 @@
+      * @return The x-value.
+      */
+     private long getX(RegularTimePeriod period) {
+-        switch (this.position) {
++        Calendar var_4297 = this.workingCalendar;
++		switch (this.position) {
+             case (START) :
+-                return period.getFirstMillisecond(this.workingCalendar);
++                return period.getFirstMillisecond(var_4297);
+             case (MIDDLE) :
+-                return period.getMiddleMillisecond(this.workingCalendar);
++                return period.getMiddleMillisecond(var_4297);
+             case (END) :
+-                return period.getLastMillisecond(this.workingCalendar);
++                return period.getLastMillisecond(var_4297);
+             default:
+-                return period.getMiddleMillisecond(this.workingCalendar);
++                return period.getMiddleMillisecond(var_4297);
+         }
+      }
+ 

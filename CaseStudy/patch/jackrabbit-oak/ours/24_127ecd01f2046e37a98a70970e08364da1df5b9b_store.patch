@@ -1,0 +1,27 @@
+diff --git a/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/standby/server/StandbyServer.java b/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/standby/server/StandbyServer.java
+index b3cdb8a..4bf8d66 100644
+--- a/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/standby/server/StandbyServer.java
++++ b/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/standby/server/StandbyServer.java
+@@ -40,6 +40,8 @@
+ import io.netty.handler.ssl.SslContextBuilder;
+ import io.netty.handler.ssl.util.SelfSignedCertificate;
+ import io.netty.util.CharsetUtil;
++
++import org.apache.jackrabbit.oak.segment.file.FileStore;
+ import org.apache.jackrabbit.oak.segment.standby.codec.GetBlobResponseEncoder;
+ import org.apache.jackrabbit.oak.segment.standby.codec.GetHeadResponseEncoder;
+ import org.apache.jackrabbit.oak.segment.standby.codec.GetSegmentResponseEncoder;
+@@ -166,9 +168,10 @@
+ 
+                 // Handlers
+ 
+-                p.addLast(new GetHeadRequestHandler(new DefaultStandbyHeadReader(builder.storeProvider.provideStore())));
+-                p.addLast(new GetSegmentRequestHandler(new DefaultStandbySegmentReader(builder.storeProvider.provideStore())));
+-                p.addLast(new GetBlobRequestHandler(new DefaultStandbyBlobReader(builder.storeProvider.provideStore())));
++                FileStore store = builder.storeProvider.provideStore();
++				p.addLast(new GetHeadRequestHandler(new DefaultStandbyHeadReader(store)));
++                p.addLast(new GetSegmentRequestHandler(new DefaultStandbySegmentReader(store)));
++                p.addLast(new GetBlobRequestHandler(new DefaultStandbyBlobReader(store)));
+             }
+         });
+     }

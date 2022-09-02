@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..321c8c4 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -731,8 +731,9 @@
+      * @return sin(a)
+      */
+     public static Dfp sin(final Dfp a) {
+-        final Dfp pi = a.getField().getPi();
+-        final Dfp zero = a.getField().getZero();
++        DfpField var_836 = a.getField();
++		final Dfp pi = var_836.getPi();
++        final Dfp zero = var_836.getZero();
+         boolean neg = false;
+ 
+         /* First reduce the argument to the range of +/- PI */
+@@ -763,7 +764,7 @@
+             y = sinInternal(split(x));
+         } else {
+             final Dfp c[] = new Dfp[2];
+-            final Dfp[] piSplit = a.getField().getPiSplit();
++            final Dfp[] piSplit = var_836.getPiSplit();
+             c[0] = piSplit[0].divide(2).subtract(x);
+             c[1] = piSplit[1].divide(2);
+             y = cosInternal(c);

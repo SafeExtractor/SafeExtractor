@@ -1,0 +1,20 @@
+diff --git a/src/java/org/apache/commons/math/linear/RealMatrixImpl.java b/src/java/org/apache/commons/math/linear/RealMatrixImpl.java
+index 8c5b96c..5eacb8a 100644
+--- a/src/java/org/apache/commons/math/linear/RealMatrixImpl.java
++++ b/src/java/org/apache/commons/math/linear/RealMatrixImpl.java
+@@ -795,11 +795,12 @@
+ 
+             // upper
+             for (int row = 0; row < col; row++) {
+-                sum = lu[row][col];
++                double[] luRow = lu[row];
++				sum = luRow[col];
+                 for (int i = 0; i < row; i++) {
+-                    sum -= lu[row][i] * lu[i][col];
++                    sum -= luRow[i] * lu[i][col];
+                 }
+-                lu[row][col] = sum;
++                luRow[col] = sum;
+             }
+ 
+             // lower

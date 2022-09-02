@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/InlineFunctions.java b/src/com/google/javascript/jscomp/InlineFunctions.java
+index 008ffe5..702c9e1 100644
+--- a/src/com/google/javascript/jscomp/InlineFunctions.java
++++ b/src/com/google/javascript/jscomp/InlineFunctions.java
+@@ -747,7 +747,8 @@
+       return;
+     }
+ 
+-    Node fnNode = fs.getFn().getFunctionNode();
++    Node var_1180 = fs.getFn().getFunctionNode();
++	Node fnNode = var_1180;
+     Set<String> names = findCalledFunctions(fnNode);
+     if (!names.isEmpty()) {
+       // Prevent the removal of the referenced functions.
+@@ -765,7 +766,7 @@
+       }
+ 
+       // Make a copy of the Node, so it isn't changed by other inlines.
+-      fs.setSafeFnNode(fs.getFn().getFunctionNode().cloneTree());
++      fs.setSafeFnNode(var_1180.cloneTree());
+     }
+   }
+ 

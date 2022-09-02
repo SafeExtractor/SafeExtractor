@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/joda/time/field/ImpreciseDateTimeField.java b/src/main/java/org/joda/time/field/ImpreciseDateTimeField.java
+index b75395d..ecb6627 100644
+--- a/src/main/java/org/joda/time/field/ImpreciseDateTimeField.java
++++ b/src/main/java/org/joda/time/field/ImpreciseDateTimeField.java
+@@ -121,15 +121,16 @@
+         }
+         
+         long difference = (minuendInstant - subtrahendInstant) / iUnitMillis;
+-        if (add(subtrahendInstant, difference) < minuendInstant) {
++        long var_443 = add(subtrahendInstant, difference);
++		if (var_443 < minuendInstant) {
+             do {
+                 difference++;
+-            } while (add(subtrahendInstant, difference) <= minuendInstant);
++            } while (var_443 <= minuendInstant);
+             difference--;
+-        } else if (add(subtrahendInstant, difference) > minuendInstant) {
++        } else if (var_443 > minuendInstant) {
+             do {
+                 difference--;
+-            } while (add(subtrahendInstant, difference) > minuendInstant);
++            } while (var_443 > minuendInstant);
+         }
+         return difference;
+     }

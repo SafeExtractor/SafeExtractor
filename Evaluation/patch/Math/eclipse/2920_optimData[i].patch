@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/BaseMultiStartMultivariateOptimizer.java b/src/main/java/org/apache/commons/math3/optim/BaseMultiStartMultivariateOptimizer.java
+index 329dc75..c9d0deb 100644
+--- a/src/main/java/org/apache/commons/math3/optim/BaseMultiStartMultivariateOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/BaseMultiStartMultivariateOptimizer.java
+@@ -144,11 +144,12 @@
+         // (according to how many have been used up already), and the latter
+         // to impose a different start value for each start.
+         for (int i = 0; i < optimData.length; i++) {
+-            if (optimData[i] instanceof MaxEval) {
++            OptimizationData var_2920 = optimData[i];
++			if (var_2920 instanceof MaxEval) {
+                 optimData[i] = null;
+                 maxEvalIndex = i;
+             }
+-            if (optimData[i] instanceof InitialGuess) {
++            if (var_2920 instanceof InitialGuess) {
+                 optimData[i] = null;
+                 initialGuessIndex = i;
+                 continue;

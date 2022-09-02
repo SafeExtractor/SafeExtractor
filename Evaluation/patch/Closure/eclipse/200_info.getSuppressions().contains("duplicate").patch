@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/SyntacticScopeCreator.java b/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
+index e1caa71..9c6275f 100644
+--- a/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
++++ b/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
+@@ -260,7 +260,8 @@
+     if (info == null) {
+       info = parent.getJSDocInfo();
+     }
+-    if (info != null && info.getSuppressions().contains("duplicate")) {
++    boolean var_200 = info.getSuppressions().contains("duplicate");
++	if (info != null && var_200) {
+       return true;
+     }
+ 
+@@ -268,7 +269,7 @@
+     if (info == null) {
+       info = origParent.getJSDocInfo();
+     }
+-    return (info != null && info.getSuppressions().contains("duplicate"));
++    return (info != null && var_200);
+   }
+ 
+   /**

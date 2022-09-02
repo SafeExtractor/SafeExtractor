@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/PrintStreamErrorManager.java b/src/com/google/javascript/jscomp/PrintStreamErrorManager.java
+index cb0d317..bab8e1f 100644
+--- a/src/com/google/javascript/jscomp/PrintStreamErrorManager.java
++++ b/src/com/google/javascript/jscomp/PrintStreamErrorManager.java
+@@ -64,12 +64,13 @@
+ 
+   @Override
+   public void printSummary() {
+-    if (summaryDetailLevel >= 3 ||
++    double var_1329 = getTypedPercent();
++	if (summaryDetailLevel >= 3 ||
+         (summaryDetailLevel >= 1 && getErrorCount() + getWarningCount() > 0) ||
+-        (summaryDetailLevel >= 2 && getTypedPercent() > 0.0)) {
+-      if (getTypedPercent() > 0.0) {
++        (summaryDetailLevel >= 2 && var_1329 > 0.0)) {
++      if (var_1329 > 0.0) {
+         stream.format("%d error(s), %d warning(s), %.1f%% typed%n",
+-            getErrorCount(), getWarningCount(), getTypedPercent());
++            getErrorCount(), getWarningCount(), var_1329);
+       } else {
+         stream.format("%d error(s), %d warning(s)%n", getErrorCount(),
+             getWarningCount());

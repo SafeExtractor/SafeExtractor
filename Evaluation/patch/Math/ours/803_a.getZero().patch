@@ -1,0 +1,31 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..053cca9 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -321,7 +321,8 @@
+         int p2 = 0;
+ 
+         // Check the arguments somewhat here
+-        if (a.equals(a.getZero()) || a.lessThan(a.getZero()) || a.isNaN()) {
++        Dfp var_803 = a.getZero();
++		if (a.equals(var_803) || a.lessThan(var_803) || a.isNaN()) {
+             // negative, zero or NaN
+             a.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+             return a.dotrap(DfpField.FLAG_INVALID, "ln", a, a.newInstance((byte)1, Dfp.QNAN));
+@@ -360,14 +361,14 @@
+         Dfp[] spz = logInternal(spx);
+ 
+         spx[0] = a.newInstance(new StringBuilder().append(p2+4*lr).toString());
+-        spx[1] = a.getZero();
++        spx[1] = var_803;
+         spy = splitMult(a.getField().getLn2Split(), spx);
+ 
+         spz[0] = spz[0].add(spy[0]);
+         spz[1] = spz[1].add(spy[1]);
+ 
+         spx[0] = a.newInstance(new StringBuilder().append(4*lr).toString());
+-        spx[1] = a.getZero();
++        spx[1] = var_803;
+         spy = splitMult(a.getField().getLn5Split(), spx);
+ 
+         spz[0] = spz[0].add(spy[0]);

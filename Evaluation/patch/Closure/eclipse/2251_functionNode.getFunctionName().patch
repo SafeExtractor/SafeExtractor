@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..b266f54 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -708,7 +708,8 @@
+ 
+     @Override
+     Node processFunctionNode(FunctionNode functionNode) {
+-      Name name = functionNode.getFunctionName();
++      Name var_2251 = functionNode.getFunctionName();
++	Name name = var_2251;
+       Boolean isUnnamedFunction = false;
+       if (name == null) {
+         int functionType = functionNode.getFunctionType();
+@@ -748,7 +749,7 @@
+       // function name (or else a semicolon will be inserted.)  If there's no
+       // function name, assume the paren was on the same line as the function.
+       // TODO(bowdidge): Mark line number of paren correctly.
+-      Name fnName = functionNode.getFunctionName();
++      Name fnName = var_2251;
+       if (fnName != null) {
+         lp.setLineno(fnName.getLineno());
+       } else {

@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/plot/CategoryPlot.java b/source/org/jfree/chart/plot/CategoryPlot.java
+index 24a84fd..b730778 100644
+--- a/source/org/jfree/chart/plot/CategoryPlot.java
++++ b/source/org/jfree/chart/plot/CategoryPlot.java
+@@ -3894,7 +3894,8 @@
+         Map axisStateMap = new HashMap();
+ 
+         // draw the top axes
+-        double cursor = dataArea.getMinY() - this.axisOffset.calculateTopOutset(
++        RectangleInsets var_1920 = this.axisOffset;
++		double cursor = dataArea.getMinY() - var_1920.calculateTopOutset(
+                 dataArea.getHeight());
+         Iterator iterator = axisCollection.getAxesAtTop().iterator();
+         while (iterator.hasNext()) {
+@@ -3909,7 +3910,7 @@
+ 
+         // draw the bottom axes
+         cursor = dataArea.getMaxY()
+-                 + this.axisOffset.calculateBottomOutset(dataArea.getHeight());
++                 + var_1920.calculateBottomOutset(dataArea.getHeight());
+         iterator = axisCollection.getAxesAtBottom().iterator();
+         while (iterator.hasNext()) {
+             Axis axis = (Axis) iterator.next();
+@@ -3923,7 +3924,7 @@
+ 
+         // draw the left axes
+         cursor = dataArea.getMinX()
+-                 - this.axisOffset.calculateLeftOutset(dataArea.getWidth());
++                 - var_1920.calculateLeftOutset(dataArea.getWidth());
+         iterator = axisCollection.getAxesAtLeft().iterator();
+         while (iterator.hasNext()) {
+             Axis axis = (Axis) iterator.next();
+@@ -3937,7 +3938,7 @@
+ 
+         // draw the right axes
+         cursor = dataArea.getMaxX()
+-                 + this.axisOffset.calculateRightOutset(dataArea.getWidth());
++                 + var_1920.calculateRightOutset(dataArea.getWidth());
+         iterator = axisCollection.getAxesAtRight().iterator();
+         while (iterator.hasNext()) {
+             Axis axis = (Axis) iterator.next();

@@ -1,0 +1,34 @@
+diff --git a/src/com/google/javascript/jscomp/JsMessage.java b/src/com/google/javascript/jscomp/JsMessage.java
+index 1360c1b..b56af7c 100644
+--- a/src/com/google/javascript/jscomp/JsMessage.java
++++ b/src/com/google/javascript/jscomp/JsMessage.java
+@@ -544,8 +544,9 @@
+       long c = seed;
+       int keylen;
+ 
+-      for (keylen = length; keylen >= 24; keylen -= 24, offset += 24) {
+-        a += word64At(value, offset);
++      long var_1491 = word64At(value, offset);
++	for (keylen = length; keylen >= 24; keylen -= 24, offset += 24) {
++        a += var_1491;
+         b += word64At(value, offset + 8);
+         c += word64At(value, offset + 16);
+ 
+@@ -583,7 +584,7 @@
+           // the first byte of c is reserved for the length
+         case 16:
+           b += word64At(value, offset + 8);
+-          a += word64At(value, offset);
++          a += var_1491;
+           break;
+         case 15:
+           b += (value[offset + 14] & 0xffL) << 48;
+@@ -600,7 +601,7 @@
+         case 9:
+           b += (value[offset + 8] & 0xffL);
+         case 8:
+-          a += word64At(value, offset);
++          a += var_1491;
+           break;
+         case 7:
+           a += (value[offset + 6] & 0xffL) << 48;

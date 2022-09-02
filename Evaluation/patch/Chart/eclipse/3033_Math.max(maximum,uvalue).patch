@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/xy/VectorRenderer.java b/source/org/jfree/chart/renderer/xy/VectorRenderer.java
+index dc9417d..725fbb2 100644
+--- a/source/org/jfree/chart/renderer/xy/VectorRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/VectorRenderer.java
+@@ -164,7 +164,8 @@
+         int seriesCount = dataset.getSeriesCount();
+         double lvalue;
+         double uvalue;
+-        if (dataset instanceof VectorXYDataset) {
++        double var_3033 = Math.max(maximum, uvalue);
++		if (dataset instanceof VectorXYDataset) {
+             VectorXYDataset vdataset = (VectorXYDataset) dataset;
+             for (int series = 0; series < seriesCount; series++) {
+                 int itemCount = dataset.getItemCount(series);
+@@ -179,7 +180,7 @@
+                         uvalue = lvalue + delta;
+                     }
+                     minimum = Math.min(minimum, lvalue);
+-                    maximum = Math.max(maximum, uvalue);
++                    maximum = var_3033;
+                 }
+             }
+         }
+@@ -190,7 +191,7 @@
+                     lvalue = dataset.getYValue(series, item);
+                     uvalue = lvalue;
+                     minimum = Math.min(minimum, lvalue);
+-                    maximum = Math.max(maximum, uvalue);
++                    maximum = var_3033;
+                 }
+             }
+         }

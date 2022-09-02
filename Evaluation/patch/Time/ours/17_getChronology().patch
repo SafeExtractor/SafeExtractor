@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/joda/time/LocalDateTime.java b/src/main/java/org/joda/time/LocalDateTime.java
+index 44d2ee9..fee276e 100644
+--- a/src/main/java/org/joda/time/LocalDateTime.java
++++ b/src/main/java/org/joda/time/LocalDateTime.java
+@@ -574,15 +574,16 @@
+      * @throws IndexOutOfBoundsException if the index is invalid
+      */
+     public int getValue(int index) {
+-        switch (index) {
++        Chronology var_17 = getChronology();
++		switch (index) {
+             case YEAR:
+-                return getChronology().year().get(getLocalMillis());
++                return var_17.year().get(getLocalMillis());
+             case MONTH_OF_YEAR:
+-                return getChronology().monthOfYear().get(getLocalMillis());
++                return var_17.monthOfYear().get(getLocalMillis());
+             case DAY_OF_MONTH:
+-                return getChronology().dayOfMonth().get(getLocalMillis());
++                return var_17.dayOfMonth().get(getLocalMillis());
+             case MILLIS_OF_DAY:
+-                return getChronology().millisOfDay().get(getLocalMillis());
++                return var_17.millisOfDay().get(getLocalMillis());
+             default:
+                 throw new IndexOutOfBoundsException("Invalid index: " + index);
+         }

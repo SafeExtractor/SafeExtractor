@@ -1,0 +1,41 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3152_marker.getLabelFont().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/3152_marker.getLabelFont().patch
+index 07aa7ac..610ce57 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3152_marker.getLabelFont().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/3152_marker.getLabelFont().patch
+@@ -1,32 +1,14 @@
+ diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+-index a558724..a4a9510 100644
++index a558724..ea197ac 100644
+ --- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+ +++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+-@@ -1539,7 +1539,8 @@
+-                                 Marker marker,
+-                                 Rectangle2D dataArea) {
+- 
+--        if (marker instanceof ValueMarker) {
+-+        Font var_3152 = marker.getLabelFont();
+-+		if (marker instanceof ValueMarker) {
+-             ValueMarker vm = (ValueMarker) marker;
+-             double value = vm.getValue();
+-             Range range = rangeAxis.getRange();
+-@@ -1570,7 +1571,7 @@
++@@ -1570,7 +1570,8 @@
+              String label = marker.getLabel();
+              RectangleAnchor anchor = marker.getLabelAnchor();
+              if (label != null) {
+ -                Font labelFont = marker.getLabelFont();
+-+                Font labelFont = var_3152;
+-                 g2.setFont(labelFont);
+-                 g2.setPaint(marker.getLabelPaint());
+-                 Point2D coordinates = calculateRangeMarkerTextAnchorPoint(
+-@@ -1672,7 +1673,7 @@
+-             String label = marker.getLabel();
+-             RectangleAnchor anchor = marker.getLabelAnchor();
+-             if (label != null) {
+--                Font labelFont = marker.getLabelFont();
+-+                Font labelFont = var_3152;
+++                Font var_3152 = marker.getLabelFont();
+++				Font labelFont = var_3152;
+                  g2.setFont(labelFont);
+                  g2.setPaint(marker.getLabelPaint());
+                  Point2D coordinates = calculateRangeMarkerTextAnchorPoint(

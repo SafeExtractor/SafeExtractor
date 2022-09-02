@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/title/ShortTextTitle.java b/source/org/jfree/chart/title/ShortTextTitle.java
+index e060d30..d0dc016 100644
+--- a/source/org/jfree/chart/title/ShortTextTitle.java
++++ b/source/org/jfree/chart/title/ShortTextTitle.java
+@@ -87,22 +87,23 @@
+         LengthConstraintType w = cc.getWidthConstraintType();
+         LengthConstraintType h = cc.getHeightConstraintType();
+         Size2D contentSize = null;
+-        if (w == LengthConstraintType.NONE) {
++        LengthConstraintType var_3459 = LengthConstraintType.RANGE;
++		if (w == LengthConstraintType.NONE) {
+             if (h == LengthConstraintType.NONE) {
+                 contentSize = arrangeNN(g2);
+             }
+-            else if (h == LengthConstraintType.RANGE) {
++            else if (h == var_3459) {
+                 throw new RuntimeException("Not yet implemented.");
+             }
+             else if (h == LengthConstraintType.FIXED) {
+                 throw new RuntimeException("Not yet implemented.");
+             }
+         }
+-        else if (w == LengthConstraintType.RANGE) {
++        else if (w == var_3459) {
+             if (h == LengthConstraintType.NONE) {
+                 contentSize = arrangeRN(g2, cc.getWidthRange());
+             }
+-            else if (h == LengthConstraintType.RANGE) {
++            else if (h == var_3459) {
+                 contentSize = arrangeRR(g2, cc.getWidthRange(),
+                         cc.getHeightRange());
+             }
+@@ -114,7 +115,7 @@
+             if (h == LengthConstraintType.NONE) {
+                 contentSize = arrangeFN(g2, cc.getWidth());
+             }
+-            else if (h == LengthConstraintType.RANGE) {
++            else if (h == var_3459) {
+                 throw new RuntimeException("Not yet implemented.");
+             }
+             else if (h == LengthConstraintType.FIXED) {

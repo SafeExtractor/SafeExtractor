@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/CoalesceVariableNames.java b/src/com/google/javascript/jscomp/CoalesceVariableNames.java
+index 11bb585..16c2412 100644
+--- a/src/com/google/javascript/jscomp/CoalesceVariableNames.java
++++ b/src/com/google/javascript/jscomp/CoalesceVariableNames.java
+@@ -27,6 +27,7 @@
+ import com.google.javascript.jscomp.NodeTraversal.AbstractPostOrderCallback;
+ import com.google.javascript.jscomp.NodeTraversal.ScopedCallback;
+ import com.google.javascript.jscomp.Scope.Var;
++import com.google.javascript.jscomp.graph.AdjacencyGraph;
+ import com.google.javascript.jscomp.graph.DiGraph.DiGraphNode;
+ import com.google.javascript.jscomp.graph.GraphColoring;
+ import com.google.javascript.jscomp.graph.GraphColoring.GreedyGraphColoring;
+@@ -152,7 +153,8 @@
+       return;
+     }
+     Var var = t.getScope().getVar(n.getString());
+-    GraphNode<Var, ?> vNode = colorings.peek().getGraph().getNode(var);
++    AdjacencyGraph<Var, Void> var_363 = colorings.peek().getGraph();
++	GraphNode<Var, ?> vNode = var_363.getNode(var);
+     if (vNode == null) {
+       // This is not a local.
+       return;
+@@ -183,7 +185,7 @@
+ 
+         // Look for all the variables that can be merged (in the graph by now)
+         // and it is merged with the current coalescedVar.
+-        if (colorings.peek().getGraph().getNode(iVar) != null &&
++        if (var_363.getNode(iVar) != null &&
+             coalescedVar.equals(colorings.peek().getPartitionSuperNode(iVar))) {
+           allMergedNames.add(iVar.name);
+         }

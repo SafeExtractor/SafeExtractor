@@ -1,0 +1,56 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot.java b/source/org/jfree/chart/plot/PiePlot.java
+index 34014e9..8095193 100644
+--- a/source/org/jfree/chart/plot/PiePlot.java
++++ b/source/org/jfree/chart/plot/PiePlot.java
+@@ -3031,16 +3031,17 @@
+     public LegendItemCollection getLegendItems() {
+ 
+         LegendItemCollection result = new LegendItemCollection();
+-        if (this.dataset == null) {
++        PieDataset var_2060 = this.dataset;
++		if (var_2060 == null) {
+             return result;
+         }
+-        List keys = this.dataset.getKeys();
++        List keys = var_2060.getKeys();
+         int section = 0;
+         Shape shape = getLegendItemShape();
+         Iterator iterator = keys.iterator();
+         while (iterator.hasNext()) {
+             Comparable key = (Comparable) iterator.next();
+-            Number n = this.dataset.getValue(key);
++            Number n = var_2060.getValue(key);
+             boolean include = true;
+             if (n == null) {
+                 include = !this.ignoreNullValues;
+@@ -3056,18 +3057,18 @@
+             }
+             if (include) {
+                 String label = this.legendLabelGenerator.generateSectionLabel(
+-                        this.dataset, key);
++                        var_2060, key);
+                 if (label != null) {
+                     String description = label;
+                     String toolTipText = null;
+                     if (this.legendLabelToolTipGenerator != null) {
+                         toolTipText = this.legendLabelToolTipGenerator
+-                                .generateSectionLabel(this.dataset, key);
++                                .generateSectionLabel(var_2060, key);
+                     }
+                     String urlText = null;
+                     if (this.legendLabelURLGenerator != null) {
+                         urlText = this.legendLabelURLGenerator.generateURL(
+-                                this.dataset, key, this.pieIndex);
++                                var_2060, key, this.pieIndex);
+                     }
+                     Paint paint = lookupSectionPaint(key, false);
+                     Paint outlinePaint = lookupSectionOutlinePaint(key, false);
+@@ -3079,7 +3080,7 @@
+                             false,          // line not visible
+                             new Line2D.Float(), new BasicStroke(), Color.black);
+                     item.setDataset(getDataset());
+-                    item.setSeriesIndex(this.dataset.getIndex(key));
++                    item.setSeriesIndex(var_2060.getIndex(key));
+                     item.setSeriesKey(key);
+                     result.add(item);
+                 }

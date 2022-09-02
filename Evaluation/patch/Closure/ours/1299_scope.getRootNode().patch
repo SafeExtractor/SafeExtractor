@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+index 5f0a14c..750d861 100644
+--- a/src/com/google/javascript/jscomp/SymbolTable.java
++++ b/src/com/google/javascript/jscomp/SymbolTable.java
+@@ -434,20 +434,23 @@
+     if (scope.isGlobalScope()) {
+       builder.append(
+           String.format("'%s' : in global scope:\n", symbol.getName()));
+-    } else if (scope.getRootNode() != null) {
+-      builder.append(
+-          String.format("'%s' : in scope %s:%d\n",
+-              symbol.getName(),
+-              scope.getRootNode().getSourceFileName(),
+-              scope.getRootNode().getLineno()));
+-    } else if (scope.getSymbolForScope() != null) {
+-      builder.append(
+-          String.format("'%s' : in scope %s\n", symbol.getName(),
+-              scope.getSymbolForScope().getName()));
+     } else {
+-      builder.append(
+-          String.format("'%s' : in unknown scope\n", symbol.getName()));
+-    }
++		Node var_1299 = scope.getRootNode();
++		if (var_1299 != null) {
++		  builder.append(
++		      String.format("'%s' : in scope %s:%d\n",
++		          symbol.getName(),
++		          var_1299.getSourceFileName(),
++		          var_1299.getLineno()));
++		} else if (scope.getSymbolForScope() != null) {
++		  builder.append(
++		      String.format("'%s' : in scope %s\n", symbol.getName(),
++		          scope.getSymbolForScope().getName()));
++		} else {
++		  builder.append(
++		      String.format("'%s' : in unknown scope\n", symbol.getName()));
++		}
++	}
+ 
+     int refCount = 0;
+     for (Reference ref : getReferences(symbol)) {

@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java
+index aca170e..0fe1928 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java
+@@ -404,9 +404,10 @@
+             plus.merge(merged.plus, leafMerger, merged, true);
+             minus.merge(merged.minus, leafMerger, merged, false);
+             merged.condense();
+-            if (merged.cut != null) {
++            SubHyperplane<S> var_1720 = merged.cut;
++			if (var_1720 != null) {
+                 merged.cut =
+-                    merged.fitToCell(merged.cut.getHyperplane().wholeHyperplane());
++                    merged.fitToCell(var_1720.getHyperplane().wholeHyperplane());
+             }
+ 
+             return merged;

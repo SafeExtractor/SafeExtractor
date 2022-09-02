@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/ConcreteType.java b/src/com/google/javascript/jscomp/ConcreteType.java
+index 7bf7593..7ce373c 100644
+--- a/src/com/google/javascript/jscomp/ConcreteType.java
++++ b/src/com/google/javascript/jscomp/ConcreteType.java
+@@ -202,9 +202,10 @@
+   List<ConcreteInstanceType> getPrototypeTypes() {
+     return getMatchingTypes(new TypeFilter<ConcreteInstanceType>(NO_INSTANCES) {
+       @Override public ConcreteInstanceType filter(ConcreteType type) {
+-        if (type.isInstance()
+-          && type.toInstance().isFunctionPrototype()) {
+-          return type.toInstance();
++        ConcreteInstanceType var_1756 = type.toInstance();
++		if (type.isInstance()
++          && var_1756.isFunctionPrototype()) {
++          return var_1756;
+         }
+         return null;
+       }

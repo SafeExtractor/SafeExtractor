@@ -1,0 +1,21 @@
+diff --git a/src/java/org/apache/commons/math/ode/nonstiff/DormandPrince54StepInterpolator.java b/src/java/org/apache/commons/math/ode/nonstiff/DormandPrince54StepInterpolator.java
+index 57fd550..0d53e6f 100644
+--- a/src/java/org/apache/commons/math/ode/nonstiff/DormandPrince54StepInterpolator.java
++++ b/src/java/org/apache/commons/math/ode/nonstiff/DormandPrince54StepInterpolator.java
+@@ -122,12 +122,13 @@
+ 
+       // we need to compute the interpolation vectors for this time step
+       for (int i = 0; i < interpolatedState.length; ++i) {
+-        v1[i] = h * (a70 * yDotK[0][i] + a72 * yDotK[2][i] + a73 * yDotK[3][i] +
+-                     a74 * yDotK[4][i] + a75 * yDotK[5][i]);
++        double yDot5 = yDotK[5][i];
++		v1[i] = h * (a70 * yDotK[0][i] + a72 * yDotK[2][i] + a73 * yDotK[3][i] +
++                     a74 * yDotK[4][i] + a75 * yDot5);
+         v2[i] = h * yDotK[0][i] - v1[i];
+         v3[i] = v1[i] - v2[i] - h * yDotK[6][i];
+         v4[i] = h * (d0 * yDotK[0][i] + d2 * yDotK[2][i] + d3 * yDotK[3][i] +
+-                     d4 * yDotK[4][i] + d5 * yDotK[5][i] + d6 * yDotK[6][i]);
++                     d4 * yDotK[4][i] + d5 * yDot5 + d6 * yDotK[6][i]);
+       }
+ 
+       vectorsInitialized = true;

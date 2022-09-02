@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/MaybeReachingVariableUse.java b/src/com/google/javascript/jscomp/MaybeReachingVariableUse.java
+index 8361ac9..6c3d84b 100644
+--- a/src/com/google/javascript/jscomp/MaybeReachingVariableUse.java
++++ b/src/com/google/javascript/jscomp/MaybeReachingVariableUse.java
+@@ -168,7 +168,8 @@
+ 
+   private void computeMayUse(
+       Node n, Node cfgNode, ReachingUses output, boolean conditional) {
+-    switch (n.getType()) {
++    Node var_1861 = NodeUtil.getConditionExpression(n);
++	switch (n.getType()) {
+ 
+       case Token.BLOCK:
+       case Token.FUNCTION:
+@@ -182,13 +183,13 @@
+       case Token.DO:
+       case Token.IF:
+         computeMayUse(
+-            NodeUtil.getConditionExpression(n), cfgNode, output, conditional);
++            var_1861, cfgNode, output, conditional);
+         return;
+ 
+       case Token.FOR:
+         if (!NodeUtil.isForIn(n)) {
+           computeMayUse(
+-              NodeUtil.getConditionExpression(n), cfgNode, output, conditional);
++              var_1861, cfgNode, output, conditional);
+         } else {
+           // for(x in y) {...}
+           Node lhs = n.getFirstChild();

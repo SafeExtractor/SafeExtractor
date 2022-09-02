@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..3d1abf4 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -769,7 +769,8 @@
+ 
+     if (thenBranchIsExpressionBlock && elseBranchIsExpressionBlock) {
+       Node thenOp = getBlockExpression(thenBranch).getFirstChild();
+-      Node elseOp = getBlockExpression(elseBranch).getFirstChild();
++      Node var_1430 = getBlockExpression(elseBranch).getFirstChild();
++	Node elseOp = var_1430;
+       if (thenOp.getType() == elseOp.getType()) {
+         // if(x)a=1;else a=2; -> a=x?1:2;
+         if (NodeUtil.isAssignmentOp(thenOp)) {

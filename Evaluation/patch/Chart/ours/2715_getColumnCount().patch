@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/category/StackedAreaRenderer.java b/source/org/jfree/chart/renderer/category/StackedAreaRenderer.java
+index f8c3051..a3475d2 100644
+--- a/source/org/jfree/chart/renderer/category/StackedAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/category/StackedAreaRenderer.java
+@@ -207,7 +207,8 @@
+         // leave the y values (y1, y0) untranslated as it is going to be be
+         // stacked up later by previous series values, after this it will be
+         // translated.
+-        double xx1 = domainAxis.getCategoryMiddle(column, getColumnCount(),
++        int var_2715 = getColumnCount();
++		double xx1 = domainAxis.getCategoryMiddle(column, var_2715,
+                 dataArea, plot.getDomainAxisEdge());
+ 
+ 
+@@ -221,7 +222,7 @@
+         double[] stack0 = getStackValues(dataset, row, Math.max(column - 1, 0));
+ 
+         // FIXME: calculate xx0
+-        double xx0 = domainAxis.getCategoryStart(column, getColumnCount(),
++        double xx0 = domainAxis.getCategoryStart(column, var_2715,
+                 dataArea, plot.getDomainAxisEdge());
+ 
+         int itemCount = dataset.getColumnCount();
+@@ -233,7 +234,7 @@
+         double[] stack2 = getStackValues(dataset, row, Math.min(column + 1,
+                 itemCount - 1));
+ 
+-        double xx2 = domainAxis.getCategoryEnd(column, getColumnCount(),
++        double xx2 = domainAxis.getCategoryEnd(column, var_2715,
+                 dataArea, plot.getDomainAxisEdge());
+ 
+         // FIXME: calculate xxLeft and xxRight

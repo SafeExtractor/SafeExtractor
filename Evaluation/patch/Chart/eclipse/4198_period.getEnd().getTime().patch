@@ -1,0 +1,35 @@
+diff --git a/source/org/jfree/data/time/TimePeriodValuesCollection.java b/source/org/jfree/data/time/TimePeriodValuesCollection.java
+index ba52bd7..4e88370 100644
+--- a/source/org/jfree/data/time/TimePeriodValuesCollection.java
++++ b/source/org/jfree/data/time/TimePeriodValuesCollection.java
+@@ -255,17 +255,19 @@
+ 
+         if (this.xPosition == TimePeriodAnchor.START) {
+             return period.getStart().getTime();
+-        }
+-        else if (this.xPosition == TimePeriodAnchor.MIDDLE) {
+-            return period.getStart().getTime()
+-                / 2 + period.getEnd().getTime() / 2;
+-        }
+-        else if (this.xPosition == TimePeriodAnchor.END) {
+-            return period.getEnd().getTime();
+-        }
+-        else {
+-            throw new IllegalStateException("TimePeriodAnchor unknown.");
+-        }
++        } else {
++			long var_4198 = period.getEnd().getTime();
++			if (this.xPosition == TimePeriodAnchor.MIDDLE) {
++			    return period.getStart().getTime()
++			        / 2 + var_4198 / 2;
++			}
++			else if (this.xPosition == TimePeriodAnchor.END) {
++			    return var_4198;
++			}
++			else {
++			    throw new IllegalStateException("TimePeriodAnchor unknown.");
++			}
++		}
+ 
+     }
+ 

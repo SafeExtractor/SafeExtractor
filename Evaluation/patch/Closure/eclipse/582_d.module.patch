@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java b/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
+index 7412a61..9624edb 100755
+--- a/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
++++ b/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
+@@ -167,11 +167,12 @@
+      */
+     boolean addDeclaration(Declaration d) {
+       // all declarations must appear in the same module.
+-      if (declModule != null && d.module != declModule) {
++      JSModule var_582 = d.module;
++	if (declModule != null && var_582 != declModule) {
+         return false;
+       }
+       declarations.push(d);
+-      declModule = d.module;
++      declModule = var_582;
+       return true;
+     }
+ 

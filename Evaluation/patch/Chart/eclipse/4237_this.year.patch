@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/data/time/Week.java b/source/org/jfree/data/time/Week.java
+index 777908a..6f55d7d 100644
+--- a/source/org/jfree/data/time/Week.java
++++ b/source/org/jfree/data/time/Week.java
+@@ -337,20 +337,21 @@
+     public RegularTimePeriod next() {
+ 
+         Week result;
+-        if (this.week < 52) {
+-            result = new Week(this.week + 1, this.year);
++        short var_4237 = this.year;
++		if (this.week < 52) {
++            result = new Week(this.week + 1, var_4237);
+         }
+         else {
+             Calendar calendar = Calendar.getInstance();
+-            calendar.set(this.year, Calendar.DECEMBER, 31);
++            calendar.set(var_4237, Calendar.DECEMBER, 31);
+             int actualMaxWeek
+                 = calendar.getActualMaximum(Calendar.WEEK_OF_YEAR);
+             if (this.week < actualMaxWeek) {
+-                result = new Week(this.week + 1, this.year);
++                result = new Week(this.week + 1, var_4237);
+             }
+             else {
+-                if (this.year < 9999) {
+-                    result = new Week(FIRST_WEEK_IN_YEAR, this.year + 1);
++                if (var_4237 < 9999) {
++                    result = new Week(FIRST_WEEK_IN_YEAR, var_4237 + 1);
+                 }
+                 else {
+                     result = null;

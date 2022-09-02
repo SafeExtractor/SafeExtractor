@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/DisambiguateProperties.java b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+index c64c178..26b5513 100644
+--- a/src/com/google/javascript/jscomp/DisambiguateProperties.java
++++ b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+@@ -760,10 +760,11 @@
+ 
+     @Override public JSType getType(
+         StaticScope<JSType> scope, Node node, String prop) {
+-      if (node.getJSType() == null) {
++      JSType var_881 = node.getJSType();
++	if (var_881 == null) {
+         return registry.getNativeType(JSTypeNative.UNKNOWN_TYPE);
+       }
+-      return node.getJSType();
++      return var_881;
+     }
+ 
+     @Override public boolean isInvalidatingType(JSType type) {

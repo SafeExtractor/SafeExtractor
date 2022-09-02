@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DateUtils.java b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+index b16af53..b268dfe 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DateUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+@@ -1157,14 +1157,15 @@
+         Calendar end = null;
+         int startCutoff = Calendar.SUNDAY;
+         int endCutoff = Calendar.SATURDAY;
+-        switch (rangeStyle) {
++        int var_528 = Calendar.MONTH;
++		switch (rangeStyle) {
+             case RANGE_MONTH_SUNDAY:
+             case RANGE_MONTH_MONDAY:
+                 //Set start to the first of the month
+-                start = truncate(focus, Calendar.MONTH);
++                start = truncate(focus, var_528);
+                 //Set end to the last of the month
+                 end = (Calendar) start.clone();
+-                end.add(Calendar.MONTH, 1);
++                end.add(var_528, 1);
+                 end.add(Calendar.DATE, -1);
+                 //Loop start back to the previous sunday or monday
+                 if (rangeStyle == RANGE_MONTH_MONDAY) {

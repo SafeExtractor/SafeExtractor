@@ -1,0 +1,50 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..522ed7b 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -1339,7 +1339,8 @@
+                                  Marker marker,
+                                  Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        double var_3123 = dataArea.getMinY();
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = domainAxis.getRange();
+@@ -1357,7 +1358,7 @@
+                         dataArea.getMaxX(), v);
+             }
+             else if (orientation == PlotOrientation.VERTICAL) {
+-                line = new Line2D.Double(v, dataArea.getMinY(), v,
++                line = new Line2D.Double(v, var_3123, v,
+                         dataArea.getMaxY());
+             }
+ 
+@@ -1404,7 +1405,7 @@
+             Rectangle2D rect = null;
+             if (orientation == PlotOrientation.HORIZONTAL) {
+                 // clip top and bottom bounds to data area
+-                low = Math.max(low, dataArea.getMinY());
++                low = Math.max(low, var_3123);
+                 high = Math.min(high, dataArea.getMaxY());
+                 rect = new Rectangle2D.Double(dataArea.getMinX(),
+                         low, dataArea.getWidth(),
+@@ -1415,7 +1416,7 @@
+                 low = Math.max(low, dataArea.getMinX());
+                 high = Math.min(high, dataArea.getMaxX());
+                 rect = new Rectangle2D.Double(low,
+-                        dataArea.getMinY(), high - low,
++                        var_3123, high - low,
+                         dataArea.getHeight());
+             }
+ 
+@@ -1440,7 +1441,7 @@
+             if (im.getOutlinePaint() != null && im.getOutlineStroke() != null) {
+                 if (orientation == PlotOrientation.VERTICAL) {
+                     Line2D line = new Line2D.Double();
+-                    double y0 = dataArea.getMinY();
++                    double y0 = var_3123;
+                     double y1 = dataArea.getMaxY();
+                     g2.setPaint(im.getOutlinePaint());
+                     g2.setStroke(im.getOutlineStroke());

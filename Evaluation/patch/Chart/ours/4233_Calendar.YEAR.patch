@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/data/time/Week.java b/source/org/jfree/data/time/Week.java
+index 777908a..b8c6dba 100644
+--- a/source/org/jfree/data/time/Week.java
++++ b/source/org/jfree/data/time/Week.java
+@@ -207,14 +207,15 @@
+         // the *first* week of the following year.  Refer to the Javadocs for
+         // GregorianCalendar.
+         int tempWeek = calendar.get(Calendar.WEEK_OF_YEAR);
+-        if (tempWeek == 1
++        int var_4233 = Calendar.YEAR;
++		if (tempWeek == 1
+                 && calendar.get(Calendar.MONTH) == Calendar.DECEMBER) {
+             this.week = 1;
+-            this.year = (short) (calendar.get(Calendar.YEAR) + 1);
++            this.year = (short) (calendar.get(var_4233) + 1);
+         }
+         else {
+             this.week = (byte) Math.min(tempWeek, LAST_WEEK_IN_YEAR);
+-            int yyyy = calendar.get(Calendar.YEAR);
++            int yyyy = calendar.get(var_4233);
+             // alternatively, sometimes the first few days of the year are
+             // considered to fall in the *last* week of the previous year...
+             if (calendar.get(Calendar.MONTH) == Calendar.JANUARY

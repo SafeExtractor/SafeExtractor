@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java b/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
+index 3e7fff7..d13c286 100644
+--- a/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
++++ b/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
+@@ -675,7 +675,8 @@
+         dest.maxImpl = source.maxImpl.copy();
+         dest.minImpl = source.minImpl.copy();
+         dest.sumImpl = source.sumImpl.copy();
+-        dest.sumLogImpl = source.sumLogImpl.copy();
++        StorelessUnivariateStatistic var_3733 = source.sumLogImpl;
++		dest.sumLogImpl = var_3733.copy();
+         dest.sumsqImpl = source.sumsqImpl.copy();
+         dest.secondMoment = source.secondMoment.copy();
+         dest.n = source.n;
+@@ -729,7 +730,7 @@
+         } else {
+             Variance.copy(source.variance, dest.variance);
+         }
+-        if (source.sumLog == source.sumLogImpl) {
++        if (source.sumLog == var_3733) {
+             dest.sumLog = (SumOfLogs) dest.sumLogImpl;
+         } else {
+             SumOfLogs.copy(source.sumLog, dest.sumLog);

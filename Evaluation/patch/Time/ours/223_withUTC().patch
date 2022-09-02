@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/joda/time/chrono/GJChronology.java b/src/main/java/org/joda/time/chrono/GJChronology.java
+index 1cc03a4..fb00b53 100644
+--- a/src/main/java/org/joda/time/chrono/GJChronology.java
++++ b/src/main/java/org/joda/time/chrono/GJChronology.java
+@@ -457,7 +457,8 @@
+         if (iCutoverMillis != DEFAULT_CUTOVER.getMillis()) {
+             sb.append(",cutover=");
+             DateTimeFormatter printer;
+-            if (withUTC().dayOfYear().remainder(iCutoverMillis) == 0) {
++            Chronology var_223 = withUTC();
++			if (var_223.dayOfYear().remainder(iCutoverMillis) == 0) {
+                 printer = ISODateTimeFormat.date();
+             } else {
+                 printer = ISODateTimeFormat.dateTime();

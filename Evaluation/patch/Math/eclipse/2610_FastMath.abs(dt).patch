@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/events/EventState.java b/src/main/java/org/apache/commons/math3/ode/events/EventState.java
+index 5d67795..c03bb61 100644
+--- a/src/main/java/org/apache/commons/math3/ode/events/EventState.java
++++ b/src/main/java/org/apache/commons/math3/ode/events/EventState.java
+@@ -229,11 +229,12 @@
+             forward = interpolator.isForward();
+             final double t1 = interpolator.getCurrentTime();
+             final double dt = t1 - t0;
+-            if (FastMath.abs(dt) < convergence) {
++            double var_2610 = FastMath.abs(dt);
++			if (var_2610 < convergence) {
+                 // we cannot do anything on such a small step, don't trigger any events
+                 return false;
+             }
+-            final int    n = FastMath.max(1, (int) FastMath.ceil(FastMath.abs(dt) / maxCheckInterval));
++            final int    n = FastMath.max(1, (int) FastMath.ceil(var_2610 / maxCheckInterval));
+             final double h = dt / n;
+ 
+             final UnivariateFunction f = new UnivariateFunction() {

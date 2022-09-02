@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..5382c1d 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -867,11 +867,12 @@
+       return 0;
+     } else if (result.success) {
+       outputModuleGraphJson();
+-      if (modules == null) {
++      String var_424 = config.jsOutputFile;
++	if (modules == null) {
+         outputSingleBinary();
+ 
+         // Output the source map if requested.
+-        outputSourceMap(options, config.jsOutputFile);
++        outputSourceMap(options, var_424);
+       } else {
+         outputModuleBinaryAndSourceMaps(modules, options);
+       }
+@@ -879,7 +880,7 @@
+       // Output the externs if required.
+       if (options.externExportsPath != null) {
+         Writer eeOut =
+-            openExternExportsStream(options, config.jsOutputFile);
++            openExternExportsStream(options, var_424);
+         eeOut.append(result.externExport);
+         eeOut.close();
+       }

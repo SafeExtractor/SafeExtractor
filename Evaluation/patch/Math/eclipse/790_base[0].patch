@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..98c5e84 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -156,8 +156,9 @@
+         Dfp[] r = new Dfp[2];
+ 
+         Dfp[] result = new Dfp[2];
+-        result[0] = base[0].getOne();
+-        result[1] = base[0].getZero();
++        Dfp var_790 = base[0];
++		result[0] = var_790.getOne();
++        result[1] = var_790.getZero();
+ 
+         if (a == 0) {
+             // Special case a = 0
+@@ -172,7 +173,7 @@
+ 
+         // Exponentiate by successive squaring
+         do {
+-            r[0] = new Dfp(base[0]);
++            r[0] = new Dfp(var_790);
+             r[1] = new Dfp(base[1]);
+             int trial = 1;
+ 
+@@ -196,7 +197,7 @@
+         result[0] = result[0].add(result[1]);
+ 
+         if (invert) {
+-            result[0] = base[0].getOne().divide(result[0]);
++            result[0] = var_790.getOne().divide(result[0]);
+         }
+ 
+         return result[0];

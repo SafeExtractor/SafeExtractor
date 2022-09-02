@@ -1,0 +1,32 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
+index e970d3a..571d588 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
++++ b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
+@@ -348,7 +348,8 @@
+      */
+     private Entry decodeEntry(int[] vals, int entryValues) {
+       Entry entry;
+-      switch (entryValues) {
++      int var_63 = vals[1];
++	switch (entryValues) {
+         // The first values, if present are in the following order:
+         //   0: the starting column in the current line of the generated file
+         //   1: the id of the original source file
+@@ -372,7 +373,7 @@
+           // A mapped section of the generated file.
+           entry = new UnnamedEntry(
+               vals[0] + previousCol,
+-              vals[1] + previousSrcId,
++              var_63 + previousSrcId,
+               vals[2] + previousSrcLine,
+               vals[3] + previousSrcColumn);
+           // Set the values see for the next entry.
+@@ -387,7 +388,7 @@
+           // name.
+           entry = new NamedEntry(
+               vals[0] + previousCol,
+-              vals[1] + previousSrcId,
++              var_63 + previousSrcId,
+               vals[2] + previousSrcLine,
+               vals[3] + previousSrcColumn,
+               vals[4] + previousNameId);

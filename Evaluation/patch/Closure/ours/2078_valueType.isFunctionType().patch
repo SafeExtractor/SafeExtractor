@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..b9c4cca 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -2101,10 +2101,11 @@
+    */
+   static JSType getObjectLitKeyTypeFromValueType(Node key, JSType valueType) {
+     if (valueType != null) {
+-      switch (key.getType()) {
++      boolean var_2078 = valueType.isFunctionType();
++	switch (key.getType()) {
+         case Token.GETTER_DEF:
+           // GET must always return a function type.
+-          if (valueType.isFunctionType()) {
++          if (var_2078) {
+             FunctionType fntype = valueType.toMaybeFunctionType();
+             valueType = fntype.getReturnType();
+           } else {
+@@ -2112,7 +2113,7 @@
+           }
+           break;
+         case Token.SETTER_DEF:
+-          if (valueType.isFunctionType()) {
++          if (var_2078) {
+             // SET must always return a function type.
+             FunctionType fntype = valueType.toMaybeFunctionType();
+             Node param = fntype.getParametersNode().getFirstChild();

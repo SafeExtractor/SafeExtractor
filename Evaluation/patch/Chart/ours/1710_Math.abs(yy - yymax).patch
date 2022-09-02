@@ -1,0 +1,42 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..3b14d21 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -3556,17 +3556,18 @@
+         double yymax = yAxis.valueToJava2D(ymax, area, getRangeAxisEdge());
+ 
+         Rectangle2D[] r = new Rectangle2D[] {null, null, null, null};
+-        if (this.quadrantPaint[0] != null) {
++        double var_1710 = Math.abs(yy - yymax);
++		if (this.quadrantPaint[0] != null) {
+             if (x > xmin && y < ymax) {
+                 if (this.orientation == PlotOrientation.HORIZONTAL) {
+                     r[0] = new Rectangle2D.Double(Math.min(yymax, yy),
+-                            Math.min(xxmin, xx), Math.abs(yy - yymax),
++                            Math.min(xxmin, xx), var_1710,
+                             Math.abs(xx - xxmin));
+                 }
+                 else {  // PlotOrientation.VERTICAL
+                     r[0] = new Rectangle2D.Double(Math.min(xxmin, xx),
+                             Math.min(yymax, yy), Math.abs(xx - xxmin),
+-                            Math.abs(yy - yymax));
++                            var_1710);
+                 }
+                 somethingToDraw = true;
+             }
+@@ -3575,13 +3576,13 @@
+             if (x < xmax && y < ymax) {
+                 if (this.orientation == PlotOrientation.HORIZONTAL) {
+                     r[1] = new Rectangle2D.Double(Math.min(yymax, yy),
+-                            Math.min(xxmax, xx), Math.abs(yy - yymax),
++                            Math.min(xxmax, xx), var_1710,
+                             Math.abs(xx - xxmax));
+                 }
+                 else {  // PlotOrientation.VERTICAL
+                     r[1] = new Rectangle2D.Double(Math.min(xx, xxmax),
+                             Math.min(yymax, yy), Math.abs(xx - xxmax),
+-                            Math.abs(yy - yymax));
++                            var_1710);
+                 }
+                 somethingToDraw = true;
+             }

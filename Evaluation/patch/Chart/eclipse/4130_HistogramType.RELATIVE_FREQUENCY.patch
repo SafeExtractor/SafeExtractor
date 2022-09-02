@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/data/statistics/HistogramType.java b/source/org/jfree/data/statistics/HistogramType.java
+index 6f80bba..bf5c6f2 100644
+--- a/source/org/jfree/data/statistics/HistogramType.java
++++ b/source/org/jfree/data/statistics/HistogramType.java
+@@ -134,13 +134,15 @@
+     private Object readResolve() throws ObjectStreamException {
+         if (this.equals(HistogramType.FREQUENCY)) {
+             return HistogramType.FREQUENCY;
+-        }
+-        else if (this.equals(HistogramType.RELATIVE_FREQUENCY)) {
+-            return HistogramType.RELATIVE_FREQUENCY;
+-        }
+-        else if (this.equals(HistogramType.SCALE_AREA_TO_1)) {
+-            return HistogramType.SCALE_AREA_TO_1;
+-        }
++        } else {
++			HistogramType var_4130 = HistogramType.RELATIVE_FREQUENCY;
++			if (this.equals(var_4130)) {
++			    return var_4130;
++			}
++			else if (this.equals(HistogramType.SCALE_AREA_TO_1)) {
++			    return HistogramType.SCALE_AREA_TO_1;
++			}
++		}
+         return null;
+     }
+ 

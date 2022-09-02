@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+index 5f6b2c5..a2e011f 100644
+--- a/src/com/google/javascript/jscomp/Compiler.java
++++ b/src/com/google/javascript/jscomp/Compiler.java
+@@ -1342,8 +1342,9 @@
+               .manageDependencies(options.dependencyOptions, inputs);
+           staleInputs = true;
+         } catch (CircularDependencyException e) {
+-          report(JSError.make(
+-              JSModule.CIRCULAR_DEPENDENCY_ERROR, e.getMessage()));
++          String var_512 = e.getMessage();
++		report(JSError.make(
++              JSModule.CIRCULAR_DEPENDENCY_ERROR, var_512));
+ 
+           // If in IDE mode, we ignore the error and keep going.
+           if (hasErrors()) {

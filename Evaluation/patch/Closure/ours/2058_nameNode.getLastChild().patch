@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..26013de 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -1015,9 +1015,10 @@
+         return false;
+       }
+     } else if (nameNode.isGetProp()) {
+-      if (callNode.hasOneChild()
++      Node var_2058 = nameNode.getLastChild();
++	if (callNode.hasOneChild()
+           && OBJECT_METHODS_WITHOUT_SIDEEFFECTS.contains(
+-                nameNode.getLastChild().getString())) {
++                var_2058.getString())) {
+         return false;
+       }
+ 
+@@ -1037,11 +1038,11 @@
+ 
+       if (compiler != null && !compiler.hasRegExpGlobalReferences()) {
+         if (nameNode.getFirstChild().isRegExp()
+-            && REGEXP_METHODS.contains(nameNode.getLastChild().getString())) {
++            && REGEXP_METHODS.contains(var_2058.getString())) {
+           return false;
+         } else if (nameNode.getFirstChild().isString()
+             && STRING_REGEXP_METHODS.contains(
+-                nameNode.getLastChild().getString())) {
++                var_2058.getString())) {
+           Node param = nameNode.getNext();
+           if (param != null &&
+               (param.isString() || param.isRegExp())) {

@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/AdamsMoultonIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/AdamsMoultonIntegrator.java
+index 5d5a7a7..587608f 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/AdamsMoultonIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/AdamsMoultonIntegrator.java
+@@ -244,7 +244,8 @@
+         do {
+ 
+             double error = 10;
+-            while (error >= 1.0) {
++            int var_2784 = y0.length;
++			while (error >= 1.0) {
+ 
+                 stepSize = hNew;
+ 
+@@ -264,7 +265,7 @@
+                 computeDerivatives(stepEnd, yTmp, yDot);
+ 
+                 // update Nordsieck vector
+-                for (int j = 0; j < y0.length; ++j) {
++                for (int j = 0; j < var_2784; ++j) {
+                     predictedScaled[j] = stepSize * yDot[j];
+                 }
+                 nordsieckTmp = updateHighOrderDerivativesPhase1(nordsieck);
+@@ -286,8 +287,8 @@
+             computeDerivatives(stepEnd, yTmp, yDot);
+ 
+             // update Nordsieck vector
+-            final double[] correctedScaled = new double[y0.length];
+-            for (int j = 0; j < y0.length; ++j) {
++            final double[] correctedScaled = new double[var_2784];
++            for (int j = 0; j < var_2784; ++j) {
+                 correctedScaled[j] = stepSize * yDot[j];
+             }
+             updateHighOrderDerivativesPhase2(predictedScaled, correctedScaled, nordsieckTmp);

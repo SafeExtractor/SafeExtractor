@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..e1401e2 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -4391,12 +4391,13 @@
+      */
+     public void handleClick(int x, int y, PlotRenderingInfo info) {
+ 
+-        Rectangle2D dataArea = info.getDataArea();
++        Rectangle2D var_1744 = info.getDataArea();
++		Rectangle2D dataArea = var_1744;
+         if (dataArea.contains(x, y)) {
+             // set the anchor value for the horizontal axis...
+             ValueAxis xaxis = getDomainAxis();
+             if (xaxis != null) {
+-                double hvalue = xaxis.java2DToValue(x, info.getDataArea(),
++                double hvalue = xaxis.java2DToValue(x, var_1744,
+                         getDomainAxisEdge());
+                 setDomainCrosshairValue(hvalue);
+             }
+@@ -4404,7 +4405,7 @@
+             // set the anchor value for the vertical axis...
+             ValueAxis yaxis = getRangeAxis();
+             if (yaxis != null) {
+-                double vvalue = yaxis.java2DToValue(y, info.getDataArea(),
++                double vvalue = yaxis.java2DToValue(y, var_1744,
+                         getRangeAxisEdge());
+                 setRangeCrosshairValue(vvalue);
+             }

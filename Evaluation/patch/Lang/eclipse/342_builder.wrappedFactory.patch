@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/lang3/concurrent/BasicThreadFactory.java b/src/main/java/org/apache/commons/lang3/concurrent/BasicThreadFactory.java
+index 818f5d1..7fba6cc 100644
+--- a/src/main/java/org/apache/commons/lang3/concurrent/BasicThreadFactory.java
++++ b/src/main/java/org/apache/commons/lang3/concurrent/BasicThreadFactory.java
+@@ -113,10 +113,11 @@
+      * @param builder the {@code Builder} object
+      */
+     private BasicThreadFactory(final Builder builder) {
+-        if (builder.wrappedFactory == null) {
++        ThreadFactory var_342 = builder.wrappedFactory;
++		if (var_342 == null) {
+             wrappedFactory = Executors.defaultThreadFactory();
+         } else {
+-            wrappedFactory = builder.wrappedFactory;
++            wrappedFactory = var_342;
+         }
+ 
+         namingPattern = builder.namingPattern;

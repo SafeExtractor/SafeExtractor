@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+index 09e636b..828a209 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+@@ -311,9 +311,10 @@
+             days -= 1;
+         }
+        
+-        if (Token.containsTokenWithValue(tokens, M)) {
++        int var_567 = start.getActualMaximum(Calendar.DAY_OF_MONTH);
++		if (Token.containsTokenWithValue(tokens, M)) {
+             while (days < 0) {
+-                days += start.getActualMaximum(Calendar.DAY_OF_MONTH);
++                days += var_567;
+                 months -= 1;
+                 start.add(Calendar.MONTH, 1);
+             }
+@@ -358,14 +359,14 @@
+             }
+             
+             while( start.get(Calendar.MONTH) != end.get(Calendar.MONTH) ) {
+-                days += start.getActualMaximum(Calendar.DAY_OF_MONTH);
++                days += var_567;
+                 start.add(Calendar.MONTH, 1);
+             }
+             
+             months = 0;            
+ 
+             while (days < 0) {
+-                days += start.getActualMaximum(Calendar.DAY_OF_MONTH);
++                days += var_567;
+                 months -= 1;
+                 start.add(Calendar.MONTH, 1);
+             }

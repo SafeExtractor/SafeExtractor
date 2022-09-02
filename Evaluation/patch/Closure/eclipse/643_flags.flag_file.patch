@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/CommandLineRunner.java b/src/com/google/javascript/jscomp/CommandLineRunner.java
+index 2d3b139..817705d 100644
+--- a/src/com/google/javascript/jscomp/CommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/CommandLineRunner.java
+@@ -667,17 +667,18 @@
+     CmdLineParser parser = new CmdLineParser(flags);
+     Flags.warningGuardSpec.clear();
+     isConfigValid = true;
+-    try {
++    String var_643 = flags.flag_file;
++	try {
+       parser.parseArgument(processedArgs.toArray(new String[] {}));
+       // For contains --flagfile flag
+-      if (!flags.flag_file.equals("")) {
++      if (!var_643.equals("")) {
+         processFlagFile(err);
+       }
+     } catch (CmdLineException e) {
+       err.println(e.getMessage());
+       isConfigValid = false;
+     } catch (IOException ioErr) {
+-      err.println("ERROR - " + flags.flag_file + " read error.");
++      err.println("ERROR - " + var_643 + " read error.");
+       isConfigValid = false;
+     }
+ 

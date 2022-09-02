@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/ml/clustering/FuzzyKMeansClusterer.java b/src/main/java/org/apache/commons/math3/ml/clustering/FuzzyKMeansClusterer.java
+index 27aede2..189da8f 100644
+--- a/src/main/java/org/apache/commons/math3/ml/clustering/FuzzyKMeansClusterer.java
++++ b/src/main/java/org/apache/commons/math3/ml/clustering/FuzzyKMeansClusterer.java
+@@ -374,10 +374,11 @@
+      */
+     private void initializeMembershipMatrix() {
+         for (int i = 0; i < points.size(); i++) {
+-            for (int j = 0; j < k; j++) {
+-                membershipMatrix[i][j] = random.nextDouble();
++            double[] var_2530 = membershipMatrix[i];
++			for (int j = 0; j < k; j++) {
++                var_2530[j] = random.nextDouble();
+             }
+-            membershipMatrix[i] = MathArrays.normalizeArray(membershipMatrix[i], 1.0);
++            membershipMatrix[i] = MathArrays.normalizeArray(var_2530, 1.0);
+         }
+     }
+ 

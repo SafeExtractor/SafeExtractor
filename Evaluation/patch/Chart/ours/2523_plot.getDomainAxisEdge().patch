@@ -1,0 +1,39 @@
+diff --git a/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java b/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java
+index 326271f..e035b31 100644
+--- a/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java
++++ b/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java
+@@ -69,6 +69,7 @@
+ import org.jfree.chart.plot.PlotRenderingInfo;
+ import org.jfree.chart.renderer.xy.XYStepRenderer;
+ import org.jfree.chart.util.PublicCloneable;
++import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.data.category.CategoryDataset;
+ 
+ /**
+@@ -286,10 +287,11 @@
+         PlotOrientation orientation = plot.getOrientation();
+ 
+         // current data point...
+-        double x1s = domainAxis.getCategoryStart(column, getColumnCount(),
+-                dataArea, plot.getDomainAxisEdge());
++        RectangleEdge var_2523 = plot.getDomainAxisEdge();
++		double x1s = domainAxis.getCategoryStart(column, getColumnCount(),
++                dataArea, var_2523);
+         double x1 = domainAxis.getCategoryMiddle(column, getColumnCount(),
+-                dataArea, plot.getDomainAxisEdge());
++                dataArea, var_2523);
+         double x1e = 2 * x1 - x1s; // or: x1s + 2*(x1-x1s)
+         double y1 = rangeAxis.valueToJava2D(value.doubleValue(), dataArea,
+                 plot.getRangeAxisEdge());
+@@ -302,9 +304,9 @@
+                 // previous data point...
+                 double previous = previousValue.doubleValue();
+                 double x0s = domainAxis.getCategoryStart(column - 1,
+-                        getColumnCount(), dataArea, plot.getDomainAxisEdge());
++                        getColumnCount(), dataArea, var_2523);
+                 double x0 = domainAxis.getCategoryMiddle(column - 1,
+-                        getColumnCount(), dataArea, plot.getDomainAxisEdge());
++                        getColumnCount(), dataArea, var_2523);
+                 double x0e = 2 * x0 - x0s; // or: x0s + 2*(x0-x0s)
+                 double y0 = rangeAxis.valueToJava2D(previous, dataArea,
+                         plot.getRangeAxisEdge());

@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java b/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java
+index aa25ddd..cca9298 100644
+--- a/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java
++++ b/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java
+@@ -62,10 +62,11 @@
+     new Function<TypePair, TypePair>() {
+       @Override
+       public TypePair apply(TypePair p) {
+-        if (p.typeA == null || p.typeB == null) {
++        JSType var_2466 = p.typeB;
++		if (p.typeA == null || var_2466 == null) {
+           return null;
+         }
+-        return p.typeA.getTypesUnderInequality(p.typeB);
++        return p.typeA.getTypesUnderInequality(var_2466);
+       }
+     };
+ 

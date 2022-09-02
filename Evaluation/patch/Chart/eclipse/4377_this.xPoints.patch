@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/data/xy/DefaultTableXYDataset.java b/source/org/jfree/data/xy/DefaultTableXYDataset.java
+index 7eac51b..33f0cdf 100644
+--- a/source/org/jfree/data/xy/DefaultTableXYDataset.java
++++ b/source/org/jfree/data/xy/DefaultTableXYDataset.java
+@@ -172,11 +172,12 @@
+         HashSet seriesXPoints = new HashSet();
+         boolean savedState = this.propagateEvents;
+         this.propagateEvents = false;
+-        for (int itemNo = 0; itemNo < series.getItemCount(); itemNo++) {
++        HashSet var_4377 = this.xPoints;
++		for (int itemNo = 0; itemNo < series.getItemCount(); itemNo++) {
+             Number xValue = series.getX(itemNo);
+             seriesXPoints.add(xValue);
+-            if (!this.xPoints.contains(xValue)) {
+-                this.xPoints.add(xValue);
++            if (!var_4377.contains(xValue)) {
++                var_4377.add(xValue);
+                 int seriesCount = this.data.size();
+                 for (int seriesNo = 0; seriesNo < seriesCount; seriesNo++) {
+                     XYSeries dataSeries = (XYSeries) this.data.get(seriesNo);
+@@ -186,7 +187,7 @@
+                 }
+             }
+         }
+-        Iterator iterator = this.xPoints.iterator();
++        Iterator iterator = var_4377.iterator();
+         while (iterator.hasNext()) {
+             Number xPoint = (Number) iterator.next();
+             if (!seriesXPoints.contains(xPoint)) {

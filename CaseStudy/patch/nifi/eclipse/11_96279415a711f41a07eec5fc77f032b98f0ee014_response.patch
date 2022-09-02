@@ -1,0 +1,14 @@
+diff --git a/nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors/src/main/java/org/apache/nifi/processors/standard/util/FTPTransfer.java b/nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors/src/main/java/org/apache/nifi/processors/standard/util/FTPTransfer.java
+index 85fee40..3bef555 100644
+--- a/nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors/src/main/java/org/apache/nifi/processors/standard/util/FTPTransfer.java
++++ b/nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors/src/main/java/org/apache/nifi/processors/standard/util/FTPTransfer.java
+@@ -322,7 +322,8 @@
+         final FTPClient client = getClient(flowFile);
+         InputStream in = client.retrieveFileStream(remoteFileName);
+         if (in == null) {
+-            throw new IOException(client.getReplyString());
++            String response = client.getReplyString();
++			throw new IOException(response);
+         }
+         return in;
+     }

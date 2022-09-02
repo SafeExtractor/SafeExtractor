@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/LinkedFlowScope.java b/src/com/google/javascript/jscomp/LinkedFlowScope.java
+index a97d855..eab21cb 100644
+--- a/src/com/google/javascript/jscomp/LinkedFlowScope.java
++++ b/src/com/google/javascript/jscomp/LinkedFlowScope.java
+@@ -231,10 +231,11 @@
+   @Override
+   public LinkedFlowScope optimize() {
+     LinkedFlowScope current;
+-    for (current = this;
+-         current.parent != null &&
+-             current.lastSlot == current.parent.lastSlot;
+-         current = current.parent) {}
++    LinkedFlowScope var_1847 = current.parent;
++	for (current = this;
++         var_1847 != null &&
++             current.lastSlot == var_1847.lastSlot;
++         current = var_1847) {}
+     return current;
+   }
+ 

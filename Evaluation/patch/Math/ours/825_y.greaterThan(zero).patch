@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..d05a7e1 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -551,7 +551,8 @@
+                 // X == -0
+                 if (y.classify() == Dfp.FINITE && y.rint().equals(y) && !y.remainder(two).equals(zero)) {
+                     // If y is odd integer
+-                    if (y.greaterThan(zero)) {
++                    boolean var_825 = y.greaterThan(zero);
++					if (var_825) {
+                         return x.newInstance(zero.negate());
+                     } else {
+                         return x.newInstance(x.newInstance((byte)-1, Dfp.INFINITE));

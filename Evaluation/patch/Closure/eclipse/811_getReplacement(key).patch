@@ -1,0 +1,36 @@
+diff --git a/src/com/google/javascript/jscomp/ReplaceStrings.java b/src/com/google/javascript/jscomp/ReplaceStrings.java
+index 1d4ac50..83835ea 100644
+--- a/src/com/google/javascript/jscomp/ReplaceStrings.java
++++ b/src/com/google/javascript/jscomp/ReplaceStrings.java
+@@ -306,10 +306,11 @@
+     Node replacement;
+     String key = null;
+     String replacementString;
+-    switch (expr.getType()) {
++    String var_811 = getReplacement(key);
++	switch (expr.getType()) {
+       case Token.STRING:
+         key = expr.getString();
+-        replacementString = getReplacement(key);
++        replacementString = var_811;
+         replacement = IR.string(replacementString);
+         break;
+       case Token.ADD:
+@@ -317,7 +318,7 @@
+         Node keyNode = IR.string("");
+         replacement = buildReplacement(expr, keyNode, keyBuilder);
+         key = keyBuilder.toString();
+-        replacementString = getReplacement(key);
++        replacementString = var_811;
+         keyNode.setString(replacementString);
+         break;
+       case Token.NAME:
+@@ -327,7 +328,7 @@
+           Node value = var.getInitialValue();
+           if (value != null && value.isString()) {
+             key = value.getString();
+-            replacementString = getReplacement(key);
++            replacementString = var_811;
+             replacement = IR.string(replacementString);
+             break;
+           }

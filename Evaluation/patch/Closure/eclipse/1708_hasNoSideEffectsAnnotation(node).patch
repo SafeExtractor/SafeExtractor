@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/MarkNoSideEffectCalls.java b/src/com/google/javascript/jscomp/MarkNoSideEffectCalls.java
+index c38fe65..283df82 100644
+--- a/src/com/google/javascript/jscomp/MarkNoSideEffectCalls.java
++++ b/src/com/google/javascript/jscomp/MarkNoSideEffectCalls.java
+@@ -118,20 +118,21 @@
+ 
+     @Override
+     public void visit(NodeTraversal traversal, Node node, Node parent) {
+-      if (!inExterns && hasNoSideEffectsAnnotation(node)) {
++      boolean var_1708 = hasNoSideEffectsAnnotation(node);
++	if (!inExterns && var_1708) {
+         traversal.report(node, INVALID_NO_SIDE_EFFECT_ANNOTATION);
+       }
+ 
+       if (node.isGetProp()) {
+         if (parent.isExprResult() &&
+-            hasNoSideEffectsAnnotation(node)) {
++            var_1708) {
+           noSideEffectFunctionNames.add(node);
+         }
+       } else if (node.isFunction()) {
+ 
+         // The annotation may attached to the function node, the
+         // variable declaration or assignment expression.
+-        boolean hasAnnotation = hasNoSideEffectsAnnotation(node);
++        boolean hasAnnotation = var_1708;
+         List<Node> nameNodes = Lists.newArrayList();
+         nameNodes.add(node.getFirstChild());
+ 

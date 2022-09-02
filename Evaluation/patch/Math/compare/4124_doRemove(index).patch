@@ -1,0 +1,35 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/4124_doRemove(index).patch b/Users/safe/paper/Evaluation/patch/Math/ours/4124_doRemove(index).patch
+index 223c84c..66e8906 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/4124_doRemove(index).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/4124_doRemove(index).patch
+@@ -1,25 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java b/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+-index 2b007b2..23b50be 100644
++index 2b007b2..87d2546 100644
+ --- a/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+ +++ b/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+-@@ -350,8 +350,9 @@
+- 
++@@ -351,7 +351,8 @@
+          final int hash  = hashOf(key);
+          int index = hash & mask;
+--        if (containsKey(key, index)) {
++         if (containsKey(key, index)) {
+ -            return doRemove(index);
+-+        double var_4124 = doRemove(index);
+-+		if (containsKey(key, index)) {
+-+            return var_4124;
+++            double var_4124 = doRemove(index);
+++			return var_4124;
+          }
+  
+          if (states[index] == FREE) {
+-@@ -363,7 +364,7 @@
+-             j = probe(perturb, j);
+-             index = j & mask;
+-             if (containsKey(key, index)) {
+--                return doRemove(index);
+-+                return var_4124;
+-             }
+-         }
+- 

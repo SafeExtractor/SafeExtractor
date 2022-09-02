@@ -1,0 +1,25 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
+index e970d3a..c859f62 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
++++ b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
+@@ -509,8 +509,9 @@
+ 
+       if (entries != null) {
+         for (Entry entry : entries) {
+-          if (entry.getSourceFileId() != UNMAPPED
+-              && entry.getSourceLine() != UNMAPPED) {
++          int var_72 = entry.getSourceLine();
++		if (entry.getSourceFileId() != UNMAPPED
++              && var_72 != UNMAPPED) {
+             String originalFile = sources[entry.getSourceFileId()];
+ 
+             if (!reverseSourceMapping.containsKey(originalFile)) {
+@@ -521,7 +522,7 @@
+             Map<Integer, Collection<OriginalMapping>> lineToCollectionMap =
+                 reverseSourceMapping.get(originalFile);
+ 
+-            int sourceLine = entry.getSourceLine();
++            int sourceLine = var_72;
+ 
+             if (!lineToCollectionMap.containsKey(sourceLine)) {
+               lineToCollectionMap.put(sourceLine,

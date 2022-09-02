@@ -1,0 +1,40 @@
+diff --git a/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java b/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
+index 04d88ae..fa521c6 100644
+--- a/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
++++ b/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
+@@ -172,17 +172,18 @@
+   private void extractInstance(ExtractionInstance instance) {
+     PrototypeMemberDeclaration first = instance.declarations.getFirst();
+     String className = first.qualifiedClassName;
+-    if (pattern == Pattern.USE_GLOBAL_TEMP) {
++    Node var_2008 = first.node;
++	if (pattern == Pattern.USE_GLOBAL_TEMP) {
+       // Use the temp variable to hold the prototype.
+-      Node stmt = new Node(first.node.getType(),
++      Node stmt = new Node(var_2008.getType(),
+          IR.assign(
+               IR.name(prototypeAlias),
+               NodeUtil.newQualifiedNameNode(
+                   compiler.getCodingConvention(), className + ".prototype",
+                   instance.parent, className + ".prototype")))
+-          .copyInformationFromForTree(first.node);
++          .copyInformationFromForTree(var_2008);
+ 
+-      instance.parent.addChildBefore(stmt, first.node);
++      instance.parent.addChildBefore(stmt, var_2008);
+     } else if (pattern == Pattern.USE_ANON_FUNCTION){
+       Node block = IR.block();
+       Node func = IR.function(
+@@ -196,9 +197,9 @@
+                instance.parent, className + ".prototype"));
+       call.putIntProp(Node.FREE_CALL, 1);
+ 
+-      Node stmt = new Node(first.node.getType(), call);
+-      stmt.copyInformationFromForTree(first.node);
+-      instance.parent.addChildBefore(stmt, first.node);
++      Node stmt = new Node(var_2008.getType(), call);
++      stmt.copyInformationFromForTree(var_2008);
++      instance.parent.addChildBefore(stmt, var_2008);
+       for (PrototypeMemberDeclaration declar : instance.declarations) {
+         block.addChildToBack(declar.node.detachFromParent());
+       }

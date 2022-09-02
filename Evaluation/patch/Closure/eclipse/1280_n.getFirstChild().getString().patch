@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/ReplaceIdGenerators.java b/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
+index c6e4271..ed40dc4 100644
+--- a/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
++++ b/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
+@@ -201,14 +201,17 @@
+       String name = null;
+       if (n.isAssign()) {
+         name = n.getFirstChild().getQualifiedName();
+-      } else if (n.isVar()) {
+-        name = n.getFirstChild().getString();
+-      } else if (n.isFunction()){
+-        name = n.getFirstChild().getString();
+-        if (name.isEmpty()) {
+-          return;
+-        }
+-      }
++      } else {
++		String var_1280 = n.getFirstChild().getString();
++		if (n.isVar()) {
++		    name = var_1280;
++		  } else if (n.isFunction()){
++		    name = var_1280;
++		    if (name.isEmpty()) {
++		      return;
++		    }
++		  }
++	}
+ 
+       if (doc.isConsistentIdGenerator()) {
+         consistNameMap.put(name, Maps.<String, String>newLinkedHashMap());

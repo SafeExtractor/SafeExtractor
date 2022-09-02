@@ -1,0 +1,14 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/kernel/JsonSerializer.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/kernel/JsonSerializer.java
+index a0dd74a..f8ba521 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/kernel/JsonSerializer.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/kernel/JsonSerializer.java
+@@ -79,7 +79,8 @@
+         json.object();
+ 
+         for (PropertyState property : node.getProperties()) {
+-            json.key(property.getName());
++            String name = property.getName();
++			json.key(name);
+             serialize(property);
+         }
+ 

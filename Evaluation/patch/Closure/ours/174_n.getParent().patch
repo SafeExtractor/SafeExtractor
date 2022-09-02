@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..b6cc026 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -1386,7 +1386,8 @@
+   }
+ 
+   private Node tryFoldArrayAccess(Node n, Node left, Node right) {
+-    Node parent = n.getParent();
++    Node var_174 = n.getParent();
++	Node parent = var_174;
+     // If GETPROP/GETELEM is used as assignment target the array literal is
+     // acting as a temporary we can't fold it here:
+     //    "[][0] += 1"
+@@ -1438,7 +1439,7 @@
+     }
+ 
+     // Replace the entire GETELEM with the value
+-    n.getParent().replaceChild(n, elem);
++    var_174.replaceChild(n, elem);
+     reportCodeChange();
+     return elem;
+   }

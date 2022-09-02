@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..240fdde 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -1508,12 +1508,13 @@
+       new PassFactory("disambiguateProperties", true) {
+     @Override
+     protected CompilerPass create(AbstractCompiler compiler) {
+-      if (tightenTypes == null) {
++      Map<String, CheckLevel> var_1806 = options.propertyInvalidationErrors;
++	if (tightenTypes == null) {
+         return DisambiguateProperties.forJSTypeSystem(compiler,
+-            options.propertyInvalidationErrors);
++            var_1806);
+       } else {
+         return DisambiguateProperties.forConcreteTypeSystem(
+-            compiler, tightenTypes, options.propertyInvalidationErrors);
++            compiler, tightenTypes, var_1806);
+       }
+     }
+   };

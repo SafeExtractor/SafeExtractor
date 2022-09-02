@@ -1,0 +1,50 @@
+diff --git a/oak-jcr/src/main/java/org/apache/jackrabbit/oak/jcr/NodeImpl.java b/oak-jcr/src/main/java/org/apache/jackrabbit/oak/jcr/NodeImpl.java
+index ecc7ab2..6989060 100644
+--- a/oak-jcr/src/main/java/org/apache/jackrabbit/oak/jcr/NodeImpl.java
++++ b/oak-jcr/src/main/java/org/apache/jackrabbit/oak/jcr/NodeImpl.java
+@@ -1367,24 +1367,27 @@
+                     || NodeTypeConstants.NT_VERSION.equals(declaringNT)) {
+                 return getValueFactory().createValue(Calendar.getInstance());
+             }
+-        } else if (NodeTypeConstants.JCR_CREATEDBY.equals(name)) {
+-            // jcr:createdBy property of a mix:created
+-            if (NodeTypeConstants.MIX_CREATED.equals(declaringNT)) {
+-                return getValueFactory().createValue(
+-                        sessionDelegate.getAuthInfo().getUserID());
+-            }
+-        } else if (NodeTypeConstants.JCR_LASTMODIFIED.equals(name)) {
+-            // jcr:lastModified property of a mix:lastModified
+-            if (NodeTypeConstants.MIX_LASTMODIFIED.equals(declaringNT)) {
+-                return getValueFactory().createValue(Calendar.getInstance());
+-            }
+-        } else if (NodeTypeConstants.JCR_LASTMODIFIEDBY.equals(name)) {
+-            // jcr:lastModifiedBy property of a mix:lastModified
+-            if (NodeTypeConstants.MIX_LASTMODIFIED.equals(declaringNT)) {
+-                return getValueFactory().createValue(
+-                        sessionDelegate.getAuthInfo().getUserID());
+-            }
+-        }
++        } else {
++			String userID = sessionDelegate.getAuthInfo().getUserID();
++			if (NodeTypeConstants.JCR_CREATEDBY.equals(name)) {
++			    // jcr:createdBy property of a mix:created
++			    if (NodeTypeConstants.MIX_CREATED.equals(declaringNT)) {
++			        return getValueFactory().createValue(
++			                userID);
++			    }
++			} else if (NodeTypeConstants.JCR_LASTMODIFIED.equals(name)) {
++			    // jcr:lastModified property of a mix:lastModified
++			    if (NodeTypeConstants.MIX_LASTMODIFIED.equals(declaringNT)) {
++			        return getValueFactory().createValue(Calendar.getInstance());
++			    }
++			} else if (NodeTypeConstants.JCR_LASTMODIFIEDBY.equals(name)) {
++			    // jcr:lastModifiedBy property of a mix:lastModified
++			    if (NodeTypeConstants.MIX_LASTMODIFIED.equals(declaringNT)) {
++			        return getValueFactory().createValue(
++			                userID);
++			    }
++			}
++		}
+         // does the definition have a default value?
+         if (definition.getDefaultValues() != null) {
+             Value[] values = definition.getDefaultValues();

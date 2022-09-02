@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+index ed2ddda..257fd6b 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+@@ -707,7 +707,8 @@
+               costPerTimeUnit[k] = costPerStep[k] / optimalStep[k];
+ 
+               // check convergence
+-              switch (k - targetIter) {
++              double var_2756 = costPerTimeUnit[targetIter];
++			switch (k - targetIter) {
+ 
+               case -1 :
+                 if ((targetIter > 1) && ! previousRejected) {
+@@ -730,7 +731,7 @@
+                       targetIter = k;
+                       if ((targetIter > 1) &&
+                           (costPerTimeUnit[targetIter-1] <
+-                           orderControl1 * costPerTimeUnit[targetIter])) {
++                           orderControl1 * var_2756)) {
+                         --targetIter;
+                       }
+                       hNew = optimalStep[targetIter];
+@@ -755,7 +756,7 @@
+                     loop = false;
+                     if ((targetIter > 1) &&
+                         (costPerTimeUnit[targetIter-1] <
+-                         orderControl1 * costPerTimeUnit[targetIter])) {
++                         orderControl1 * var_2756)) {
+                       --targetIter;
+                     }
+                     hNew = optimalStep[targetIter];
+@@ -768,7 +769,7 @@
+                   reject = true;
+                   if ((targetIter > 1) &&
+                       (costPerTimeUnit[targetIter-1] <
+-                       orderControl1 * costPerTimeUnit[targetIter])) {
++                       orderControl1 * var_2756)) {
+                     --targetIter;
+                   }
+                   hNew = optimalStep[targetIter];

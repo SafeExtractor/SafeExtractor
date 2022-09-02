@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/data/time/TimeSeries.java b/source/org/jfree/data/time/TimeSeries.java
+index 72bb2ea..91adae1 100644
+--- a/source/org/jfree/data/time/TimeSeries.java
++++ b/source/org/jfree/data/time/TimeSeries.java
+@@ -810,14 +810,15 @@
+             throw new IllegalArgumentException("Null 'period' argument.");
+         }
+         Class periodClass = item.getPeriod().getClass();
+-        if (this.timePeriodClass == null) {
++        Class var_4166 = this.timePeriodClass;
++		if (var_4166 == null) {
+             this.timePeriodClass = periodClass;
+         }
+-        else if (!this.timePeriodClass.equals(periodClass)) {
++        else if (!var_4166.equals(periodClass)) {
+             String msg = "You are trying to add data where the time "
+                     + "period class is " + periodClass.getName()
+                     + ", but the TimeSeries is expecting an instance of "
+-                    + this.timePeriodClass.getName() + ".";
++                    + var_4166.getName() + ".";
+             throw new SeriesException(msg);
+         }
+         TimeSeriesDataItem overwritten = null;

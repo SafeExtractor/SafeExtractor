@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+index 4c20a64..98bfc0a 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+@@ -319,11 +319,12 @@
+             up = !up;
+         }
+ 
+-        if (up) {
++        boolean var_763 = this.equals(getZero());
++		if (up) {
+             inc = power10(intLog10() - getDecimalDigits() + 1);
+             inc = copysign(inc, this);
+ 
+-            if (this.equals(getZero())) {
++            if (var_763) {
+                 inc = power10K(MIN_EXP-mant.length-1);
+             }
+ 
+@@ -342,7 +343,7 @@
+                 inc = inc.divide(power10(getDecimalDigits() - 1));
+             }
+ 
+-            if (this.equals(getZero())) {
++            if (var_763) {
+                 inc = power10K(MIN_EXP-mant.length-1);
+             }
+ 
+@@ -358,7 +359,7 @@
+             result = dotrap(DfpField.FLAG_INEXACT, trapName, x, result);
+         }
+ 
+-        if (result.equals(getZero()) && this.equals(getZero()) == false) {
++        if (result.equals(getZero()) && var_763 == false) {
+             getField().setIEEEFlagsBits(DfpField.FLAG_INEXACT);
+             result = dotrap(DfpField.FLAG_INEXACT, trapName, x, result);
+         }

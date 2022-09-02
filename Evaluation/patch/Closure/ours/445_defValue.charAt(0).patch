@@ -1,0 +1,73 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..fcaab08 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -1310,36 +1310,39 @@
+             options.setDefineToBooleanLiteral(defName, isTrue);
+           }
+           continue;
+-        } else if (defValue.length() > 1
+-            && ((defValue.charAt(0) == '\'' &&
+-                defValue.charAt(defValue.length() - 1) == '\'')
+-                || (defValue.charAt(0) == '\"' &&
+-                    defValue.charAt(defValue.length() - 1) == '\"'))) {
+-          // If the value starts and ends with a single quote,
+-          // we assume that it's a string.
+-          String maybeStringVal =
+-              defValue.substring(1, defValue.length() - 1);
+-          if (maybeStringVal.indexOf(defValue.charAt(0)) == -1) {
+-            if (tweaks) {
+-              options.setTweakToStringLiteral(defName, maybeStringVal);
+-            } else {
+-              options.setDefineToStringLiteral(defName, maybeStringVal);
+-            }
+-            continue;
+-          }
+         } else {
+-          try {
+-            double value = Double.parseDouble(defValue);
+-            if (tweaks) {
+-              options.setTweakToDoubleLiteral(defName, value);
+-            } else {
+-              options.setDefineToDoubleLiteral(defName, value);
+-            }
+-            continue;
+-          } catch (NumberFormatException e) {
+-            // do nothing, it will be caught at the end
+-          }
+-        }
++			char var_445 = defValue.charAt(0);
++			if (defValue.length() > 1
++			    && ((var_445 == '\'' &&
++			        defValue.charAt(defValue.length() - 1) == '\'')
++			        || (var_445 == '\"' &&
++			            defValue.charAt(defValue.length() - 1) == '\"'))) {
++			  // If the value starts and ends with a single quote,
++			  // we assume that it's a string.
++			  String maybeStringVal =
++			      defValue.substring(1, defValue.length() - 1);
++			  if (maybeStringVal.indexOf(var_445) == -1) {
++			    if (tweaks) {
++			      options.setTweakToStringLiteral(defName, maybeStringVal);
++			    } else {
++			      options.setDefineToStringLiteral(defName, maybeStringVal);
++			    }
++			    continue;
++			  }
++			} else {
++			  try {
++			    double value = Double.parseDouble(defValue);
++			    if (tweaks) {
++			      options.setTweakToDoubleLiteral(defName, value);
++			    } else {
++			      options.setDefineToDoubleLiteral(defName, value);
++			    }
++			    continue;
++			  } catch (NumberFormatException e) {
++			    // do nothing, it will be caught at the end
++			  }
++			}
++		}
+       }
+ 
+       if (tweaks) {

@@ -1,0 +1,38 @@
+diff --git a/src/com/google/javascript/jscomp/jsonml/Writer.java b/src/com/google/javascript/jscomp/jsonml/Writer.java
+index b357eb9..3b730fe 100644
+--- a/src/com/google/javascript/jscomp/jsonml/Writer.java
++++ b/src/com/google/javascript/jscomp/jsonml/Writer.java
+@@ -559,26 +559,27 @@
+ 
+   private void processLiteral(Node node, JsonML currentParent) {
+     JsonML element = new JsonML(TagType.LiteralExpr);
+-    switch (node.getType()) {
++    TagAttr var_2220 = TagAttr.VALUE;
++	switch (node.getType()) {
+       case Token.NUMBER:
+         element.setAttribute(TagAttr.TYPE, "number");
+-        element.setAttribute(TagAttr.VALUE, node.getDouble());
++        element.setAttribute(var_2220, node.getDouble());
+         break;
+       case Token.STRING:
+         element.setAttribute(TagAttr.TYPE, "string");
+-        element.setAttribute(TagAttr.VALUE, node.getString());
++        element.setAttribute(var_2220, node.getString());
+         break;
+       case Token.NULL:
+         element.setAttribute(TagAttr.TYPE, "null");
+-        element.setAttribute(TagAttr.VALUE, null);
++        element.setAttribute(var_2220, null);
+         break;
+       case Token.TRUE:
+         element.setAttribute(TagAttr.TYPE, "boolean");
+-        element.setAttribute(TagAttr.VALUE, true);
++        element.setAttribute(var_2220, true);
+         break;
+       case Token.FALSE:
+         element.setAttribute(TagAttr.TYPE, "boolean");
+-        element.setAttribute(TagAttr.VALUE, false);
++        element.setAttribute(var_2220, false);
+         break;
+       default:
+         throw new IllegalArgumentException("Illegal type of node.");

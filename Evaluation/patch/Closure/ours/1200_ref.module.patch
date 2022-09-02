@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionInjector.java b/src/com/google/javascript/jscomp/FunctionInjector.java
+index ddfb4ed..d6ec62f 100644
+--- a/src/com/google/javascript/jscomp/FunctionInjector.java
++++ b/src/com/google/javascript/jscomp/FunctionInjector.java
+@@ -770,9 +770,10 @@
+       }
+ 
+       // Check if any of the references cross the module boundaries.
+-      if (checkModules && ref.module != null) {
+-        if (ref.module != fnModule &&
+-            !moduleGraph.dependsOn(ref.module, fnModule)) {
++      JSModule var_1200 = ref.module;
++	if (checkModules && var_1200 != null) {
++        if (var_1200 != fnModule &&
++            !moduleGraph.dependsOn(var_1200, fnModule)) {
+           // Calculate the cost as if the function were non-removable,
+           // if it still lowers the cost inline it.
+           isRemovable = false;

@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..7417e7a 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -478,9 +478,10 @@
+     }
+ 
+     Node newRight;
+-    if (areNodesEqualForInlining(left, right.getFirstChild())) {
++    int var_136 = right.getType();
++	if (areNodesEqualForInlining(left, right.getFirstChild())) {
+       newRight = right.getLastChild();
+-    } else if (NodeUtil.isCommutative(right.getType()) &&
++    } else if (NodeUtil.isCommutative(var_136) &&
+           areNodesEqualForInlining(left, right.getLastChild())) {
+       newRight = right.getFirstChild();
+     } else {
+@@ -488,7 +489,7 @@
+     }
+ 
+     int newType = -1;
+-    switch (right.getType()) {
++    switch (var_136) {
+       case Token.ADD:
+         newType = Token.ASSIGN_ADD;
+         break;

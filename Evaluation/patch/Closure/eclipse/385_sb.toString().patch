@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/AliasStrings.java b/src/com/google/javascript/jscomp/AliasStrings.java
+index 437c030..113cd2c 100644
+--- a/src/com/google/javascript/jscomp/AliasStrings.java
++++ b/src/com/google/javascript/jscomp/AliasStrings.java
+@@ -432,8 +432,9 @@
+         }
+       }
+ 
+-      if (length == limit) {
+-        return sb.toString();
++      String var_385 = sb.toString();
++	if (length == limit) {
++        return var_385;
+       }
+ 
+       // The identifier is not unique because we omitted part, so add a
+@@ -443,7 +444,7 @@
+       long hash = crc32.getValue() & unitTestHashReductionMask;
+       sb.append('_');
+       sb.append(Long.toHexString(hash));
+-      String encoded = sb.toString();
++      String encoded = var_385;
+       if (!usedHashedAliases.add(encoded)) {
+         // A collision has been detected (which is very rare). Use the sequence
+         // id to break the tie. This means that the name is no longer invariant

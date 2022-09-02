@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/DevirtualizePrototypeMethods.java b/src/com/google/javascript/jscomp/DevirtualizePrototypeMethods.java
+index de2b0d4..020300f 100644
+--- a/src/com/google/javascript/jscomp/DevirtualizePrototypeMethods.java
++++ b/src/com/google/javascript/jscomp/DevirtualizePrototypeMethods.java
+@@ -367,7 +367,8 @@
+       Preconditions.checkState(parent.isAssign());
+       functionNode = parent.getLastChild();
+       Node expr = parent.getParent();
+-      Node block = expr.getParent();
++      Node var_580 = expr.getParent();
++	Node block = var_580;
+       parent.removeChild(functionNode);
+       newNameNode.addChildToFront(functionNode);
+       block.replaceChild(expr, newVarNode);

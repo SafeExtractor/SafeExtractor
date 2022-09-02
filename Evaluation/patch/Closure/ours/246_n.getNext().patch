@@ -1,0 +1,42 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 9d1b56c..c3d167f 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -297,15 +297,16 @@
+       Node n, Node exprRoot, String variable) {
+     while (n != exprRoot) {
+       VariableLiveness state = VariableLiveness.MAYBE_LIVE;
+-      switch (n.getParent().getType()) {
++      Node var_246 = n.getNext();
++	switch (n.getParent().getType()) {
+         case Token.OR:
+         case Token.AND:
+           // If the currently node is the first child of
+           // AND/OR, be conservative only consider the READs
+           // of the second operand.
+-          if (n.getNext() != null) {
++          if (var_246 != null) {
+             state = isVariableReadBeforeKill(
+-                n.getNext(), variable);
++                var_246, variable);
+             if (state == VariableLiveness.KILL) {
+               state = VariableLiveness.MAYBE_LIVE;
+             }
+@@ -316,14 +317,14 @@
+           // If current node is the condition, check each following
+           // branch, otherwise it is a conditional branch and the
+           // other branch can be ignored.
+-          if (n.getNext() != null && n.getNext().getNext() != null) {
++          if (var_246 != null && var_246.getNext() != null) {
+             state = checkHookBranchReadBeforeKill(
+-                n.getNext(), n.getNext().getNext(), variable);
++                var_246, var_246.getNext(), variable);
+           }
+           break;
+ 
+         default:
+-          for(Node sibling = n.getNext(); sibling != null;
++          for(Node sibling = var_246; sibling != null;
+               sibling = sibling.getNext()) {
+             state = isVariableReadBeforeKill(sibling, variable);
+             if (state != VariableLiveness.MAYBE_LIVE) {

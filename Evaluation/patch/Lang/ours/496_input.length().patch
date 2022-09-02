@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/apache/commons/lang3/text/translate/UnicodeUnescaper.java b/src/main/java/org/apache/commons/lang3/text/translate/UnicodeUnescaper.java
+index 3c477d4..084b3d5 100644
+--- a/src/main/java/org/apache/commons/lang3/text/translate/UnicodeUnescaper.java
++++ b/src/main/java/org/apache/commons/lang3/text/translate/UnicodeUnescaper.java
+@@ -34,18 +34,19 @@
+      */
+     @Override
+     public int translate(final CharSequence input, final int index, final Writer out) throws IOException {
+-        if (input.charAt(index) == '\\' && index + 1 < input.length() && input.charAt(index + 1) == 'u') {
++        int var_496 = input.length();
++		if (input.charAt(index) == '\\' && index + 1 < var_496 && input.charAt(index + 1) == 'u') {
+             // consume optional additional 'u' chars
+             int i = 2;
+-            while (index + i < input.length() && input.charAt(index + i) == 'u') {
++            while (index + i < var_496 && input.charAt(index + i) == 'u') {
+                 i++;
+             }
+ 
+-            if (index + i < input.length() && input.charAt(index + i) == '+') {
++            if (index + i < var_496 && input.charAt(index + i) == '+') {
+                 i++;
+             }
+ 
+-            if (index + i + 4 <= input.length()) {
++            if (index + i + 4 <= var_496) {
+                 // Get 4 hex digits
+                 final CharSequence unicode = input.subSequence(index + i, index + i + 4);
+ 
+@@ -57,7 +58,7 @@
+                 }
+                 return i + 4;
+             } else {
+-                throw new IllegalArgumentException("Less than 4 hex digits in unicode value: '" + input.subSequence(index, input.length())
++                throw new IllegalArgumentException("Less than 4 hex digits in unicode value: '" + input.subSequence(index, var_496)
+                         + "' due to end of CharSequence");
+             }
+         }

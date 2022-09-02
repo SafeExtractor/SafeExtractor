@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/chart/plot/CategoryPlot.java b/source/org/jfree/chart/plot/CategoryPlot.java
+index 24a84fd..25f0a6c 100644
+--- a/source/org/jfree/chart/plot/CategoryPlot.java
++++ b/source/org/jfree/chart/plot/CategoryPlot.java
+@@ -3636,8 +3636,9 @@
+         // on data)
+         crosshairState.setAnchorX(Double.NaN);
+         crosshairState.setAnchorY(Double.NaN);
+-        if (anchor != null) {
+-            ValueAxis rangeAxis = getRangeAxis();
++        ValueAxis var_1908 = getRangeAxis();
++		if (anchor != null) {
++            ValueAxis rangeAxis = var_1908;
+             if (rangeAxis != null) {
+                 double y;
+                 if (getOrientation() == PlotOrientation.VERTICAL) {
+@@ -3661,11 +3662,11 @@
+ 
+         drawDomainGridlines(g2, dataArea);
+ 
+-        AxisState rangeAxisState = (AxisState) axisStateMap.get(getRangeAxis());
++        AxisState rangeAxisState = (AxisState) axisStateMap.get(var_1908);
+         if (rangeAxisState == null) {
+             if (parentState != null) {
+                 rangeAxisState = (AxisState) parentState.getSharedAxisStates()
+-                        .get(getRangeAxis());
++                        .get(var_1908);
+             }
+         }
+         if (rangeAxisState != null) {

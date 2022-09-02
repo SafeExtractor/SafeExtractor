@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..61aa5d2 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -1756,10 +1756,11 @@
+         member.getFirstChild().setJSType(thisType);
+         JSType jsType = getDeclaredType(t.getSourceName(), info, member, value);
+         Node name = member.getLastChild();
+-        if (jsType != null &&
++        ObjectType var_1236 = thisType.toObjectType();
++		if (jsType != null &&
+             (name.isName() || name.isString()) &&
+-            thisType.toObjectType() != null) {
+-          thisType.toObjectType().defineDeclaredProperty(
++            var_1236 != null) {
++          var_1236.defineDeclaredProperty(
+               name.getString(),
+               jsType,
+               member);

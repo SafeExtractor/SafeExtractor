@@ -1,0 +1,33 @@
+diff --git a/src/org/mockito/internal/handler/MockHandlerImpl.java b/src/org/mockito/internal/handler/MockHandlerImpl.java
+index 00766a0..87d8d4e 100644
+--- a/src/org/mockito/internal/handler/MockHandlerImpl.java
++++ b/src/org/mockito/internal/handler/MockHandlerImpl.java
+@@ -49,21 +49,19 @@
+     }
+ 
+     public Object handle(Invocation invocation) throws Throwable {
+-        if (invocationContainerImpl.hasAnswersForStubbing()) {
++        InvocationMatcher var_34 = matchersBinder.bindMatchers(
++		        mockingProgress.getArgumentMatcherStorage(),
++		        invocation
++		);
++		if (invocationContainerImpl.hasAnswersForStubbing()) {
+             // stubbing voids with stubVoid() or doAnswer() style
+-            InvocationMatcher invocationMatcher = matchersBinder.bindMatchers(
+-                    mockingProgress.getArgumentMatcherStorage(),
+-                    invocation
+-            );
++            InvocationMatcher invocationMatcher = var_34;
+             invocationContainerImpl.setMethodForStubbing(invocationMatcher);
+             return null;
+         }
+         VerificationMode verificationMode = mockingProgress.pullVerificationMode();
+ 
+-        InvocationMatcher invocationMatcher = matchersBinder.bindMatchers(
+-                mockingProgress.getArgumentMatcherStorage(),
+-                invocation
+-        );
++        InvocationMatcher invocationMatcher = var_34;
+ 
+         mockingProgress.validateState();
+ 

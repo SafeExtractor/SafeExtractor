@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/transform/FastSineTransformer.java b/src/main/java/org/apache/commons/math3/transform/FastSineTransformer.java
+index 2eb36b9..26ebdcc 100644
+--- a/src/main/java/org/apache/commons/math3/transform/FastSineTransformer.java
++++ b/src/main/java/org/apache/commons/math3/transform/FastSineTransformer.java
+@@ -172,8 +172,9 @@
+         transformed[0] = 0.0;
+         transformed[1] = 0.5 * y[0].getReal();
+         for (int i = 1; i < (n >> 1); i++) {
+-            transformed[2 * i]     = -y[i].getImaginary();
+-            transformed[2 * i + 1] = y[i].getReal() + transformed[2 * i - 1];
++            Complex var_4041 = y[i];
++			transformed[2 * i]     = -var_4041.getImaginary();
++            transformed[2 * i + 1] = var_4041.getReal() + transformed[2 * i - 1];
+         }
+ 
+         return transformed;

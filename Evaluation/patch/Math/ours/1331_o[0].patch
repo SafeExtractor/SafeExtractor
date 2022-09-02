@@ -1,0 +1,44 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..ab08eec 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -1101,9 +1101,10 @@
+             final T mx22 = m[0][2].multiply(x02).add(m[1][2].multiply(x12)).add(m[2][2].multiply(x22));
+ 
+             // Xn+1
+-            o[0][0] = x00.subtract(x00.multiply(mx00).add(x01.multiply(mx10)).add(x02.multiply(mx20)).subtract(m[0][0]).multiply(0.5));
+-            o[0][1] = x01.subtract(x00.multiply(mx01).add(x01.multiply(mx11)).add(x02.multiply(mx21)).subtract(m[0][1]).multiply(0.5));
+-            o[0][2] = x02.subtract(x00.multiply(mx02).add(x01.multiply(mx12)).add(x02.multiply(mx22)).subtract(m[0][2]).multiply(0.5));
++            T[] var_1331 = o[0];
++			var_1331[0] = x00.subtract(x00.multiply(mx00).add(x01.multiply(mx10)).add(x02.multiply(mx20)).subtract(m[0][0]).multiply(0.5));
++            var_1331[1] = x01.subtract(x00.multiply(mx01).add(x01.multiply(mx11)).add(x02.multiply(mx21)).subtract(m[0][1]).multiply(0.5));
++            var_1331[2] = x02.subtract(x00.multiply(mx02).add(x01.multiply(mx12)).add(x02.multiply(mx22)).subtract(m[0][2]).multiply(0.5));
+             o[1][0] = x10.subtract(x10.multiply(mx00).add(x11.multiply(mx10)).add(x12.multiply(mx20)).subtract(m[1][0]).multiply(0.5));
+             o[1][1] = x11.subtract(x10.multiply(mx01).add(x11.multiply(mx11)).add(x12.multiply(mx21)).subtract(m[1][1]).multiply(0.5));
+             o[1][2] = x12.subtract(x10.multiply(mx02).add(x11.multiply(mx12)).add(x12.multiply(mx22)).subtract(m[1][2]).multiply(0.5));
+@@ -1112,9 +1113,9 @@
+             o[2][2] = x22.subtract(x20.multiply(mx02).add(x21.multiply(mx12)).add(x22.multiply(mx22)).subtract(m[2][2]).multiply(0.5));
+ 
+             // correction on each elements
+-            final double corr00 = o[0][0].getReal() - m[0][0].getReal();
+-            final double corr01 = o[0][1].getReal() - m[0][1].getReal();
+-            final double corr02 = o[0][2].getReal() - m[0][2].getReal();
++            final double corr00 = var_1331[0].getReal() - m[0][0].getReal();
++            final double corr01 = var_1331[1].getReal() - m[0][1].getReal();
++            final double corr02 = var_1331[2].getReal() - m[0][2].getReal();
+             final double corr10 = o[1][0].getReal() - m[1][0].getReal();
+             final double corr11 = o[1][1].getReal() - m[1][1].getReal();
+             final double corr12 = o[1][2].getReal() - m[1][2].getReal();
+@@ -1133,9 +1134,9 @@
+             }
+ 
+             // prepare next iteration
+-            x00 = o[0][0];
+-            x01 = o[0][1];
+-            x02 = o[0][2];
++            x00 = var_1331[0];
++            x01 = var_1331[1];
++            x02 = var_1331[2];
+             x10 = o[1][0];
+             x11 = o[1][1];
+             x12 = o[1][2];

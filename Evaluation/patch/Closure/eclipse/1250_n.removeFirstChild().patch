@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/Normalize.java b/src/com/google/javascript/jscomp/Normalize.java
+index 98b136e..d8e722f 100644
+--- a/src/com/google/javascript/jscomp/Normalize.java
++++ b/src/com/google/javascript/jscomp/Normalize.java
+@@ -197,8 +197,9 @@
+       if (n.isGetProp()) {
+         String propName = n.getLastChild().getString();
+         if (exposedProperties.contains(propName)) {
+-          Node obj = n.removeFirstChild();
+-          Node prop = n.removeFirstChild();
++          Node var_1250 = n.removeFirstChild();
++		Node obj = var_1250;
++          Node prop = var_1250;
+           n.getParent().replaceChild(n, IR.getelem(obj, prop));
+           compiler.reportCodeChange();
+         }

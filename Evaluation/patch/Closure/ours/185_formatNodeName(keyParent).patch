@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/DotFormatter.java b/src/com/google/javascript/jscomp/DotFormatter.java
+index 54988ed..030b022 100644
+--- a/src/com/google/javascript/jscomp/DotFormatter.java
++++ b/src/com/google/javascript/jscomp/DotFormatter.java
+@@ -137,11 +137,12 @@
+     int keyParent = key(parent);
+ 
+     // edges
+-    for (Node child = parent.getFirstChild(); child != null;
++    String var_185 = formatNodeName(keyParent);
++	for (Node child = parent.getFirstChild(); child != null;
+         child = child.getNext()) {
+       int keyChild = key(child);
+       builder.append(INDENT);
+-      builder.append(formatNodeName(keyParent));
++      builder.append(var_185);
+       builder.append(ARROW);
+       builder.append(formatNodeName(keyChild));
+       builder.append(" [weight=1];\n");
+@@ -166,7 +167,7 @@
+           toNode = formatNodeName(keySucc);
+         }
+ 
+-        edgeList[i] = formatNodeName(keyParent) + ARROW + toNode + " [label=\""
++        edgeList[i] = var_185 + ARROW + toNode + " [label=\""
+           + edge.getValue().toString() + "\", " + "fontcolor=\"red\", " +
+           "weight=0.01, color=\"red\"];\n";
+       }

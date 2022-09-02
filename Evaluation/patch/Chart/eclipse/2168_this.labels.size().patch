@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/plot/PieLabelDistributor.java b/source/org/jfree/chart/plot/PieLabelDistributor.java
+index 01d2d44..59e7082 100644
+--- a/source/org/jfree/chart/plot/PieLabelDistributor.java
++++ b/source/org/jfree/chart/plot/PieLabelDistributor.java
+@@ -183,14 +183,15 @@
+     protected void spreadEvenly(double minY, double height) {
+         double y = minY;
+         double sumOfLabelHeights = 0.0;
+-        for (int i = 0; i < this.labels.size(); i++) {
++        int var_2168 = this.labels.size();
++		for (int i = 0; i < var_2168; i++) {
+             sumOfLabelHeights += getPieLabelRecord(i).getLabelHeight();
+         }
+         double gap = height - sumOfLabelHeights;
+-        if (this.labels.size() > 1) {
+-            gap = gap / (this.labels.size() - 1);
++        if (var_2168 > 1) {
++            gap = gap / (var_2168 - 1);
+         }
+-        for (int i = 0; i < this.labels.size(); i++) {
++        for (int i = 0; i < var_2168; i++) {
+             PieLabelRecord record = getPieLabelRecord(i);
+             y = y + record.getLabelHeight() / 2.0;
+             record.setAllocatedY(y);

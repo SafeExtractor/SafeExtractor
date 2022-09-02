@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java
+index 0fce857..ae5875a 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java
+@@ -65,12 +65,13 @@
+             }
+ 
+             for (int j = 0; j < yLen; j++) {
+-                if (fval[i][j].length != zLen) {
+-                    throw new DimensionMismatchException(fval[i][j].length, zLen);
++                double[] var_308 = fval[i][j];
++				if (var_308.length != zLen) {
++                    throw new DimensionMismatchException(var_308.length, zLen);
+                 }
+ 
+                 for (int k = 0; k < zLen; k++) {
+-                    final double v = fval[i][j][k];
++                    final double v = var_308[k];
+                     fvalXY[k][i][j] = v;
+                     fvalZX[j][k][i] = v;
+                 }

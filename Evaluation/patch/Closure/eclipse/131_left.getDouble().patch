@@ -1,0 +1,37 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..31817cf 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -350,11 +350,12 @@
+       return n;
+     }
+ 
+-    switch (n.getType()) {
++    double var_131 = left.getDouble();
++	switch (n.getType()) {
+       case Token.NOT:
+         // Don't fold !0 and !1 back to false.
+         if (late && left.isNumber()) {
+-          double numValue = left.getDouble();
++          double numValue = var_131;
+           if (numValue == 0 || numValue == 1) {
+             return n;
+           }
+@@ -386,7 +387,7 @@
+         }
+ 
+         if (left.isNumber()) {
+-          double negNum = -left.getDouble();
++          double negNum = -var_131;
+ 
+           Node negNumNode = IR.number(negNum);
+           parent.replaceChild(n, negNumNode);
+@@ -400,7 +401,7 @@
+         }
+       case Token.BITNOT:
+         try {
+-          double val = left.getDouble();
++          double val = var_131;
+           if (val >= Integer.MIN_VALUE && val <= Integer.MAX_VALUE) {
+             int intVal = (int) val;
+             if (intVal == val) {

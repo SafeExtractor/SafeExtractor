@@ -1,0 +1,35 @@
+diff --git a/source/org/jfree/chart/renderer/category/BarRenderer3D.java b/source/org/jfree/chart/renderer/category/BarRenderer3D.java
+index 6cf5928..152de1a 100644
+--- a/source/org/jfree/chart/renderer/category/BarRenderer3D.java
++++ b/source/org/jfree/chart/renderer/category/BarRenderer3D.java
+@@ -525,9 +525,10 @@
+             return;
+         }
+ 
+-        Rectangle2D adjusted = new Rectangle2D.Double(dataArea.getX(),
++        double var_2608 = getXOffset();
++		Rectangle2D adjusted = new Rectangle2D.Double(dataArea.getX(),
+                 dataArea.getY() + getYOffset(), dataArea.getWidth()
+-                - getXOffset(), dataArea.getHeight() - getYOffset());
++                - var_2608, dataArea.getHeight() - getYOffset());
+ 
+         Line2D line1 = null;
+         Line2D line2 = null;
+@@ -535,7 +536,7 @@
+         if (orientation == PlotOrientation.HORIZONTAL) {
+             double x0 = axis.valueToJava2D(value, adjusted,
+                     plot.getRangeAxisEdge());
+-            double x1 = x0 + getXOffset();
++            double x1 = x0 + var_2608;
+             double y0 = dataArea.getMaxY();
+             double y1 = y0 - getYOffset();
+             double y2 = dataArea.getMinY();
+@@ -547,7 +548,7 @@
+                     plot.getRangeAxisEdge());
+             double y1 = y0 - getYOffset();
+             double x0 = dataArea.getMinX();
+-            double x1 = x0 + getXOffset();
++            double x1 = x0 + var_2608;
+             double x2 = dataArea.getMaxX();
+             line1 = new Line2D.Double(x0, y0, x1, y1);
+             line2 = new Line2D.Double(x1, y1, x2, y1);

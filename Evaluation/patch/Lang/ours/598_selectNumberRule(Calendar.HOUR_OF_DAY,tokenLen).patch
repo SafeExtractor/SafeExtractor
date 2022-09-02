@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java b/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java
+index 18c8964..7191210 100644
+--- a/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java
++++ b/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java
+@@ -191,7 +191,8 @@
+             Rule rule;
+             final char c = token.charAt(0);
+ 
+-            switch (c) {
++            NumberRule var_598 = selectNumberRule(Calendar.HOUR_OF_DAY, tokenLen);
++			switch (c) {
+             case 'G': // era designator (text)
+                 rule = new TextField(Calendar.ERA, ERAs);
+                 break;
+@@ -220,7 +221,7 @@
+                 rule = new TwelveHourField(selectNumberRule(Calendar.HOUR, tokenLen));
+                 break;
+             case 'H': // hour in day (number, 0..23)
+-                rule = selectNumberRule(Calendar.HOUR_OF_DAY, tokenLen);
++                rule = var_598;
+                 break;
+             case 'm': // minute in hour (number)
+                 rule = selectNumberRule(Calendar.MINUTE, tokenLen);
+@@ -250,7 +251,7 @@
+                 rule = new TextField(Calendar.AM_PM, AmPmStrings);
+                 break;
+             case 'k': // hour in day (1..24)
+-                rule = new TwentyFourHourField(selectNumberRule(Calendar.HOUR_OF_DAY, tokenLen));
++                rule = new TwentyFourHourField(var_598);
+                 break;
+             case 'K': // hour in am/pm (0..11)
+                 rule = selectNumberRule(Calendar.HOUR, tokenLen);

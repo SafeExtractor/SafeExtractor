@@ -1,0 +1,20 @@
+diff --git a/httpcore5/src/main/java/org/apache/hc/core5/reactor/ssl/SSLIOSession.java b/httpcore5/src/main/java/org/apache/hc/core5/reactor/ssl/SSLIOSession.java
+index 30602df..24140fb 100644
+--- a/httpcore5/src/main/java/org/apache/hc/core5/reactor/ssl/SSLIOSession.java
++++ b/httpcore5/src/main/java/org/apache/hc/core5/reactor/ssl/SSLIOSession.java
+@@ -136,12 +136,13 @@
+         }
+ 
+         // Allocate buffers for network (encrypted) data
+-        final int netBuffersize = this.sslEngine.getSession().getPacketBufferSize();
++        SSLSession sslSession = this.sslEngine.getSession();
++		final int netBuffersize = sslSession.getPacketBufferSize();
+         this.inEncrypted = bufferManagementStrategy.constructBuffer(netBuffersize);
+         this.outEncrypted = bufferManagementStrategy.constructBuffer(netBuffersize);
+ 
+         // Allocate buffers for application (unencrypted) data
+-        final int appBuffersize = this.sslEngine.getSession().getApplicationBufferSize();
++        final int appBuffersize = sslSession.getApplicationBufferSize();
+         this.inPlain = bufferManagementStrategy.constructBuffer(appBuffersize);
+         this.outPlain = bufferManagementStrategy.constructBuffer(appBuffersize);
+     }

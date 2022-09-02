@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..066d108 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -1042,11 +1042,12 @@
+         tolset();
+         singcheck();
+ 
+-        double[] beta = this.regcf(series.length);
++        int var_4019 = series.length;
++		double[] beta = this.regcf(var_4019);
+ 
+         ss();
+ 
+-        double[] cov = this.cov(series.length);
++        double[] cov = this.cov(var_4019);
+ 
+         int rnk = 0;
+         for (int i = 0; i < this.lindep.length; i++) {
+@@ -1069,7 +1070,7 @@
+         } else {
+             double[] betaNew = new double[beta.length];
+             int[] newIndices = new int[beta.length];
+-            for (int i = 0; i < series.length; i++) {
++            for (int i = 0; i < var_4019; i++) {
+                 for (int j = 0; j < this.vorder.length; j++) {
+                     if (this.vorder[j] == series[i]) {
+                         betaNew[i] = beta[ j];

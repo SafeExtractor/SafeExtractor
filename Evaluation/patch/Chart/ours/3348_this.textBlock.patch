@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/text/TextBox.java b/source/org/jfree/chart/text/TextBox.java
+index a928467..febfa29 100644
+--- a/source/org/jfree/chart/text/TextBox.java
++++ b/source/org/jfree/chart/text/TextBox.java
+@@ -261,7 +261,8 @@
+      * @param anchor  the anchor point.
+      */
+     public void draw(Graphics2D g2, float x, float y, RectangleAnchor anchor) {
+-        Size2D d1 = this.textBlock.calculateDimensions(g2);
++        TextBlock var_3348 = this.textBlock;
++		Size2D d1 = var_3348.calculateDimensions(g2);
+         double w = this.interiorGap.extendWidth(d1.getWidth());
+         double h = this.interiorGap.extendHeight(d1.getHeight());
+         Size2D d2 = new Size2D(w, h);
+@@ -287,7 +288,7 @@
+             g2.draw(bounds);
+         }
+ 
+-        this.textBlock.draw(g2,
++        var_3348.draw(g2,
+                 (float) (xx + this.interiorGap.calculateLeftInset(w)),
+                 (float) (yy + this.interiorGap.calculateTopInset(h)),
+                 TextBlockAnchor.TOP_LEFT);

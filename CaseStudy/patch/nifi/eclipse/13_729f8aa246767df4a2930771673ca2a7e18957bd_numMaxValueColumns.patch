@@ -1,0 +1,32 @@
+diff --git a/nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors/src/main/java/org/apache/nifi/processors/standard/GenerateTableFetch.java b/nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors/src/main/java/org/apache/nifi/processors/standard/GenerateTableFetch.java
+index a2d01e9..15f4a0d 100644
+--- a/nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors/src/main/java/org/apache/nifi/processors/standard/GenerateTableFetch.java
++++ b/nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors/src/main/java/org/apache/nifi/processors/standard/GenerateTableFetch.java
+@@ -241,14 +241,15 @@
+             List<String> maxValueColumnNameList = StringUtils.isEmpty(maxValueColumnNames)
+                     ? new ArrayList<>(0)
+                     : Arrays.asList(maxValueColumnNames.split("\\s*,\\s*"));
+-            List<String> maxValueClauses = new ArrayList<>(maxValueColumnNameList.size());
++            int numMaxValueColumns = maxValueColumnNameList.size();
++			List<String> maxValueClauses = new ArrayList<>(numMaxValueColumns);
+ 
+             String columnsClause = null;
+-            List<String> maxValueSelectColumns = new ArrayList<>(maxValueColumnNameList.size() + 1);
++            List<String> maxValueSelectColumns = new ArrayList<>(numMaxValueColumns + 1);
+             maxValueSelectColumns.add("COUNT(*)");
+ 
+             // For each maximum-value column, get a WHERE filter and a MAX(column) alias
+-            IntStream.range(0, maxValueColumnNameList.size()).forEach((index) -> {
++            IntStream.range(0, numMaxValueColumns).forEach((index) -> {
+                 String colName = maxValueColumnNameList.get(index);
+ 
+                 maxValueSelectColumns.add("MAX(" + colName + ") " + colName);
+@@ -330,7 +331,7 @@
+                 }
+ 
+                 // for each maximum-value column get a right bounding WHERE condition
+-                IntStream.range(0, maxValueColumnNameList.size()).forEach((index) -> {
++                IntStream.range(0, numMaxValueColumns).forEach((index) -> {
+                     String colName = maxValueColumnNameList.get(index);
+ 
+                     maxValueSelectColumns.add("MAX(" + colName + ") " + colName);

@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/renderer/category/GradientBarPainter.java b/source/org/jfree/chart/renderer/category/GradientBarPainter.java
+index 96a84cd..7498c0b 100644
+--- a/source/org/jfree/chart/renderer/category/GradientBarPainter.java
++++ b/source/org/jfree/chart/renderer/category/GradientBarPainter.java
+@@ -326,13 +326,14 @@
+         double y1 = Math.rint(y0 + (bar.getHeight() * a));
+         double y2 = Math.rint(y0 + (bar.getHeight() * b));
+         double y3 = Math.rint(y0 + (bar.getHeight() * c));
+-        result[0] = new Rectangle2D.Double(bar.getMinX(), bar.getMinY(),
+-                bar.getWidth(), y1 - y0);
+-        result[1] = new Rectangle2D.Double(bar.getMinX(), y1, bar.getWidth(),
++        double var_2827 = bar.getWidth();
++		result[0] = new Rectangle2D.Double(bar.getMinX(), bar.getMinY(),
++                var_2827, y1 - y0);
++        result[1] = new Rectangle2D.Double(bar.getMinX(), y1, var_2827,
+                 y2 - y1);
+-        result[2] = new Rectangle2D.Double(bar.getMinX(), y2, bar.getWidth(),
++        result[2] = new Rectangle2D.Double(bar.getMinX(), y2, var_2827,
+                 y3 - y2);
+-        result[3] = new Rectangle2D.Double(bar.getMinX(), y3, bar.getWidth(),
++        result[3] = new Rectangle2D.Double(bar.getMinX(), y3, var_2827,
+                 bar.getMaxY() - y3);
+         return result;
+     }

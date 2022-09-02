@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+index a2ea88e..a0ae7f7 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+@@ -155,7 +155,8 @@
+             } else if (il == iu - 1) {
+                 // Two roots found
+                 double p = (matrixT[iu - 1][iu - 1] - matrixT[iu][iu]) / 2.0;
+-                double q = p * p + matrixT[iu][iu - 1] * matrixT[iu - 1][iu];
++                double var_2345 = matrixT[iu][iu - 1];
++				double q = p * p + var_2345 * matrixT[iu - 1][iu];
+                 matrixT[iu][iu] += shift.exShift;
+                 matrixT[iu - 1][iu - 1] += shift.exShift;
+ 
+@@ -166,7 +167,7 @@
+                     } else {
+                         z = p - z;
+                     }
+-                    final double x = matrixT[iu][iu - 1];
++                    final double x = var_2345;
+                     final double s = FastMath.abs(x) + FastMath.abs(z);
+                     p = x / s;
+                     q = z / s;

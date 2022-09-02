@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..914d115 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -548,11 +548,12 @@
+             // and we can choose to have psi in the interval [-PI/2 ; +PI/2]
+             final FieldVector3D<T> v1 = applyTo(vector(1, 0, 0));
+             final FieldVector3D<T> v2 = applyInverseTo(vector(0, 1, 0));
+-            if ((v2.getX().getReal() < -0.9999999999) || (v2.getX().getReal() > 0.9999999999)) {
++            T var_1242 = v2.getX();
++			if ((var_1242.getReal() < -0.9999999999) || (var_1242.getReal() > 0.9999999999)) {
+                 throw new CardanEulerSingularityException(true);
+             }
+             return buildArray(v1.getZ().negate().atan2(v1.getX()),
+-                              v2.getX().asin(),
++                              var_1242.asin(),
+                               v2.getZ().negate().atan2(v2.getY()));
+ 
+         } else if (order == RotationOrder.ZXY) {

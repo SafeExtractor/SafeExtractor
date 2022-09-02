@@ -1,0 +1,18 @@
+diff --git a/src/org/mockito/internal/progress/ThreadSafeMockingProgress.java b/src/org/mockito/internal/progress/ThreadSafeMockingProgress.java
+index 669af6d..7f1205f 100644
+--- a/src/org/mockito/internal/progress/ThreadSafeMockingProgress.java
++++ b/src/org/mockito/internal/progress/ThreadSafeMockingProgress.java
+@@ -18,10 +18,11 @@
+     private static final ThreadLocal<MockingProgress> mockingProgress = new ThreadLocal<MockingProgress>();
+ 
+     static MockingProgress threadSafely() {
+-        if (mockingProgress.get() == null) {
++        MockingProgress var_80 = mockingProgress.get();
++		if (var_80 == null) {
+             mockingProgress.set(new MockingProgressImpl());
+         }
+-        return mockingProgress.get();
++        return var_80;
+     }
+     
+     public void reportOngoingStubbing(IOngoingStubbing iOngoingStubbing) {

@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
+index fbdafa3..d20dd30 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
+@@ -727,9 +727,10 @@
+       if ((v2.getY() < -0.9999999999) || (v2.getY() > 0.9999999999)) {
+         throw new CardanEulerSingularityException(false);
+       }
+-      return new double[] {
++      double var_1415 = FastMath.acos(v2.getY());
++	return new double[] {
+         FastMath.atan2(v1.getZ(), -v1.getX()),
+-        FastMath.acos(v2.getY()),
++        var_1415,
+         FastMath.atan2(v2.getZ(), v2.getX())
+       };
+ 

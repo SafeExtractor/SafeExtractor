@@ -1,0 +1,20 @@
+diff --git a/source/org/jfree/data/KeyedObjectComparator.java b/source/org/jfree/data/KeyedObjectComparator.java
+index 1ac0f56..cbf28e3 100644
+--- a/source/org/jfree/data/KeyedObjectComparator.java
++++ b/source/org/jfree/data/KeyedObjectComparator.java
+@@ -112,11 +112,12 @@
+         KeyedObject ko2 = (KeyedObject) o2;
+ 
+         if (this.type == KeyedObjectComparatorType.BY_KEY) {
+-            if (this.order.equals(SortOrder.ASCENDING)) {
+-                return ko1.getKey().compareTo(ko2.getKey());
++            Comparable var_3818 = ko1.getKey();
++			if (this.order.equals(SortOrder.ASCENDING)) {
++                return var_3818.compareTo(ko2.getKey());
+             }
+             else if (this.order.equals(SortOrder.DESCENDING)) {
+-                return ko2.getKey().compareTo(ko1.getKey());
++                return ko2.getKey().compareTo(var_3818);
+             }
+             else {
+                 throw new IllegalArgumentException("Unrecognised sort order.");

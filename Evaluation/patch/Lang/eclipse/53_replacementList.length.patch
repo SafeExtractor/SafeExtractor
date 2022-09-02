@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/lang3/StringUtils.java b/src/main/java/org/apache/commons/lang3/StringUtils.java
+index 04b53fa..aab2c9a 100644
+--- a/src/main/java/org/apache/commons/lang3/StringUtils.java
++++ b/src/main/java/org/apache/commons/lang3/StringUtils.java
+@@ -4580,8 +4580,9 @@
+         // mchyzer Performance note: This creates very few new objects (one major goal)
+         // let me know if there are performance requests, we can create a harness to measure
+ 
+-        if (text == null || text.isEmpty() || searchList == null ||
+-                searchList.length == 0 || replacementList == null || replacementList.length == 0) {
++        int var_53 = replacementList.length;
++		if (text == null || text.isEmpty() || searchList == null ||
++                searchList.length == 0 || replacementList == null || var_53 == 0) {
+             return text;
+         }
+ 
+@@ -4592,7 +4593,7 @@
+         }
+ 
+         final int searchLength = searchList.length;
+-        final int replacementLength = replacementList.length;
++        final int replacementLength = var_53;
+ 
+         // make sure lengths are ok, these need to be equal
+         if (searchLength != replacementLength) {

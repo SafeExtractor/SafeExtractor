@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/joda/time/field/BaseDateTimeField.java b/src/main/java/org/joda/time/field/BaseDateTimeField.java
+index c86bf1c..293a99c 100644
+--- a/src/main/java/org/joda/time/field/BaseDateTimeField.java
++++ b/src/main/java/org/joda/time/field/BaseDateTimeField.java
+@@ -303,7 +303,8 @@
+         // adding/removing one from the larger field at a time
+         DateTimeField nextField = null;
+         
+-        while (valueToAdd > 0) {
++        DateTimeField var_427 = instant.getField(fieldIndex - 1);
++		while (valueToAdd > 0) {
+             int max = getMaximumValue(instant, values);
+             long proposed = values[fieldIndex] + valueToAdd;
+             if (proposed <= max) {
+@@ -314,7 +315,7 @@
+                 if (fieldIndex == 0) {
+                     throw new IllegalArgumentException("Maximum value exceeded for add");
+                 }
+-                nextField = instant.getField(fieldIndex - 1);
++                nextField = var_427;
+                 // test only works if this field is UTC (ie. local)
+                 if (getRangeDurationField().getType() != nextField.getDurationField().getType()) {
+                     throw new IllegalArgumentException("Fields invalid for add");
+@@ -335,7 +336,7 @@
+                 if (fieldIndex == 0) {
+                     throw new IllegalArgumentException("Maximum value exceeded for add");
+                 }
+-                nextField = instant.getField(fieldIndex - 1);
++                nextField = var_427;
+                 if (getRangeDurationField().getType() != nextField.getDurationField().getType()) {
+                     throw new IllegalArgumentException("Fields invalid for add");
+                 }

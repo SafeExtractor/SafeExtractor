@@ -1,0 +1,109 @@
+diff --git a/source/org/jfree/chart/plot/ThermometerPlot.java b/source/org/jfree/chart/plot/ThermometerPlot.java
+index d4bd7b7..841dfe0 100644
+--- a/source/org/jfree/chart/plot/ThermometerPlot.java
++++ b/source/org/jfree/chart/plot/ThermometerPlot.java
+@@ -1129,13 +1129,14 @@
+         int midY = (int) (interior.getY() + (interior.getHeight() / 2));
+         int stemTop = (int) (interior.getMinY() + getBulbRadius());
+         int stemBottom = (int) (interior.getMaxY() - getBulbDiameter());
+-        Rectangle2D dataArea = new Rectangle2D.Double(midX - getColumnRadius(),
+-                stemTop, getColumnRadius(), stemBottom - stemTop);
++        int var_1420 = getColumnRadius();
++		Rectangle2D dataArea = new Rectangle2D.Double(midX - var_1420,
++                stemTop, var_1420, stemBottom - stemTop);
+ 
+         outerBulb.setFrame(midX - getBulbRadius(), stemBottom,
+                 getBulbDiameter(), getBulbDiameter());
+ 
+-        outerStem.setRoundRect(midX - getColumnRadius(), interior.getMinY(),
++        outerStem.setRoundRect(midX - var_1420, interior.getMinY(),
+                 getColumnDiameter(), stemBottom + getBulbDiameter() - stemTop,
+                 getColumnDiameter(), getColumnDiameter());
+ 
+@@ -1147,7 +1148,7 @@
+                 + getGap(), getBulbDiameter() - getGap() * 2, getBulbDiameter()
+                 - getGap() * 2);
+ 
+-        innerStem.setRoundRect(midX - getColumnRadius() + getGap(),
++        innerStem.setRoundRect(midX - var_1420 + getGap(),
+                 interior.getMinY() + getGap(), getColumnDiameter()
+                 - getGap() * 2, stemBottom + getBulbDiameter() - getGap() * 2
+                 - stemTop, getColumnDiameter() - getGap() * 2,
+@@ -1163,7 +1164,7 @@
+                     RectangleEdge.LEFT);
+ 
+             int i = getColumnDiameter() - getGap() * 2; // already calculated
+-            int j = getColumnRadius() - getGap(); // already calculated
++            int j = var_1420 - getGap(); // already calculated
+             int l = (i / 2);
+             int k = (int) Math.round(ds);
+             if (k < (getGap() + interior.getMinY())) {
+@@ -1191,7 +1192,7 @@
+                 // draw start of normal range
+                 double value = this.subrangeInfo[NORMAL][RANGE_LOW];
+                 if (range.contains(value)) {
+-                    double x = midX + getColumnRadius() + 2;
++                    double x = midX + var_1420 + 2;
+                     double y = this.rangeAxis.valueToJava2D(value, dataArea,
+                             RectangleEdge.LEFT);
+                     Line2D line = new Line2D.Double(x, y, x + 10, y);
+@@ -1202,7 +1203,7 @@
+                 // draw start of warning range
+                 value = this.subrangeInfo[WARNING][RANGE_LOW];
+                 if (range.contains(value)) {
+-                    double x = midX + getColumnRadius() + 2;
++                    double x = midX + var_1420 + 2;
+                     double y = this.rangeAxis.valueToJava2D(value, dataArea,
+                             RectangleEdge.LEFT);
+                     Line2D line = new Line2D.Double(x, y, x + 10, y);
+@@ -1213,7 +1214,7 @@
+                 // draw start of critical range
+                 value = this.subrangeInfo[CRITICAL][RANGE_LOW];
+                 if (range.contains(value)) {
+-                    double x = midX + getColumnRadius() + 2;
++                    double x = midX + var_1420 + 2;
+                     double y = this.rangeAxis.valueToJava2D(value, dataArea,
+                             RectangleEdge.LEFT);
+                     Line2D line = new Line2D.Double(x, y, x + 10, y);
+@@ -1230,7 +1231,7 @@
+ 
+                 switch (this.axisLocation) {
+                     case RIGHT:
+-                        cursor = midX + getColumnRadius();
++                        cursor = midX + var_1420;
+                         drawArea = new Rectangle2D.Double(cursor,
+                                 stemTop, drawWidth, (stemBottom - stemTop + 1));
+                         this.rangeAxis.draw(g2, cursor, area, drawArea,
+@@ -1240,7 +1241,7 @@
+                     case LEFT:
+                     default:
+                         //cursor = midX - COLUMN_RADIUS - AXIS_GAP;
+-                        cursor = midX - getColumnRadius();
++                        cursor = midX - var_1420;
+                         drawArea = new Rectangle2D.Double(cursor, stemTop,
+                                 drawWidth, (stemBottom - stemTop + 1));
+                         this.rangeAxis.draw(g2, cursor, area, drawArea,
+@@ -1257,12 +1258,12 @@
+             switch (this.valueLocation) {
+                 case RIGHT:
+                     g2.drawString(this.valueFormat.format(current),
+-                            midX + getColumnRadius() + getGap(), midY);
++                            midX + var_1420 + getGap(), midY);
+                     break;
+                 case LEFT:
+                     String valueString = this.valueFormat.format(current);
+                     int stringWidth = metrics.stringWidth(valueString);
+-                    g2.drawString(valueString, midX - getColumnRadius()
++                    g2.drawString(valueString, midX - var_1420
+                             - getGap() - stringWidth, midY);
+                     break;
+                 case BULB:
+@@ -1281,7 +1282,7 @@
+ 
+         //  draw units indicator
+         metrics = g2.getFontMetrics();
+-        int tickX1 = midX - getColumnRadius() - getGap() * 2
++        int tickX1 = midX - var_1420 - getGap() * 2
+                      - metrics.stringWidth(UNITS[this.units]);
+         if (tickX1 > area.getMinX()) {
+             g2.drawString(UNITS[this.units], tickX1,

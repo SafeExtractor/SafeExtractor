@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/panel/RegionSelectionHandler.java b/source/org/jfree/chart/panel/RegionSelectionHandler.java
+index f7f4e5d..5ec0393 100644
+--- a/source/org/jfree/chart/panel/RegionSelectionHandler.java
++++ b/source/org/jfree/chart/panel/RegionSelectionHandler.java
+@@ -232,7 +232,8 @@
+             return;  // we never started a selection
+         }
+         ChartPanel panel = (ChartPanel) e.getSource();
+-        this.selection.closePath();
++        GeneralPath var_1310 = this.selection;
++		var_1310.closePath();
+ 
+         // do something with the selection shape
+         JFreeChart chart = panel.getChart();
+@@ -242,10 +243,10 @@
+         }
+         Selectable p = (Selectable) plot;
+         if (p.canSelectByRegion()) {
+-            p.select(this.selection, panel.getScreenDataArea(), panel);
++            p.select(var_1310, panel.getScreenDataArea(), panel);
+         }
+         panel.setSelectionShape(null);
+-        this.selection.reset();
++        var_1310.reset();
+         this.lastPoint = null;
+         panel.repaint();
+         //panel.clearLiveMouseHandler();

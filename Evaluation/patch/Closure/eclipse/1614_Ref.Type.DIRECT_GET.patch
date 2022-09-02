@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/GlobalNamespace.java b/src/com/google/javascript/jscomp/GlobalNamespace.java
+index 1cd29f0..ca5d8af 100644
+--- a/src/com/google/javascript/jscomp/GlobalNamespace.java
++++ b/src/com/google/javascript/jscomp/GlobalNamespace.java
+@@ -696,7 +696,8 @@
+         NodeTraversal t, Node parent, String name) {
+       Node prev = parent;
+       for (Node anc : parent.getAncestors()) {
+-        switch (anc.getType()) {
++        com.google.javascript.jscomp.GlobalNamespace.Ref.Type var_1614 = Ref.Type.DIRECT_GET;
++		switch (anc.getType()) {
+           case Token.EXPR_RESULT:
+           case Token.VAR:
+           case Token.IF:
+@@ -708,10 +709,10 @@
+           case Token.BITNOT:
+           case Token.POS:
+           case Token.NEG:
+-            return Ref.Type.DIRECT_GET;
++            return var_1614;
+           case Token.HOOK:
+             if (anc.getFirstChild() == prev) {
+-              return Ref.Type.DIRECT_GET;
++              return var_1614;
+             }
+             break;
+           case Token.ASSIGN:

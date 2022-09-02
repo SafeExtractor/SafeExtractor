@@ -1,0 +1,68 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java b/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java
+index 6117418..0d85b17 100644
+--- a/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java
+@@ -374,7 +374,8 @@
+         // avoid possible sun.dc.pr.PRException: endPath: bad path
+         transY1 = restrictValueToDataArea(transY1, plot, dataArea);
+ 
+-        if (this.pArea == null && !Double.isNaN(y1)) {
++        PlotOrientation var_2921 = PlotOrientation.VERTICAL;
++		if (this.pArea == null && !Double.isNaN(y1)) {
+ 
+             // Create a new Area for the series
+             this.pArea = new Polygon();
+@@ -387,7 +388,7 @@
+             transY2 = restrictValueToDataArea(transY2, plot, dataArea);
+ 
+             // The first point is (x, this.baseYValue)
+-            if (orientation == PlotOrientation.VERTICAL) {
++            if (orientation == var_2921) {
+                 this.pArea.addPoint((int) transX1, (int) transY2);
+             }
+             else if (orientation == PlotOrientation.HORIZONTAL) {
+@@ -424,7 +425,7 @@
+             }
+             if (transY0 != transY1) {
+                 // not just a horizontal bar but need to perform a 'step'.
+-                if (orientation == PlotOrientation.VERTICAL) {
++                if (orientation == var_2921) {
+                     this.pArea.addPoint((int) transX1, (int) transY0);
+                 }
+                 else if (orientation == PlotOrientation.HORIZONTAL) {
+@@ -436,7 +437,7 @@
+         Shape shape = null;
+         if (!Double.isNaN(y1)) {
+             // Add each point to Area (x, y)
+-            if (orientation == PlotOrientation.VERTICAL) {
++            if (orientation == var_2921) {
+                 this.pArea.addPoint((int) transX1, (int) transY1);
+             }
+             else if (orientation == PlotOrientation.HORIZONTAL) {
+@@ -445,7 +446,7 @@
+ 
+             if (getShapesVisible()) {
+                 shape = getItemShape(series, item, selected);
+-                if (orientation == PlotOrientation.VERTICAL) {
++                if (orientation == var_2921) {
+                     shape = ShapeUtilities.createTranslatedShape(shape,
+                             transX1, transY1);
+                 }
+@@ -461,7 +462,7 @@
+                 }
+             }
+             else {
+-                if (orientation == PlotOrientation.VERTICAL) {
++                if (orientation == var_2921) {
+                     shape = new Rectangle2D.Double(transX1 - 2, transY1 - 2,
+                             4.0, 4.0);
+                 }
+@@ -484,7 +485,7 @@
+             // avoid possible sun.dc.pr.PRException: endPath: bad path
+             transY2 = restrictValueToDataArea(transY2, plot, dataArea);
+ 
+-            if (orientation == PlotOrientation.VERTICAL) {
++            if (orientation == var_2921) {
+                 // Add the last point (x,0)
+                 this.pArea.addPoint((int) transX1, (int) transY2);
+             }

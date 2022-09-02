@@ -1,0 +1,25 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/566_Calendar.getInstance(timezone).patch b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/566_Calendar.getInstance(timezone).patch
+index 12a0f66..15529dd 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/566_Calendar.getInstance(timezone).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/566_Calendar.getInstance(timezone).patch
+@@ -1,8 +1,8 @@
+ diff --git a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+-index 09e636b..1a55f1a 100644
++index 09e636b..1d59184 100644
+ --- a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+ +++ b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+-@@ -279,9 +279,10 @@
++@@ -279,7 +279,8 @@
+  
+          // timezones get funky around 0, so normalizing everything to GMT 
+          // stops the hours being off
+@@ -10,8 +10,5 @@ index 09e636b..1a55f1a 100644
+ +        Calendar var_566 = Calendar.getInstance(timezone);
+ +		final Calendar start = var_566;
+          start.setTime(new Date(startMillis));
+--        final Calendar end = Calendar.getInstance(timezone);
+-+        final Calendar end = var_566;
++         final Calendar end = Calendar.getInstance(timezone);
+          end.setTime(new Date(endMillis));
+- 
+-         // initial estimates

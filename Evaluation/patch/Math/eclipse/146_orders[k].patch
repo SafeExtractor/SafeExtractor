@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..d4bc97d 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -1791,10 +1791,11 @@
+             final int[] orders = getPartialDerivativeOrders(i);
+             double term = ds[dsOffset + i];
+             for (int k = 0; k < orders.length; ++k) {
+-                if (orders[k] > 0) {
++                int var_146 = orders[k];
++				if (var_146 > 0) {
+                     try {
+-                        term *= FastMath.pow(delta[k], orders[k]) /
+-                        CombinatoricsUtils.factorial(orders[k]);
++                        term *= FastMath.pow(delta[k], var_146) /
++                        CombinatoricsUtils.factorial(var_146);
+                     } catch (NotPositiveException e) {
+                         // this cannot happen
+                         throw new MathInternalError(e);

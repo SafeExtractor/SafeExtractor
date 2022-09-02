@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/distribution/GammaDistribution.java b/src/main/java/org/apache/commons/math3/distribution/GammaDistribution.java
+index 1f7a2b3..732edd5 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/GammaDistribution.java
++++ b/src/main/java/org/apache/commons/math3/distribution/GammaDistribution.java
+@@ -245,8 +245,9 @@
+              */
+             final double aux1 = (y - shiftedShape) / shiftedShape;
+             final double aux2 = shape * (FastMath.log1p(aux1) - aux1);
+-            final double aux3 = -y * (Gamma.LANCZOS_G + 0.5) / shiftedShape +
+-                    Gamma.LANCZOS_G + aux2;
++            double var_894 = Gamma.LANCZOS_G;
++			final double aux3 = -y * (var_894 + 0.5) / shiftedShape +
++                    var_894 + aux2;
+             return densityPrefactor2 / x * FastMath.exp(aux3);
+         }
+         /*

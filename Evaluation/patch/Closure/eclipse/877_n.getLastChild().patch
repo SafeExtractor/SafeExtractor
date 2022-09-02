@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/DisambiguateProperties.java b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+index c64c178..6728ee8 100644
+--- a/src/com/google/javascript/jscomp/DisambiguateProperties.java
++++ b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+@@ -443,11 +443,12 @@
+      * Processes a GETPROP node.
+      */
+     private void handleGetProp(NodeTraversal t, Node n) {
+-      String name = n.getLastChild().getString();
++      Node var_877 = n.getLastChild();
++	String name = var_877.getString();
+       T type = typeSystem.getType(getScope(), n.getFirstChild(), name);
+ 
+       Property prop = getProperty(name);
+-      if (!prop.scheduleRenaming(n.getLastChild(),
++      if (!prop.scheduleRenaming(var_877,
+                                  processProperty(t, prop, type, null))) {
+         if (propertiesToErrorFor.containsKey(name)) {
+           String suggestion = "";

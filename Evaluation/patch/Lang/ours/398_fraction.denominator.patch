@@ -1,0 +1,39 @@
+diff --git a/src/main/java/org/apache/commons/lang3/math/Fraction.java b/src/main/java/org/apache/commons/lang3/math/Fraction.java
+index a722ffe..034b890 100644
+--- a/src/main/java/org/apache/commons/lang3/math/Fraction.java
++++ b/src/main/java/org/apache/commons/lang3/math/Fraction.java
+@@ -750,20 +750,21 @@
+         }     
+         // if denominators are randomly distributed, d1 will be 1 about 61%
+         // of the time.
+-        final int d1 = greatestCommonDivisor(denominator, fraction.denominator);
++        int var_398 = fraction.denominator;
++		final int d1 = greatestCommonDivisor(denominator, var_398);
+         if (d1==1) {
+             // result is ( (u*v' +/- u'v) / u'v')
+-            final int uvp = mulAndCheck(numerator, fraction.denominator);
++            final int uvp = mulAndCheck(numerator, var_398);
+             final int upv = mulAndCheck(fraction.numerator, denominator);
+             return new Fraction
+                 (isAdd ? addAndCheck(uvp, upv) : subAndCheck(uvp, upv),
+-                 mulPosAndCheck(denominator, fraction.denominator));
++                 mulPosAndCheck(denominator, var_398));
+         }
+         // the quantity 't' requires 65 bits of precision; see knuth 4.5.1
+         // exercise 7.  we're going to use a BigInteger.
+         // t = u(v'/d1) +/- v(u'/d1)
+         final BigInteger uvp = BigInteger.valueOf(numerator)
+-            .multiply(BigInteger.valueOf(fraction.denominator/d1));
++            .multiply(BigInteger.valueOf(var_398/d1));
+         final BigInteger upv = BigInteger.valueOf(fraction.numerator)
+             .multiply(BigInteger.valueOf(denominator/d1));
+         final BigInteger t = isAdd ? uvp.add(upv) : uvp.subtract(upv);
+@@ -780,7 +781,7 @@
+         }
+         return new Fraction
+             (w.intValue(),
+-             mulPosAndCheck(denominator/d1, fraction.denominator/d2));
++             mulPosAndCheck(denominator/d1, var_398/d2));
+     }
+ 
+     /**

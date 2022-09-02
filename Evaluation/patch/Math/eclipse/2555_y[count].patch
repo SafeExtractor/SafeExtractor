@@ -1,0 +1,40 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/MultistepIntegrator.java b/src/main/java/org/apache/commons/math3/ode/MultistepIntegrator.java
+index a729441..9d605e9 100644
+--- a/src/main/java/org/apache/commons/math3/ode/MultistepIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/MultistepIntegrator.java
+@@ -370,17 +370,18 @@
+             final double prev = interpolator.getPreviousTime();
+             final double curr = interpolator.getCurrentTime();
+ 
+-            if (count == 0) {
++            double[] var_2555 = y[count];
++			if (count == 0) {
+                 // first step, we need to store also the beginning of the step
+                 interpolator.setInterpolatedTime(prev);
+                 t[0] = prev;
+                 final ExpandableStatefulODE expandable = getExpandable();
+                 final EquationsMapper primary = expandable.getPrimaryMapper();
+-                primary.insertEquationData(interpolator.getInterpolatedState(), y[count]);
++                primary.insertEquationData(interpolator.getInterpolatedState(), var_2555);
+                 primary.insertEquationData(interpolator.getInterpolatedDerivatives(), yDot[count]);
+                 int index = 0;
+                 for (final EquationsMapper secondary : expandable.getSecondaryMappers()) {
+-                    secondary.insertEquationData(interpolator.getInterpolatedSecondaryState(index), y[count]);
++                    secondary.insertEquationData(interpolator.getInterpolatedSecondaryState(index), var_2555);
+                     secondary.insertEquationData(interpolator.getInterpolatedSecondaryDerivatives(index), yDot[count]);
+                     ++index;
+                 }
+@@ -393,11 +394,11 @@
+ 
+             final ExpandableStatefulODE expandable = getExpandable();
+             final EquationsMapper primary = expandable.getPrimaryMapper();
+-            primary.insertEquationData(interpolator.getInterpolatedState(), y[count]);
++            primary.insertEquationData(interpolator.getInterpolatedState(), var_2555);
+             primary.insertEquationData(interpolator.getInterpolatedDerivatives(), yDot[count]);
+             int index = 0;
+             for (final EquationsMapper secondary : expandable.getSecondaryMappers()) {
+-                secondary.insertEquationData(interpolator.getInterpolatedSecondaryState(index), y[count]);
++                secondary.insertEquationData(interpolator.getInterpolatedSecondaryState(index), var_2555);
+                 secondary.insertEquationData(interpolator.getInterpolatedSecondaryDerivatives(index), yDot[count]);
+                 ++index;
+             }

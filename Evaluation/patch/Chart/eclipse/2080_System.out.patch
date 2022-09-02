@@ -1,0 +1,44 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot.java b/source/org/jfree/chart/plot/PiePlot.java
+index 34014e9..6fdcf88 100644
+--- a/source/org/jfree/chart/plot/PiePlot.java
++++ b/source/org/jfree/chart/plot/PiePlot.java
+@@ -196,6 +196,7 @@
+ import java.io.IOException;
+ import java.io.ObjectInputStream;
+ import java.io.ObjectOutputStream;
++import java.io.PrintStream;
+ import java.io.Serializable;
+ import java.util.Iterator;
+ import java.util.List;
+@@ -3297,7 +3298,8 @@
+     public void select(double x, double y, Rectangle2D dataArea,
+             RenderingSource source) {
+ 
+-        System.out.println("select " + x + ", " + y);
++        PrintStream var_2080 = System.out;
++		var_2080.println("select " + x + ", " + y);
+ 
+         PieDatasetSelectionState state = findSelectionStateForDataset(
+                 dataset, source);
+@@ -3341,9 +3343,9 @@
+                     double angle1 = calculateAngleForValue(runningTotal
+                             + value, total);
+                     runningTotal += value;
+-                    System.out.println(this.dataset.getValue(section));
+-                    System.out.println(angle0);
+-                    System.out.println(angle1);
++                    var_2080.println(this.dataset.getValue(section));
++                    var_2080.println(angle0);
++                    var_2080.println(angle1);
+                     double angle = (angle1 - angle0);
+                     if (Math.abs(angle) > getMinimumArcAngleToDraw()) {
+                         double ep = 0.0;
+@@ -3358,7 +3360,7 @@
+                         if (arc.contains(x, y)) {
+                             Comparable key = this.dataset.getKey(section);
+                             state.setSelected(key, !state.isSelected(key));
+-                            System.out.println(key + " is " + state.isSelected(key));
++                            var_2080.println(key + " is " + state.isSelected(key));
+                         }
+                     }
+                 }

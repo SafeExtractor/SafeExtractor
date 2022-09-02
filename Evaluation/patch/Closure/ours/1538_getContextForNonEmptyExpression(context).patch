@@ -1,0 +1,68 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..6da8afd 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -144,7 +144,8 @@
+ 
+     cc.startSourceMapping(n);
+ 
+-    switch (type) {
++    Context var_1538 = getContextForNonEmptyExpression(context);
++	switch (type) {
+       case Token.TRY: {
+         Preconditions.checkState(first.getNext().isBlock() &&
+                 !first.getNext().hasMoreThanOneChild());
+@@ -423,7 +424,7 @@
+           add(first.getNext().getNext());
+           add(")");
+           addNonEmptyStatement(
+-              last, getContextForNonEmptyExpression(context), false);
++              last, var_1538, false);
+         } else {
+           Preconditions.checkState(childCount == 3);
+           add("for(");
+@@ -432,7 +433,7 @@
+           add(first.getNext());
+           add(")");
+           addNonEmptyStatement(
+-              last, getContextForNonEmptyExpression(context), false);
++              last, var_1538, false);
+         }
+         break;
+ 
+@@ -452,7 +453,7 @@
+         add(first);
+         add(")");
+         addNonEmptyStatement(
+-            last, getContextForNonEmptyExpression(context), false);
++            last, var_1538, false);
+         break;
+ 
+       case Token.EMPTY:
+@@ -495,7 +496,7 @@
+         add(first);
+         add(")");
+         addNonEmptyStatement(
+-            last, getContextForNonEmptyExpression(context), false);
++            last, var_1538, false);
+         break;
+ 
+       case Token.INC:
+@@ -555,7 +556,7 @@
+               first.getNext(), Context.BEFORE_DANGLING_ELSE, false);
+           add("else");
+           addNonEmptyStatement(
+-              last, getContextForNonEmptyExpression(context), false);
++              last, var_1538, false);
+         } else {
+           addNonEmptyStatement(first.getNext(), Context.OTHER, false);
+           Preconditions.checkState(childCount == 2);
+@@ -739,7 +740,7 @@
+         add(first);
+         add(":");
+         addNonEmptyStatement(
+-            last, getContextForNonEmptyExpression(context), true);
++            last, var_1538, true);
+         break;
+ 
+       case Token.CAST:

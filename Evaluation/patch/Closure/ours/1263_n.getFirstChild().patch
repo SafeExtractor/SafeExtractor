@@ -1,0 +1,101 @@
+diff --git a/src/com/google/javascript/jscomp/Denormalize.java b/src/com/google/javascript/jscomp/Denormalize.java
+index ca4c0f4..4228ac0 100644
+--- a/src/com/google/javascript/jscomp/Denormalize.java
++++ b/src/com/google/javascript/jscomp/Denormalize.java
+@@ -78,52 +78,55 @@
+     Node nextSibling = n.getNext();
+     if (nextSibling == null) {
+       return;
+-    } else if (NodeUtil.isForIn(nextSibling)) {
+-      Node forNode = nextSibling;
+-      Node forVar = forNode.getFirstChild();
+-      if (forVar.isName()
+-          && n.isVar() && n.hasOneChild()) {
+-        Node name = n.getFirstChild();
+-        if (!name.hasChildren()
+-            && forVar.getString().equals(name.getString())) {
+-          // OK, the names match, and the var declaration does not have an
+-          // initializer. Move it into the loop.
+-          parent.removeChild(n);
+-          forNode.replaceChild(forVar, n);
+-          compiler.reportCodeChange();
+-        }
+-      }
+-    } else if (nextSibling.isFor()
+-        && nextSibling.getFirstChild().isEmpty()) {
++    } else {
++		Node var_1263 = n.getFirstChild();
++		if (NodeUtil.isForIn(nextSibling)) {
++		  Node forNode = nextSibling;
++		  Node forVar = forNode.getFirstChild();
++		  if (forVar.isName()
++		      && n.isVar() && n.hasOneChild()) {
++		    Node name = var_1263;
++		    if (!name.hasChildren()
++		        && forVar.getString().equals(name.getString())) {
++		      // OK, the names match, and the var declaration does not have an
++		      // initializer. Move it into the loop.
++		      parent.removeChild(n);
++		      forNode.replaceChild(forVar, n);
++		      compiler.reportCodeChange();
++		    }
++		  }
++		} else if (nextSibling.isFor()
++		    && nextSibling.getFirstChild().isEmpty()) {
+ 
+-      // Does the current node contain an in operator?  If so, embedding
+-      // the expression in a for loop can cause some JavaScript parsers (such
+-      // as the PlayStation 3's browser based on Access's NetFront
+-      // browser) to fail to parse the code.
+-      // See bug 1778863 for details.
+-      if (NodeUtil.containsType(n, Token.IN)) {
+-        return;
+-      }
++		  // Does the current node contain an in operator?  If so, embedding
++		  // the expression in a for loop can cause some JavaScript parsers (such
++		  // as the PlayStation 3's browser based on Access's NetFront
++		  // browser) to fail to parse the code.
++		  // See bug 1778863 for details.
++		  if (NodeUtil.containsType(n, Token.IN)) {
++		    return;
++		  }
+ 
+-      // Move the current node into the FOR loop initializer.
+-      Node forNode = nextSibling;
+-      Node oldInitializer = forNode.getFirstChild();
+-      parent.removeChild(n);
++		  // Move the current node into the FOR loop initializer.
++		  Node forNode = nextSibling;
++		  Node oldInitializer = forNode.getFirstChild();
++		  parent.removeChild(n);
+ 
+-      Node newInitializer;
+-      if (n.isVar()) {
+-        newInitializer = n;
+-      } else {
+-        // Extract the expression from EXPR_RESULT node.
+-        Preconditions.checkState(n.hasOneChild());
+-        newInitializer = n.getFirstChild();
+-        n.removeChild(newInitializer);
+-      }
++		  Node newInitializer;
++		  if (n.isVar()) {
++		    newInitializer = n;
++		  } else {
++		    // Extract the expression from EXPR_RESULT node.
++		    Preconditions.checkState(n.hasOneChild());
++		    newInitializer = var_1263;
++		    n.removeChild(newInitializer);
++		  }
+ 
+-      forNode.replaceChild(oldInitializer, newInitializer);
++		  forNode.replaceChild(oldInitializer, newInitializer);
+ 
+-      compiler.reportCodeChange();
+-    }
++		  compiler.reportCodeChange();
++		}
++	}
+   }
+ 
+   static class StripConstantAnnotations

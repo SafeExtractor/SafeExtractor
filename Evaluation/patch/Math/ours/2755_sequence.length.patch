@@ -1,0 +1,62 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+index ed2ddda..6231f2b 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+@@ -562,15 +562,16 @@
+     final double[] yTmp    = new double[y.length];
+     final double[] yTmpDot = new double[y.length];
+ 
+-    final double[][] diagonal = new double[sequence.length-1][];
+-    final double[][] y1Diag = new double[sequence.length-1][];
+-    for (int k = 0; k < sequence.length-1; ++k) {
++    int var_2755 = sequence.length;
++	final double[][] diagonal = new double[var_2755-1][];
++    final double[][] y1Diag = new double[var_2755-1][];
++    for (int k = 0; k < var_2755-1; ++k) {
+       diagonal[k] = new double[y.length];
+       y1Diag[k] = new double[y.length];
+     }
+ 
+-    final double[][][] fk  = new double[sequence.length][][];
+-    for (int k = 0; k < sequence.length; ++k) {
++    final double[][][] fk  = new double[var_2755][][];
++    for (int k = 0; k < var_2755; ++k) {
+ 
+       fk[k]    = new double[sequence[k] + 1][];
+ 
+@@ -588,7 +589,7 @@
+     }
+ 
+     final double[] yDot1 = new double[y0.length];
+-    final double[][] yMidDots = new double[1 + 2 * sequence.length][y0.length];
++    final double[][] yMidDots = new double[1 + 2 * var_2755][y0.length];
+ 
+     // initial scaling
+     final double[] scale = new double[mainSetDimension];
+@@ -599,7 +600,7 @@
+         (vecRelativeTolerance == null) ? scalRelativeTolerance : vecRelativeTolerance[0];
+     final double log10R = FastMath.log10(FastMath.max(1.0e-10, tol));
+     int targetIter = FastMath.max(1,
+-                              FastMath.min(sequence.length - 2,
++                              FastMath.min(var_2755 - 2,
+                                        (int) FastMath.floor(0.5 - 0.6 * log10R)));
+ 
+     // set up an interpolator sharing the integrator arrays
+@@ -882,7 +883,7 @@
+           if (costPerTimeUnit[k-1] < orderControl1 * costPerTimeUnit[k]) {
+             optimalIter = k-1;
+           } else if (costPerTimeUnit[k] < orderControl2 * costPerTimeUnit[k-1]) {
+-            optimalIter = FastMath.min(k+1, sequence.length - 2);
++            optimalIter = FastMath.min(k+1, var_2755 - 2);
+           }
+         } else {
+           optimalIter = k - 1;
+@@ -891,7 +892,7 @@
+             optimalIter = k - 2;
+           }
+           if (costPerTimeUnit[k] < orderControl2 * costPerTimeUnit[optimalIter]) {
+-            optimalIter = FastMath.min(k, sequence.length - 2);
++            optimalIter = FastMath.min(k, var_2755 - 2);
+           }
+         }
+ 

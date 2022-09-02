@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/AdaptiveStepsizeIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/AdaptiveStepsizeIntegrator.java
+index cac90f9..fb71a89 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/AdaptiveStepsizeIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/AdaptiveStepsizeIntegrator.java
+@@ -290,10 +290,11 @@
+     // step size is computed such that
+     // h^order * max (||y'/tol||, ||y''/tol||) = 0.01
+     final double maxInv2 = FastMath.max(FastMath.sqrt(yDotOnScale2), yDDotOnScale);
+-    final double h1 = (maxInv2 < 1.0e-15) ?
+-                      FastMath.max(1.0e-6, 0.001 * FastMath.abs(h)) :
++    double var_2632 = FastMath.abs(h);
++	final double h1 = (maxInv2 < 1.0e-15) ?
++                      FastMath.max(1.0e-6, 0.001 * var_2632) :
+                       FastMath.pow(0.01 / maxInv2, 1.0 / order);
+-    h = FastMath.min(100.0 * FastMath.abs(h), h1);
++    h = FastMath.min(100.0 * var_2632, h1);
+     h = FastMath.max(h, 1.0e-12 * FastMath.abs(t0));  // avoids cancellation when computing t1 - t0
+     if (h < getMinStep()) {
+       h = getMinStep();

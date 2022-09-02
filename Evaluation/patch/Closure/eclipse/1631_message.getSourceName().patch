@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/ReplaceMessages.java b/src/com/google/javascript/jscomp/ReplaceMessages.java
+index bd435ec..fc64255 100644
+--- a/src/com/google/javascript/jscomp/ReplaceMessages.java
++++ b/src/com/google/javascript/jscomp/ReplaceMessages.java
+@@ -67,9 +67,10 @@
+ 
+     // Get the replacement.
+     JsMessage replacement = bundle.getMessage(message.getId());
+-    if (replacement == null) {
++    String var_1631 = message.getSourceName();
++	if (replacement == null) {
+       if (strictReplacement) {
+-        compiler.report(JSError.make(message.getSourceName(),
++        compiler.report(JSError.make(var_1631,
+             definition.getMessageNode(), BUNDLE_DOES_NOT_HAVE_THE_MESSAGE,
+             message.getId()));
+         // Fallback to the default message
+@@ -87,7 +88,7 @@
+     try {
+       newValue = getNewValueNode(replacement, msgNode);
+     } catch (MalformedException e) {
+-      compiler.report(JSError.make(message.getSourceName(),
++      compiler.report(JSError.make(var_1631,
+           e.getNode(), MESSAGE_TREE_MALFORMED, e.getMessage()));
+       newValue = msgNode;
+     }

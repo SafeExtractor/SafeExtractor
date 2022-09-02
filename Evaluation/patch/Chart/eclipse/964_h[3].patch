@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/block/BorderArrangement.java b/source/org/jfree/chart/block/BorderArrangement.java
+index b3ae54b..7dec051 100644
+--- a/source/org/jfree/chart/block/BorderArrangement.java
++++ b/source/org/jfree/chart/block/BorderArrangement.java
+@@ -371,7 +371,8 @@
+             h[3] = size.height;
+         }
+ 
+-        h[2] = Math.max(h[2], h[3]);
++        double var_964 = h[3];
++		h[2] = Math.max(h[2], var_964);
+         h[3] = h[2];
+         Range widthRange3 = Range.shift(widthRange, -(w[2] + w[3]), false);
+         if (this.centerBlock != null) {
+@@ -385,7 +386,7 @@
+             h[4] = size.height;
+         }
+         double width = Math.max(w[0], Math.max(w[1], w[2] + w[4] + w[3]));
+-        double height = h[0] + h[1] + Math.max(h[2], Math.max(h[3], h[4]));
++        double height = h[0] + h[1] + Math.max(h[2], Math.max(var_964, h[4]));
+         if (this.topBlock != null) {
+             this.topBlock.setBounds(new Rectangle2D.Double(0.0, 0.0, width,
+                     h[0]));
+@@ -400,7 +401,7 @@
+         }
+         if (this.rightBlock != null) {
+             this.rightBlock.setBounds(new Rectangle2D.Double(width - w[3],
+-                    h[0], w[3], h[3]));
++                    h[0], w[3], var_964));
+         }
+ 
+         if (this.centerBlock != null) {

@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/lang3/ObjectUtils.java b/src/main/java/org/apache/commons/lang3/ObjectUtils.java
+index ab31d6f..322b9ef 100644
+--- a/src/main/java/org/apache/commons/lang3/ObjectUtils.java
++++ b/src/main/java/org/apache/commons/lang3/ObjectUtils.java
+@@ -602,8 +602,9 @@
+                     final Method clone = obj.getClass().getMethod("clone");
+                     result = clone.invoke(obj);
+                 } catch (final NoSuchMethodException e) {
+-                    throw new CloneFailedException("Cloneable type "
+-                        + obj.getClass().getName()
++                    String var_1 = obj.getClass().getName();
++					throw new CloneFailedException("Cloneable type "
++                        + var_1
+                         + " has no clone method", e);
+                 } catch (final IllegalAccessException e) {
+                     throw new CloneFailedException("Cannot clone Cloneable type "

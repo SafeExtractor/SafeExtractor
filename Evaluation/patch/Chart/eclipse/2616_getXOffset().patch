@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/renderer/category/BarRenderer3D.java b/source/org/jfree/chart/renderer/category/BarRenderer3D.java
+index 6cf5928..a274cfb 100644
+--- a/source/org/jfree/chart/renderer/category/BarRenderer3D.java
++++ b/source/org/jfree/chart/renderer/category/BarRenderer3D.java
+@@ -575,9 +575,10 @@
+                                 Rectangle2D dataArea) {
+ 
+ 
+-        Rectangle2D adjusted = new Rectangle2D.Double(dataArea.getX(),
++        double var_2616 = getXOffset();
++		Rectangle2D adjusted = new Rectangle2D.Double(dataArea.getX(),
+                 dataArea.getY() + getYOffset(), dataArea.getWidth()
+-                - getXOffset(), dataArea.getHeight() - getYOffset());
++                - var_2616, dataArea.getHeight() - getYOffset());
+         if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+@@ -594,9 +595,9 @@
+                 float y = (float) adjusted.getMaxY();
+                 path = new GeneralPath();
+                 path.moveTo(x, y);
+-                path.lineTo((float) (x + getXOffset()),
++                path.lineTo((float) (x + var_2616),
+                         y - (float) getYOffset());
+-                path.lineTo((float) (x + getXOffset()),
++                path.lineTo((float) (x + var_2616),
+                         (float) (adjusted.getMinY() - getYOffset()));
+                 path.lineTo(x, (float) adjusted.getMinY());
+                 path.closePath();

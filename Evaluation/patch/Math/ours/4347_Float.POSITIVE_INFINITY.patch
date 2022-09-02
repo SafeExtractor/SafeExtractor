@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/FastMath.java b/src/main/java/org/apache/commons/math3/util/FastMath.java
+index 919e39f..ff6f036 100644
+--- a/src/main/java/org/apache/commons/math3/util/FastMath.java
++++ b/src/main/java/org/apache/commons/math3/util/FastMath.java
+@@ -3152,8 +3152,9 @@
+         if (n < -277) {
+             return (f > 0) ? 0.0f : -0.0f;
+         }
+-        if (n > 276) {
+-            return (f > 0) ? Float.POSITIVE_INFINITY : Float.NEGATIVE_INFINITY;
++        float var_4347 = Float.POSITIVE_INFINITY;
++		if (n > 276) {
++            return (f > 0) ? var_4347 : Float.NEGATIVE_INFINITY;
+         }
+ 
+         // decompose f
+@@ -3204,13 +3205,13 @@
+                 if (scaledExponent < 255) {
+                     return Float.intBitsToFloat(sign | (scaledExponent << 23) | mantissa);
+                 } else {
+-                    return (sign == 0) ? Float.POSITIVE_INFINITY : Float.NEGATIVE_INFINITY;
++                    return (sign == 0) ? var_4347 : Float.NEGATIVE_INFINITY;
+                 }
+ 
+             } else if (scaledExponent < 255) {
+                 return Float.intBitsToFloat(sign | (scaledExponent << 23) | mantissa);
+             } else {
+-                return (sign == 0) ? Float.POSITIVE_INFINITY : Float.NEGATIVE_INFINITY;
++                return (sign == 0) ? var_4347 : Float.NEGATIVE_INFINITY;
+             }
+         }
+ 

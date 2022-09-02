@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/RenameVars.java b/src/com/google/javascript/jscomp/RenameVars.java
+index 27c69c3..c8f9a54 100644
+--- a/src/com/google/javascript/jscomp/RenameVars.java
++++ b/src/com/google/javascript/jscomp/RenameVars.java
+@@ -398,11 +398,12 @@
+   private String getNewLocalName(Node n) {
+     String oldTempName = n.getString();
+     Assignment a = assignments.get(oldTempName);
+-    if (!a.newName.equals(oldTempName)) {
++    String var_631 = a.newName;
++	if (!var_631.equals(oldTempName)) {
+       if (pseudoNameMap != null) {
+         return pseudoNameMap.get(n);
+       }
+-      return a.newName;
++      return var_631;
+     }
+     return null;
+   }

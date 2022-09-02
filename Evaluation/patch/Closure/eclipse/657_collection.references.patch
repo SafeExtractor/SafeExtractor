@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/GlobalVarReferenceMap.java b/src/com/google/javascript/jscomp/GlobalVarReferenceMap.java
+index 9b7870d..3ff454b 100644
+--- a/src/com/google/javascript/jscomp/GlobalVarReferenceMap.java
++++ b/src/com/google/javascript/jscomp/GlobalVarReferenceMap.java
+@@ -216,9 +216,10 @@
+    */
+   public void updateReferencesWithGlobalScope(Scope globalScope) {
+     for (ReferenceCollection collection : refMap.values()) {
+-      List<Reference> newRefs =
+-          Lists.newArrayListWithCapacity(collection.references.size());
+-      for (Reference ref : collection.references) {
++      List<Reference> var_657 = collection.references;
++	List<Reference> newRefs =
++          Lists.newArrayListWithCapacity(var_657.size());
++      for (Reference ref : var_657) {
+         if (ref.getScope() != globalScope) {
+           newRefs.add(ref.cloneWithNewScope(globalScope));
+         } else {

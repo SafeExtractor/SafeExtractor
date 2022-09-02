@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
+index 930eb1e..c51d44d 100644
+--- a/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
+@@ -687,8 +687,9 @@
+         }
+         double gNorm = FastMath.sqrt(sum2);
+         double paru = gNorm / delta;
+-        if (paru == 0) {
+-            paru = Precision.SAFE_MIN / FastMath.min(delta, 0.1);
++        double var_1022 = Precision.SAFE_MIN;
++		if (paru == 0) {
++            paru = var_1022 / FastMath.min(delta, 0.1);
+         }
+ 
+         // if the input par lies outside of the interval (parl,paru),
+@@ -702,7 +703,7 @@
+ 
+             // evaluate the function at the current value of lmPar
+             if (lmPar == 0) {
+-                lmPar = FastMath.max(Precision.SAFE_MIN, 0.001 * paru);
++                lmPar = FastMath.max(var_1022, 0.001 * paru);
+             }
+             double sPar = FastMath.sqrt(lmPar);
+             for (int j = 0; j < solvedCols; ++j) {

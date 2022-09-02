@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..9a20b84 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -437,8 +437,9 @@
+         /* Now we want to compute x = (a-1)/(a+1) but this is prone to
+          * loss of precision.  So instead, compute x = (a/4 - 1/4) / (a/4 + 1/4)
+          */
+-        Dfp t = a[0].divide(4).add(a[1].divide(4));
+-        Dfp x = t.add(a[0].newInstance("-0.25")).divide(t.add(a[0].newInstance("0.25")));
++        Dfp var_805 = a[0];
++		Dfp t = var_805.divide(4).add(a[1].divide(4));
++        Dfp x = t.add(var_805.newInstance("-0.25")).divide(t.add(var_805.newInstance("0.25")));
+ 
+         Dfp y = new Dfp(x);
+         Dfp num = new Dfp(x);
+@@ -456,7 +457,7 @@
+             py = new Dfp(y);
+         }
+ 
+-        y = y.multiply(a[0].getTwo());
++        y = y.multiply(var_805.getTwo());
+ 
+         return split(y);
+ 

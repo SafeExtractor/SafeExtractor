@@ -1,0 +1,75 @@
+diff --git a/source/org/jfree/chart/plot/ThermometerPlot.java b/source/org/jfree/chart/plot/ThermometerPlot.java
+index d4bd7b7..44bb5c5 100644
+--- a/source/org/jfree/chart/plot/ThermometerPlot.java
++++ b/source/org/jfree/chart/plot/ThermometerPlot.java
+@@ -1159,7 +1159,8 @@
+ 
+         if ((this.dataset != null) && (this.dataset.getValue() != null)) {
+             double current = this.dataset.getValue().doubleValue();
+-            double ds = this.rangeAxis.valueToJava2D(current, dataArea,
++            ValueAxis var_1416 = this.rangeAxis;
++			double ds = var_1416.valueToJava2D(current, dataArea,
+                     RectangleEdge.LEFT);
+ 
+             int i = getColumnDiameter() - getGap() * 2; // already calculated
+@@ -1186,13 +1187,13 @@
+             // draw range indicators...
+             if (this.subrangeIndicatorsVisible) {
+                 g2.setStroke(this.subrangeIndicatorStroke);
+-                Range range = this.rangeAxis.getRange();
++                Range range = var_1416.getRange();
+ 
+                 // draw start of normal range
+                 double value = this.subrangeInfo[NORMAL][RANGE_LOW];
+                 if (range.contains(value)) {
+                     double x = midX + getColumnRadius() + 2;
+-                    double y = this.rangeAxis.valueToJava2D(value, dataArea,
++                    double y = var_1416.valueToJava2D(value, dataArea,
+                             RectangleEdge.LEFT);
+                     Line2D line = new Line2D.Double(x, y, x + 10, y);
+                     g2.setPaint(this.subrangePaint[NORMAL]);
+@@ -1203,7 +1204,7 @@
+                 value = this.subrangeInfo[WARNING][RANGE_LOW];
+                 if (range.contains(value)) {
+                     double x = midX + getColumnRadius() + 2;
+-                    double y = this.rangeAxis.valueToJava2D(value, dataArea,
++                    double y = var_1416.valueToJava2D(value, dataArea,
+                             RectangleEdge.LEFT);
+                     Line2D line = new Line2D.Double(x, y, x + 10, y);
+                     g2.setPaint(this.subrangePaint[WARNING]);
+@@ -1214,7 +1215,7 @@
+                 value = this.subrangeInfo[CRITICAL][RANGE_LOW];
+                 if (range.contains(value)) {
+                     double x = midX + getColumnRadius() + 2;
+-                    double y = this.rangeAxis.valueToJava2D(value, dataArea,
++                    double y = var_1416.valueToJava2D(value, dataArea,
+                             RectangleEdge.LEFT);
+                     Line2D line = new Line2D.Double(x, y, x + 10, y);
+                     g2.setPaint(this.subrangePaint[CRITICAL]);
+@@ -1223,7 +1224,7 @@
+             }
+ 
+             // draw the axis...
+-            if ((this.rangeAxis != null) && (this.axisLocation != NONE)) {
++            if ((var_1416 != null) && (this.axisLocation != NONE)) {
+                 int drawWidth = AXIS_GAP;
+                 Rectangle2D drawArea;
+                 double cursor = 0;
+@@ -1233,7 +1234,7 @@
+                         cursor = midX + getColumnRadius();
+                         drawArea = new Rectangle2D.Double(cursor,
+                                 stemTop, drawWidth, (stemBottom - stemTop + 1));
+-                        this.rangeAxis.draw(g2, cursor, area, drawArea,
++                        var_1416.draw(g2, cursor, area, drawArea,
+                                 RectangleEdge.RIGHT, null);
+                         break;
+ 
+@@ -1243,7 +1244,7 @@
+                         cursor = midX - getColumnRadius();
+                         drawArea = new Rectangle2D.Double(cursor, stemTop,
+                                 drawWidth, (stemBottom - stemTop + 1));
+-                        this.rangeAxis.draw(g2, cursor, area, drawArea,
++                        var_1416.draw(g2, cursor, area, drawArea,
+                                 RectangleEdge.LEFT, null);
+                         break;
+                 }

@@ -1,0 +1,44 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalsSet.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalsSet.java
+index 674fb0a..491f3e8 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalsSet.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalsSet.java
+@@ -91,17 +91,18 @@
+      * @return the built tree
+      */
+     private static BSPTree<Euclidean1D> buildTree(final double lower, final double upper) {
+-        if (Double.isInfinite(lower) && (lower < 0)) {
++        Boolean var_1142 = Boolean.TRUE;
++		if (Double.isInfinite(lower) && (lower < 0)) {
+             if (Double.isInfinite(upper) && (upper > 0)) {
+                 // the tree must cover the whole real line
+-                return new BSPTree<Euclidean1D>(Boolean.TRUE);
++                return new BSPTree<Euclidean1D>(var_1142);
+             }
+             // the tree must be open on the negative infinity side
+             final SubHyperplane<Euclidean1D> upperCut =
+                 new OrientedPoint(new Vector1D(upper), true).wholeHyperplane();
+             return new BSPTree<Euclidean1D>(upperCut,
+                                new BSPTree<Euclidean1D>(Boolean.FALSE),
+-                               new BSPTree<Euclidean1D>(Boolean.TRUE),
++                               new BSPTree<Euclidean1D>(var_1142),
+                                null);
+         }
+         final SubHyperplane<Euclidean1D> lowerCut =
+@@ -110,7 +111,7 @@
+             // the tree must be open on the positive infinity side
+             return new BSPTree<Euclidean1D>(lowerCut,
+                                             new BSPTree<Euclidean1D>(Boolean.FALSE),
+-                                            new BSPTree<Euclidean1D>(Boolean.TRUE),
++                                            new BSPTree<Euclidean1D>(var_1142),
+                                             null);
+         }
+ 
+@@ -121,7 +122,7 @@
+                                         new BSPTree<Euclidean1D>(Boolean.FALSE),
+                                         new BSPTree<Euclidean1D>(upperCut,
+                                                                  new BSPTree<Euclidean1D>(Boolean.FALSE),
+-                                                                 new BSPTree<Euclidean1D>(Boolean.TRUE),
++                                                                 new BSPTree<Euclidean1D>(var_1142),
+                                                                  null),
+                                         null);
+ 

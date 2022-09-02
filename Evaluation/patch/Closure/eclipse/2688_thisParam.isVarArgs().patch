@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/rhino/jstype/ArrowType.java b/src/com/google/javascript/rhino/jstype/ArrowType.java
+index 8b4825d..ae0ac44 100644
+--- a/src/com/google/javascript/rhino/jstype/ArrowType.java
++++ b/src/com/google/javascript/rhino/jstype/ArrowType.java
+@@ -113,7 +113,8 @@
+     // So, in this case, g < f, but f !< g
+     Node thisParam = parameters.getFirstChild();
+     Node thatParam = that.parameters.getFirstChild();
+-    while (thisParam != null && thatParam != null) {
++    boolean var_2688 = thisParam.isVarArgs();
++	while (thisParam != null && thatParam != null) {
+       JSType thisParamType = thisParam.getJSType();
+       JSType thatParamType = thatParam.getJSType();
+       if (thisParamType != null) {
+@@ -123,7 +124,7 @@
+         }
+       }
+ 
+-      boolean thisIsVarArgs = thisParam.isVarArgs();
++      boolean thisIsVarArgs = var_2688;
+       boolean thatIsVarArgs = thatParam.isVarArgs();
+       boolean thisIsOptional = thisIsVarArgs || thisParam.isOptionalArg();
+       boolean thatIsOptional = thatIsVarArgs || thatParam.isOptionalArg();
+@@ -162,7 +163,7 @@
+ 
+     // "that" can't be a supertype, because it's missing a required argument.
+     if (thisParam != null
+-        && !thisParam.isOptionalArg() && !thisParam.isVarArgs()
++        && !thisParam.isOptionalArg() && !var_2688
+         && thatParam == null) {
+       return false;
+     }

@@ -1,0 +1,31 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/859_Math.ceil(tmp).patch b/Users/safe/paper/Evaluation/patch/Math/ours/859_Math.ceil(tmp).patch
+index ac4b9ce..6bd4186 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/859_Math.ceil(tmp).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/859_Math.ceil(tmp).patch
+@@ -1,22 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/distribution/AbstractIntegerDistribution.java b/src/main/java/org/apache/commons/math3/distribution/AbstractIntegerDistribution.java
+-index 78c588e..8c0a0fc 100644
++index 78c588e..ebfd8be 100644
+ --- a/src/main/java/org/apache/commons/math3/distribution/AbstractIntegerDistribution.java
+ +++ b/src/main/java/org/apache/commons/math3/distribution/AbstractIntegerDistribution.java
+-@@ -129,13 +129,14 @@
+-         if (chebyshevApplies) {
+-             double k = FastMath.sqrt((1.0 - p) / p);
+-             double tmp = mu - k * sigma;
+--            if (tmp > lower) {
+--                lower = ((int) Math.ceil(tmp)) - 1;
+-+            double var_859 = Math.ceil(tmp);
+-+			if (tmp > lower) {
+-+                lower = ((int) var_859) - 1;
+-             }
++@@ -135,7 +135,8 @@
+              k = 1.0 / k;
+              tmp = mu + k * sigma;
+              if (tmp < upper) {
+ -                upper = ((int) Math.ceil(tmp)) - 1;
+-+                upper = ((int) var_859) - 1;
+++                double var_859 = Math.ceil(tmp);
+++				upper = ((int) var_859) - 1;
+              }
+          }
+  

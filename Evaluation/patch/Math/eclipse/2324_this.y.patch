@@ -1,0 +1,69 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+index 7b1dcc7..acfaf26 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
++++ b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+@@ -549,13 +549,14 @@
+              */
+             this.r1 = this.b.copy();
+             this.y = this.m == null ? this.b.copy() : this.m.operate(this.r1);
+-            if ((this.m != null) && this.check) {
+-                checkSymmetry(this.m, this.r1, this.y, this.m.operate(this.y));
++            RealVector var_2324 = this.y;
++			if ((this.m != null) && this.check) {
++                checkSymmetry(this.m, this.r1, var_2324, this.m.operate(var_2324));
+             }
+ 
+-            this.beta1 = this.r1.dotProduct(this.y);
++            this.beta1 = this.r1.dotProduct(var_2324);
+             if (this.beta1 < 0.) {
+-                throwNPDLOException(this.m, this.y);
++                throwNPDLOException(this.m, var_2324);
+             }
+             if (this.beta1 == 0.) {
+                 /* If b = 0 exactly, stop with x = 0. */
+@@ -569,35 +570,35 @@
+              *   y = M * b,
+              *   beta1 = beta[1].
+              */
+-            final RealVector v = this.y.mapMultiply(1. / this.beta1);
++            final RealVector v = var_2324.mapMultiply(1. / this.beta1);
+             this.y = this.a.operate(v);
+             if (this.check) {
+-                checkSymmetry(this.a, v, this.y, this.a.operate(this.y));
++                checkSymmetry(this.a, v, var_2324, this.a.operate(var_2324));
+             }
+             /*
+              * Set up y for the second Lanczos vector. y and beta will be zero
+              * or very small if b is an eigenvector.
+              */
+-            daxpy(-this.shift, v, this.y);
+-            final double alpha = v.dotProduct(this.y);
+-            daxpy(-alpha / this.beta1, this.r1, this.y);
++            daxpy(-this.shift, v, var_2324);
++            final double alpha = v.dotProduct(var_2324);
++            daxpy(-alpha / this.beta1, this.r1, var_2324);
+             /*
+              * At this point
+              *   alpha = alpha[1]
+              *   y     = beta[2] * M^(-1) * P' * v[2]
+              */
+             /* Make sure r2 will be orthogonal to the first v. */
+-            final double vty = v.dotProduct(this.y);
++            final double vty = v.dotProduct(var_2324);
+             final double vtv = v.dotProduct(v);
+-            daxpy(-vty / vtv, v, this.y);
+-            this.r2 = this.y.copy();
++            daxpy(-vty / vtv, v, var_2324);
++            this.r2 = var_2324.copy();
+             if (this.m != null) {
+                 this.y = this.m.operate(this.r2);
+             }
+             this.oldb = this.beta1;
+-            this.beta = this.r2.dotProduct(this.y);
++            this.beta = this.r2.dotProduct(var_2324);
+             if (this.beta < 0.) {
+-                throwNPDLOException(this.m, this.y);
++                throwNPDLOException(this.m, var_2324);
+             }
+             this.beta = FastMath.sqrt(this.beta);
+             /*

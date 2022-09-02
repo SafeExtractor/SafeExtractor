@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/regex/CharRanges.java b/src/com/google/javascript/jscomp/regex/CharRanges.java
+index 0736d68..3308294 100644
+--- a/src/com/google/javascript/jscomp/regex/CharRanges.java
++++ b/src/com/google/javascript/jscomp/regex/CharRanges.java
+@@ -297,7 +297,8 @@
+     int mIdx = 0, sIdx = 0, dIdx = 0;
+ 
+     int pos = minuend[0];
+-    while (mIdx < mn) {
++    int var_2403 = difference.length;
++	while (mIdx < mn) {
+       if (pos >= minuend[mIdx + 1]) {
+         mIdx += 2;
+       } else if (pos < minuend[mIdx]) {
+@@ -315,7 +316,7 @@
+         if (dIdx != 0 && difference[dIdx - 1] == pos) {
+           difference[dIdx - 1] = pos;
+         } else {
+-          if (dIdx == difference.length) {
++          if (dIdx == var_2403) {
+             int[] newArr = new int[dIdx * 2];
+             System.arraycopy(difference, 0, newArr, 0, dIdx);
+             difference = newArr;
+@@ -327,7 +328,7 @@
+       }
+     }
+ 
+-    if (dIdx != difference.length) {
++    if (dIdx != var_2403) {
+       int[] newArr = new int[dIdx];
+       System.arraycopy(difference, 0, newArr, 0, dIdx);
+       difference = newArr;

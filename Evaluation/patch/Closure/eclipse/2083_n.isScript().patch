@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..c95a414 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -2888,11 +2888,12 @@
+    * @return The InputId property on the node or its ancestors.
+    */
+   public static InputId getInputId(Node n) {
+-    while (n != null && !n.isScript()) {
++    boolean var_2083 = n.isScript();
++	while (n != null && !var_2083) {
+       n = n.getParent();
+     }
+ 
+-    return (n != null && n.isScript()) ? n.getInputId() : null;
++    return (n != null && var_2083) ? n.getInputId() : null;
+   }
+ 
+   /**

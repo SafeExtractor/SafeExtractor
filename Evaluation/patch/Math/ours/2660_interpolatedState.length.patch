@@ -1,0 +1,31 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/GillStepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/GillStepInterpolator.java
+index 630d4df..e29d348 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/GillStepInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/GillStepInterpolator.java
+@@ -108,14 +108,15 @@
+     final double coeffDot3  = cDot23  * ONE_PLUS_INV_SQRT_2;
+     final double coeffDot4  = theta * (twoTheta - 1);
+ 
+-    if ((previousState != null) && (theta <= 0.5)) {
++    int var_2660 = interpolatedState.length;
++	if ((previousState != null) && (theta <= 0.5)) {
+         final double s         = theta * h / 6.0;
+         final double c23       = s * (6 * theta - fourTheta2);
+         final double coeff1    = s * (6 - 9 * theta + fourTheta2);
+         final double coeff2    = c23  * ONE_MINUS_INV_SQRT_2;
+         final double coeff3    = c23  * ONE_PLUS_INV_SQRT_2;
+         final double coeff4    = s * (-3 * theta + fourTheta2);
+-        for (int i = 0; i < interpolatedState.length; ++i) {
++        for (int i = 0; i < var_2660; ++i) {
+             final double yDot1 = yDotK[0][i];
+             final double yDot2 = yDotK[1][i];
+             final double yDot3 = yDotK[2][i];
+@@ -132,7 +133,7 @@
+         final double coeff2 = c23  * ONE_MINUS_INV_SQRT_2;
+         final double coeff3 = c23  * ONE_PLUS_INV_SQRT_2;
+         final double coeff4 = s * (1 + theta + fourTheta2);
+-        for (int i = 0; i < interpolatedState.length; ++i) {
++        for (int i = 0; i < var_2660; ++i) {
+             final double yDot1 = yDotK[0][i];
+             final double yDot2 = yDotK[1][i];
+             final double yDot3 = yDotK[2][i];

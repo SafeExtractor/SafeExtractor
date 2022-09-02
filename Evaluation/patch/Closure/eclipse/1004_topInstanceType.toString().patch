@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..1734aef 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -1218,7 +1218,8 @@
+         ctorType.isConstructor() &&
+         (ctorType.getPrototype().hasOwnProperty(propertyName) ||
+          ctorType.getInstanceType().hasOwnProperty(propertyName));
+-    if (reportMissingOverride.isOn()
++    String var_1004 = topInstanceType.toString();
++	if (reportMissingOverride.isOn()
+         && !declaredOverride
+         && superClassHasDeclaredProperty
+         && declaredLocally) {
+@@ -1226,7 +1227,7 @@
+       // property
+       compiler.report(t.makeError(n, reportMissingOverride,
+           HIDDEN_SUPERCLASS_PROPERTY, propertyName,
+-          topInstanceType.toString()));
++          var_1004));
+     }
+ 
+     // @override is present and we have to check that it is ok
+@@ -1237,7 +1238,7 @@
+       if (!propertyType.isSubtype(superClassPropType)) {
+         compiler.report(
+             t.makeError(n, HIDDEN_SUPERCLASS_PROPERTY_MISMATCH,
+-                propertyName, topInstanceType.toString(),
++                propertyName, var_1004,
+                 superClassPropType.toString(), propertyType.toString()));
+       }
+     } else if (superInterfaceHasDeclaredProperty) {
+@@ -1251,7 +1252,7 @@
+                 getTopMostDefiningType(propertyName);
+             compiler.report(
+                 t.makeError(n, HIDDEN_SUPERCLASS_PROPERTY_MISMATCH,
+-                    propertyName, topInstanceType.toString(),
++                    propertyName, var_1004,
+                     superPropertyType.toString(),
+                     propertyType.toString()));
+           }

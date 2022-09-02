@@ -1,0 +1,30 @@
+diff --git a/oak-auth-external/src/main/java/org/apache/jackrabbit/oak/spi/security/authentication/external/impl/ExternalLoginModule.java b/oak-auth-external/src/main/java/org/apache/jackrabbit/oak/spi/security/authentication/external/impl/ExternalLoginModule.java
+index 7a12881..9020eff 100644
+--- a/oak-auth-external/src/main/java/org/apache/jackrabbit/oak/spi/security/authentication/external/impl/ExternalLoginModule.java
++++ b/oak-auth-external/src/main/java/org/apache/jackrabbit/oak/spi/security/authentication/external/impl/ExternalLoginModule.java
+@@ -43,6 +43,7 @@
+ import org.apache.jackrabbit.oak.spi.security.authentication.external.ExternalIdentityException;
+ import org.apache.jackrabbit.oak.spi.security.authentication.external.ExternalIdentityProvider;
+ import org.apache.jackrabbit.oak.spi.security.authentication.external.ExternalIdentityProviderManager;
++import org.apache.jackrabbit.oak.spi.security.authentication.external.ExternalIdentityRef;
+ import org.apache.jackrabbit.oak.spi.security.authentication.external.ExternalUser;
+ import org.apache.jackrabbit.oak.spi.security.authentication.external.SyncContext;
+ import org.apache.jackrabbit.oak.spi.security.authentication.external.SyncException;
+@@ -188,13 +189,14 @@
+                 // if there exists an authorizable with the given userid but is not an external one or if it belongs to
+                 // another IDP, we just ignore it.
+                 if (sId != null) {
+-                    if (sId.getExternalIdRef() == null) {
++                    ExternalIdentityRef externalIdRef = sId.getExternalIdRef();
++					if (externalIdRef == null) {
+                         log.debug("ignoring local user: {}", sId.getId());
+                         return false;
+                     }
+-                    if (!sId.getExternalIdRef().getProviderName().equals(idp.getName())) {
++                    if (!externalIdRef.getProviderName().equals(idp.getName())) {
+                         if (log.isDebugEnabled()) {
+-                            log.debug("ignoring foreign identity: {} (idp={})", sId.getExternalIdRef().getString(), idp.getName());
++                            log.debug("ignoring foreign identity: {} (idp={})", externalIdRef.getString(), idp.getName());
+                         }
+                         return false;
+                     }

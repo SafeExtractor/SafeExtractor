@@ -1,0 +1,43 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..f53cfb3 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1051,17 +1051,18 @@
+     protected Dfp trunc(final DfpField.RoundingMode rmode) {
+         boolean changed = false;
+ 
+-        if (isNaN()) {
+-            return newInstance(this);
++        Dfp var_589 = newInstance(this);
++		if (isNaN()) {
++            return var_589;
+         }
+ 
+         if (nans == INFINITE) {
+-            return newInstance(this);
++            return var_589;
+         }
+ 
+         if (mant[mant.length-1] == 0) {
+             // a is zero
+-            return newInstance(this);
++            return var_589;
+         }
+ 
+         /* If the exponent is less than zero then we can certainly
+@@ -1078,13 +1079,13 @@
+          * for any fractional part */
+ 
+         if (exp >= mant.length) {
+-            return newInstance(this);
++            return var_589;
+         }
+ 
+         /* General case:  create another dfp, result, that contains the
+          * a with the fractional part lopped off.  */
+ 
+-        Dfp result = newInstance(this);
++        Dfp result = var_589;
+         for (int i = 0; i < mant.length-result.exp; i++) {
+             changed |= result.mant[i] != 0;
+             result.mant[i] = 0;

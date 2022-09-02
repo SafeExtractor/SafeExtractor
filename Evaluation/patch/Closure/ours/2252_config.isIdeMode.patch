@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..ebfcb8c 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -758,7 +758,8 @@
+           functionNode.getAbsolutePosition();
+ 
+       lp.setCharno(position2charno(lparenCharno));
+-      for (AstNode param : functionNode.getParams()) {
++      boolean var_2252 = config.isIdeMode;
++	for (AstNode param : functionNode.getParams()) {
+         Node paramNode = transform(param);
+         // When in ideMode Rhino can generate a param list with only a single
+         // ErrorNode. This is transformed into an EMPTY node. Drop this node in
+@@ -770,7 +771,7 @@
+           // destructuring parameter assignments which aren't supported
+           // (an error has already been reported).
+           Preconditions.checkState(
+-              config.isIdeMode
++              var_2252
+               || paramNode.isObjectLit()
+               || paramNode.isArrayLit());
+         }
+@@ -782,7 +783,7 @@
+         // When in ideMode Rhino tries to parse some constructs the compiler
+         // doesn't support, repair it here. see Rhino's
+         // Parser#parseFunctionBodyExpr.
+-        Preconditions.checkState(config.isIdeMode);
++        Preconditions.checkState(var_2252);
+         bodyNode = IR.block();
+       }
+       parseDirectives(bodyNode);

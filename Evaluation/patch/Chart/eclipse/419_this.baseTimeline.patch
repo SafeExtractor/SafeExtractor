@@ -1,0 +1,34 @@
+diff --git a/source/org/jfree/chart/axis/SegmentedTimeline.java b/source/org/jfree/chart/axis/SegmentedTimeline.java
+index 3d7dbe0..2ca1181 100644
+--- a/source/org/jfree/chart/axis/SegmentedTimeline.java
++++ b/source/org/jfree/chart/axis/SegmentedTimeline.java
+@@ -967,7 +967,8 @@
+                                           long toBaseDomainValue) {
+ 
+         // find first excluded base segment starting fromDomainValue
+-        Segment baseSegment = this.baseTimeline.getSegment(fromBaseDomainValue);
++        SegmentedTimeline var_419 = this.baseTimeline;
++		Segment baseSegment = var_419.getSegment(fromBaseDomainValue);
+         while (baseSegment.getSegmentStart() <= toBaseDomainValue
+                && !baseSegment.inExcludeSegments()) {
+ 
+@@ -979,8 +980,8 @@
+         while (baseSegment.getSegmentStart() <= toBaseDomainValue) {
+ 
+             long baseExclusionRangeEnd = baseSegment.getSegmentStart()
+-                 + this.baseTimeline.getSegmentsExcluded()
+-                 * this.baseTimeline.getSegmentSize() - 1;
++                 + var_419.getSegmentsExcluded()
++                 * var_419.getSegmentSize() - 1;
+ 
+             // cycle through all the segments contained in the base exclusion
+             // area
+@@ -1008,7 +1009,7 @@
+             }
+ 
+             // go to next base segment group
+-            baseSegment.inc(this.baseTimeline.getGroupSegmentCount());
++            baseSegment.inc(var_419.getGroupSegmentCount());
+         }
+     }
+ 

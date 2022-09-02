@@ -1,0 +1,34 @@
+diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+index 3dc8ec6..029421e 100644
+--- a/src/com/google/javascript/jscomp/TypeInference.java
++++ b/src/com/google/javascript/jscomp/TypeInference.java
+@@ -253,7 +253,8 @@
+           }
+ 
+           if (condition != null) {
+-            if (condition.isAnd() ||
++            Branch var_937 = Branch.ON_TRUE;
++			if (condition.isAnd() ||
+                 condition.isOr()) {
+               // When handling the short-circuiting binary operators,
+               // the outcome scope on true can be different than the outcome
+@@ -278,8 +279,8 @@
+                   reverseInterpreter.getPreciserScopeKnowingConditionOutcome(
+                       condition,
+                       conditionOutcomes.getOutcomeFlowScope(
+-                          condition.getType(), branch == Branch.ON_TRUE),
+-                      branch == Branch.ON_TRUE);
++                          condition.getType(), branch == var_937),
++                      branch == var_937);
+             } else {
+               // conditionFlowScope is cached from previous iterations
+               // of the loop.
+@@ -289,7 +290,7 @@
+               }
+               newScope =
+                   reverseInterpreter.getPreciserScopeKnowingConditionOutcome(
+-                      condition, conditionFlowScope, branch == Branch.ON_TRUE);
++                      condition, conditionFlowScope, branch == var_937);
+             }
+           }
+           break;

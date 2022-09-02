@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..1018795 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -946,7 +946,8 @@
+      */
+     private static int compare(final Dfp a, final Dfp b) {
+         // Ignore the sign of zero
+-        if (a.mant[a.mant.length - 1] == 0 && b.mant[b.mant.length - 1] == 0 &&
++        int var_579 = b.mant.length;
++		if (a.mant[a.mant.length - 1] == 0 && b.mant[var_579 - 1] == 0 &&
+             a.nans == FINITE && b.nans == FINITE) {
+             return 0;
+         }
+@@ -973,7 +974,7 @@
+         }
+ 
+         // Handle special case when a or b is zero, by ignoring the exponents
+-        if (b.mant[b.mant.length-1] != 0 && a.mant[b.mant.length-1] != 0) {
++        if (b.mant[var_579-1] != 0 && a.mant[var_579-1] != 0) {
+             if (a.exp < b.exp) {
+                 return -a.sign;
+             }

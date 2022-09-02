@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/chart/axis/CategoryAxis.java b/source/org/jfree/chart/axis/CategoryAxis.java
+index 9c5f5bc..ba9f80e 100644
+--- a/source/org/jfree/chart/axis/CategoryAxis.java
++++ b/source/org/jfree/chart/axis/CategoryAxis.java
+@@ -127,6 +127,7 @@
+ import org.jfree.chart.plot.PlotRenderingInfo;
+ import org.jfree.chart.text.G2TextMeasurer;
+ import org.jfree.chart.text.TextBlock;
++import org.jfree.chart.text.TextBlockAnchor;
+ import org.jfree.chart.text.TextUtilities;
+ import org.jfree.chart.util.ObjectUtilities;
+ import org.jfree.chart.util.PaintUtilities;
+@@ -1028,13 +1029,14 @@
+                 Point2D anchorPoint = RectangleAnchor.coordinates(area,
+                         position.getCategoryAnchor());
+                 TextBlock block = tick.getLabel();
+-                block.draw(g2, (float) anchorPoint.getX(),
+-                        (float) anchorPoint.getY(), position.getLabelAnchor(),
++                TextBlockAnchor var_861 = position.getLabelAnchor();
++				block.draw(g2, (float) anchorPoint.getX(),
++                        (float) anchorPoint.getY(), var_861,
+                         (float) anchorPoint.getX(), (float) anchorPoint.getY(),
+                         position.getAngle());
+                 Shape bounds = block.calculateBounds(g2,
+                         (float) anchorPoint.getX(), (float) anchorPoint.getY(),
+-                        position.getLabelAnchor(), (float) anchorPoint.getX(),
++                        var_861, (float) anchorPoint.getX(),
+                         (float) anchorPoint.getY(), position.getAngle());
+                 if (plotState != null && plotState.getOwner() != null) {
+                     EntityCollection entities

@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/JsMessageVisitor.java b/src/com/google/javascript/jscomp/JsMessageVisitor.java
+index becd724..49108ee 100644
+--- a/src/com/google/javascript/jscomp/JsMessageVisitor.java
++++ b/src/com/google/javascript/jscomp/JsMessageVisitor.java
+@@ -788,10 +788,11 @@
+     }
+ 
+     Node firstArg = call.getChildAtIndex(1);
+-    JsMessage firstMessage = getTrackedMessage(t, firstArg.getString());
++    String var_350 = firstArg.getString();
++	JsMessage firstMessage = getTrackedMessage(t, var_350);
+     if (firstMessage == null) {
+       compiler.report(
+-          t.makeError(firstArg, FALLBACK_ARG_ERROR, firstArg.getString()));
++          t.makeError(firstArg, FALLBACK_ARG_ERROR, var_350));
+       return;
+     }
+ 

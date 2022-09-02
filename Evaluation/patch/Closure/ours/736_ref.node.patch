@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..7388120 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -809,9 +809,10 @@
+     }
+ 
+     Ref ref = n.getDeclaration();
+-    String fnName = ref.node.getString();
++    Node var_736 = ref.node;
++	String fnName = var_736.getString();
+     addStubsForUndeclaredProperties(
+-        n, fnName, ref.node.getAncestor(2), ref.node.getParent());
++        n, fnName, var_736.getAncestor(2), var_736.getParent());
+   }
+ 
+   /**

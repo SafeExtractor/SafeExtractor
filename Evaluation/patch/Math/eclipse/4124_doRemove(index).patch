@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java b/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+index 2b007b2..23b50be 100644
+--- a/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
++++ b/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+@@ -350,8 +350,9 @@
+ 
+         final int hash  = hashOf(key);
+         int index = hash & mask;
+-        if (containsKey(key, index)) {
+-            return doRemove(index);
++        double var_4124 = doRemove(index);
++		if (containsKey(key, index)) {
++            return var_4124;
+         }
+ 
+         if (states[index] == FREE) {
+@@ -363,7 +364,7 @@
+             j = probe(perturb, j);
+             index = j & mask;
+             if (containsKey(key, index)) {
+-                return doRemove(index);
++                return var_4124;
+             }
+         }
+ 

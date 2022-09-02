@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/TypedCodeGenerator.java b/src/com/google/javascript/jscomp/TypedCodeGenerator.java
+index 64c3d95..13df8f8 100644
+--- a/src/com/google/javascript/jscomp/TypedCodeGenerator.java
++++ b/src/com/google/javascript/jscomp/TypedCodeGenerator.java
+@@ -198,13 +198,14 @@
+       typeString = "*";
+     } else {
+       // Fix-up optional and vararg parameters to match JSDoc type language
+-      if (parameterNode.isOptionalArg()) {
++      String var_1835 = parameterType.restrictByNotNullOrUndefined().toAnnotationString();
++	if (parameterNode.isOptionalArg()) {
+         typeString =
+-            parameterType.restrictByNotNullOrUndefined().toAnnotationString() +
++            var_1835 +
+             "=";
+       } else if (parameterNode.isVarArgs()) {
+         typeString = "..." +
+-            parameterType.restrictByNotNullOrUndefined().toAnnotationString();
++            var_1835;
+       } else {
+         typeString = parameterType.toAnnotationString();
+       }

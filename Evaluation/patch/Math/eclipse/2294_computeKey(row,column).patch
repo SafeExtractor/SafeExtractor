@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SparseFieldMatrix.java b/src/main/java/org/apache/commons/math3/linear/SparseFieldMatrix.java
+index 4705d25..31e2850 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SparseFieldMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/SparseFieldMatrix.java
+@@ -167,10 +167,11 @@
+     public void setEntry(int row, int column, T value) {
+         checkRowIndex(row);
+         checkColumnIndex(column);
+-        if (getField().getZero().equals(value)) {
+-            entries.remove(computeKey(row, column));
++        int var_2294 = computeKey(row, column);
++		if (getField().getZero().equals(value)) {
++            entries.remove(var_2294);
+         } else {
+-            entries.put(computeKey(row, column), value);
++            entries.put(var_2294, value);
+         }
+     }
+ 

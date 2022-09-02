@@ -1,0 +1,35 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3880_iterator.next().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/3880_iterator.next().patch
+index 10286b6..0845f44 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3880_iterator.next().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/3880_iterator.next().patch
+@@ -1,25 +1,14 @@
+ diff --git a/source/org/jfree/data/general/DatasetUtilities.java b/source/org/jfree/data/general/DatasetUtilities.java
+-index 548d684..913775c 100644
++index 548d684..f427a9f 100644
+ --- a/source/org/jfree/data/general/DatasetUtilities.java
+ +++ b/source/org/jfree/data/general/DatasetUtilities.java
+-@@ -314,8 +314,9 @@
+-         List keys = source.getKeys();
++@@ -315,7 +315,8 @@
+          ArrayList otherKeys = new ArrayList();
+          Iterator iterator = keys.iterator();
+--        while (iterator.hasNext()) {
+--            Comparable currentKey = (Comparable) iterator.next();
+-+        Object var_3880 = iterator.next();
+-+		while (iterator.hasNext()) {
+-+            Comparable currentKey = (Comparable) var_3880;
+-             Number dataValue = source.getValue(currentKey);
+-             if (dataValue != null) {
+-                 double value = dataValue.doubleValue();
+-@@ -329,7 +330,7 @@
+-         iterator = keys.iterator();
+-         double otherValue = 0;
+          while (iterator.hasNext()) {
+ -            Comparable currentKey = (Comparable) iterator.next();
+-+            Comparable currentKey = (Comparable) var_3880;
+++            Object var_3880 = iterator.next();
+++			Comparable currentKey = (Comparable) var_3880;
+              Number dataValue = source.getValue(currentKey);
+              if (dataValue != null) {
+-                 if (otherKeys.contains(currentKey)
++                 double value = dataValue.doubleValue();

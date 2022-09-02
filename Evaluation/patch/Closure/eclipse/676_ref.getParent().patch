@@ -1,0 +1,52 @@
+diff --git a/src/com/google/javascript/jscomp/InlineObjectLiterals.java b/src/com/google/javascript/jscomp/InlineObjectLiterals.java
+index d03988c..feced00 100644
+--- a/src/com/google/javascript/jscomp/InlineObjectLiterals.java
++++ b/src/com/google/javascript/jscomp/InlineObjectLiterals.java
+@@ -443,27 +443,30 @@
+           // Assignments have to be handled specially, since they
+           // expand out into multiple assignments.
+           replaceAssignmentExpression(v, ref, varmap);
+-        } else if (ref.getParent().isVar()) {
+-          // The old variable declaration. It didn't have a
+-          // value. Remove it entirely as it should now be unused.
+-          ref.getGrandparent().removeChild(ref.getParent());
+         } else {
+-          // Make sure that the reference is a GETPROP as we expect it to be.
+-          Node getprop = ref.getParent();
+-          Preconditions.checkState(getprop.isGetProp());
++			Node var_676 = ref.getParent();
++			if (var_676.isVar()) {
++			  // The old variable declaration. It didn't have a
++			  // value. Remove it entirely as it should now be unused.
++			  ref.getGrandparent().removeChild(var_676);
++			} else {
++			  // Make sure that the reference is a GETPROP as we expect it to be.
++			  Node getprop = var_676;
++			  Preconditions.checkState(getprop.isGetProp());
+ 
+-          // The key being looked up in the original map.
+-          String var = getprop.getChildAtIndex(1).getString();
++			  // The key being looked up in the original map.
++			  String var = getprop.getChildAtIndex(1).getString();
+ 
+-          // If the variable hasn't already been declared, add an empty
+-          // declaration near all the other declarations.
+-          Preconditions.checkState(varmap.containsKey(var));
++			  // If the variable hasn't already been declared, add an empty
++			  // declaration near all the other declarations.
++			  Preconditions.checkState(varmap.containsKey(var));
+ 
+-          // Replace the GETPROP node with a NAME.
+-          Node replacement = IR.name(varmap.get(var));
+-          replacement.copyInformationFrom(getprop);
+-          ref.getGrandparent().replaceChild(ref.getParent(), replacement);
+-        }
++			  // Replace the GETPROP node with a NAME.
++			  Node replacement = IR.name(varmap.get(var));
++			  replacement.copyInformationFrom(getprop);
++			  ref.getGrandparent().replaceChild(var_676, replacement);
++			}
++		}
+       }
+ 
+       compiler.reportCodeChange();

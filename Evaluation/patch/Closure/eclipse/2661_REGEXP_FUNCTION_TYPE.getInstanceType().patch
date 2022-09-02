@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+index c8fbac8..570ae68 100644
+--- a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
++++ b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+@@ -441,13 +441,14 @@
+       new FunctionType(this, "RegExp", null,
+           createArrowType(createOptionalParameters(ALL_TYPE, ALL_TYPE)),
+           null, null, true, true);
+-    REGEXP_FUNCTION_TYPE.getInternalArrowType().returnType =
+-        REGEXP_FUNCTION_TYPE.getInstanceType();
++    ObjectType var_2661 = REGEXP_FUNCTION_TYPE.getInstanceType();
++	REGEXP_FUNCTION_TYPE.getInternalArrowType().returnType =
++        var_2661;
+ 
+     ObjectType regexpPrototype = REGEXP_FUNCTION_TYPE.getPrototype();
+     registerNativeType(JSTypeNative.REGEXP_FUNCTION_TYPE, REGEXP_FUNCTION_TYPE);
+ 
+-    ObjectType REGEXP_TYPE = REGEXP_FUNCTION_TYPE.getInstanceType();
++    ObjectType REGEXP_TYPE = var_2661;
+     registerNativeType(JSTypeNative.REGEXP_TYPE, REGEXP_TYPE);
+ 
+     // String

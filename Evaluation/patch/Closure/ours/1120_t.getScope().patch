@@ -1,0 +1,39 @@
+diff --git a/src/com/google/javascript/jscomp/ConstCheck.java b/src/com/google/javascript/jscomp/ConstCheck.java
+index fa8a3ce..b440d67 100644
+--- a/src/com/google/javascript/jscomp/ConstCheck.java
++++ b/src/com/google/javascript/jscomp/ConstCheck.java
+@@ -57,13 +57,14 @@
+ 
+   @Override
+   public void visit(NodeTraversal t, Node n, Node parent) {
+-    switch (n.getType()) {
++    Scope var_1120 = t.getScope();
++	switch (n.getType()) {
+       case Token.NAME:
+         if (parent != null &&
+             parent.isVar() &&
+             n.hasChildren()) {
+           String name = n.getString();
+-          Scope.Var var = t.getScope().getVar(name);
++          Scope.Var var = var_1120.getVar(name);
+           if (isConstant(var)) {
+             if (initializedConstants.contains(var)) {
+               reportError(t, n, name);
+@@ -89,7 +90,7 @@
+         Node lhs = n.getFirstChild();
+         if (lhs.isName()) {
+           String name = lhs.getString();
+-          Scope.Var var = t.getScope().getVar(name);
++          Scope.Var var = var_1120.getVar(name);
+           if (isConstant(var)) {
+             if (initializedConstants.contains(var)) {
+               reportError(t, n, name);
+@@ -106,7 +107,7 @@
+         Node lhs = n.getFirstChild();
+         if (lhs.isName()) {
+           String name = lhs.getString();
+-          Scope.Var var = t.getScope().getVar(name);
++          Scope.Var var = var_1120.getVar(name);
+           if (isConstant(var)) {
+             reportError(t, n, name);
+           }

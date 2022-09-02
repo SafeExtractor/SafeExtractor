@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+index 171eb51..a390500 100644
+--- a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
++++ b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+@@ -547,11 +547,12 @@
+           }
+         }
+       } else if (NodeUtil.isGet(lhs)) {
+-        if (lhs.getFirstChild().isThis()) {
++        Node var_1353 = lhs.getFirstChild();
++		if (var_1353.isThis()) {
+           sideEffectInfo.setTaintsThis();
+         } else {
+           Var var = null;
+-          Node objectNode = lhs.getFirstChild();
++          Node objectNode = var_1353;
+           if (objectNode.isName()) {
+             var = scope.getVar(objectNode.getString());
+           }

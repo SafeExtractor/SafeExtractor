@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/Normalize.java b/src/com/google/javascript/jscomp/Normalize.java
+index 98b136e..54abb0a 100644
+--- a/src/com/google/javascript/jscomp/Normalize.java
++++ b/src/com/google/javascript/jscomp/Normalize.java
+@@ -295,8 +295,9 @@
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+       if (n.isName()) {
+-        String name = n.getString();
+-        if (n.getString().isEmpty()) {
++        String var_1253 = n.getString();
++		String name = var_1253;
++        if (var_1253.isEmpty()) {
+           return;
+         }
+ 
+@@ -311,7 +312,7 @@
+             expectedConst = false;
+ 
+             JSDocInfo info = null;
+-            Var var = t.getScope().getVar(n.getString());
++            Var var = t.getScope().getVar(var_1253);
+             if (var != null) {
+               info = var.getJSDocInfo();
+             }

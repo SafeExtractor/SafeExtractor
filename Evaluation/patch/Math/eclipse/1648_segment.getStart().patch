@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+index 5d8a992..7e3b45c 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+@@ -687,12 +687,13 @@
+         final ArrayList<ComparableSegment> loop = new ArrayList<ComparableSegment>();
+         ComparableSegment segment = node.getElement();
+         loop.add(segment);
+-        final Vector2D globalStart = segment.getStart();
++        Vector2D var_1648 = segment.getStart();
++		final Vector2D globalStart = var_1648;
+         Vector2D end = segment.getEnd();
+         node.delete();
+ 
+         // is this an open or a closed loop ?
+-        final boolean open = segment.getStart() == null;
++        final boolean open = var_1648 == null;
+ 
+         while ((end != null) && (open || (globalStart.distance(end) > 1.0e-10))) {
+ 
+@@ -706,7 +707,7 @@
+                  (n != null) && (n.getElement().compareTo(upperRight) <= 0);
+                  n = n.getNext()) {
+                 segment = n.getElement();
+-                final double distance = end.distance(segment.getStart());
++                final double distance = end.distance(var_1648);
+                 if (distance < selectedDistance) {
+                     selectedNode     = n;
+                     selectedSegment  = segment;

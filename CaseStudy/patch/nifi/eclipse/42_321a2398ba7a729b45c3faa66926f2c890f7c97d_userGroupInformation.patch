@@ -1,0 +1,16 @@
+diff --git a/nifi-nar-bundles/nifi-hadoop-bundle/nifi-hdfs-processors/src/main/java/org/apache/nifi/processors/hadoop/AbstractHadoopProcessor.java b/nifi-nar-bundles/nifi-hadoop-bundle/nifi-hdfs-processors/src/main/java/org/apache/nifi/processors/hadoop/AbstractHadoopProcessor.java
+index 9efc0f6..1101399 100644
+--- a/nifi-nar-bundles/nifi-hadoop-bundle/nifi-hdfs-processors/src/main/java/org/apache/nifi/processors/hadoop/AbstractHadoopProcessor.java
++++ b/nifi-nar-bundles/nifi-hadoop-bundle/nifi-hdfs-processors/src/main/java/org/apache/nifi/processors/hadoop/AbstractHadoopProcessor.java
+@@ -414,8 +414,9 @@
+ 
+     protected FileSystem getFileSystem() {
+         // if kerberos is enabled, check if the ticket should be renewed before returning the FS
+-        if (hdfsResources.get().getUserGroupInformation() != null && isTicketOld()) {
+-            tryKerberosRelogin(hdfsResources.get().getUserGroupInformation());
++        org.apache.nifi.processors.hadoop.UserGroupInformation userGroupInformation = hdfsResources.get().getUserGroupInformation();
++		if (userGroupInformation != null && isTicketOld()) {
++            tryKerberosRelogin(userGroupInformation);
+         }
+         return hdfsResources.get().getFileSystem();
+     }

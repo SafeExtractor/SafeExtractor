@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..4a7ae2a 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -454,17 +454,18 @@
+         node.getFirstChild().getNext());
+     // Look for the next CASE, skipping over DEFAULT.
+     Node next = getNextSiblingOfType(node.getNext(), Token.CASE);
+-    if (next != null) { // Found a CASE
++    Branch var_1902 = Branch.ON_FALSE;
++	if (next != null) { // Found a CASE
+       Preconditions.checkState(next.isCase());
+-      createEdge(node, Branch.ON_FALSE, next);
++      createEdge(node, var_1902, next);
+     } else { // No more CASE found, go back and search for a DEFAULT.
+       Node parent = node.getParent();
+       Node deflt = getNextSiblingOfType(
+         parent.getFirstChild().getNext(), Token.DEFAULT_CASE);
+       if (deflt != null) { // Has a DEFAULT
+-        createEdge(node, Branch.ON_FALSE, deflt);
++        createEdge(node, var_1902, deflt);
+       } else { // No DEFAULT found, go to the follow of the SWITCH.
+-        createEdge(node, Branch.ON_FALSE, computeFollowNode(node, this));
++        createEdge(node, var_1902, computeFollowNode(node, this));
+       }
+     }
+     connectToPossibleExceptionHandler(node, node.getFirstChild());

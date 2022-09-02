@@ -1,0 +1,56 @@
+diff --git a/source/org/jfree/chart/plot/ThermometerPlot.java b/source/org/jfree/chart/plot/ThermometerPlot.java
+index d4bd7b7..8524da1 100644
+--- a/source/org/jfree/chart/plot/ThermometerPlot.java
++++ b/source/org/jfree/chart/plot/ThermometerPlot.java
+@@ -1127,12 +1127,13 @@
+         this.padding.trim(interior);
+         int midX = (int) (interior.getX() + (interior.getWidth() / 2));
+         int midY = (int) (interior.getY() + (interior.getHeight() / 2));
+-        int stemTop = (int) (interior.getMinY() + getBulbRadius());
++        int var_1414 = getBulbRadius();
++		int stemTop = (int) (interior.getMinY() + var_1414);
+         int stemBottom = (int) (interior.getMaxY() - getBulbDiameter());
+         Rectangle2D dataArea = new Rectangle2D.Double(midX - getColumnRadius(),
+                 stemTop, getColumnRadius(), stemBottom - stemTop);
+ 
+-        outerBulb.setFrame(midX - getBulbRadius(), stemBottom,
++        outerBulb.setFrame(midX - var_1414, stemBottom,
+                 getBulbDiameter(), getBulbDiameter());
+ 
+         outerStem.setRoundRect(midX - getColumnRadius(), interior.getMinY(),
+@@ -1143,7 +1144,7 @@
+         Area tempArea = new Area(outerStem);
+         outerThermometer.add(tempArea);
+ 
+-        innerBulb.setFrame(midX - getBulbRadius() + getGap(), stemBottom
++        innerBulb.setFrame(midX - var_1414 + getGap(), stemBottom
+                 + getGap(), getBulbDiameter() - getGap() * 2, getBulbDiameter()
+                 - getGap() * 2);
+ 
+@@ -1168,14 +1169,14 @@
+             int k = (int) Math.round(ds);
+             if (k < (getGap() + interior.getMinY())) {
+                 k = (int) (getGap() + interior.getMinY());
+-                l = getBulbRadius();
++                l = var_1414;
+             }
+ 
+             Area mercury = new Area(innerBulb);
+ 
+-            if (k < (stemBottom + getBulbRadius())) {
++            if (k < (stemBottom + var_1414)) {
+                 mercuryStem.setRoundRect(midX - j, k, i,
+-                        (stemBottom + getBulbRadius()) - k, l, l);
++                        (stemBottom + var_1414) - k, l, l);
+                 tempArea = new Area(mercuryStem);
+                 mercury.add(tempArea);
+             }
+@@ -1269,7 +1270,7 @@
+                     temp = this.valueFormat.format(current);
+                     i = metrics.stringWidth(temp) / 2;
+                     g2.drawString(temp, midX - i,
+-                            stemBottom + getBulbRadius() + getGap());
++                            stemBottom + var_1414 + getGap());
+                     break;
+                 default:
+             }

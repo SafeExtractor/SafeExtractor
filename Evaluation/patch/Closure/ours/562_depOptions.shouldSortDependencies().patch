@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/JSModuleGraph.java b/src/com/google/javascript/jscomp/JSModuleGraph.java
+index 114ad2a..32471ab 100644
+--- a/src/com/google/javascript/jscomp/JSModuleGraph.java
++++ b/src/com/google/javascript/jscomp/JSModuleGraph.java
+@@ -377,8 +377,9 @@
+     }
+ 
+     // The order of inputs, sorted independently of modules.
+-    List<CompilerInput> absoluteOrder =
+-        sorter.getDependenciesOf(inputs, depOptions.shouldSortDependencies());
++    boolean var_562 = depOptions.shouldSortDependencies();
++	List<CompilerInput> absoluteOrder =
++        sorter.getDependenciesOf(inputs, var_562);
+ 
+     // Figure out which sources *must* be in each module.
+     ListMultimap<JSModule, CompilerInput> entryPointInputsPerModule =
+@@ -401,7 +402,7 @@
+       List<CompilerInput> transitiveClosure =
+           sorter.getDependenciesOf(
+               entryPointInputsPerModule.get(module),
+-              depOptions.shouldSortDependencies());
++              var_562);
+       for (CompilerInput input : transitiveClosure) {
+         JSModule oldModule = input.getModule();
+         if (oldModule == null) {

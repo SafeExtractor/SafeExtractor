@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..b322205 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -187,10 +187,11 @@
+ 
+     if (node.getComments() != null) {
+       for (Comment comment : node.getComments()) {
+-        if (comment.getCommentType() == CommentType.JSDOC &&
++        CommentType var_2235 = comment.getCommentType();
++		if (var_2235 == CommentType.JSDOC &&
+             !irFactory.parsedComments.contains(comment)) {
+           irFactory.handlePossibleFileOverviewJsDoc(comment, irNode);
+-        } else if (comment.getCommentType() == CommentType.BLOCK_COMMENT) {
++        } else if (var_2235 == CommentType.BLOCK_COMMENT) {
+           irFactory.handleBlockComment(comment);
+         }
+       }

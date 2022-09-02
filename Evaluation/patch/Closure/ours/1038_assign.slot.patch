@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..47f1e04 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -152,9 +152,10 @@
+         ConcreteScope scope = workList.get(i);
+         for (Action action : scope.getActions()) {
+           for (Assignment assign : action.getAssignments(scope)) {
+-            if (assign.slot.addConcreteType(assign.type)) {
++            ConcreteSlot var_1038 = assign.slot;
++			if (var_1038.addConcreteType(assign.type)) {
+               changed = true;
+-              ConcreteScope varScope = assign.slot.getScope();
++              ConcreteScope varScope = var_1038.getScope();
+               if ((varScope != scope) && !workSet.contains(varScope)) {
+                 workSet.add(varScope);
+                 workList.add(varScope);

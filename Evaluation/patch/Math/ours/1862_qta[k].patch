@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java b/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java
+index 6016825..fe8a3f1 100644
+--- a/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java
+@@ -102,13 +102,14 @@
+             // build up first part of the matrix by applying Householder transforms
+             for (int k = m - 1; k >= 1; --k) {
+                 final double[] hK = householderVectors[k - 1];
+-                qta[k][k] = 1;
++                double[] var_1862 = qta[k];
++				var_1862[k] = 1;
+                 if (hK[k] != 0.0) {
+                     final double inv = 1.0 / (secondary[k - 1] * hK[k]);
+                     double beta = 1.0 / secondary[k - 1];
+-                    qta[k][k] = 1 + beta * hK[k];
++                    var_1862[k] = 1 + beta * hK[k];
+                     for (int i = k + 1; i < m; ++i) {
+-                        qta[k][i] = beta * hK[i];
++                        var_1862[i] = beta * hK[i];
+                     }
+                     for (int j = k + 1; j < m; ++j) {
+                         beta = 0;

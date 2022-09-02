@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java b/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java
+index 3898435..ce678e1 100644
+--- a/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java
+@@ -417,7 +417,8 @@
+                                                              currentY);
+             int index = 0;
+             for (EquationsMapper secondary : expandable.getSecondaryMappers()) {
+-                secondary.insertEquationData(interpolator.getInterpolatedSecondaryState(index++),
++                double[] var_2539 = interpolator.getInterpolatedSecondaryState(index++);
++				secondary.insertEquationData(var_2539,
+                                              currentY);
+             }
+             for (final EventState state : eventsStates) {

@@ -1,0 +1,63 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot3D.java b/source/org/jfree/chart/plot/PiePlot3D.java
+index a7aab14..c78bb07 100644
+--- a/source/org/jfree/chart/plot/PiePlot3D.java
++++ b/source/org/jfree/chart/plot/PiePlot3D.java
+@@ -319,7 +319,8 @@
+ 
+         // the link area defines the dog-leg point for the linking lines to
+         // the labels
+-        int depth = (int) (pieArea.getHeight() * this.depthFactor);
++        double var_1493 = pieArea.getHeight();
++		int depth = (int) (var_1493 * this.depthFactor);
+         Rectangle2D linkArea = new Rectangle2D.Double(linkX, linkY, linkW,
+                 linkH - depth);
+         state.setLinkArea(linkArea);
+@@ -328,7 +329,7 @@
+         state.setPieCenterX(pieArea.getCenterX());
+         state.setPieCenterY(pieArea.getCenterY() - depth / 2.0);
+         state.setPieWRadius(pieArea.getWidth() / 2.0);
+-        state.setPieHRadius((pieArea.getHeight() - depth) / 2.0);
++        state.setPieHRadius((var_1493 - depth) / 2.0);
+ 
+         // get the data source - return if null;
+         PieDataset dataset = getDataset();
+@@ -411,7 +412,7 @@
+                     * 360) / totalValue;
+             if (Math.abs(angle2 - angle1) > getMinimumArcAngleToDraw()) {
+                 arcList.add(new Arc2D.Double(arcX, arcY + depth,
+-                        pieArea.getWidth(), pieArea.getHeight() - depth,
++                        pieArea.getWidth(), var_1493 - depth,
+                         angle1, angle2 - angle1, Arc2D.PIE));
+             }
+             else {
+@@ -423,10 +424,10 @@
+         Shape oldClip = g2.getClip();
+ 
+         Ellipse2D top = new Ellipse2D.Double(pieArea.getX(), pieArea.getY(),
+-                pieArea.getWidth(), pieArea.getHeight() - depth);
++                pieArea.getWidth(), var_1493 - depth);
+ 
+         Ellipse2D bottom = new Ellipse2D.Double(pieArea.getX(), pieArea.getY()
+-                + depth, pieArea.getWidth(), pieArea.getHeight() - depth);
++                + depth, pieArea.getWidth(), var_1493 - depth);
+ 
+         Rectangle2D lower = new Rectangle2D.Double(top.getX(),
+                 top.getCenterY(), pieArea.getWidth(), bottom.getMaxY()
+@@ -452,7 +453,7 @@
+         int[] xs;
+         int[] ys;
+         arc = new Arc2D.Double(arcX, arcY + depth, pieArea.getWidth(),
+-                pieArea.getHeight() - depth, 0, 360, Arc2D.PIE);
++                var_1493 - depth, 0, 360, Arc2D.PIE);
+ 
+         int categoryCount = arcList.size();
+         for (int categoryIndex = 0; categoryIndex < categoryCount;
+@@ -536,7 +537,7 @@
+                 continue;
+             }
+             upperArc = new Arc2D.Double(arcX, arcY, pieArea.getWidth(),
+-                    pieArea.getHeight() - depth, arc.getAngleStart(),
++                    var_1493 - depth, arc.getAngleStart(),
+                     arc.getAngleExtent(), Arc2D.PIE);
+ 
+             Comparable currentKey = (Comparable) sectionKeys.get(sectionIndex);

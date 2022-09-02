@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/genetics/CycleCrossover.java b/src/main/java/org/apache/commons/math3/genetics/CycleCrossover.java
+index bd35990..69a1edf 100644
+--- a/src/main/java/org/apache/commons/math3/genetics/CycleCrossover.java
++++ b/src/main/java/org/apache/commons/math3/genetics/CycleCrossover.java
+@@ -141,7 +141,8 @@
+         int idx = randomStart ? GeneticAlgorithm.getRandomGenerator().nextInt(length) : 0;
+         int cycle = 1;
+ 
+-        while (visitedIndices.size() < length) {
++        int var_1101 = visitedIndices.size();
++		while (var_1101 < length) {
+             indices.add(idx);
+ 
+             T item = parent2Rep.get(idx);
+@@ -168,7 +169,7 @@
+             visitedIndices.addAll(indices);
+             // find next starting index: last one + 1 until we find an unvisited index
+             idx = (indices.get(0) + 1) % length;
+-            while (visitedIndices.contains(idx) && visitedIndices.size() < length) {
++            while (visitedIndices.contains(idx) && var_1101 < length) {
+                 idx++;
+                 if (idx >= length) {
+                     idx = 0;

@@ -1,0 +1,16 @@
+diff --git a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-security/src/main/java/org/apache/nifi/web/security/x509/ocsp/OcspCertificateValidator.java b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-security/src/main/java/org/apache/nifi/web/security/x509/ocsp/OcspCertificateValidator.java
+index 832a63c..79651e7 100644
+--- a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-security/src/main/java/org/apache/nifi/web/security/x509/ocsp/OcspCertificateValidator.java
++++ b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-security/src/main/java/org/apache/nifi/web/security/x509/ocsp/OcspCertificateValidator.java
+@@ -401,8 +401,9 @@
+      */
+     private X509Certificate getTrustedResponderCertificate(final X509Certificate responderCertificate, final X509Certificate issuerCertificate) {
+         // look for the responder's certificate specifically
+-        if (trustedCAs.containsKey(responderCertificate.getSubjectX500Principal().getName())) {
+-            return trustedCAs.get(responderCertificate.getSubjectX500Principal().getName());
++        String trustedCAName = responderCertificate.getSubjectX500Principal().getName();
++		if (trustedCAs.containsKey(trustedCAName)) {
++            return trustedCAs.get(trustedCAName);
+         }
+ 
+         // if the responder certificate was issued by the same CA that issued the subject certificate we may be able to use that...

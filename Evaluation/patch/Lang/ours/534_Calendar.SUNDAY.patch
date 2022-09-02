@@ -1,0 +1,48 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DateUtils.java b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+index b16af53..a8aee4d 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DateUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+@@ -1155,7 +1155,8 @@
+         }
+         Calendar start = null;
+         Calendar end = null;
+-        int startCutoff = Calendar.SUNDAY;
++        int var_534 = Calendar.SUNDAY;
++		int startCutoff = var_534;
+         int endCutoff = Calendar.SATURDAY;
+         switch (rangeStyle) {
+             case RANGE_MONTH_SUNDAY:
+@@ -1169,7 +1170,7 @@
+                 //Loop start back to the previous sunday or monday
+                 if (rangeStyle == RANGE_MONTH_MONDAY) {
+                     startCutoff = Calendar.MONDAY;
+-                    endCutoff = Calendar.SUNDAY;
++                    endCutoff = var_534;
+                 }
+                 break;
+             case RANGE_WEEK_SUNDAY:
+@@ -1185,7 +1186,7 @@
+                         break;
+                     case RANGE_WEEK_MONDAY:
+                         startCutoff = Calendar.MONDAY;
+-                        endCutoff = Calendar.SUNDAY;
++                        endCutoff = var_534;
+                         break;
+                     case RANGE_WEEK_RELATIVE:
+                         startCutoff = focus.get(Calendar.DAY_OF_WEEK);
+@@ -1200,13 +1201,13 @@
+             default:
+                 throw new IllegalArgumentException("The range style " + rangeStyle + " is not valid.");
+         }
+-        if (startCutoff < Calendar.SUNDAY) {
++        if (startCutoff < var_534) {
+             startCutoff += 7;
+         }
+         if (startCutoff > Calendar.SATURDAY) {
+             startCutoff -= 7;
+         }
+-        if (endCutoff < Calendar.SUNDAY) {
++        if (endCutoff < var_534) {
+             endCutoff += 7;
+         }
+         if (endCutoff > Calendar.SATURDAY) {

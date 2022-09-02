@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..2735a32 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -144,7 +144,8 @@
+ 
+     cc.startSourceMapping(n);
+ 
+-    switch (type) {
++    final int var_1545 = Token.CALL;
++	switch (type) {
+       case Token.TRY: {
+         Preconditions.checkState(first.getNext().isBlock() &&
+                 !first.getNext().hasMoreThanOneChild());
+@@ -515,7 +516,7 @@
+         break;
+       }
+ 
+-      case Token.CALL:
++      case var_1545:
+         // We have two special cases here:
+         // 1) If the left hand side of the call is a direct reference to eval,
+         // then it must have a DIRECT_EVAL annotation. If it does not, then
+@@ -632,7 +633,7 @@
+         // to force parentheses. Otherwise, when parsed, NEW will bind to the
+         // first viable parentheses (don't traverse into functions).
+         if (NodeUtil.containsType(
+-            first, Token.CALL, NodeUtil.MATCH_NOT_FUNCTION)) {
++            first, var_1545, NodeUtil.MATCH_NOT_FUNCTION)) {
+           precedence = NodeUtil.precedence(first.getType()) + 1;
+         }
+         addExpr(first, precedence, Context.OTHER);

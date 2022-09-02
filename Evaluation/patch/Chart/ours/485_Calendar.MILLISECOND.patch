@@ -1,0 +1,81 @@
+diff --git a/source/org/jfree/chart/axis/DateAxis.java b/source/org/jfree/chart/axis/DateAxis.java
+index 059bc3a..effb43b 100644
+--- a/source/org/jfree/chart/axis/DateAxis.java
++++ b/source/org/jfree/chart/axis/DateAxis.java
+@@ -887,7 +887,8 @@
+         int value = count * (current / count);
+ 
+         DateTickUnitType t = unit.getUnitType();
+-        if (t.equals(DateTickUnitType.MILLISECOND)) {
++        int var_485 = Calendar.MILLISECOND;
++		if (t.equals(DateTickUnitType.MILLISECOND)) {
+             years = calendar.get(Calendar.YEAR);
+             months = calendar.get(Calendar.MONTH);
+             days = calendar.get(Calendar.DATE);
+@@ -895,10 +896,10 @@
+             minutes = calendar.get(Calendar.MINUTE);
+             seconds = calendar.get(Calendar.SECOND);
+             calendar.set(years, months, days, hours, minutes, seconds);
+-            calendar.set(Calendar.MILLISECOND, value);
++            calendar.set(var_485, value);
+             Date mm = calendar.getTime();
+             if (mm.getTime() >= date.getTime()) {
+-                calendar.set(Calendar.MILLISECOND, value - 1);
++                calendar.set(var_485, value - 1);
+                 mm = calendar.getTime();
+             }
+             return mm;
+@@ -918,7 +919,7 @@
+             else {
+                 milliseconds = 999;
+             }
+-            calendar.set(Calendar.MILLISECOND, milliseconds);
++            calendar.set(var_485, milliseconds);
+             calendar.set(years, months, days, hours, minutes, value);
+             Date dd = calendar.getTime();
+             if (dd.getTime() >= date.getTime()) {
+@@ -941,7 +942,7 @@
+             else {
+                 seconds = 59;
+             }
+-            calendar.clear(Calendar.MILLISECOND);
++            calendar.clear(var_485);
+             calendar.set(years, months, days, hours, value, seconds);
+             Date d0 = calendar.getTime();
+             if (d0.getTime() >= date.getTime()) {
+@@ -966,7 +967,7 @@
+                 minutes = 59;
+                 seconds = 59;
+             }
+-            calendar.clear(Calendar.MILLISECOND);
++            calendar.clear(var_485);
+             calendar.set(years, months, days, value, minutes, seconds);
+             Date d1 = calendar.getTime();
+             if (d1.getTime() >= date.getTime()) {
+@@ -993,7 +994,7 @@
+                 minutes = 59;
+                 seconds = 59;
+             }
+-            calendar.clear(Calendar.MILLISECOND);
++            calendar.clear(var_485);
+             calendar.set(years, months, value, hours, 0, 0);
+             // long result = calendar.getTimeInMillis();
+                 // won't work with JDK 1.3
+@@ -1006,7 +1007,7 @@
+         }
+         else if (t.equals(DateTickUnitType.MONTH)) {
+             years = calendar.get(Calendar.YEAR);
+-            calendar.clear(Calendar.MILLISECOND);
++            calendar.clear(var_485);
+             calendar.set(years, value, 1, 0, 0, 0);
+             Month month = new Month(calendar.getTime(), this.timeZone,
+                     this.locale);
+@@ -1036,7 +1037,7 @@
+                 months = 11;
+                 days = 31;
+             }
+-            calendar.clear(Calendar.MILLISECOND);
++            calendar.clear(var_485);
+             calendar.set(value, months, days, 0, 0, 0);
+             Date d3 = calendar.getTime();
+             if (d3.getTime() >= date.getTime()) {

@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..93775ac 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1059,7 +1059,8 @@
+             return newInstance(this);
+         }
+ 
+-        if (mant[mant.length-1] == 0) {
++        int var_593 = mant.length;
++		if (mant[var_593-1] == 0) {
+             // a is zero
+             return newInstance(this);
+         }
+@@ -1077,7 +1078,7 @@
+          * must already be an integer since there is no precision left
+          * for any fractional part */
+ 
+-        if (exp >= mant.length) {
++        if (exp >= var_593) {
+             return newInstance(this);
+         }
+ 
+@@ -1085,7 +1086,7 @@
+          * a with the fractional part lopped off.  */
+ 
+         Dfp result = newInstance(this);
+-        for (int i = 0; i < mant.length-result.exp; i++) {
++        for (int i = 0; i < var_593-result.exp; i++) {
+             changed |= result.mant[i] != 0;
+             result.mant[i] = 0;
+         }
+@@ -1118,7 +1119,7 @@
+                     }
+ 
+                     /** If exactly equal to 1/2 and odd then increment */
+-                    if (a.equals(half) && result.exp > 0 && (result.mant[mant.length-result.exp]&1) != 0) {
++                    if (a.equals(half) && result.exp > 0 && (result.mant[var_593-result.exp]&1) != 0) {
+                         a = newInstance(getOne());
+                         a.sign = sign;
+                         result = result.add(a);

@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/lang3/AnnotationUtils.java b/src/main/java/org/apache/commons/lang3/AnnotationUtils.java
+index b369269..37e309e 100644
+--- a/src/main/java/org/apache/commons/lang3/AnnotationUtils.java
++++ b/src/main/java/org/apache/commons/lang3/AnnotationUtils.java
+@@ -241,8 +241,9 @@
+      */
+     private static int hashMember(final String name, final Object value) {
+         final int part1 = name.hashCode() * 127;
+-        if (value.getClass().isArray()) {
+-            return part1 ^ arrayMemberHash(value.getClass().getComponentType(), value);
++        Class<? extends Object> var_270 = value.getClass();
++		if (var_270.isArray()) {
++            return part1 ^ arrayMemberHash(var_270.getComponentType(), value);
+         }
+         if (value instanceof Annotation) {
+             return part1 ^ hashCode((Annotation) value);

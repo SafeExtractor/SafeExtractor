@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/joda/time/chrono/GJLocaleSymbols.java b/src/main/java/org/joda/time/chrono/GJLocaleSymbols.java
+index 2c8fa15..cac71b1 100644
+--- a/src/main/java/org/joda/time/chrono/GJLocaleSymbols.java
++++ b/src/main/java/org/joda/time/chrono/GJLocaleSymbols.java
+@@ -17,6 +17,7 @@
+ 
+ import java.lang.ref.WeakReference;
+ import java.text.DateFormatSymbols;
++import java.util.Comparator;
+ import java.util.Locale;
+ import java.util.TreeMap;
+ import java.util.WeakHashMap;
+@@ -143,7 +144,8 @@
+             integers[i] = Integer.valueOf(i);
+         }
+ 
+-        iParseEras = new TreeMap<String, Integer>(String.CASE_INSENSITIVE_ORDER);
++        Comparator<String> var_368 = String.CASE_INSENSITIVE_ORDER;
++		iParseEras = new TreeMap<String, Integer>(var_368);
+         addSymbols(iParseEras, iEras, integers);
+         if ("en".equals(locale.getLanguage())) {
+             // Include support for parsing "BCE" and "CE" if the language is
+@@ -153,12 +155,12 @@
+             iParseEras.put("CE", integers[1]);
+         }
+ 
+-        iParseDaysOfWeek = new TreeMap<String, Integer>(String.CASE_INSENSITIVE_ORDER);
++        iParseDaysOfWeek = new TreeMap<String, Integer>(var_368);
+         addSymbols(iParseDaysOfWeek, iDaysOfWeek, integers);
+         addSymbols(iParseDaysOfWeek, iShortDaysOfWeek, integers);
+         addNumerals(iParseDaysOfWeek, 1, 7, integers);
+ 
+-        iParseMonths = new TreeMap<String, Integer>(String.CASE_INSENSITIVE_ORDER);
++        iParseMonths = new TreeMap<String, Integer>(var_368);
+         addSymbols(iParseMonths, iMonths, integers);
+         addSymbols(iParseMonths, iShortMonths, integers);
+         addNumerals(iParseMonths, 1, 12, integers);

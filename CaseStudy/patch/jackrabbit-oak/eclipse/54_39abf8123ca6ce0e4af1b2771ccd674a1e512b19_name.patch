@@ -1,0 +1,24 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/version/VersionStorageEditor.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/version/VersionStorageEditor.java
+index 7fc18db..08504a1 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/version/VersionStorageEditor.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/version/VersionStorageEditor.java
+@@ -112,14 +112,15 @@
+     @Override
+     public void propertyAdded(PropertyState after)
+             throws CommitFailedException {
+-        if (after.getName().equals(REP_REMOVE_VERSION_LABELS)) {
++        String name = after.getName();
++		if (name.equals(REP_REMOVE_VERSION_LABELS)) {
+             operations.put(1,
+                     new RemoveVersionLabels(after.getValue(Type.PATHS)));
+-            versionStorageNode.removeProperty(after.getName());
+-        } else if (after.getName().equals(REP_ADD_VERSION_LABELS)) {
++            versionStorageNode.removeProperty(name);
++        } else if (name.equals(REP_ADD_VERSION_LABELS)) {
+             operations.put(2,
+                     new AddVersionLabels(after.getValue(Type.PATHS)));
+-            versionStorageNode.removeProperty(after.getName());
++            versionStorageNode.removeProperty(name);
+         }
+     }
+ 

@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+index bc570e2..f978ade 100644
+--- a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
++++ b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+@@ -293,7 +293,8 @@
+       } else if (n.isName()) {
+         String name = n.getString();
+ 
+-        Var var = t.getScope().getVar(name);
++        Scope var_1656 = t.getScope();
++		Var var = var_1656.getVar(name);
+         if (var != null) {
+           // Only process global functions.
+           if (var.isGlobal()) {
+@@ -311,7 +312,7 @@
+           // If it is not a global, it might be accessing a local of the outer
+           // scope. If that's the case the functions between the variable's
+           // declaring scope and the variable reference scope cannot be moved.
+-          } else if (var.getScope() != t.getScope()){
++          } else if (var.getScope() != var_1656){
+             for (int i = symbolStack.size() - 1; i >= 0; i--) {
+               NameContext context = symbolStack.get(i);
+               if (context.scope == var.getScope()) {

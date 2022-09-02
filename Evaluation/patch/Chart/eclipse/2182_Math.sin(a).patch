@@ -1,0 +1,37 @@
+diff --git a/source/org/jfree/chart/plot/CompassPlot.java b/source/org/jfree/chart/plot/CompassPlot.java
+index 2963422..9d8994f 100644
+--- a/source/org/jfree/chart/plot/CompassPlot.java
++++ b/source/org/jfree/chart/plot/CompassPlot.java
+@@ -626,10 +626,11 @@
+ 
+         outerRadius = radius - 20;
+         innerRadius = radius - 32;
+-        for (int w = 0; w < 360; w += 15) {
++        double var_2182 = Math.sin(a);
++		for (int w = 0; w < 360; w += 15) {
+             a = Math.toRadians(w);
+-            x1 = midX - ((int) (Math.sin(a) * innerRadius));
+-            x2 = midX - ((int) (Math.sin(a) * outerRadius));
++            x1 = midX - ((int) (var_2182 * innerRadius));
++            x2 = midX - ((int) (var_2182 * outerRadius));
+             y1 = midY - ((int) (Math.cos(a) * innerRadius));
+             y2 = midY - ((int) (Math.cos(a) * outerRadius));
+             g2.drawLine(x1, y1, x2, y2);
+@@ -640,7 +641,7 @@
+         outerRadius = 7;
+         for (int w = 45; w < 360; w += 90) {
+             a = Math.toRadians(w);
+-            x1 = midX - ((int) (Math.sin(a) * innerRadius));
++            x1 = midX - ((int) (var_2182 * innerRadius));
+             y1 = midY - ((int) (Math.cos(a) * innerRadius));
+             g2.fillOval(x1 - outerRadius, y1 - outerRadius, 2 * outerRadius,
+                     2 * outerRadius);
+@@ -649,7 +650,7 @@
+         /// Squares
+         for (int w = 0; w < 360; w += 90) {
+             a = Math.toRadians(w);
+-            x1 = midX - ((int) (Math.sin(a) * innerRadius));
++            x1 = midX - ((int) (var_2182 * innerRadius));
+             y1 = midY - ((int) (Math.cos(a) * innerRadius));
+ 
+             Polygon p = new Polygon();

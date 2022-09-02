@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/RuntimeTypeCheck.java b/src/com/google/javascript/jscomp/RuntimeTypeCheck.java
+index 773b7ad..d24f785 100644
+--- a/src/com/google/javascript/jscomp/RuntimeTypeCheck.java
++++ b/src/com/google/javascript/jscomp/RuntimeTypeCheck.java
+@@ -179,10 +179,11 @@
+     private Node findNodeToInsertAfter(Node n) {
+       Node nodeToInsertAfter = findEnclosingConstructorDeclaration(n);
+ 
+-      Node next = nodeToInsertAfter.getNext();
++      Node var_203 = nodeToInsertAfter.getNext();
++	Node next = var_203;
+       while (next != null && isClassDefiningCall(next)) {
+         nodeToInsertAfter = next;
+-        next = nodeToInsertAfter.getNext();
++        next = var_203;
+       }
+ 
+       return nodeToInsertAfter;

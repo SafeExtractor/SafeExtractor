@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+index 4a54655..d00d3b9 100644
+--- a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
++++ b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+@@ -1183,7 +1183,8 @@
+                                 Marker marker,
+                                 Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        Paint var_2476 = marker.getPaint();
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = axis.getRange();
+@@ -1209,7 +1210,7 @@
+                         dataArea.getMaxX(), v);
+             }
+ 
+-            g2.setPaint(marker.getPaint());
++            g2.setPaint(var_2476);
+             g2.setStroke(marker.getStroke());
+             g2.draw(line);
+ 
+@@ -1267,7 +1268,7 @@
+                         low, dataArea.getWidth(),
+                         high - low);
+             }
+-            Paint p = marker.getPaint();
++            Paint p = var_2476;
+             if (p instanceof GradientPaint) {
+                 GradientPaint gp = (GradientPaint) p;
+                 GradientPaintTransformer t = im.getGradientPaintTransformer();

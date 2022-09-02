@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/HessenbergTransformer.java b/src/main/java/org/apache/commons/math3/linear/HessenbergTransformer.java
+index e38600c..483f6fb 100644
+--- a/src/main/java/org/apache/commons/math3/linear/HessenbergTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/HessenbergTransformer.java
+@@ -145,14 +145,15 @@
+             final int m = householderVectors.length;
+             final double[][] h = new double[m][m];
+             for (int i = 0; i < m; ++i) {
+-                if (i > 0) {
++                double[] var_2440 = householderVectors[i];
++				if (i > 0) {
+                     // copy the entry of the lower sub-diagonal
+-                    h[i][i - 1] = householderVectors[i][i - 1];
++                    h[i][i - 1] = var_2440[i - 1];
+                 }
+ 
+                 // copy upper triangular part of the matrix
+                 for (int j = i; j < m; ++j) {
+-                    h[i][j] = householderVectors[i][j];
++                    h[i][j] = var_2440[j];
+                 }
+             }
+             cachedH = MatrixUtils.createRealMatrix(h);

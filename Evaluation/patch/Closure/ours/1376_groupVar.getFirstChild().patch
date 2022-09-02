@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/GroupVariableDeclarations.java b/src/com/google/javascript/jscomp/GroupVariableDeclarations.java
+index 19cc616..43db2c5 100644
+--- a/src/com/google/javascript/jscomp/GroupVariableDeclarations.java
++++ b/src/com/google/javascript/jscomp/GroupVariableDeclarations.java
+@@ -119,7 +119,8 @@
+    *                 into the first VAR node of that scope
+    */
+   private void applyGroupingToVar(Node firstVar, Node groupVar) {
+-    Node child = groupVar.getFirstChild();
++    Node var_1376 = groupVar.getFirstChild();
++	Node child = var_1376;
+     // if some variable is initialized, then the corresponding NAME node will be
+     // stored here
+     Node initializedName = null;
+@@ -168,7 +169,7 @@
+       if (groupVarParent.isFor()) {
+         if (NodeUtil.isForIn(groupVarParent)) {
+           // In For-In loop, we replace the VAR node with a NAME node
+-          Node nameNodeClone = groupVar.getFirstChild().cloneNode();
++          Node nameNodeClone = var_1376.cloneNode();
+           groupVarParent.replaceChild(groupVar, nameNodeClone);
+         } else {
+           // In For loop, we replace the VAR node with an EMPTY node

@@ -1,0 +1,39 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java b/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
+index efbe8a2..fed31e2 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
+@@ -219,13 +219,14 @@
+             U[j][j] = 1;
+         }
+         for (int k = nct - 1; k >= 0; k--) {
+-            if (singularValues[k] != 0) {
++            double[] var_1843 = U[k];
++			if (singularValues[k] != 0) {
+                 for (int j = k + 1; j < n; j++) {
+                     double t = 0;
+                     for (int i = k; i < m; i++) {
+                         t += U[i][k] * U[i][j];
+                     }
+-                    t = -t / U[k][k];
++                    t = -t / var_1843[k];
+                     for (int i = k; i < m; i++) {
+                         U[i][j] += t * U[i][k];
+                     }
+@@ -233,7 +234,7 @@
+                 for (int i = k; i < m; i++) {
+                     U[i][k] = -U[i][k];
+                 }
+-                U[k][k] = 1 + U[k][k];
++                var_1843[k] = 1 + var_1843[k];
+                 for (int i = 0; i < k - 1; i++) {
+                     U[i][k] = 0;
+                 }
+@@ -241,7 +242,7 @@
+                 for (int i = 0; i < m; i++) {
+                     U[i][k] = 0;
+                 }
+-                U[k][k] = 1;
++                var_1843[k] = 1;
+             }
+         }
+ 

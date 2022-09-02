@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java b/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java
+index 4ffd794..ac009cd 100644
+--- a/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java
++++ b/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java
+@@ -708,10 +708,11 @@
+      */
+     public T dotProduct(ArrayFieldVector<T> v)
+         throws DimensionMismatchException {
+-        checkVectorDimensions(v.data.length);
++        T[] var_2260 = v.data;
++		checkVectorDimensions(var_2260.length);
+         T dot = field.getZero();
+         for (int i = 0; i < data.length; i++) {
+-            dot = dot.add(data[i].multiply(v.data[i]));
++            dot = dot.add(data[i].multiply(var_2260[i]));
+         }
+         return dot;
+     }

@@ -1,0 +1,51 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/682_lastTick.getNumber().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/682_lastTick.getNumber().patch
+index ab06e27..1522988 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/682_lastTick.getNumber().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/682_lastTick.getNumber().patch
+@@ -1,40 +1,15 @@
+ diff --git a/source/org/jfree/chart/axis/CyclicNumberAxis.java b/source/org/jfree/chart/axis/CyclicNumberAxis.java
+-index 114e296..cb2d1f6 100644
++index 114e296..9b3a77c 100644
+ --- a/source/org/jfree/chart/axis/CyclicNumberAxis.java
+ +++ b/source/org/jfree/chart/axis/CyclicNumberAxis.java
+-@@ -474,7 +474,8 @@
+-             TextAnchor anchor = null;
+-             TextAnchor rotationAnchor = null;
+-             double angle = 0.0;
+--            if (isVerticalTickLabels()) {
+-+            Number var_682 = lastTick.getNumber();
+-+			if (isVerticalTickLabels()) {
+-                 if (edge == RectangleEdge.TOP) {
+-                     angle = Math.PI / 2.0;
+-                 }
+-@@ -489,7 +490,7 @@
+-                         ? TextAnchor.TOP_RIGHT : TextAnchor.BOTTOM_RIGHT;
+-                     result.remove(result.size() - 1);
+-                     result.add(new CycleBoundTick(
+--                        this.boundMappedToLastCycle, lastTick.getNumber(),
+-+                        this.boundMappedToLastCycle, var_682,
+-                         lastTick.getText(), anchor, anchor,
+-                         lastTick.getAngle())
+-                     );
+-@@ -508,7 +509,7 @@
++@@ -507,8 +507,9 @@
++                         anchor = isInverted()
+                              ? TextAnchor.BOTTOM_LEFT : TextAnchor.BOTTOM_RIGHT;
+                          result.remove(result.size() - 1);
+-                         result.add(new CycleBoundTick(
+--                            this.boundMappedToLastCycle, lastTick.getNumber(),
+-+                            this.boundMappedToLastCycle, var_682,
+-                             lastTick.getText(), anchor, anchor,
+-                             lastTick.getAngle())
+-                         );
+-@@ -526,7 +527,7 @@
+-                             ? TextAnchor.TOP_LEFT : TextAnchor.TOP_RIGHT;
+-                         result.remove(result.size() - 1);
+-                         result.add(new CycleBoundTick(
++-                        result.add(new CycleBoundTick(
+ -                            this.boundMappedToLastCycle, lastTick.getNumber(),
+++                        Number var_682 = lastTick.getNumber();
+++						result.add(new CycleBoundTick(
+ +                            this.boundMappedToLastCycle, var_682,
+                              lastTick.getText(), anchor, anchor,
+                              lastTick.getAngle())

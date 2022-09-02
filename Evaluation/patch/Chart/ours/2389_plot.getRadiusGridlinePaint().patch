@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/renderer/DefaultPolarItemRenderer.java b/source/org/jfree/chart/renderer/DefaultPolarItemRenderer.java
+index 66eaade..b82bbc7 100644
+--- a/source/org/jfree/chart/renderer/DefaultPolarItemRenderer.java
++++ b/source/org/jfree/chart/renderer/DefaultPolarItemRenderer.java
+@@ -253,7 +253,8 @@
+                                     Rectangle2D dataArea) {
+ 
+         g2.setFont(radialAxis.getTickLabelFont());
+-        g2.setPaint(plot.getRadiusGridlinePaint());
++        Paint var_2389 = plot.getRadiusGridlinePaint();
++		g2.setPaint(var_2389);
+         g2.setStroke(plot.getRadiusGridlineStroke());
+ 
+         double axisMin = radialAxis.getLowerBound();
+@@ -270,7 +271,7 @@
+             int upperLeftY = center.y - r;
+             int d = 2 * r;
+             Ellipse2D ring = new Ellipse2D.Double(upperLeftX, upperLeftY, d, d);
+-            g2.setPaint(plot.getRadiusGridlinePaint());
++            g2.setPaint(var_2389);
+             g2.draw(ring);
+         }
+     }

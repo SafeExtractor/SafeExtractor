@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/FastMathCalc.java b/src/main/java/org/apache/commons/math3/util/FastMathCalc.java
+index 07c0bdc..1584ec3 100644
+--- a/src/main/java/org/apache/commons/math3/util/FastMathCalc.java
++++ b/src/main/java/org/apache/commons/math3/util/FastMathCalc.java
+@@ -125,7 +125,8 @@
+             double bs[] = new double[2];
+             double temps[] = new double[2];
+ 
+-            if ( (i & 1) == 0) {
++            double var_4155 = temps[0];
++			if ( (i & 1) == 0) {
+                 // Even, use double angle
+                 xs[0] = SINE_TABLE_A[i/2];
+                 xs[1] = SINE_TABLE_B[i/2];
+@@ -140,7 +141,7 @@
+                 /* Compute cosine */
+                 splitMult(ys, ys, as);
+                 splitMult(xs, xs, temps);
+-                temps[0] = -temps[0];
++                temps[0] = -var_4155;
+                 temps[1] = -temps[1];
+                 splitAdd(as, temps, result);
+                 COSINE_TABLE_A[i] = result[0];
+@@ -165,7 +166,7 @@
+                 /* Compute cosine */
+                 splitMult(ys, bs, result);
+                 splitMult(xs, as, temps);
+-                temps[0] = -temps[0];
++                temps[0] = -var_4155;
+                 temps[1] = -temps[1];
+                 splitAdd(result, temps, result);
+                 COSINE_TABLE_A[i] = result[0];

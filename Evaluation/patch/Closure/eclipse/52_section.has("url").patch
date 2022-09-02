@@ -1,0 +1,23 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
+index e970d3a..51075e8 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
++++ b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
+@@ -163,7 +163,8 @@
+       JSONArray sections = sourceMapRoot.getJSONArray("sections");
+       for (int i = 0, count = sections.length(); i < count; i++) {
+         JSONObject section = sections.getJSONObject(i);
+-        if (section.has("map") && section.has("url")) {
++        boolean var_52 = section.has("url");
++		if (section.has("map") && var_52) {
+           throw new SourceMapParseException(
+               "Invalid map format: section may not have both 'map' and 'url'");
+         }
+@@ -171,7 +172,7 @@
+         int line = offset.getInt("line");
+         int column = offset.getInt("column");
+         String mapSectionContents;
+-        if (section.has("url")) {
++        if (var_52) {
+           String url = section.getString("url");
+           mapSectionContents = sectionSupplier.getSourceMap(url);
+           if (mapSectionContents == null) {

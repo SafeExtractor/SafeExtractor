@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/renderer/xy/VectorRenderer.java b/source/org/jfree/chart/renderer/xy/VectorRenderer.java
+index dc9417d..68dc826 100644
+--- a/source/org/jfree/chart/renderer/xy/VectorRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/VectorRenderer.java
+@@ -59,6 +59,7 @@
+ import org.jfree.chart.plot.PlotRenderingInfo;
+ import org.jfree.chart.plot.XYPlot;
+ import org.jfree.chart.util.PublicCloneable;
++import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.data.Range;
+ import org.jfree.data.xy.VectorXYDataset;
+ import org.jfree.data.xy.XYDataset;
+@@ -229,12 +230,13 @@
+             dx = ((VectorXYDataset) dataset).getVectorXValue(series, item);
+             dy = ((VectorXYDataset) dataset).getVectorYValue(series, item);
+         }
+-        double xx0 = domainAxis.valueToJava2D(x, dataArea,
+-                plot.getDomainAxisEdge());
++        RectangleEdge var_3037 = plot.getDomainAxisEdge();
++		double xx0 = domainAxis.valueToJava2D(x, dataArea,
++                var_3037);
+         double yy0 = rangeAxis.valueToJava2D(y, dataArea,
+                 plot.getRangeAxisEdge());
+         double xx1 = domainAxis.valueToJava2D(x + dx, dataArea,
+-                plot.getDomainAxisEdge());
++                var_3037);
+         double yy1 = rangeAxis.valueToJava2D(y + dy, dataArea,
+                 plot.getRangeAxisEdge());
+         Line2D line;

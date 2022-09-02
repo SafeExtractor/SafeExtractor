@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/rhino/Node.java b/src/com/google/javascript/rhino/Node.java
+index 55aefbe..5a1bca1 100644
+--- a/src/com/google/javascript/rhino/Node.java
++++ b/src/com/google/javascript/rhino/Node.java
+@@ -691,8 +691,10 @@
+     Node prev = getChildBefore(child);
+     if (prev == null)
+         first = first.next;
+-    else
+-        prev.next = child.next;
++	else {
++		Node var_2569 = child.next;
++		prev.next = var_2569;
++	}
+     if (child == last) last = prev;
+     child.next = null;
+     child.parent = null;

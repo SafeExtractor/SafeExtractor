@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 9d1b56c..00a3f43 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -177,10 +177,11 @@
+ 
+     Node parent = n.getParent();
+ 
+-    if (NodeUtil.isAssignmentOp(n) ||
++    Node var_243 = n.getFirstChild();
++	if (NodeUtil.isAssignmentOp(n) ||
+         n.isInc() || n.isDec()) {
+ 
+-      Node lhs = n.getFirstChild();
++      Node lhs = var_243;
+       Node rhs = lhs.getNext();
+ 
+       // Recurse first. Example: dead_x = dead_y = 1; We try to clean up dead_y
+@@ -267,7 +268,7 @@
+       return;
+ 
+     } else {
+-      for (Node c = n.getFirstChild(); c != null;) {
++      for (Node c = var_243; c != null;) {
+         Node next = c.getNext();
+         if (!ControlFlowGraph.isEnteringNewCfgNode(c)) {
+           tryRemoveAssignment(t, c, exprRoot, state);

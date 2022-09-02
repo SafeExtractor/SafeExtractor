@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java b/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java
+index 8b9d8e0..fdbed51 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java
+@@ -398,8 +398,9 @@
+      * @return the requested variance-covariance matrix entry
+      */
+     private double getVcvElement(int i, int j) {
+-        if (this.isSymmetricVCD) {
+-            if (this.varCovData.length > 1) {
++        double[][] var_3905 = this.varCovData;
++		if (this.isSymmetricVCD) {
++            if (var_3905.length > 1) {
+                 //could be stored in upper or lower triangular
+                 if (i == j) {
+                     return varCovData[i][i];
+@@ -416,7 +417,7 @@
+                 }
+             }
+         } else {
+-            return this.varCovData[i][j];
++            return var_3905[i][j];
+         }
+     }
+ }

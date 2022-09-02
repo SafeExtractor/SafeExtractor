@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..b71e61f 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -2742,15 +2742,16 @@
+         // compute r = sqrt(x^2+y^2)
+         final Dfp r = x.multiply(x).add(multiply(this)).sqrt();
+ 
+-        if (x.sign >= 0) {
++        Dfp var_734 = getTwo();
++		if (x.sign >= 0) {
+ 
+             // compute atan2(y, x) = 2 atan(y / (r + x))
+-            return getTwo().multiply(divide(r.add(x)).atan());
++            return var_734.multiply(divide(r.add(x)).atan());
+ 
+         } else {
+ 
+             // compute atan2(y, x) = +/- pi - 2 atan(y / (r - x))
+-            final Dfp tmp = getTwo().multiply(divide(r.subtract(x)).atan());
++            final Dfp tmp = var_734.multiply(divide(r.subtract(x)).atan());
+             final Dfp pmPi = newInstance((tmp.sign <= 0) ? -FastMath.PI : FastMath.PI);
+             return pmPi.subtract(tmp);
+ 

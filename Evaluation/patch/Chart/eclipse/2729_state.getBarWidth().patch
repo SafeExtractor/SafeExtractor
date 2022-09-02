@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/renderer/category/BarRenderer.java b/source/org/jfree/chart/renderer/category/BarRenderer.java
+index 37da044..04ad5c9 100644
+--- a/source/org/jfree/chart/renderer/category/BarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/BarRenderer.java
+@@ -809,17 +809,18 @@
+         int seriesCount = state.getVisibleSeriesCount() >= 0
+                 ? state.getVisibleSeriesCount() : getRowCount();
+         int categoryCount = getColumnCount();
+-        if (seriesCount > 1) {
++        double var_2729 = state.getBarWidth();
++		if (seriesCount > 1) {
+             double seriesGap = space * getItemMargin()
+                                / (categoryCount * (seriesCount - 1));
+             double seriesW = calculateSeriesWidth(space, domainAxis,
+                     categoryCount, seriesCount);
+             barW0 = barW0 + row * (seriesW + seriesGap)
+-                          + (seriesW / 2.0) - (state.getBarWidth() / 2.0);
++                          + (seriesW / 2.0) - (var_2729 / 2.0);
+         }
+         else {
+             barW0 = domainAxis.getCategoryMiddle(column, getColumnCount(),
+-                    dataArea, plot.getDomainAxisEdge()) - state.getBarWidth()
++                    dataArea, plot.getDomainAxisEdge()) - var_2729
+                     / 2.0;
+         }
+         return barW0;

@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/axis/Axis.java b/source/org/jfree/chart/axis/Axis.java
+index cabb331..dc433ea 100644
+--- a/source/org/jfree/chart/axis/Axis.java
++++ b/source/org/jfree/chart/axis/Axis.java
+@@ -1152,14 +1152,15 @@
+             return;  // no need to create entity if we can´t save it anyways...
+         }
+         Rectangle2D hotspot = null;
+-        if (edge.equals(RectangleEdge.TOP)) {
++        double var_292 = dataArea.getWidth();
++		if (edge.equals(RectangleEdge.TOP)) {
+             hotspot = new Rectangle2D.Double(dataArea.getX(),
+-                    state.getCursor(), dataArea.getWidth(),
++                    state.getCursor(), var_292,
+                     cursor - state.getCursor());
+         }
+         else if (edge.equals(RectangleEdge.BOTTOM)) {
+             hotspot = new Rectangle2D.Double(dataArea.getX(), cursor,
+-                    dataArea.getWidth(), state.getCursor() - cursor);
++                    var_292, state.getCursor() - cursor);
+         }
+         else if (edge.equals(RectangleEdge.LEFT)) {
+             hotspot = new Rectangle2D.Double(state.getCursor(),

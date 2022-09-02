@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/BiDiagonalTransformer.java b/src/main/java/org/apache/commons/math3/linear/BiDiagonalTransformer.java
+index c2c5002..46b62e7 100644
+--- a/src/main/java/org/apache/commons/math3/linear/BiDiagonalTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/BiDiagonalTransformer.java
+@@ -105,13 +105,14 @@
+             for (int k = p - 1; k >= diagOffset; --k) {
+                 final double[] hK = householderVectors[k];
+                 ua[k][k] = 1;
+-                if (hK[k - diagOffset] != 0.0) {
++                double var_2071 = hK[k - diagOffset];
++				if (var_2071 != 0.0) {
+                     for (int j = k; j < m; ++j) {
+                         double alpha = 0;
+                         for (int i = k; i < m; ++i) {
+                             alpha -= ua[i][j] * householderVectors[i][k - diagOffset];
+                         }
+-                        alpha /= diagonal[k - diagOffset] * hK[k - diagOffset];
++                        alpha /= diagonal[k - diagOffset] * var_2071;
+ 
+                         for (int i = k; i < m; ++i) {
+                             ua[i][j] += -alpha * householderVectors[i][k - diagOffset];

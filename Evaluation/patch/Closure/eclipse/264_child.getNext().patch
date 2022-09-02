@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeCollectPropertyAssignments.java b/src/com/google/javascript/jscomp/PeepholeCollectPropertyAssignments.java
+index decfc10..d11323f 100644
+--- a/src/com/google/javascript/jscomp/PeepholeCollectPropertyAssignments.java
++++ b/src/com/google/javascript/jscomp/PeepholeCollectPropertyAssignments.java
+@@ -47,7 +47,8 @@
+       if (!child.isVar() && !NodeUtil.isExprAssign(child)) {
+         continue;
+       }
+-      if (!isPropertyAssignmentToName(child.getNext())) {
++      Node var_264 = child.getNext();
++	if (!isPropertyAssignmentToName(var_264)) {
+         // Quick check to see if there's anything to collapse.
+         continue;
+       }
+@@ -65,7 +66,7 @@
+       }
+ 
+       Node propertyCandidate;
+-      while ((propertyCandidate = child.getNext()) != null) {
++      while ((propertyCandidate = var_264) != null) {
+         // This does not infinitely loop because collectProperty always
+         // removes propertyCandidate from its parent when it returns true.
+         if (!collectProperty(propertyCandidate, name.getString(), value)) {

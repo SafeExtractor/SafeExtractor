@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/correlation/PearsonsCorrelation.java b/src/main/java/org/apache/commons/math3/stat/correlation/PearsonsCorrelation.java
+index 0234ec4..77d1a45 100644
+--- a/src/main/java/org/apache/commons/math3/stat/correlation/PearsonsCorrelation.java
++++ b/src/main/java/org/apache/commons/math3/stat/correlation/PearsonsCorrelation.java
+@@ -166,12 +166,13 @@
+         double[][] out = new double[nVars][nVars];
+         for (int i = 0; i < nVars; i++) {
+             for (int j = 0; j < nVars; j++) {
+-                if (i == j) {
+-                    out[i][j] = 0d;
++                double[] var_3722 = out[i];
++				if (i == j) {
++                    var_3722[j] = 0d;
+                 } else {
+                     double r = correlationMatrix.getEntry(i, j);
+                     double t = FastMath.abs(r * FastMath.sqrt((nObs - 2)/(1 - r * r)));
+-                    out[i][j] = 2 * tDistribution.cumulativeProbability(-t);
++                    var_3722[j] = 2 * tDistribution.cumulativeProbability(-t);
+                 }
+             }
+         }

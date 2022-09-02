@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..1b3e8ba 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -603,13 +603,14 @@
+     // assumptions.
+     passes.add(markUnnormalized);
+ 
+-    if (options.coalesceVariableNames) {
++    boolean var_1787 = options.foldConstants;
++	if (options.coalesceVariableNames) {
+       passes.add(coalesceVariableNames);
+ 
+       // coalesceVariables creates identity assignments and more redundant code
+       // that can be removed, rerun the peephole optimizations to clean them
+       // up.
+-      if (options.foldConstants) {
++      if (var_1787) {
+         passes.add(peepholeOptimizations);
+       }
+     }
+@@ -650,7 +651,7 @@
+       passes.add(renameLabels);
+     }
+ 
+-    if (options.foldConstants) {
++    if (var_1787) {
+       passes.add(latePeepholeOptimizations);
+     }
+ 

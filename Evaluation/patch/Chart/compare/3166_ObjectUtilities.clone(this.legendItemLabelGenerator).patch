@@ -1,0 +1,35 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3166_ObjectUtilities.clone(this.legendItemLabelGenerator).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/3166_ObjectUtilities.clone(this.legendItemLabelGenerator).patch
+index b8c4b7d..1ffc9da 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3166_ObjectUtilities.clone(this.legendItemLabelGenerator).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/3166_ObjectUtilities.clone(this.legendItemLabelGenerator).patch
+@@ -1,25 +1,15 @@
+ diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+-index a558724..de9fa2d 100644
++index a558724..15d5e2a 100644
+ --- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+ +++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+-@@ -1749,9 +1749,10 @@
+-             clone.baseToolTipGenerator = (XYToolTipGenerator) pc.clone();
++@@ -1750,8 +1750,9 @@
+          }
+  
+--        if (clone.legendItemLabelGenerator instanceof PublicCloneable) {
+-+        Object var_3166 = ObjectUtilities.clone(this.legendItemLabelGenerator);
+-+		if (clone.legendItemLabelGenerator instanceof PublicCloneable) {
+-             clone.legendItemLabelGenerator = (XYSeriesLabelGenerator)
+--                    ObjectUtilities.clone(this.legendItemLabelGenerator);
+-+                    var_3166;
+-         }
+-         if (clone.legendItemToolTipGenerator instanceof PublicCloneable) {
+-             clone.legendItemToolTipGenerator = (XYSeriesLabelGenerator)
+-@@ -1769,7 +1770,7 @@
+- 
+          if (clone.legendItemLabelGenerator instanceof PublicCloneable) {
+-             clone.legendItemLabelGenerator = (XYSeriesLabelGenerator)
++-            clone.legendItemLabelGenerator = (XYSeriesLabelGenerator)
+ -                    ObjectUtilities.clone(this.legendItemLabelGenerator);
+++            Object var_3166 = ObjectUtilities.clone(this.legendItemLabelGenerator);
+++			clone.legendItemLabelGenerator = (XYSeriesLabelGenerator)
+ +                    var_3166;
+          }
+          if (clone.legendItemToolTipGenerator instanceof PublicCloneable) {

@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/UnreachableCodeElimination.java b/src/com/google/javascript/jscomp/UnreachableCodeElimination.java
+index b5ffbd1..e9f870f 100644
+--- a/src/com/google/javascript/jscomp/UnreachableCodeElimination.java
++++ b/src/com/google/javascript/jscomp/UnreachableCodeElimination.java
+@@ -192,7 +192,8 @@
+     }
+ 
+     private void removeDeadExprStatementSafely(Node n) {
+-      Node parent = n.getParent();
++      Node var_557 = n.getParent();
++	Node parent = var_557;
+       if (n.isEmpty() ||
+           (n.isBlock() && !n.hasChildren())) {
+         // Not always trivial to remove, let FoldConstants work its magic later.
+@@ -248,7 +249,7 @@
+         logger.fine("Removing " + n.toString());
+       }
+ 
+-      NodeUtil.removeChild(n.getParent(), n);
++      NodeUtil.removeChild(var_557, n);
+     }
+   }
+ 

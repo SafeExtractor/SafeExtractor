@@ -1,0 +1,24 @@
+diff --git a/Users/safe/paper/CaseStudy/patch/nifi/eclipse/24_b12cf8a6d28c2a025831fff9363adf2b13199071_now.patch b/Users/safe/paper/CaseStudy/patch/nifi/ours/24_b12cf8a6d28c2a025831fff9363adf2b13199071_now.patch
+index 69a5048..2ad40c9 100644
+--- a/Users/safe/paper/CaseStudy/patch/nifi/eclipse/24_b12cf8a6d28c2a025831fff9363adf2b13199071_now.patch
++++ b/Users/safe/paper/CaseStudy/patch/nifi/ours/24_b12cf8a6d28c2a025831fff9363adf2b13199071_now.patch
+@@ -1,16 +1,14 @@
+ diff --git a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/scheduling/TimerDrivenSchedulingAgent.java b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/scheduling/TimerDrivenSchedulingAgent.java
+-index fcd901f..5f85b92 100644
++index fcd901f..a55f875 100644
+ --- a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/scheduling/TimerDrivenSchedulingAgent.java
+ +++ b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/scheduling/TimerDrivenSchedulingAgent.java
+-@@ -139,8 +139,9 @@
++@@ -139,7 +139,8 @@
+                      // If the component is yielded, cancel its future and re-submit it to run again
+                      // after the yield has expired.
+                      final long newYieldExpiration = connectable.getYieldExpiration();
+ -                    if (newYieldExpiration > System.currentTimeMillis()) {
+--                        final long yieldMillis = newYieldExpiration - System.currentTimeMillis();
+ +                    long now = System.currentTimeMillis();
+ +					if (newYieldExpiration > now) {
+-+                        final long yieldMillis = newYieldExpiration - now;
++                         final long yieldMillis = newYieldExpiration - System.currentTimeMillis();
+                          final ScheduledFuture<?> scheduledFuture = futureRef.get();
+                          if (scheduledFuture == null) {
+-                             return;

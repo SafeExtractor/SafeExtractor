@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/rhino/jstype/FunctionType.java b/src/com/google/javascript/rhino/jstype/FunctionType.java
+index 7388448..fdf5252 100644
+--- a/src/com/google/javascript/rhino/jstype/FunctionType.java
++++ b/src/com/google/javascript/rhino/jstype/FunctionType.java
+@@ -1025,19 +1025,20 @@
+       // is not a subtype of function(this:Foo), our override check treats
+       // this as an error. Let's punt on all this for now.
+       // TODO(nicksantos): fix this.
+-      boolean treatThisTypesAsCovariant =
++      JSType var_2613 = other.typeOfThis;
++	boolean treatThisTypesAsCovariant =
+         // An interface 'this'-type is non-restrictive.
+         // In practical terms, if C implements I, and I has a method m,
+         // then any m doesn't necessarily have to C#m's 'this'
+         // type doesn't need to match I.
+-        (other.typeOfThis.toObjectType() != null &&
+-             other.typeOfThis.toObjectType().getConstructor() != null &&
+-             other.typeOfThis.toObjectType().getConstructor().isInterface()) ||
++        (var_2613.toObjectType() != null &&
++             var_2613.toObjectType().getConstructor() != null &&
++             var_2613.toObjectType().getConstructor().isInterface()) ||
+ 
+         // If one of the 'this' types is covariant of the other,
+         // then we'll treat them as covariant (see comment above).
+-        other.typeOfThis.isSubtype(this.typeOfThis) ||
+-        this.typeOfThis.isSubtype(other.typeOfThis);
++        var_2613.isSubtype(this.typeOfThis) ||
++        this.typeOfThis.isSubtype(var_2613);
+       return treatThisTypesAsCovariant && this.call.isSubtype(other.call);
+     }
+ 

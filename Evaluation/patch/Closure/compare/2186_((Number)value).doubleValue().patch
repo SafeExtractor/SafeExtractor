@@ -1,0 +1,35 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2186_((Number)value).doubleValue().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2186_((Number)value).doubleValue().patch
+index 3eb841a..9d49b64 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2186_((Number)value).doubleValue().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2186_((Number)value).doubleValue().patch
+@@ -1,25 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/jsonml/JsonMLUtil.java b/src/com/google/javascript/jscomp/jsonml/JsonMLUtil.java
+-index 519d06a..d021e3f 100644
++index 519d06a..2784a0d 100644
+ --- a/src/com/google/javascript/jscomp/jsonml/JsonMLUtil.java
+ +++ b/src/com/google/javascript/jscomp/jsonml/JsonMLUtil.java
+-@@ -86,8 +86,9 @@
+-         continue;
++@@ -87,7 +87,8 @@
+        }
+  
+--      if (value instanceof Number) {
++       if (value instanceof Number) {
+ -        value = ((Number) value).doubleValue();
+-+      double var_2186 = ((Number) value).doubleValue();
+-+	if (value instanceof Number) {
+-+        value = var_2186;
+++        double var_2186 = ((Number) value).doubleValue();
+++		value = var_2186;
+        }
+  
+        switch (tag) {
+-@@ -108,7 +109,7 @@
+- 
+-           // we want all numbers to be stored as double values
+-           if (value instanceof Number) {
+--            jsonMLElement.setAttribute(tag, ((Number) value).doubleValue());
+-+            jsonMLElement.setAttribute(tag, var_2186);
+-           } else {
+-             jsonMLElement.setAttribute(tag, value);
+-           }

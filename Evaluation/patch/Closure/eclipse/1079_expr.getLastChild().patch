@@ -1,0 +1,57 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..cf15297 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -1054,7 +1054,8 @@
+     Preconditions.checkNotNull(scope);
+     Preconditions.checkNotNull(expr);
+     ConcreteType ret;
+-    switch (expr.getType()) {
++    Node var_1079 = expr.getLastChild();
++	switch (expr.getType()) {
+       case Token.NAME:
+         StaticSlot<ConcreteType> slot = scope.getSlot(expr.getString());
+ 
+@@ -1074,28 +1075,28 @@
+       case Token.ASSIGN:
+         // Using the right-hand side is more specific since the left hand side
+         // is a variable of some sort that can be assigned elsewhere.
+-        ret = inferConcreteType(scope, expr.getLastChild());
++        ret = inferConcreteType(scope, var_1079);
+         break;
+ 
+       case Token.COMMA:
+-        ret = inferConcreteType(scope, expr.getLastChild());
++        ret = inferConcreteType(scope, var_1079);
+         break;
+ 
+       case Token.AND:
+         // Since a reference type is always true, only the right hand side could
+         // actually be returned.
+-        ret = inferConcreteType(scope, expr.getLastChild());
++        ret = inferConcreteType(scope, var_1079);
+         break;
+ 
+       case Token.OR:
+         ret = inferConcreteType(scope, expr.getFirstChild()).unionWith(
+-                   inferConcreteType(scope, expr.getLastChild()));
++                   inferConcreteType(scope, var_1079));
+         break;
+ 
+       case Token.HOOK:
+         ret = inferConcreteType(scope,
+                    expr.getFirstChild().getNext()).unionWith(
+-                       inferConcreteType(scope, expr.getLastChild()));
++                       inferConcreteType(scope, var_1079));
+         break;
+ 
+       case Token.GETPROP:
+@@ -1104,7 +1105,7 @@
+           ret = recvType;
+           break;
+         }
+-        Node prop = expr.getLastChild();
++        Node prop = var_1079;
+         String propName = prop.getString();
+         ConcreteType type = recvType.getPropertyType(propName);
+         if ("prototype".equals(propName)) {

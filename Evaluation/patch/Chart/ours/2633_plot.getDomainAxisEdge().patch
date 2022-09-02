@@ -1,0 +1,33 @@
+diff --git a/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java b/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
+index eaf0b57..65e0d11 100644
+--- a/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
++++ b/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
+@@ -86,6 +86,7 @@
+ import org.jfree.chart.plot.CategoryPlot;
+ import org.jfree.chart.plot.PlotOrientation;
+ import org.jfree.chart.util.PaintUtilities;
++import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.chart.util.SerialUtilities;
+ import org.jfree.data.category.CategoryDataset;
+ 
+@@ -339,8 +340,9 @@
+         Number value = dataset.getValue(row, column);
+         if (value != null) {
+             // current data point...
+-            double x1 = domainAxis.getCategoryMiddle(column, getColumnCount(),
+-                    dataArea, plot.getDomainAxisEdge());
++            RectangleEdge var_2633 = plot.getDomainAxisEdge();
++			double x1 = domainAxis.getCategoryMiddle(column, getColumnCount(),
++                    dataArea, var_2633);
+             double y1 = rangeAxis.valueToJava2D(value.doubleValue(), dataArea,
+                     plot.getRangeAxisEdge());
+             g2.setPaint(getItemPaint(row, column, selected));
+@@ -400,7 +402,7 @@
+                         double previous = previousValue.doubleValue();
+                         double x0 = domainAxis.getCategoryMiddle(column - 1,
+                                 getColumnCount(), dataArea,
+-                                plot.getDomainAxisEdge());
++                                var_2633);
+                         double y0 = rangeAxis.valueToJava2D(previous, dataArea,
+                                 plot.getRangeAxisEdge());
+                         g2.setPaint(getItemPaint(row, column, selected));

@@ -1,0 +1,37 @@
+diff --git a/source/org/jfree/chart/plot/CategoryPlot.java b/source/org/jfree/chart/plot/CategoryPlot.java
+index 24a84fd..13a50d0 100644
+--- a/source/org/jfree/chart/plot/CategoryPlot.java
++++ b/source/org/jfree/chart/plot/CategoryPlot.java
+@@ -3636,11 +3636,12 @@
+         // on data)
+         crosshairState.setAnchorX(Double.NaN);
+         crosshairState.setAnchorY(Double.NaN);
+-        if (anchor != null) {
++        PlotOrientation var_1907 = getOrientation();
++		if (anchor != null) {
+             ValueAxis rangeAxis = getRangeAxis();
+             if (rangeAxis != null) {
+                 double y;
+-                if (getOrientation() == PlotOrientation.VERTICAL) {
++                if (var_1907 == PlotOrientation.VERTICAL) {
+                     y = rangeAxis.java2DToValue(anchor.getY(), dataArea,
+                             getRangeAxisEdge());
+                 }
+@@ -3813,7 +3814,7 @@
+         RectangleEdge yAxisEdge = getRangeAxisEdge();
+         if (!this.rangeCrosshairLockedOnData && anchor != null) {
+             double yy;
+-            if (getOrientation() == PlotOrientation.VERTICAL) {
++            if (var_1907 == PlotOrientation.VERTICAL) {
+                 yy = yAxis.java2DToValue(anchor.getY(), dataArea, yAxisEdge);
+             }
+             else {
+@@ -3826,7 +3827,7 @@
+             double y = getRangeCrosshairValue();
+             Paint paint = getRangeCrosshairPaint();
+             Stroke stroke = getRangeCrosshairStroke();
+-            drawRangeCrosshair(g2, dataArea, getOrientation(), y, yAxis,
++            drawRangeCrosshair(g2, dataArea, var_1907, y, yAxis,
+                     stroke, paint);
+         }
+ 

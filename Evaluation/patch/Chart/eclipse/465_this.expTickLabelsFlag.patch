@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/axis/LogarithmicAxis.java b/source/org/jfree/chart/axis/LogarithmicAxis.java
+index 1f440bd..1c955eb 100644
+--- a/source/org/jfree/chart/axis/LogarithmicAxis.java
++++ b/source/org/jfree/chart/axis/LogarithmicAxis.java
+@@ -919,7 +919,8 @@
+ 
+             for (int j = 0; j < jEndCount; j++) {
+                 //for each tick to be displayed
+-                if (this.smallLogFlag) {
++                boolean var_465 = this.expTickLabelsFlag;
++				if (this.smallLogFlag) {
+                     //small log values in use
+                     tickVal = Math.pow(10, i) + (Math.pow(10, i) * j);
+                     if (j == 0) {
+@@ -929,7 +930,7 @@
+                             tickLabel = "10^" + i;   //create "log10"-type label
+                         }
+                         else {    //not "log10"-type label
+-                            if (this.expTickLabelsFlag) {
++                            if (var_465) {
+                                 //if flag then
+                                 tickLabel = "1e" + i;  //create "1e#"-type label
+                             }
+@@ -989,7 +990,7 @@
+                                             + "10^" + Math.abs(i));
+                                 }
+                                 else {
+-                                    if (this.expTickLabelsFlag) {
++                                    if (var_465) {
+                                            //create "1e#"-type label
+                                         tickLabel = (((i < 0) ? "-" : "")
+                                                 + "1e" + Math.abs(i));

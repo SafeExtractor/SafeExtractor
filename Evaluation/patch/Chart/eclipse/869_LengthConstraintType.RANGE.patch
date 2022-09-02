@@ -1,0 +1,46 @@
+diff --git a/source/org/jfree/chart/block/GridArrangement.java b/source/org/jfree/chart/block/GridArrangement.java
+index 7aa4631..d546671 100644
+--- a/source/org/jfree/chart/block/GridArrangement.java
++++ b/source/org/jfree/chart/block/GridArrangement.java
+@@ -103,14 +103,15 @@
+                           RectangleConstraint constraint) {
+         LengthConstraintType w = constraint.getWidthConstraintType();
+         LengthConstraintType h = constraint.getHeightConstraintType();
+-        if (w == LengthConstraintType.NONE) {
++        LengthConstraintType var_869 = LengthConstraintType.RANGE;
++		if (w == LengthConstraintType.NONE) {
+             if (h == LengthConstraintType.NONE) {
+                 return arrangeNN(container, g2);
+             }
+             else if (h == LengthConstraintType.FIXED) {
+                 return arrangeNF(container, g2, constraint);
+             }
+-            else if (h == LengthConstraintType.RANGE) {
++            else if (h == var_869) {
+                 // find optimum height, then map to range
+                 return arrangeNR(container, g2, constraint);
+             }
+@@ -123,12 +124,12 @@
+             else if (h == LengthConstraintType.FIXED) {
+                 return arrangeFF(container, g2, constraint);
+             }
+-            else if (h == LengthConstraintType.RANGE) {
++            else if (h == var_869) {
+                 // find optimum height and map to range
+                 return arrangeFR(container, g2, constraint);
+             }
+         }
+-        else if (w == LengthConstraintType.RANGE) {
++        else if (w == var_869) {
+             // find optimum width and map to range
+             if (h == LengthConstraintType.NONE) {
+                 // find optimum height
+@@ -138,7 +139,7 @@
+                 // fixed width
+                 return arrangeRF(container, g2, constraint);
+             }
+-            else if (h == LengthConstraintType.RANGE) {
++            else if (h == var_869) {
+                 return arrangeRR(container, g2, constraint);
+             }
+         }

@@ -1,0 +1,38 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java
+index aca170e..9e1cb87 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/BSPTree.java
+@@ -493,18 +493,19 @@
+ 
+         final Hyperplane<S> cHyperplane = cut.getHyperplane();
+         final Hyperplane<S> sHyperplane = sub.getHyperplane();
+-        switch (sub.side(cHyperplane)) {
++        BSPTree<S> var_1725 = minus.copySelf();
++		switch (sub.side(cHyperplane)) {
+         case PLUS :
+         { // the partitioning sub-hyperplane is entirely in the plus sub-tree
+             final BSPTree<S> split = plus.split(sub);
+             if (cut.side(sHyperplane) == Side.PLUS) {
+                 split.plus =
+-                    new BSPTree<S>(cut.copySelf(), split.plus, minus.copySelf(), attribute);
++                    new BSPTree<S>(cut.copySelf(), split.plus, var_1725, attribute);
+                 split.plus.condense();
+                 split.plus.parent = split;
+             } else {
+                 split.minus =
+-                    new BSPTree<S>(cut.copySelf(), split.minus, minus.copySelf(), attribute);
++                    new BSPTree<S>(cut.copySelf(), split.minus, var_1725, attribute);
+                 split.minus.condense();
+                 split.minus.parent = split;
+             }
+@@ -546,8 +547,8 @@
+         }
+         default :
+             return cHyperplane.sameOrientationAs(sHyperplane) ?
+-                   new BSPTree<S>(sub, plus.copySelf(),  minus.copySelf(), attribute) :
+-                   new BSPTree<S>(sub, minus.copySelf(), plus.copySelf(),  attribute);
++                   new BSPTree<S>(sub, plus.copySelf(),  var_1725, attribute) :
++                   new BSPTree<S>(sub, var_1725, plus.copySelf(),  attribute);
+         }
+ 
+     }

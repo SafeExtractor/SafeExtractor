@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/lang3/concurrent/ConcurrentUtils.java b/src/main/java/org/apache/commons/lang3/concurrent/ConcurrentUtils.java
+index 1bc080a..a6dd3b1 100644
+--- a/src/main/java/org/apache/commons/lang3/concurrent/ConcurrentUtils.java
++++ b/src/main/java/org/apache/commons/lang3/concurrent/ConcurrentUtils.java
+@@ -156,12 +156,13 @@
+      * @param ex the exception in question
+      */
+     private static void throwCause(final ExecutionException ex) {
+-        if (ex.getCause() instanceof RuntimeException) {
+-            throw (RuntimeException) ex.getCause();
++        Throwable var_341 = ex.getCause();
++		if (var_341 instanceof RuntimeException) {
++            throw (RuntimeException) var_341;
+         }
+ 
+-        if (ex.getCause() instanceof Error) {
+-            throw (Error) ex.getCause();
++        if (var_341 instanceof Error) {
++            throw (Error) var_341;
+         }
+     }
+ 

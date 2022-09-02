@@ -1,0 +1,25 @@
+diff --git a/storm-server/src/main/java/org/apache/storm/scheduler/resource/strategies/scheduling/BaseResourceAwareStrategy.java b/storm-server/src/main/java/org/apache/storm/scheduler/resource/strategies/scheduling/BaseResourceAwareStrategy.java
+index a474ccc..163009a 100644
+--- a/storm-server/src/main/java/org/apache/storm/scheduler/resource/strategies/scheduling/BaseResourceAwareStrategy.java
++++ b/storm-server/src/main/java/org/apache/storm/scheduler/resource/strategies/scheduling/BaseResourceAwareStrategy.java
+@@ -34,6 +34,7 @@
+ import org.apache.storm.scheduler.Cluster;
+ import org.apache.storm.scheduler.Component;
+ import org.apache.storm.scheduler.ExecutorDetails;
++import org.apache.storm.scheduler.SchedulerAssignment;
+ import org.apache.storm.scheduler.TopologyDetails;
+ import org.apache.storm.scheduler.WorkerSlot;
+ import org.apache.storm.scheduler.resource.RAS_Node;
+@@ -278,9 +279,10 @@
+                 String rackId = objectId;
+                 //Get execs already assigned in rack
+                 Collection<ExecutorDetails> execs = new LinkedList<>();
+-                if (cluster.getAssignmentById(topoId) != null) {
++                SchedulerAssignment assignment = cluster.getAssignmentById(topoId);
++				if (assignment != null) {
+                     for (Map.Entry<ExecutorDetails, WorkerSlot> entry :
+-                        cluster.getAssignmentById(topoId).getExecutorToSlot().entrySet()) {
++                        assignment.getExecutorToSlot().entrySet()) {
+                         String nodeId = entry.getValue().getNodeId();
+                         String hostname = idToNode(nodeId).getHostname();
+                         ExecutorDetails exec1 = entry.getKey();

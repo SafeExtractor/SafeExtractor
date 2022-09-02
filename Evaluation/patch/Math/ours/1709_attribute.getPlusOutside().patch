@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/RegionFactory.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/RegionFactory.java
+index 0b94b5d..651417a 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/RegionFactory.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/RegionFactory.java
+@@ -143,8 +143,9 @@
+         if (attribute != null) {
+             final SubHyperplane<S> plusOutside =
+                 (attribute.getPlusInside() == null) ? null : attribute.getPlusInside().copySelf();
+-            final SubHyperplane<S> plusInside  =
+-                (attribute.getPlusOutside() == null) ? null : attribute.getPlusOutside().copySelf();
++            SubHyperplane<S> var_1709 = attribute.getPlusOutside();
++			final SubHyperplane<S> plusInside  =
++                (var_1709 == null) ? null : var_1709.copySelf();
+             attribute = new BoundaryAttribute<S>(plusOutside, plusInside);
+         }
+ 

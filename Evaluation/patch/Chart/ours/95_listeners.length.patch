@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/ChartPanel.java b/source/org/jfree/chart/ChartPanel.java
+index 001049a..fbf67e0 100644
+--- a/source/org/jfree/chart/ChartPanel.java
++++ b/source/org/jfree/chart/ChartPanel.java
+@@ -2056,7 +2056,8 @@
+ 
+         Object[] listeners = this.chartMouseListeners.getListeners(
+                 ChartMouseListener.class);
+-        if (listeners.length == 0) {
++        int var_95 = listeners.length;
++		if (var_95 == 0) {
+             return;
+         }
+         Insets insets = getInsets();
+@@ -2075,7 +2076,7 @@
+         // (see bug report 1556951)
+         if (this.chart != null) {
+             ChartMouseEvent event = new ChartMouseEvent(getChart(), e, entity);
+-            for (int i = listeners.length - 1; i >= 0; i -= 1) {
++            for (int i = var_95 - 1; i >= 0; i -= 1) {
+                 ((ChartMouseListener) listeners[i]).chartMouseMoved(event);
+             }
+         }

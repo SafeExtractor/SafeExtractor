@@ -1,0 +1,41 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/427_str.substring(offset).patch b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/427_str.substring(offset).patch
+index 4159627..65051e9 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/427_str.substring(offset).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/427_str.substring(offset).patch
+@@ -1,32 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/lang3/text/WordUtils.java b/src/main/java/org/apache/commons/lang3/text/WordUtils.java
+-index 7f29b59..ccea5c7 100644
++index 7f29b59..b4f88e2 100644
+ --- a/src/main/java/org/apache/commons/lang3/text/WordUtils.java
+ +++ b/src/main/java/org/apache/commons/lang3/text/WordUtils.java
+-@@ -99,7 +99,8 @@
+-         int offset = 0;
+-         final StringBuilder wrappedLine = new StringBuilder(inputLineLength + 32);
+-         
+--        while (inputLineLength - offset > wrapLength) {
+-+        String var_427 = str.substring(offset);
+-+		while (inputLineLength - offset > wrapLength) {
+-             if (str.charAt(offset) == ' ') {
+-                 offset++;
+-                 continue;
+-@@ -127,7 +128,7 @@
++@@ -127,7 +127,8 @@
+                          wrappedLine.append(newLineStr);
+                          offset = spaceToWrapAt + 1;
+                      } else {
+ -                        wrappedLine.append(str.substring(offset));
+-+                        wrappedLine.append(var_427);
+++                        String var_427 = str.substring(offset);
+++						wrappedLine.append(var_427);
+                          offset = inputLineLength;
+                      }
+                  }
+-@@ -135,7 +136,7 @@
+-         }
+- 
+-         // Whatever is left in line is short enough to just pass through
+--        wrappedLine.append(str.substring(offset));
+-+        wrappedLine.append(var_427);
+- 
+-         return wrappedLine.toString();
+-     }

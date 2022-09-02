@@ -1,0 +1,22 @@
+diff --git a/src/org/mockito/internal/util/reflection/GenericMetadataSupport.java b/src/org/mockito/internal/util/reflection/GenericMetadataSupport.java
+index a96dac4..28762d7 100644
+--- a/src/org/mockito/internal/util/reflection/GenericMetadataSupport.java
++++ b/src/org/mockito/internal/util/reflection/GenericMetadataSupport.java
+@@ -197,14 +197,15 @@
+      * @return {@link GenericMetadataSupport} representing this generic return type.
+      */
+     public GenericMetadataSupport resolveGenericReturnType(Method method) {
+-        Type genericReturnType = method.getGenericReturnType();
++        Type var_122 = method.getGenericReturnType();
++		Type genericReturnType = var_122;
+         // logger.log("Method '" + method.toGenericString() + "' has return type : " + genericReturnType.getClass().getInterfaces()[0].getSimpleName() + " : " + genericReturnType);
+ 
+         if (genericReturnType instanceof Class) {
+             return new NotGenericReturnTypeSupport(genericReturnType);
+         }
+         if (genericReturnType instanceof ParameterizedType) {
+-            return new ParameterizedReturnType(this, method.getTypeParameters(), (ParameterizedType) method.getGenericReturnType());
++            return new ParameterizedReturnType(this, method.getTypeParameters(), (ParameterizedType) var_122);
+         }
+         if (genericReturnType instanceof TypeVariable) {
+             return new TypeVariableReturnType(this, method.getTypeParameters(), (TypeVariable) genericReturnType);

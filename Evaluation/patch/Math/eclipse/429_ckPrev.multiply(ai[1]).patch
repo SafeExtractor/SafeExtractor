@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialsUtils.java b/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialsUtils.java
+index 6046954..c845760 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialsUtils.java
++++ b/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialsUtils.java
+@@ -418,7 +418,8 @@
+                 final BigFraction ckPrev = ck;
+                 ck     = coefficients.get(startK + i);
+                 ckm1   = coefficients.get(startKm1 + i);
+-                coefficients.add(ck.multiply(ai[0]).add(ckPrev.multiply(ai[1])).subtract(ckm1.multiply(ai[2])));
++                BigFraction var_429 = ckPrev.multiply(ai[1]);
++				coefficients.add(ck.multiply(ai[0]).add(var_429).subtract(ckm1.multiply(ai[2])));
+             }
+ 
+             // degree k coefficient

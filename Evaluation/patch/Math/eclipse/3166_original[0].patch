@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/MultiDirectionalSimplex.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/MultiDirectionalSimplex.java
+index bf41c70..0c01501 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/MultiDirectionalSimplex.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/MultiDirectionalSimplex.java
+@@ -194,10 +194,11 @@
+                                                   final PointValuePair[] original,
+                                                   final double coeff,
+                                                   final Comparator<PointValuePair> comparator) {
+-        final double[] xSmallest = original[0].getPointRef();
++        PointValuePair var_3166 = original[0];
++		final double[] xSmallest = var_3166.getPointRef();
+         // Perform a linear transformation on all the simplex points,
+         // except the first one.
+-        setPoint(0, original[0]);
++        setPoint(0, var_3166);
+         final int dim = getDimension();
+         for (int i = 1; i < getSize(); i++) {
+             final double[] xOriginal = original[i].getPointRef();

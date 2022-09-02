@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/deps/PathUtil.java b/src/com/google/javascript/jscomp/deps/PathUtil.java
+index 68efd2a..7f66982 100644
+--- a/src/com/google/javascript/jscomp/deps/PathUtil.java
++++ b/src/com/google/javascript/jscomp/deps/PathUtil.java
+@@ -21,6 +21,7 @@
+ import com.google.common.base.Strings;
+ import com.google.common.collect.Lists;
+ 
++import java.util.ArrayList;
+ import java.util.Arrays;
+ import java.util.List;
+ 
+@@ -175,7 +176,9 @@
+     String[] targetFragments = targetPath.split("/");
+ 
+     int i = -1;
+-    do {
++    ArrayList<String> var_2150 = Lists.newArrayList(
++	    Arrays.asList(targetFragments).listIterator(i));
++	do {
+       i += 1;
+       if (i == baseFragments.length && i == targetFragments.length) {
+         // Eg) base: /java/com/google
+@@ -187,8 +190,7 @@
+         //   target: /java/com/google/c/ui
+         //   result: c/ui
+         return Joiner.on("/").join(
+-            Lists.newArrayList(
+-                Arrays.asList(targetFragments).listIterator(i)));
++            var_2150);
+       } else if (i == targetFragments.length) {
+         // Eg) base: /java/com/google/c/ui
+         //   target: /java/com/google
+@@ -203,6 +205,6 @@
+     //   result: ../common/base
+     return Strings.repeat("../", baseFragments.length - i) +
+         Joiner.on("/").join(
+-            Lists.newArrayList(Arrays.asList(targetFragments).listIterator(i)));
++            var_2150);
+   }
+ }

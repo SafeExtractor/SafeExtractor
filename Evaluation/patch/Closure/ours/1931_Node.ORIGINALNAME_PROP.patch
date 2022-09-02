@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessCommonJSModules.java b/src/com/google/javascript/jscomp/ProcessCommonJSModules.java
+index 6777957..e1699cd 100644
+--- a/src/com/google/javascript/jscomp/ProcessCommonJSModules.java
++++ b/src/com/google/javascript/jscomp/ProcessCommonJSModules.java
+@@ -271,14 +271,15 @@
+         if (suffix.equals(name)) {
+           return;
+         }
+-        if (EXPORTS.equals(name)) {
++        int var_1931 = Node.ORIGINALNAME_PROP;
++		if (EXPORTS.equals(name)) {
+           n.setString(suffix);
+-          n.putProp(Node.ORIGINALNAME_PROP, EXPORTS);
++          n.putProp(var_1931, EXPORTS);
+         } else {
+           Scope.Var var = t.getScope().getVar(name);
+           if (var != null && var.isGlobal()) {
+             n.setString(name + "$$" + suffix);
+-            n.putProp(Node.ORIGINALNAME_PROP, name);
++            n.putProp(var_1931, name);
+           }
+         }
+       }

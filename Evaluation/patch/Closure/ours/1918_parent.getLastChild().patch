@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..fd1ce71 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -747,9 +747,10 @@
+         return parent;
+       case Token.TRY:
+         // If we are coming out of the TRY block...
+-        if (parent.getFirstChild() == node) {
++        Node var_1918 = parent.getLastChild();
++		if (parent.getFirstChild() == node) {
+           if (NodeUtil.hasFinally(parent)) { // and have FINALLY block.
+-            return computeFallThrough(parent.getLastChild());
++            return computeFallThrough(var_1918);
+           } else { // and have no FINALLY.
+             return computeFollowNode(fromNode, parent, cfa);
+           }
+@@ -761,7 +762,7 @@
+             return computeFollowNode(fromNode, parent, cfa);
+           }
+         // If we are coming out of the FINALLY block...
+-        } else if (parent.getLastChild() == node){
++        } else if (var_1918 == node){
+           if (cfa != null) {
+             for (Node finallyNode : cfa.finallyMap.get(parent)) {
+               cfa.createEdge(fromNode, Branch.ON_EX, finallyNode);

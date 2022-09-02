@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/AVLTree.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/AVLTree.java
+index 7070060..b1028d8 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/AVLTree.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/AVLTree.java
+@@ -496,12 +496,13 @@
+                 skew = Skew.BALANCED;
+                 return true;
+             case RIGHT_HIGH:
+-                if (right.skew == Skew.RIGHT_HIGH) {
++                Skew var_1774 = right.skew;
++				if (var_1774 == Skew.RIGHT_HIGH) {
+                     rotateCCW();
+                     skew      = Skew.BALANCED;
+                     left.skew = Skew.BALANCED;
+                     return true;
+-                } else if (right.skew == Skew.BALANCED) {
++                } else if (var_1774 == Skew.BALANCED) {
+                     rotateCCW();
+                     skew      = Skew.LEFT_HIGH;
+                     left.skew = Skew.RIGHT_HIGH;

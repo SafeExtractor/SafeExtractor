@@ -1,0 +1,45 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..3085f01 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -505,10 +505,11 @@
+     public static Dfp pow(Dfp x, final Dfp y) {
+ 
+         // make sure we don't mix number with different precision
+-        if (x.getField().getRadixDigits() != y.getField().getRadixDigits()) {
++        byte var_814 = Dfp.QNAN;
++		if (x.getField().getRadixDigits() != y.getField().getRadixDigits()) {
+             x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+             final Dfp result = x.newInstance(x.getZero());
+-            result.nans = Dfp.QNAN;
++            result.nans = var_814;
+             return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, result);
+         }
+ 
+@@ -535,7 +536,7 @@
+         if (x.isNaN() || y.isNaN()) {
+             // Test for NaNs
+             x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x.newInstance((byte)1, Dfp.QNAN));
++            return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x.newInstance((byte)1, var_814));
+         }
+ 
+         // X == 0
+@@ -591,7 +592,7 @@
+ 
+         if (x.equals(one) && y.classify() == Dfp.INFINITE) {
+             x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x.newInstance((byte)1, Dfp.QNAN));
++            return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x.newInstance((byte)1, var_814));
+         }
+ 
+         if (x.classify() == Dfp.INFINITE) {
+@@ -625,7 +626,7 @@
+ 
+         if (invert && !y.rint().equals(y)) {
+             x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x.newInstance((byte)1, Dfp.QNAN));
++            return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x.newInstance((byte)1, var_814));
+         }
+ 
+         // End special cases

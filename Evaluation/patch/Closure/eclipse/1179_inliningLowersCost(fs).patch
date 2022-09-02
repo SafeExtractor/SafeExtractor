@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/InlineFunctions.java b/src/com/google/javascript/jscomp/InlineFunctions.java
+index 008ffe5..58138ea 100644
+--- a/src/com/google/javascript/jscomp/InlineFunctions.java
++++ b/src/com/google/javascript/jscomp/InlineFunctions.java
+@@ -687,12 +687,13 @@
+    * @return Whether inlining the references lowers the overall cost.
+    */
+   private boolean mimimizeCost(FunctionState fs) {
+-    if (!inliningLowersCost(fs)) {
++    boolean var_1179 = inliningLowersCost(fs);
++	if (!var_1179) {
+       // Try again without Block inlining references
+       if (fs.hasBlockInliningReferences()) {
+         fs.setRemove(false);
+         fs.removeBlockInliningReferences();
+-        if (!fs.hasReferences() || !inliningLowersCost(fs)) {
++        if (!fs.hasReferences() || !var_1179) {
+           return false;
+         }
+       } else {

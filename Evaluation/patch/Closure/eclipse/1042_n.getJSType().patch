@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..cfffd12 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -596,7 +596,8 @@
+     // TODO(user): handle object literals like { a: new Foo };
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      switch (n.getType()) {
++      JSType var_1042 = n.getJSType();
++	switch (n.getType()) {
+         case Token.VAR:
+           // Variable declaration, e.g. var a = b;
+           Node name;
+@@ -627,7 +628,7 @@
+                   (ConcreteScope) inferConcreteType(getTopScope(),
+                       n.getFirstChild()).getScope();
+               if (scope != null) {
+-                type = createType(n.getJSType());
++                type = createType(var_1042);
+                 if (type.isNone() || type.isAll()) {
+                   break;
+                 }
+@@ -642,7 +643,7 @@
+         case Token.FUNCTION:
+           // Function declaration, e.g. function Foo() {};
+           if (NodeUtil.isFunctionDeclaration(n)) {
+-            if (!n.getJSType().isNoObjectType()) {
++            if (!var_1042.isNoObjectType()) {
+               ConcreteFunctionType type = createConcreteFunction(n, scope);
+               scope.declareSlot(n.getFirstChild().getString(), n, type);
+ 

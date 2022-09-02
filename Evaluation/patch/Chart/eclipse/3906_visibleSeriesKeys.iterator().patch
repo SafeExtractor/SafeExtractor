@@ -1,0 +1,56 @@
+diff --git a/source/org/jfree/data/general/DatasetUtilities.java b/source/org/jfree/data/general/DatasetUtilities.java
+index 548d684..0fc7496 100644
+--- a/source/org/jfree/data/general/DatasetUtilities.java
++++ b/source/org/jfree/data/general/DatasetUtilities.java
+@@ -1060,12 +1060,13 @@
+         double minimum = Double.POSITIVE_INFINITY;
+         double maximum = Double.NEGATIVE_INFINITY;
+         int columnCount = dataset.getColumnCount();
+-        if (includeInterval
++        Iterator var_3906 = visibleSeriesKeys.iterator();
++		if (includeInterval
+                 && dataset instanceof BoxAndWhiskerCategoryDataset) {
+             // handle special case of BoxAndWhiskerDataset
+             BoxAndWhiskerCategoryDataset bx
+                     = (BoxAndWhiskerCategoryDataset) dataset;
+-            Iterator iterator = visibleSeriesKeys.iterator();
++            Iterator iterator = var_3906;
+             while (iterator.hasNext()) {
+                 Comparable seriesKey = (Comparable) iterator.next();
+                 int series = dataset.getRowIndex(seriesKey);
+@@ -1094,7 +1095,7 @@
+             // we want to measure
+             IntervalCategoryDataset icd = (IntervalCategoryDataset) dataset;
+             Number lvalue, uvalue;
+-            Iterator iterator = visibleSeriesKeys.iterator();
++            Iterator iterator = var_3906;
+             while (iterator.hasNext()) {
+                 Comparable seriesKey = (Comparable) iterator.next();
+                 int series = dataset.getRowIndex(seriesKey);
+@@ -1116,7 +1117,7 @@
+             // we want to measure
+             MultiValueCategoryDataset mvcd
+                     = (MultiValueCategoryDataset) dataset;
+-            Iterator iterator = visibleSeriesKeys.iterator();
++            Iterator iterator = var_3906;
+             while (iterator.hasNext()) {
+                 Comparable seriesKey = (Comparable) iterator.next();
+                 int series = dataset.getRowIndex(seriesKey);
+@@ -1142,7 +1143,7 @@
+             // we want to measure
+             StatisticalCategoryDataset scd
+                     = (StatisticalCategoryDataset) dataset;
+-            Iterator iterator = visibleSeriesKeys.iterator();
++            Iterator iterator = var_3906;
+             while (iterator.hasNext()) {
+                 Comparable seriesKey = (Comparable) iterator.next();
+                 int series = dataset.getRowIndex(seriesKey);
+@@ -1168,7 +1169,7 @@
+         }
+         else {
+             // handle the standard case (plain CategoryDataset)
+-            Iterator iterator = visibleSeriesKeys.iterator();
++            Iterator iterator = var_3906;
+             while (iterator.hasNext()) {
+                 Comparable seriesKey = (Comparable) iterator.next();
+                 int series = dataset.getRowIndex(seriesKey);

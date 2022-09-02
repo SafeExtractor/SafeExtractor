@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/ClosureRewriteClass.java b/src/com/google/javascript/jscomp/ClosureRewriteClass.java
+index 4c1fcea..5b3d016 100644
+--- a/src/com/google/javascript/jscomp/ClosureRewriteClass.java
++++ b/src/com/google/javascript/jscomp/ClosureRewriteClass.java
+@@ -336,11 +336,12 @@
+ 
+     for (MemberDefinition def : cls.staticProps) {
+       // example: ctr.prop = value
+-      block.addChildToBack(
++      Node var_851 = IR.string(def.name.getString());
++	block.addChildToBack(
+           fixupSrcref(IR.exprResult(
+           fixupSrcref(IR.assign(
+               IR.getprop(cls.name.cloneTree(),
+-                  IR.string(def.name.getString()).srcref(def.name))
++                  var_851.srcref(def.name))
+                   .srcref(def.name),
+               def.value)).setJSDocInfo(def.info))));
+       // Handle inner class definitions.

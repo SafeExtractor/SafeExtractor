@@ -1,0 +1,37 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/1800_iter.value().patch b/Users/safe/paper/Evaluation/patch/Math/ours/1800_iter.value().patch
+index b0c6981..44a3229 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/1800_iter.value().patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/1800_iter.value().patch
+@@ -1,28 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java b/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+-index 55d2b6a..60a6a99 100644
++index 55d2b6a..bac79dd 100644
+ --- a/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+ +++ b/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+-@@ -426,11 +426,12 @@
+-         checkVectorDimensions(v.getDimension());
+-         Iterator iter = entries.iterator();
+-         double res = 0;
+--        while (iter.hasNext()) {
+-+        double var_1800 = iter.value();
+-+		while (iter.hasNext()) {
++@@ -430,7 +430,8 @@
+              iter.advance();
+              int key = iter.key();
+              double delta;
+ -            delta = iter.value() - v.getEntry(key);
+-+            delta = var_1800 - v.getEntry(key);
+++            double var_1800 = iter.value();
+++			delta = var_1800 - v.getEntry(key);
+              res += delta * delta;
+          }
+          iter = v.getEntries().iterator();
+-@@ -438,7 +439,7 @@
+-             iter.advance();
+-             int key = iter.key();
+-             if (!entries.containsKey(key)) {
+--                final double value = iter.value();
+-+                final double value = var_1800;
+-                 res += value * value;
+-             }
+-         }

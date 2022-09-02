@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
+index 2ff86a0..c2469ac 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
+@@ -202,9 +202,10 @@
+     final double[] y0  = equations.getCompleteState();
+     final double[] y = y0.clone();
+     final int stages = c.length + 1;
+-    final double[][] yDotK = new double[stages][y.length];
++    int var_2668 = y.length;
++	final double[][] yDotK = new double[stages][var_2668];
+     final double[] yTmp    = y0.clone();
+-    final double[] yDotTmp = new double[y.length];
++    final double[] yDotTmp = new double[var_2668];
+ 
+     // set up an interpolator sharing the integrator arrays
+     final RungeKuttaStepInterpolator interpolator = (RungeKuttaStepInterpolator) prototype.copy();
+@@ -301,7 +302,7 @@
+       System.arraycopy(yTmp, 0, y, 0, y0.length);
+       System.arraycopy(yDotK[stages - 1], 0, yDotTmp, 0, y0.length);
+       stepStart = acceptStep(interpolator, y, yDotTmp, t);
+-      System.arraycopy(y, 0, yTmp, 0, y.length);
++      System.arraycopy(y, 0, yTmp, 0, var_2668);
+ 
+       if (!isLastStep) {
+ 

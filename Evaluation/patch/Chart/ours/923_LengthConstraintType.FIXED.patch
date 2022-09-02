@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/block/BorderArrangement.java b/source/org/jfree/chart/block/BorderArrangement.java
+index b3ae54b..65d74e7 100644
+--- a/source/org/jfree/chart/block/BorderArrangement.java
++++ b/source/org/jfree/chart/block/BorderArrangement.java
+@@ -133,22 +133,23 @@
+         Size2D contentSize = null;
+         LengthConstraintType w = contentConstraint.getWidthConstraintType();
+         LengthConstraintType h = contentConstraint.getHeightConstraintType();
+-        if (w == LengthConstraintType.NONE) {
++        LengthConstraintType var_923 = LengthConstraintType.FIXED;
++		if (w == LengthConstraintType.NONE) {
+             if (h == LengthConstraintType.NONE) {
+                 contentSize = arrangeNN(container, g2);
+             }
+-            else if (h == LengthConstraintType.FIXED) {
++            else if (h == var_923) {
+                 throw new RuntimeException("Not implemented.");
+             }
+             else if (h == LengthConstraintType.RANGE) {
+                 throw new RuntimeException("Not implemented.");
+             }
+         }
+-        else if (w == LengthConstraintType.FIXED) {
++        else if (w == var_923) {
+             if (h == LengthConstraintType.NONE) {
+                 contentSize = arrangeFN(container, g2, constraint.getWidth());
+             }
+-            else if (h == LengthConstraintType.FIXED) {
++            else if (h == var_923) {
+                 contentSize = arrangeFF(container, g2, constraint);
+             }
+             else if (h == LengthConstraintType.RANGE) {
+@@ -159,7 +160,7 @@
+             if (h == LengthConstraintType.NONE) {
+                 throw new RuntimeException("Not implemented.");
+             }
+-            else if (h == LengthConstraintType.FIXED) {
++            else if (h == var_923) {
+                 throw new RuntimeException("Not implemented.");
+             }
+             else if (h == LengthConstraintType.RANGE) {

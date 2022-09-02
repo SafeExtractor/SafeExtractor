@@ -1,0 +1,35 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/1272_iterator.next().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/1272_iterator.next().patch
+index 1312a27..d5c7da7 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/1272_iterator.next().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/1272_iterator.next().patch
+@@ -1,25 +1,14 @@
+ diff --git a/source/org/jfree/chart/panel/CrosshairOverlay.java b/source/org/jfree/chart/panel/CrosshairOverlay.java
+-index 2fc3cdd..ac3885f 100644
++index 2fc3cdd..95f5fec 100644
+ --- a/source/org/jfree/chart/panel/CrosshairOverlay.java
+ +++ b/source/org/jfree/chart/panel/CrosshairOverlay.java
+-@@ -238,8 +238,9 @@
+-         ValueAxis xAxis = plot.getDomainAxis();
++@@ -239,7 +239,8 @@
+          RectangleEdge xAxisEdge = plot.getDomainAxisEdge();
+          Iterator iterator = this.xCrosshairs.iterator();
+--        while (iterator.hasNext()) {
++         while (iterator.hasNext()) {
+ -            Crosshair ch = (Crosshair) iterator.next();
+-+        Object var_1272 = iterator.next();
+-+		while (iterator.hasNext()) {
+-+            Crosshair ch = (Crosshair) var_1272;
+++            Object var_1272 = iterator.next();
+++			Crosshair ch = (Crosshair) var_1272;
+              if (ch.isVisible()) {
+                  double x = ch.getValue();
+                  double xx = xAxis.valueToJava2D(x, dataArea, xAxisEdge);
+-@@ -255,7 +256,7 @@
+-         RectangleEdge yAxisEdge = plot.getRangeAxisEdge();
+-         iterator = this.yCrosshairs.iterator();
+-         while (iterator.hasNext()) {
+--            Crosshair ch = (Crosshair) iterator.next();
+-+            Crosshair ch = (Crosshair) var_1272;
+-             if (ch.isVisible()) {
+-                 double y = ch.getValue();
+-                 double yy = yAxis.valueToJava2D(y, dataArea, yAxisEdge);

@@ -1,0 +1,45 @@
+diff --git a/source/org/jfree/chart/ui/LCBLayout.java b/source/org/jfree/chart/ui/LCBLayout.java
+index b63c82b..cf1784d 100644
+--- a/source/org/jfree/chart/ui/LCBLayout.java
++++ b/source/org/jfree/chart/ui/LCBLayout.java
+@@ -174,21 +174,22 @@
+             Insets insets = parent.getInsets();
+             int ncomponents = parent.getComponentCount();
+             int nrows = ncomponents / COLUMNS;
+-            for (int c = 0; c < COLUMNS; c++) {
++            int[] var_3554 = this.rowHeight;
++			for (int c = 0; c < COLUMNS; c++) {
+                 for (int r = 0; r < nrows; r++) {
+                     Component component = parent.getComponent(r * COLUMNS + c);
+                     Dimension d = component.getPreferredSize();
+                     if (this.colWidth[c] < d.width) {
+                         this.colWidth[c] = d.width;
+                     }
+-                    if (this.rowHeight[r] < d.height) {
+-                        this.rowHeight[r] = d.height;
++                    if (var_3554[r] < d.height) {
++                        var_3554[r] = d.height;
+                     }
+                 }
+             }
+             int totalHeight = this.vGap * (nrows - 1);
+             for (int r = 0; r < nrows; r++) {
+-                totalHeight = totalHeight + this.rowHeight[r];
++                totalHeight = totalHeight + var_3554[r];
+             }
+             int totalWidth = this.colWidth[0] + this.colWidth[1]
+                                                     + this.colWidth[2];
+@@ -208,11 +209,11 @@
+                         Component component = parent.getComponent(i);
+                         Dimension d = component.getPreferredSize();
+                         int h = d.height;
+-                        int adjust = (this.rowHeight[r] - h) / 2;
++                        int adjust = (var_3554[r] - h) / 2;
+                         parent.getComponent(i).setBounds(x, y + adjust,
+                                 this.colWidth[c], h);
+                     }
+-                    y = y + this.rowHeight[r] + this.vGap;
++                    y = y + var_3554[r] + this.vGap;
+                 }
+                 x = x + this.colWidth[c];
+                 if (c == 0) {

@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/ChartPanel.java b/source/org/jfree/chart/ChartPanel.java
+index 001049a..966bf23 100644
+--- a/source/org/jfree/chart/ChartPanel.java
++++ b/source/org/jfree/chart/ChartPanel.java
+@@ -821,16 +821,17 @@
+     public void setChart(JFreeChart chart) {
+ 
+         // stop listening for changes to the existing chart
+-        if (this.chart != null) {
+-            this.chart.removeChangeListener(this);
+-            this.chart.removeProgressListener(this);
++        JFreeChart var_54 = this.chart;
++		if (var_54 != null) {
++            var_54.removeChangeListener(this);
++            var_54.removeProgressListener(this);
+         }
+ 
+         // add the new chart
+         this.chart = chart;
+         if (chart != null) {
+-            this.chart.addChangeListener(this);
+-            this.chart.addProgressListener(this);
++            var_54.addChangeListener(this);
++            var_54.addProgressListener(this);
+             Plot plot = chart.getPlot();
+             this.domainZoomable = false;
+             this.rangeZoomable = false;

@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/needle/PointerNeedle.java b/source/org/jfree/chart/needle/PointerNeedle.java
+index bc32723..e6e561f 100644
+--- a/source/org/jfree/chart/needle/PointerNeedle.java
++++ b/source/org/jfree/chart/needle/PointerNeedle.java
+@@ -46,6 +46,7 @@
+ package org.jfree.chart.needle;
+ 
+ import java.awt.Graphics2D;
++import java.awt.geom.AffineTransform;
+ import java.awt.geom.GeneralPath;
+ import java.awt.geom.Point2D;
+ import java.awt.geom.Rectangle2D;
+@@ -93,9 +94,10 @@
+ 
+         if ((rotate != null) && (angle != 0)) {
+             /// we have rotation huston, please spin me
+-            getTransform().setToRotation(angle, rotate.getX(), rotate.getY());
+-            shape1.transform(getTransform());
+-            shape2.transform(getTransform());
++            AffineTransform var_1262 = getTransform();
++			var_1262.setToRotation(angle, rotate.getX(), rotate.getY());
++            shape1.transform(var_1262);
++            shape2.transform(var_1262);
+         }
+ 
+         if (getFillPaint() != null) {

@@ -1,0 +1,23 @@
+diff --git a/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/LuceneIndexEditorProvider.java b/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/LuceneIndexEditorProvider.java
+index 4931a42..d23f87f 100644
+--- a/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/LuceneIndexEditorProvider.java
++++ b/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/LuceneIndexEditorProvider.java
+@@ -155,14 +155,15 @@
+ 
+                 //TODO Also check if index has been done once
+ 
+-                writerFactory = new LocalIndexWriterFactory(getDocumentHolder(commitContext),
+-                        indexingContext.getIndexPath());
++                String indexPath = indexingContext.getIndexPath();
++				writerFactory = new LocalIndexWriterFactory(getDocumentHolder(commitContext),
++                        indexPath);
+ 
+                 //IndexDefinition from tracker might differ from one passed here for reindexing
+                 //case which should be fine. However reusing existing definition would avoid
+                 //creating definition instance for each commit as this gets executed for each commit
+                 if (indexTracker != null){
+-                    indexDefinition = indexTracker.getIndexDefinition(indexingContext.getIndexPath());
++                    indexDefinition = indexTracker.getIndexDefinition(indexPath);
+                     if (indexDefinition != null && !indexDefinition.hasMatchingNodeTypeReg(root)){
+                         log.debug("Detected change in NodeType registry for index {}. Would not use " +
+                                 "existing index definition", indexDefinition.getIndexPath());

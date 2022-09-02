@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 9d1b56c..ba94e02 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -362,8 +362,9 @@
+     }
+ 
+     if (n.isName() && variable.equals(n.getString())) {
+-      if (NodeUtil.isVarOrSimpleAssignLhs(n, n.getParent())) {
+-        Preconditions.checkState(n.getParent().isAssign());
++      Node var_256 = n.getParent();
++	if (NodeUtil.isVarOrSimpleAssignLhs(n, var_256)) {
++        Preconditions.checkState(var_256.isAssign());
+         // The expression to which the assignment is made is evaluated before
+         // the RHS is evaluated (normal left to right evaluation) but the KILL
+         // occurs after the RHS is evaluated.

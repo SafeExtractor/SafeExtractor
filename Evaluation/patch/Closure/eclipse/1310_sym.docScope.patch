@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+index 5f0a14c..13301d4 100644
+--- a/src/com/google/javascript/jscomp/SymbolTable.java
++++ b/src/com/google/javascript/jscomp/SymbolTable.java
+@@ -891,7 +891,8 @@
+             type = typePos.getItem().getJSType();
+           }
+ 
+-          if (sym.docScope == null) {
++          SymbolScope var_1310 = sym.docScope;
++		if (var_1310 == null) {
+             sym.docScope = new SymbolScope(null /* root */,
+                 null /* parent scope */, null /* type of this */, sym);
+           }
+@@ -901,9 +902,9 @@
+           // if our assumptions are wrong. (We do not want to put the symbol
+           // table into an invalid state).
+           Symbol existingSymbol =
+-              isAnySymbolDeclared(name, paramNode, sym.docScope);
++              isAnySymbolDeclared(name, paramNode, var_1310);
+           if (existingSymbol == null) {
+-            declareSymbol(name, type, type == null, sym.docScope, paramNode,
++            declareSymbol(name, type, type == null, var_1310, paramNode,
+                 null /* info */);
+           }
+         } else {

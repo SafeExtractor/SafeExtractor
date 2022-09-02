@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..dc66956 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -144,7 +144,8 @@
+ 
+     cc.startSourceMapping(n);
+ 
+-    switch (type) {
++    final int var_1562 = Token.INC;
++	switch (type) {
+       case Token.TRY: {
+         Preconditions.checkState(first.getNext().isBlock() &&
+                 !first.getNext().hasMoreThanOneChild());
+@@ -498,10 +499,10 @@
+             last, getContextForNonEmptyExpression(context), false);
+         break;
+ 
+-      case Token.INC:
++      case var_1562:
+       case Token.DEC: {
+         Preconditions.checkState(childCount == 1);
+-        String o = type == Token.INC ? "++" : "--";
++        String o = type == var_1562 ? "++" : "--";
+         int postProp = n.getIntProp(Node.INCRDECR_PROP);
+         // A non-zero post-prop value indicates a post inc/dec, default of zero
+         // is a pre-inc/dec.

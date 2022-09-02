@@ -1,0 +1,33 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..1d6f937 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -49,6 +49,7 @@
+ import java.nio.charset.Charset;
+ import java.util.ArrayList;
+ import java.util.Collections;
++import java.util.HashSet;
+ import java.util.List;
+ import java.util.Map;
+ import java.util.Set;
+@@ -336,8 +337,9 @@
+       }
+     }
+ 
+-    if (!config.outputManifests.isEmpty()) {
+-      Set<String> uniqueNames = Sets.newHashSet();
++    HashSet<String> var_404 = Sets.newHashSet();
++	if (!config.outputManifests.isEmpty()) {
++      Set<String> uniqueNames = var_404;
+       for (String filename : config.outputManifests) {
+         if (!uniqueNames.add(filename)) {
+           throw new FlagUsageException("output_manifest flags specify " +
+@@ -347,7 +349,7 @@
+     }
+ 
+     if (!config.outputBundles.isEmpty()) {
+-      Set<String> uniqueNames = Sets.newHashSet();
++      Set<String> uniqueNames = var_404;
+       for (String filename : config.outputBundles) {
+         if (!uniqueNames.add(filename)) {
+           throw new FlagUsageException("output_bundle flags specify " +

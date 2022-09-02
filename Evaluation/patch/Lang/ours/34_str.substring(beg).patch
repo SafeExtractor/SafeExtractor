@@ -1,0 +1,39 @@
+diff --git a/src/main/java/org/apache/commons/lang3/StringUtils.java b/src/main/java/org/apache/commons/lang3/StringUtils.java
+index 04b53fa..cce4ab2 100644
+--- a/src/main/java/org/apache/commons/lang3/StringUtils.java
++++ b/src/main/java/org/apache/commons/lang3/StringUtils.java
+@@ -2723,13 +2723,14 @@
+         while (end < len) {
+             end = str.indexOf(separator, beg);
+ 
+-            if (end > -1) {
++            String var_34 = str.substring(beg);
++			if (end > -1) {
+                 if (end > beg) {
+                     numberOfSubstrings += 1;
+ 
+                     if (numberOfSubstrings == max) {
+                         end = len;
+-                        substrings.add(str.substring(beg));
++                        substrings.add(var_34);
+                     } else {
+                         // The following is OK, because String.substring( beg, end ) excludes
+                         // the character at the position 'end'.
+@@ -2746,7 +2747,7 @@
+                         numberOfSubstrings += 1;
+                         if (numberOfSubstrings == max) {
+                             end = len;
+-                            substrings.add(str.substring(beg));
++                            substrings.add(var_34);
+                         } else {
+                             substrings.add(EMPTY);
+                         }
+@@ -2755,7 +2756,7 @@
+                 }
+             } else {
+                 // String.substring( beg ) goes from 'beg' to the end of the String.
+-                substrings.add(str.substring(beg));
++                substrings.add(var_34);
+                 end = len;
+             }
+         }

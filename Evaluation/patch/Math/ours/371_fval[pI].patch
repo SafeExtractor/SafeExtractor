@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolator.java
+index 9465c2c..a490532 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolator.java
+@@ -110,8 +110,9 @@
+             for (int j = 0; j < yLen; j++) {
+                 final int nJ = nextIndex(j, yLen);
+                 final int pJ = previousIndex(j);
+-                d2FdXdY[i][j] = (fval[nI][nJ] - fval[nI][pJ] -
+-                                 fval[pI][nJ] + fval[pI][pJ]) /
++                double[] var_371 = fval[pI];
++				d2FdXdY[i][j] = (fval[nI][nJ] - fval[nI][pJ] -
++                                 var_371[nJ] + var_371[pJ]) /
+                     ((xval[nI] - xval[pI]) * (yval[nJ] - yval[pJ]));
+             }
+         }

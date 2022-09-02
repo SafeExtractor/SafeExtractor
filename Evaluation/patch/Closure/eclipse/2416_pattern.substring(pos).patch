@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/regex/RegExpTree.java b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+index c0c470a..7445f78 100644
+--- a/src/com/google/javascript/jscomp/regex/RegExpTree.java
++++ b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+@@ -456,9 +456,10 @@
+        * Parses n hex digits to a code-unit.
+        */
+       private char parseHex(int n) {
+-        if (pos + n > limit) {
++        String var_2416 = pattern.substring(pos);
++		if (pos + n > limit) {
+           throw new IllegalArgumentException(
+-              "Abbreviated hex escape " + pattern.substring(pos));
++              "Abbreviated hex escape " + var_2416);
+         }
+         int result = 0;
+         while (--n >= 0) {
+@@ -471,7 +472,7 @@
+           } else if ('A' <= ch && ch <= 'F') {
+             digit = ch + (10 - 'A');
+           } else {
+-            throw new IllegalArgumentException(pattern.substring(pos));
++            throw new IllegalArgumentException(var_2416);
+           }
+           ++pos;
+           result = (result << 4) | digit;

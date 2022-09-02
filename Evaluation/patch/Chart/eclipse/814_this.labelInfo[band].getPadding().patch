@@ -1,0 +1,43 @@
+diff --git a/source/org/jfree/chart/axis/PeriodAxis.java b/source/org/jfree/chart/axis/PeriodAxis.java
+index 3c0bc0f..487e660 100644
+--- a/source/org/jfree/chart/axis/PeriodAxis.java
++++ b/source/org/jfree/chart/axis/PeriodAxis.java
+@@ -94,6 +94,7 @@
+ import org.jfree.chart.text.TextUtilities;
+ import org.jfree.chart.util.PublicCloneable;
+ import org.jfree.chart.util.RectangleEdge;
++import org.jfree.chart.util.RectangleInsets;
+ import org.jfree.chart.util.SerialUtilities;
+ import org.jfree.data.Range;
+ import org.jfree.data.time.Day;
+@@ -824,12 +825,13 @@
+         // work out the initial gap
+         double delta1 = 0.0;
+         FontMetrics fm = g2.getFontMetrics(this.labelInfo[band].getLabelFont());
+-        if (edge == RectangleEdge.BOTTOM) {
+-            delta1 = this.labelInfo[band].getPadding().calculateTopOutset(
++        RectangleInsets var_814 = this.labelInfo[band].getPadding();
++		if (edge == RectangleEdge.BOTTOM) {
++            delta1 = var_814.calculateTopOutset(
+                     fm.getHeight());
+         }
+         else if (edge == RectangleEdge.TOP) {
+-            delta1 = this.labelInfo[band].getPadding().calculateBottomOutset(
++            delta1 = var_814.calculateBottomOutset(
+                     fm.getHeight());
+         }
+         state.moveCursor(delta1, edge);
+@@ -940,11 +942,11 @@
+             used = b.getHeight();
+             // work out the trailing gap
+             if (edge == RectangleEdge.BOTTOM) {
+-                used += this.labelInfo[band].getPadding().calculateBottomOutset(
++                used += var_814.calculateBottomOutset(
+                         fm.getHeight());
+             }
+             else if (edge == RectangleEdge.TOP) {
+-                used += this.labelInfo[band].getPadding().calculateTopOutset(
++                used += var_814.calculateTopOutset(
+                         fm.getHeight());
+             }
+         }

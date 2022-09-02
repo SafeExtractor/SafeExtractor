@@ -1,0 +1,50 @@
+diff --git a/source/org/jfree/chart/plot/dial/DialPlot.java b/source/org/jfree/chart/plot/dial/DialPlot.java
+index acb9f7c..5dbbc64 100644
+--- a/source/org/jfree/chart/plot/dial/DialPlot.java
++++ b/source/org/jfree/chart/plot/dial/DialPlot.java
+@@ -534,7 +534,8 @@
+     public void draw(Graphics2D g2, Rectangle2D area, Point2D anchor,
+             PlotState parentState, PlotRenderingInfo info) {
+ 
+-        Shape origClip = g2.getClip();
++        Shape var_2307 = g2.getClip();
++		Shape origClip = var_2307;
+         g2.setClip(area);
+ 
+         // first, expand the viewing area into a drawing frame
+@@ -543,7 +544,7 @@
+         // draw the background if there is one...
+         if (this.background != null && this.background.isVisible()) {
+             if (this.background.isClippedToWindow()) {
+-                Shape savedClip = g2.getClip();
++                Shape savedClip = var_2307;
+                 g2.clip(this.dialFrame.getWindow(frame));
+                 this.background.draw(g2, this, frame, area);
+                 g2.setClip(savedClip);
+@@ -558,7 +559,7 @@
+             DialLayer current = (DialLayer) iterator.next();
+             if (current.isVisible()) {
+                 if (current.isClippedToWindow()) {
+-                    Shape savedClip = g2.getClip();
++                    Shape savedClip = var_2307;
+                     g2.clip(this.dialFrame.getWindow(frame));
+                     current.draw(g2, this, frame, area);
+                     g2.setClip(savedClip);
+@@ -575,7 +576,7 @@
+             DialPointer current = (DialPointer) iterator.next();
+             if (current.isVisible()) {
+                 if (current.isClippedToWindow()) {
+-                    Shape savedClip = g2.getClip();
++                    Shape savedClip = var_2307;
+                     g2.clip(this.dialFrame.getWindow(frame));
+                     current.draw(g2, this, frame, area);
+                     g2.setClip(savedClip);
+@@ -589,7 +590,7 @@
+         // draw the cap if there is one...
+         if (this.cap != null && this.cap.isVisible()) {
+             if (this.cap.isClippedToWindow()) {
+-                Shape savedClip = g2.getClip();
++                Shape savedClip = var_2307;
+                 g2.clip(this.dialFrame.getWindow(frame));
+                 this.cap.draw(g2, this, frame, area);
+                 g2.setClip(savedClip);

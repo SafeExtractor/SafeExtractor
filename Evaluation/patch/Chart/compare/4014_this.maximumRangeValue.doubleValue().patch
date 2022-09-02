@@ -1,0 +1,45 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/4014_this.maximumRangeValue.doubleValue().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/4014_this.maximumRangeValue.doubleValue().patch
+index 59f7a53..a66dd7a 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/4014_this.maximumRangeValue.doubleValue().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/4014_this.maximumRangeValue.doubleValue().patch
+@@ -1,27 +1,21 @@
+ diff --git a/source/org/jfree/data/statistics/DefaultMultiValueCategoryDataset.java b/source/org/jfree/data/statistics/DefaultMultiValueCategoryDataset.java
+-index 95fee7a..d4fca27 100644
++index 95fee7a..644e3b6 100644
+ --- a/source/org/jfree/data/statistics/DefaultMultiValueCategoryDataset.java
+ +++ b/source/org/jfree/data/statistics/DefaultMultiValueCategoryDataset.java
+-@@ -138,10 +138,11 @@
+-             }
+- 
++@@ -140,10 +140,12 @@
+              // update the cached range values...
+--            if (this.maximumRangeValue == null) {
+-+            double var_4014 = this.maximumRangeValue.doubleValue();
+-+			if (this.maximumRangeValue == null) {
++             if (this.maximumRangeValue == null) {
+                  this.maximumRangeValue = new Double(maxval);
+-             }
++-            }
+ -            else if (maxval > this.maximumRangeValue.doubleValue()) {
+-+            else if (maxval > var_4014) {
+-                 this.maximumRangeValue = new Double(maxval);
+-             }
++-                this.maximumRangeValue = new Double(maxval);
++-            }
+++            } else {
+++				double var_4014 = this.maximumRangeValue.doubleValue();
+++				if (maxval > var_4014) {
+++				    this.maximumRangeValue = new Double(maxval);
+++				}
+++			}
+  
+-@@ -152,7 +153,7 @@
++             if (this.minimumRangeValue == null) {
+                  this.minimumRangeValue = new Double(minval);
+-             }
+-             this.rangeBounds = new Range(this.minimumRangeValue.doubleValue(),
+--                    this.maximumRangeValue.doubleValue());
+-+                    var_4014);
+-         }
+- 
+-         fireDatasetChanged(new DatasetChangeInfo());

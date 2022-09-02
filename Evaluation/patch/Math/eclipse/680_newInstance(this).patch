@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..2848b1c 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1900,13 +1900,14 @@
+     public Dfp divide(int divisor) {
+ 
+         // Handle special cases
+-        if (nans != FINITE) {
++        Dfp var_680 = newInstance(this);
++		if (nans != FINITE) {
+             if (isNaN()) {
+                 return this;
+             }
+ 
+             if (nans == INFINITE) {
+-                return newInstance(this);
++                return var_680;
+             }
+         }
+ 
+@@ -1929,7 +1930,7 @@
+             return result;
+         }
+ 
+-        Dfp result = newInstance(this);
++        Dfp result = var_680;
+ 
+         int rl = 0;
+         for (int i = mant.length-1; i >= 0; i--) {

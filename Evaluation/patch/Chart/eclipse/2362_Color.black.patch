@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/WaferMapRenderer.java b/source/org/jfree/chart/renderer/WaferMapRenderer.java
+index c56827d..427b495 100644
+--- a/source/org/jfree/chart/renderer/WaferMapRenderer.java
++++ b/source/org/jfree/chart/renderer/WaferMapRenderer.java
+@@ -292,7 +292,8 @@
+     public LegendItemCollection getLegendCollection() {
+         LegendItemCollection result = new LegendItemCollection();
+         if (this.paintIndex != null && this.paintIndex.size() > 0) {
+-            if (this.paintIndex.size() <= this.paintLimit) {
++            Color var_2362 = Color.black;
++			if (this.paintIndex.size() <= this.paintLimit) {
+                 for (Iterator i = this.paintIndex.entrySet().iterator();
+                      i.hasNext();) {
+                     // in this case, every color has a unique value
+@@ -302,7 +303,7 @@
+                     Shape shape = new Rectangle2D.Double(1d, 1d, 1d, 1d);
+                     Paint paint = lookupSeriesPaint(
+                             ((Integer) entry.getValue()).intValue());
+-                    Paint outlinePaint = Color.black;
++                    Paint outlinePaint = var_2362;
+                     Stroke outlineStroke = DEFAULT_STROKE;
+ 
+                     result.add(new LegendItem(label, description, null,
+@@ -326,7 +327,7 @@
+                         Paint paint = getSeriesPaint(
+                             ((Integer) entry.getValue()).intValue()
+                         );
+-                        Paint outlinePaint = Color.black;
++                        Paint outlinePaint = var_2362;
+                         Stroke outlineStroke = DEFAULT_STROKE;
+ 
+                         result.add(new LegendItem(label, description,

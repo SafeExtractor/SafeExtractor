@@ -1,0 +1,52 @@
+diff --git a/source/org/jfree/data/xy/XYSeries.java b/source/org/jfree/data/xy/XYSeries.java
+index c2d0ba8..b23c63d 100644
+--- a/source/org/jfree/data/xy/XYSeries.java
++++ b/source/org/jfree/data/xy/XYSeries.java
+@@ -505,24 +505,25 @@
+             throw new IllegalArgumentException("Null 'item' argument.");
+         }
+         item = (XYDataItem) item.clone();
+-        if (this.autoSort) {
+-            int index = Collections.binarySearch(this.data, item);
++        List var_4472 = this.data;
++		if (this.autoSort) {
++            int index = Collections.binarySearch(var_4472, item);
+             if (index < 0) {
+-                this.data.add(-index - 1, item);
++                var_4472.add(-index - 1, item);
+             }
+             else {
+                 if (this.allowDuplicateXValues) {
+                     // need to make sure we are adding *after* any duplicates
+-                    int size = this.data.size();
++                    int size = var_4472.size();
+                     while (index < size && item.compareTo(
+-                            this.data.get(index)) == 0) {
++                            var_4472.get(index)) == 0) {
+                         index++;
+                     }
+-                    if (index < this.data.size()) {
+-                        this.data.add(index, item);
++                    if (index < var_4472.size()) {
++                        var_4472.add(index, item);
+                     }
+                     else {
+-                        this.data.add(item);
++                        var_4472.add(item);
+                     }
+                 }
+                 else {
+@@ -539,11 +540,11 @@
+                     throw new SeriesException("X-value already exists.");
+                 }
+             }
+-            this.data.add(item);
++            var_4472.add(item);
+         }
+         updateBoundsForAddedItem(item);
+         if (getItemCount() > this.maximumItemCount) {
+-            XYDataItem removed = (XYDataItem) this.data.remove(0);
++            XYDataItem removed = (XYDataItem) var_4472.remove(0);
+             updateBoundsForRemovedItem(removed);
+         }
+         if (notify) {

@@ -1,0 +1,69 @@
+diff --git a/src/java/org/apache/commons/math/geometry/Rotation.java b/src/java/org/apache/commons/math/geometry/Rotation.java
+index fe32c60..db1ae9f 100644
+--- a/src/java/org/apache/commons/math/geometry/Rotation.java
++++ b/src/java/org/apache/commons/math/geometry/Rotation.java
+@@ -937,9 +937,10 @@
+     double x10 = m[1][0];
+     double x11 = m[1][1];
+     double x12 = m[1][2];
+-    double x20 = m[2][0];
+-    double x21 = m[2][1];
+-    double x22 = m[2][2];
++    double[] m2 = m[2];
++	double x20 = m2[0];
++    double x21 = m2[1];
++    double x22 = m2[2];
+     double fn = 0;
+     double fn1;
+ 
+@@ -953,15 +954,15 @@
+     while (++i < 11) {
+ 
+       // Mt.Xn
+-      double mx00 = m[0][0] * x00 + m[1][0] * x10 + m[2][0] * x20;
+-      double mx10 = m[0][1] * x00 + m[1][1] * x10 + m[2][1] * x20;
+-      double mx20 = m[0][2] * x00 + m[1][2] * x10 + m[2][2] * x20;
+-      double mx01 = m[0][0] * x01 + m[1][0] * x11 + m[2][0] * x21;
+-      double mx11 = m[0][1] * x01 + m[1][1] * x11 + m[2][1] * x21;
+-      double mx21 = m[0][2] * x01 + m[1][2] * x11 + m[2][2] * x21;
+-      double mx02 = m[0][0] * x02 + m[1][0] * x12 + m[2][0] * x22;
+-      double mx12 = m[0][1] * x02 + m[1][1] * x12 + m[2][1] * x22;
+-      double mx22 = m[0][2] * x02 + m[1][2] * x12 + m[2][2] * x22;
++      double mx00 = m[0][0] * x00 + m[1][0] * x10 + m2[0] * x20;
++      double mx10 = m[0][1] * x00 + m[1][1] * x10 + m2[1] * x20;
++      double mx20 = m[0][2] * x00 + m[1][2] * x10 + m2[2] * x20;
++      double mx01 = m[0][0] * x01 + m[1][0] * x11 + m2[0] * x21;
++      double mx11 = m[0][1] * x01 + m[1][1] * x11 + m2[1] * x21;
++      double mx21 = m[0][2] * x01 + m[1][2] * x11 + m2[2] * x21;
++      double mx02 = m[0][0] * x02 + m[1][0] * x12 + m2[0] * x22;
++      double mx12 = m[0][1] * x02 + m[1][1] * x12 + m2[1] * x22;
++      double mx22 = m[0][2] * x02 + m[1][2] * x12 + m2[2] * x22;
+ 
+       // Xn+1
+       o[0][0] = x00 - 0.5 * (x00 * mx00 + x01 * mx10 + x02 * mx20 - m[0][0]);
+@@ -970,9 +971,9 @@
+       o[1][0] = x10 - 0.5 * (x10 * mx00 + x11 * mx10 + x12 * mx20 - m[1][0]);
+       o[1][1] = x11 - 0.5 * (x10 * mx01 + x11 * mx11 + x12 * mx21 - m[1][1]);
+       o[1][2] = x12 - 0.5 * (x10 * mx02 + x11 * mx12 + x12 * mx22 - m[1][2]);
+-      o[2][0] = x20 - 0.5 * (x20 * mx00 + x21 * mx10 + x22 * mx20 - m[2][0]);
+-      o[2][1] = x21 - 0.5 * (x20 * mx01 + x21 * mx11 + x22 * mx21 - m[2][1]);
+-      o[2][2] = x22 - 0.5 * (x20 * mx02 + x21 * mx12 + x22 * mx22 - m[2][2]);
++      o[2][0] = x20 - 0.5 * (x20 * mx00 + x21 * mx10 + x22 * mx20 - m2[0]);
++      o[2][1] = x21 - 0.5 * (x20 * mx01 + x21 * mx11 + x22 * mx21 - m2[1]);
++      o[2][2] = x22 - 0.5 * (x20 * mx02 + x21 * mx12 + x22 * mx22 - m2[2]);
+ 
+       // correction on each elements
+       double corr00 = o[0][0] - m[0][0];
+@@ -981,9 +982,9 @@
+       double corr10 = o[1][0] - m[1][0];
+       double corr11 = o[1][1] - m[1][1];
+       double corr12 = o[1][2] - m[1][2];
+-      double corr20 = o[2][0] - m[2][0];
+-      double corr21 = o[2][1] - m[2][1];
+-      double corr22 = o[2][2] - m[2][2];
++      double corr20 = o[2][0] - m2[0];
++      double corr21 = o[2][1] - m2[1];
++      double corr22 = o[2][2] - m2[2];
+ 
+       // Frobenius norm of the correction
+       fn1 = corr00 * corr00 + corr01 * corr01 + corr02 * corr02

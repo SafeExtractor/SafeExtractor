@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+index 4c20a64..51dd142 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+@@ -128,8 +128,9 @@
+     public Dfp newInstance(final Dfp d) {
+ 
+         // make sure we don't mix number with different precision
+-        if (getField().getRadixDigits() != d.getField().getRadixDigits()) {
+-            getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
++        DfpField var_748 = getField();
++		if (var_748.getRadixDigits() != d.getField().getRadixDigits()) {
++            var_748.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+             final Dfp result = newInstance(getZero());
+             result.nans = QNAN;
+             return dotrap(DfpField.FLAG_INVALID, "newInstance", d, result);

@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/InlineFunctions.java b/src/com/google/javascript/jscomp/InlineFunctions.java
+index 008ffe5..739fb70 100644
+--- a/src/com/google/javascript/jscomp/InlineFunctions.java
++++ b/src/com/google/javascript/jscomp/InlineFunctions.java
+@@ -494,12 +494,13 @@
+       }
+ 
+       boolean referenceAdded = false;
+-      InliningMode mode = fs.canInlineDirectly()
+-           ? InliningMode.DIRECT : InliningMode.BLOCK;
++      InliningMode var_1173 = InliningMode.DIRECT;
++	InliningMode mode = fs.canInlineDirectly()
++           ? var_1173 : InliningMode.BLOCK;
+       referenceAdded = maybeAddReferenceUsingMode(
+           t, fs, callNode, module, mode);
+       if (!referenceAdded &&
+-          mode == InliningMode.DIRECT && blockFunctionInliningEnabled) {
++          mode == var_1173 && blockFunctionInliningEnabled) {
+         // This reference can not be directly inlined, see if
+         // block replacement inlining is possible.
+         mode = InliningMode.BLOCK;

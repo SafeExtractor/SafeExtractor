@@ -1,0 +1,16 @@
+diff --git a/oak-solr-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/solr/index/SolrIndexEditor.java b/oak-solr-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/solr/index/SolrIndexEditor.java
+index b53877f..0bfd8c4 100644
+--- a/oak-solr-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/solr/index/SolrIndexEditor.java
++++ b/oak-solr-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/solr/index/SolrIndexEditor.java
+@@ -230,8 +230,9 @@
+                 // try to get the field to use for this property from configuration
+                 String fieldName = configuration.getFieldNameFor(property.getType());
+                 if (fieldName != null) {
+-                    inputDocument.addField(
+-                            fieldName, property.getValue(property.getType()));
++                    Object value = property.getValue(property.getType());
++					inputDocument.addField(
++                            fieldName, value);
+                 } else {
+                     if (Type.BINARY.tag() == property.getType().tag()) {
+                         inputDocument.addField(property.getName(), extractTextValues(property, state));

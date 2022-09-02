@@ -1,0 +1,23 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/security/authorization/PermissionValidator.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/security/authorization/PermissionValidator.java
+index 35300ee..49cb9fa 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/security/authorization/PermissionValidator.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/security/authorization/PermissionValidator.java
+@@ -129,7 +129,8 @@
+     }
+ 
+     private PermissionValidator checkPermissions(NodeUtil node, boolean isBefore, int defaultPermission) throws CommitFailedException {
+-        String path = node.getTree().getPath();
++        Tree tree = node.getTree();
++		String path = tree.getPath();
+         int permission;
+ 
+         if (isNamespaceDefinition(path)) {
+@@ -158,7 +159,7 @@
+             checkPermissions(permission);
+             return null; // no need for further validation down the subtree
+         } else {
+-            checkPermissions(node.getTree(), permission);
++            checkPermissions(tree, permission);
+             return (isBefore) ?
+                     new PermissionValidator(compiledPermissions, node, null) :
+                     new PermissionValidator(compiledPermissions, null, node);

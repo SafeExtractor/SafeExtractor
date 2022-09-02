@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/ChartPanel.java b/source/org/jfree/chart/ChartPanel.java
+index 001049a..d2ffcfc 100644
+--- a/source/org/jfree/chart/ChartPanel.java
++++ b/source/org/jfree/chart/ChartPanel.java
+@@ -2527,18 +2527,19 @@
+      * @param xor  use XOR for drawing?
+      */
+     private void drawSelectionShape(Graphics2D g2, boolean xor) {
+-        if (this.selectionShape != null) {
++        Shape var_107 = this.selectionShape;
++		if (var_107 != null) {
+             if (xor) {
+                  // Set XOR mode to draw the zoom rectangle
+                 g2.setXORMode(Color.gray);
+             }
+             if (this.selectionFillPaint != null) {
+                 g2.setPaint(this.selectionFillPaint);
+-                g2.fill(this.selectionShape);
++                g2.fill(var_107);
+             }
+             g2.setPaint(this.selectionOutlinePaint);
+             g2.setStroke(this.selectionOutlineStroke);
+-            GeneralPath pp = new GeneralPath(this.selectionShape);
++            GeneralPath pp = new GeneralPath(var_107);
+             pp.closePath();
+             g2.draw(pp);
+             if (xor) {

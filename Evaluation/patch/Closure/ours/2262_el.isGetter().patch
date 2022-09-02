@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..3da0068 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -901,8 +901,9 @@
+ 
+       Node node = newNode(Token.OBJECTLIT);
+       for (ObjectProperty el : literalNode.getElements()) {
+-        if (config.languageMode == LanguageMode.ECMASCRIPT3) {
+-          if (el.isGetter()) {
++        boolean var_2262 = el.isGetter();
++		if (config.languageMode == LanguageMode.ECMASCRIPT3) {
++          if (var_2262) {
+             reportGetter(el);
+             continue;
+           } else if (el.isSetter()) {
+@@ -915,7 +916,7 @@
+         key.setType(Token.STRING_KEY);
+ 
+         Node value = transform(el.getRight());
+-        if (el.isGetter()) {
++        if (var_2262) {
+           key.setType(Token.GETTER_DEF);
+           Preconditions.checkState(value.isFunction());
+           if (getFnParamNode(value).hasChildren()) {

@@ -1,0 +1,38 @@
+diff --git a/src/com/google/javascript/jscomp/MaybeReachingVariableUse.java b/src/com/google/javascript/jscomp/MaybeReachingVariableUse.java
+index 8361ac9..6d99d2a 100644
+--- a/src/com/google/javascript/jscomp/MaybeReachingVariableUse.java
++++ b/src/com/google/javascript/jscomp/MaybeReachingVariableUse.java
+@@ -168,7 +168,8 @@
+ 
+   private void computeMayUse(
+       Node n, Node cfgNode, ReachingUses output, boolean conditional) {
+-    switch (n.getType()) {
++    Node var_1858 = n.getLastChild();
++	switch (n.getType()) {
+ 
+       case Token.BLOCK:
+       case Token.FUNCTION:
+@@ -205,12 +206,12 @@
+ 
+       case Token.AND:
+       case Token.OR:
+-        computeMayUse(n.getLastChild(), cfgNode, output, true);
++        computeMayUse(var_1858, cfgNode, output, true);
+         computeMayUse(n.getFirstChild(), cfgNode, output, conditional);
+         return;
+ 
+       case Token.HOOK:
+-        computeMayUse(n.getLastChild(), cfgNode, output, true);
++        computeMayUse(var_1858, cfgNode, output, true);
+         computeMayUse(n.getFirstChild().getNext(), cfgNode, output, true);
+         computeMayUse(n.getFirstChild(), cfgNode, output, conditional);
+         return;
+@@ -246,7 +247,7 @@
+            * definition in the sub-tree....
+            * But we have no better way to traverse in reverse other :'(
+            */
+-          for (Node c = n.getLastChild(); c != null; c = n.getChildBefore(c)) {
++          for (Node c = var_1858; c != null; c = n.getChildBefore(c)) {
+             computeMayUse(c, cfgNode, output, conditional);
+           }
+         }

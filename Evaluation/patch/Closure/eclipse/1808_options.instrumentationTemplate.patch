@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..cd896eb 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -2159,18 +2159,19 @@
+     protected CompilerPass create(final AbstractCompiler compiler) {
+       return new CompilerPass() {
+         @Override public void process(Node externs, Node root) {
+-          try {
++          String var_1808 = options.instrumentationTemplate;
++		try {
+             FileReader templateFile =
+-                new FileReader(options.instrumentationTemplate);
++                new FileReader(var_1808);
+             (new InstrumentFunctions(
+                 compiler, functionNames,
+-                options.instrumentationTemplate,
++                var_1808,
+                 options.appNameStr,
+                 templateFile)).process(externs, root);
+           } catch (IOException e) {
+             compiler.report(
+                 JSError.make(AbstractCompiler.READ_ERROR,
+-                    options.instrumentationTemplate));
++                    var_1808));
+           }
+         }
+       };

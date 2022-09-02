@@ -1,0 +1,45 @@
+diff --git a/source/org/jfree/chart/renderer/category/LayeredBarRenderer.java b/source/org/jfree/chart/renderer/category/LayeredBarRenderer.java
+index e49577c..d025582 100644
+--- a/source/org/jfree/chart/renderer/category/LayeredBarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/LayeredBarRenderer.java
+@@ -355,8 +355,9 @@
+         }
+ 
+         // BAR X
+-        double rectX = domainAxis.getCategoryMiddle(column, getColumnCount(),
+-                dataArea, plot.getDomainAxisEdge()) - state.getBarWidth() / 2.0;
++        double var_2448 = state.getBarWidth();
++		double rectX = domainAxis.getCategoryMiddle(column, getColumnCount(),
++                dataArea, plot.getDomainAxisEdge()) - var_2448 / 2.0;
+ 
+         int seriesCount = getRowCount();
+ 
+@@ -400,7 +401,7 @@
+         double transY2 = rangeAxis.valueToJava2D(value, dataArea, edge);
+         double rectY = Math.min(transY2, transY1);
+ 
+-        double rectWidth = state.getBarWidth();
++        double rectWidth = var_2448;
+         double rectHeight = Math.abs(transY2 - transY1);
+ 
+         // draw the bar...
+@@ -411,8 +412,8 @@
+         if (!Double.isNaN(seriesBarWidth)) {
+             widthFactor = seriesBarWidth;
+         }
+-        rectWidth = widthFactor * state.getBarWidth();
+-        rectX = rectX + (1 - widthFactor) * state.getBarWidth() / 2.0;
++        rectWidth = widthFactor * var_2448;
++        rectX = rectX + (1 - widthFactor) * var_2448 / 2.0;
+         if (seriesCount > 1) {
+             // needs to be improved !!!
+             shift = rectWidth * 0.20 / (seriesCount - 1);
+@@ -431,7 +432,7 @@
+ 
+         // draw the outline...
+         if (isDrawBarOutline()
+-                && state.getBarWidth() > BAR_OUTLINE_WIDTH_THRESHOLD) {
++                && var_2448 > BAR_OUTLINE_WIDTH_THRESHOLD) {
+             Stroke stroke = getItemOutlineStroke(row, column, selected);
+             Paint paint = getItemOutlinePaint(row, column, selected);
+             if (stroke != null && paint != null) {

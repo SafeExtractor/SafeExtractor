@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..b856648 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -108,7 +108,8 @@
+     int type = n.getType();
+     String opstr = NodeUtil.opToStr(type);
+     int childCount = n.getChildCount();
+-    Node first = n.getFirstChild();
++    Node var_1554 = n.getFirstChild();
++	Node first = var_1554;
+     Node last = n.getLastChild();
+ 
+     // Handle all binary operators
+@@ -264,8 +265,8 @@
+         // It's important to our sanity checker that the code
+         // we print produces the same AST as the code we parse back.
+         // NEG is a weird case because Rhino parses "- -2" as "2".
+-        if (n.getFirstChild().isNumber()) {
+-          cc.addNumber(-n.getFirstChild().getDouble());
++        if (var_1554.isNumber()) {
++          cc.addNumber(-var_1554.getDouble());
+         } else {
+           cc.addOp(NodeUtil.opToStrNoFail(type), false);
+           addExpr(first, NodeUtil.precedence(type), Context.OTHER);

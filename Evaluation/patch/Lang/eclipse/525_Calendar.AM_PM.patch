@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DateUtils.java b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+index b16af53..cde5ec9 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DateUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+@@ -1005,7 +1005,8 @@
+ 
+         boolean roundUp = false;
+         for (final int[] aField : fields) {
+-            for (final int element : aField) {
++            int var_525 = Calendar.AM_PM;
++			for (final int element : aField) {
+                 if (element == field) {
+                     //This is our field... we stop looping
+                     if (modType == MODIFY_CEILING || (modType == MODIFY_ROUND && roundUp)) {
+@@ -1020,7 +1021,7 @@
+                                 val.add(Calendar.MONTH, 1);
+                             }
+ // ----------------- Fix for LANG-440 ---------------------- START ---------------
+-                        } else if (field == Calendar.AM_PM) {
++                        } else if (field == var_525) {
+                             // This is a special case
+                             // If the time is 0, we round up to 12, otherwise
+                             //  we subtract 12 hours and add 1 day
+@@ -1061,7 +1062,7 @@
+                         offsetSet = true;
+                     }
+                     break;
+-                case Calendar.AM_PM:
++                case var_525:
+                     if (aField[0] == Calendar.HOUR_OF_DAY) {
+                         //If we're going to drop the HOUR field's value,
+                         //  we want to do this our own way.

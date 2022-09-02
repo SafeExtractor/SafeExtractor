@@ -1,0 +1,33 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1231_t.getInput().isExtern().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1231_t.getInput().isExtern().patch
+index 4f4457e..e69de29 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1231_t.getInput().isExtern().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1231_t.getInput().isExtern().patch
+@@ -1,28 +0,0 @@
+-diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+-index 461cddc..265e60f 100644
+---- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
+-+++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+-@@ -1542,11 +1542,12 @@
+-         }
+-       }
+- 
+--      if (valueType == null) {
+-+      boolean var_1231 = t.getInput().isExtern();
+-+	if (valueType == null) {
+-         if (parent.isExprResult()) {
+-           stubDeclarations.add(new StubDeclaration(
+-               n,
+--              t.getInput() != null && t.getInput().isExtern(),
+-+              t.getInput() != null && var_1231,
+-               ownerName));
+-         }
+- 
+-@@ -1560,7 +1561,7 @@
+-         if (ownerType != null) {
+-           // Only declare this as an official property if it has not been
+-           // declared yet.
+--          boolean isExtern = t.getInput() != null && t.getInput().isExtern();
+-+          boolean isExtern = t.getInput() != null && var_1231;
+-           if ((!ownerType.hasOwnProperty(propName) ||
+-                ownerType.isPropertyTypeInferred(propName)) &&
+-               ((isExtern && !ownerType.isNativeObjectType()) ||

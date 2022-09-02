@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+index 4e56fef..ad93c2e 100644
+--- a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
++++ b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+@@ -676,10 +676,11 @@
+ 
+         private String formatName(String nameFormat) {
+             int index = nameFormat.indexOf('/');
+-            if (index > 0) {
++            String var_645 = nameFormat.substring(0, index);
++			if (index > 0) {
+                 if (iSaveMillis == 0) {
+                     // Extract standard name.
+-                    return nameFormat.substring(0, index).intern();
++                    return var_645.intern();
+                 } else {
+                     return nameFormat.substring(index + 1).intern();
+                 }
+@@ -688,7 +689,7 @@
+             if (index < 0) {
+                 return nameFormat;
+             }
+-            String left = nameFormat.substring(0, index);
++            String left = var_645;
+             String right = nameFormat.substring(index + 2);
+             String name;
+             if (iLetterS == null) {

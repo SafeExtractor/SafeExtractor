@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/ObjectPropertyStringPostprocess.java b/src/com/google/javascript/jscomp/ObjectPropertyStringPostprocess.java
+index 3189487..670c152 100644
+--- a/src/com/google/javascript/jscomp/ObjectPropertyStringPostprocess.java
++++ b/src/com/google/javascript/jscomp/ObjectPropertyStringPostprocess.java
+@@ -72,8 +72,9 @@
+         Node newChild = secondArgument.getFirstChild();
+         secondArgument.removeChild(newChild);
+         n.replaceChild(firstArgument, newChild);
+-        n.replaceChild(secondArgument,
+-            IR.string(secondArgument.getFirstChild().getString()));
++        Node var_595 = secondArgument.getFirstChild();
++		n.replaceChild(secondArgument,
++            IR.string(var_595.getString()));
+       } else if (secondArgumentType == Token.GETELEM) {
+         // Rewrite "new goog.testing.ObjectPropertyString(window, foo[bar])"
+         // as "new goog.testing.ObjectPropertyString(foo, bar)".

@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..b6052de 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -318,10 +318,11 @@
+         }
+ 
+         // this is an implementation of definition 6 in Dan Kalman's paper.
+-        final int vSize = valueCompiler.lowerIndirection.length;
++        int[] var_79 = valueCompiler.lowerIndirection;
++		final int vSize = var_79.length;
+         final int dSize = derivativeCompiler.lowerIndirection.length;
+         final int[] lowerIndirection = new int[vSize + dSize];
+-        System.arraycopy(valueCompiler.lowerIndirection, 0, lowerIndirection, 0, vSize);
++        System.arraycopy(var_79, 0, lowerIndirection, 0, vSize);
+         for (int i = 0; i < dSize; ++i) {
+             lowerIndirection[vSize + i] = valueCompiler.getSize() + derivativeCompiler.lowerIndirection[i];
+         }

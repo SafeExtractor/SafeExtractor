@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYDotRenderer.java b/source/org/jfree/chart/renderer/xy/XYDotRenderer.java
+index c5f9b39..5901e90 100644
+--- a/source/org/jfree/chart/renderer/xy/XYDotRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYDotRenderer.java
+@@ -233,7 +233,8 @@
+         // get the data point...
+         double x = dataset.getXValue(series, item);
+         double y = dataset.getYValue(series, item);
+-        double adjx = (this.dotWidth - 1) / 2.0;
++        int var_3051 = this.dotWidth;
++		double adjx = (var_3051 - 1) / 2.0;
+         double adjy = (this.dotHeight - 1) / 2.0;
+         if (!Double.isNaN(y)) {
+             RectangleEdge xAxisLocation = plot.getDomainAxisEdge();
+@@ -247,10 +248,10 @@
+             PlotOrientation orientation = plot.getOrientation();
+             if (orientation == PlotOrientation.HORIZONTAL) {
+                 g2.fillRect((int) transY, (int) transX, this.dotHeight,
+-                        this.dotWidth);
++                        var_3051);
+             }
+             else if (orientation == PlotOrientation.VERTICAL) {
+-                g2.fillRect((int) transX, (int) transY, this.dotWidth,
++                g2.fillRect((int) transX, (int) transY, var_3051,
+                         this.dotHeight);
+             }
+ 

@@ -1,0 +1,43 @@
+diff --git a/src/main/java/org/jsoup/helper/HttpConnection.java b/src/main/java/org/jsoup/helper/HttpConnection.java
+index b5cf831..0101cde 100644
+--- a/src/main/java/org/jsoup/helper/HttpConnection.java
++++ b/src/main/java/org/jsoup/helper/HttpConnection.java
+@@ -729,8 +729,9 @@
+ 
+         static Response execute(Connection.Request req, Response previousResponse) throws IOException {
+             Validate.notNull(req, "Request must not be null");
+-            Validate.notNull(req.url(), "URL must be specified to connect");
+-            String protocol = req.url().getProtocol();
++            URL url = req.url();
++			Validate.notNull(url, "URL must be specified to connect");
++            String protocol = url.getProtocol();
+             if (!protocol.equals("http") && !protocol.equals("https"))
+                 throw new MalformedURLException("Only http & https protocols supported");
+             final boolean methodHasBody = req.method().hasBody();
+@@ -770,7 +771,7 @@
+                     String location = res.header(LOCATION);
+                     if (location.startsWith("http:/") && location.charAt(6) != '/') // fix broken Location: http:/temp/AAG_New/en/index.php
+                         location = location.substring(6);
+-                    URL redir = StringUtil.resolve(req.url(), location);
++                    URL redir = StringUtil.resolve(url, location);
+                     req.url(encodeUrl(redir));
+ 
+                     for (Map.Entry<String, String> cookie : res.cookies.entrySet()) { // add response cookies to request (for e.g. login posts)
+@@ -779,7 +780,7 @@
+                     return execute(req, res);
+                 }
+                 if ((status < 200 || status >= 400) && !req.ignoreHttpErrors())
+-                        throw new HttpStatusException("HTTP error fetching URL", status, req.url().toString());
++                        throw new HttpStatusException("HTTP error fetching URL", status, url.toString());
+ 
+                 // check that we can handle the returned content type; if not, abort before fetching it
+                 String contentType = res.contentType();
+@@ -789,7 +790,7 @@
+                         && !xmlContentTypeRxp.matcher(contentType).matches()
+                         )
+                     throw new UnsupportedMimeTypeException("Unhandled content type. Must be text/*, application/xml, or application/*+xml",
+-                            contentType, req.url().toString());
++                            contentType, url.toString());
+ 
+                 // switch to the XML parser if content type is xml and not parser not explicitly set
+                 if (contentType != null && xmlContentTypeRxp.matcher(contentType).matches()) {

@@ -1,0 +1,50 @@
+diff --git a/source/org/jfree/chart/annotations/XYPolygonAnnotation.java b/source/org/jfree/chart/annotations/XYPolygonAnnotation.java
+index e6fbbd8..d48a0de 100644
+--- a/source/org/jfree/chart/annotations/XYPolygonAnnotation.java
++++ b/source/org/jfree/chart/annotations/XYPolygonAnnotation.java
+@@ -211,7 +211,8 @@
+                      int rendererIndex, PlotRenderingInfo info) {
+ 
+         // if we don't have at least 2 (x, y) coordinates, just return
+-        if (this.polygon.length < 4) {
++        double[] var_262 = this.polygon;
++		if (var_262.length < 4) {
+             return;
+         }
+         PlotOrientation orientation = plot.getOrientation();
+@@ -221,16 +222,16 @@
+                 plot.getRangeAxisLocation(), orientation);
+ 
+         GeneralPath area = new GeneralPath();
+-        double x = domainAxis.valueToJava2D(this.polygon[0], dataArea,
++        double x = domainAxis.valueToJava2D(var_262[0], dataArea,
+                 domainEdge);
+-        double y = rangeAxis.valueToJava2D(this.polygon[1], dataArea,
++        double y = rangeAxis.valueToJava2D(var_262[1], dataArea,
+                 rangeEdge);
+         if (orientation == PlotOrientation.HORIZONTAL) {
+             area.moveTo((float) y, (float) x);
+-            for (int i = 2; i < this.polygon.length; i += 2) {
+-                x = domainAxis.valueToJava2D(this.polygon[i], dataArea,
++            for (int i = 2; i < var_262.length; i += 2) {
++                x = domainAxis.valueToJava2D(var_262[i], dataArea,
+                         domainEdge);
+-                y = rangeAxis.valueToJava2D(this.polygon[i + 1], dataArea,
++                y = rangeAxis.valueToJava2D(var_262[i + 1], dataArea,
+                         rangeEdge);
+                 area.lineTo((float) y, (float) x);
+             }
+@@ -238,10 +239,10 @@
+         }
+         else if (orientation == PlotOrientation.VERTICAL) {
+             area.moveTo((float) x, (float) y);
+-            for (int i = 2; i < this.polygon.length; i += 2) {
+-                x = domainAxis.valueToJava2D(this.polygon[i], dataArea,
++            for (int i = 2; i < var_262.length; i += 2) {
++                x = domainAxis.valueToJava2D(var_262[i], dataArea,
+                         domainEdge);
+-                y = rangeAxis.valueToJava2D(this.polygon[i + 1], dataArea,
++                y = rangeAxis.valueToJava2D(var_262[i + 1], dataArea,
+                         rangeEdge);
+                 area.lineTo((float) x, (float) y);
+             }

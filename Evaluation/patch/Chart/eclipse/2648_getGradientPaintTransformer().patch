@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/renderer/category/WaterfallBarRenderer.java b/source/org/jfree/chart/renderer/category/WaterfallBarRenderer.java
+index 4a14898..a709bf5 100644
+--- a/source/org/jfree/chart/renderer/category/WaterfallBarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/WaterfallBarRenderer.java
+@@ -78,6 +78,7 @@
+ import org.jfree.chart.plot.PlotOrientation;
+ import org.jfree.chart.renderer.AbstractRenderer;
+ import org.jfree.chart.util.GradientPaintTransformType;
++import org.jfree.chart.util.GradientPaintTransformer;
+ import org.jfree.chart.util.PaintUtilities;
+ import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.chart.util.SerialUtilities;
+@@ -411,10 +412,11 @@
+                 seriesPaint = getLastBarPaint();
+             }
+         }
+-        if (getGradientPaintTransformer() != null
++        GradientPaintTransformer var_2648 = getGradientPaintTransformer();
++		if (var_2648 != null
+                 && seriesPaint instanceof GradientPaint) {
+             GradientPaint gp = (GradientPaint) seriesPaint;
+-            seriesPaint = getGradientPaintTransformer().transform(gp, bar);
++            seriesPaint = var_2648.transform(gp, bar);
+         }
+         g2.setPaint(seriesPaint);
+         g2.fill(bar);

@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java b/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java
+index 9468a5e..f3ebd0a 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java
++++ b/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java
+@@ -585,17 +585,18 @@
+         }
+ 
+         OpenIntToFieldHashMap<T>.Iterator iter = entries.iterator();
+-        while (iter.hasNext()) {
++        T var_2216 = iter.value();
++		while (iter.hasNext()) {
+             iter.advance();
+             T test = other.getEntry(iter.key());
+-            if (!test.equals(iter.value())) {
++            if (!test.equals(var_2216)) {
+                 return false;
+             }
+         }
+         iter = other.getEntries().iterator();
+         while (iter.hasNext()) {
+             iter.advance();
+-            T test = iter.value();
++            T test = var_2216;
+             if (!test.equals(getEntry(iter.key()))) {
+                 return false;
+             }

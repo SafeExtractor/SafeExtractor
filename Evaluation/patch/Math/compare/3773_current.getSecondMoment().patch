@@ -1,0 +1,32 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/3773_current.getSecondMoment().patch b/Users/safe/paper/Evaluation/patch/Math/ours/3773_current.getSecondMoment().patch
+index 8a517ac..a3763a2 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/3773_current.getSecondMoment().patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/3773_current.getSecondMoment().patch
+@@ -1,23 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/stat/descriptive/AggregateSummaryStatistics.java b/src/main/java/org/apache/commons/math3/stat/descriptive/AggregateSummaryStatistics.java
+-index 9577f5a..a9d9bd5 100644
++index 9577f5a..9f0de3a 100644
+ --- a/src/main/java/org/apache/commons/math3/stat/descriptive/AggregateSummaryStatistics.java
+ +++ b/src/main/java/org/apache/commons/math3/stat/descriptive/AggregateSummaryStatistics.java
+-@@ -316,7 +316,8 @@
+-         double min = current.getMin();
+-         double sum = current.getSum();
+-         double max = current.getMax();
+--        double m2 = current.getSecondMoment();
+-+        double var_3773 = current.getSecondMoment();
+-+		double m2 = var_3773;
+-         double mean = current.getMean();
+-         while (iterator.hasNext()) {
+-             current = iterator.next();
+-@@ -332,7 +333,7 @@
++@@ -332,7 +332,8 @@
+              n += curN;
+              final double meanDiff = current.getMean() - mean;
+              mean = sum / n;
+ -            m2 = m2 + current.getSecondMoment() + meanDiff * meanDiff * oldN * curN / n;
+-+            m2 = m2 + var_3773 + meanDiff * meanDiff * oldN * curN / n;
+++            double var_3773 = current.getSecondMoment();
+++			m2 = m2 + var_3773 + meanDiff * meanDiff * oldN * curN / n;
+          }
+          final double variance;
+          if (n == 0) {

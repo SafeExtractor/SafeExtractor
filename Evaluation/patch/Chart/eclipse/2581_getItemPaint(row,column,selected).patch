@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/renderer/category/ScatterRenderer.java b/source/org/jfree/chart/renderer/category/ScatterRenderer.java
+index 36218bf..0850ae5 100644
+--- a/source/org/jfree/chart/renderer/category/ScatterRenderer.java
++++ b/source/org/jfree/chart/renderer/category/ScatterRenderer.java
+@@ -430,12 +430,13 @@
+             else if (orientation == PlotOrientation.VERTICAL) {
+                 shape = ShapeUtilities.createTranslatedShape(shape, x1, y1);
+             }
+-            if (getItemShapeFilled(row, column)) {
++            Paint var_2581 = getItemPaint(row, column, selected);
++			if (getItemShapeFilled(row, column)) {
+                 if (this.useFillPaint) {
+                     g2.setPaint(getItemFillPaint(row, column, selected));
+                 }
+                 else {
+-                    g2.setPaint(getItemPaint(row, column, selected));
++                    g2.setPaint(var_2581);
+                 }
+                 g2.fill(shape);
+             }
+@@ -444,7 +445,7 @@
+                     g2.setPaint(getItemOutlinePaint(row, column, selected));
+                 }
+                 else {
+-                    g2.setPaint(getItemPaint(row, column, selected));
++                    g2.setPaint(var_2581);
+                 }
+                 g2.setStroke(getItemOutlineStroke(row, column, selected));
+                 g2.draw(shape);

@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..6dee715 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -482,7 +482,8 @@
+     // To be explicitly set to false if the node is not typeable.
+     boolean typeable = true;
+ 
+-    switch (n.getType()) {
++    final int var_990 = Token.EQ;
++	switch (n.getType()) {
+       case Token.CAST:
+         Node expr = n.getFirstChild();
+         ensureTyped(t, n, getJSType(expr));
+@@ -615,7 +616,7 @@
+         ensureTyped(t, n, NUMBER_TYPE);
+         break;
+ 
+-      case Token.EQ:
++      case var_990:
+       case Token.NE:
+       case Token.SHEQ:
+       case Token.SHNE: {
+@@ -646,7 +647,7 @@
+         JSType rightTypeRestricted = rightType.restrictByNotNullOrUndefined();
+ 
+         TernaryValue result = TernaryValue.UNKNOWN;
+-        if (n.getType() == Token.EQ || n.getType() == Token.NE) {
++        if (n.getType() == var_990 || n.getType() == Token.NE) {
+           result = leftTypeRestricted.testForEquality(rightTypeRestricted);
+           if (n.isNE()) {
+             result = result.not();

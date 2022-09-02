@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 781fc3c..1af1b59 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -1215,16 +1215,17 @@
+         + "padding-bottom: 4px}</style>");
+     sb.append("OVERALL STATS<ul>");
+     appendListItem(sb, "Total Names: " + countOf(TriState.BOTH, TriState.BOTH));
+-    appendListItem(sb, "Total Classes: "
+-        + countOf(TriState.TRUE, TriState.BOTH));
++    TriState var_301 = TriState.TRUE;
++	appendListItem(sb, "Total Classes: "
++        + countOf(var_301, TriState.BOTH));
+     appendListItem(sb, "Total Static Functions: "
+         + countOf(TriState.FALSE, TriState.BOTH));
+     appendListItem(sb, "Referenced Names: "
+-        + countOf(TriState.BOTH, TriState.TRUE));
++        + countOf(TriState.BOTH, var_301));
+     appendListItem(sb, "Referenced Classes: "
+-        + countOf(TriState.TRUE, TriState.TRUE));
++        + countOf(var_301, var_301));
+     appendListItem(sb, "Referenced Functions: "
+-        + countOf(TriState.FALSE, TriState.TRUE));
++        + countOf(TriState.FALSE, var_301));
+     sb.append("</ul>");
+ 
+     sb.append("ALL NAMES<ul>\n");

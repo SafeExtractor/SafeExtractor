@@ -1,0 +1,48 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/810_x.newInstance(x.newInstance((byte)1,Dfp.INFINITE)).patch b/Users/safe/paper/Evaluation/patch/Math/ours/810_x.newInstance(x.newInstance((byte)1,Dfp.INFINITE)).patch
+index 46a5af3..76a6dbc 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/810_x.newInstance(x.newInstance((byte)1,Dfp.INFINITE)).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/810_x.newInstance(x.newInstance((byte)1,Dfp.INFINITE)).patch
+@@ -1,39 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+-index af670fc..714402a 100644
++index af670fc..22779d1 100644
+ --- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+ +++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+-@@ -539,13 +539,14 @@
+-         }
+- 
+-         // X == 0
+--        if (x.equals(zero)) {
+-+        Dfp var_810 = x.newInstance(x.newInstance((byte)1, Dfp.INFINITE));
+-+		if (x.equals(zero)) {
+-             if (Dfp.copysign(one, x).greaterThan(zero)) {
+-                 // X == +0
+-                 if (y.greaterThan(zero)) {
+-                     return x.newInstance(zero);
+-                 } else {
+--                    return x.newInstance(x.newInstance((byte)1, Dfp.INFINITE));
+-+                    return var_810;
+-                 }
+-             } else {
+-                 // X == -0
+-@@ -561,7 +562,7 @@
++@@ -561,7 +561,8 @@
+                      if (y.greaterThan(zero)) {
+                          return x.newInstance(zero);
+                      } else {
+ -                        return x.newInstance(x.newInstance((byte)1, Dfp.INFINITE));
+-+                        return var_810;
+++                        Dfp var_810 = x.newInstance(x.newInstance((byte)1, Dfp.INFINITE));
+++						return var_810;
+                      }
+                  }
+              }
+-@@ -608,7 +609,7 @@
+-                 } else {
+-                     // Y is not odd integer
+-                     if (y.greaterThan(zero)) {
+--                        return x.newInstance(x.newInstance((byte)1, Dfp.INFINITE));
+-+                        return var_810;
+-                     } else {
+-                         return x.newInstance(zero);
+-                     }

@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/Normalize.java b/src/com/google/javascript/jscomp/Normalize.java
+index 98b136e..1b4eb13 100644
+--- a/src/com/google/javascript/jscomp/Normalize.java
++++ b/src/com/google/javascript/jscomp/Normalize.java
+@@ -501,13 +501,14 @@
+      */
+     private void doStatementNormalizations(
+         NodeTraversal t, Node n, Node parent) {
+-      if (n.isLabel()) {
++      boolean var_1257 = n.isLabel();
++	if (var_1257) {
+         normalizeLabels(n);
+       }
+ 
+       // Only inspect the children of SCRIPTs, BLOCKs and LABELs, as all these
+       // are the only legal place for VARs and FOR statements.
+-      if (NodeUtil.isStatementBlock(n) || n.isLabel()) {
++      if (NodeUtil.isStatementBlock(n) || var_1257) {
+         extractForInitializer(n, null, null);
+       }
+ 

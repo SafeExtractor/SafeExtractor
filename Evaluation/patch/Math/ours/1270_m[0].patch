@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..f30e9ba 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -732,15 +732,16 @@
+         // create the matrix
+         final T[][] m = MathArrays.buildArray(q0.getField(), 3, 3);
+ 
+-        m [0][0] = q0q0.add(q1q1).multiply(2).subtract(1);
++        T[] var_1270 = m [0];
++		var_1270[0] = q0q0.add(q1q1).multiply(2).subtract(1);
+         m [1][0] = q1q2.subtract(q0q3).multiply(2);
+         m [2][0] = q1q3.add(q0q2).multiply(2);
+ 
+-        m [0][1] = q1q2.add(q0q3).multiply(2);
++        var_1270[1] = q1q2.add(q0q3).multiply(2);
+         m [1][1] = q0q0.add(q2q2).multiply(2).subtract(1);
+         m [2][1] = q2q3.subtract(q0q1).multiply(2);
+ 
+-        m [0][2] = q1q3.subtract(q0q2).multiply(2);
++        var_1270[2] = q1q3.subtract(q0q2).multiply(2);
+         m [1][2] = q2q3.add(q0q1).multiply(2);
+         m [2][2] = q0q0.add(q3q3).multiply(2).subtract(1);
+ 

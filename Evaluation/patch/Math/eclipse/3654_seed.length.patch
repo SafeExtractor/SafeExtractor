@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/random/AbstractWell.java b/src/main/java/org/apache/commons/math3/random/AbstractWell.java
+index 6de9c99..3a108bc 100644
+--- a/src/main/java/org/apache/commons/math3/random/AbstractWell.java
++++ b/src/main/java/org/apache/commons/math3/random/AbstractWell.java
+@@ -156,11 +156,12 @@
+             return;
+         }
+ 
+-        System.arraycopy(seed, 0, v, 0, Math.min(seed.length, v.length));
++        int var_3654 = seed.length;
++		System.arraycopy(seed, 0, v, 0, Math.min(var_3654, v.length));
+ 
+-        if (seed.length < v.length) {
+-            for (int i = seed.length; i < v.length; ++i) {
+-                final long l = v[i - seed.length];
++        if (var_3654 < v.length) {
++            for (int i = var_3654; i < v.length; ++i) {
++                final long l = v[i - var_3654];
+                 v[i] = (int) ((1812433253l * (l ^ (l >> 30)) + i) & 0xffffffffL);
+             }
+         }

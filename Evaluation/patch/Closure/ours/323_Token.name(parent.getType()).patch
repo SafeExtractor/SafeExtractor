@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 781fc3c..4ef8cd2 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -1729,7 +1729,8 @@
+    */
+   private void replaceTopLevelExpressionWithRhs(Node parent, Node n) {
+     // validate inputs
+-    switch (parent.getType()) {
++    String var_323 = Token.name(parent.getType());
++	switch (parent.getType()) {
+       case Token.BLOCK:
+       case Token.SCRIPT:
+       case Token.FOR:
+@@ -1738,7 +1739,7 @@
+       default:
+         throw new IllegalArgumentException(
+             "Unsupported parent node type in replaceWithRhs " +
+-            Token.name(parent.getType()));
++            var_323);
+     }
+ 
+     switch (n.getType()) {
+@@ -1749,7 +1750,7 @@
+       case Token.ASSIGN:
+         Preconditions.checkArgument(parent.isFor(),
+             "Unsupported assignment in replaceWithRhs. parent: %s",
+-            Token.name(parent.getType()));
++            var_323);
+         break;
+       default:
+         throw new IllegalArgumentException(

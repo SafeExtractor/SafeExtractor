@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java b/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
+index c6b1a04..d16b56a 100644
+--- a/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/BlockFieldMatrix.java
+@@ -1315,8 +1315,9 @@
+         if (v.length != rows) {
+             throw new DimensionMismatchException(v.length, rows);
+         }
+-        final T[] out = MathArrays.buildArray(getField(), columns);
+-        final T zero = getField().getZero();
++        Field<T> var_1962 = getField();
++		final T[] out = MathArrays.buildArray(var_1962, columns);
++        final T zero = var_1962.getZero();
+ 
+         // perform multiplication block-wise, to ensure good cache behavior
+         for (int jBlock = 0; jBlock < blockColumns; ++jBlock) {

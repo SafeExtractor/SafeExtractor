@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/SanityCheck.java b/src/com/google/javascript/jscomp/SanityCheck.java
+index 3aa9784..10d7364 100644
+--- a/src/com/google/javascript/jscomp/SanityCheck.java
++++ b/src/com/google/javascript/jscomp/SanityCheck.java
+@@ -76,7 +76,8 @@
+    * @return The regenerated parse tree. Null on error.
+    */
+   private Node sanityCheckCodeGeneration(Node root) {
+-    if (compiler.hasHaltingErrors()) {
++    boolean var_359 = compiler.hasHaltingErrors();
++	if (var_359) {
+       // Don't even bother checking code generation if we already know the
+       // the code is bad.
+       return null;
+@@ -84,7 +85,7 @@
+ 
+     String source = compiler.toSource(root);
+     Node root2 = compiler.parseSyntheticCode(source);
+-    if (compiler.hasHaltingErrors()) {
++    if (var_359) {
+       compiler.report(JSError.make(CANNOT_PARSE_GENERATED_CODE,
+               Strings.truncateAtMaxLength(source, 100, true)));
+ 

@@ -1,0 +1,34 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..146c408 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -1054,7 +1054,8 @@
+     Preconditions.checkNotNull(scope);
+     Preconditions.checkNotNull(expr);
+     ConcreteType ret;
+-    switch (expr.getType()) {
++    JSType var_1078 = expr.getJSType();
++	switch (expr.getType()) {
+       case Token.NAME:
+         StaticSlot<ConcreteType> slot = scope.getSlot(expr.getString());
+ 
+@@ -1160,8 +1161,8 @@
+         break;
+ 
+       case Token.OBJECTLIT:
+-        if ((expr.getJSType() != null) && !expr.getJSType().isUnknownType()) {
+-          JSType exprType = expr.getJSType().restrictByNotNullOrUndefined();
++        if ((var_1078 != null) && !var_1078.isUnknownType()) {
++          JSType exprType = var_1078.restrictByNotNullOrUndefined();
+           ConcreteType inst = createConcreteInstance(exprType.toObjectType());
+           allInstantiatedTypes.add(inst);
+           ret = inst;
+@@ -1181,7 +1182,7 @@
+       default:
+         ret = ConcreteType.NONE;
+     }
+-    return createTypeIntersection(ret, expr.getJSType());
++    return createTypeIntersection(ret, var_1078);
+   }
+ 
+   private ConcreteType createTypeIntersection(

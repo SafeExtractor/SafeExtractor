@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java b/src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java
+index 8f76f06..318e420 100644
+--- a/src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java
++++ b/src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java
+@@ -1925,9 +1925,10 @@
+         public void printTo(StringBuffer buf, ReadablePartial partial, Locale locale) {
+             // removed check whether field is supported, as input field is typically
+             // secondOfDay which is unsupported by TimeOfDay
+-            long millis = partial.getChronology().set(partial, 0L);
++            Chronology var_468 = partial.getChronology();
++			long millis = var_468.set(partial, 0L);
+             try {
+-                printTo(buf, null, millis, partial.getChronology());
++                printTo(buf, null, millis, var_468);
+             } catch (IOException e) {
+                 // Not gonna happen.
+             }

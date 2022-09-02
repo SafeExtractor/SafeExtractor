@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/joda/time/DateTimeZone.java b/src/main/java/org/joda/time/DateTimeZone.java
+index 19fbc86..3fac93b 100644
+--- a/src/main/java/org/joda/time/DateTimeZone.java
++++ b/src/main/java/org/joda/time/DateTimeZone.java
+@@ -331,8 +331,9 @@
+             return getDefault();
+         }
+         final String id = zone.getID();
+-        if (id.equals("UTC")) {
+-            return DateTimeZone.UTC;
++        DateTimeZone var_6 = DateTimeZone.UTC;
++		if (id.equals("UTC")) {
++            return var_6;
+         }
+ 
+         // Convert from old alias before consulting provider since they may differ.
+@@ -355,7 +356,7 @@
+                 convId = convId.substring(3);
+                 int offset = parseOffset(convId);
+                 if (offset == 0L) {
+-                    return DateTimeZone.UTC;
++                    return var_6;
+                 } else {
+                     convId = printOffset(offset);
+                     return fixedOffsetZone(convId, offset);

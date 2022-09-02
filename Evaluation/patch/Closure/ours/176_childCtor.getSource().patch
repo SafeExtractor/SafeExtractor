@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/ClosureCodingConvention.java b/src/com/google/javascript/jscomp/ClosureCodingConvention.java
+index f78afdb..8cfb569 100644
+--- a/src/com/google/javascript/jscomp/ClosureCodingConvention.java
++++ b/src/com/google/javascript/jscomp/ClosureCodingConvention.java
+@@ -70,8 +70,9 @@
+       FunctionType childCtor, SubclassType type) {
+     super.applySubclassRelationship(parentCtor, childCtor, type);
+     if (type == SubclassType.INHERITS) {
+-      childCtor.defineDeclaredProperty("superClass_",
+-          parentCtor.getPrototype(), childCtor.getSource());
++      Node var_176 = childCtor.getSource();
++	childCtor.defineDeclaredProperty("superClass_",
++          parentCtor.getPrototype(), var_176);
+       childCtor.getPrototype().defineDeclaredProperty("constructor",
+           // Notice that constructor functions do not need to be covariant
+           // on the superclass.
+@@ -81,7 +82,7 @@
+           // To get around this, we just turn off type-checking on arguments
+           // and return types of G.prototype.constructor.
+           childCtor.cloneWithoutArrowType(),
+-          childCtor.getSource());
++          var_176);
+     }
+   }
+ 

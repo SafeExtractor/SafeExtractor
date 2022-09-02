@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..4767520 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -956,10 +956,11 @@
+      * @return a new rotation which is the composition of r by the instance
+      */
+     public FieldRotation<T> applyTo(final FieldRotation<T> r) {
+-        return new FieldRotation<T>(r.q0.multiply(q0).subtract(r.q1.multiply(q1).add(r.q2.multiply(q2)).add(r.q3.multiply(q3))),
+-                                    r.q1.multiply(q0).add(r.q0.multiply(q1)).add(r.q2.multiply(q3).subtract(r.q3.multiply(q2))),
+-                                    r.q2.multiply(q0).add(r.q0.multiply(q2)).add(r.q3.multiply(q1).subtract(r.q1.multiply(q3))),
+-                                    r.q3.multiply(q0).add(r.q0.multiply(q3)).add(r.q1.multiply(q2).subtract(r.q2.multiply(q1))),
++        T var_1283 = r.q0;
++		return new FieldRotation<T>(var_1283.multiply(q0).subtract(r.q1.multiply(q1).add(r.q2.multiply(q2)).add(r.q3.multiply(q3))),
++                                    r.q1.multiply(q0).add(var_1283.multiply(q1)).add(r.q2.multiply(q3).subtract(r.q3.multiply(q2))),
++                                    r.q2.multiply(q0).add(var_1283.multiply(q2)).add(r.q3.multiply(q1).subtract(r.q1.multiply(q3))),
++                                    r.q3.multiply(q0).add(var_1283.multiply(q3)).add(r.q1.multiply(q2).subtract(r.q2.multiply(q1))),
+                                     false);
+     }
+ 

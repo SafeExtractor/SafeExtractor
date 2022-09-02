@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/events/EventState.java b/src/main/java/org/apache/commons/math3/ode/events/EventState.java
+index 5d67795..63f4afd 100644
+--- a/src/main/java/org/apache/commons/math3/ode/events/EventState.java
++++ b/src/main/java/org/apache/commons/math3/ode/events/EventState.java
+@@ -286,7 +286,8 @@
+                                                                    baseRoot, tb, ta, AllowedSolution.LEFT_SIDE);
+                     }
+ 
+-                    if ((!Double.isNaN(previousEventTime)) &&
++                    boolean var_2612 = Double.isNaN(previousEventTime);
++					if ((!var_2612) &&
+                         (FastMath.abs(root - ta) <= convergence) &&
+                         (FastMath.abs(root - previousEventTime) <= convergence)) {
+                         // we have either found nothing or found (again ?) a past event,
+@@ -294,7 +295,7 @@
+                         ta = forward ? ta + convergence : ta - convergence;
+                         ga = f.value(ta);
+                         --i;
+-                    } else if (Double.isNaN(previousEventTime) ||
++                    } else if (var_2612 ||
+                                (FastMath.abs(previousEventTime - root) > convergence)) {
+                         pendingEventTime = root;
+                         pendingEvent = true;

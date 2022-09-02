@@ -1,0 +1,27 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2114_plotState.getOwner().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/2114_plotState.getOwner().patch
+index 86d587e..c6ec1da 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2114_plotState.getOwner().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/2114_plotState.getOwner().patch
+@@ -1,5 +1,5 @@
+ diff --git a/source/org/jfree/chart/plot/Plot.java b/source/org/jfree/chart/plot/Plot.java
+-index 4656dc7..4c87d72 100644
++index 4656dc7..dae6819 100644
+ --- a/source/org/jfree/chart/plot/Plot.java
+ +++ b/source/org/jfree/chart/plot/Plot.java
+ @@ -156,6 +156,7 @@
+@@ -10,15 +10,3 @@ index 4656dc7..4c87d72 100644
+  import org.jfree.chart.JFreeChart;
+  import org.jfree.chart.LegendItemCollection;
+  import org.jfree.chart.LegendItemSource;
+-@@ -1171,8 +1172,9 @@
+-      */
+-     protected void createAndAddEntity(Rectangle2D dataArea,
+-             PlotRenderingInfo plotState, String toolTip, String urlText) {
+--        if (plotState != null && plotState.getOwner() != null) {
+--            EntityCollection e = plotState.getOwner().getEntityCollection();
+-+        ChartRenderingInfo var_2114 = plotState.getOwner();
+-+		if (plotState != null && var_2114 != null) {
+-+            EntityCollection e = var_2114.getEntityCollection();
+-             if (e != null) {
+-                 e.add(new PlotEntity(dataArea, this, toolTip, urlText));
+-             }

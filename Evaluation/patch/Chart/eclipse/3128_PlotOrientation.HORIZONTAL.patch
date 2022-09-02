@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..1dbef68 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -1339,7 +1339,8 @@
+                                  Marker marker,
+                                  Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        PlotOrientation var_3128 = PlotOrientation.HORIZONTAL;
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = domainAxis.getRange();
+@@ -1352,7 +1353,7 @@
+ 
+             PlotOrientation orientation = plot.getOrientation();
+             Line2D line = null;
+-            if (orientation == PlotOrientation.HORIZONTAL) {
++            if (orientation == var_3128) {
+                 line = new Line2D.Double(dataArea.getMinX(), v,
+                         dataArea.getMaxX(), v);
+             }
+@@ -1402,7 +1403,7 @@
+ 
+             PlotOrientation orientation = plot.getOrientation();
+             Rectangle2D rect = null;
+-            if (orientation == PlotOrientation.HORIZONTAL) {
++            if (orientation == var_3128) {
+                 // clip top and bottom bounds to data area
+                 low = Math.max(low, dataArea.getMinY());
+                 high = Math.min(high, dataArea.getMaxY());

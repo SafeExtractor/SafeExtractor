@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/SplineInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/SplineInterpolator.java
+index bce2e18..b4c8025 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/SplineInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/SplineInterpolator.java
+@@ -93,9 +93,10 @@
+         z[0] = 0d;
+         double g = 0;
+         for (int i = 1; i < n; i++) {
+-            g = 2d * (x[i+1]  - x[i - 1]) - h[i - 1] * mu[i -1];
++            double var_394 = x[i - 1];
++			g = 2d * (x[i+1]  - var_394) - h[i - 1] * mu[i -1];
+             mu[i] = h[i] / g;
+-            z[i] = (3d * (y[i + 1] * h[i - 1] - y[i] * (x[i + 1] - x[i - 1])+ y[i - 1] * h[i]) /
++            z[i] = (3d * (y[i + 1] * h[i - 1] - y[i] * (x[i + 1] - var_394)+ y[i - 1] * h[i]) /
+                     (h[i - 1] * h[i]) - h[i - 1] * z[i - 1]) / g;
+         }
+ 

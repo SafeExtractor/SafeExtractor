@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+index 8d6a50b..04ecdfd 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+@@ -513,7 +513,8 @@
+                 }
+ 
+                 // Default convergence criteria.
+-                if ((FastMath.abs(actRed) <= costRelativeTolerance &&
++                double var_3178 = FastMath.abs(actRed);
++				if ((var_3178 <= costRelativeTolerance &&
+                      preRed <= costRelativeTolerance &&
+                      ratio <= 2.0) ||
+                     delta <= parRelativeTolerance * xNorm) {
+@@ -522,7 +523,7 @@
+                 }
+ 
+                 // tests for termination and stringent tolerances
+-                if (FastMath.abs(actRed) <= TWO_EPS &&
++                if (var_3178 <= TWO_EPS &&
+                     preRed <= TWO_EPS &&
+                     ratio <= 2.0) {
+                     throw new ConvergenceException(LocalizedFormats.TOO_SMALL_COST_RELATIVE_TOLERANCE,

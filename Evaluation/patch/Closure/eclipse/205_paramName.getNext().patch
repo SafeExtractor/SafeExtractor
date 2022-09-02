@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/RuntimeTypeCheck.java b/src/com/google/javascript/jscomp/RuntimeTypeCheck.java
+index 773b7ad..af858a1 100644
+--- a/src/com/google/javascript/jscomp/RuntimeTypeCheck.java
++++ b/src/com/google/javascript/jscomp/RuntimeTypeCheck.java
+@@ -250,9 +250,10 @@
+         Node checkNode = createCheckTypeCallNode(
+             paramType.getJSType(), paramName.cloneTree());
+ 
+-        if (checkNode == null) {
++        Node var_205 = paramName.getNext();
++		if (checkNode == null) {
+           // We don't know how to check this parameter type.
+-          paramName = paramName.getNext();
++          paramName = var_205;
+           continue;
+         }
+ 
+@@ -264,7 +265,7 @@
+         }
+ 
+         compiler.reportCodeChange();
+-        paramName = paramName.getNext();
++        paramName = var_205;
+         insertionPoint = checkNode;
+       }
+     }

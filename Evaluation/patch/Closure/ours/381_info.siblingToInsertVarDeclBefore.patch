@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/AliasStrings.java b/src/com/google/javascript/jscomp/AliasStrings.java
+index 437c030..ba212c1 100644
+--- a/src/com/google/javascript/jscomp/AliasStrings.java
++++ b/src/com/google/javascript/jscomp/AliasStrings.java
+@@ -257,11 +257,12 @@
+       }
+       String alias = info.getVariableName(entry.getKey());
+       Node var = IR.var(IR.name(alias), IR.string(entry.getKey()));
+-      if (info.siblingToInsertVarDeclBefore == null) {
++      Node var_381 = info.siblingToInsertVarDeclBefore;
++	if (var_381 == null) {
+         info.parentForNewVarDecl.addChildToFront(var);
+       } else {
+         info.parentForNewVarDecl.addChildBefore(
+-            var, info.siblingToInsertVarDeclBefore);
++            var, var_381);
+       }
+       compiler.reportCodeChange();
+     }

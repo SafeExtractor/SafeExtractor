@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/StrictModeCheck.java b/src/com/google/javascript/jscomp/StrictModeCheck.java
+index b22f3ed..d808351 100644
+--- a/src/com/google/javascript/jscomp/StrictModeCheck.java
++++ b/src/com/google/javascript/jscomp/StrictModeCheck.java
+@@ -165,9 +165,10 @@
+   /** Checks that an assignment is not to the "arguments" object. */
+   private void checkAssignment(NodeTraversal t, Node n) {
+     if (n.getFirstChild().isName()) {
+-      if ("arguments".equals(n.getFirstChild().getString())) {
++      String var_211 = n.getFirstChild().getString();
++	if ("arguments".equals(var_211)) {
+         t.report(n, ARGUMENTS_ASSIGNMENT);
+-      } else if ("eval".equals(n.getFirstChild().getString())) {
++      } else if ("eval".equals(var_211)) {
+         // Note that assignment to eval is already illegal because any use of
+         // that name is illegal.
+         if (noCajaChecks) {

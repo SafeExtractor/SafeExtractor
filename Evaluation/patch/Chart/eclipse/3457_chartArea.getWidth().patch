@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/chart/title/ImageTitle.java b/source/org/jfree/chart/title/ImageTitle.java
+index 61d5d46..bb3adba 100644
+--- a/source/org/jfree/chart/title/ImageTitle.java
++++ b/source/org/jfree/chart/title/ImageTitle.java
+@@ -245,20 +245,21 @@
+         // what is our alignment?
+         HorizontalAlignment horizontalAlignment = getHorizontalAlignment();
+         double startX = 0.0;
+-        if (horizontalAlignment == HorizontalAlignment.CENTER) {
+-            startX = chartArea.getX() + leftSpace + chartArea.getWidth() / 2.0
++        double var_3457 = chartArea.getWidth();
++		if (horizontalAlignment == HorizontalAlignment.CENTER) {
++            startX = chartArea.getX() + leftSpace + var_3457 / 2.0
+                      - w / 2.0;
+         }
+         else if (horizontalAlignment == HorizontalAlignment.LEFT) {
+             startX = chartArea.getX() + leftSpace;
+         }
+         else if (horizontalAlignment == HorizontalAlignment.RIGHT) {
+-            startX = chartArea.getX() + chartArea.getWidth() - rightSpace - w;
++            startX = chartArea.getX() + var_3457 - rightSpace - w;
+         }
+         g2.drawImage(this.image, (int) startX, (int) startY, (int) w, (int) h,
+                 null);
+ 
+-        return new Size2D(chartArea.getWidth() + leftSpace + rightSpace,
++        return new Size2D(var_3457 + leftSpace + rightSpace,
+             h + topSpace + bottomSpace);
+ 
+     }

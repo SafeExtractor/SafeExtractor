@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..b081bc7 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -482,7 +482,8 @@
+     // To be explicitly set to false if the node is not typeable.
+     boolean typeable = true;
+ 
+-    switch (n.getType()) {
++    JSType var_991 = getJSType(n.getFirstChild());
++	switch (n.getType()) {
+       case Token.CAST:
+         Node expr = n.getFirstChild();
+         ensureTyped(t, n, getJSType(expr));
+@@ -600,7 +601,7 @@
+         break;
+ 
+       case Token.BITNOT:
+-        childType = getJSType(n.getFirstChild());
++        childType = var_991;
+         if (!childType.matchesInt32Context()) {
+           report(t, n, BIT_OPERATION, NodeUtil.opToStr(n.getType()),
+               childType.toString());
+@@ -672,7 +673,7 @@
+       case Token.LE:
+       case Token.GT:
+       case Token.GE:
+-        leftType = getJSType(n.getFirstChild());
++        leftType = var_991;
+         rightType = getJSType(n.getLastChild());
+         if (rightType.isNumber()) {
+           validator.expectNumber(
+@@ -761,7 +762,7 @@
+ 
+       case Token.CASE:
+         JSType switchType = getJSType(parent.getFirstChild());
+-        JSType caseType = getJSType(n.getFirstChild());
++        JSType caseType = var_991;
+         validator.expectSwitchMatchesCase(t, n, switchType, caseType);
+         typeable = false;
+         break;

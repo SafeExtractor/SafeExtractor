@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 781fc3c..28cc356 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -1437,7 +1437,8 @@
+ 
+     // Check whether this is a class-defining call. Classes may only be defined
+     // in the global scope.
+-    if (parent.isCall() && t.inGlobalScope()) {
++    boolean var_311 = t.inGlobalScope();
++	if (parent.isCall() && var_311) {
+       CodingConvention convention = compiler.getCodingConvention();
+       SubclassRelationship classes = convention.getClassesDefinedByCall(parent);
+       if (classes != null) {
+@@ -1479,7 +1480,7 @@
+         return createNameInformation(
+             rootNameNode.getString() + name, t.getScope(), rootNameNode);
+       case Token.THIS:
+-        if (t.inGlobalScope()) {
++        if (var_311) {
+           NameInformation nameInfo = new NameInformation();
+           if (name.indexOf('.') == 0) {
+             nameInfo.name = name.substring(1);  // strip leading "."

@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/axis/ValueAxis.java b/source/org/jfree/chart/axis/ValueAxis.java
+index 5972cdd..aa882e5 100644
+--- a/source/org/jfree/chart/axis/ValueAxis.java
++++ b/source/org/jfree/chart/axis/ValueAxis.java
+@@ -685,7 +685,8 @@
+         state.setTicks(ticks);
+         g2.setFont(getTickLabelFont());
+         Iterator iterator = ticks.iterator();
+-        while (iterator.hasNext()) {
++        RectangleEdge var_580 = RectangleEdge.TOP;
++		while (iterator.hasNext()) {
+             ValueTick tick = (ValueTick) iterator.next();
+             if (isTickLabelsVisible()) {
+                 g2.setPaint(getTickLabelPaint());
+@@ -717,7 +718,7 @@
+                 else if (edge == RectangleEdge.RIGHT) {
+                     mark = new Line2D.Double(cursor + ol, xx, cursor - il, xx);
+                 }
+-                else if (edge == RectangleEdge.TOP) {
++                else if (edge == var_580) {
+                     mark = new Line2D.Double(xx, cursor - ol, xx, cursor + il);
+                 }
+                 else if (edge == RectangleEdge.BOTTOM) {
+@@ -741,7 +742,7 @@
+                         isVerticalTickLabels());
+                 state.cursorRight(used);
+             }
+-            else if (edge == RectangleEdge.TOP) {
++            else if (edge == var_580) {
+                 used = findMaximumTickLabelHeight(ticks, g2, plotArea,
+                         isVerticalTickLabels());
+                 state.cursorUp(used);

@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..896d7da 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -78,7 +78,8 @@
+   @Override
+   @SuppressWarnings("fallthrough")
+   public Node optimizeSubtree(Node node) {
+-    switch(node.getType()) {
++    Node var_1412 = NodeUtil.getConditionExpression(node);
++	switch(node.getType()) {
+       case Token.RETURN: {
+         Node result = tryRemoveRedundantExit(node);
+         if (result != node) {
+@@ -120,13 +121,13 @@
+ 
+       case Token.WHILE:
+       case Token.DO:
+-        tryMinimizeCondition(NodeUtil.getConditionExpression(node));
++        tryMinimizeCondition(var_1412);
+         return node;
+ 
+       case Token.FOR:
+         if (!NodeUtil.isForIn(node)) {
+           tryJoinForCondition(node);
+-          tryMinimizeCondition(NodeUtil.getConditionExpression(node));
++          tryMinimizeCondition(var_1412);
+         }
+         return node;
+ 

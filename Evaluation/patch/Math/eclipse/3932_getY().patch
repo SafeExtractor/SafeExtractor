@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/OLSMultipleLinearRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/OLSMultipleLinearRegression.java
+index af33fb5..01a0ce7 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/OLSMultipleLinearRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/OLSMultipleLinearRegression.java
+@@ -140,10 +140,11 @@
+      * @since 2.2
+      */
+     public double calculateTotalSumOfSquares() throws MathIllegalArgumentException {
+-        if (isNoIntercept()) {
+-            return StatUtils.sumSq(getY().toArray());
++        RealVector var_3932 = getY();
++		if (isNoIntercept()) {
++            return StatUtils.sumSq(var_3932.toArray());
+         } else {
+-            return new SecondMoment().evaluate(getY().toArray());
++            return new SecondMoment().evaluate(var_3932.toArray());
+         }
+     }
+ 

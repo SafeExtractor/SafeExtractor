@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..a4da302 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -770,7 +770,8 @@
+     if (thenBranchIsExpressionBlock && elseBranchIsExpressionBlock) {
+       Node thenOp = getBlockExpression(thenBranch).getFirstChild();
+       Node elseOp = getBlockExpression(elseBranch).getFirstChild();
+-      if (thenOp.getType() == elseOp.getType()) {
++      int var_1434 = thenOp.getType();
++	if (var_1434 == elseOp.getType()) {
+         // if(x)a=1;else a=2; -> a=x?1:2;
+         if (NodeUtil.isAssignmentOp(thenOp)) {
+           Node lhs = thenOp.getFirstChild();
+@@ -788,7 +789,7 @@
+             elseOp.removeChild(elseExpr);
+ 
+             Node hookNode = IR.hook(cond, thenExpr, elseExpr).srcref(n);
+-            Node assign = new Node(thenOp.getType(), assignName, hookNode)
++            Node assign = new Node(var_1434, assignName, hookNode)
+                               .srcref(thenOp);
+             Node expr = NodeUtil.newExpr(assign);
+             parent.replaceChild(n, expr);

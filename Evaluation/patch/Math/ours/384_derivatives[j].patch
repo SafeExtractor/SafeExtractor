@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java
+index 14199eb..283581f 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java
+@@ -192,9 +192,10 @@
+             T[] dividedDifference = topDiagonal.get(i);
+             final T deltaX = x.subtract(abscissae.get(i));
+             for (int j = order; j >= 0; --j) {
+-                for (int k = 0; k < derivatives[j].length; ++k) {
+-                    derivatives[j][k] =
+-                            derivatives[j][k].add(dividedDifference[k].multiply(valueCoeff[j]));
++                T[] var_384 = derivatives[j];
++				for (int k = 0; k < var_384.length; ++k) {
++                    var_384[k] =
++                            var_384[k].add(dividedDifference[k].multiply(valueCoeff[j]));
+                 }
+                 valueCoeff[j] = valueCoeff[j].multiply(deltaX);
+                 if (j > 0) {

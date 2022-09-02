@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/joda/time/DateTimeComparator.java b/src/main/java/org/joda/time/DateTimeComparator.java
+index 646918f..f71c8f2 100644
+--- a/src/main/java/org/joda/time/DateTimeComparator.java
++++ b/src/main/java/org/joda/time/DateTimeComparator.java
+@@ -106,10 +106,11 @@
+         if (lowerLimit == null && upperLimit == null) {
+             return ALL_INSTANCE;
+         }
+-        if (lowerLimit == DateTimeFieldType.dayOfYear() && upperLimit == null) {
++        DateTimeFieldType var_26 = DateTimeFieldType.dayOfYear();
++		if (lowerLimit == var_26 && upperLimit == null) {
+             return DATE_INSTANCE;
+         }
+-        if (lowerLimit == null && upperLimit == DateTimeFieldType.dayOfYear()) {
++        if (lowerLimit == null && upperLimit == var_26) {
+             return TIME_INSTANCE;
+         }
+         return new DateTimeComparator(lowerLimit, upperLimit);

@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/lang3/ArrayUtils.java b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+index a0a499a..a26cea5 100644
+--- a/src/main/java/org/apache/commons/lang3/ArrayUtils.java
++++ b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+@@ -2713,9 +2713,12 @@
+     public static char[] toPrimitive(final Character[] array, final char valueForNull) {
+         if (array == null) {
+             return null;
+-        } else if (array.length == 0) {
+-            return EMPTY_CHAR_ARRAY;
+-        }
++        } else {
++			int var_174 = array.length;
++			if (var_174 == 0) {
++			    return EMPTY_CHAR_ARRAY;
++			}
++		}
+         final char[] result = new char[array.length];
+         for (int i = 0; i < array.length; i++) {
+             final Character b = array[i];

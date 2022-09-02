@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/jsonml/Writer.java b/src/com/google/javascript/jscomp/jsonml/Writer.java
+index b357eb9..377d552 100644
+--- a/src/com/google/javascript/jscomp/jsonml/Writer.java
++++ b/src/com/google/javascript/jscomp/jsonml/Writer.java
+@@ -41,9 +41,10 @@
+       root.getType() == Token.BLOCK || root.getType() == Token.SCRIPT);
+ 
+     JsonML rootElement = new JsonML(TagType.BlockStmt);
+-    if (root.getType() == Token.SCRIPT) {
++    JsonML var_2202 = rootElement.getChild(0);
++	if (root.getType() == Token.SCRIPT) {
+       processNode(root, rootElement);
+-      return rootElement.getChild(0);
++      return var_2202;
+     } else {
+       Node child = root.getFirstChild();
+       while (child != null) {
+@@ -51,7 +52,7 @@
+         child = child.getNext();
+       }
+       // TODO(johnlenz): Add support for multiple scripts.
+-      return rootElement.getChild(0);
++      return var_2202;
+     }
+   }
+ 

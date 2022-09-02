@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..db665a6 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -1539,7 +1539,8 @@
+                                 Marker marker,
+                                 Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        double var_3132 = dataArea.getMaxY();
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = rangeAxis.getRange();
+@@ -1553,7 +1554,7 @@
+             Line2D line = null;
+             if (orientation == PlotOrientation.HORIZONTAL) {
+                 line = new Line2D.Double(v, dataArea.getMinY(), v,
+-                        dataArea.getMaxY());
++                        var_3132);
+             }
+             else if (orientation == PlotOrientation.VERTICAL) {
+                 line = new Line2D.Double(dataArea.getMinX(), v,
+@@ -1612,7 +1613,7 @@
+             else if (orientation == PlotOrientation.VERTICAL) {
+                 // clip top and bottom bounds to data area
+                 low = Math.max(low, dataArea.getMinY());
+-                high = Math.min(high, dataArea.getMaxY());
++                high = Math.min(high, var_3132);
+                 rect = new Rectangle2D.Double(dataArea.getMinX(),
+                         low, dataArea.getWidth(),
+                         high - low);
+@@ -1655,7 +1656,7 @@
+                 else { // PlotOrientation.HORIZONTAL
+                     Line2D line = new Line2D.Double();
+                     double y0 = dataArea.getMinY();
+-                    double y1 = dataArea.getMaxY();
++                    double y1 = var_3132;
+                     g2.setPaint(im.getOutlinePaint());
+                     g2.setStroke(im.getOutlineStroke());
+                     if (range.contains(start)) {

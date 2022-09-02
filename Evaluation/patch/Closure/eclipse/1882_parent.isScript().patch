@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/FindExportableNodes.java b/src/com/google/javascript/jscomp/FindExportableNodes.java
+index 166a957..59b8169 100644
+--- a/src/com/google/javascript/jscomp/FindExportableNodes.java
++++ b/src/com/google/javascript/jscomp/FindExportableNodes.java
+@@ -68,9 +68,10 @@
+       String export = null;
+       GenerateNodeContext context = null;
+ 
+-      switch (n.getType()) {
++      boolean var_1882 = parent.isScript();
++	switch (n.getType()) {
+         case Token.FUNCTION:
+-          if (parent.isScript()) {
++          if (var_1882) {
+             export = NodeUtil.getFunctionName(n);
+             context = new GenerateNodeContext(n, parent, n);
+           }
+@@ -85,7 +86,7 @@
+           }
+           break;
+         case Token.VAR:
+-          if (parent.isScript()) {
++          if (var_1882) {
+             if (n.getFirstChild().hasChildren() &&
+                 !n.getFirstChild().getFirstChild().isAssign()) {
+               export = n.getFirstChild().getString();

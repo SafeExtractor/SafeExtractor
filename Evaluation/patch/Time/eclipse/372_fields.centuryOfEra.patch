@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/joda/time/chrono/BasicChronology.java b/src/main/java/org/joda/time/chrono/BasicChronology.java
+index 63f394a..6240e03 100644
+--- a/src/main/java/org/joda/time/chrono/BasicChronology.java
++++ b/src/main/java/org/joda/time/chrono/BasicChronology.java
+@@ -278,10 +278,11 @@
+             fields.yearOfEra, 99);
+         fields.centuryOfEra = new DividedDateTimeField(
+             field, DateTimeFieldType.centuryOfEra(), 100);
+-        fields.centuries = fields.centuryOfEra.getDurationField();
++        DateTimeField var_372 = fields.centuryOfEra;
++		fields.centuries = var_372.getDurationField();
+         
+         field = new RemainderDateTimeField(
+-            (DividedDateTimeField) fields.centuryOfEra);
++            (DividedDateTimeField) var_372);
+         fields.yearOfCentury = new OffsetDateTimeField(
+             field, DateTimeFieldType.yearOfCentury(), 1);
+ 

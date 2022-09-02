@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java b/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java
+index 6016825..51d5160 100644
+--- a/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java
+@@ -60,12 +60,13 @@
+      * @throws NonSquareMatrixException if the matrix is not square.
+      */
+     public TriDiagonalTransformer(RealMatrix matrix) {
+-        if (!matrix.isSquare()) {
+-            throw new NonSquareMatrixException(matrix.getRowDimension(),
++        int var_1859 = matrix.getRowDimension();
++		if (!matrix.isSquare()) {
++            throw new NonSquareMatrixException(var_1859,
+                                                matrix.getColumnDimension());
+         }
+ 
+-        final int m = matrix.getRowDimension();
++        final int m = var_1859;
+         householderVectors = matrix.getData();
+         main      = new double[m];
+         secondary = new double[m - 1];

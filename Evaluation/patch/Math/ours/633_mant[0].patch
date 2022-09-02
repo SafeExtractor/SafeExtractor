@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..40050b0 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1424,7 +1424,8 @@
+      */
+     protected int round(int n) {
+         boolean inc = false;
+-        switch (field.getRoundingMode()) {
++        int var_633 = mant[0];
++		switch (field.getRoundingMode()) {
+             case ROUND_DOWN:
+                 inc = false;
+                 break;
+@@ -1442,11 +1443,11 @@
+                 break;
+ 
+             case ROUND_HALF_EVEN:
+-                inc = n > 5000 || (n == 5000 && (mant[0] & 1) == 1);  // round half-even
++                inc = n > 5000 || (n == 5000 && (var_633 & 1) == 1);  // round half-even
+                 break;
+ 
+             case ROUND_HALF_ODD:
+-                inc = n > 5000 || (n == 5000 && (mant[0] & 1) == 0);  // round half-odd
++                inc = n > 5000 || (n == 5000 && (var_633 & 1) == 0);  // round half-odd
+                 break;
+ 
+             case ROUND_CEIL:

@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/CheckGlobalThis.java b/src/com/google/javascript/jscomp/CheckGlobalThis.java
+index 3d8e0f1..e941c67 100644
+--- a/src/com/google/javascript/jscomp/CheckGlobalThis.java
++++ b/src/com/google/javascript/jscomp/CheckGlobalThis.java
+@@ -112,9 +112,10 @@
+       Node gramps = parent.getParent();
+       if (NodeUtil.isObjectLitKey(parent, gramps)) {
+         JSDocInfo maybeLends = gramps.getJSDocInfo();
+-        if (maybeLends != null &&
+-            maybeLends.getLendsName() != null &&
+-            maybeLends.getLendsName().endsWith(".prototype")) {
++        String var_270 = maybeLends.getLendsName();
++		if (maybeLends != null &&
++            var_270 != null &&
++            var_270.endsWith(".prototype")) {
+           return false;
+         }
+       }

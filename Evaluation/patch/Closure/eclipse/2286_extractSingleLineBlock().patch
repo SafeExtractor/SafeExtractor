@@ -1,0 +1,45 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..eeaf749 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -228,10 +228,11 @@
+               // Mark the beginning of the annotation.
+               jsdocBuilder.markAnnotation(annotationName, lineno, charno);
+ 
+-              switch (annotation) {
++              ExtractionInfo var_2286 = extractSingleLineBlock();
++			switch (annotation) {
+                 case AUTHOR:
+                   if (jsdocBuilder.shouldParseDocumentation()) {
+-                    ExtractionInfo authorInfo = extractSingleLineBlock();
++                    ExtractionInfo authorInfo = var_2286;
+                     String author = authorInfo.string;
+ 
+                     if (author.length() == 0) {
+@@ -737,7 +738,7 @@
+ 
+                 case SEE:
+                   if (jsdocBuilder.shouldParseDocumentation()) {
+-                    ExtractionInfo referenceInfo = extractSingleLineBlock();
++                    ExtractionInfo referenceInfo = var_2286;
+                     String reference = referenceInfo.string;
+ 
+                     if (reference.length() == 0) {
+@@ -766,7 +767,7 @@
+                   continue retry;
+ 
+                 case TEMPLATE:
+-                  ExtractionInfo templateInfo = extractSingleLineBlock();
++                  ExtractionInfo templateInfo = var_2286;
+                   List<String> names = Lists.newArrayList(
+                       Splitter.on(',')
+                           .trimResults()
+@@ -792,7 +793,7 @@
+                   continue retry;
+ 
+                 case VERSION:
+-                  ExtractionInfo versionInfo = extractSingleLineBlock();
++                  ExtractionInfo versionInfo = var_2286;
+                   String version = versionInfo.string;
+ 
+                   if (version.length() == 0) {

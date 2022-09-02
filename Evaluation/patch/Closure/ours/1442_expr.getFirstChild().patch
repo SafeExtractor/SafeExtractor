@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..e2b14d1 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -661,8 +661,9 @@
+ 
+         if (cond.isNot()) {
+           // if(!x)bar(); -> x||bar();
+-          if (isLowerPrecedenceInExpression(cond, OR_PRECEDENCE) &&
+-              isLowerPrecedenceInExpression(expr.getFirstChild(),
++          Node var_1442 = expr.getFirstChild();
++		if (isLowerPrecedenceInExpression(cond, OR_PRECEDENCE) &&
++              isLowerPrecedenceInExpression(var_1442,
+                   OR_PRECEDENCE)) {
+             // It's not okay to add two sets of parentheses.
+             return n;

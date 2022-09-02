@@ -1,0 +1,44 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/AVLTree.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/AVLTree.java
+index 7070060..22c1c85 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/AVLTree.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/AVLTree.java
+@@ -376,19 +376,20 @@
+                 Node node;
+                 Node child;
+                 boolean leftShrunk;
+-                if ((left == null) && (right == null)) {
++                AVLTree<T>.Node var_1763 = node.parent;
++				if ((left == null) && (right == null)) {
+                     node       = this;
+                     element    = null;
+-                    leftShrunk = node == node.parent.left;
++                    leftShrunk = node == var_1763.left;
+                     child      = null;
+                 } else {
+                     node       = (left != null) ? left.getLargest() : right.getSmallest();
+                     element    = node.element;
+-                    leftShrunk = node == node.parent.left;
++                    leftShrunk = node == var_1763.left;
+                     child      = (node.left != null) ? node.left : node.right;
+                 }
+ 
+-                node = node.parent;
++                node = var_1763;
+                 if (leftShrunk) {
+                     node.left = child;
+                 } else {
+@@ -399,11 +400,11 @@
+                 }
+ 
+                 while (leftShrunk ? node.rebalanceLeftShrunk() : node.rebalanceRightShrunk()) {
+-                    if (node.parent == null) {
++                    if (var_1763 == null) {
+                         return;
+                     }
+-                    leftShrunk = node == node.parent.left;
+-                    node = node.parent;
++                    leftShrunk = node == var_1763.left;
++                    node = var_1763;
+                 }
+ 
+             }

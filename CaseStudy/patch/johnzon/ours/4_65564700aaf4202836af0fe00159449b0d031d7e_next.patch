@@ -1,0 +1,23 @@
+diff --git a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonReaderImpl.java b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonReaderImpl.java
+index 86d7708..f7f43fb 100644
+--- a/johnzon-core/src/main/java/org/apache/johnzon/core/JsonReaderImpl.java
++++ b/johnzon-core/src/main/java/org/apache/johnzon/core/JsonReaderImpl.java
+@@ -43,7 +43,8 @@
+         if (!parser.hasNext()) {
+             throw new IllegalStateException("Nothing to read");
+         }
+-        switch (parser.next()) {
++        int next = parser.next();
++		switch (next) {
+             case START_OBJECT:
+                 final JsonObjectBuilder objectBuilder = new JsonObjectBuilderImpl();
+                 parseObject(objectBuilder);
+@@ -62,7 +63,7 @@
+                 return arrayBuilder.build();
+             default:
+                 close();
+-                throw new JsonParsingException("Unknown structure: " + parser.next(), parser.getLocation());
++                throw new JsonParsingException("Unknown structure: " + next, parser.getLocation());
+         }
+ 
+     }

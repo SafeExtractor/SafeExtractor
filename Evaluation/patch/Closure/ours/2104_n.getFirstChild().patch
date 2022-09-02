@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..09a0139 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -3268,9 +3268,10 @@
+   }
+ 
+   static boolean isNaN(Node n) {
+-    if ((n.isName() && n.getString().equals("NaN")) ||
++    Node var_2104 = n.getFirstChild();
++	if ((n.isName() && n.getString().equals("NaN")) ||
+         (n.getType() == Token.DIV &&
+-         n.getFirstChild().isNumber() && n.getFirstChild().getDouble() == 0 &&
++         var_2104.isNumber() && var_2104.getDouble() == 0 &&
+          n.getLastChild().isNumber() && n.getLastChild().getDouble() == 0)) {
+       return true;
+     }

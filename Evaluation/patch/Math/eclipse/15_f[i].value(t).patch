@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/FunctionUtils.java b/src/main/java/org/apache/commons/math3/analysis/FunctionUtils.java
+index c39fc5e..ee79247 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/FunctionUtils.java
++++ b/src/main/java/org/apache/commons/math3/analysis/FunctionUtils.java
+@@ -265,7 +265,8 @@
+             public DerivativeStructure value(final DerivativeStructure t) {
+                 DerivativeStructure r = f[0].value(t);
+                 for (int i = 1; i < f.length; i++) {
+-                    r = r.multiply(f[i].value(t));
++                    DerivativeStructure var_15 = f[i].value(t);
++					r = r.multiply(var_15);
+                 }
+                 return r;
+             }

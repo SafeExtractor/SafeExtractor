@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/correlation/Covariance.java b/src/main/java/org/apache/commons/math3/stat/correlation/Covariance.java
+index ace3205..ce6edc1 100644
+--- a/src/main/java/org/apache/commons/math3/stat/correlation/Covariance.java
++++ b/src/main/java/org/apache/commons/math3/stat/correlation/Covariance.java
+@@ -171,12 +171,13 @@
+         Variance variance = new Variance(biasCorrected);
+         RealMatrix outMatrix = new BlockRealMatrix(dimension, dimension);
+         for (int i = 0; i < dimension; i++) {
+-            for (int j = 0; j < i; j++) {
+-              double cov = covariance(matrix.getColumn(i), matrix.getColumn(j), biasCorrected);
++            double[] var_3719 = matrix.getColumn(i);
++			for (int j = 0; j < i; j++) {
++              double cov = covariance(var_3719, matrix.getColumn(j), biasCorrected);
+               outMatrix.setEntry(i, j, cov);
+               outMatrix.setEntry(j, i, cov);
+             }
+-            outMatrix.setEntry(i, i, variance.evaluate(matrix.getColumn(i)));
++            outMatrix.setEntry(i, i, variance.evaluate(var_3719));
+         }
+         return outMatrix;
+     }

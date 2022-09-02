@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java b/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java
+index e0466ea..19111c0 100644
+--- a/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java
++++ b/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java
+@@ -215,14 +215,15 @@
+ 
+       Node var = new Node(Token.VAR);
+       var.copyInformationFrom(collapse.startNode);
+-      collapse.parent.addChildBefore(var, collapse.startNode);
++      Node var_466 = collapse.parent;
++	var_466.addChildBefore(var, collapse.startNode);
+ 
+       boolean redeclaration = false;
+       for (Node n = collapse.startNode; n != collapse.endNode;) {
+         Node next = n.getNext();
+ 
+         Preconditions.checkState(var.getNext() == n);
+-        collapse.parent.removeChildAfter(var);
++        var_466.removeChildAfter(var);
+ 
+         if (n.isVar()) {
+           while(n.hasChildren()) {

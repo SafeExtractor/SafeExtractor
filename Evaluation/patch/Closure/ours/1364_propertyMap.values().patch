@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/RenameProperties.java b/src/com/google/javascript/jscomp/RenameProperties.java
+index 7753a36..90d2dff 100644
+--- a/src/com/google/javascript/jscomp/RenameProperties.java
++++ b/src/com/google/javascript/jscomp/RenameProperties.java
+@@ -217,8 +217,9 @@
+ 
+     // First, try and reuse as many property names from the previous compilation
+     // as possible.
+-    if (prevUsedPropertyMap != null) {
+-      reusePropertyNames(reservedNames, propertyMap.values());
++    Collection<Property> var_1364 = propertyMap.values();
++	if (prevUsedPropertyMap != null) {
++      reusePropertyNames(reservedNames, var_1364);
+     }
+ 
+     compiler.addToDebugLog("JS property assignments:");
+@@ -228,7 +229,7 @@
+ 
+     // Assign names, sorted by descending frequency to minimize code size.
+     Set<Property> propsByFreq = new TreeSet<Property>(FREQUENCY_COMPARATOR);
+-    propsByFreq.addAll(propertyMap.values());
++    propsByFreq.addAll(var_1364);
+     generateNames(propsByFreq, reservedNames);
+ 
+     // Update the string nodes.

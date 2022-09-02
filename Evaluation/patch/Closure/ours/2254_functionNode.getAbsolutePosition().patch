@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..c7585b5 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -727,14 +727,15 @@
+       }
+       Node node = newNode(Token.FUNCTION);
+       Node newName = transform(name);
+-      if (isUnnamedFunction) {
++      int var_2254 = functionNode.getAbsolutePosition();
++	if (isUnnamedFunction) {
+         // Old Rhino tagged the empty name node with the line number of the
+         // declaration.
+         newName.setLineno(functionNode.getLineno());
+         // TODO(bowdidge) Mark line number of paren correctly.
+         // Same problem as below - the left paren might not be on the
+         // same line as the function keyword.
+-        int lpColumn = functionNode.getAbsolutePosition() +
++        int lpColumn = var_2254 +
+             functionNode.getLp();
+         newName.setCharno(position2charno(lpColumn));
+         maybeSetLengthFrom(newName, name);
+@@ -755,7 +756,7 @@
+         lp.setLineno(functionNode.getLineno());
+       }
+       int lparenCharno = functionNode.getLp() +
+-          functionNode.getAbsolutePosition();
++          var_2254;
+ 
+       lp.setCharno(position2charno(lparenCharno));
+       for (AstNode param : functionNode.getParams()) {

@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+index 6219d26..c83b69c 100644
+--- a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
++++ b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+@@ -26,6 +26,7 @@
+ import com.google.javascript.rhino.Node;
+ import com.google.javascript.rhino.Token;
+ 
++import java.util.ArrayList;
+ import java.util.Iterator;
+ import java.util.List;
+ import java.util.Set;
+@@ -349,10 +350,11 @@
+       }
+ 
+       // Keep track of the replaced nodes so we can reset the tree
+-      List<Node> newKeys = Lists.newArrayList();
+-      List<Node> newValues = Lists.newArrayList();
+-      List<Node> origGetElems = Lists.newArrayList();
+-      List<Node> newGetProps = Lists.newArrayList();
++      ArrayList<Node> var_1145 = Lists.newArrayList();
++	List<Node> newKeys = var_1145;
++      List<Node> newValues = var_1145;
++      List<Node> origGetElems = var_1145;
++      List<Node> newGetProps = var_1145;
+ 
+       // Replace all of the key nodes with the prop name
+       for (int j = 0; j < keyNodes.size(); j++) {

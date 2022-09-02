@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 9d1b56c..ba0d7da 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -297,7 +297,8 @@
+       Node n, Node exprRoot, String variable) {
+     while (n != exprRoot) {
+       VariableLiveness state = VariableLiveness.MAYBE_LIVE;
+-      switch (n.getParent().getType()) {
++      Node var_250 = n.getParent();
++	switch (var_250.getType()) {
+         case Token.OR:
+         case Token.AND:
+           // If the currently node is the first child of
+@@ -338,7 +339,7 @@
+       } else if (state == VariableLiveness.KILL) {
+         return false;
+       }
+-      n = n.getParent();
++      n = var_250;
+     }
+     return false;
+   }

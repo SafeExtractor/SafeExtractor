@@ -1,0 +1,25 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1375_varNodeIter.next().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1375_varNodeIter.next().patch
+index ebc84db..d11cb27 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1375_varNodeIter.next().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1375_varNodeIter.next().patch
+@@ -1,8 +1,8 @@
+ diff --git a/src/com/google/javascript/jscomp/GroupVariableDeclarations.java b/src/com/google/javascript/jscomp/GroupVariableDeclarations.java
+-index 19cc616..78803e9 100644
++index 19cc616..92398ea 100644
+ --- a/src/com/google/javascript/jscomp/GroupVariableDeclarations.java
+ +++ b/src/com/google/javascript/jscomp/GroupVariableDeclarations.java
+-@@ -86,9 +86,10 @@
++@@ -86,7 +86,8 @@
+        return;
+      }
+      Iterator<Node> varNodeIter = varNodes.iterator();
+@@ -10,8 +10,5 @@ index 19cc616..78803e9 100644
+ +    Node var_1375 = varNodeIter.next();
+ +	Node firstVarNode = var_1375;
+      while (varNodeIter.hasNext()) {
+--      Node varNode = varNodeIter.next();
+-+      Node varNode = var_1375;
++       Node varNode = varNodeIter.next();
+        applyGroupingToVar(firstVarNode, varNode);
+-     }
+-   }

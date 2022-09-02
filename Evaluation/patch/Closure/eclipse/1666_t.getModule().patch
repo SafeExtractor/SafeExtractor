@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+index bc570e2..e7c5257 100644
+--- a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
++++ b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+@@ -455,7 +455,8 @@
+       Node root = NodeUtil.getRootOfQualifiedName(ref);
+ 
+       Node n = ref.getParent();
+-      switch (n.getType()) {
++      JSModule var_1666 = t.getModule();
++	switch (n.getType()) {
+         // Foo.prototype.getBar = function() { ... }
+         case Token.GETPROP:
+           Node dest = n.getFirstChild().getNext();
+@@ -469,7 +470,7 @@
+             Property prop = new AssignmentProperty(
+                 grandParent,
+                 maybeGetVar(t, root),
+-                t.getModule());
++                var_1666);
+             getNameInfoForName(name, PROPERTY).getDeclarations().add(prop);
+             return true;
+           }
+@@ -486,7 +487,7 @@
+               Property prop = new LiteralProperty(
+                   key, key.getFirstChild(), map, n,
+                   maybeGetVar(t, root),
+-                  t.getModule());
++                  var_1666);
+               getNameInfoForName(name, PROPERTY).getDeclarations().add(prop);
+             }
+             return true;

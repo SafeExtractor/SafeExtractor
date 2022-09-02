@@ -1,0 +1,63 @@
+diff --git a/src/com/google/javascript/jscomp/regex/CharRanges.java b/src/com/google/javascript/jscomp/regex/CharRanges.java
+index 0736d68..df6c8cf 100644
+--- a/src/com/google/javascript/jscomp/regex/CharRanges.java
++++ b/src/com/google/javascript/jscomp/regex/CharRanges.java
+@@ -249,31 +249,34 @@
+     while (aIdx < aLen && bIdx < bLen) {
+       if (aRanges[aIdx + 1] <= pos) {
+         aIdx += 2;
+-      } else if (bRanges[bIdx + 1] <= pos) {
+-        bIdx += 2;
+       } else {
+-        int start = Math.max(aRanges[aIdx], bRanges[bIdx]);
+-        if (pos < start) {  // Advance to start of common block.
+-          pos = start;
+-        } else {
+-          // Now we know that pos is less than the ends of the two ranges and
+-          // greater or equal to the starts of the two ranges.
+-          int end = Math.min(aRanges[aIdx + 1], bRanges[bIdx + 1]);
+-          if (intersectionIdx != 0
+-              && pos == intersection[intersectionIdx - 1]) {
+-            intersection[intersectionIdx - 1] = end;
+-          } else {
+-            if (intersectionIdx == intersection.length) {
+-              int[] newArr = new int[intersectionIdx * 2];
+-              System.arraycopy(intersection, 0, newArr, 0, intersectionIdx);
+-              intersection = newArr;
+-            }
+-            intersection[intersectionIdx++] = pos;
+-            intersection[intersectionIdx++] = end;
+-          }
+-          pos = end;
+-        }
+-      }
++		int var_2393 = bRanges[bIdx + 1];
++		if (var_2393 <= pos) {
++		    bIdx += 2;
++		  } else {
++		    int start = Math.max(aRanges[aIdx], bRanges[bIdx]);
++		    if (pos < start) {  // Advance to start of common block.
++		      pos = start;
++		    } else {
++		      // Now we know that pos is less than the ends of the two ranges and
++		      // greater or equal to the starts of the two ranges.
++		      int end = Math.min(aRanges[aIdx + 1], var_2393);
++		      if (intersectionIdx != 0
++		          && pos == intersection[intersectionIdx - 1]) {
++		        intersection[intersectionIdx - 1] = end;
++		      } else {
++		        if (intersectionIdx == intersection.length) {
++		          int[] newArr = new int[intersectionIdx * 2];
++		          System.arraycopy(intersection, 0, newArr, 0, intersectionIdx);
++		          intersection = newArr;
++		        }
++		        intersection[intersectionIdx++] = pos;
++		        intersection[intersectionIdx++] = end;
++		      }
++		      pos = end;
++		    }
++		  }
++	}
+     }
+     if (intersectionIdx != intersection.length) {
+       int[] newArr = new int[intersectionIdx];

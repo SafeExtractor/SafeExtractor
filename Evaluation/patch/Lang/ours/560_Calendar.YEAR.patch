@@ -1,0 +1,39 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+index 09e636b..69a5f60 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+@@ -291,7 +291,8 @@
+         int hours = end.get(Calendar.HOUR_OF_DAY) - start.get(Calendar.HOUR_OF_DAY);
+         int days = end.get(Calendar.DAY_OF_MONTH) - start.get(Calendar.DAY_OF_MONTH);
+         int months = end.get(Calendar.MONTH) - start.get(Calendar.MONTH);
+-        int years = end.get(Calendar.YEAR) - start.get(Calendar.YEAR);
++        int var_560 = Calendar.YEAR;
++		int years = end.get(var_560) - start.get(var_560);
+ 
+         // each initial estimate is adjusted in case it is under 0
+         while (milliseconds < 0) {
+@@ -333,13 +334,13 @@
+             // there are no M's in the format string
+ 
+             if( !Token.containsTokenWithValue(tokens, y) ) {
+-                int target = end.get(Calendar.YEAR);
++                int target = end.get(var_560);
+                 if (months < 0) {
+                     // target is end-year -1
+                     target -= 1;
+                 }
+                 
+-                while (start.get(Calendar.YEAR) != target) {
++                while (start.get(var_560) != target) {
+                     days += start.getActualMaximum(Calendar.DAY_OF_YEAR) - start.get(Calendar.DAY_OF_YEAR);
+                     
+                     // Not sure I grok why this is needed, but the brutal tests show it is
+@@ -349,7 +350,7 @@
+                         days += 1;
+                     }
+                     
+-                    start.add(Calendar.YEAR, 1);
++                    start.add(var_560, 1);
+                     
+                     days += start.get(Calendar.DAY_OF_YEAR);
+                 }

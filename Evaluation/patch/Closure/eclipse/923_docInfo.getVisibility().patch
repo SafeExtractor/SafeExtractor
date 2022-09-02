@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/CheckAccessControls.java b/src/com/google/javascript/jscomp/CheckAccessControls.java
+index df50c26..06e53ea 100644
+--- a/src/com/google/javascript/jscomp/CheckAccessControls.java
++++ b/src/com/google/javascript/jscomp/CheckAccessControls.java
+@@ -465,11 +465,12 @@
+         objectType = objectType.getImplicitPrototype();
+       }
+       JSDocInfo docInfo = null;
+-      for (; objectType != null;
++      Visibility var_923 = docInfo.getVisibility();
++	for (; objectType != null;
+            objectType = objectType.getImplicitPrototype()) {
+         docInfo = objectType.getOwnPropertyJSDocInfo(propertyName);
+         if (docInfo != null &&
+-            docInfo.getVisibility() != Visibility.INHERITED) {
++            var_923 != Visibility.INHERITED) {
+           break;
+         }
+       }
+@@ -483,7 +484,7 @@
+       String definingSource = docInfo.getSourceName();
+       boolean sameInput = referenceSource != null
+           && referenceSource.equals(definingSource);
+-      Visibility visibility = docInfo.getVisibility();
++      Visibility visibility = var_923;
+       JSType ownerType = normalizeClassType(objectType);
+       if (isOverride) {
+         // Check an ASSIGN statement that's trying to override a property

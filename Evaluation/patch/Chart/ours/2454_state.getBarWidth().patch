@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/chart/renderer/category/GroupedStackedBarRenderer.java b/source/org/jfree/chart/renderer/category/GroupedStackedBarRenderer.java
+index 503fc31..cba41d7 100644
+--- a/source/org/jfree/chart/renderer/category/GroupedStackedBarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/GroupedStackedBarRenderer.java
+@@ -322,12 +322,13 @@
+                 getMinimumBarLength());
+ 
+         Rectangle2D bar = null;
+-        if (orientation == PlotOrientation.HORIZONTAL) {
++        double var_2454 = state.getBarWidth();
++		if (orientation == PlotOrientation.HORIZONTAL) {
+             bar = new Rectangle2D.Double(barL0, barW0, barLength,
+-                    state.getBarWidth());
++                    var_2454);
+         }
+         else {
+-            bar = new Rectangle2D.Double(barW0, barL0, state.getBarWidth(),
++            bar = new Rectangle2D.Double(barW0, barL0, var_2454,
+                     barLength);
+         }
+         getBarPainter().paintBar(g2, this, row, column, selected, bar,

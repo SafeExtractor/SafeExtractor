@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/rhino/jstype/UnionTypeBuilder.java b/src/com/google/javascript/rhino/jstype/UnionTypeBuilder.java
+index 69b6567..8aebb16 100644
+--- a/src/com/google/javascript/rhino/jstype/UnionTypeBuilder.java
++++ b/src/com/google/javascript/rhino/jstype/UnionTypeBuilder.java
+@@ -146,7 +146,8 @@
+         // Function types are special, because they have their
+         // own bizarre sub-lattice. See the comments on
+         // FunctionType#supAndInf helper and above at functionTypePosition.
+-        if (alternate.isFunctionType() && functionTypePosition != -1) {
++        boolean var_2693 = alternate.isFunctionType();
++		if (var_2693 && functionTypePosition != -1) {
+           // See the comments on functionTypePosition above.
+           FunctionType other =
+               alternates.get(functionTypePosition).toMaybeFunctionType();
+@@ -265,7 +266,7 @@
+           currentIndex++;
+         }
+ 
+-        if (alternate.isFunctionType()) {
++        if (var_2693) {
+           // See the comments on functionTypePosition above.
+           Preconditions.checkState(functionTypePosition == -1);
+           functionTypePosition = alternates.size();

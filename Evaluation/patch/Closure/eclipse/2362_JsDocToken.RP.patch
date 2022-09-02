@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..29a1575 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -1941,7 +1941,8 @@
+     Node paramsType = newNode(Token.PARAM_LIST);
+     boolean isVarArgs = false;
+     Node paramType = null;
+-    if (token != JsDocToken.RP) {
++    JsDocToken var_2362 = JsDocToken.RP;
++	if (token != var_2362) {
+       do {
+         if (paramType != null) {
+           // skip past the comma
+@@ -1955,7 +1956,7 @@
+           // on variable arguments. We support the old syntax for backwards
+           // compatibility, but we should gradually tear it out.
+           skipEOLs();
+-          if (match(JsDocToken.RP)) {
++          if (match(var_2362)) {
+             paramType = newNode(Token.ELLIPSIS);
+           } else {
+             skipEOLs();

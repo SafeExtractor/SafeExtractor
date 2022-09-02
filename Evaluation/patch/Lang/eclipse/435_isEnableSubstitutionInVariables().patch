@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/lang3/text/StrSubstitutor.java b/src/main/java/org/apache/commons/lang3/text/StrSubstitutor.java
+index 45dd74d..7541547 100644
+--- a/src/main/java/org/apache/commons/lang3/text/StrSubstitutor.java
++++ b/src/main/java/org/apache/commons/lang3/text/StrSubstitutor.java
+@@ -689,7 +689,8 @@
+                     int endMatchLen = 0;
+                     int nestedVarCount = 0;
+                     while (pos < bufEnd) {
+-                        if (isEnableSubstitutionInVariables()
++                        boolean var_435 = isEnableSubstitutionInVariables();
++						if (var_435
+                                 && (endMatchLen = prefixMatcher.isMatch(chars,
+                                         pos, offset, bufEnd)) != 0) {
+                             // found a nested variable start
+@@ -708,7 +709,7 @@
+                                 String varName = new String(chars, startPos
+                                         + startMatchLen, pos - startPos
+                                         - startMatchLen);
+-                                if (isEnableSubstitutionInVariables()) {
++                                if (var_435) {
+                                     final StrBuilder bufName = new StrBuilder(varName);
+                                     substitute(bufName, 0, bufName.length());
+                                     varName = bufName.toString();

@@ -1,0 +1,56 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..cd57e88 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1736,7 +1736,8 @@
+         }
+ 
+         /* Test for divide by zero */
+-        if (divisor.mant[mant.length-1] == 0) {
++        int[] var_677 = divisor.mant;
++		if (var_677[mant.length-1] == 0) {
+             field.setIEEEFlagsBits(DfpField.FLAG_DIV_ZERO);
+             result = newInstance(getZero());
+             result.sign = (byte) (sign * divisor.sign);
+@@ -1772,8 +1773,8 @@
+ 
+             // r =  most sig 2 digits of dividend
+             final int divMsb = dividend[mant.length]*RADIX+dividend[mant.length-1];
+-            int min = divMsb       / (divisor.mant[mant.length-1]+1);
+-            int max = (divMsb + 1) / divisor.mant[mant.length-1];
++            int min = divMsb       / (var_677[mant.length-1]+1);
++            int max = (divMsb + 1) / var_677[mant.length-1];
+ 
+             trialgood = false;
+             while (!trialgood) {
+@@ -1783,7 +1784,7 @@
+                 /* Multiply by divisor and store as remainder */
+                 int rh = 0;
+                 for (int i = 0; i < mant.length + 1; i++) {
+-                    int dm = (i<mant.length)?divisor.mant[i]:0;
++                    int dm = (i<mant.length)?var_677[i]:0;
+                     final int r = (dm * trial) + rh;
+                     rh = r / RADIX;
+                     remainder[i] = r - rh * RADIX;
+@@ -1806,7 +1807,7 @@
+ 
+                 /* find out how far off the remainder is telling us we are */
+                 minadj = (remainder[mant.length] * RADIX)+remainder[mant.length-1];
+-                minadj = minadj / (divisor.mant[mant.length-1]+1);
++                minadj = minadj / (var_677[mant.length-1]+1);
+ 
+                 if (minadj >= 2) {
+                     min = trial+minadj;  // update the minimum
+@@ -1817,10 +1818,10 @@
+            its a good one if it is less than the divisor */
+                 trialgood = false;  // assume false
+                 for (int i = mant.length - 1; i >= 0; i--) {
+-                    if (divisor.mant[i] > remainder[i]) {
++                    if (var_677[i] > remainder[i]) {
+                         trialgood = true;
+                     }
+-                    if (divisor.mant[i] < remainder[i]) {
++                    if (var_677[i] < remainder[i]) {
+                         break;
+                     }
+                 }

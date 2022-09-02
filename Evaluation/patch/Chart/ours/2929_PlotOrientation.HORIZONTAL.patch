@@ -1,0 +1,68 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java b/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java
+index 6117418..b6d53b8 100644
+--- a/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java
+@@ -374,7 +374,8 @@
+         // avoid possible sun.dc.pr.PRException: endPath: bad path
+         transY1 = restrictValueToDataArea(transY1, plot, dataArea);
+ 
+-        if (this.pArea == null && !Double.isNaN(y1)) {
++        PlotOrientation var_2929 = PlotOrientation.HORIZONTAL;
++		if (this.pArea == null && !Double.isNaN(y1)) {
+ 
+             // Create a new Area for the series
+             this.pArea = new Polygon();
+@@ -390,7 +391,7 @@
+             if (orientation == PlotOrientation.VERTICAL) {
+                 this.pArea.addPoint((int) transX1, (int) transY2);
+             }
+-            else if (orientation == PlotOrientation.HORIZONTAL) {
++            else if (orientation == var_2929) {
+                 this.pArea.addPoint((int) transY2, (int) transX1);
+             }
+         }
+@@ -427,7 +428,7 @@
+                 if (orientation == PlotOrientation.VERTICAL) {
+                     this.pArea.addPoint((int) transX1, (int) transY0);
+                 }
+-                else if (orientation == PlotOrientation.HORIZONTAL) {
++                else if (orientation == var_2929) {
+                     this.pArea.addPoint((int) transY0, (int) transX1);
+                 }
+             }
+@@ -439,7 +440,7 @@
+             if (orientation == PlotOrientation.VERTICAL) {
+                 this.pArea.addPoint((int) transX1, (int) transY1);
+             }
+-            else if (orientation == PlotOrientation.HORIZONTAL) {
++            else if (orientation == var_2929) {
+                 this.pArea.addPoint((int) transY1, (int) transX1);
+             }
+ 
+@@ -449,7 +450,7 @@
+                     shape = ShapeUtilities.createTranslatedShape(shape,
+                             transX1, transY1);
+                 }
+-                else if (orientation == PlotOrientation.HORIZONTAL) {
++                else if (orientation == var_2929) {
+                     shape = ShapeUtilities.createTranslatedShape(shape,
+                             transY1, transX1);
+                 }
+@@ -465,7 +466,7 @@
+                     shape = new Rectangle2D.Double(transX1 - 2, transY1 - 2,
+                             4.0, 4.0);
+                 }
+-                else if (orientation == PlotOrientation.HORIZONTAL) {
++                else if (orientation == var_2929) {
+                     shape = new Rectangle2D.Double(transY1 - 2, transX1 - 2,
+                             4.0, 4.0);
+                 }
+@@ -488,7 +489,7 @@
+                 // Add the last point (x,0)
+                 this.pArea.addPoint((int) transX1, (int) transY2);
+             }
+-            else if (orientation == PlotOrientation.HORIZONTAL) {
++            else if (orientation == var_2929) {
+                 // Add the last point (x,0)
+                 this.pArea.addPoint((int) transY2, (int) transX1);
+             }

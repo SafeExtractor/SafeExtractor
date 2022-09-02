@@ -1,0 +1,25 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Mockito/eclipse/16_injectMockCandidatesOnFields(mocks,instance,injectionOccurred,orderedInstanceFields).patch b/home/safe/SafeExtractor/Evaluation/patch/Mockito/ours/16_injectMockCandidatesOnFields(mocks,instance,injectionOccurred,orderedInstanceFields).patch
+index 23cc992..d2a6217 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Mockito/eclipse/16_injectMockCandidatesOnFields(mocks,instance,injectionOccurred,orderedInstanceFields).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Mockito/ours/16_injectMockCandidatesOnFields(mocks,instance,injectionOccurred,orderedInstanceFields).patch
+@@ -1,8 +1,8 @@
+ diff --git a/src/org/mockito/internal/configuration/injection/PropertyAndSetterInjection.java b/src/org/mockito/internal/configuration/injection/PropertyAndSetterInjection.java
+-index 67126af..4dec392 100644
++index 67126af..9d303d2 100644
+ --- a/src/org/mockito/internal/configuration/injection/PropertyAndSetterInjection.java
+ +++ b/src/org/mockito/internal/configuration/injection/PropertyAndSetterInjection.java
+-@@ -102,9 +102,10 @@
++@@ -102,7 +102,8 @@
+          boolean injectionOccurred = false;
+          List<Field> orderedInstanceFields = orderedInstanceFieldsFrom(awaitingInjectionClazz);
+          // pass 1
+@@ -10,8 +10,5 @@ index 67126af..4dec392 100644
+ +        boolean var_16 = injectMockCandidatesOnFields(mocks, instance, injectionOccurred, orderedInstanceFields);
+ +		injectionOccurred |= var_16;
+          // pass 2
+--        injectionOccurred |= injectMockCandidatesOnFields(mocks, instance, injectionOccurred, orderedInstanceFields);
+-+        injectionOccurred |= var_16;
++         injectionOccurred |= injectMockCandidatesOnFields(mocks, instance, injectionOccurred, orderedInstanceFields);
+          return injectionOccurred;
+-     }
+- 

@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+index ed2ddda..18b4037 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+@@ -907,7 +907,8 @@
+           } else {
+             if ((k < targetIter) &&
+                 (costPerTimeUnit[k] < orderControl2 * costPerTimeUnit[k-1])) {
+-              hNew = filterStep(optimalStep[k] * costPerStep[optimalIter+1] / costPerStep[k],
++              int var_2764 = costPerStep[k];
++			hNew = filterStep(optimalStep[k] * costPerStep[optimalIter+1] / var_2764,
+                                forward, false);
+             } else {
+               hNew = filterStep(optimalStep[k] * costPerStep[optimalIter] / costPerStep[k],

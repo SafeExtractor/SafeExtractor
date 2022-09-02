@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/InferJSDocInfo.java b/src/com/google/javascript/jscomp/InferJSDocInfo.java
+index b2cb704..7e1e792 100644
+--- a/src/com/google/javascript/jscomp/InferJSDocInfo.java
++++ b/src/com/google/javascript/jscomp/InferJSDocInfo.java
+@@ -200,15 +200,16 @@
+    */
+   private void attachJSDocInfoToNominalTypeOrShape(
+       ObjectType objType, JSDocInfo docInfo, @Nullable String qName) {
+-    if (objType.isConstructor() ||
++    boolean var_1706 = objType.isInterface();
++	if (objType.isConstructor() ||
+         objType.isEnumType() ||
+-        objType.isInterface()) {
++        var_1706) {
+       // Named types.
+       if (objType.hasReferenceName() &&
+           objType.getReferenceName().equals(qName)) {
+         objType.setJSDocInfo(docInfo);
+ 
+-        if (objType.isConstructor() || objType.isInterface()) {
++        if (objType.isConstructor() || var_1706) {
+           JSType.toMaybeFunctionType(objType).getInstanceType().setJSDocInfo(
+               docInfo);
+         } else if (objType instanceof EnumType) {

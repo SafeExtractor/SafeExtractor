@@ -1,0 +1,19 @@
+diff --git a/source/org/jfree/chart/axis/SegmentedTimeline.java b/source/org/jfree/chart/axis/SegmentedTimeline.java
+index 3d7dbe0..32f55d1 100644
+--- a/source/org/jfree/chart/axis/SegmentedTimeline.java
++++ b/source/org/jfree/chart/axis/SegmentedTimeline.java
+@@ -666,11 +666,12 @@
+     public long toMillisecond(long timelineValue) {
+ 
+         // calculate the result as if no exceptions
+-        Segment result = new Segment(this.startTime + timelineValue
++        long var_408 = this.startTime;
++		Segment result = new Segment(var_408 + timelineValue
+                 + (timelineValue / this.segmentsIncludedSize)
+                 * this.segmentsExcludedSize);
+ 
+-        long lastIndex = this.startTime;
++        long lastIndex = var_408;
+ 
+         // adjust result for any exceptions in the result calculated
+         while (lastIndex <= result.segmentStart) {

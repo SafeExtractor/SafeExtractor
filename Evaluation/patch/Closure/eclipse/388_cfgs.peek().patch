@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/NodeTraversal.java b/src/com/google/javascript/jscomp/NodeTraversal.java
+index 39dd0bd..5dc5311 100644
+--- a/src/com/google/javascript/jscomp/NodeTraversal.java
++++ b/src/com/google/javascript/jscomp/NodeTraversal.java
+@@ -611,13 +611,14 @@
+ 
+   /** Gets the control flow graph for the current JS scope. */
+   public ControlFlowGraph<Node> getControlFlowGraph() {
+-    if (cfgs.peek() == null) {
++    ControlFlowGraph<Node> var_388 = cfgs.peek();
++	if (var_388 == null) {
+       ControlFlowAnalysis cfa = new ControlFlowAnalysis(compiler, false, true);
+       cfa.process(null, getScopeRoot());
+       cfgs.pop();
+       cfgs.push(cfa.getCfg());
+     }
+-    return cfgs.peek();
++    return var_388;
+   }
+ 
+   /** Returns the current scope's root. */

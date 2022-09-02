@@ -1,0 +1,40 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/DocumentNodeStore.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/DocumentNodeStore.java
+index fdfc2d2..78f67fb 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/DocumentNodeStore.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/DocumentNodeStore.java
+@@ -2084,29 +2084,30 @@
+         final long getChildrenDoneIn = debug ? now() : 0;
+ 
+         String diffAlgo;
+-        if (!fromChildren.hasMore && !toChildren.hasMore) {
++        Revision fromRev = from.getLastRevision();
++		if (!fromChildren.hasMore && !toChildren.hasMore) {
+             diffAlgo = "diffFewChildren";
+             diffFewChildren(w, from.getPath(), fromChildren,
+-                    from.getLastRevision(), toChildren, to.getLastRevision());
++                    fromRev, toChildren, to.getLastRevision());
+         } else {
+             if (FAST_DIFF) {
+                 diffAlgo = "diffManyChildren";
+                 diffManyChildren(w, from.getPath(),
+-                        from.getLastRevision(), to.getLastRevision());
++                        fromRev, to.getLastRevision());
+             } else {
+                 diffAlgo = "diffAllChildren";
+                 max = Integer.MAX_VALUE;
+                 fromChildren = getChildren(from, null, max);
+                 toChildren = getChildren(to, null, max);
+                 diffFewChildren(w, from.getPath(), fromChildren,
+-                        from.getLastRevision(), toChildren, to.getLastRevision());
++                        fromRev, toChildren, to.getLastRevision());
+             }
+         }
+ 
+         if (debug) {
+             long end = now();
+             LOG.debug("Diff performed via '{}' at [{}] between revisions [{}] => [{}] took {} ms ({} ms)",
+-                    diffAlgo, from.getPath(), from.getLastRevision(), to.getLastRevision(),
++                    diffAlgo, from.getPath(), fromRev, to.getLastRevision(),
+                     end - start, getChildrenDoneIn - start);
+         }
+         return w.toString();

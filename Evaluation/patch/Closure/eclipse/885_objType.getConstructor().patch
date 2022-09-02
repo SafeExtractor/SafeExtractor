@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/DisambiguateProperties.java b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+index c64c178..c0437ea 100644
+--- a/src/com/google/javascript/jscomp/DisambiguateProperties.java
++++ b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+@@ -863,8 +863,9 @@
+       // like references to the initial property, so they are renamed alike.
+       ObjectType foundType = null;
+       ObjectType objType = ObjectType.cast(type);
+-      if (objType != null && objType.getConstructor() != null
+-          && objType.getConstructor().isInterface()) {
++      FunctionType var_885 = objType.getConstructor();
++	if (objType != null && var_885 != null
++          && var_885.isInterface()) {
+         ObjectType topInterface = FunctionType.getTopDefiningInterface(
+             objType, field);
+         if (topInterface != null && topInterface.getConstructor() != null) {

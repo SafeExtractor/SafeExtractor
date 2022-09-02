@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 9d1b56c..a0ff182 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -69,7 +69,8 @@
+ 
+   @Override
+   public void enterScope(NodeTraversal t) {
+-    Scope scope = t.getScope();
++    Scope var_236 = t.getScope();
++	Scope scope = var_236;
+     // Global scope _SHOULD_ work, however, liveness won't finish without
+     // -Xmx1024 in closure. We might have to look at coding conventions for
+     // exported variables as well.
+@@ -78,7 +79,7 @@
+     }
+ 
+     if (LiveVariablesAnalysis.MAX_VARIABLES_TO_ANALYZE <
+-        t.getScope().getVarCount()) {
++        var_236.getVarCount()) {
+       return;
+     }
+ 

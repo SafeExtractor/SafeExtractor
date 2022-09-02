@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/HessenbergTransformer.java b/src/main/java/org/apache/commons/math3/linear/HessenbergTransformer.java
+index e38600c..d6b183c 100644
+--- a/src/main/java/org/apache/commons/math3/linear/HessenbergTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/HessenbergTransformer.java
+@@ -216,12 +216,13 @@
+ 
+                 for (int i = 0; i <= high; i++) {
+                     double f = 0;
+-                    for (int j = high; j >= m; j--) {
+-                        f += ort[j] * householderVectors[i][j];
++                    double[] var_2444 = householderVectors[i];
++					for (int j = high; j >= m; j--) {
++                        f += ort[j] * var_2444[j];
+                     }
+                     f = f / h;
+                     for (int j = m; j <= high; j++) {
+-                        householderVectors[i][j] -= f * ort[j];
++                        var_2444[j] -= f * ort[j];
+                     }
+                 }
+ 

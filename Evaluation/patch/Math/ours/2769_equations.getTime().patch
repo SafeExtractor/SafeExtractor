@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+index ed2ddda..c83aa22 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+@@ -552,7 +552,8 @@
+ 
+     sanityChecks(equations, t);
+     setEquations(equations);
+-    final boolean forward = t > equations.getTime();
++    double var_2769 = equations.getTime();
++	final boolean forward = t > var_2769;
+ 
+     // create some internal working arrays
+     final double[] y0      = equations.getCompleteState();
+@@ -609,16 +610,16 @@
+                                                    yMidDots, forward,
+                                                    equations.getPrimaryMapper(),
+                                                    equations.getSecondaryMappers());
+-    interpolator.storeTime(equations.getTime());
++    interpolator.storeTime(var_2769);
+ 
+-    stepStart = equations.getTime();
++    stepStart = var_2769;
+     double  hNew             = 0;
+     double  maxError         = Double.MAX_VALUE;
+     boolean previousRejected = false;
+     boolean firstTime        = true;
+     boolean newStep          = true;
+     boolean firstStepAlreadyComputed = false;
+-    initIntegration(equations.getTime(), y0, t);
++    initIntegration(var_2769, y0, t);
+     costPerTimeUnit[0] = 0;
+     isLastStep = false;
+     do {

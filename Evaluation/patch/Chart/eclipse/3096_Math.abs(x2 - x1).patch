@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..d9cef15 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -1146,13 +1146,14 @@
+         double x2 = axis.valueToJava2D(end, dataArea,
+                 plot.getDomainAxisEdge());
+         Rectangle2D band;
+-        if (plot.getOrientation() == PlotOrientation.VERTICAL) {
++        double var_3096 = Math.abs(x2 - x1);
++		if (plot.getOrientation() == PlotOrientation.VERTICAL) {
+             band = new Rectangle2D.Double(Math.min(x1, x2), dataArea.getMinY(),
+-                    Math.abs(x2 - x1), dataArea.getWidth());
++                    var_3096, dataArea.getWidth());
+         }
+         else {
+             band = new Rectangle2D.Double(dataArea.getMinX(), Math.min(x1, x2),
+-                    dataArea.getWidth(), Math.abs(x2 - x1));
++                    dataArea.getWidth(), var_3096);
+         }
+         Paint paint = plot.getDomainTickBandPaint();
+ 

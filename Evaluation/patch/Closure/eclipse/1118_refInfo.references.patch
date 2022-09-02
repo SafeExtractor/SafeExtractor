@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/InlineVariables.java b/src/com/google/javascript/jscomp/InlineVariables.java
+index 5c7408d..1927695 100644
+--- a/src/com/google/javascript/jscomp/InlineVariables.java
++++ b/src/com/google/javascript/jscomp/InlineVariables.java
+@@ -682,7 +682,8 @@
+      */
+     private boolean isImmutableAndWellDefinedVariable(Var v,
+         ReferenceCollection refInfo) {
+-      List<Reference> refSet = refInfo.references;
++      List<Reference> var_1118 = refInfo.references;
++	List<Reference> refSet = var_1118;
+       int startingReadRef = 1;
+       Reference refDecl = refSet.get(0);
+       if (!isValidDeclaration(refDecl)) {
+@@ -713,7 +714,7 @@
+         boolean isImmutableValueWorthInlining =
+             NodeUtil.isImmutableValue(value) &&
+             (!value.isString() ||
+-                isStringWorthInlining(v, refInfo.references));
++                isStringWorthInlining(v, var_1118));
+         boolean isInlinableThisAlias =
+             value.isThis() &&
+             !refInfo.isEscaped();

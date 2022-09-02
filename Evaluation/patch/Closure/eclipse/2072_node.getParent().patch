@@ -1,0 +1,101 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..11bb766 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -1807,50 +1807,53 @@
+         // Otherwise, only its children can be removed.
+         node.detachChildren();
+       }
+-    } else if (node.isCatch()) {
+-      // The CATCH can can only be removed if there is a finally clause.
+-      Node tryNode = node.getParent().getParent();
+-      Preconditions.checkState(NodeUtil.hasFinally(tryNode));
+-      node.detachFromParent();
+-    } else if (isTryCatchNodeContainer(node)) {
+-      // The container node itself can't be removed, but the contained CATCH
+-      // can if there is a 'finally' clause
+-      Node tryNode = node.getParent();
+-      Preconditions.checkState(NodeUtil.hasFinally(tryNode));
+-      node.detachChildren();
+-    } else if (node.isBlock()) {
+-      // Simply empty the block.  This maintains source location and
+-      // "synthetic"-ness.
+-      node.detachChildren();
+-    } else if (isStatementBlock(parent)
+-        || isSwitchCase(node)) {
+-      // A statement in a block can simply be removed.
+-      parent.removeChild(node);
+-    } else if (parent.isVar()) {
+-      if (parent.hasMoreThanOneChild()) {
+-        parent.removeChild(node);
+-      } else {
+-        // Remove the node from the parent, so it can be reused.
+-        parent.removeChild(node);
+-        // This would leave an empty VAR, remove the VAR itself.
+-        removeChild(parent.getParent(), parent);
+-      }
+-    } else if (parent.isLabel()
+-        && node == parent.getLastChild()) {
+-      // Remove the node from the parent, so it can be reused.
+-      parent.removeChild(node);
+-      // A LABEL without children can not be referred to, remove it.
+-      removeChild(parent.getParent(), parent);
+-    } else if (parent.isFor()
+-        && parent.getChildCount() == 4) {
+-      // Only Token.FOR can have an Token.EMPTY other control structure
+-      // need something for the condition. Others need to be replaced
+-      // or the structure removed.
+-      parent.replaceChild(node, IR.empty());
+     } else {
+-      throw new IllegalStateException("Invalid attempt to remove node: " +
+-          node.toString() + " of " + parent.toString());
+-    }
++		Node var_2072 = node.getParent();
++		if (node.isCatch()) {
++		  // The CATCH can can only be removed if there is a finally clause.
++		  Node tryNode = var_2072.getParent();
++		  Preconditions.checkState(NodeUtil.hasFinally(tryNode));
++		  node.detachFromParent();
++		} else if (isTryCatchNodeContainer(node)) {
++		  // The container node itself can't be removed, but the contained CATCH
++		  // can if there is a 'finally' clause
++		  Node tryNode = var_2072;
++		  Preconditions.checkState(NodeUtil.hasFinally(tryNode));
++		  node.detachChildren();
++		} else if (node.isBlock()) {
++		  // Simply empty the block.  This maintains source location and
++		  // "synthetic"-ness.
++		  node.detachChildren();
++		} else if (isStatementBlock(parent)
++		    || isSwitchCase(node)) {
++		  // A statement in a block can simply be removed.
++		  parent.removeChild(node);
++		} else if (parent.isVar()) {
++		  if (parent.hasMoreThanOneChild()) {
++		    parent.removeChild(node);
++		  } else {
++		    // Remove the node from the parent, so it can be reused.
++		    parent.removeChild(node);
++		    // This would leave an empty VAR, remove the VAR itself.
++		    removeChild(parent.getParent(), parent);
++		  }
++		} else if (parent.isLabel()
++		    && node == parent.getLastChild()) {
++		  // Remove the node from the parent, so it can be reused.
++		  parent.removeChild(node);
++		  // A LABEL without children can not be referred to, remove it.
++		  removeChild(parent.getParent(), parent);
++		} else if (parent.isFor()
++		    && parent.getChildCount() == 4) {
++		  // Only Token.FOR can have an Token.EMPTY other control structure
++		  // need something for the condition. Others need to be replaced
++		  // or the structure removed.
++		  parent.replaceChild(node, IR.empty());
++		} else {
++		  throw new IllegalStateException("Invalid attempt to remove node: " +
++		      node.toString() + " of " + parent.toString());
++		}
++	}
+   }
+ 
+   /**

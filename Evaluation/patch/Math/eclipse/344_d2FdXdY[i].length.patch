@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java
+index 1bb4776..e560dfd 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolatingFunction.java
+@@ -140,8 +140,9 @@
+             if (dFdY[i].length != yLen) {
+                 throw new DimensionMismatchException(dFdY[i].length, yLen);
+             }
+-            if (d2FdXdY[i].length != yLen) {
+-                throw new DimensionMismatchException(d2FdXdY[i].length, yLen);
++            int var_344 = d2FdXdY[i].length;
++			if (var_344 != yLen) {
++                throw new DimensionMismatchException(var_344, yLen);
+             }
+             final int ip1 = i + 1;
+             for (int j = 0; j < lastJ; j++) {

@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
+index 15450f4..b798fbf 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
+@@ -417,8 +417,9 @@
+ 
+       // k14
+       for (int j = 0; j < currentState.length; ++j) {
+-          s = K14_01 * yDotK[0][j]  + K14_06 * yDotK[5][j]  + K14_07 * yDotK[6][j] +
+-                  K14_08 * yDotK[7][j]  + K14_09 * yDotK[8][j]  + K14_10 * yDotK[9][j] +
++          double var_2836 = yDotK[7][j];
++		s = K14_01 * yDotK[0][j]  + K14_06 * yDotK[5][j]  + K14_07 * yDotK[6][j] +
++                  K14_08 * var_2836  + K14_09 * yDotK[8][j]  + K14_10 * yDotK[9][j] +
+                   K14_11 * yDotK[10][j] + K14_12 * yDotK[11][j] + K14_13 * yDotK[12][j];
+           yTmp[j] = currentState[j] + h * s;
+       }

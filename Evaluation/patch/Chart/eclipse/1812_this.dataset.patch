@@ -1,0 +1,45 @@
+diff --git a/source/org/jfree/chart/plot/MultiplePiePlot.java b/source/org/jfree/chart/plot/MultiplePiePlot.java
+index f85acab..817423b 100644
+--- a/source/org/jfree/chart/plot/MultiplePiePlot.java
++++ b/source/org/jfree/chart/plot/MultiplePiePlot.java
+@@ -409,17 +409,18 @@
+         drawOutline(g2, area);
+ 
+         // check that there is some data to display...
+-        if (DatasetUtilities.isEmptyOrNull(this.dataset)) {
++        CategoryDataset var_1812 = this.dataset;
++		if (DatasetUtilities.isEmptyOrNull(var_1812)) {
+             drawNoDataMessage(g2, area);
+             return;
+         }
+ 
+         int pieCount = 0;
+         if (this.dataExtractOrder == TableOrder.BY_ROW) {
+-            pieCount = this.dataset.getRowCount();
++            pieCount = var_1812.getRowCount();
+         }
+         else {
+-            pieCount = this.dataset.getColumnCount();
++            pieCount = var_1812.getColumnCount();
+         }
+ 
+         // the columns variable is always >= rows
+@@ -452,15 +453,15 @@
+ 
+             String title = null;
+             if (this.dataExtractOrder == TableOrder.BY_ROW) {
+-                title = this.dataset.getRowKey(pieIndex).toString();
++                title = var_1812.getRowKey(pieIndex).toString();
+             }
+             else {
+-                title = this.dataset.getColumnKey(pieIndex).toString();
++                title = var_1812.getColumnKey(pieIndex).toString();
+             }
+             this.pieChart.setTitle(title);
+ 
+             PieDataset piedataset = null;
+-            PieDataset dd = new CategoryToPieDataset(this.dataset,
++            PieDataset dd = new CategoryToPieDataset(var_1812,
+                     this.dataExtractOrder, pieIndex);
+             if (this.limit > 0.0) {
+                 piedataset = DatasetUtilities.createConsolidatedPieDataset(

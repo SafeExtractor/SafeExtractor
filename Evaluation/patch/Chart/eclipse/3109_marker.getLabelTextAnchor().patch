@@ -1,0 +1,40 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..20963b7 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -168,6 +168,7 @@
+ import org.jfree.chart.plot.ValueMarker;
+ import org.jfree.chart.plot.XYPlot;
+ import org.jfree.chart.renderer.AbstractRenderer;
++import org.jfree.chart.text.TextAnchor;
+ import org.jfree.chart.text.TextUtilities;
+ import org.jfree.chart.urls.XYURLGenerator;
+ import org.jfree.chart.util.GradientPaintTransformer;
+@@ -1339,7 +1340,8 @@
+                                  Marker marker,
+                                  Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        TextAnchor var_3109 = marker.getLabelTextAnchor();
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = domainAxis.getRange();
+@@ -1380,7 +1382,7 @@
+                         LengthAdjustmentType.EXPAND, anchor);
+                 TextUtilities.drawAlignedString(label, g2,
+                         (float) coordinates.getX(), (float) coordinates.getY(),
+-                        marker.getLabelTextAnchor());
++                        var_3109);
+             }
+             g2.setComposite(originalComposite);
+         }
+@@ -1482,7 +1484,7 @@
+                         anchor);
+                 TextUtilities.drawAlignedString(label, g2,
+                         (float) coordinates.getX(), (float) coordinates.getY(),
+-                        marker.getLabelTextAnchor());
++                        var_3109);
+             }
+             g2.setComposite(originalComposite);
+ 

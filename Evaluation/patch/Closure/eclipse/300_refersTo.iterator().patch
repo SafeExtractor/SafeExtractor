@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 781fc3c..88f49cf 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -1244,9 +1244,10 @@
+       if (referenceGraph.hasNode(node)) {
+         List<DiGraphEdge<JsName, RefType>> refersTo =
+             referenceGraph.getOutEdges(node);
+-        if (refersTo.size() > 0) {
++        Iterator<DiGraphEdge<JsName, RefType>> var_300 = refersTo.iterator();
++		if (refersTo.size() > 0) {
+           sb.append("<li>REFERS TO: ");
+-          Iterator<DiGraphEdge<JsName, RefType>> toIter = refersTo.iterator();
++          Iterator<DiGraphEdge<JsName, RefType>> toIter = var_300;
+           while (toIter.hasNext()) {
+             sb.append(nameLink(toIter.next().getDestination().getValue().name));
+             if (toIter.hasNext()) {
+@@ -1259,7 +1260,7 @@
+             referenceGraph.getInEdges(node);
+         if (referencedBy.size() > 0) {
+           sb.append("<li>REFERENCED BY: ");
+-          Iterator<DiGraphEdge<JsName, RefType>> fromIter = refersTo.iterator();
++          Iterator<DiGraphEdge<JsName, RefType>> fromIter = var_300;
+           while (fromIter.hasNext()) {
+             sb.append(
+                 nameLink(fromIter.next().getDestination().getValue().name));

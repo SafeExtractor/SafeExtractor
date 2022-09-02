@@ -1,0 +1,28 @@
+diff --git a/oak-jcr/src/main/java/org/apache/jackrabbit/oak/jcr/xml/ImporterImpl.java b/oak-jcr/src/main/java/org/apache/jackrabbit/oak/jcr/xml/ImporterImpl.java
+index 5337585..a606ab2 100644
+--- a/oak-jcr/src/main/java/org/apache/jackrabbit/oak/jcr/xml/ImporterImpl.java
++++ b/oak-jcr/src/main/java/org/apache/jackrabbit/oak/jcr/xml/ImporterImpl.java
+@@ -45,6 +45,7 @@
+ import org.apache.jackrabbit.oak.api.Tree;
+ import org.apache.jackrabbit.oak.api.Type;
+ import org.apache.jackrabbit.oak.commons.PathUtils;
++import org.apache.jackrabbit.oak.jcr.delegate.SessionDelegate;
+ import org.apache.jackrabbit.oak.jcr.security.AccessManager;
+ import org.apache.jackrabbit.oak.jcr.session.SessionContext;
+ import org.apache.jackrabbit.oak.plugins.identifier.IdentifierManager;
+@@ -138,12 +139,13 @@
+             throw new RepositoryException("Invalid name or path: " + absPath);
+         }
+ 
+-        if (isWorkspaceImport && sessionContext.getSessionDelegate().hasPendingChanges()) {
++        SessionDelegate sd = sessionContext.getSessionDelegate();
++		if (isWorkspaceImport && sd.hasPendingChanges()) {
+             throw new RepositoryException("Pending changes on session. Cannot run workspace import.");
+         }
+ 
+         this.uuidBehavior = uuidBehavior;
+-        userID = sessionContext.getSessionDelegate().getAuthInfo().getUserID();
++        userID = sd.getAuthInfo().getUserID();
+ 
+         importTargetTree = root.getTree(absPath);
+         if (!importTargetTree.exists()) {

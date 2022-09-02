@@ -1,0 +1,42 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java
+index 7437838..365c985 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java
+@@ -200,8 +200,9 @@
+             if (dFdX[i].length != yLen) {
+                 throw new DimensionMismatchException(dFdX[i].length, yLen);
+             }
+-            if (dFdY[i].length != yLen) {
+-                throw new DimensionMismatchException(dFdY[i].length, yLen);
++            double[][] var_284 = dFdY[i];
++			if (var_284.length != yLen) {
++                throw new DimensionMismatchException(var_284.length, yLen);
+             }
+             if (dFdZ[i].length != yLen) {
+                 throw new DimensionMismatchException(dFdZ[i].length, yLen);
+@@ -227,8 +228,8 @@
+                 if (dFdX[i][j].length != zLen) {
+                     throw new DimensionMismatchException(dFdX[i][j].length, zLen);
+                 }
+-                if (dFdY[i][j].length != zLen) {
+-                    throw new DimensionMismatchException(dFdY[i][j].length, zLen);
++                if (var_284[j].length != zLen) {
++                    throw new DimensionMismatchException(var_284[j].length, zLen);
+                 }
+                 if (dFdZ[i][j].length != zLen) {
+                     throw new DimensionMismatchException(dFdZ[i][j].length, zLen);
+@@ -261,10 +262,10 @@
+                         dFdX[i][j][kp1], dFdX[ip1][j][kp1],
+                         dFdX[i][jp1][kp1], dFdX[ip1][jp1][kp1],
+ 
+-                        dFdY[i][j][k], dFdY[ip1][j][k],
+-                        dFdY[i][jp1][k], dFdY[ip1][jp1][k],
+-                        dFdY[i][j][kp1], dFdY[ip1][j][kp1],
+-                        dFdY[i][jp1][kp1], dFdY[ip1][jp1][kp1],
++                        var_284[j][k], dFdY[ip1][j][k],
++                        var_284[jp1][k], dFdY[ip1][jp1][k],
++                        var_284[j][kp1], dFdY[ip1][j][kp1],
++                        var_284[jp1][kp1], dFdY[ip1][jp1][kp1],
+ 
+                         dFdZ[i][j][k], dFdZ[ip1][j][k],
+                         dFdZ[i][jp1][k], dFdZ[ip1][jp1][k],

@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/ChartPanel.java b/source/org/jfree/chart/ChartPanel.java
+index 001049a..ed6106c 100644
+--- a/source/org/jfree/chart/ChartPanel.java
++++ b/source/org/jfree/chart/ChartPanel.java
+@@ -1639,12 +1639,14 @@
+             this.scaleY = drawHeight / this.minimumDrawHeight;
+             drawHeight = this.minimumDrawHeight;
+             scale = true;
+-        }
+-        else if (drawHeight > this.maximumDrawHeight) {
+-            this.scaleY = drawHeight / this.maximumDrawHeight;
+-            drawHeight = this.maximumDrawHeight;
+-            scale = true;
+-        }
++        } else {
++			int var_74 = this.maximumDrawHeight;
++			if (drawHeight > var_74) {
++			    this.scaleY = drawHeight / var_74;
++			    drawHeight = var_74;
++			    scale = true;
++			}
++		}
+ 
+         Rectangle2D chartArea = new Rectangle2D.Double(0.0, 0.0, drawWidth,
+                 drawHeight);

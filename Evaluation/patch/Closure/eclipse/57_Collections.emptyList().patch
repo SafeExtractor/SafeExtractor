@@ -1,0 +1,31 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
+index e970d3a..af5cccb 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
++++ b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
+@@ -32,6 +32,7 @@
+ import java.util.Collection;
+ import java.util.Collections;
+ import java.util.HashMap;
++import java.util.List;
+ import java.util.Map;
+ 
+ /**
+@@ -252,14 +253,15 @@
+     Map<Integer, Collection<OriginalMapping>> sourceLineToCollectionMap =
+         reverseSourceMapping.get(originalFile);
+ 
+-    if (sourceLineToCollectionMap == null) {
+-      return Collections.emptyList();
++    List<OriginalMapping> var_57 = Collections.emptyList();
++	if (sourceLineToCollectionMap == null) {
++      return var_57;
+     } else {
+       Collection<OriginalMapping> mappings =
+           sourceLineToCollectionMap.get(line);
+ 
+       if (mappings == null) {
+-        return Collections.emptyList();
++        return var_57;
+       } else {
+         return mappings;
+       }

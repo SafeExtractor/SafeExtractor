@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..1f482f6 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -287,7 +287,8 @@
+     Node defaultCase = tryOptimizeDefaultCase(n);
+ 
+     // Removing cases when there exists a default case is not safe.
+-    if (defaultCase == null) {
++    Node var_791 = n.getParent();
++	if (defaultCase == null) {
+       Node cond = n.getFirstChild(), prev = null, next = null, cur;
+ 
+       for (cur = cond.getNext(); cur != null; cur = next) {
+@@ -343,7 +344,7 @@
+             if (!(NodeUtil.containsType(block, Token.BREAK,
+                 NodeUtil.MATCH_NOT_FUNCTION))) {
+               cur.removeChild(block);
+-              n.getParent().replaceChild(n, block);
++              var_791.replaceChild(n, block);
+               reportCodeChange();
+               return block;
+             }
+@@ -356,7 +357,7 @@
+     if (n.hasOneChild()) {
+       Node condition = n.removeFirstChild();
+       Node replacement = IR.exprResult(condition).srcref(n);
+-      n.getParent().replaceChild(n, replacement);
++      var_791.replaceChild(n, replacement);
+       reportCodeChange();
+       return replacement;
+     }

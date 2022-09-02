@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/events/FilterType.java b/src/main/java/org/apache/commons/math3/ode/events/FilterType.java
+index 438df05..0758761 100644
+--- a/src/main/java/org/apache/commons/math3/ode/events/FilterType.java
++++ b/src/main/java/org/apache/commons/math3/ode/events/FilterType.java
+@@ -268,7 +268,8 @@
+         @Override
+         protected  Transformer selectTransformer(final Transformer previous,
+                                                  final double g, final boolean forward) {
+-            if (forward) {
++            Transformer var_2623 = Transformer.MINUS;
++			if (forward) {
+                 switch (previous) {
+                     case UNINITIALIZED :
+                         // we are initializing the first point
+@@ -314,7 +315,7 @@
+                         if (g >= 0) {
+                             // we have crossed the zero line on a triggered increasing event,
+                             // we must change the transformer
+-                            return Transformer.MINUS;
++                            return var_2623;
+                         } else {
+                             // we are still in the same status
+                             return previous;
+@@ -332,7 +333,7 @@
+                             return Transformer.MAX;
+                         } else if (g < 0) {
+                             // initialize as if previous root (i.e. forward one) was a triggered increasing event
+-                            return Transformer.MINUS;
++                            return var_2623;
+                         } else {
+                             // we are exactly at a root, we don't know if it is an increasing
+                             // or a decreasing event, we remain in uninitialized state
+@@ -360,7 +361,7 @@
+                         if (g <= 0) {
+                             // we have crossed the zero line on a triggered increasing event,
+                             // we must change the transformer
+-                            return Transformer.MINUS;
++                            return var_2623;
+                         } else {
+                             // we are still in the same status
+                             return previous;

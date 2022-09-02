@@ -1,0 +1,40 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1430_getBlockExpression(elseBranch).getFirstChild().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1430_getBlockExpression(elseBranch).getFirstChild().patch
+index 43678be..041e1f6 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1430_getBlockExpression(elseBranch).getFirstChild().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1430_getBlockExpression(elseBranch).getFirstChild().patch
+@@ -1,30 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+-index ae568e8..af41830 100644
++index ae568e8..3d1abf4 100644
+ --- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+ +++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+-@@ -767,9 +767,10 @@
+-     boolean thenBranchIsExpressionBlock = isFoldableExpressBlock(thenBranch);
+-     boolean elseBranchIsExpressionBlock = isFoldableExpressBlock(elseBranch);
++@@ -769,7 +769,8 @@
+  
+--    if (thenBranchIsExpressionBlock && elseBranchIsExpressionBlock) {
+-+    Node var_1430 = getBlockExpression(elseBranch).getFirstChild();
+-+	if (thenBranchIsExpressionBlock && elseBranchIsExpressionBlock) {
++     if (thenBranchIsExpressionBlock && elseBranchIsExpressionBlock) {
+        Node thenOp = getBlockExpression(thenBranch).getFirstChild();
+ -      Node elseOp = getBlockExpression(elseBranch).getFirstChild();
+-+      Node elseOp = var_1430;
+++      Node var_1430 = getBlockExpression(elseBranch).getFirstChild();
+++	Node elseOp = var_1430;
+        if (thenOp.getType() == elseOp.getType()) {
+          // if(x)a=1;else a=2; -> a=x?1:2;
+          if (NodeUtil.isAssignmentOp(thenOp)) {
+-@@ -814,10 +815,10 @@
+- 
+-     // if(x)var y=1;else y=2  ->  var y=x?1:2
+-     if (thenBranchIsVar && elseBranchIsExpressionBlock &&
+--        getBlockExpression(elseBranch).getFirstChild().isAssign()) {
+-+        var_1430.isAssign()) {
+- 
+-       Node var = getBlockVar(thenBranch);
+--      Node elseAssign = getBlockExpression(elseBranch).getFirstChild();
+-+      Node elseAssign = var_1430;
+- 
+-       Node name1 = var.getFirstChild();
+-       Node maybeName2 = elseAssign.getFirstChild();

@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/Tracer.java b/src/com/google/javascript/jscomp/Tracer.java
+index 5298e98..9894c57 100644
+--- a/src/com/google/javascript/jscomp/Tracer.java
++++ b/src/com/google/javascript/jscomp/Tracer.java
+@@ -1047,7 +1047,8 @@
+       // faster when there isn't too much contention.  Look at a value, and
+       // conditionally update the map if the value hasn't changed.
+       // If it has changed, repeat.
+-      Long oldValue = map.get(key);
++      Long var_1951 = map.get(key);
++	Long oldValue = var_1951;
+       if (oldValue == null) {
+         // Currently, the slot is empty
+         oldValue = map.putIfAbsent(key, delta);
+@@ -1064,7 +1065,7 @@
+           break;
+         }
+         // Nullness checker doesn't understand that this cannot return null.
+-        oldValue = map.get(key);
++        oldValue = var_1951;
+       }
+     }
+ 

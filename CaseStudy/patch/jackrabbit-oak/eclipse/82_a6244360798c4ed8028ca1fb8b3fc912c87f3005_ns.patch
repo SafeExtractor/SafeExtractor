@@ -1,0 +1,31 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/spi/query/IndexUtils.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/spi/query/IndexUtils.java
+index 12c93a2..e870cfe 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/spi/query/IndexUtils.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/spi/query/IndexUtils.java
+@@ -45,7 +45,8 @@
+      */
+     public static IndexDefinition getDefinition(String path, ChildNodeEntry def) {
+         String name = def.getName();
+-        PropertyState typeProp = def.getNodeState().getProperty(
++        NodeState ns = def.getNodeState();
++		PropertyState typeProp = ns.getProperty(
+                 IndexDefinition.TYPE_PROPERTY_NAME);
+         String type = TYPE_UNKNOWN;
+         if (typeProp != null && !typeProp.isArray()) {
+@@ -53,14 +54,14 @@
+         }
+ 
+         boolean unique = false;
+-        PropertyState uniqueProp = def.getNodeState().getProperty(
++        PropertyState uniqueProp = ns.getProperty(
+                 IndexDefinition.UNIQUE_PROPERTY_NAME);
+         if (uniqueProp != null && !uniqueProp.isArray()) {
+             unique = uniqueProp.getValue().getBoolean();
+         }
+ 
+         Map<String, String> props = new HashMap<String, String>();
+-        for (PropertyState ps : def.getNodeState().getProperties()) {
++        for (PropertyState ps : ns.getProperties()) {
+             if (ps != null && !ps.isArray()) {
+                 String v = ps.getValue().getString();
+                 props.put(ps.getName(), v);

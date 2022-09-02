@@ -1,0 +1,14 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/nodetype/write/NodeTypeTemplateImpl.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/nodetype/write/NodeTypeTemplateImpl.java
+index 0e3db4d..ac3ad7d 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/nodetype/write/NodeTypeTemplateImpl.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/nodetype/write/NodeTypeTemplateImpl.java
+@@ -167,7 +167,8 @@
+         if (propertyDefinitionTemplates != null) {
+             int pdn = 1;
+             for (PropertyDefinitionTemplateImpl pdt : propertyDefinitionTemplates) {
+-                Tree tree = type.addChild(JCR_PROPERTYDEFINITION + "[" + pdn++ + "]");
++                String name = JCR_PROPERTYDEFINITION + "[" + pdn++ + "]";
++				Tree tree = type.addChild(name);
+                 tree.setProperty(
+                         JCR_PRIMARYTYPE, NT_PROPERTYDEFINITION, Type.NAME);
+                 pdt.writeTo(tree);

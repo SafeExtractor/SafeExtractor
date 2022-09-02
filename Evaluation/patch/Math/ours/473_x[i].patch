@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunctionLagrangeForm.java b/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunctionLagrangeForm.java
+index 315c3dd..64beb01 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunctionLagrangeForm.java
++++ b/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunctionLagrangeForm.java
+@@ -275,9 +275,10 @@
+         for (int i = 0; i < n; i++) {
+             // d = (x[i]-x[0])...(x[i]-x[i-1])(x[i]-x[i+1])...(x[i]-x[n-1])
+             double d = 1;
+-            for (int j = 0; j < n; j++) {
++            double var_473 = x[i];
++			for (int j = 0; j < n; j++) {
+                 if (i != j) {
+-                    d *= x[i] - x[j];
++                    d *= var_473 - x[j];
+                 }
+             }
+             final double t = y[i] / d;
+@@ -287,7 +288,7 @@
+             tc[n-1] = c[n];     // actually c[n] = 1
+             coefficients[n-1] += t * tc[n-1];
+             for (int j = n-2; j >= 0; j--) {
+-                tc[j] = c[j+1] + tc[j+1] * x[i];
++                tc[j] = c[j+1] + tc[j+1] * var_473;
+                 coefficients[j] += t * tc[j];
+             }
+         }

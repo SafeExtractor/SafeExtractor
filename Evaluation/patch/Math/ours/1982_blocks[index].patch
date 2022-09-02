@@ -1,0 +1,47 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java b/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
+index a03c4f4..0c7c8d0 100644
+--- a/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
+@@ -693,12 +693,13 @@
+ 
+                 final int heightExcess = iHeight + rowsShift - BLOCK_SIZE;
+                 final int widthExcess = jWidth + columnsShift - BLOCK_SIZE;
+-                if (heightExcess > 0) {
++                double[] var_1982 = blocks[index];
++				if (heightExcess > 0) {
+                     // the submatrix block spans on two blocks rows from the original matrix
+                     if (widthExcess > 0) {
+                         // the submatrix block spans on two blocks columns from the original matrix
+                         final int width2 = blockWidth(qBlock + 1);
+-                        copyBlockPart(blocks[index], width,
++                        copyBlockPart(var_1982, width,
+                                       rowsShift, BLOCK_SIZE,
+                                       columnsShift, BLOCK_SIZE,
+                                       outBlock, jWidth, 0, 0);
+@@ -716,7 +717,7 @@
+                                       outBlock, jWidth, iHeight - heightExcess, jWidth - widthExcess);
+                     } else {
+                         // the submatrix block spans on one block column from the original matrix
+-                        copyBlockPart(blocks[index], width,
++                        copyBlockPart(var_1982, width,
+                                       rowsShift, BLOCK_SIZE,
+                                       columnsShift, jWidth + columnsShift,
+                                       outBlock, jWidth, 0, 0);
+@@ -730,7 +731,7 @@
+                     if (widthExcess > 0) {
+                         // the submatrix block spans on two blocks columns from the original matrix
+                         final int width2 = blockWidth(qBlock + 1);
+-                        copyBlockPart(blocks[index], width,
++                        copyBlockPart(var_1982, width,
+                                       rowsShift, iHeight + rowsShift,
+                                       columnsShift, BLOCK_SIZE,
+                                       outBlock, jWidth, 0, 0);
+@@ -740,7 +741,7 @@
+                                       outBlock, jWidth, 0, jWidth - widthExcess);
+                     } else {
+                         // the submatrix block spans on one block column from the original matrix
+-                        copyBlockPart(blocks[index], width,
++                        copyBlockPart(var_1982, width,
+                                       rowsShift, iHeight + rowsShift,
+                                       columnsShift, jWidth + columnsShift,
+                                       outBlock, jWidth, 0, 0);

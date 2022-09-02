@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..23df067 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -1003,9 +1003,10 @@
+      * regressor array does not exist
+      */
+     public RegressionResults regress(int[] variablesToInclude) throws ModelSpecificationException {
+-        if (variablesToInclude.length > this.nvars) {
++        int var_4027 = variablesToInclude.length;
++		if (var_4027 > this.nvars) {
+             throw new ModelSpecificationException(
+-                    LocalizedFormats.TOO_MANY_REGRESSORS, variablesToInclude.length, this.nvars);
++                    LocalizedFormats.TOO_MANY_REGRESSORS, var_4027, this.nvars);
+         }
+         if (this.nobs <= this.nvars) {
+             throw new ModelSpecificationException(
+@@ -1014,7 +1015,7 @@
+         }
+         Arrays.sort(variablesToInclude);
+         int iExclude = 0;
+-        for (int i = 0; i < variablesToInclude.length; i++) {
++        for (int i = 0; i < var_4027; i++) {
+             if (i >= this.nvars) {
+                 throw new ModelSpecificationException(
+                         LocalizedFormats.INDEX_LARGER_THAN_MAX, i, this.nvars);
+@@ -1027,8 +1028,8 @@
+         int[] series;
+         if (iExclude > 0) {
+             int j = 0;
+-            series = new int[variablesToInclude.length - iExclude];
+-            for (int i = 0; i < variablesToInclude.length; i++) {
++            series = new int[var_4027 - iExclude];
++            for (int i = 0; i < var_4027; i++) {
+                 if (variablesToInclude[i] > -1) {
+                     series[j] = variablesToInclude[i];
+                     ++j;

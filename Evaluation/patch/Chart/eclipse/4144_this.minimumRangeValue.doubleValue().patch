@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/data/statistics/DefaultBoxAndWhiskerXYDataset.java b/source/org/jfree/data/statistics/DefaultBoxAndWhiskerXYDataset.java
+index 4aa2d4d..df7351c 100644
+--- a/source/org/jfree/data/statistics/DefaultBoxAndWhiskerXYDataset.java
++++ b/source/org/jfree/data/statistics/DefaultBoxAndWhiskerXYDataset.java
+@@ -223,12 +223,13 @@
+     public void add(Date date, BoxAndWhiskerItem item) {
+         this.dates.add(date);
+         this.items.add(item);
+-        if (this.minimumRangeValue == null) {
++        double var_4144 = this.minimumRangeValue.doubleValue();
++		if (this.minimumRangeValue == null) {
+             this.minimumRangeValue = item.getMinRegularValue();
+         }
+         else {
+             if (item.getMinRegularValue().doubleValue()
+-                    < this.minimumRangeValue.doubleValue()) {
++                    < var_4144) {
+                 this.minimumRangeValue = item.getMinRegularValue();
+             }
+         }
+@@ -241,7 +242,7 @@
+                 this.maximumRangeValue = item.getMaxRegularValue();
+             }
+         }
+-        this.rangeBounds = new Range(this.minimumRangeValue.doubleValue(),
++        this.rangeBounds = new Range(var_4144,
+                 this.maximumRangeValue.doubleValue());
+         fireDatasetChanged(new DatasetChangeInfo());
+         //TODO: fill in real change info

@@ -1,0 +1,67 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+index 4c20a64..c41c680 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+@@ -295,9 +295,10 @@
+         final String trapName = "nextAfter";
+ 
+         // make sure we don't mix number with different precision
+-        if (getField().getRadixDigits() != x.getField().getRadixDigits()) {
++        Dfp var_761 = getZero();
++		if (getField().getRadixDigits() != x.getField().getRadixDigits()) {
+             getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            final Dfp result = newInstance(getZero());
++            final Dfp result = newInstance(var_761);
+             result.nans = QNAN;
+             return dotrap(DfpField.FLAG_INVALID, trapName, x, result);
+         }
+@@ -315,7 +316,7 @@
+             return newInstance(x);
+         }
+ 
+-        if (lessThan(getZero())) {
++        if (lessThan(var_761)) {
+             up = !up;
+         }
+ 
+@@ -323,12 +324,12 @@
+             inc = power10(intLog10() - getDecimalDigits() + 1);
+             inc = copysign(inc, this);
+ 
+-            if (this.equals(getZero())) {
++            if (this.equals(var_761)) {
+                 inc = power10K(MIN_EXP-mant.length-1);
+             }
+ 
+-            if (inc.equals(getZero())) {
+-                result = copysign(newInstance(getZero()), this);
++            if (inc.equals(var_761)) {
++                result = copysign(newInstance(var_761), this);
+             } else {
+                 result = add(inc);
+             }
+@@ -342,12 +343,12 @@
+                 inc = inc.divide(power10(getDecimalDigits() - 1));
+             }
+ 
+-            if (this.equals(getZero())) {
++            if (this.equals(var_761)) {
+                 inc = power10K(MIN_EXP-mant.length-1);
+             }
+ 
+-            if (inc.equals(getZero())) {
+-                result = copysign(newInstance(getZero()), this);
++            if (inc.equals(var_761)) {
++                result = copysign(newInstance(var_761), this);
+             } else {
+                 result = subtract(inc);
+             }
+@@ -358,7 +359,7 @@
+             result = dotrap(DfpField.FLAG_INEXACT, trapName, x, result);
+         }
+ 
+-        if (result.equals(getZero()) && this.equals(getZero()) == false) {
++        if (result.equals(var_761) && this.equals(var_761) == false) {
+             getField().setIEEEFlagsBits(DfpField.FLAG_INEXACT);
+             result = dotrap(DfpField.FLAG_INEXACT, trapName, x, result);
+         }

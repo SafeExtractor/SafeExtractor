@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java b/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java
+index fd55902..ddec950 100644
+--- a/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java
++++ b/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java
+@@ -363,7 +363,8 @@
+ 
+         final int hash  = hashOf(key);
+         int index = hash & mask;
+-        if (containsKey(key, index)) {
++        boolean var_4246 = containsKey(key, index);
++		if (var_4246) {
+             return doRemove(index);
+         }
+ 
+@@ -375,7 +376,7 @@
+         for (int perturb = perturb(hash); states[index] != FREE; perturb >>= PERTURB_SHIFT) {
+             j = probe(perturb, j);
+             index = j & mask;
+-            if (containsKey(key, index)) {
++            if (var_4246) {
+                 return doRemove(index);
+             }
+         }

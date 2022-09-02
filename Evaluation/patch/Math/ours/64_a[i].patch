@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DerivativeStructure.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DerivativeStructure.java
+index bb29eee..1121051 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DerivativeStructure.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DerivativeStructure.java
+@@ -918,7 +918,8 @@
+         // compute a simple value, with all partial derivatives
+         DerivativeStructure simpleValue = a[0].getField().getZero();
+         for (int i = 0; i < a.length; ++i) {
+-            simpleValue = simpleValue.add(a[i].multiply(b[i]));
++            DerivativeStructure var_64 = a[i];
++			simpleValue = simpleValue.add(var_64.multiply(b[i]));
+         }
+ 
+         // create a result with accurate value and all derivatives (not necessarily as accurate as the value)

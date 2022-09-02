@@ -1,0 +1,37 @@
+diff --git a/Users/safe/paper/CaseStudy/patch/nifi/eclipse/38_2a92747046b39d7b3f7604258c1d3bb81a9447bd_requestReportingTask.patch b/Users/safe/paper/CaseStudy/patch/nifi/ours/38_2a92747046b39d7b3f7604258c1d3bb81a9447bd_requestReportingTask.patch
+index 085af57..5cd184c 100644
+--- a/Users/safe/paper/CaseStudy/patch/nifi/eclipse/38_2a92747046b39d7b3f7604258c1d3bb81a9447bd_requestReportingTask.patch
++++ b/Users/safe/paper/CaseStudy/patch/nifi/ours/38_2a92747046b39d7b3f7604258c1d3bb81a9447bd_requestReportingTask.patch
+@@ -1,5 +1,5 @@
+ diff --git a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ControllerResource.java b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ControllerResource.java
+-index 4063a72..3e271da 100644
++index 4063a72..676c9ad 100644
+ --- a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ControllerResource.java
+ +++ b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ControllerResource.java
+ @@ -40,6 +40,7 @@
+@@ -10,22 +10,13 @@ index 4063a72..3e271da 100644
+  import org.apache.nifi.web.api.entity.ClusterEntity;
+  import org.apache.nifi.web.api.entity.ControllerConfigurationEntity;
+  import org.apache.nifi.web.api.entity.ControllerServiceEntity;
+-@@ -248,7 +249,8 @@
+-                     required = true
+-             ) final ReportingTaskEntity reportingTaskEntity) {
+- 
+--        if (reportingTaskEntity == null || reportingTaskEntity.getComponent() == null) {
+-+        ReportingTaskDTO requestReportingTask = reportingTaskEntity.getComponent();
+-+		if (reportingTaskEntity == null || requestReportingTask == null) {
+-             throw new IllegalArgumentException("Reporting task details must be specified.");
+-         }
+- 
+-@@ -256,11 +258,11 @@
++@@ -256,11 +257,12 @@
+              throw new IllegalArgumentException("A revision of 0 must be specified when creating a new Reporting task.");
+          }
+  
+ -        if (reportingTaskEntity.getComponent().getId() != null) {
+-+        if (requestReportingTask.getId() != null) {
+++        ReportingTaskDTO requestReportingTask = reportingTaskEntity.getComponent();
+++		if (requestReportingTask.getId() != null) {
+              throw new IllegalArgumentException("Reporting task ID cannot be specified.");
+          }
+  

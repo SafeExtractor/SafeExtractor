@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..a6141ca 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -854,12 +854,13 @@
+     }
+ 
+     NodeUtil.redeclareVarsInsideBranch(n);
+-    if (!mayHaveSideEffects(cond)) {
+-      NodeUtil.removeChild(n.getParent(), n);
++    Node var_804 = n.getParent();
++	if (!mayHaveSideEffects(cond)) {
++      NodeUtil.removeChild(var_804, n);
+     } else {
+       Node statement = IR.exprResult(cond.detachFromParent())
+           .copyInformationFrom(cond);
+-      n.getParent().replaceChild(n, statement);
++      var_804.replaceChild(n, statement);
+     }
+     reportCodeChange();
+     return null;

@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/util/StandardGradientPaintTransformer.java b/source/org/jfree/chart/util/StandardGradientPaintTransformer.java
+index c15e130..234f315 100644
+--- a/source/org/jfree/chart/util/StandardGradientPaintTransformer.java
++++ b/source/org/jfree/chart/util/StandardGradientPaintTransformer.java
+@@ -104,9 +104,10 @@
+         GradientPaint result = paint;
+         Rectangle2D bounds = target.getBounds2D();
+ 
+-        if (this.type.equals(GradientPaintTransformType.VERTICAL)) {
++        double var_3719 = bounds.getMinY();
++		if (this.type.equals(GradientPaintTransformType.VERTICAL)) {
+             result = new GradientPaint((float) bounds.getCenterX(),
+-                    (float) bounds.getMinY(), paint.getColor1(),
++                    (float) var_3719, paint.getColor1(),
+                     (float) bounds.getCenterX(), (float) bounds.getMaxY(),
+                     paint.getColor2());
+         }
+@@ -125,7 +126,7 @@
+         }
+         else if (this.type.equals(GradientPaintTransformType.CENTER_VERTICAL)) {
+             result = new GradientPaint((float) bounds.getCenterX(),
+-                    (float) bounds.getMinY(), paint.getColor1(),
++                    (float) var_3719, paint.getColor1(),
+                     (float) bounds.getCenterX(), (float) bounds.getCenterY(),
+                     paint.getColor2(), true);
+         }

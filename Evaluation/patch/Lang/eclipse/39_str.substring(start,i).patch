@@ -1,0 +1,50 @@
+diff --git a/src/main/java/org/apache/commons/lang3/StringUtils.java b/src/main/java/org/apache/commons/lang3/StringUtils.java
+index 04b53fa..6c37579 100644
+--- a/src/main/java/org/apache/commons/lang3/StringUtils.java
++++ b/src/main/java/org/apache/commons/lang3/StringUtils.java
+@@ -2982,7 +2982,8 @@
+         int i = 0, start = 0;
+         boolean match = false;
+         boolean lastMatch = false;
+-        if (separatorChars == null) {
++        String var_39 = str.substring(start, i);
++		if (separatorChars == null) {
+             // Null separator means use whitespace
+             while (i < len) {
+                 if (Character.isWhitespace(str.charAt(i))) {
+@@ -2992,7 +2993,7 @@
+                             i = len;
+                             lastMatch = false;
+                         }
+-                        list.add(str.substring(start, i));
++                        list.add(var_39);
+                         match = false;
+                     }
+                     start = ++i;
+@@ -3013,7 +3014,7 @@
+                             i = len;
+                             lastMatch = false;
+                         }
+-                        list.add(str.substring(start, i));
++                        list.add(var_39);
+                         match = false;
+                     }
+                     start = ++i;
+@@ -3033,7 +3034,7 @@
+                             i = len;
+                             lastMatch = false;
+                         }
+-                        list.add(str.substring(start, i));
++                        list.add(var_39);
+                         match = false;
+                     }
+                     start = ++i;
+@@ -3045,7 +3046,7 @@
+             }
+         }
+         if (match || preserveAllTokens && lastMatch) {
+-            list.add(str.substring(start, i));
++            list.add(var_39);
+         }
+         return list.toArray(new String[list.size()]);
+     }

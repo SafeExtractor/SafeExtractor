@@ -1,0 +1,35 @@
+diff --git a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
+index c3dd8cc..f94eae2 100644
+--- a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
++++ b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
+@@ -735,7 +735,8 @@
+         
+         // optimise zero formatter case
+         List<Object> pairs = iElementPairs;
+-        if (pairs.size() == 0) {
++        int var_531 = pairs.size();
++		if (var_531 == 0) {
+             if (useAfter && useBefore == false) {
+                 Separator separator = new Separator(
+                         text, finalText, variants,
+@@ -748,17 +749,17 @@
+         // find the last separator added
+         int i;
+         Separator lastSeparator = null;
+-        for (i=pairs.size(); --i>=0; ) {
++        for (i=var_531; --i>=0; ) {
+             if (pairs.get(i) instanceof Separator) {
+                 lastSeparator = (Separator) pairs.get(i);
+-                pairs = pairs.subList(i + 1, pairs.size());
++                pairs = pairs.subList(i + 1, var_531);
+                 break;
+             }
+             i--;  // element pairs
+         }
+         
+         // merge formatters
+-        if (lastSeparator != null && pairs.size() == 0) {
++        if (lastSeparator != null && var_531 == 0) {
+             throw new IllegalStateException("Cannot have two adjacent separators");
+         } else {
+             Object[] comp = createComposite(pairs);

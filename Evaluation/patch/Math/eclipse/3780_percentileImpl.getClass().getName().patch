@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/descriptive/DescriptiveStatistics.java b/src/main/java/org/apache/commons/math3/stat/descriptive/DescriptiveStatistics.java
+index b08deba..2764ecc 100644
+--- a/src/main/java/org/apache/commons/math3/stat/descriptive/DescriptiveStatistics.java
++++ b/src/main/java/org/apache/commons/math3/stat/descriptive/DescriptiveStatistics.java
+@@ -625,9 +625,10 @@
+                   LocalizedFormats.PERCENTILE_IMPLEMENTATION_UNSUPPORTED_METHOD,
+                   percentileImpl.getClass().getName(), SET_QUANTILE_METHOD_NAME);
+         } catch (IllegalAccessException e2) {
+-            throw new MathIllegalArgumentException(
++            String var_3780 = percentileImpl.getClass().getName();
++			throw new MathIllegalArgumentException(
+                   LocalizedFormats.PERCENTILE_IMPLEMENTATION_CANNOT_ACCESS_METHOD,
+-                  SET_QUANTILE_METHOD_NAME, percentileImpl.getClass().getName());
++                  SET_QUANTILE_METHOD_NAME, var_3780);
+         } catch (InvocationTargetException e3) {
+             throw new IllegalArgumentException(e3.getCause());
+         }

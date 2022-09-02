@@ -1,0 +1,44 @@
+diff --git a/source/org/jfree/chart/block/BorderArrangement.java b/source/org/jfree/chart/block/BorderArrangement.java
+index b3ae54b..b55720d 100644
+--- a/source/org/jfree/chart/block/BorderArrangement.java
++++ b/source/org/jfree/chart/block/BorderArrangement.java
+@@ -133,14 +133,15 @@
+         Size2D contentSize = null;
+         LengthConstraintType w = contentConstraint.getWidthConstraintType();
+         LengthConstraintType h = contentConstraint.getHeightConstraintType();
+-        if (w == LengthConstraintType.NONE) {
++        LengthConstraintType var_921 = LengthConstraintType.RANGE;
++		if (w == LengthConstraintType.NONE) {
+             if (h == LengthConstraintType.NONE) {
+                 contentSize = arrangeNN(container, g2);
+             }
+             else if (h == LengthConstraintType.FIXED) {
+                 throw new RuntimeException("Not implemented.");
+             }
+-            else if (h == LengthConstraintType.RANGE) {
++            else if (h == var_921) {
+                 throw new RuntimeException("Not implemented.");
+             }
+         }
+@@ -151,18 +152,18 @@
+             else if (h == LengthConstraintType.FIXED) {
+                 contentSize = arrangeFF(container, g2, constraint);
+             }
+-            else if (h == LengthConstraintType.RANGE) {
++            else if (h == var_921) {
+                 contentSize = arrangeFR(container, g2, constraint);
+             }
+         }
+-        else if (w == LengthConstraintType.RANGE) {
++        else if (w == var_921) {
+             if (h == LengthConstraintType.NONE) {
+                 throw new RuntimeException("Not implemented.");
+             }
+             else if (h == LengthConstraintType.FIXED) {
+                 throw new RuntimeException("Not implemented.");
+             }
+-            else if (h == LengthConstraintType.RANGE) {
++            else if (h == var_921) {
+                 contentSize = arrangeRR(container, constraint.getWidthRange(),
+                         constraint.getHeightRange(), g2);
+             }

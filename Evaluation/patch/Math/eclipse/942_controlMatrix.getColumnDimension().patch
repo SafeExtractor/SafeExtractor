@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java b/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
+index 423689d..3c282aa 100644
+--- a/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
++++ b/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
+@@ -182,13 +182,14 @@
+         }
+ 
+         // row dimension of B must be equal to A
+-        if (controlMatrix != null &&
++        int var_942 = controlMatrix.getColumnDimension();
++		if (controlMatrix != null &&
+             controlMatrix.getRowDimension() > 0 &&
+-            controlMatrix.getColumnDimension() > 0 &&
++            var_942 > 0 &&
+             (controlMatrix.getRowDimension() != transitionMatrix.getRowDimension() ||
+-             controlMatrix.getColumnDimension() != 1)) {
++             var_942 != 1)) {
+             throw new MatrixDimensionMismatchException(controlMatrix.getRowDimension(),
+-                                                       controlMatrix.getColumnDimension(),
++                                                       var_942,
+                                                        transitionMatrix.getRowDimension(), 1);
+         }
+ 

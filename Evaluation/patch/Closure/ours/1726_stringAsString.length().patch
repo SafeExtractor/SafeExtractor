@@ -1,0 +1,33 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+index 63538e3..2343d73 100644
+--- a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
++++ b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+@@ -577,7 +577,8 @@
+     }
+ 
+     Node arg2 = arg1.getNext();
+-    if (arg2 != null) {
++    int var_1726 = stringAsString.length();
++	if (arg2 != null) {
+       if (arg2.isNumber()) {
+         end = (int) arg2.getDouble();
+       } else {
+@@ -590,15 +591,15 @@
+       }
+     } else {
+       // parameter 2 not passed
+-      end = stringAsString.length();
++      end = var_1726;
+     }
+ 
+     // Don't handle these cases. The specification actually does
+     // specify the behavior in some of these cases, but we haven't
+     // done a thorough investigation that it is correctly implemented
+     // in all browsers.
+-    if ((end > stringAsString.length()) ||
+-        (start > stringAsString.length()) ||
++    if ((end > var_1726) ||
++        (start > var_1726) ||
+         (end < 0) ||
+         (start < 0)) {
+       return n;

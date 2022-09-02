@@ -1,0 +1,24 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2412_SerialUtilities.readStroke(stream).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/2412_SerialUtilities.readStroke(stream).patch
+index 9fc8be5..c8cddfd 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2412_SerialUtilities.readStroke(stream).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/2412_SerialUtilities.readStroke(stream).patch
+@@ -1,16 +1,14 @@
+ diff --git a/source/org/jfree/chart/renderer/AbstractRenderer.java b/source/org/jfree/chart/renderer/AbstractRenderer.java
+-index a6f2ba6..b1ca259 100644
++index a6f2ba6..46753e5 100644
+ --- a/source/org/jfree/chart/renderer/AbstractRenderer.java
+ +++ b/source/org/jfree/chart/renderer/AbstractRenderer.java
+-@@ -3295,8 +3295,9 @@
++@@ -3295,7 +3295,8 @@
+          this.basePaint = SerialUtilities.readPaint(stream);
+          this.baseFillPaint = SerialUtilities.readPaint(stream);
+          this.baseOutlinePaint = SerialUtilities.readPaint(stream);
+ -        this.baseStroke = SerialUtilities.readStroke(stream);
+--        this.baseOutlineStroke = SerialUtilities.readStroke(stream);
+ +        Stroke var_2412 = SerialUtilities.readStroke(stream);
+ +		this.baseStroke = var_2412;
+-+        this.baseOutlineStroke = var_2412;
++         this.baseOutlineStroke = SerialUtilities.readStroke(stream);
+          this.baseShape = SerialUtilities.readShape(stream);
+          this.baseItemLabelPaint = SerialUtilities.readPaint(stream);
+-         this.baseLegendShape = SerialUtilities.readShape(stream);

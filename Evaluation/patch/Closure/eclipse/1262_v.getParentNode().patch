@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/Normalize.java b/src/com/google/javascript/jscomp/Normalize.java
+index 98b136e..bf497cf 100644
+--- a/src/com/google/javascript/jscomp/Normalize.java
++++ b/src/com/google/javascript/jscomp/Normalize.java
+@@ -733,7 +733,8 @@
+       }
+ 
+       // If name is "arguments", Var maybe null.
+-      if (v != null && v.getParentNode().isCatch()) {
++      Node var_1262 = v.getParentNode();
++	if (v != null && var_1262.isCatch()) {
+         // Redeclaration of a catch expression variable is hard to model
+         // without support for "with" expressions.
+         // The ECMAScript spec (section 12.14), declares that a catch
+@@ -756,11 +757,11 @@
+                 input.getName(), n,
+                 CATCH_BLOCK_VAR_ERROR, name));
+       } else if (v != null && parent.isFunction()) {
+-        if (v.getParentNode().isVar()) {
++        if (var_1262.isVar()) {
+           s.undeclare(v);
+           s.declare(name, n, n.getJSType(), v.input);
+-          replaceVarWithAssignment(v.getNameNode(), v.getParentNode(),
+-              v.getParentNode().getParent());
++          replaceVarWithAssignment(v.getNameNode(), var_1262,
++              var_1262.getParent());
+         }
+       } else if (parent.isVar()) {
+         Preconditions.checkState(parent.hasOneChild());

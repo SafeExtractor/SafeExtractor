@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/GlobalNamespace.java b/src/com/google/javascript/jscomp/GlobalNamespace.java
+index 1cd29f0..7ceb072 100644
+--- a/src/com/google/javascript/jscomp/GlobalNamespace.java
++++ b/src/com/google/javascript/jscomp/GlobalNamespace.java
+@@ -351,7 +351,8 @@
+         case Token.NAME:
+           // This may be a variable get or set.
+           if (parent != null) {
+-            switch (parent.getType()) {
++            int var_1596 = parent.getType();
++			switch (var_1596) {
+               case Token.VAR:
+                 isSet = true;
+                 Node rvalue = n.getFirstChild();
+@@ -390,7 +391,7 @@
+         case Token.GETPROP:
+           // This may be a namespaced name get or set.
+           if (parent != null) {
+-            switch (parent.getType()) {
++            switch (var_1596) {
+               case Token.ASSIGN:
+                 if (parent.getFirstChild() == n) {
+                   isSet = true;

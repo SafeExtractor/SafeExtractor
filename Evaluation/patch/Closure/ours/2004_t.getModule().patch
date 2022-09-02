@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/AliasExternals.java b/src/com/google/javascript/jscomp/AliasExternals.java
+index fc43f34..0ef69c1 100644
+--- a/src/com/google/javascript/jscomp/AliasExternals.java
++++ b/src/com/google/javascript/jscomp/AliasExternals.java
+@@ -761,10 +761,11 @@
+     void recordAccessor(NodeTraversal t) {
+       accessorCount++;
+       if (moduleGraph != null) {
+-        deepestModuleAccess = (deepestModuleAccess == null) ?
+-            t.getModule() :
++        JSModule var_2004 = t.getModule();
++		deepestModuleAccess = (deepestModuleAccess == null) ?
++            var_2004 :
+             moduleGraph.getDeepestCommonDependencyInclusive(
+-                t.getModule(), deepestModuleAccess);
++                var_2004, deepestModuleAccess);
+       }
+     }
+ 

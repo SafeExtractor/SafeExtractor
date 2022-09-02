@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/renderer/category/ScatterRenderer.java b/source/org/jfree/chart/renderer/category/ScatterRenderer.java
+index 36218bf..bab451b 100644
+--- a/source/org/jfree/chart/renderer/category/ScatterRenderer.java
++++ b/source/org/jfree/chart/renderer/category/ScatterRenderer.java
+@@ -61,6 +61,7 @@
+ import org.jfree.chart.axis.CategoryAxis;
+ import org.jfree.chart.axis.ValueAxis;
+ import org.jfree.chart.event.RendererChangeEvent;
++import org.jfree.chart.labels.CategorySeriesLabelGenerator;
+ import org.jfree.chart.plot.CategoryPlot;
+ import org.jfree.chart.plot.PlotOrientation;
+ import org.jfree.chart.util.BooleanList;
+@@ -479,8 +480,9 @@
+                         dataset, series);
+             }
+             String urlText = null;
+-            if (getLegendItemURLGenerator() != null) {
+-                urlText = getLegendItemURLGenerator().generateLabel(
++            CategorySeriesLabelGenerator var_2584 = getLegendItemURLGenerator();
++			if (var_2584 != null) {
++                urlText = var_2584.generateLabel(
+                         dataset, series);
+             }
+             Shape shape = lookupLegendShape(series);

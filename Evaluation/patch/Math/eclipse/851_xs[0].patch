@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..1154ab1 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -907,11 +907,12 @@
+             Dfp[] ds = splitMult(xs, sty);
+             ds[0] = ds[0].add(one);
+ 
+-            xs[0] = xs[0].subtract(sty[0]);
++            Dfp var_851 = xs[0];
++			xs[0] = var_851.subtract(sty[0]);
+             xs[1] = xs[1].subtract(sty[1]);
+ 
+             xs = splitDiv(xs, ds);
+-            x = xs[0].add(xs[1]);
++            x = var_851.add(xs[1]);
+ 
+             //x = x.subtract(ty).divide(dfp.one.add(x.multiply(ty)));
+         }

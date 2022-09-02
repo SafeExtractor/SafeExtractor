@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/inference/OneWayAnova.java b/src/main/java/org/apache/commons/math3/stat/inference/OneWayAnova.java
+index edb2282..d65dd11 100644
+--- a/src/main/java/org/apache/commons/math3/stat/inference/OneWayAnova.java
++++ b/src/main/java/org/apache/commons/math3/stat/inference/OneWayAnova.java
+@@ -276,11 +276,12 @@
+ 
+         MathUtils.checkNotNull(categoryData);
+ 
+-        if (!allowOneElementData) {
++        int var_3862 = categoryData.size();
++		if (!allowOneElementData) {
+             // check if we have enough categories
+-            if (categoryData.size() < 2) {
++            if (var_3862 < 2) {
+                 throw new DimensionMismatchException(LocalizedFormats.TWO_OR_MORE_CATEGORIES_REQUIRED,
+-                                                     categoryData.size(), 2);
++                                                     var_3862, 2);
+             }
+ 
+             // check if each category has enough data
+@@ -314,7 +315,7 @@
+ 
+         final double sst = totsumsq - ((totsum * totsum) / totnum);
+         final double ssbg = sst - sswg;
+-        final int dfbg = categoryData.size() - 1;
++        final int dfbg = var_3862 - 1;
+         final double msbg = ssbg / dfbg;
+         final double mswg = sswg / dfwg;
+         final double F = msbg / mswg;

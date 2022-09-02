@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/fitting/HarmonicFitter.java b/src/main/java/org/apache/commons/math3/fitting/HarmonicFitter.java
+index 12badd2..4c60dc7 100644
+--- a/src/main/java/org/apache/commons/math3/fitting/HarmonicFitter.java
++++ b/src/main/java/org/apache/commons/math3/fitting/HarmonicFitter.java
+@@ -282,7 +282,8 @@
+             double f2Integral = 0;
+             double fPrime2Integral = 0;
+             final double startX = currentX;
+-            for (int i = 1; i < observations.length; ++i) {
++            int var_973 = observations.length;
++			for (int i = 1; i < var_973; ++i) {
+                 // one step forward
+                 final double previousX = currentX;
+                 final double previousY = currentY;
+@@ -313,7 +314,7 @@
+             double c2 = sxy * sxz - sx2 * syz;
+             double c3 = sx2 * sy2 - sxy * sxy;
+             if ((c1 / c2 < 0) || (c2 / c3 < 0)) {
+-                final int last = observations.length - 1;
++                final int last = var_973 - 1;
+                 // Range of the observations, assuming that the
+                 // observations are sorted.
+                 final double xRange = observations[last].getX() - observations[0].getX();
+@@ -324,7 +325,7 @@
+ 
+                 double yMin = Double.POSITIVE_INFINITY;
+                 double yMax = Double.NEGATIVE_INFINITY;
+-                for (int i = 1; i < observations.length; ++i) {
++                for (int i = 1; i < var_973; ++i) {
+                     final double y = observations[i].getY();
+                     if (y < yMin) {
+                         yMin = y;

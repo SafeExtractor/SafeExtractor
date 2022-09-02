@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/text/TextUtilities.java b/source/org/jfree/chart/text/TextUtilities.java
+index 8f332f7..ebf77b6 100644
+--- a/source/org/jfree/chart/text/TextUtilities.java
++++ b/source/org/jfree/chart/text/TextUtilities.java
+@@ -488,15 +488,16 @@
+                 angle, rotateX, rotateY);
+         g2.transform(rotate);
+ 
+-        if (useDrawRotatedStringWorkaround) {
++        Font var_3309 = g2.getFont();
++		if (useDrawRotatedStringWorkaround) {
+             // workaround for JDC bug ID 4312117 and others...
+-            TextLayout tl = new TextLayout(text, g2.getFont(),
++            TextLayout tl = new TextLayout(text, var_3309,
+                     g2.getFontRenderContext());
+             tl.draw(g2, textX, textY);
+         }
+         else {
+             AttributedString as = new AttributedString(text,
+-                    g2.getFont().getAttributes());
++                    var_3309.getAttributes());
+         	g2.drawString(as.getIterator(), textX, textY);
+         }
+         g2.setTransform(saved);

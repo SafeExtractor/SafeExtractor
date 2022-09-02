@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..9070fb0 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -1266,12 +1266,13 @@
+         Node replacement = null;
+         TernaryValue trueNodeVal = NodeUtil.getPureBooleanValue(trueNode);
+         TernaryValue falseNodeVal = NodeUtil.getPureBooleanValue(falseNode);
+-        if (trueNodeVal == TernaryValue.TRUE
+-            && falseNodeVal == TernaryValue.FALSE) {
++        TernaryValue var_1458 = TernaryValue.FALSE;
++		if (trueNodeVal == TernaryValue.TRUE
++            && falseNodeVal == var_1458) {
+           // Remove useless conditionals, keep the condition
+           condition.detachFromParent();
+           replacement = condition;
+-        } else if (trueNodeVal == TernaryValue.FALSE
++        } else if (trueNodeVal == var_1458
+             && falseNodeVal == TernaryValue.TRUE) {
+           // Remove useless conditionals, keep the condition
+           condition.detachFromParent();
+@@ -1280,7 +1281,7 @@
+           // Remove useless true case.
+           n.detachChildren();
+           replacement = IR.or(condition, falseNode);
+-        } else if (falseNodeVal == TernaryValue.FALSE) {
++        } else if (falseNodeVal == var_1458) {
+           // Remove useless false case
+           n.detachChildren();
+           replacement = IR.and(condition, trueNode);

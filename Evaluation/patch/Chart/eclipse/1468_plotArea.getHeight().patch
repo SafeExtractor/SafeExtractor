@@ -1,0 +1,46 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot3D.java b/source/org/jfree/chart/plot/PiePlot3D.java
+index a7aab14..0348dfb 100644
+--- a/source/org/jfree/chart/plot/PiePlot3D.java
++++ b/source/org/jfree/chart/plot/PiePlot3D.java
+@@ -251,11 +251,12 @@
+         }
+         double gapHorizontal = plotArea.getWidth() * (gapPercent
+                 + labelPercent) * 2.0;
+-        double gapVertical = plotArea.getHeight() * gapPercent * 2.0;
++        double var_1468 = plotArea.getHeight();
++		double gapVertical = var_1468 * gapPercent * 2.0;
+ 
+         if (DEBUG_DRAW_INTERIOR) {
+             double hGap = plotArea.getWidth() * getInteriorGap();
+-            double vGap = plotArea.getHeight() * getInteriorGap();
++            double vGap = var_1468 * getInteriorGap();
+             double igx1 = plotArea.getX() + hGap;
+             double igx2 = plotArea.getMaxX() - hGap;
+             double igy1 = plotArea.getY() + vGap;
+@@ -268,7 +269,7 @@
+         double linkX = plotArea.getX() + gapHorizontal / 2;
+         double linkY = plotArea.getY() + gapVertical / 2;
+         double linkW = plotArea.getWidth() - gapHorizontal;
+-        double linkH = plotArea.getHeight() - gapVertical;
++        double linkH = var_1468 - gapVertical;
+ 
+         // make the link area a square if the pie chart is to be circular...
+         if (isCircular()) { // is circular?
+@@ -349,7 +350,7 @@
+ 
+             g2.drawString(text, (int) (plotArea.getX() + (plotArea.getWidth()
+                     - stringWidth) / 2), (int) (plotArea.getY()
+-                    + (plotArea.getHeight() / 2)));
++                    + (var_1468 / 2)));
+             return;
+         }
+         // if we are drawing a perfect circle, we need to readjust the top left
+@@ -357,7 +358,7 @@
+         // effect.
+         if (isCircular()) {
+             double min = Math.min(plotArea.getWidth(),
+-                    plotArea.getHeight()) / 2;
++                    var_1468) / 2;
+             plotArea = new Rectangle2D.Double(plotArea.getCenterX() - min,
+                     plotArea.getCenterY() - min, 2 * min, 2 * min);
+         }

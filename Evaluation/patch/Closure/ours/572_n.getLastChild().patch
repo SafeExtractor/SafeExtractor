@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/MinimizeExitPoints.java b/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+index 317947b..8e44f05 100644
+--- a/src/com/google/javascript/jscomp/MinimizeExitPoints.java
++++ b/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+@@ -157,7 +157,8 @@
+     // TODO(johnlenz): The last case of SWITCH statement?
+ 
+     // The rest assumes a block with at least one child, bail on anything else.
+-    if (!n.isBlock() || n.getLastChild() == null) {
++    Node var_572 = n.getLastChild();
++	if (!n.isBlock() || var_572 == null) {
+       return;
+     }
+ 
+@@ -188,7 +189,7 @@
+         }
+       }
+ 
+-      if (c == n.getLastChild()) {
++      if (c == var_572) {
+         break;
+       }
+     }

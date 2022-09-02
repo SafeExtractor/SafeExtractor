@@ -1,0 +1,35 @@
+diff --git a/source/org/jfree/data/jdbc/JDBCXYDataset.java b/source/org/jfree/data/jdbc/JDBCXYDataset.java
+index 95cd49c..ad6b45e 100644
+--- a/source/org/jfree/data/jdbc/JDBCXYDataset.java
++++ b/source/org/jfree/data/jdbc/JDBCXYDataset.java
+@@ -258,7 +258,7 @@
+                         case Types.DECIMAL:
+                         case Types.BIT:
+                         case Types.DATE:
+-                        case Types.TIME:
++                        case var_3998:
+                         case Types.TIMESTAMP:
+                         case Types.BIGINT:
+                         case Types.SMALLINT:
+@@ -305,9 +305,10 @@
+             }
+ 
+             // Are we working with a time series.
+-            switch (columnTypes[0]) {
++            final int var_3998 = Types.TIME;
++			switch (columnTypes[0]) {
+                 case Types.DATE:
+-                case Types.TIME:
++                case var_3998:
+                 case Types.TIMESTAMP:
+                     this.isTimeSeries = true;
+                     break;
+@@ -335,7 +336,7 @@
+                             break;
+ 
+                         case Types.DATE:
+-                        case Types.TIME:
++                        case var_3998:
+                         case Types.TIMESTAMP:
+                             newRow.add(new Long(((Date) xObject).getTime()));
+                             break;

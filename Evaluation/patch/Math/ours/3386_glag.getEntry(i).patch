@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..0da8094 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -1458,7 +1458,8 @@
+                 ggfree = ZERO;
+                 for (int i = 0; i < n; i++) {
+                     if (work1.getEntry(i) == bigstp) {
+-                        final double tmp2 = trustRegionCenterOffset.getEntry(i) - step * glag.getEntry(i);
++                        double var_3386 = glag.getEntry(i);
++						final double tmp2 = trustRegionCenterOffset.getEntry(i) - step * var_3386;
+                         if (tmp2 <= lowerDifference.getEntry(i)) {
+                             work1.setEntry(i, lowerDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i));
+                             // Computing 2nd power
+@@ -1471,7 +1472,7 @@
+                             wfixsq += d1 * d1;
+                         } else {
+                             // Computing 2nd power
+-                            final double d1 = glag.getEntry(i);
++                            final double d1 = var_3386;
+                             ggfree += d1 * d1;
+                         }
+                     }

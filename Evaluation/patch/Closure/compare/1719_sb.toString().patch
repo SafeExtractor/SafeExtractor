@@ -1,0 +1,43 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1719_sb.toString().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1719_sb.toString().patch
+index 5552096..2849634 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1719_sb.toString().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1719_sb.toString().patch
+@@ -1,32 +1,16 @@
+ diff --git a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+-index 63538e3..4090aea 100644
++index 63538e3..3abebb5 100644
+ --- a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+ +++ b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+-@@ -426,7 +426,8 @@
+-     Node prev = null;
+-     Node elem = arrayNode.getFirstChild();
+-     // Merges adjacent String nodes.
+--    while (elem != null) {
+-+    String var_1719 = sb.toString();
+-+	while (elem != null) {
+-       if (NodeUtil.isImmutableValue(elem) || elem.isEmpty()) {
+-         if (sb == null) {
+-           sb = new StringBuilder();
+-@@ -440,7 +441,7 @@
++@@ -439,8 +439,9 @@
++           Preconditions.checkNotNull(prev);
+            // + 2 for the quotes.
+            foldedSize += sb.length() + 2;
+-           arrayFoldedChildren.add(
++-          arrayFoldedChildren.add(
+ -              IR.string(sb.toString()).copyInformationFrom(prev));
+++          String var_1719 = sb.toString();
+++		arrayFoldedChildren.add(
+ +              IR.string(var_1719).copyInformationFrom(prev));
+            sb = null;
+          }
+          foldedSize += InlineCostEstimator.getCost(elem);
+-@@ -455,7 +456,7 @@
+-       // + 2 for the quotes.
+-       foldedSize += sb.length() + 2;
+-       arrayFoldedChildren.add(
+--          IR.string(sb.toString()).copyInformationFrom(prev));
+-+          IR.string(var_1719).copyInformationFrom(prev));
+-     }
+-     // one for each comma.
+-     foldedSize += arrayFoldedChildren.size() - 1;

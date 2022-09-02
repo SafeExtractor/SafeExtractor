@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/InlineObjectLiterals.java b/src/com/google/javascript/jscomp/InlineObjectLiterals.java
+index d03988c..fdda11a 100644
+--- a/src/com/google/javascript/jscomp/InlineObjectLiterals.java
++++ b/src/com/google/javascript/jscomp/InlineObjectLiterals.java
+@@ -289,21 +289,24 @@
+               varmap.put(varname, var);
+             }
+           }
+-        } else if (ref.getParent().isVar()) {
+-          // This is the var. There is no value.
+         } else {
+-          Node getprop = ref.getParent();
+-          Preconditions.checkState(getprop.isGetProp());
++			Node var_666 = ref.getParent();
++			if (var_666.isVar()) {
++			  // This is the var. There is no value.
++			} else {
++			  Node getprop = var_666;
++			  Preconditions.checkState(getprop.isGetProp());
+ 
+-          // The key being looked up in the original map.
+-          String varname = getprop.getLastChild().getString();
+-          if (varmap.containsKey(varname)) {
+-            continue;
+-          }
++			  // The key being looked up in the original map.
++			  String varname = getprop.getLastChild().getString();
++			  if (varmap.containsKey(varname)) {
++			    continue;
++			  }
+ 
+-          String var = VAR_PREFIX + varname + "_" + safeNameIdSupplier.get();
+-          varmap.put(varname, var);
+-        }
++			  String var = VAR_PREFIX + varname + "_" + safeNameIdSupplier.get();
++			  varmap.put(varname, var);
++			}
++		}
+       }
+ 
+       return varmap;

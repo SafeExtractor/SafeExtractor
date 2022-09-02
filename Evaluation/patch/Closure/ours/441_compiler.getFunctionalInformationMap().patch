@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..a040223 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -1270,11 +1270,12 @@
+     }
+ 
+     if (functionInformationMapOutputPath != null) {
+-      if (compiler.getFunctionalInformationMap() != null) {
++      FunctionInformationMap var_441 = compiler.getFunctionalInformationMap();
++	if (var_441 != null) {
+         OutputStream file =
+             filenameToOutputStream(functionInformationMapOutputPath);
+         CodedOutputStream outputStream = CodedOutputStream.newInstance(file);
+-        compiler.getFunctionalInformationMap().writeTo(outputStream);
++        var_441.writeTo(outputStream);
+         outputStream.flush();
+         file.flush();
+         file.close();

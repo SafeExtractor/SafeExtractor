@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/complex/ComplexFormat.java b/src/main/java/org/apache/commons/math3/complex/ComplexFormat.java
+index 9e586bb..52e2ef2 100644
+--- a/src/main/java/org/apache/commons/math3/complex/ComplexFormat.java
++++ b/src/main/java/org/apache/commons/math3/complex/ComplexFormat.java
+@@ -211,16 +211,17 @@
+         // format sign and imaginary
+         double im = complex.getImaginary();
+         StringBuffer imAppendTo;
+-        if (im < 0.0) {
++        String var_531 = getImaginaryCharacter();
++		if (im < 0.0) {
+             toAppendTo.append(" - ");
+             imAppendTo = formatImaginary(-im, new StringBuffer(), pos);
+             toAppendTo.append(imAppendTo);
+-            toAppendTo.append(getImaginaryCharacter());
++            toAppendTo.append(var_531);
+         } else if (im > 0.0 || Double.isNaN(im)) {
+             toAppendTo.append(" + ");
+             imAppendTo = formatImaginary(im, new StringBuffer(), pos);
+             toAppendTo.append(imAppendTo);
+-            toAppendTo.append(getImaginaryCharacter());
++            toAppendTo.append(var_531);
+         }
+ 
+         return toAppendTo;

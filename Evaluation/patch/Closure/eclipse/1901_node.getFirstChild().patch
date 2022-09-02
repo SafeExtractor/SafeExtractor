@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..dbf68be 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -450,8 +450,9 @@
+ 
+   private void handleCase(Node node) {
+     // Case is a bit tricky....First it goes into the body if condition is true.
+-    createEdge(node, Branch.ON_TRUE,
+-        node.getFirstChild().getNext());
++    Node var_1901 = node.getFirstChild();
++	createEdge(node, Branch.ON_TRUE,
++        var_1901.getNext());
+     // Look for the next CASE, skipping over DEFAULT.
+     Node next = getNextSiblingOfType(node.getNext(), Token.CASE);
+     if (next != null) { // Found a CASE
+@@ -467,7 +468,7 @@
+         createEdge(node, Branch.ON_FALSE, computeFollowNode(node, this));
+       }
+     }
+-    connectToPossibleExceptionHandler(node, node.getFirstChild());
++    connectToPossibleExceptionHandler(node, var_1901);
+   }
+ 
+   private void handleDefault(Node node) {

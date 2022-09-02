@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/RemoveUnusedClassProperties.java b/src/com/google/javascript/jscomp/RemoveUnusedClassProperties.java
+index 4328f223..42a5ef1 100644
+--- a/src/com/google/javascript/jscomp/RemoveUnusedClassProperties.java
++++ b/src/com/google/javascript/jscomp/RemoveUnusedClassProperties.java
+@@ -85,7 +85,8 @@
+ 
+   @Override
+   public void visit(NodeTraversal t, Node n, Node parent) {
+-     switch (n.getType()) {
++     Node var_526 = n.getFirstChild();
++	switch (n.getType()) {
+        case Token.GETPROP: {
+          String propName = n.getLastChild().getString();
+          if (inExterns || isPinningPropertyUse(n)) {
+@@ -93,7 +94,7 @@
+          } else {
+            // This is a definition of a property but it is only removable
+            // if it is defined on "this".
+-           if (n.getFirstChild().isThis()) {
++           if (var_526.isThis()) {
+              candidates.add(n);
+            }
+          }
+@@ -102,7 +103,7 @@
+ 
+        case Token.CALL:
+          // Look for properties referenced through "JSCompiler_propertyRename".
+-         Node target = n.getFirstChild();
++         Node target = var_526;
+          if (n.hasMoreThanOneChild()
+              && target.isName()
+              && target.getString().equals(NodeUtil.JSC_PROPERTY_NAME_FN)) {

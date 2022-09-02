@@ -1,0 +1,26 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Mockito/eclipse/92_withSettings().patch b/home/safe/SafeExtractor/Evaluation/patch/Mockito/ours/92_withSettings().patch
+index 9357082..9385d12 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Mockito/eclipse/92_withSettings().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Mockito/ours/92_withSettings().patch
+@@ -1,18 +1,16 @@
+ diff --git a/src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java b/src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java
+-index 54f2c3f..66168ca 100644
++index 54f2c3f..1779f74 100644
+ --- a/src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java
+ +++ b/src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java
+-@@ -94,9 +94,10 @@
++@@ -94,8 +94,9 @@
+      }
+  
+      private MockSettings withSettingsUsing(GenericMetadataSupport returnTypeGenericMetadata, MockCreationSettings parentMockSettings) {
+ -        MockSettings mockSettings = returnTypeGenericMetadata.hasRawExtraInterfaces() ?
+ -                withSettings().extraInterfaces(returnTypeGenericMetadata.rawExtraInterfaces())
+--                : withSettings();
+ +        MockSettings var_92 = withSettings();
+ +		MockSettings mockSettings = returnTypeGenericMetadata.hasRawExtraInterfaces() ?
+ +                var_92.extraInterfaces(returnTypeGenericMetadata.rawExtraInterfaces())
+-+                : var_92;
++                 : withSettings();
+  
+          return propagateSerializationSettings(mockSettings, parentMockSettings)
+-                 .defaultAnswer(returnsDeepStubsAnswerUsing(returnTypeGenericMetadata));

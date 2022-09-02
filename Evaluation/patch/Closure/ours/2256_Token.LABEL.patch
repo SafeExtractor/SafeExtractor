@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..b87cb57 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -825,7 +825,8 @@
+ 
+     @Override
+     Node processLabeledStatement(LabeledStatement statementNode) {
+-      Node node = newNode(Token.LABEL);
++      int var_2256 = Token.LABEL;
++	Node node = newNode(var_2256);
+       Node prev = null;
+       Node cur = node;
+       for (Label label : statementNode.getLabels()) {
+@@ -842,7 +843,7 @@
+         cur.setCharno(clauseAbsolutePosition);
+ 
+         prev = cur;
+-        cur = newNode(Token.LABEL);
++        cur = newNode(var_2256);
+       }
+       prev.addChildToBack(transform(statementNode.getStatement()));
+       return node;

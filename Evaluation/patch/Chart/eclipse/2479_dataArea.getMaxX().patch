@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+index 4a54655..0dd7cee 100644
+--- a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
++++ b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+@@ -1183,7 +1183,8 @@
+                                 Marker marker,
+                                 Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        double var_2479 = dataArea.getMaxX();
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = axis.getRange();
+@@ -1206,7 +1207,7 @@
+             }
+             else if (orientation == PlotOrientation.VERTICAL) {
+                 line = new Line2D.Double(dataArea.getMinX(), v,
+-                        dataArea.getMaxX(), v);
++                        var_2479, v);
+             }
+ 
+             g2.setPaint(marker.getPaint());
+@@ -1254,7 +1255,7 @@
+             if (orientation == PlotOrientation.HORIZONTAL) {
+                 // clip left and right bounds to data area
+                 low = Math.max(low, dataArea.getMinX());
+-                high = Math.min(high, dataArea.getMaxX());
++                high = Math.min(high, var_2479);
+                 rect = new Rectangle2D.Double(low,
+                         dataArea.getMinY(), high - low,
+                         dataArea.getHeight());
+@@ -1286,7 +1287,7 @@
+                 if (orientation == PlotOrientation.VERTICAL) {
+                     Line2D line = new Line2D.Double();
+                     double x0 = dataArea.getMinX();
+-                    double x1 = dataArea.getMaxX();
++                    double x1 = var_2479;
+                     g2.setPaint(im.getOutlinePaint());
+                     g2.setStroke(im.getOutlineStroke());
+                     if (range.contains(start)) {

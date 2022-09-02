@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+index 104bdf5..07b101d 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+@@ -900,7 +900,8 @@
+             B = eig.getV(); // eigen decomposition, B==normalized eigenvectors
+             D = eig.getD();
+             diagD = diag(D);
+-            if (min(diagD) <= 0) {
++            RealMatrix var_3279 = ones(dimension, 1);
++			if (min(diagD) <= 0) {
+                 for (int i = 0; i < dimension; i++) {
+                     if (diagD.getEntry(i, 0) < 0) {
+                         diagD.setEntry(i, 0, 0);
+@@ -908,12 +909,12 @@
+                 }
+                 final double tfac = max(diagD) / 1e14;
+                 C = C.add(eye(dimension, dimension).scalarMultiply(tfac));
+-                diagD = diagD.add(ones(dimension, 1).scalarMultiply(tfac));
++                diagD = diagD.add(var_3279.scalarMultiply(tfac));
+             }
+             if (max(diagD) > 1e14 * min(diagD)) {
+                 final double tfac = max(diagD) / 1e14 - min(diagD);
+                 C = C.add(eye(dimension, dimension).scalarMultiply(tfac));
+-                diagD = diagD.add(ones(dimension, 1).scalarMultiply(tfac));
++                diagD = diagD.add(var_3279.scalarMultiply(tfac));
+             }
+             diagC = diag(C);
+             diagD = sqrt(diagD); // D contains standard deviations now

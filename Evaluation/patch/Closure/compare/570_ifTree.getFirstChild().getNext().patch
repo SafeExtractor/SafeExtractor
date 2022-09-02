@@ -1,0 +1,27 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/570_ifTree.getFirstChild().getNext().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/570_ifTree.getFirstChild().getNext().patch
+index 2567912..933e83f 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/570_ifTree.getFirstChild().getNext().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/570_ifTree.getFirstChild().getNext().patch
+@@ -1,8 +1,8 @@
+ diff --git a/src/com/google/javascript/jscomp/MinimizeExitPoints.java b/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+-index 317947b..209a5b9 100644
++index 317947b..f5f8323 100644
+ --- a/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+ +++ b/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+-@@ -173,14 +173,15 @@
++@@ -173,7 +173,8 @@
+          Node trueBlock, falseBlock;
+  
+          // First, the true condition block.
+@@ -12,11 +12,3 @@ index 317947b..209a5b9 100644
+          falseBlock = trueBlock.getNext();
+          tryMinimizeIfBlockExits(trueBlock, falseBlock,
+              ifTree, exitType, labelName);
+- 
+-         // Now the else block.
+-         // The if blocks may have changed, get them again.
+--        trueBlock = ifTree.getFirstChild().getNext();
+-+        trueBlock = var_570;
+-         falseBlock = trueBlock.getNext();
+-         if (falseBlock != null) {
+-           tryMinimizeIfBlockExits(falseBlock, trueBlock,

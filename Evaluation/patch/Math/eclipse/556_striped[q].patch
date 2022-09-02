@@ -1,0 +1,39 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..e9a5885 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -467,13 +467,14 @@
+ 
+ 
+         // If the decimal point has been found then get rid of trailing zeros.
+-        if (decimalFound && q != offset) {
++        char var_556 = striped[q];
++		if (decimalFound && q != offset) {
+             for (;;) {
+                 q--;
+                 if (q == offset) {
+                     break;
+                 }
+-                if (striped[q] == '0') {
++                if (var_556 == '0') {
+                     significantDigits--;
+                 } else {
+                     break;
+@@ -517,7 +518,7 @@
+         // Ok, now we know how many trailing zeros there are,
+         // and where the least significant digit is
+         for (i = mant.length - 1; i >= 0; i--) {
+-            mant[i] = (striped[q]   - '0') * 1000 +
++            mant[i] = (var_556   - '0') * 1000 +
+                       (striped[q+1] - '0') * 100  +
+                       (striped[q+2] - '0') * 10   +
+                       (striped[q+3] - '0');
+@@ -529,7 +530,7 @@
+ 
+         if (q < striped.length) {
+             // Is there possible another digit?
+-            round((striped[q] - '0')*1000);
++            round((var_556 - '0')*1000);
+         }
+ 
+     }

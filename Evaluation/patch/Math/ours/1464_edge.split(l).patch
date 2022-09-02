@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/OutlineExtractor.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/OutlineExtractor.java
+index 2b18368..3b6e61d 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/OutlineExtractor.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/OutlineExtractor.java
+@@ -27,6 +27,7 @@
+ import org.apache.commons.math3.geometry.partitioning.BoundaryAttribute;
+ import org.apache.commons.math3.geometry.partitioning.RegionFactory;
+ import org.apache.commons.math3.geometry.partitioning.SubHyperplane;
++import org.apache.commons.math3.geometry.partitioning.SubHyperplane.SplitSubHyperplane;
+ import org.apache.commons.math3.util.FastMath;
+ 
+ /** Extractor for {@link PolygonsSet polyhedrons sets} outlines.
+@@ -218,7 +219,8 @@
+                             final double angle = line.getAngle() + 0.5 * FastMath.PI;
+                             final org.apache.commons.math3.geometry.euclidean.twod.Line l =
+                                 new org.apache.commons.math3.geometry.euclidean.twod.Line(pPoint, angle);
+-                            edge = edge.split(l).getPlus();
++                            SplitSubHyperplane<Euclidean2D> var_1464 = edge.split(l);
++							edge = var_1464.getPlus();
+                         }
+ 
+                         if (closed || (current != (loop.length - 1))) {

@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/CrossModuleMethodMotion.java b/src/com/google/javascript/jscomp/CrossModuleMethodMotion.java
+index 810f309..6935bda 100644
+--- a/src/com/google/javascript/jscomp/CrossModuleMethodMotion.java
++++ b/src/com/google/javascript/jscomp/CrossModuleMethodMotion.java
+@@ -19,6 +19,7 @@
+ import com.google.javascript.jscomp.AnalyzePrototypeProperties.NameInfo;
+ import com.google.javascript.jscomp.AnalyzePrototypeProperties.Property;
+ import com.google.javascript.jscomp.AnalyzePrototypeProperties.Symbol;
++import com.google.javascript.jscomp.Scope.Var;
+ import com.google.javascript.rhino.IR;
+ import com.google.javascript.rhino.Node;
+ import java.io.Serializable;
+@@ -134,7 +135,8 @@
+         // So if we move a prototype method into a deeper module, we must
+         // replace it with a stub function so that it preserves its original
+         // behavior.
+-        if (prop.getRootVar() == null || !prop.getRootVar().isGlobal()) {
++        Var var_1863 = prop.getRootVar();
++		if (var_1863 == null || !var_1863.isGlobal()) {
+           continue;
+         }
+ 

@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..32a11ec 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -219,8 +219,9 @@
+       NodeTraversal nodeTraversal, Node n, Node parent) {
+     astPosition.put(n, astPositionCounter++);
+ 
+-    switch (n.getType()) {
+-      case Token.FUNCTION:
++    final int var_1890 = Token.FUNCTION;
++	switch (n.getType()) {
++      case var_1890:
+         if (shouldTraverseFunctions || n == cfg.getEntry().getValue()) {
+           exceptionHandler.push(n);
+           return true;
+@@ -266,7 +267,7 @@
+         case Token.CATCH:
+         case Token.LABEL:
+           return n != parent.getFirstChild();
+-        case Token.FUNCTION:
++        case var_1890:
+           return n == parent.getFirstChild().getNext().getNext();
+         case Token.CONTINUE:
+         case Token.BREAK:

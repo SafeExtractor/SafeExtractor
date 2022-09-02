@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/joda/time/tz/DefaultNameProvider.java b/src/main/java/org/joda/time/tz/DefaultNameProvider.java
+index 89e6739..89ef32f 100644
+--- a/src/main/java/org/joda/time/tz/DefaultNameProvider.java
++++ b/src/main/java/org/joda/time/tz/DefaultNameProvider.java
+@@ -81,11 +81,12 @@
+             }
+             
+             if (setEn != null && setLoc != null) {
+-              byNameKeyCache.put(setEn[2], new String[] {setLoc[2], setLoc[1]});
++              String var_601 = setEn[2];
++			byNameKeyCache.put(var_601, new String[] {setLoc[2], setLoc[1]});
+               // need to handle case where summer and winter have the same
+               // abbreviation, such as EST in Australia [1716305]
+               // we handle this by appending "-Summer", cf ZoneInfoCompiler
+-              if (setEn[2].equals(setEn[4])) {
++              if (var_601.equals(setEn[4])) {
+                   byNameKeyCache.put(setEn[4] + "-Summer", new String[] {setLoc[4], setLoc[3]});
+               } else {
+                   byNameKeyCache.put(setEn[4], new String[] {setLoc[4], setLoc[3]});

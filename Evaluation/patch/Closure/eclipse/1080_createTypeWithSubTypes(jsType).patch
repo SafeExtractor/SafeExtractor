@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..f702635 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -1197,12 +1197,15 @@
+ 
+     if (jsType == null || jsType.isUnknownType() || concreteType.isNone()) {
+       ret = concreteType;
+-    } else if (concreteType.isUnion() || concreteType.isSingleton()) {
+-      ret = concreteType.intersectWith(createTypeWithSubTypes(jsType));
+     } else {
+-      Preconditions.checkState(concreteType.isAll());
+-      ret = createTypeWithSubTypes(jsType);
+-    }
++		ConcreteType var_1080 = createTypeWithSubTypes(jsType);
++		if (concreteType.isUnion() || concreteType.isSingleton()) {
++		  ret = concreteType.intersectWith(var_1080);
++		} else {
++		  Preconditions.checkState(concreteType.isAll());
++		  ret = var_1080;
++		}
++	}
+     ret = ret.intersectWith(ConcreteType.createForTypes(allInstantiatedTypes));
+ 
+     // Keep all function types, as restricting to instantiated types will only

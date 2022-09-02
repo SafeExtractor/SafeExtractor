@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/data/statistics/Statistics.java b/source/org/jfree/data/statistics/Statistics.java
+index 1f97438..9b471d0 100644
+--- a/source/org/jfree/data/statistics/Statistics.java
++++ b/source/org/jfree/data/statistics/Statistics.java
+@@ -474,14 +474,15 @@
+ 
+         double[][] result = new double[xData.length - period][2];
+         for (int i = 0; i < result.length; i++) {
+-            result[i][0] = xData[i + period].doubleValue();
++            double[] var_4118 = result[i];
++			var_4118[0] = xData[i + period].doubleValue();
+             // holds the moving average sum
+             double sum = 0.0;
+             for (int j = 0; j < period; j++) {
+                 sum += yData[i + j].doubleValue();
+             }
+             sum = sum / period;
+-            result[i][1] = sum;
++            var_4118[1] = sum;
+         }
+         return result;
+ 

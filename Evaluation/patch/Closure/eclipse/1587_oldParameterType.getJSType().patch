@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionTypeBuilder.java b/src/com/google/javascript/jscomp/FunctionTypeBuilder.java
+index db990fa..899fdd5 100644
+--- a/src/com/google/javascript/jscomp/FunctionTypeBuilder.java
++++ b/src/com/google/javascript/jscomp/FunctionTypeBuilder.java
+@@ -459,14 +459,17 @@
+       if (info != null && info.hasParameterType(argumentName)) {
+         parameterType =
+             info.getParameterType(argumentName).evaluate(scope, typeRegistry);
+-      } else if (oldParameterType != null &&
+-          oldParameterType.getJSType() != null) {
+-        parameterType = oldParameterType.getJSType();
+-        isOptionalParam = oldParameterType.isOptionalArg();
+-        isVarArgs = oldParameterType.isVarArgs();
+       } else {
+-        parameterType = typeRegistry.getNativeType(UNKNOWN_TYPE);
+-      }
++		JSType var_1587 = oldParameterType.getJSType();
++		if (oldParameterType != null &&
++		      var_1587 != null) {
++		    parameterType = var_1587;
++		    isOptionalParam = oldParameterType.isOptionalArg();
++		    isVarArgs = oldParameterType.isVarArgs();
++		  } else {
++		    parameterType = typeRegistry.getNativeType(UNKNOWN_TYPE);
++		  }
++	}
+ 
+       warnedAboutArgList |= addParameter(
+           builder, parameterType, warnedAboutArgList,

@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+index 63538e3..89df6a1 100644
+--- a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
++++ b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+@@ -439,8 +439,9 @@
+           Preconditions.checkNotNull(prev);
+           // + 2 for the quotes.
+           foldedSize += sb.length() + 2;
+-          arrayFoldedChildren.add(
+-              IR.string(sb.toString()).copyInformationFrom(prev));
++          Node var_1722 = IR.string(sb.toString()).copyInformationFrom(prev);
++		arrayFoldedChildren.add(
++              var_1722);
+           sb = null;
+         }
+         foldedSize += InlineCostEstimator.getCost(elem);

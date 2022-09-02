@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/text/TextUtilities.java b/source/org/jfree/chart/text/TextUtilities.java
+index 8f332f7..b0c392a 100644
+--- a/source/org/jfree/chart/text/TextUtilities.java
++++ b/source/org/jfree/chart/text/TextUtilities.java
+@@ -122,11 +122,12 @@
+         int start = 0;
+         while (moreInputToProcess) {
+             int index = input.indexOf("\n");
+-            if (index > start) {
++            String var_3288 = input.substring(index + 1);
++			if (index > start) {
+                 String line = input.substring(start, index);
+                 if (index < input.length() - 1) {
+                     result.addLine(line, font, paint);
+-                    input = input.substring(index + 1);
++                    input = var_3288;
+                 }
+                 else {
+                     moreInputToProcess = false;
+@@ -134,7 +135,7 @@
+             }
+             else if (index == start) {
+                 if (index < input.length() - 1) {
+-                    input = input.substring(index + 1);
++                    input = var_3288;
+                 }
+                 else {
+                     moreInputToProcess = false;

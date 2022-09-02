@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/CommandLineRunner.java b/src/com/google/javascript/jscomp/CommandLineRunner.java
+index 2d3b139..a1d3e61 100644
+--- a/src/com/google/javascript/jscomp/CommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/CommandLineRunner.java
+@@ -641,7 +641,8 @@
+ 
+   private void processFlagFile(PrintStream err)
+             throws CmdLineException, IOException {
+-    File flagFileInput = new File(flags.flag_file);
++    String var_638 = flags.flag_file;
++	File flagFileInput = new File(var_638);
+     List<String> argsInFile = tokenizeKeepingQuotedStrings(
+         Files.readLines(flagFileInput, Charset.defaultCharset()));
+ 
+@@ -653,7 +654,7 @@
+     parserFileArgs.parseArgument(processedFileArgs.toArray(new String[] {}));
+ 
+     // Currently we are not supporting this (prevent direct/indirect loops)
+-    if (!flags.flag_file.equals("")) {
++    if (!var_638.equals("")) {
+       err.println("ERROR - Arguments in the file cannot contain "
+           + "--flagfile option.");
+       isConfigValid = false;

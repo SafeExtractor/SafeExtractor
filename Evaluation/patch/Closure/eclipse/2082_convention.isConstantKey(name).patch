@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..3235ba5 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -2827,11 +2827,12 @@
+   static boolean isConstantByConvention(
+       CodingConvention convention, Node node, Node parent) {
+     String name = node.getString();
+-    if (parent.isGetProp() &&
++    boolean var_2082 = convention.isConstantKey(name);
++	if (parent.isGetProp() &&
+         node == parent.getLastChild()) {
+-      return convention.isConstantKey(name);
++      return var_2082;
+     } else if (isObjectLitKey(node, parent)) {
+-      return convention.isConstantKey(name);
++      return var_2082;
+     } else {
+       return convention.isConstant(name);
+     }

@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ExternExportsPass.java b/src/com/google/javascript/jscomp/ExternExportsPass.java
+index 5c455d3..9be3057 100644
+--- a/src/com/google/javascript/jscomp/ExternExportsPass.java
++++ b/src/com/google/javascript/jscomp/ExternExportsPass.java
+@@ -397,7 +397,8 @@
+ 
+       for (int i = pieces.size(); i > 0; i--) {
+         // Find the path of the current length.
+-        String cPath = Joiner.on(".").join(Iterables.limit(pieces, i));
++        Joiner var_1406 = Joiner.on(".");
++		String cPath = var_1406.join(Iterables.limit(pieces, i));
+ 
+         // If this path is mapped, return the mapped path plus any remaining
+         // pieces.
+@@ -405,7 +406,7 @@
+           String newPath = mappedPaths.get(cPath);
+ 
+           if (i < pieces.size()) {
+-            newPath += "." + Joiner.on(".").join(Iterables.skip(pieces, i));
++            newPath += "." + var_1406.join(Iterables.skip(pieces, i));
+           }
+ 
+           return newPath + "." + symbolName;

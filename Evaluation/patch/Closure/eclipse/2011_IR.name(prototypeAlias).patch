@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java b/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
+index 04d88ae..615d7df 100644
+--- a/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
++++ b/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
+@@ -172,11 +172,12 @@
+   private void extractInstance(ExtractionInstance instance) {
+     PrototypeMemberDeclaration first = instance.declarations.getFirst();
+     String className = first.qualifiedClassName;
+-    if (pattern == Pattern.USE_GLOBAL_TEMP) {
++    Node var_2011 = IR.name(prototypeAlias);
++	if (pattern == Pattern.USE_GLOBAL_TEMP) {
+       // Use the temp variable to hold the prototype.
+       Node stmt = new Node(first.node.getType(),
+          IR.assign(
+-              IR.name(prototypeAlias),
++              var_2011,
+               NodeUtil.newQualifiedNameNode(
+                   compiler.getCodingConvention(), className + ".prototype",
+                   instance.parent, className + ".prototype")))
+@@ -187,7 +188,7 @@
+       Node block = IR.block();
+       Node func = IR.function(
+            IR.name(""),
+-           IR.paramList(IR.name(prototypeAlias)),
++           IR.paramList(var_2011),
+            block);
+ 
+       Node call = IR.call(func,

@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/joda/time/base/AbstractDuration.java b/src/main/java/org/joda/time/base/AbstractDuration.java
+index 4d7aeff..27529e9 100644
+--- a/src/main/java/org/joda/time/base/AbstractDuration.java
++++ b/src/main/java/org/joda/time/base/AbstractDuration.java
+@@ -191,13 +191,14 @@
+         buf.append("PT");
+         boolean negative = (millis < 0);
+         FormatUtils.appendUnpaddedInteger(buf, millis);
+-        while (buf.length() < (negative ? 7 : 6)) {
++        int var_135 = buf.length();
++		while (var_135 < (negative ? 7 : 6)) {
+             buf.insert(negative ? 3 : 2, "0");
+         }
+         if ((millis / 1000) * 1000 == millis) {
+-            buf.setLength(buf.length() - 3);
++            buf.setLength(var_135 - 3);
+         } else {
+-            buf.insert(buf.length() - 3, ".");
++            buf.insert(var_135 - 3, ".");
+         }
+         buf.append('S');
+         return buf.toString();

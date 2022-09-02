@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+index 2e75bce..71db617 100644
+--- a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
++++ b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+@@ -148,7 +148,8 @@
+     if (requiresLevel.isOn()) {
+       for (UnrecognizedRequire r : unrecognizedRequires) {
+         DiagnosticType error;
+-        ProvidedName expectedName = providedNames.get(r.namespace);
++        String var_1509 = r.namespace;
++		ProvidedName expectedName = providedNames.get(var_1509);
+         if (expectedName != null && expectedName.firstNode != null) {
+           // The namespace ended up getting provided after it was required.
+           error = LATE_PROVIDE_ERROR;
+@@ -157,7 +158,7 @@
+         }
+ 
+         compiler.report(JSError.make(
+-            r.inputName, r.requireNode, requiresLevel, error, r.namespace));
++            r.inputName, r.requireNode, requiresLevel, error, var_1509));
+       }
+     }
+   }

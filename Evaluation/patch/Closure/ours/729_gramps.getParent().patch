@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..d832f19 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -536,7 +536,8 @@
+     Node rvalue = ref.node.getNext();
+     Node parent = ref.node.getParent();
+     Node gramps = parent.getParent();
+-    Node greatGramps = gramps.getParent();
++    Node var_729 = gramps.getParent();
++	Node greatGramps = var_729;
+     Node greatGreatGramps = greatGramps.getParent();
+ 
+     if (rvalue != null && rvalue.isFunction()) {
+@@ -582,7 +583,7 @@
+       // ... (x$y = 3);
+ 
+       Node current = gramps;
+-      Node currentParent = gramps.getParent();
++      Node currentParent = var_729;
+       for (; !currentParent.isScript() &&
+              !currentParent.isBlock();
+            current = currentParent,

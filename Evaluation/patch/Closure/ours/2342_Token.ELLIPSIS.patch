@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..5f2901c 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -1613,11 +1613,12 @@
+ 
+     boolean restArg = false;
+     token = next();
+-    if (token == JsDocToken.ELLIPSIS) {
++    int var_2342 = Token.ELLIPSIS;
++	if (token == JsDocToken.ELLIPSIS) {
+       token = next();
+       if (token == JsDocToken.RC) {
+         // EMPTY represents the UNKNOWN type in the Type AST.
+-        return wrapNode(Token.ELLIPSIS, IR.empty());
++        return wrapNode(var_2342, IR.empty());
+       }
+       restArg = true;
+     }
+@@ -1626,7 +1627,7 @@
+     if (typeNode != null) {
+       skipEOLs();
+       if (restArg) {
+-        typeNode = wrapNode(Token.ELLIPSIS, typeNode);
++        typeNode = wrapNode(var_2342, typeNode);
+       } else if (match(JsDocToken.EQUALS)) {
+         next();
+         skipEOLs();

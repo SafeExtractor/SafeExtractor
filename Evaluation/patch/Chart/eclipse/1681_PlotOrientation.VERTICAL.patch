@@ -1,0 +1,46 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..248a65b 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -3267,11 +3267,12 @@
+ 
+         crosshairState.setAnchorX(Double.NaN);
+         crosshairState.setAnchorY(Double.NaN);
+-        if (anchor != null) {
++        PlotOrientation var_1681 = PlotOrientation.VERTICAL;
++		if (anchor != null) {
+             ValueAxis domainAxis = getDomainAxis();
+             if (domainAxis != null) {
+                 double x;
+-                if (orient == PlotOrientation.VERTICAL) {
++                if (orient == var_1681) {
+                     x = domainAxis.java2DToValue(anchor.getX(), dataArea,
+                             getDomainAxisEdge());
+                 }
+@@ -3284,7 +3285,7 @@
+             ValueAxis rangeAxis = getRangeAxis();
+             if (rangeAxis != null) {
+                 double y;
+-                if (orient == PlotOrientation.VERTICAL) {
++                if (orient == var_1681) {
+                     y = rangeAxis.java2DToValue(anchor.getY(), dataArea,
+                             getRangeAxisEdge());
+                 }
+@@ -3434,7 +3435,7 @@
+         RectangleEdge xAxisEdge = getDomainAxisEdge(xAxisIndex);
+         if (!this.domainCrosshairLockedOnData && anchor != null) {
+             double xx;
+-            if (orient == PlotOrientation.VERTICAL) {
++            if (orient == var_1681) {
+                 xx = xAxis.java2DToValue(anchor.getX(), dataArea, xAxisEdge);
+             }
+             else {
+@@ -3456,7 +3457,7 @@
+         RectangleEdge yAxisEdge = getRangeAxisEdge(yAxisIndex);
+         if (!this.rangeCrosshairLockedOnData && anchor != null) {
+             double yy;
+-            if (orient == PlotOrientation.VERTICAL) {
++            if (orient == var_1681) {
+                 yy = yAxis.java2DToValue(anchor.getY(), dataArea, yAxisEdge);
+             } else {
+                 yy = yAxis.java2DToValue(anchor.getX(), dataArea, yAxisEdge);

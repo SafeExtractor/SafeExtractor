@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSType.java b/src/com/google/javascript/rhino/jstype/JSType.java
+index 11875e9..c3adce2 100644
+--- a/src/com/google/javascript/rhino/jstype/JSType.java
++++ b/src/com/google/javascript/rhino/jstype/JSType.java
+@@ -1114,10 +1114,11 @@
+    * If this happens, filter them down to NoResolvedType.
+    */
+   static JSType filterNoResolvedType(JSType type) {
+-    if (type.isNoResolvedType()) {
++    JSType var_2656 = type.getNativeType(JSTypeNative.NO_RESOLVED_TYPE);
++	if (type.isNoResolvedType()) {
+       // inf(UnresolvedType1, UnresolvedType2) needs to resolve
+       // to the base unresolved type, so that the relation is symmetric.
+-      return type.getNativeType(JSTypeNative.NO_RESOLVED_TYPE);
++      return var_2656;
+     } else if (type.isUnionType()) {
+       UnionType unionType = type.toMaybeUnionType();
+       boolean needsFiltering = false;
+@@ -1130,7 +1131,7 @@
+ 
+       if (needsFiltering) {
+         UnionTypeBuilder builder = new UnionTypeBuilder(type.registry);
+-        builder.addAlternate(type.getNativeType(JSTypeNative.NO_RESOLVED_TYPE));
++        builder.addAlternate(var_2656);
+         for (JSType alt : unionType.getAlternates()) {
+           if (!alt.isNoResolvedType()) {
+             builder.addAlternate(alt);

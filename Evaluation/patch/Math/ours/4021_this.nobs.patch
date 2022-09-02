@@ -1,0 +1,36 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..2a2d972 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -1007,10 +1007,11 @@
+             throw new ModelSpecificationException(
+                     LocalizedFormats.TOO_MANY_REGRESSORS, variablesToInclude.length, this.nvars);
+         }
+-        if (this.nobs <= this.nvars) {
++        long var_4021 = this.nobs;
++		if (var_4021 <= this.nvars) {
+             throw new ModelSpecificationException(
+                     LocalizedFormats.NOT_ENOUGH_DATA_FOR_NUMBER_OF_PREDICTORS,
+-                    this.nobs, this.nvars);
++                    var_4021, this.nvars);
+         }
+         Arrays.sort(variablesToInclude);
+         int iExclude = 0;
+@@ -1064,7 +1065,7 @@
+         }
+         if (!needsReorder) {
+             return new RegressionResults(
+-                    beta, new double[][]{cov}, true, this.nobs, rnk,
++                    beta, new double[][]{cov}, true, var_4021, rnk,
+                     this.sumy, this.sumsqy, this.sserr, this.hasIntercept, false);
+         } else {
+             double[] betaNew = new double[beta.length];
+@@ -1095,7 +1096,7 @@
+                 }
+             }
+             return new RegressionResults(
+-                    betaNew, new double[][]{covNew}, true, this.nobs, rnk,
++                    betaNew, new double[][]{covNew}, true, var_4021, rnk,
+                     this.sumy, this.sumsqy, this.sserr, this.hasIntercept, false);
+         }
+     }

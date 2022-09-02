@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionInjector.java b/src/com/google/javascript/jscomp/FunctionInjector.java
+index ddfb4ed..a3f30b7 100644
+--- a/src/com/google/javascript/jscomp/FunctionInjector.java
++++ b/src/com/google/javascript/jscomp/FunctionInjector.java
+@@ -764,8 +764,9 @@
+     boolean checkModules = isRemovable && fnModule != null;
+     JSModuleGraph moduleGraph = compiler.getModuleGraph();
+ 
+-    for (Reference ref : refs) {
+-      if (ref.mode == InliningMode.BLOCK) {
++    InliningMode var_1201 = InliningMode.BLOCK;
++	for (Reference ref : refs) {
++      if (ref.mode == var_1201) {
+         referencesUsingBlockInlining++;
+       }
+ 
+@@ -801,7 +802,7 @@
+     int costDeltaDirect = inlineCostDelta(
+         fnNode, namesToAlias, InliningMode.DIRECT);
+     int costDeltaBlock = inlineCostDelta(
+-        fnNode, namesToAlias, InliningMode.BLOCK);
++        fnNode, namesToAlias, var_1201);
+ 
+     return doesLowerCost(fnNode, overallCallCost,
+         referencesUsingDirectInlining, costDeltaDirect,

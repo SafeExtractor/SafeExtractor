@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..fe38893 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -674,7 +674,8 @@
+     Node parent = n.getParent();
+     Preconditions.checkNotNull(parent);
+     int type = n.getType();
+-    Node cond = n.getFirstChild();
++    Node var_801 = n.getFirstChild();
++	Node cond = var_801;
+     Node thenBody = cond.getNext();
+     Node elseBody = thenBody.getNext();
+ 
+@@ -743,7 +744,7 @@
+ 
+       if (condTrue) {
+         // Replace "if (true) { X }" with "X".
+-        Node thenStmt = n.getFirstChild().getNext();
++        Node thenStmt = var_801.getNext();
+         n.removeChild(thenStmt);
+         parent.replaceChild(n, thenStmt);
+         reportCodeChange();
+@@ -758,7 +759,7 @@
+     } else {
+       // Replace "if (true) { X } else { Y }" with X, or
+       // replace "if (false) { X } else { Y }" with Y.
+-      Node trueBranch = n.getFirstChild().getNext();
++      Node trueBranch = var_801.getNext();
+       Node falseBranch = trueBranch.getNext();
+       Node branchToKeep = condTrue ? trueBranch : falseBranch;
+       Node branchToRemove = condTrue ? falseBranch : trueBranch;

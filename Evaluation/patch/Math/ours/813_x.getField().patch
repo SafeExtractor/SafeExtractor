@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..0650786 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -505,8 +505,9 @@
+     public static Dfp pow(Dfp x, final Dfp y) {
+ 
+         // make sure we don't mix number with different precision
+-        if (x.getField().getRadixDigits() != y.getField().getRadixDigits()) {
+-            x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
++        DfpField var_813 = x.getField();
++		if (var_813.getRadixDigits() != y.getField().getRadixDigits()) {
++            var_813.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+             final Dfp result = x.newInstance(x.getZero());
+             result.nans = Dfp.QNAN;
+             return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, result);
+@@ -526,7 +527,7 @@
+         if (y.equals(one)) {
+             if (x.isNaN()) {
+                 // Test for NaNs
+-                x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
++                var_813.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+                 return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x);
+             }
+             return x;
+@@ -534,7 +535,7 @@
+ 
+         if (x.isNaN() || y.isNaN()) {
+             // Test for NaNs
+-            x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
++            var_813.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+             return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x.newInstance((byte)1, Dfp.QNAN));
+         }
+ 

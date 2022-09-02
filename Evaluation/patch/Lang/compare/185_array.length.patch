@@ -1,0 +1,32 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/185_array.length.patch b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/185_array.length.patch
+index fae1f54..78d0894 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/185_array.length.patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/185_array.length.patch
+@@ -1,22 +1,15 @@
+ diff --git a/src/main/java/org/apache/commons/lang3/ArrayUtils.java b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+-index a0a499a..488b607 100644
++index a0a499a..298814e 100644
+ --- a/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+ +++ b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+-@@ -2961,13 +2961,14 @@
+-      * @throws NullPointerException if array content is {@code null}
+-      */
+-     public static byte[] toPrimitive(final Byte[] array) {
+--        if (array == null) {
+-+        int var_185 = array.length;
+-+		if (array == null) {
+-             return null;
+--        } else if (array.length == 0) {
+-+        } else if (var_185 == 0) {
++@@ -2966,8 +2966,9 @@
++         } else if (array.length == 0) {
+              return EMPTY_BYTE_ARRAY;
+          }
+ -        final byte[] result = new byte[array.length];
+ -        for (int i = 0; i < array.length; i++) {
+-+        final byte[] result = new byte[var_185];
+++        int var_185 = array.length;
+++		final byte[] result = new byte[var_185];
+ +        for (int i = 0; i < var_185; i++) {
+              result[i] = array[i].byteValue();
+          }

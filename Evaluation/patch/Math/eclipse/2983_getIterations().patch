@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/gradient/NonLinearConjugateGradientOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/gradient/NonLinearConjugateGradientOptimizer.java
+index 6b6afa2..2e65137 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/gradient/NonLinearConjugateGradientOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/gradient/NonLinearConjugateGradientOptimizer.java
+@@ -218,7 +218,8 @@
+             final double objective = computeObjectiveValue(point);
+             PointValuePair previous = current;
+             current = new PointValuePair(point, objective);
+-            if (previous != null && checker.converged(getIterations(), previous, current)) {
++            int var_2983 = getIterations();
++			if (previous != null && checker.converged(var_2983, previous, current)) {
+                 // We have found an optimum.
+                 return current;
+             }
+@@ -271,7 +272,7 @@
+             steepestDescent = newSteepestDescent;
+ 
+             // Compute conjugate search direction.
+-            if (getIterations() % n == 0 ||
++            if (var_2983 % n == 0 ||
+                 beta < 0) {
+                 // Break conjugation: reset search direction.
+                 searchDirection = steepestDescent.clone();

@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..25928c3 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -4019,7 +4019,8 @@
+         }
+ 
+         // draw the range grid lines, if any...
+-        if (isRangeGridlinesVisible() || isRangeMinorGridlinesVisible()) {
++        boolean var_1743 = isRangeMinorGridlinesVisible();
++		if (isRangeGridlinesVisible() || var_1743) {
+             Stroke gridStroke = null;
+             Paint gridPaint = null;
+             ValueAxis axis = getRangeAxis();
+@@ -4030,7 +4031,7 @@
+                     paintLine = false;
+                     ValueTick tick = (ValueTick) iterator.next();
+                     if ((tick.getTickType() == TickType.MINOR)
+-                            && isRangeMinorGridlinesVisible()) {
++                            && var_1743) {
+                         gridStroke = getRangeMinorGridlineStroke();
+                         gridPaint = getRangeMinorGridlinePaint();
+                         paintLine = true;

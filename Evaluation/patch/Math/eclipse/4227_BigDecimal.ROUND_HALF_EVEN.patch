@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/Precision.java b/src/main/java/org/apache/commons/math3/util/Precision.java
+index ef3b57f..2b0b6c5 100644
+--- a/src/main/java/org/apache/commons/math3/util/Precision.java
++++ b/src/main/java/org/apache/commons/math3/util/Precision.java
+@@ -455,7 +455,8 @@
+                                         double sign,
+                                         int roundingMethod)
+         throws MathArithmeticException, MathIllegalArgumentException {
+-        switch (roundingMethod) {
++        int var_4227 = BigDecimal.ROUND_HALF_EVEN;
++		switch (roundingMethod) {
+         case BigDecimal.ROUND_CEILING :
+             if (sign == -1) {
+                 unscaled = FastMath.floor(FastMath.nextAfter(unscaled, Double.NEGATIVE_INFINITY));
+@@ -483,7 +484,7 @@
+             }
+             break;
+         }
+-        case BigDecimal.ROUND_HALF_EVEN : {
++        case var_4227 : {
+             double fraction = unscaled - FastMath.floor(unscaled);
+             if (fraction > 0.5) {
+                 unscaled = FastMath.ceil(unscaled);
+@@ -525,7 +526,7 @@
+                                                    "ROUND_DOWN", BigDecimal.ROUND_DOWN,
+                                                    "ROUND_FLOOR", BigDecimal.ROUND_FLOOR,
+                                                    "ROUND_HALF_DOWN", BigDecimal.ROUND_HALF_DOWN,
+-                                                   "ROUND_HALF_EVEN", BigDecimal.ROUND_HALF_EVEN,
++                                                   "ROUND_HALF_EVEN", var_4227,
+                                                    "ROUND_HALF_UP", BigDecimal.ROUND_HALF_UP,
+                                                    "ROUND_UNNECESSARY", BigDecimal.ROUND_UNNECESSARY,
+                                                    "ROUND_UP", BigDecimal.ROUND_UP);

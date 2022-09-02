@@ -1,0 +1,20 @@
+diff --git a/source/org/jfree/chart/panel/ZoomHandler.java b/source/org/jfree/chart/panel/ZoomHandler.java
+index ab08810..bb28098 100644
+--- a/source/org/jfree/chart/panel/ZoomHandler.java
++++ b/source/org/jfree/chart/panel/ZoomHandler.java
+@@ -157,12 +157,13 @@
+             vZoom = panel.isRangeZoomable();
+         }
+ 
+-        boolean zoomTrigger1 = hZoom && Math.abs(e.getX()
++        int var_1337 = e.getX();
++		boolean zoomTrigger1 = hZoom && Math.abs(var_1337
+                 - this.zoomPoint.getX()) >= panel.getZoomTriggerDistance();
+         boolean zoomTrigger2 = vZoom && Math.abs(e.getY()
+                 - this.zoomPoint.getY()) >= panel.getZoomTriggerDistance();
+         if (zoomTrigger1 || zoomTrigger2) {
+-            if ((hZoom && (e.getX() < this.zoomPoint.getX()))
++            if ((hZoom && (var_1337 < this.zoomPoint.getX()))
+                     || (vZoom && (e.getY() < this.zoomPoint.getY()))) {
+                 panel.restoreAutoBounds();
+             }

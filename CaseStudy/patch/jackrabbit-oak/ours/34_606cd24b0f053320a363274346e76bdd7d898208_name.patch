@@ -1,0 +1,22 @@
+diff --git a/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/IndexPlanner.java b/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/IndexPlanner.java
+index 19ad3cf..6c88d77 100644
+--- a/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/IndexPlanner.java
++++ b/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/IndexPlanner.java
+@@ -145,13 +145,14 @@
+         //for property index
+         if (indexingRule.propertyIndexEnabled) {
+             for (PropertyRestriction pr : filter.getPropertyRestrictions()) {
+-                PropertyDefinition pd = indexingRule.getConfig(pr.propertyName);
++                String name = pr.propertyName;
++				PropertyDefinition pd = indexingRule.getConfig(name);
+                 if (pd != null && pd.propertyIndexEnabled()) {
+                     if (pr.isNullRestriction() && !pd.nullCheckEnabled){
+                         continue;
+                     }
+-                    indexedProps.add(pr.propertyName);
+-                    result.propDefns.put(pr.propertyName, pd);
++                    indexedProps.add(name);
++                    result.propDefns.put(name, pd);
+                 }
+             }
+         }

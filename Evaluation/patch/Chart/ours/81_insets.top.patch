@@ -1,0 +1,35 @@
+diff --git a/source/org/jfree/chart/ChartPanel.java b/source/org/jfree/chart/ChartPanel.java
+index 001049a..e9735cb 100644
+--- a/source/org/jfree/chart/ChartPanel.java
++++ b/source/org/jfree/chart/ChartPanel.java
+@@ -1613,9 +1613,10 @@
+         // first determine the size of the chart rendering area...
+         Dimension size = getSize();
+         Insets insets = getInsets();
+-        Rectangle2D available = new Rectangle2D.Double(insets.left, insets.top,
++        int var_81 = insets.top;
++		Rectangle2D available = new Rectangle2D.Double(insets.left, var_81,
+                 size.getWidth() - insets.left - insets.right,
+-                size.getHeight() - insets.top - insets.bottom);
++                size.getHeight() - var_81 - insets.bottom);
+ 
+         // work out if scaling is required...
+         boolean scale = false;
+@@ -1701,7 +1702,7 @@
+             }
+ 
+             // zap the buffer onto the panel...
+-            g2.drawImage(this.chartBuffer, insets.left, insets.top, this);
++            g2.drawImage(this.chartBuffer, insets.left, var_81, this);
+ 
+         }
+ 
+@@ -1709,7 +1710,7 @@
+         else {
+ 
+             AffineTransform saved = g2.getTransform();
+-            g2.translate(insets.left, insets.top);
++            g2.translate(insets.left, var_81);
+             if (scale) {
+                 AffineTransform st = AffineTransform.getScaleInstance(
+                         this.scaleX, this.scaleY);

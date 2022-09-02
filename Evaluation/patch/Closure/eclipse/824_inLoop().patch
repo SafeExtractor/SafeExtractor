@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionArgumentInjector.java b/src/com/google/javascript/jscomp/FunctionArgumentInjector.java
+index a6efa7d..ba2a6d7 100644
+--- a/src/com/google/javascript/jscomp/FunctionArgumentInjector.java
++++ b/src/com/google/javascript/jscomp/FunctionArgumentInjector.java
+@@ -395,9 +395,10 @@
+     @Override
+     public void visit(Node n) {
+       // If we are exiting a loop.
+-      if (NodeUtil.isLoopStructure(n)) {
++      boolean var_824 = inLoop();
++	if (NodeUtil.isLoopStructure(n)) {
+         loopsEntered--;
+-        if (!inLoop() && !sideEffectSeen) {
++        if (!var_824 && !sideEffectSeen) {
+           // Now that the loops has been fully traversed and
+           // no side-effects have been seen, throw away
+           // the references seen in them.
+@@ -414,7 +415,7 @@
+ 
+       // If traversing the nodes of a loop save any references
+       // that are seen.
+-      if (inLoop() || sideEffectSeen) {
++      if (var_824 || sideEffectSeen) {
+         // Record references to parameters.
+         if (n.isName()) {
+           String name = n.getString();

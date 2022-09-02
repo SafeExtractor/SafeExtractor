@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/OptimizeParameters.java b/src/com/google/javascript/jscomp/OptimizeParameters.java
+index 76e12a5..88706b2 100644
+--- a/src/com/google/javascript/jscomp/OptimizeParameters.java
++++ b/src/com/google/javascript/jscomp/OptimizeParameters.java
+@@ -281,9 +281,10 @@
+   private boolean findFixedParameters(List<Parameter> parameters, Node cur) {
+     boolean anyMovable = false;
+     int index = 0;
+-    while ((cur = cur.getNext()) != null) {
++    int var_1975 = parameters.size();
++	while ((cur = cur.getNext()) != null) {
+       Parameter p;
+-      if (index >= parameters.size()) {
++      if (index >= var_1975) {
+         p = new Parameter(cur, false);
+         parameters.add(p);
+       } else {
+@@ -302,7 +303,7 @@
+       index++;
+     }
+ 
+-    for (;index < parameters.size(); index++) {
++    for (;index < var_1975; index++) {
+       parameters.get(index).setShouldRemove(false);
+     }
+ 

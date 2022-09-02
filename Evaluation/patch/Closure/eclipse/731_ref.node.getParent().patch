@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..c8f0a01 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -682,13 +682,14 @@
+         checkForHosedThisReferences(rvalue, n.docInfo, n);
+       }
+ 
+-      ref.node.getParent().removeChild(rvalue);
++      Node var_731 = ref.node.getParent();
++	var_731.removeChild(rvalue);
+ 
+       Node nameNode = NodeUtil.newName(
+           compiler.getCodingConvention(),
+           alias, ref.node.getAncestor(2), n.getFullName());
+ 
+-      JSDocInfo info = ref.node.getParent().getJSDocInfo();
++      JSDocInfo info = var_731.getJSDocInfo();
+       if (ref.node.getLastChild().getBooleanProp(Node.IS_CONSTANT_NAME) ||
+           (info != null && info.isConstant())) {
+         nameNode.putBooleanProp(Node.IS_CONSTANT_NAME, true);

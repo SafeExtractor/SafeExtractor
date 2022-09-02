@@ -1,0 +1,35 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..f01a085 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -2922,9 +2922,10 @@
+    *     outside the expression scope.
+    */
+   static boolean evaluatesToLocalValue(Node value, Predicate<Node> locals) {
+-    switch (value.getType()) {
++    boolean var_2087 = evaluatesToLocalValue(value.getFirstChild(), locals);
++	switch (value.getType()) {
+       case Token.CAST:
+-        return evaluatesToLocalValue(value.getFirstChild(), locals);
++        return var_2087;
+       case Token.ASSIGN:
+         // A result that is aliased by a non-local name, is the effectively the
+         // same as returning a non-local name, but this doesn't matter if the
+@@ -2936,7 +2937,7 @@
+         return evaluatesToLocalValue(value.getLastChild(), locals);
+       case Token.AND:
+       case Token.OR:
+-        return evaluatesToLocalValue(value.getFirstChild(), locals)
++        return var_2087
+            && evaluatesToLocalValue(value.getLastChild(), locals);
+       case Token.HOOK:
+         return evaluatesToLocalValue(value.getFirstChild().getNext(), locals)
+@@ -2944,7 +2945,7 @@
+       case Token.INC:
+       case Token.DEC:
+         if (value.getBooleanProp(Node.INCRDECR_PROP)) {
+-          return evaluatesToLocalValue(value.getFirstChild(), locals);
++          return var_2087;
+         } else {
+           return true;
+         }

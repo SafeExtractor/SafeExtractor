@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+index c837709..e080085 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+@@ -434,13 +434,14 @@
+             sigma *= Math.exp(Math.min(1, (normps/chiN - 1) * cs / damps));
+             final double bestFitness = fitness[arindex[0]];
+             final double worstFitness = fitness[arindex[arindex.length - 1]];
+-            if (bestValue > bestFitness) {
++            ConvergenceChecker<PointValuePair> var_3000 = getConvergenceChecker();
++			if (bestValue > bestFitness) {
+                 bestValue = bestFitness;
+                 lastResult = optimum;
+                 optimum = new PointValuePair(fitfun.repair(bestArx.getColumn(0)),
+                                              isMinimize ? bestFitness : -bestFitness);
+-                if (getConvergenceChecker() != null && lastResult != null &&
+-                    getConvergenceChecker().converged(iterations, optimum, lastResult)) {
++                if (var_3000 != null && lastResult != null &&
++                    var_3000.converged(iterations, optimum, lastResult)) {
+                     break generationLoop;
+                 }
+             }
+@@ -480,12 +481,12 @@
+                 break generationLoop;
+             }
+             // user defined termination
+-            if (getConvergenceChecker() != null) {
++            if (var_3000 != null) {
+                 final PointValuePair current
+                     = new PointValuePair(bestArx.getColumn(0),
+                                          isMinimize ? bestFitness : -bestFitness);
+                 if (lastResult != null &&
+-                    getConvergenceChecker().converged(iterations, current, lastResult)) {
++                    var_3000.converged(iterations, current, lastResult)) {
+                     break generationLoop;
+                     }
+                 lastResult = current;

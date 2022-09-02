@@ -1,0 +1,51 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DateUtils.java b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+index b16af53..f8352ee 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DateUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+@@ -1005,7 +1005,8 @@
+ 
+         boolean roundUp = false;
+         for (final int[] aField : fields) {
+-            for (final int element : aField) {
++            int var_516 = Calendar.DATE;
++			for (final int element : aField) {
+                 if (element == field) {
+                     //This is our field... we stop looping
+                     if (modType == MODIFY_CEILING || (modType == MODIFY_ROUND && roundUp)) {
+@@ -1013,10 +1014,10 @@
+                             //This is a special case that's hard to generalize
+                             //If the date is 1, we round up to 16, otherwise
+                             //  we subtract 15 days and add 1 month
+-                            if (val.get(Calendar.DATE) == 1) {
+-                                val.add(Calendar.DATE, 15);
++                            if (val.get(var_516) == 1) {
++                                val.add(var_516, 15);
+                             } else {
+-                                val.add(Calendar.DATE, -15);
++                                val.add(var_516, -15);
+                                 val.add(Calendar.MONTH, 1);
+                             }
+ // ----------------- Fix for LANG-440 ---------------------- START ---------------
+@@ -1028,7 +1029,7 @@
+                                 val.add(Calendar.HOUR_OF_DAY, 12);
+                             } else {
+                                 val.add(Calendar.HOUR_OF_DAY, -12);
+-                                val.add(Calendar.DATE, 1);
++                                val.add(var_516, 1);
+                             }
+ // ----------------- Fix for LANG-440 ---------------------- END ---------------
+                         } else {
+@@ -1046,11 +1047,11 @@
+             //These are special types of fields that require different rounding rules
+             switch (field) {
+                 case DateUtils.SEMI_MONTH:
+-                    if (aField[0] == Calendar.DATE) {
++                    if (aField[0] == var_516) {
+                         //If we're going to drop the DATE field's value,
+                         //  we want to do this our own way.
+                         //We need to subtrace 1 since the date has a minimum of 1
+-                        offset = val.get(Calendar.DATE) - 1;
++                        offset = val.get(var_516) - 1;
+                         //If we're above 15 days adjustment, that means we're in the
+                         //  bottom half of the month and should stay accordingly.
+                         if (offset >= 15) {

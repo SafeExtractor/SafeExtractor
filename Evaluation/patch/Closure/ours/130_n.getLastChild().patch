@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..fdb3439 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -242,18 +242,19 @@
+   }
+ 
+   private void tryConvertToNumber(Node n) {
+-    switch (n.getType()) {
++    Node var_130 = n.getLastChild();
++	switch (n.getType()) {
+       case Token.NUMBER:
+         // Nothing to do
+         return;
+       case Token.AND:
+       case Token.OR:
+       case Token.COMMA:
+-        tryConvertToNumber(n.getLastChild());
++        tryConvertToNumber(var_130);
+         return;
+       case Token.HOOK:
+         tryConvertToNumber(n.getChildAtIndex(1));
+-        tryConvertToNumber(n.getLastChild());
++        tryConvertToNumber(var_130);
+         return;
+       case Token.NAME:
+         if (!NodeUtil.isUndefined(n)) {

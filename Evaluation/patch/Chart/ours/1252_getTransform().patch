@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/needle/LineNeedle.java b/source/org/jfree/chart/needle/LineNeedle.java
+index f22b65d..6783aef 100644
+--- a/source/org/jfree/chart/needle/LineNeedle.java
++++ b/source/org/jfree/chart/needle/LineNeedle.java
+@@ -47,6 +47,7 @@
+ 
+ import java.awt.Graphics2D;
+ import java.awt.Shape;
++import java.awt.geom.AffineTransform;
+ import java.awt.geom.Line2D;
+ import java.awt.geom.Point2D;
+ import java.awt.geom.Rectangle2D;
+@@ -81,8 +82,9 @@
+ 
+         if ((rotate != null) && (angle != 0)) {
+             /// we have rotation
+-            getTransform().setToRotation(angle, rotate.getX(), rotate.getY());
+-            s = getTransform().createTransformedShape(s);
++            AffineTransform var_1252 = getTransform();
++			var_1252.setToRotation(angle, rotate.getX(), rotate.getY());
++            s = var_1252.createTransformedShape(s);
+         }
+ 
+         defaultDisplay(g2, s);

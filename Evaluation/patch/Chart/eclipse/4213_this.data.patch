@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/data/time/TimeSeriesCollection.java b/source/org/jfree/data/time/TimeSeriesCollection.java
+index f76f9b9..f86e776 100644
+--- a/source/org/jfree/data/time/TimeSeriesCollection.java
++++ b/source/org/jfree/data/time/TimeSeriesCollection.java
+@@ -363,13 +363,14 @@
+ 
+         // deregister the collection as a change listener to each series in the
+         // collection
+-        for (int i = 0; i < this.data.size(); i++) {
+-            TimeSeries series = (TimeSeries) this.data.get(i);
++        List var_4213 = this.data;
++		for (int i = 0; i < var_4213.size(); i++) {
++            TimeSeries series = (TimeSeries) var_4213.get(i);
+             series.removeChangeListener(this);
+         }
+ 
+         // remove all the series from the collection and notify listeners.
+-        this.data.clear();
++        var_4213.clear();
+         fireDatasetChanged(new DatasetChangeInfo());
+         // fill in real change details
+ 

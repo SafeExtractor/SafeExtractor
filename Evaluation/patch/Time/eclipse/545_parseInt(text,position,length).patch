@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
+index c3dd8cc..1753034 100644
+--- a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
++++ b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
+@@ -1303,11 +1303,12 @@
+                 return position;
+             }
+ 
+-            if (iFieldType != SECONDS_MILLIS && iFieldType != SECONDS_OPTIONAL_MILLIS) {
++            int var_545 = parseInt(text, position, length);
++			if (iFieldType != SECONDS_MILLIS && iFieldType != SECONDS_OPTIONAL_MILLIS) {
+                 // Handle common case.
+-                setFieldValue(period, iFieldType, parseInt(text, position, length));
++                setFieldValue(period, iFieldType, var_545);
+             } else if (fractPos < 0) {
+-                setFieldValue(period, SECONDS, parseInt(text, position, length));
++                setFieldValue(period, SECONDS, var_545);
+                 setFieldValue(period, MILLIS, 0);
+             } else {
+                 int wholeValue = parseInt(text, position, fractPos - position - 1);

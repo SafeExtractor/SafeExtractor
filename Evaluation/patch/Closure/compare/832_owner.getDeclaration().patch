@@ -1,0 +1,32 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/832_owner.getDeclaration().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/832_owner.getDeclaration().patch
+index e86fe56..746ca38 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/832_owner.getDeclaration().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/832_owner.getDeclaration().patch
+@@ -1,21 +1,15 @@
+ diff --git a/src/com/google/javascript/jscomp/CheckGlobalNames.java b/src/com/google/javascript/jscomp/CheckGlobalNames.java
+-index d035d9d..8d13c38 100644
++index d035d9d..832ae4b 100644
+ --- a/src/com/google/javascript/jscomp/CheckGlobalNames.java
+ +++ b/src/com/google/javascript/jscomp/CheckGlobalNames.java
+-@@ -171,13 +171,14 @@
+-           // A.prototype counts as a reference to A.
+-           boolean isPrototypeGet = (ref.type == Ref.Type.PROTOTYPE_GET);
+-           Name owner = isPrototypeGet ? name : parent;
+--          boolean singleGlobalParentDecl =
+-+          Ref var_832 = owner.getDeclaration();
+-+		boolean singleGlobalParentDecl =
+-               owner != null &&
+--              owner.getDeclaration() != null &&
+-+              var_832 != null &&
++@@ -176,8 +176,9 @@
++               owner.getDeclaration() != null &&
+                owner.localSets == 0;
+  
+-           if (singleGlobalParentDecl &&
++-          if (singleGlobalParentDecl &&
+ -              owner.getDeclaration().preOrderIndex > ref.preOrderIndex) {
+++          Ref var_832 = owner.getDeclaration();
+++		if (singleGlobalParentDecl &&
+ +              var_832.preOrderIndex > ref.preOrderIndex) {
+              String refName = isPrototypeGet
+                  ? name.getFullName() + ".prototype"

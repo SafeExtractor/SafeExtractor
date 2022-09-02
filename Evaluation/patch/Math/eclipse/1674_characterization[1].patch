@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+index d33ceab..dbcbd72 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+@@ -365,10 +365,11 @@
+                 // we have reached a leaf node
+                 final boolean inside = (Boolean) node.getAttribute();
+                 if (inside) {
+-                    if (characterization[1] == null) {
++                    SubHyperplane<S> var_1674 = characterization[1];
++					if (var_1674 == null) {
+                         characterization[1] = sub;
+                     } else {
+-                        characterization[1] = characterization[1].reunite(sub);
++                        characterization[1] = var_1674.reunite(sub);
+                     }
+                 } else {
+                     if (characterization[0] == null) {

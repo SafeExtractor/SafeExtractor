@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/AstValidator.java b/src/com/google/javascript/jscomp/AstValidator.java
+index dececfe..e512dd1 100644
+--- a/src/com/google/javascript/jscomp/AstValidator.java
++++ b/src/com/google/javascript/jscomp/AstValidator.java
+@@ -672,7 +672,8 @@
+   }
+ 
+   private void validateObjectLitKey(Node n) {
+-    switch (n.getType()) {
++    int var_1679 = n.getType();
++	switch (var_1679) {
+       case Token.GETTER_DEF:
+         validateObjectLitGetKey(n);
+         return;
+@@ -684,7 +685,7 @@
+         return;
+       default:
+         violation("Expected object literal key expression but was "
+-              + Token.name(n.getType()), n);
++              + Token.name(var_1679), n);
+     }
+   }
+ 

@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/RungeKuttaStepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/RungeKuttaStepInterpolator.java
+index be266e1..602a6e1 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/RungeKuttaStepInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/RungeKuttaStepInterpolator.java
+@@ -180,12 +180,13 @@
+ 
+     // read the local attributes
+     final int n = (currentState == null) ? -1 : currentState.length;
+-    if (n < 0) {
++    double var_2638 = in.readDouble();
++	if (n < 0) {
+       previousState = null;
+     } else {
+       previousState = new double[n];
+       for (int i = 0; i < n; ++i) {
+-        previousState[i] = in.readDouble();
++        previousState[i] = var_2638;
+       }
+     }
+ 
+@@ -194,7 +195,7 @@
+     for (int k = 0; k < kMax; ++k) {
+       yDotK[k] = (n < 0) ? null : new double[n];
+       for (int i = 0; i < n; ++i) {
+-        yDotK[k][i] = in.readDouble();
++        yDotK[k][i] = var_2638;
+       }
+     }
+ 

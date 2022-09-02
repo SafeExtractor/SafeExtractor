@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/renderer/category/BarRenderer.java b/source/org/jfree/chart/renderer/category/BarRenderer.java
+index 37da044..8a48c24 100644
+--- a/source/org/jfree/chart/renderer/category/BarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/BarRenderer.java
+@@ -1115,10 +1115,11 @@
+         }
+ 
+         // work out the label anchor point...
+-        Point2D anchorPoint = calculateLabelAnchorPoint(
+-                position.getItemLabelAnchor(), bar, plot.getOrientation());
++        ItemLabelAnchor var_2743 = position.getItemLabelAnchor();
++		Point2D anchorPoint = calculateLabelAnchorPoint(
++                var_2743, bar, plot.getOrientation());
+ 
+-        if (isInternalAnchor(position.getItemLabelAnchor())) {
++        if (isInternalAnchor(var_2743)) {
+             Shape bounds = TextUtilities.calculateRotatedStringBounds(label,
+                     g2, (float) anchorPoint.getX(), (float) anchorPoint.getY(),
+                     position.getTextAnchor(), position.getAngle(),
+@@ -1134,7 +1135,7 @@
+                     }
+                     if (position != null) {
+                         anchorPoint = calculateLabelAnchorPoint(
+-                                position.getItemLabelAnchor(), bar,
++                                var_2743, bar,
+                                 plot.getOrientation());
+                     }
+                 }

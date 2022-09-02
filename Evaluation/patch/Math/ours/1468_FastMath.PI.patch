@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/OutlineExtractor.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/OutlineExtractor.java
+index 2b18368..4267eaf 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/OutlineExtractor.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/OutlineExtractor.java
+@@ -212,10 +212,11 @@
+                             new org.apache.commons.math3.geometry.euclidean.twod.Line(pPoint, cPoint);
+                         SubHyperplane<Euclidean2D> edge = line.wholeHyperplane();
+ 
+-                        if (closed || (previous != 1)) {
++                        double var_1468 = FastMath.PI;
++						if (closed || (previous != 1)) {
+                             // the previous point is a real vertex
+                             // it defines one bounding point of the edge
+-                            final double angle = line.getAngle() + 0.5 * FastMath.PI;
++                            final double angle = line.getAngle() + 0.5 * var_1468;
+                             final org.apache.commons.math3.geometry.euclidean.twod.Line l =
+                                 new org.apache.commons.math3.geometry.euclidean.twod.Line(pPoint, angle);
+                             edge = edge.split(l).getPlus();
+@@ -224,7 +225,7 @@
+                         if (closed || (current != (loop.length - 1))) {
+                             // the current point is a real vertex
+                             // it defines one bounding point of the edge
+-                            final double angle = line.getAngle() + 0.5 * FastMath.PI;
++                            final double angle = line.getAngle() + 0.5 * var_1468;
+                             final org.apache.commons.math3.geometry.euclidean.twod.Line l =
+                                 new org.apache.commons.math3.geometry.euclidean.twod.Line(cPoint, angle);
+                             edge = edge.split(l).getMinus();

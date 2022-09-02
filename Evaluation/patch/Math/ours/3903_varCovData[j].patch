@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java b/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java
+index 8b9d8e0..667285f 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java
+@@ -403,11 +403,14 @@
+                 //could be stored in upper or lower triangular
+                 if (i == j) {
+                     return varCovData[i][i];
+-                } else if (i >= varCovData[j].length) {
+-                    return varCovData[i][j];
+                 } else {
+-                    return varCovData[j][i];
+-                }
++					double[] var_3903 = varCovData[j];
++					if (i >= var_3903.length) {
++					    return varCovData[i][j];
++					} else {
++					    return var_3903[i];
++					}
++				}
+             } else {//could be in single array
+                 if (i > j) {
+                     return varCovData[0][(i + 1) * i / 2 + j];

@@ -1,0 +1,32 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/4118_containsKey(key,index).patch b/Users/safe/paper/Evaluation/patch/Math/ours/4118_containsKey(key,index).patch
+index d0d0ada..3cb778c 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/4118_containsKey(key,index).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/4118_containsKey(key,index).patch
+@@ -1,23 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java b/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+-index 2b007b2..6ac790d 100644
++index 2b007b2..4b195e9 100644
+ --- a/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+ +++ b/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+-@@ -206,7 +206,8 @@
+- 
+-         final int hash  = hashOf(key);
+-         int index = hash & mask;
+--        if (containsKey(key, index)) {
+-+        boolean var_4118 = containsKey(key, index);
+-+		if (var_4118) {
+-             return true;
+-         }
+- 
+-@@ -218,7 +219,7 @@
++@@ -218,7 +218,8 @@
+          for (int perturb = perturb(hash); states[index] != FREE; perturb >>= PERTURB_SHIFT) {
+              j = probe(perturb, j);
+              index = j & mask;
+ -            if (containsKey(key, index)) {
+-+            if (var_4118) {
+++            boolean var_4118 = containsKey(key, index);
+++			if (var_4118) {
+                  return true;
+              }
+          }

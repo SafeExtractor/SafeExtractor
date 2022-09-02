@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/JsMessageVisitor.java b/src/com/google/javascript/jscomp/JsMessageVisitor.java
+index becd724..47a6d50 100644
+--- a/src/com/google/javascript/jscomp/JsMessageVisitor.java
++++ b/src/com/google/javascript/jscomp/JsMessageVisitor.java
+@@ -891,10 +891,11 @@
+       }
+     }
+ 
+-    if (suffixStart == input.length()) {
+-      return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, input);
++    CaseFormat var_353 = CaseFormat.LOWER_CAMEL;
++	if (suffixStart == input.length()) {
++      return CaseFormat.UPPER_UNDERSCORE.to(var_353, input);
+     } else {
+-      return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL,
++      return CaseFormat.UPPER_UNDERSCORE.to(var_353,
+           input.substring(0, suffixStart)) +
+           input.substring(suffixStart);
+     }

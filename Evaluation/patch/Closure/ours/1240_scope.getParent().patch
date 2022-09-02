@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..0e95c25 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -1964,9 +1964,10 @@
+ 
+             if (iifeArgumentNode != null && inferred) {
+               String argumentName = iifeArgumentNode.getQualifiedName();
+-              Var argumentVar =
+-                  argumentName == null || scope.getParent() == null
+-                  ? null : scope.getParent().getVar(argumentName);
++              Scope var_1240 = scope.getParent();
++			Var argumentVar =
++                  argumentName == null || var_1240 == null
++                  ? null : var_1240.getVar(argumentName);
+               if (argumentVar != null && !argumentVar.isTypeInferred()) {
+                 paramType = argumentVar.getType();
+               }

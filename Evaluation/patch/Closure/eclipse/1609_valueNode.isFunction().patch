@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/GlobalNamespace.java b/src/com/google/javascript/jscomp/GlobalNamespace.java
+index 1cd29f0..a848fd5 100644
+--- a/src/com/google/javascript/jscomp/GlobalNamespace.java
++++ b/src/com/google/javascript/jscomp/GlobalNamespace.java
+@@ -586,9 +586,10 @@
+       Node valueNode = NodeUtil.getRValueOfLValue(n);
+       JSDocInfo info = NodeUtil.getBestJSDocInfo(n);
+       // Heed the annotations only if they're sensibly used.
+-      return info != null && valueNode != null &&
+-             (info.isConstructor() && valueNode.isFunction() ||
+-              info.isInterface() && valueNode.isFunction() ||
++      boolean var_1609 = valueNode.isFunction();
++	return info != null && valueNode != null &&
++             (info.isConstructor() && var_1609 ||
++              info.isInterface() && var_1609 ||
+               info.hasEnumParameterType() && valueNode.isObjectLit());
+     }
+ 

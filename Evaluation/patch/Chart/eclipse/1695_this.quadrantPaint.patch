@@ -1,0 +1,52 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..3b762b5 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -3556,7 +3556,8 @@
+         double yymax = yAxis.valueToJava2D(ymax, area, getRangeAxisEdge());
+ 
+         Rectangle2D[] r = new Rectangle2D[] {null, null, null, null};
+-        if (this.quadrantPaint[0] != null) {
++        Paint[] var_1695 = this.quadrantPaint;
++		if (var_1695[0] != null) {
+             if (x > xmin && y < ymax) {
+                 if (this.orientation == PlotOrientation.HORIZONTAL) {
+                     r[0] = new Rectangle2D.Double(Math.min(yymax, yy),
+@@ -3571,7 +3572,7 @@
+                 somethingToDraw = true;
+             }
+         }
+-        if (this.quadrantPaint[1] != null) {
++        if (var_1695[1] != null) {
+             if (x < xmax && y < ymax) {
+                 if (this.orientation == PlotOrientation.HORIZONTAL) {
+                     r[1] = new Rectangle2D.Double(Math.min(yymax, yy),
+@@ -3586,7 +3587,7 @@
+                 somethingToDraw = true;
+             }
+         }
+-        if (this.quadrantPaint[2] != null) {
++        if (var_1695[2] != null) {
+             if (x > xmin && y > ymin) {
+                 if (this.orientation == PlotOrientation.HORIZONTAL) {
+                     r[2] = new Rectangle2D.Double(Math.min(yymin, yy),
+@@ -3601,7 +3602,7 @@
+                 somethingToDraw = true;
+             }
+         }
+-        if (this.quadrantPaint[3] != null) {
++        if (var_1695[3] != null) {
+             if (x < xmax && y > ymin) {
+                 if (this.orientation == PlotOrientation.HORIZONTAL) {
+                     r[3] = new Rectangle2D.Double(Math.min(yymin, yy),
+@@ -3621,8 +3622,8 @@
+             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
+                     getBackgroundAlpha()));
+             for (int i = 0; i < 4; i++) {
+-                if (this.quadrantPaint[i] != null && r[i] != null) {
+-                    g2.setPaint(this.quadrantPaint[i]);
++                if (var_1695[i] != null && r[i] != null) {
++                    g2.setPaint(var_1695[i]);
+                     g2.fill(r[i]);
+                 }
+             }

@@ -1,0 +1,16 @@
+diff --git a/src/org/mockito/internal/matchers/apachecommons/EqualsBuilder.java b/src/org/mockito/internal/matchers/apachecommons/EqualsBuilder.java
+index 76704f9..a53cd60 100644
+--- a/src/org/mockito/internal/matchers/apachecommons/EqualsBuilder.java
++++ b/src/org/mockito/internal/matchers/apachecommons/EqualsBuilder.java
+@@ -252,8 +252,9 @@
+         EqualsBuilder equalsBuilder = new EqualsBuilder();
+         try {
+             reflectionAppend(lhs, rhs, testClass, equalsBuilder, testTransients, excludeFields);
+-            while (testClass.getSuperclass() != null && testClass != reflectUpToClass) {
+-                testClass = testClass.getSuperclass();
++            Class var_66 = testClass.getSuperclass();
++			while (var_66 != null && testClass != reflectUpToClass) {
++                testClass = var_66;
+                 reflectionAppend(lhs, rhs, testClass, equalsBuilder, testTransients, excludeFields);
+             }
+         } catch (IllegalArgumentException e) {

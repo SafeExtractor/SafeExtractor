@@ -1,0 +1,31 @@
+diff --git a/source/org/jfree/chart/block/BorderArrangement.java b/source/org/jfree/chart/block/BorderArrangement.java
+index b3ae54b..ceed6a6 100644
+--- a/source/org/jfree/chart/block/BorderArrangement.java
++++ b/source/org/jfree/chart/block/BorderArrangement.java
+@@ -424,12 +424,13 @@
+         double[] w = new double[5];
+         double[] h = new double[5];
+         w[0] = constraint.getWidth();
+-        if (this.topBlock != null) {
++        Block var_996 = this.topBlock;
++		if (var_996 != null) {
+             RectangleConstraint c1 = new RectangleConstraint(w[0], null,
+                     LengthConstraintType.FIXED, 0.0,
+                     new Range(0.0, constraint.getHeight()),
+                     LengthConstraintType.RANGE);
+-            Size2D size = this.topBlock.arrange(g2, c1);
++            Size2D size = var_996.arrange(g2, c1);
+             h[0] = size.height;
+         }
+         w[1] = w[0];
+@@ -465,8 +466,8 @@
+             this.centerBlock.arrange(g2, c5);
+         }
+ 
+-        if (this.topBlock != null) {
+-            this.topBlock.setBounds(new Rectangle2D.Double(0.0, 0.0, w[0],
++        if (var_996 != null) {
++            var_996.setBounds(new Rectangle2D.Double(0.0, 0.0, w[0],
+                     h[0]));
+         }
+         if (this.bottomBlock != null) {

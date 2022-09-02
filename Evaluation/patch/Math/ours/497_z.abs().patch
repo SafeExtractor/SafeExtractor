@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/solvers/LaguerreSolver.java b/src/main/java/org/apache/commons/math3/analysis/solvers/LaguerreSolver.java
+index 326a68b..7ab423e 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/solvers/LaguerreSolver.java
++++ b/src/main/java/org/apache/commons/math3/analysis/solvers/LaguerreSolver.java
+@@ -249,9 +249,10 @@
+          */
+         public boolean isRoot(double min, double max, Complex z) {
+             if (isSequence(min, z.getReal(), max)) {
+-                double tolerance = FastMath.max(getRelativeAccuracy() * z.abs(), getAbsoluteAccuracy());
++                double var_497 = z.abs();
++				double tolerance = FastMath.max(getRelativeAccuracy() * var_497, getAbsoluteAccuracy());
+                 return (FastMath.abs(z.getImaginary()) <= tolerance) ||
+-                     (z.abs() <= getFunctionValueAccuracy());
++                     (var_497 <= getFunctionValueAccuracy());
+             }
+             return false;
+         }

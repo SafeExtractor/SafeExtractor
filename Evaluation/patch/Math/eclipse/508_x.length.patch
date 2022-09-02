@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/solvers/BracketingNthOrderBrentSolver.java b/src/main/java/org/apache/commons/math3/analysis/solvers/BracketingNthOrderBrentSolver.java
+index c481d20..c86afd6 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/solvers/BracketingNthOrderBrentSolver.java
++++ b/src/main/java/org/apache/commons/math3/analysis/solvers/BracketingNthOrderBrentSolver.java
+@@ -196,7 +196,8 @@
+         }
+ 
+         // prepare a work array for inverse polynomial interpolation
+-        final double[] tmpX = new double[x.length];
++        int var_508 = x.length;
++		final double[] tmpX = new double[var_508];
+ 
+         // current tightest bracketing of the root
+         double xA    = x[signChangeIndex - 1];
+@@ -306,13 +307,13 @@
+                 System.arraycopy(y, start, y, 0, nbPoints);
+                 signChangeIndex -= start;
+ 
+-            } else  if (nbPoints == x.length) {
++            } else  if (nbPoints == var_508) {
+ 
+                 // we have to drop one point in order to insert the new one
+                 nbPoints--;
+ 
+                 // keep the tightest bracketing interval as centered as possible
+-                if (signChangeIndex >= (x.length + 1) / 2) {
++                if (signChangeIndex >= (var_508 + 1) / 2) {
+                     // we drop the lowest point, we have to shift the arrays and the index
+                     System.arraycopy(x, 1, x, 0, nbPoints);
+                     System.arraycopy(y, 1, y, 0, nbPoints);

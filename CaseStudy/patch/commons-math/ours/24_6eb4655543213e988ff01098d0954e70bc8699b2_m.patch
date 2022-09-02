@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/RealVector.java b/src/main/java/org/apache/commons/math3/linear/RealVector.java
+index 89611c3..a842213 100644
+--- a/src/main/java/org/apache/commons/math3/linear/RealVector.java
++++ b/src/main/java/org/apache/commons/math3/linear/RealVector.java
+@@ -643,11 +643,12 @@
+      */
+     public RealMatrix outerProduct(RealVector v) {
+         RealMatrix product;
+-        if (v instanceof SparseRealVector || this instanceof SparseRealVector) {
+-            product = new OpenMapRealMatrix(this.getDimension(),
++        int m = this.getDimension();
++		if (v instanceof SparseRealVector || this instanceof SparseRealVector) {
++            product = new OpenMapRealMatrix(m,
+                                             v.getDimension());
+         } else {
+-            product = new Array2DRowRealMatrix(this.getDimension(),
++            product = new Array2DRowRealMatrix(m,
+                                                v.getDimension());
+         }
+         Iterator<Entry> thisIt = sparseIterator();

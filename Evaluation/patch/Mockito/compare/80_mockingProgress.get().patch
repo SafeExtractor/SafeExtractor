@@ -1,0 +1,25 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Mockito/eclipse/80_mockingProgress.get().patch b/home/safe/SafeExtractor/Evaluation/patch/Mockito/ours/80_mockingProgress.get().patch
+index 64ba693..0028240 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Mockito/eclipse/80_mockingProgress.get().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Mockito/ours/80_mockingProgress.get().patch
+@@ -1,8 +1,8 @@
+ diff --git a/src/org/mockito/internal/progress/ThreadSafeMockingProgress.java b/src/org/mockito/internal/progress/ThreadSafeMockingProgress.java
+-index 669af6d..7f1205f 100644
++index 669af6d..9a64098 100644
+ --- a/src/org/mockito/internal/progress/ThreadSafeMockingProgress.java
+ +++ b/src/org/mockito/internal/progress/ThreadSafeMockingProgress.java
+-@@ -18,10 +18,11 @@
++@@ -18,7 +18,8 @@
+      private static final ThreadLocal<MockingProgress> mockingProgress = new ThreadLocal<MockingProgress>();
+  
+      static MockingProgress threadSafely() {
+@@ -11,8 +11,4 @@ index 669af6d..7f1205f 100644
+ +		if (var_80 == null) {
+              mockingProgress.set(new MockingProgressImpl());
+          }
+--        return mockingProgress.get();
+-+        return var_80;
+-     }
+-     
+-     public void reportOngoingStubbing(IOngoingStubbing iOngoingStubbing) {
++         return mockingProgress.get();

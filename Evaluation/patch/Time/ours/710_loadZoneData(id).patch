@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/joda/time/tz/ZoneInfoProvider.java b/src/main/java/org/joda/time/tz/ZoneInfoProvider.java
+index 4558808..0e54a0a 100644
+--- a/src/main/java/org/joda/time/tz/ZoneInfoProvider.java
++++ b/src/main/java/org/joda/time/tz/ZoneInfoProvider.java
+@@ -141,9 +141,10 @@
+             return null;
+         }
+ 
+-        if (id.equals(obj)) {
++        DateTimeZone var_710 = loadZoneData(id);
++		if (id.equals(obj)) {
+             // Load zone data for the first time.
+-            return loadZoneData(id);
++            return var_710;
+         }
+ 
+         if (obj instanceof SoftReference<?>) {
+@@ -154,7 +155,7 @@
+                 return tz;
+             }
+             // Reference cleared; load data again.
+-            return loadZoneData(id);
++            return var_710;
+         }
+ 
+         // If this point is reached, mapping must link to another.

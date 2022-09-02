@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/regex/RegExpTree.java b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+index c0c470a..b61c7e8 100644
+--- a/src/com/google/javascript/jscomp/regex/RegExpTree.java
++++ b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+@@ -1840,15 +1840,16 @@
+         break;
+       default:
+         if (ch < 0x20 || ch >= 0x7f) {
+-          if (ch >= 0x100) {
++          char var_2457 = "0123456789abcdef".charAt((ch >> 4) & 0xf);
++		if (ch >= 0x100) {
+             sb.append("\\u");
+             sb.append("0123456789abcdef".charAt((ch >> 12) & 0xf));
+             sb.append("0123456789abcdef".charAt((ch >> 8) & 0xf));
+-            sb.append("0123456789abcdef".charAt((ch >> 4) & 0xf));
++            sb.append(var_2457);
+             sb.append("0123456789abcdef".charAt((ch) & 0xf));
+           } else {
+             sb.append("\\x");
+-            sb.append("0123456789abcdef".charAt((ch >> 4) & 0xf));
++            sb.append(var_2457);
+             sb.append("0123456789abcdef".charAt((ch) & 0xf));
+           }
+         } else {

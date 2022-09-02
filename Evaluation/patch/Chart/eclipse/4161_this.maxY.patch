@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/data/time/TimeSeries.java b/source/org/jfree/data/time/TimeSeries.java
+index 72bb2ea..456d774 100644
+--- a/source/org/jfree/data/time/TimeSeries.java
++++ b/source/org/jfree/data/time/TimeSeries.java
+@@ -721,10 +721,11 @@
+         TimeSeriesDataItem item = (TimeSeriesDataItem) this.data.get(index);
+         boolean iterate = false;
+         Number oldYN = item.getValue();
+-        if (oldYN != null) {
++        double var_4161 = this.maxY;
++		if (oldYN != null) {
+             double oldY = oldYN.doubleValue();
+             if (!Double.isNaN(oldY)) {
+-                iterate = oldY <= this.minY || oldY >= this.maxY;
++                iterate = oldY <= this.minY || oldY >= var_4161;
+             }
+         }
+         item.setValue(value);
+@@ -734,7 +735,7 @@
+         else if (value != null) {
+             double yy = value.doubleValue();
+             this.minY = minIgnoreNaN(this.minY, yy);
+-            this.maxY = maxIgnoreNaN(this.maxY, yy);
++            this.maxY = maxIgnoreNaN(var_4161, yy);
+         }
+         fireSeriesChanged();
+     }

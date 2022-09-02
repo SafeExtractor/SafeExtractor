@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..9e4d231 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -195,7 +195,8 @@
+     List<ExtendedTypeInfo> extendedTypes = Lists.newArrayList();
+ 
+     // Always record that we have a comment.
+-    if (jsdocBuilder.shouldParseDocumentation()) {
++    JsDocToken var_2300 = JsDocToken.EOC;
++	if (jsdocBuilder.shouldParseDocumentation()) {
+       ExtractionInfo blockInfo = extractBlockComment(token);
+       token = blockInfo.token;
+       if (!blockInfo.string.isEmpty()) {
+@@ -203,7 +204,7 @@
+       }
+     } else {
+       if (token != JsDocToken.ANNOTATION &&
+-          token != JsDocToken.EOC) {
++          token != var_2300) {
+         // Mark that there was a description, but don't bother marking
+         // what it was.
+         jsdocBuilder.recordBlockDescription("");
+@@ -377,7 +378,7 @@
+                   charno = stream.getCharno();
+ 
+                   type = null;
+-                  if (token != JsDocToken.EOL && token != JsDocToken.EOC) {
++                  if (token != JsDocToken.EOL && token != var_2300) {
+                     type = createJSTypeExpression(
+                         parseAndRecordTypeNode(token));
+                   }
+@@ -466,7 +467,7 @@
+                             stream.getLineno(), stream.getCharno());
+                       }
+                     } else if (token != JsDocToken.EOL &&
+-                        token != JsDocToken.EOF && token != JsDocToken.EOC) {
++                        token != JsDocToken.EOF && token != var_2300) {
+                       parser.addTypeWarning("msg.end.annotation.expected",
+                           stream.getLineno(), stream.getCharno());
+                     }

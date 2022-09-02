@@ -1,0 +1,25 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/698_type.isUnionType().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/698_type.isUnionType().patch
+index 131138c..69edc0c 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/698_type.isUnionType().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/698_type.isUnionType().patch
+@@ -1,8 +1,8 @@
+ diff --git a/src/com/google/javascript/jscomp/AmbiguateProperties.java b/src/com/google/javascript/jscomp/AmbiguateProperties.java
+-index 68c3996..5ab5226 100644
++index 68c3996..3d49972 100644
+ --- a/src/com/google/javascript/jscomp/AmbiguateProperties.java
+ +++ b/src/com/google/javascript/jscomp/AmbiguateProperties.java
+-@@ -281,9 +281,10 @@
++@@ -281,7 +281,8 @@
+     * won't be ambiguated).
+     */
+    private void computeRelatedTypes(JSType type) {
+@@ -10,8 +10,5 @@ index 68c3996..5ab5226 100644
+ +    boolean var_698 = type.isUnionType();
+ +	if (var_698) {
+        type = type.restrictByNotNullOrUndefined();
+--      if (type.isUnionType()) {
+-+      if (var_698) {
++       if (type.isUnionType()) {
+          for (JSType alt : type.toMaybeUnionType().getAlternates()) {
+-           computeRelatedTypes(alt);
+-         }

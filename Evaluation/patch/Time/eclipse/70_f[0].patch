@@ -1,0 +1,31 @@
+diff --git a/src/main/java/org/joda/time/Partial.java b/src/main/java/org/joda/time/Partial.java
+index 6ff2771..5d9ec01 100644
+--- a/src/main/java/org/joda/time/Partial.java
++++ b/src/main/java/org/joda/time/Partial.java
+@@ -717,7 +717,8 @@
+      */
+     public DateTimeFormatter getFormatter() {
+         DateTimeFormatter[] f = iFormatter;
+-        if (f == null) {
++        DateTimeFormatter var_70 = f[0];
++		if (f == null) {
+             if (size() == 0) {
+                 return null;
+             }
+@@ -726,14 +727,14 @@
+                 List<DateTimeFieldType> list = new ArrayList<DateTimeFieldType>(Arrays.asList(iTypes));
+                 f[0] = ISODateTimeFormat.forFields(list, true, false);
+                 if (list.size() == 0) {
+-                    f[1] = f[0];
++                    f[1] = var_70;
+                 }
+             } catch (IllegalArgumentException ex) {
+                 // ignore
+             }
+             iFormatter = f;
+         }
+-        return f[0];
++        return var_70;
+     }
+ 
+     //-----------------------------------------------------------------------

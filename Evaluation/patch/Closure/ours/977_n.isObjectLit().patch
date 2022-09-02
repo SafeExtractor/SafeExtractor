@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..790cdb8 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -482,7 +482,8 @@
+     // To be explicitly set to false if the node is not typeable.
+     boolean typeable = true;
+ 
+-    switch (n.getType()) {
++    boolean var_977 = n.isObjectLit();
++	switch (n.getType()) {
+       case Token.CAST:
+         Node expr = n.getFirstChild();
+         ensureTyped(t, n, getJSType(expr));
+@@ -822,14 +823,14 @@
+           ensureTyped(t, n);
+         } else {
+           // If this is an enum, then give that type to the objectlit as well.
+-          if ((n.isObjectLit())
++          if (var_977
+               && (parent.getJSType() instanceof EnumType)) {
+             ensureTyped(t, n, parent.getJSType());
+           } else {
+             ensureTyped(t, n);
+           }
+         }
+-        if (n.isObjectLit()) {
++        if (var_977) {
+           JSType typ = getJSType(n);
+           for (Node key : n.children()) {
+             visitObjLitKey(t, key, n, typ);

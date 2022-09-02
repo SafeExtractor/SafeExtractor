@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..0382ef9 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -492,7 +492,8 @@
+    * Returns true if this is an immutable value.
+    */
+   static boolean isImmutableValue(Node n) {
+-    switch (n.getType()) {
++    Node var_2047 = n.getFirstChild();
++	switch (n.getType()) {
+       case Token.STRING:
+       case Token.NUMBER:
+       case Token.NULL:
+@@ -501,10 +502,10 @@
+         return true;
+       case Token.CAST:
+       case Token.NOT:
+-        return isImmutableValue(n.getFirstChild());
++        return isImmutableValue(var_2047);
+       case Token.VOID:
+       case Token.NEG:
+-        return isImmutableValue(n.getFirstChild());
++        return isImmutableValue(var_2047);
+       case Token.NAME:
+         String name = n.getString();
+         // We assume here that programs don't change the value of the keyword

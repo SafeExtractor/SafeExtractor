@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/lang3/text/translate/NumericEntityUnescaper.java b/src/main/java/org/apache/commons/lang3/text/translate/NumericEntityUnescaper.java
+index a0744f9..663cadf 100644
+--- a/src/main/java/org/apache/commons/lang3/text/translate/NumericEntityUnescaper.java
++++ b/src/main/java/org/apache/commons/lang3/text/translate/NumericEntityUnescaper.java
+@@ -115,10 +115,11 @@
+ 
+             int entityValue;
+             try {
+-                if(isHex) {
+-                    entityValue = Integer.parseInt(input.subSequence(start, end).toString(), 16);
++                CharSequence var_491 = input.subSequence(start, end);
++				if(isHex) {
++                    entityValue = Integer.parseInt(var_491.toString(), 16);
+                 } else {
+-                    entityValue = Integer.parseInt(input.subSequence(start, end).toString(), 10);
++                    entityValue = Integer.parseInt(var_491.toString(), 10);
+                 }
+             } catch(final NumberFormatException nfe) {
+                 return 0;

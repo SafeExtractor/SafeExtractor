@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/needle/PinNeedle.java b/source/org/jfree/chart/needle/PinNeedle.java
+index f7cc93d..4219d48 100644
+--- a/source/org/jfree/chart/needle/PinNeedle.java
++++ b/source/org/jfree/chart/needle/PinNeedle.java
+@@ -46,6 +46,7 @@
+ package org.jfree.chart.needle;
+ 
+ import java.awt.Graphics2D;
++import java.awt.geom.AffineTransform;
+ import java.awt.geom.Area;
+ import java.awt.geom.Ellipse2D;
+ import java.awt.geom.GeneralPath;
+@@ -99,8 +100,9 @@
+         shape.add(new Area(pointer));
+         if ((rotate != null) && (angle != 0)) {
+             /// we have rotation
+-            getTransform().setToRotation(angle, rotate.getX(), rotate.getY());
+-            shape.transform(getTransform());
++            AffineTransform var_1256 = getTransform();
++			var_1256.setToRotation(angle, rotate.getX(), rotate.getY());
++            shape.transform(var_1256);
+         }
+ 
+         defaultDisplay(g2, shape);

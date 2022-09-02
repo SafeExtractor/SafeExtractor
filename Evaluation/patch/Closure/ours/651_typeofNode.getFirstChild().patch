@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldWithTypes.java b/src/com/google/javascript/jscomp/PeepholeFoldWithTypes.java
+index 3b1a35f..930cd85 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldWithTypes.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldWithTypes.java
+@@ -73,9 +73,10 @@
+    */
+   private Node tryFoldTypeof(Node typeofNode) {
+     Preconditions.checkArgument(typeofNode.isTypeOf());
+-    Preconditions.checkArgument(typeofNode.getFirstChild() != null);
++    Node var_651 = typeofNode.getFirstChild();
++	Preconditions.checkArgument(var_651 != null);
+ 
+-    Node argumentNode = typeofNode.getFirstChild();
++    Node argumentNode = var_651;
+ 
+     // We'll let PeepholeFoldConstants handle folding literals
+     // and we can't remove arguments with possible side effects.

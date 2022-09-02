@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessTweaks.java b/src/com/google/javascript/jscomp/ProcessTweaks.java
+index e20b902..129d6dd 100644
+--- a/src/com/google/javascript/jscomp/ProcessTweaks.java
++++ b/src/com/google/javascript/jscomp/ProcessTweaks.java
+@@ -372,7 +372,8 @@
+         allTweaks.put(tweakId, tweakInfo);
+       }
+ 
+-      switch (tweakFunc) {
++      boolean var_1389 = t.inGlobalScope();
++	switch (tweakFunc) {
+         case REGISTER_BOOLEAN:
+         case REGISTER_NUMBER:
+         case REGISTER_STRING:
+@@ -382,7 +383,7 @@
+           }
+ 
+           // Ensure tweaks are registered in the global scope.
+-          if (!t.inGlobalScope()) {
++          if (!var_1389) {
+             compiler.report(
+                 t.makeError(n, NON_GLOBAL_TWEAK_INIT_ERROR, tweakId));
+             break;
+@@ -401,7 +402,7 @@
+           break;
+         case OVERRIDE_DEFAULT_VALUE:
+           // Ensure tweaks overrides occur in the global scope.
+-          if (!t.inGlobalScope()) {
++          if (!var_1389) {
+             compiler.report(
+                 t.makeError(n, NON_GLOBAL_TWEAK_INIT_ERROR, tweakId));
+             break;

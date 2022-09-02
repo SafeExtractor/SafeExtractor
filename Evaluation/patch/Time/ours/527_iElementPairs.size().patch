@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
+index c3dd8cc..b2cd85b 100644
+--- a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
++++ b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
+@@ -588,9 +588,10 @@
+     private PeriodFormatterBuilder appendSuffix(PeriodFieldAffix suffix) {
+         final Object originalPrinter;
+         final Object originalParser;
+-        if (iElementPairs.size() > 0) {
+-            originalPrinter = iElementPairs.get(iElementPairs.size() - 2);
+-            originalParser = iElementPairs.get(iElementPairs.size() - 1);
++        int var_527 = iElementPairs.size();
++		if (var_527 > 0) {
++            originalPrinter = iElementPairs.get(var_527 - 2);
++            originalParser = iElementPairs.get(var_527 - 1);
+         } else {
+             originalPrinter = null;
+             originalParser = null;
+@@ -604,8 +605,8 @@
+ 
+         clearPrefix();
+         FieldFormatter newField = new FieldFormatter((FieldFormatter) originalPrinter, suffix);
+-        iElementPairs.set(iElementPairs.size() - 2, newField);
+-        iElementPairs.set(iElementPairs.size() - 1, newField);
++        iElementPairs.set(var_527 - 2, newField);
++        iElementPairs.set(var_527 - 1, newField);
+         iFieldFormatters[newField.getFieldType()] = newField;
+         
+         return this;

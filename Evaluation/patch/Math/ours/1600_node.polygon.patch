@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/NestedLoops.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/NestedLoops.java
+index 5bf445c..f2d864b 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/NestedLoops.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/NestedLoops.java
+@@ -122,8 +122,9 @@
+     private void add(final NestedLoops node) throws MathIllegalArgumentException {
+ 
+         // check if we can go deeper in the tree
+-        for (final NestedLoops child : surrounded) {
+-            if (child.polygon.contains(node.polygon)) {
++        Region<Euclidean2D> var_1600 = node.polygon;
++		for (final NestedLoops child : surrounded) {
++            if (child.polygon.contains(var_1600)) {
+                 child.add(node);
+                 return;
+             }
+@@ -132,7 +133,7 @@
+         // check if we can absorb some of the instance children
+         for (final Iterator<NestedLoops> iterator = surrounded.iterator(); iterator.hasNext();) {
+             final NestedLoops child = iterator.next();
+-            if (node.polygon.contains(child.polygon)) {
++            if (var_1600.contains(child.polygon)) {
+                 node.surrounded.add(child);
+                 iterator.remove();
+             }
+@@ -141,7 +142,7 @@
+         // we should be separate from the remaining children
+         RegionFactory<Euclidean2D> factory = new RegionFactory<Euclidean2D>();
+         for (final NestedLoops child : surrounded) {
+-            if (!factory.intersection(node.polygon, child.polygon).isEmpty()) {
++            if (!factory.intersection(var_1600, child.polygon).isEmpty()) {
+                 throw new MathIllegalArgumentException(LocalizedFormats.CROSSING_BOUNDARY_LOOPS);
+             }
+         }

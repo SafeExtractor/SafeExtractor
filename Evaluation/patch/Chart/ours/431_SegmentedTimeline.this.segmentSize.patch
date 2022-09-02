@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/chart/axis/SegmentedTimeline.java b/source/org/jfree/chart/axis/SegmentedTimeline.java
+index 3d7dbe0..a4d2dcd 100644
+--- a/source/org/jfree/chart/axis/SegmentedTimeline.java
++++ b/source/org/jfree/chart/axis/SegmentedTimeline.java
+@@ -1271,13 +1271,14 @@
+          * @return The segment number.
+          */
+         public long calculateSegmentNumber(long millis) {
+-            if (millis >= SegmentedTimeline.this.startTime) {
++            long var_431 = SegmentedTimeline.this.segmentSize;
++			if (millis >= SegmentedTimeline.this.startTime) {
+                 return (millis - SegmentedTimeline.this.startTime)
+-                    / SegmentedTimeline.this.segmentSize;
++                    / var_431;
+             }
+             else {
+                 return ((millis - SegmentedTimeline.this.startTime)
+-                    / SegmentedTimeline.this.segmentSize) - 1;
++                    / var_431) - 1;
+             }
+         }
+ 

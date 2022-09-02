@@ -1,0 +1,36 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SphericalCoordinates.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SphericalCoordinates.java
+index de58d7b..2d712c8 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SphericalCoordinates.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SphericalCoordinates.java
+@@ -217,24 +217,25 @@
+ 
+         // compute lower-left part of J^T . H_f . J
+         cHessian[0][0] = jacobian[0][0] * hj[0][0] + jacobian[1][0] * hj[1][0] + jacobian[2][0] * hj[2][0];
+-        cHessian[1][0] = jacobian[0][1] * hj[0][0] + jacobian[1][1] * hj[1][0] + jacobian[2][1] * hj[2][0];
++        double[] var_1540 = cHessian[1];
++		var_1540[0] = jacobian[0][1] * hj[0][0] + jacobian[1][1] * hj[1][0] + jacobian[2][1] * hj[2][0];
+         cHessian[2][0] = jacobian[0][2] * hj[0][0]                             + jacobian[2][2] * hj[2][0];
+-        cHessian[1][1] = jacobian[0][1] * hj[0][1] + jacobian[1][1] * hj[1][1] + jacobian[2][1] * hj[2][1];
++        var_1540[1] = jacobian[0][1] * hj[0][1] + jacobian[1][1] * hj[1][1] + jacobian[2][1] * hj[2][1];
+         cHessian[2][1] = jacobian[0][2] * hj[0][1]                             + jacobian[2][2] * hj[2][1];
+         cHessian[2][2] = jacobian[0][2] * hj[0][2]                             + jacobian[2][2] * hj[2][2];
+ 
+         // add gradient contribution
+         cHessian[0][0] += sGradient[0] * rHessian[0][0] + sGradient[1] * thetaHessian[0][0] + sGradient[2] * phiHessian[0][0];
+-        cHessian[1][0] += sGradient[0] * rHessian[1][0] + sGradient[1] * thetaHessian[1][0] + sGradient[2] * phiHessian[1][0];
++        var_1540[0] += sGradient[0] * rHessian[1][0] + sGradient[1] * thetaHessian[1][0] + sGradient[2] * phiHessian[1][0];
+         cHessian[2][0] += sGradient[0] * rHessian[2][0]                                     + sGradient[2] * phiHessian[2][0];
+-        cHessian[1][1] += sGradient[0] * rHessian[1][1] + sGradient[1] * thetaHessian[1][1] + sGradient[2] * phiHessian[1][1];
++        var_1540[1] += sGradient[0] * rHessian[1][1] + sGradient[1] * thetaHessian[1][1] + sGradient[2] * phiHessian[1][1];
+         cHessian[2][1] += sGradient[0] * rHessian[2][1]                                     + sGradient[2] * phiHessian[2][1];
+         cHessian[2][2] += sGradient[0] * rHessian[2][2]                                     + sGradient[2] * phiHessian[2][2];
+ 
+         // ensure symmetry
+-        cHessian[0][1] = cHessian[1][0];
++        cHessian[0][1] = var_1540[0];
+         cHessian[0][2] = cHessian[2][0];
+-        cHessian[1][2] = cHessian[2][1];
++        var_1540[2] = cHessian[2][1];
+ 
+         return cHessian;
+ 

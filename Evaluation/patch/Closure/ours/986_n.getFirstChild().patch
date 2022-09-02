@@ -1,0 +1,105 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..8c55f6a 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -482,9 +482,10 @@
+     // To be explicitly set to false if the node is not typeable.
+     boolean typeable = true;
+ 
+-    switch (n.getType()) {
++    Node var_986 = n.getFirstChild();
++	switch (n.getType()) {
+       case Token.CAST:
+-        Node expr = n.getFirstChild();
++        Node expr = var_986;
+         ensureTyped(t, n, getJSType(expr));
+ 
+         // If the cast, tightens the type apply it, so it is available post
+@@ -581,7 +582,7 @@
+ 
+       case Token.DEC:
+       case Token.INC:
+-        left = n.getFirstChild();
++        left = var_986;
+         checkPropCreation(t, left);
+         validator.expectNumber(t, left, getJSType(left), "increment/decrement");
+         ensureTyped(t, n, NUMBER_TYPE);
+@@ -600,7 +601,7 @@
+         break;
+ 
+       case Token.BITNOT:
+-        childType = getJSType(n.getFirstChild());
++        childType = getJSType(var_986);
+         if (!childType.matchesInt32Context()) {
+           report(t, n, BIT_OPERATION, NodeUtil.opToStr(n.getType()),
+               childType.toString());
+@@ -610,7 +611,7 @@
+ 
+       case Token.POS:
+       case Token.NEG:
+-        left = n.getFirstChild();
++        left = var_986;
+         validator.expectNumber(t, left, getJSType(left), "sign operator");
+         ensureTyped(t, n, NUMBER_TYPE);
+         break;
+@@ -619,7 +620,7 @@
+       case Token.NE:
+       case Token.SHEQ:
+       case Token.SHNE: {
+-        left = n.getFirstChild();
++        left = var_986;
+         right = n.getLastChild();
+ 
+         if (left.isTypeOf()) {
+@@ -672,7 +673,7 @@
+       case Token.LE:
+       case Token.GT:
+       case Token.GE:
+-        leftType = getJSType(n.getFirstChild());
++        leftType = getJSType(var_986);
+         rightType = getJSType(n.getLastChild());
+         if (rightType.isNumber()) {
+           validator.expectNumber(
+@@ -700,7 +701,7 @@
+         break;
+ 
+       case Token.IN:
+-        left = n.getFirstChild();
++        left = var_986;
+         right = n.getLastChild();
+         rightType = getJSType(right);
+         validator.expectString(t, left, getJSType(left), "left side of 'in'");
+@@ -712,7 +713,7 @@
+         break;
+ 
+       case Token.INSTANCEOF:
+-        left = n.getFirstChild();
++        left = var_986;
+         right = n.getLastChild();
+         rightType = getJSType(right).restrictByNotNullOrUndefined();
+         validator.expectAnyObject(
+@@ -738,7 +739,7 @@
+       case Token.ASSIGN_SUB:
+       case Token.ASSIGN_ADD:
+       case Token.ASSIGN_MUL:
+-        checkPropCreation(t, n.getFirstChild());
++        checkPropCreation(t, var_986);
+         // fall through
+ 
+       case Token.LSH:
+@@ -761,13 +762,13 @@
+ 
+       case Token.CASE:
+         JSType switchType = getJSType(parent.getFirstChild());
+-        JSType caseType = getJSType(n.getFirstChild());
++        JSType caseType = getJSType(var_986);
+         validator.expectSwitchMatchesCase(t, n, switchType, caseType);
+         typeable = false;
+         break;
+ 
+       case Token.WITH: {
+-        Node child = n.getFirstChild();
++        Node child = var_986;
+         childType = getJSType(child);
+         validator.expectObject(t, child, childType, "with requires an object");
+         typeable = false;

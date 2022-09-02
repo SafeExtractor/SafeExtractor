@@ -1,0 +1,38 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..f144d6e 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -663,10 +663,11 @@
+     // the child of an if statement that's not inside a block).
+ 
+     Ref ref = n.getDeclaration();
+-    Node rvalue = ref.node.getNext();
++    Node var_732 = ref.node;
++	Node rvalue = var_732.getNext();
+     Node varNode = new Node(Token.VAR);
+-    Node varParent = ref.node.getAncestor(3);
+-    Node gramps = ref.node.getAncestor(2);
++    Node varParent = var_732.getAncestor(3);
++    Node gramps = var_732.getAncestor(2);
+     boolean isObjLit = rvalue.isObjectLit();
+     boolean insertedVarNode = false;
+ 
+@@ -682,14 +683,14 @@
+         checkForHosedThisReferences(rvalue, n.docInfo, n);
+       }
+ 
+-      ref.node.getParent().removeChild(rvalue);
++      var_732.getParent().removeChild(rvalue);
+ 
+       Node nameNode = NodeUtil.newName(
+           compiler.getCodingConvention(),
+-          alias, ref.node.getAncestor(2), n.getFullName());
++          alias, var_732.getAncestor(2), n.getFullName());
+ 
+-      JSDocInfo info = ref.node.getParent().getJSDocInfo();
+-      if (ref.node.getLastChild().getBooleanProp(Node.IS_CONSTANT_NAME) ||
++      JSDocInfo info = var_732.getParent().getJSDocInfo();
++      if (var_732.getLastChild().getBooleanProp(Node.IS_CONSTANT_NAME) ||
+           (info != null && info.isConstant())) {
+         nameNode.putBooleanProp(Node.IS_CONSTANT_NAME, true);
+       }

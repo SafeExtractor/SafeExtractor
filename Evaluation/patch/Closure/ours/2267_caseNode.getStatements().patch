@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..cd0c882 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -72,6 +72,7 @@
+ import com.google.javascript.rhino.head.ast.WithStatement;
+ import com.google.javascript.rhino.jstype.StaticSourceFile;
+ 
++import java.util.List;
+ import java.util.Set;
+ 
+ /**
+@@ -1041,8 +1042,9 @@
+       block.setLineno(caseNode.getLineno());
+       block.setCharno(position2charno(caseNode.getAbsolutePosition()));
+       maybeSetLengthFrom(block, caseNode);
+-      if (caseNode.getStatements() != null) {
+-        for (AstNode child : caseNode.getStatements()) {
++      List<AstNode> var_2267 = caseNode.getStatements();
++	if (var_2267 != null) {
++        for (AstNode child : var_2267) {
+           block.addChildToBack(transform(child));
+         }
+       }

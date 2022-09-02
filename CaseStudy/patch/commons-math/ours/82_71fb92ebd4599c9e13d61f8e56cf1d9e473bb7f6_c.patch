@@ -1,0 +1,25 @@
+diff --git a/src/java/org/apache/commons/math/complex/Complex.java b/src/java/org/apache/commons/math/complex/Complex.java
+index f5427da..40958bc 100644
+--- a/src/java/org/apache/commons/math/complex/Complex.java
++++ b/src/java/org/apache/commons/math/complex/Complex.java
+@@ -109,14 +109,15 @@
+             return NaN;
+         }
+         
+-        if (Math.abs(rhs.getReal()) < Math.abs(rhs.getImaginary())) {
+-            double q = rhs.getReal() / rhs.getImaginary();
+-            double d = (rhs.getReal() * q) + rhs.getImaginary();
++        double c = rhs.getReal();
++		if (Math.abs(c) < Math.abs(rhs.getImaginary())) {
++            double q = c / rhs.getImaginary();
++            double d = (c * q) + rhs.getImaginary();
+             return new Complex(((real * q) + imaginary) / d,
+                 ((imaginary * q) - real) / d);
+         } else {
+-            double q = rhs.getImaginary() / rhs.getReal();
+-            double d = (rhs.getImaginary() * q) + rhs.getReal();
++            double q = rhs.getImaginary() / c;
++            double d = (rhs.getImaginary() * q) + c;
+             return new Complex(((imaginary * q) + real) / d,
+                 (imaginary - (real * q)) / d);
+         }

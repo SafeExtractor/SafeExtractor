@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/CheckAccessControls.java b/src/com/google/javascript/jscomp/CheckAccessControls.java
+index df50c26..02d4b06 100644
+--- a/src/com/google/javascript/jscomp/CheckAccessControls.java
++++ b/src/com/google/javascript/jscomp/CheckAccessControls.java
+@@ -495,15 +495,16 @@
+         // Check that (a) the property *can* be overridden, and
+         // (b) that the visibility of the override is the same as the
+         // visibility of the original property.
+-        if (visibility == Visibility.PRIVATE && !sameInput) {
++        String var_926 = objectType.toString();
++		if (visibility == Visibility.PRIVATE && !sameInput) {
+           compiler.report(
+               t.makeError(getprop, PRIVATE_OVERRIDE,
+-                  objectType.toString()));
++                  var_926));
+         } else if (overridingVisibility != Visibility.INHERITED &&
+             overridingVisibility != visibility) {
+           compiler.report(
+               t.makeError(getprop, VISIBILITY_MISMATCH,
+-                  visibility.name(), objectType.toString(),
++                  visibility.name(), var_926,
+                   overridingVisibility.name()));
+         }
+       } else {

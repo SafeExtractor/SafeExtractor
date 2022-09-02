@@ -1,0 +1,52 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..22e9c4e 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -951,8 +951,9 @@
+             return 0;
+         }
+ 
+-        if (a.sign != b.sign) {
+-            if (a.sign == -1) {
++        byte var_580 = a.sign;
++		if (var_580 != b.sign) {
++            if (var_580 == -1) {
+                 return -1;
+             } else {
+                 return 1;
+@@ -961,7 +962,7 @@
+ 
+         // deal with the infinities
+         if (a.nans == INFINITE && b.nans == FINITE) {
+-            return a.sign;
++            return var_580;
+         }
+ 
+         if (a.nans == FINITE && b.nans == INFINITE) {
+@@ -975,22 +976,22 @@
+         // Handle special case when a or b is zero, by ignoring the exponents
+         if (b.mant[b.mant.length-1] != 0 && a.mant[b.mant.length-1] != 0) {
+             if (a.exp < b.exp) {
+-                return -a.sign;
++                return -var_580;
+             }
+ 
+             if (a.exp > b.exp) {
+-                return a.sign;
++                return var_580;
+             }
+         }
+ 
+         // compare the mantissas
+         for (int i = a.mant.length - 1; i >= 0; i--) {
+             if (a.mant[i] > b.mant[i]) {
+-                return a.sign;
++                return var_580;
+             }
+ 
+             if (a.mant[i] < b.mant[i]) {
+-                return -a.sign;
++                return -var_580;
+             }
+         }
+ 

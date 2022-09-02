@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+index 4c20a64..9d6a3b1 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+@@ -319,7 +319,8 @@
+             up = !up;
+         }
+ 
+-        if (up) {
++        boolean var_767 = inc.equals(getZero());
++		if (up) {
+             inc = power10(intLog10() - getDecimalDigits() + 1);
+             inc = copysign(inc, this);
+ 
+@@ -327,7 +328,7 @@
+                 inc = power10K(MIN_EXP-mant.length-1);
+             }
+ 
+-            if (inc.equals(getZero())) {
++            if (var_767) {
+                 result = copysign(newInstance(getZero()), this);
+             } else {
+                 result = add(inc);
+@@ -346,7 +347,7 @@
+                 inc = power10K(MIN_EXP-mant.length-1);
+             }
+ 
+-            if (inc.equals(getZero())) {
++            if (var_767) {
+                 result = copysign(newInstance(getZero()), this);
+             } else {
+                 result = subtract(inc);

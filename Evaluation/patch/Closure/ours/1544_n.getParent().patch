@@ -1,0 +1,34 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..6dbe631 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -144,7 +144,8 @@
+ 
+     cc.startSourceMapping(n);
+ 
+-    switch (type) {
++    Node var_1544 = n.getParent();
++	switch (type) {
+       case Token.TRY: {
+         Preconditions.checkState(first.getNext().isBlock() &&
+                 !first.getNext().hasMoreThanOneChild());
+@@ -326,7 +327,7 @@
+ 
+       case Token.GETTER_DEF:
+       case Token.SETTER_DEF:
+-        Preconditions.checkState(n.getParent().isObjectLit());
++        Preconditions.checkState(var_1544.isObjectLit());
+         Preconditions.checkState(childCount == 1);
+         Preconditions.checkState(first.isFunction());
+ 
+@@ -383,8 +384,8 @@
+             type == Token.SCRIPT ||
+             (type == Token.BLOCK &&
+                 !preserveBlock &&
+-                n.getParent() != null &&
+-                n.getParent().isScript());
++                var_1544 != null &&
++                var_1544.isScript());
+         for (Node c = first; c != null; c = c.getNext()) {
+           add(c, Context.STATEMENT);
+ 

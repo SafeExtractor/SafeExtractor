@@ -1,0 +1,28 @@
+diff --git a/Users/safe/paper/CaseStudy/patch/johnzon/eclipse/3_a7c03892d75e42756afdb08ccf14e2a98f3d1308_asClass.patch b/Users/safe/paper/CaseStudy/patch/johnzon/ours/3_a7c03892d75e42756afdb08ccf14e2a98f3d1308_asClass.patch
+index 2c7fc4c..51ec330 100644
+--- a/Users/safe/paper/CaseStudy/patch/johnzon/eclipse/3_a7c03892d75e42756afdb08ccf14e2a98f3d1308_asClass.patch
++++ b/Users/safe/paper/CaseStudy/patch/johnzon/ours/3_a7c03892d75e42756afdb08ccf14e2a98f3d1308_asClass.patch
+@@ -1,19 +1,14 @@
+ diff --git a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mappings.java b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mappings.java
+-index b3dea58..8ad295f 100644
++index b3dea58..72ec852 100644
+ --- a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mappings.java
+ +++ b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mappings.java
+-@@ -339,11 +339,12 @@
+-     public ClassMapping findOrCreateClassMapping(final Type clazz) {
+-         ClassMapping classMapping = classes.get(clazz);
+-         if (classMapping == null) {
+--            if (!Class.class.isInstance(clazz) || Map.class.isAssignableFrom(Class.class.cast(clazz))) {
+-+            Class asClass = Class.class.cast(clazz);
+-+			if (!Class.class.isInstance(clazz) || Map.class.isAssignableFrom(asClass)) {
++@@ -343,7 +343,8 @@
+                  return null;
+              }
+  
+ -            classMapping = createClassMapping(Class.class.cast(clazz));
+-+            classMapping = createClassMapping(asClass);
+++            Class asClass = Class.class.cast(clazz);
+++			classMapping = createClassMapping(asClass);
+              final ClassMapping existing = classes.putIfAbsent(clazz, classMapping);
+              if (existing != null) {
+                  classMapping = existing;

@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/MinimizeExitPoints.java b/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+index 317947b..b55314d 100644
+--- a/src/com/google/javascript/jscomp/MinimizeExitPoints.java
++++ b/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+@@ -283,14 +283,15 @@
+    */
+   static private boolean matchingExitNode(Node n, int type, String labelName) {
+     if (n.getType() == type) {
+-      if (type == Token.RETURN) {
++      boolean var_575 = n.hasChildren();
++	if (type == Token.RETURN) {
+         // only returns without expressions.
+-        return !n.hasChildren();
++        return !var_575;
+       } else {
+         if (labelName == null) {
+-          return !n.hasChildren();
++          return !var_575;
+         } else {
+-          return n.hasChildren()
++          return var_575
+             && labelName.equals(n.getFirstChild().getString());
+         }
+       }

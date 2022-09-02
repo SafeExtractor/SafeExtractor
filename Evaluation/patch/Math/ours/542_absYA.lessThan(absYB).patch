@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java b/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
+index 372c699..5cd4041 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
++++ b/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
+@@ -261,7 +261,8 @@
+ 
+             // check convergence of bracketing interval
+             Dfp maxX = absXA.lessThan(absXB) ? absXB : absXA;
+-            Dfp maxY = absYA.lessThan(absYB) ? absYB : absYA;
++            boolean var_542 = absYA.lessThan(absYB);
++			Dfp maxY = var_542 ? absYB : absYA;
+             final Dfp xTol = absoluteAccuracy.add(relativeAccuracy.multiply(maxX));
+             if (xB.subtract(xA).subtract(xTol).negativeOrNull() ||
+                 maxY.lessThan(functionValueAccuracy)) {

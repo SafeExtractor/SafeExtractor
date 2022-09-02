@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/data/jdbc/JDBCCategoryDataset.java b/source/org/jfree/data/jdbc/JDBCCategoryDataset.java
+index e9c9c03..10c66f8 100644
+--- a/source/org/jfree/data/jdbc/JDBCCategoryDataset.java
++++ b/source/org/jfree/data/jdbc/JDBCCategoryDataset.java
+@@ -236,7 +236,8 @@
+                     Comparable columnKey = metaData.getColumnName(column);
+                     int columnType = metaData.getColumnType(column);
+ 
+-                    switch (columnType) {
++                    boolean var_3979 = this.transpose;
++					switch (columnType) {
+                         case Types.TINYINT:
+                         case Types.SMALLINT:
+                         case Types.INTEGER:
+@@ -247,7 +248,7 @@
+                         case Types.NUMERIC:
+                         case Types.REAL: {
+                             Number value = (Number) resultSet.getObject(column);
+-                            if (this.transpose) {
++                            if (var_3979) {
+                                 setValue(value, columnKey, rowKey);
+                             }
+                             else {
+@@ -260,7 +261,7 @@
+                         case Types.TIMESTAMP: {
+                             Date date = (Date) resultSet.getObject(column);
+                             Number value = new Long(date.getTime());
+-                            if (this.transpose) {
++                            if (var_3979) {
+                                 setValue(value, columnKey, rowKey);
+                             }
+                             else {
+@@ -275,7 +276,7 @@
+                                 = (String) resultSet.getObject(column);
+                             try {
+                                 Number value = Double.valueOf(string);
+-                                if (this.transpose) {
++                                if (var_3979) {
+                                     setValue(value, columnKey, rowKey);
+                                 }
+                                 else {

@@ -1,0 +1,18 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..29a767a 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -1735,9 +1735,10 @@
+ 
+         clone.itemLabelGeneratorList
+                 = (ObjectList) this.itemLabelGeneratorList.clone();
+-        if (this.baseItemLabelGenerator != null
+-                && this.baseItemLabelGenerator instanceof PublicCloneable) {
+-            PublicCloneable pc = (PublicCloneable) this.baseItemLabelGenerator;
++        XYItemLabelGenerator var_3165 = this.baseItemLabelGenerator;
++		if (var_3165 != null
++                && var_3165 instanceof PublicCloneable) {
++            PublicCloneable pc = (PublicCloneable) var_3165;
+             clone.baseItemLabelGenerator = (XYItemLabelGenerator) pc.clone();
+         }
+ 

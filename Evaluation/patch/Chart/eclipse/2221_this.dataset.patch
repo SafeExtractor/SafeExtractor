@@ -1,0 +1,20 @@
+diff --git a/source/org/jfree/chart/plot/PolarPlot.java b/source/org/jfree/chart/plot/PolarPlot.java
+index bc0de0a..eb89753 100644
+--- a/source/org/jfree/chart/plot/PolarPlot.java
++++ b/source/org/jfree/chart/plot/PolarPlot.java
+@@ -835,11 +835,12 @@
+ 
+         // now get the data and plot it (the visual representation will depend
+         // on the m_Renderer that has been set)...
+-        if (!DatasetUtilities.isEmptyOrNull(this.dataset)) {
+-            int seriesCount = this.dataset.getSeriesCount();
++        XYDataset var_2221 = this.dataset;
++		if (!DatasetUtilities.isEmptyOrNull(var_2221)) {
++            int seriesCount = var_2221.getSeriesCount();
+             for (int series = 0; series < seriesCount; series++) {
+                 this.renderer.drawSeries(g2, dataArea, info, this,
+-                        this.dataset, series);
++                        var_2221, series);
+             }
+         }
+         else {

@@ -1,0 +1,35 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/91_standard().patch b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/91_standard().patch
+index ae1a96a..2fdf353 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/91_standard().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/91_standard().patch
+@@ -1,25 +1,14 @@
+ diff --git a/src/main/java/org/joda/time/PeriodType.java b/src/main/java/org/joda/time/PeriodType.java
+-index e06b379..ad36c8b 100644
++index e06b379..bfb313b 100644
+ --- a/src/main/java/org/joda/time/PeriodType.java
+ +++ b/src/main/java/org/joda/time/PeriodType.java
+-@@ -508,8 +508,9 @@
+-             }
++@@ -509,7 +509,8 @@
+          }
+          Map<PeriodType, Object> cache = cTypes;
+--        if (cache.isEmpty()) {
++         if (cache.isEmpty()) {
+ -            cache.put(standard(), standard());
+-+        PeriodType var_91 = standard();
+-+		if (cache.isEmpty()) {
+-+            cache.put(var_91, var_91);
+++            PeriodType var_91 = standard();
+++			cache.put(var_91, standard());
+              cache.put(yearMonthDayTime(), yearMonthDayTime());
+              cache.put(yearMonthDay(), yearMonthDay());
+              cache.put(yearWeekDayTime(), yearWeekDayTime());
+-@@ -535,7 +536,7 @@
+-         if (cached != null) {
+-             throw new IllegalArgumentException("PeriodType does not support fields: " + cached);
+-         }
+--        PeriodType type = standard();
+-+        PeriodType type = var_91;
+-         List<DurationFieldType> list = new ArrayList<DurationFieldType>(Arrays.asList(types));
+-         if (list.remove(DurationFieldType.years()) == false) {
+-             type = type.withYearsRemoved();

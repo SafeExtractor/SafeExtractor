@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/rhino/jstype/FunctionType.java b/src/com/google/javascript/rhino/jstype/FunctionType.java
+index 7388448..e201792 100644
+--- a/src/com/google/javascript/rhino/jstype/FunctionType.java
++++ b/src/com/google/javascript/rhino/jstype/FunctionType.java
+@@ -1249,11 +1249,12 @@
+ 
+   /** Create a new constructor with the parameters and return type stripped. */
+   public FunctionType cloneWithoutArrowType() {
+-    FunctionType result = new FunctionType(
++    ObjectType var_2621 = getInstanceType();
++	FunctionType result = new FunctionType(
+         registry, getReferenceName(), source,
+-        registry.createArrowType(null, null), getInstanceType(),
++        registry.createArrowType(null, null), var_2621,
+         null, true, false);
+-    result.setPrototypeBasedOn(getInstanceType());
++    result.setPrototypeBasedOn(var_2621);
+     return result;
+   }
+ 

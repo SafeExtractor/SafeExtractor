@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/axis/LogAxis.java b/source/org/jfree/chart/axis/LogAxis.java
+index f01eade..ef7e6de 100644
+--- a/source/org/jfree/chart/axis/LogAxis.java
++++ b/source/org/jfree/chart/axis/LogAxis.java
+@@ -569,7 +569,8 @@
+         if (isAutoTickUnitSelection()) {
+             selectAutoTickUnit(g2, dataArea, edge);
+         }
+-        int minorTickCount = this.tickUnit.getMinorTickCount();
++        NumberTickUnit var_382 = this.tickUnit;
++		int minorTickCount = var_382.getMinorTickCount();
+         double start = Math.floor(calculateLog(getLowerBound()));
+         double end = Math.ceil(calculateLog(getUpperBound()));
+         double current = start;
+@@ -581,7 +582,7 @@
+             }
+             // add minor ticks (for gridlines)
+             double next = Math.pow(this.base, current
+-                    + this.tickUnit.getSize());
++                    + var_382.getSize());
+             for (int i = 1; i < minorTickCount; i++) {
+                 double minorV = v + i * ((next - v) / minorTickCount);
+                 if (range.contains(minorV)) {
+@@ -589,7 +590,7 @@
+                             textAnchor, TextAnchor.CENTER, 0.0));
+                 }
+             }
+-            current = current + this.tickUnit.getSize();
++            current = current + var_382.getSize();
+         }
+         return ticks;
+     }

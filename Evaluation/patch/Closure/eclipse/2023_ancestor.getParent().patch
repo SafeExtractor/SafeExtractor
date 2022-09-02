@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/StripCode.java b/src/com/google/javascript/jscomp/StripCode.java
+index 94c384a..244816c 100644
+--- a/src/com/google/javascript/jscomp/StripCode.java
++++ b/src/com/google/javascript/jscomp/StripCode.java
+@@ -254,9 +254,10 @@
+           replaceWithNull(ancestorChild, ancestor);
+           break;
+         }
+-        if (ancestor.isExprResult()) {
++        Node var_2023 = ancestor.getParent();
++		if (ancestor.isExprResult()) {
+           // Remove the entire expression statement.
+-          Node ancParent = ancestor.getParent();
++          Node ancParent = var_2023;
+           replaceWithEmpty(ancestor, ancParent);
+           break;
+         }
+@@ -268,7 +269,7 @@
+           break;
+         }
+         ancestorChild = ancestor;
+-        ancestor = ancestor.getParent();
++        ancestor = var_2023;
+       }
+       compiler.reportCodeChange();
+     }

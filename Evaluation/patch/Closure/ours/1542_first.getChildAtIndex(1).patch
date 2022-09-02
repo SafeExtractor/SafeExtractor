@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..5b051dc 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -332,13 +332,14 @@
+ 
+         // Get methods are unnamed
+         Preconditions.checkState(first.getFirstChild().getString().isEmpty());
+-        if (type == Token.GETTER_DEF) {
++        Node var_1542 = first.getChildAtIndex(1);
++		if (type == Token.GETTER_DEF) {
+           // Get methods have no parameters.
+-          Preconditions.checkState(!first.getChildAtIndex(1).hasChildren());
++          Preconditions.checkState(!var_1542.hasChildren());
+           add("get ");
+         } else {
+           // Set methods have one parameter.
+-          Preconditions.checkState(first.getChildAtIndex(1).hasOneChild());
++          Preconditions.checkState(var_1542.hasOneChild());
+           add("set ");
+         }
+ 

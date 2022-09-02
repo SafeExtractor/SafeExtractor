@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+index 2e75bce..b90e7a6 100644
+--- a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
++++ b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+@@ -315,18 +315,19 @@
+       maybeAddToSymbolTable(left);
+       maybeAddStringNodeToSymbolTable(arg);
+ 
+-      if (providedNames.containsKey(ns)) {
++      JSModule var_1512 = t.getModule();
++	if (providedNames.containsKey(ns)) {
+         ProvidedName previouslyProvided = providedNames.get(ns);
+         if (!previouslyProvided.isExplicitlyProvided()) {
+-          previouslyProvided.addProvide(parent, t.getModule(), true);
++          previouslyProvided.addProvide(parent, var_1512, true);
+         } else {
+           compiler.report(
+               t.makeError(n, DUPLICATE_NAMESPACE_ERROR, ns));
+         }
+       } else {
+-        registerAnyProvidedPrefixes(ns, parent, t.getModule());
++        registerAnyProvidedPrefixes(ns, parent, var_1512);
+         providedNames.put(
+-            ns, new ProvidedName(ns, parent, t.getModule(), true));
++            ns, new ProvidedName(ns, parent, var_1512, true));
+       }
+     }
+   }

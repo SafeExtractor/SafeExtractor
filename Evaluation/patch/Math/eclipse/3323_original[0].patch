@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/MultiDirectionalSimplex.java b/src/main/java/org/apache/commons/math3/optimization/direct/MultiDirectionalSimplex.java
+index be4ebc5..02c4073 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/MultiDirectionalSimplex.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/MultiDirectionalSimplex.java
+@@ -197,10 +197,11 @@
+                                                   final PointValuePair[] original,
+                                                   final double coeff,
+                                                   final Comparator<PointValuePair> comparator) {
+-        final double[] xSmallest = original[0].getPointRef();
++        PointValuePair var_3323 = original[0];
++		final double[] xSmallest = var_3323.getPointRef();
+         // Perform a linear transformation on all the simplex points,
+         // except the first one.
+-        setPoint(0, original[0]);
++        setPoint(0, var_3323);
+         final int dim = getDimension();
+         for (int i = 1; i < getSize(); i++) {
+             final double[] xOriginal = original[i].getPointRef();

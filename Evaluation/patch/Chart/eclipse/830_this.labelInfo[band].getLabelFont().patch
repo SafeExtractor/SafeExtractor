@@ -1,0 +1,31 @@
+diff --git a/source/org/jfree/chart/axis/PeriodAxis.java b/source/org/jfree/chart/axis/PeriodAxis.java
+index 3c0bc0f..0d15d52 100644
+--- a/source/org/jfree/chart/axis/PeriodAxis.java
++++ b/source/org/jfree/chart/axis/PeriodAxis.java
+@@ -64,6 +64,7 @@
+ 
+ import java.awt.BasicStroke;
+ import java.awt.Color;
++import java.awt.Font;
+ import java.awt.FontMetrics;
+ import java.awt.Graphics2D;
+ import java.awt.Paint;
+@@ -823,7 +824,8 @@
+ 
+         // work out the initial gap
+         double delta1 = 0.0;
+-        FontMetrics fm = g2.getFontMetrics(this.labelInfo[band].getLabelFont());
++        Font var_830 = this.labelInfo[band].getLabelFont();
++		FontMetrics fm = g2.getFontMetrics(var_830);
+         if (edge == RectangleEdge.BOTTOM) {
+             delta1 = this.labelInfo[band].getPadding().calculateTopOutset(
+                     fm.getHeight());
+@@ -835,7 +837,7 @@
+         state.moveCursor(delta1, edge);
+         long axisMin = this.first.getFirstMillisecond();
+         long axisMax = this.last.getLastMillisecond();
+-        g2.setFont(this.labelInfo[band].getLabelFont());
++        g2.setFont(var_830);
+         g2.setPaint(this.labelInfo[band].getLabelPaint());
+ 
+         // work out the number of periods to skip for labelling

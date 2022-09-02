@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/GatherSideEffectSubexpressionsCallback.java b/src/com/google/javascript/jscomp/GatherSideEffectSubexpressionsCallback.java
+index de70974..97e1f01 100644
+--- a/src/com/google/javascript/jscomp/GatherSideEffectSubexpressionsCallback.java
++++ b/src/com/google/javascript/jscomp/GatherSideEffectSubexpressionsCallback.java
+@@ -227,10 +227,11 @@
+   @Override
+   public boolean shouldTraverse(
+       NodeTraversal traversal, Node node, Node parent) {
+-    if (FORBIDDEN_TYPES.contains(node.getType()) ||
++    int var_1036 = node.getType();
++	if (FORBIDDEN_TYPES.contains(var_1036) ||
+         NodeUtil.isControlStructure(node)) {
+       throw new IllegalArgumentException(
+-          Token.name(node.getType()) + " nodes are not supported.");
++          Token.name(var_1036) + " nodes are not supported.");
+     }
+ 
+     // Do not recurse into nested functions.

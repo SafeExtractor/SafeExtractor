@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/ReplaceIdGenerators.java b/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
+index c6e4271..119f3b4 100644
+--- a/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
++++ b/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
+@@ -346,8 +346,9 @@
+         if (line.isEmpty()) {
+           continue;
+         }
+-        if (line.charAt(0) == '[') {
+-          String currentSection = line.substring(1, line.length() - 1);
++        int var_1289 = line.length();
++		if (line.charAt(0) == '[') {
++          String currentSection = line.substring(1, var_1289 - 1);
+           currentSectionMap = resultMap.get(currentSection);
+           if (currentSectionMap == null) {
+             currentSectionMap = HashBiMap.create();
+@@ -360,7 +361,7 @@
+           int split = line.indexOf(':');
+           if (split != -1) {
+             String name = line.substring(0, split);
+-            String location = line.substring(split + 1, line.length());
++            String location = line.substring(split + 1, var_1289);
+             currentSectionMap.put(name, location);
+           } else {
+             reportInvalidLine(line, lineIndex);

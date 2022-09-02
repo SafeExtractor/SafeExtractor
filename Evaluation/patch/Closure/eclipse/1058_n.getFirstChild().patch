@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..d172e09 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -832,21 +832,22 @@
+      * null instead of an empty collection if none are found.
+      */
+     private Collection<Action> getImplicitActions(Node n) {
+-      switch (n.getType()) {
++      Node var_1058 = n.getFirstChild();
++	switch (n.getType()) {
+         case Token.CALL:
+           // Functions passed to externs functions are considered called.
+           // E.g. window.setTimeout(callback, 100);
+           // TODO(user): support global extern function calls if necessary
+           // TODO(user): handle addEventListener for the case of an object
+           //     implementing the EventListener interface.
+-          Node receiver = n.getFirstChild();
++          Node receiver = var_1058;
+           if (!inExterns && receiver.isGetProp()) {
+             return getImplicitActionsFromCall(n, receiver.getJSType());
+           }
+           break;
+ 
+         case Token.ASSIGN:
+-          Node lhs = n.getFirstChild();
++          Node lhs = var_1058;
+           // Functions assigned to externs properties are considered called.
+           // E.g. element.onclick = function handle(evt) {};
+           if (!inExterns && lhs.isGetProp()) {

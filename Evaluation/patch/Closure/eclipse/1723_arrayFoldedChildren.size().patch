@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+index 63538e3..a89dfa8 100644
+--- a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
++++ b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+@@ -458,10 +458,11 @@
+           IR.string(sb.toString()).copyInformationFrom(prev));
+     }
+     // one for each comma.
+-    foldedSize += arrayFoldedChildren.size() - 1;
++    int var_1723 = arrayFoldedChildren.size();
++	foldedSize += var_1723 - 1;
+ 
+     int originalSize = InlineCostEstimator.getCost(n);
+-    switch (arrayFoldedChildren.size()) {
++    switch (var_1723) {
+       case 0:
+         Node emptyStringNode = IR.string("");
+         n.getParent().replaceChild(n, emptyStringNode);
+@@ -486,7 +487,7 @@
+         return foldedStringNode;
+       default:
+         // No folding could actually be performed.
+-        if (arrayFoldedChildren.size() == arrayNode.getChildCount()) {
++        if (var_1723 == arrayNode.getChildCount()) {
+           return n;
+         }
+         int kJoinOverhead = "[].join()".length();

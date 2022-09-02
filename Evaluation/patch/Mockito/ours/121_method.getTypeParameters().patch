@@ -1,0 +1,14 @@
+diff --git a/src/org/mockito/internal/util/reflection/GenericMetadataSupport.java b/src/org/mockito/internal/util/reflection/GenericMetadataSupport.java
+index a96dac4..00352f3 100644
+--- a/src/org/mockito/internal/util/reflection/GenericMetadataSupport.java
++++ b/src/org/mockito/internal/util/reflection/GenericMetadataSupport.java
+@@ -204,7 +204,8 @@
+             return new NotGenericReturnTypeSupport(genericReturnType);
+         }
+         if (genericReturnType instanceof ParameterizedType) {
+-            return new ParameterizedReturnType(this, method.getTypeParameters(), (ParameterizedType) method.getGenericReturnType());
++            TypeVariable<Method>[] var_121 = method.getTypeParameters();
++			return new ParameterizedReturnType(this, var_121, (ParameterizedType) method.getGenericReturnType());
+         }
+         if (genericReturnType instanceof TypeVariable) {
+             return new TypeVariableReturnType(this, method.getTypeParameters(), (TypeVariable) genericReturnType);

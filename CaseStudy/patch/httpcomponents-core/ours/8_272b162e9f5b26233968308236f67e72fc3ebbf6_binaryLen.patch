@@ -1,0 +1,24 @@
+diff --git a/httpcore5-h2/src/main/java/org/apache/hc/core5/http2/hpack/HPackDecoder.java b/httpcore5-h2/src/main/java/org/apache/hc/core5/http2/hpack/HPackDecoder.java
+index d488053..3b909d6 100644
+--- a/httpcore5-h2/src/main/java/org/apache/hc/core5/http2/hpack/HPackDecoder.java
++++ b/httpcore5-h2/src/main/java/org/apache/hc/core5/http2/hpack/HPackDecoder.java
+@@ -171,14 +171,15 @@
+ 
+         clearState();
+         decodeString(this.contentBuf, src);
+-        if (this.charsetDecoder == null) {
+-            final StringBuilder buf = new StringBuilder(this.contentBuf.length());
+-            for (int i = 0; i < this.contentBuf.length(); i++) {
++        int binaryLen = this.contentBuf.length();
++		if (this.charsetDecoder == null) {
++            final StringBuilder buf = new StringBuilder(binaryLen);
++            for (int i = 0; i < binaryLen; i++) {
+                 buf.append((char) (this.contentBuf.byteAt(i) & 0xFF));
+             }
+             return buf.toString();
+         } else {
+-            final ByteBuffer in = ByteBuffer.wrap(this.contentBuf.buffer(), 0, this.contentBuf.length());
++            final ByteBuffer in = ByteBuffer.wrap(this.contentBuf.buffer(), 0, binaryLen);
+             while (in.hasRemaining()) {
+                 ensureCapacity(in.remaining());
+                 final CoderResult result = this.charsetDecoder.decode(in, this.tmpBuf, true);

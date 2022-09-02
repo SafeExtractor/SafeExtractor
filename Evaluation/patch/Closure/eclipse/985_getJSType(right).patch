@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..66afcd5 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -482,7 +482,8 @@
+     // To be explicitly set to false if the node is not typeable.
+     boolean typeable = true;
+ 
+-    switch (n.getType()) {
++    JSType var_985 = getJSType(right);
++	switch (n.getType()) {
+       case Token.CAST:
+         Node expr = n.getFirstChild();
+         ensureTyped(t, n, getJSType(expr));
+@@ -631,7 +632,7 @@
+         }
+ 
+         leftType = getJSType(left);
+-        rightType = getJSType(right);
++        rightType = var_985;
+ 
+         // We do not want to warn about explicit comparisons to VOID. People
+         // often do this if they think their type annotations screwed up.
+@@ -702,7 +703,7 @@
+       case Token.IN:
+         left = n.getFirstChild();
+         right = n.getLastChild();
+-        rightType = getJSType(right);
++        rightType = var_985;
+         validator.expectString(t, left, getJSType(left), "left side of 'in'");
+         validator.expectObject(t, n, rightType, "'in' requires an object");
+         if (rightType.isStruct()) {
+@@ -714,7 +715,7 @@
+       case Token.INSTANCEOF:
+         left = n.getFirstChild();
+         right = n.getLastChild();
+-        rightType = getJSType(right).restrictByNotNullOrUndefined();
++        rightType = var_985.restrictByNotNullOrUndefined();
+         validator.expectAnyObject(
+             t, left, getJSType(left), "deterministic instanceof yields false");
+         validator.expectActualObject(

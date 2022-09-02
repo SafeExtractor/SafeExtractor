@@ -1,0 +1,14 @@
+diff --git a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/scheduling/TimerDrivenSchedulingAgent.java b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/scheduling/TimerDrivenSchedulingAgent.java
+index fcd901f..a55f875 100644
+--- a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/scheduling/TimerDrivenSchedulingAgent.java
++++ b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/scheduling/TimerDrivenSchedulingAgent.java
+@@ -139,7 +139,8 @@
+                     // If the component is yielded, cancel its future and re-submit it to run again
+                     // after the yield has expired.
+                     final long newYieldExpiration = connectable.getYieldExpiration();
+-                    if (newYieldExpiration > System.currentTimeMillis()) {
++                    long now = System.currentTimeMillis();
++					if (newYieldExpiration > now) {
+                         final long yieldMillis = newYieldExpiration - System.currentTimeMillis();
+                         final ScheduledFuture<?> scheduledFuture = futureRef.get();
+                         if (scheduledFuture == null) {

@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/deps/PathUtil.java b/src/com/google/javascript/jscomp/deps/PathUtil.java
+index 68efd2a..515f7cf 100644
+--- a/src/com/google/javascript/jscomp/deps/PathUtil.java
++++ b/src/com/google/javascript/jscomp/deps/PathUtil.java
+@@ -175,14 +175,15 @@
+     String[] targetFragments = targetPath.split("/");
+ 
+     int i = -1;
+-    do {
++    int var_2148 = baseFragments.length;
++	do {
+       i += 1;
+-      if (i == baseFragments.length && i == targetFragments.length) {
++      if (i == var_2148 && i == targetFragments.length) {
+         // Eg) base: /java/com/google
+         //   target: /java/com/google
+         //   result: .  <-- . is better than "" since "" + "/path" = "/path"
+         return ".";
+-      } else if (i == baseFragments.length) {
++      } else if (i == var_2148) {
+         // Eg) base: /java/com/google
+         //   target: /java/com/google/c/ui
+         //   result: c/ui
+@@ -193,7 +194,7 @@
+         // Eg) base: /java/com/google/c/ui
+         //   target: /java/com/google
+         //   result: ../..
+-        return Strings.repeat("../", baseFragments.length - i - 1) + "..";
++        return Strings.repeat("../", var_2148 - i - 1) + "..";
+       }
+ 
+     } while (baseFragments[i].equals(targetFragments[i]));
+@@ -201,7 +202,7 @@
+     // Eg) base: /java/com/google/c
+     //   target: /java/com/google/common/base
+     //   result: ../common/base
+-    return Strings.repeat("../", baseFragments.length - i) +
++    return Strings.repeat("../", var_2148 - i) +
+         Joiner.on("/").join(
+             Lists.newArrayList(Arrays.asList(targetFragments).listIterator(i)));
+   }

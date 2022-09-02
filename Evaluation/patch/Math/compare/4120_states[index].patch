@@ -1,0 +1,48 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/4120_states[index].patch b/Users/safe/paper/Evaluation/patch/Math/ours/4120_states[index].patch
+index 754ad13..025493f 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/4120_states[index].patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/4120_states[index].patch
+@@ -1,8 +1,8 @@
+ diff --git a/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java b/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+-index 2b007b2..7aba9ad 100644
++index 2b007b2..8f681a9 100644
+ --- a/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+ +++ b/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+-@@ -268,29 +268,30 @@
++@@ -268,15 +268,16 @@
+                                            final int key, final int mask) {
+          final int hash = hashOf(key);
+          int index = hash & mask;
+@@ -22,32 +22,3 @@ index 2b007b2..7aba9ad 100644
+              while (true) {
+                  j = probe(perturb, j);
+                  index = j & mask;
+-                 perturb >>= PERTURB_SHIFT;
+- 
+--                if (states[index] != FULL || keys[index] == key) {
+-+                if (var_4120 != FULL || keys[index] == key) {
+-                     break;
+-                 }
+-             }
+-         }
+- 
+--        if (states[index] == FREE) {
+-+        if (var_4120 == FREE) {
+-             return index;
+--        } else if (states[index] == FULL) {
+-+        } else if (var_4120 == FULL) {
+-             // due to the loop exit condition,
+-             // if (states[index] == FULL) then keys[index] == key
+-             return changeIndexSign(index);
+-@@ -301,9 +302,9 @@
+-             j = probe(perturb, j);
+-             index = j & mask;
+- 
+--            if (states[index] == FREE) {
+-+            if (var_4120 == FREE) {
+-                 return firstRemoved;
+--            } else if (states[index] == FULL && keys[index] == key) {
+-+            } else if (var_4120 == FULL && keys[index] == key) {
+-                 return changeIndexSign(index);
+-             }
+- 

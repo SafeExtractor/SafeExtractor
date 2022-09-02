@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/GlobalVarReferenceMap.java b/src/com/google/javascript/jscomp/GlobalVarReferenceMap.java
+index 9b7870d..bfddd2b 100644
+--- a/src/com/google/javascript/jscomp/GlobalVarReferenceMap.java
++++ b/src/com/google/javascript/jscomp/GlobalVarReferenceMap.java
+@@ -144,15 +144,16 @@
+     List<Reference> combinedRefs = combined.references;
+     ReferenceCollection oldCollection = refMap.get(varName);
+     refMap.put(varName, combined);
+-    if (oldCollection == null) {
+-      combinedRefs.addAll(newSourceCollection.references);
++    List<Reference> var_654 = newSourceCollection.references;
++	if (oldCollection == null) {
++      combinedRefs.addAll(var_654);
+       return;
+     }
+     // otherwise replace previous references that are from sourceName
+     SourceRefRange range = findSourceRefRange(oldCollection.references,
+       inputId);
+     combinedRefs.addAll(range.refsBefore());
+-    combinedRefs.addAll(newSourceCollection.references);
++    combinedRefs.addAll(var_654);
+     combinedRefs.addAll(range.refsAfter());
+   }
+ 

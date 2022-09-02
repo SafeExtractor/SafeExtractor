@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java b/src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java
+index 8f76f06..e2a2f18 100644
+--- a/src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java
++++ b/src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java
+@@ -2525,16 +2525,17 @@
+             parseLookup = (parseLookup != null ? parseLookup : DateTimeUtils.getDefaultTimeZoneNames());
+             String str = text.substring(position);
+             String matched = null;
+-            for (String name : parseLookup.keySet()) {
++            int var_488 = matched.length();
++			for (String name : parseLookup.keySet()) {
+                 if (str.startsWith(name)) {
+-                    if (matched == null || name.length() > matched.length()) {
++                    if (matched == null || name.length() > var_488) {
+                         matched = name;
+                     }
+                 }
+             }
+             if (matched != null) {
+                 bucket.setZone(parseLookup.get(matched));
+-                return position + matched.length();
++                return position + var_488;
+             }
+             return ~position;
+         }

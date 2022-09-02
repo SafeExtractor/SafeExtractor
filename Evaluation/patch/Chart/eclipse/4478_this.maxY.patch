@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/data/xy/XYSeries.java b/source/org/jfree/data/xy/XYSeries.java
+index c2d0ba8..993e22c 100644
+--- a/source/org/jfree/data/xy/XYSeries.java
++++ b/source/org/jfree/data/xy/XYSeries.java
+@@ -670,8 +670,9 @@
+         // figure out if we need to iterate through all the y-values
+         boolean iterate = false;
+         double oldY = item.getYValue();
+-        if (!Double.isNaN(oldY)) {
+-            iterate = oldY <= this.minY || oldY >= this.maxY;
++        double var_4478 = this.maxY;
++		if (!Double.isNaN(oldY)) {
++            iterate = oldY <= this.minY || oldY >= var_4478;
+         }
+         item.setY(y);
+ 
+@@ -681,7 +682,7 @@
+         else if (y != null) {
+             double yy = y.doubleValue();
+             this.minY = minIgnoreNaN(this.minY, yy);
+-            this.maxY = maxIgnoreNaN(this.maxY, yy);
++            this.maxY = maxIgnoreNaN(var_4478, yy);
+         }
+         fireSeriesChanged();
+     }

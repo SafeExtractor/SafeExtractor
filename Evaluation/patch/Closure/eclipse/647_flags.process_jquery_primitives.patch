@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/CommandLineRunner.java b/src/com/google/javascript/jscomp/CommandLineRunner.java
+index 2d3b139..e0f57d1 100644
+--- a/src/com/google/javascript/jscomp/CommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/CommandLineRunner.java
+@@ -756,7 +756,8 @@
+   @Override
+   protected CompilerOptions createOptions() {
+     CompilerOptions options = new CompilerOptions();
+-    if (flags.process_jquery_primitives) {
++    boolean var_647 = flags.process_jquery_primitives;
++	if (var_647) {
+       options.setCodingConvention(new JqueryCodingConvention());
+     } else {
+       options.setCodingConvention(new ClosureCodingConvention());
+@@ -785,7 +786,7 @@
+ 
+     options.closurePass = flags.process_closure_primitives;
+ 
+-    options.jqueryPass = flags.process_jquery_primitives &&
++    options.jqueryPass = var_647 &&
+         CompilationLevel.ADVANCED_OPTIMIZATIONS == level;
+ 
+     if (!flags.translationsFile.isEmpty()) {

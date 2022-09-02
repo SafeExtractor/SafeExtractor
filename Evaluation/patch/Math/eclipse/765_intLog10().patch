@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+index 4c20a64..4eaec73 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+@@ -319,8 +319,9 @@
+             up = !up;
+         }
+ 
+-        if (up) {
+-            inc = power10(intLog10() - getDecimalDigits() + 1);
++        int var_765 = intLog10();
++		if (up) {
++            inc = power10(var_765 - getDecimalDigits() + 1);
+             inc = copysign(inc, this);
+ 
+             if (this.equals(getZero())) {
+@@ -333,7 +334,7 @@
+                 result = add(inc);
+             }
+         } else {
+-            inc = power10(intLog10());
++            inc = power10(var_765);
+             inc = copysign(inc, this);
+ 
+             if (this.equals(inc)) {

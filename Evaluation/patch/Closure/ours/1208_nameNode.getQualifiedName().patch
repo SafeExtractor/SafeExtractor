@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..2826404 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -392,10 +392,11 @@
+         Node nameNode, Node valueNode, JSDocInfo info) {
+       if (nameNode.isQualifiedName()) {
+         if (info != null) {
+-          if (info.hasEnumParameterType()) {
+-            registry.identifyNonNullableName(nameNode.getQualifiedName());
++          String var_1208 = nameNode.getQualifiedName();
++		if (info.hasEnumParameterType()) {
++            registry.identifyNonNullableName(var_1208);
+           } else if (info.hasTypedefType()) {
+-            registry.identifyNonNullableName(nameNode.getQualifiedName());
++            registry.identifyNonNullableName(var_1208);
+           }
+         }
+       }

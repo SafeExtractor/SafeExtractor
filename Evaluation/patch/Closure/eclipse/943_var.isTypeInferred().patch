@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+index 3dc8ec6..d8b4c0e 100644
+--- a/src/com/google/javascript/jscomp/TypeInference.java
++++ b/src/com/google/javascript/jscomp/TypeInference.java
+@@ -532,7 +532,8 @@
+   private void updateScopeForTypeChange(
+       FlowScope scope, Node left, JSType leftType, JSType resultType) {
+     Preconditions.checkNotNull(resultType);
+-    switch (left.getType()) {
++    boolean var_943 = var.isTypeInferred();
++	switch (left.getType()) {
+       case Token.NAME:
+         String varName = left.getString();
+         Var var = syntacticScope.getVar(varName);
+@@ -548,13 +549,13 @@
+         //    the inference will ignore the lexical closure,
+         //    which is just wrong. This bug needs to be fixed eventually.
+         boolean isVarDeclaration = left.hasChildren();
+-        if (!isVarDeclaration || var == null || var.isTypeInferred()) {
++        if (!isVarDeclaration || var == null || var_943) {
+           redeclareSimpleVar(scope, left, resultType);
+         }
+         left.setJSType(isVarDeclaration || leftType == null ?
+             resultType : null);
+ 
+-        if (var != null && var.isTypeInferred()) {
++        if (var != null && var_943) {
+           JSType oldType = var.getType();
+           var.setType(oldType == null ?
+               resultType : oldType.getLeastSupertype(resultType));

@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/joda/time/chrono/ISOChronology.java b/src/main/java/org/joda/time/chrono/ISOChronology.java
+index 075dd7b..0feaeec 100644
+--- a/src/main/java/org/joda/time/chrono/ISOChronology.java
++++ b/src/main/java/org/joda/time/chrono/ISOChronology.java
+@@ -23,6 +23,7 @@
+ import java.util.Map;
+ 
+ import org.joda.time.Chronology;
++import org.joda.time.DateTimeField;
+ import org.joda.time.DateTimeFieldType;
+ import org.joda.time.DateTimeZone;
+ import org.joda.time.field.DividedDateTimeField;
+@@ -170,12 +171,13 @@
+             // Use zero based century and year of century.
+             fields.centuryOfEra = new DividedDateTimeField(
+                 ISOYearOfEraDateTimeField.INSTANCE, DateTimeFieldType.centuryOfEra(), 100);
+-            fields.centuries = fields.centuryOfEra.getDurationField();
++            DateTimeField var_356 = fields.centuryOfEra;
++			fields.centuries = var_356.getDurationField();
+             
+             fields.yearOfCentury = new RemainderDateTimeField(
+-                (DividedDateTimeField) fields.centuryOfEra, DateTimeFieldType.yearOfCentury());
++                (DividedDateTimeField) var_356, DateTimeFieldType.yearOfCentury());
+             fields.weekyearOfCentury = new RemainderDateTimeField(
+-                (DividedDateTimeField) fields.centuryOfEra, fields.weekyears, DateTimeFieldType.weekyearOfCentury());
++                (DividedDateTimeField) var_356, fields.weekyears, DateTimeFieldType.weekyearOfCentury());
+         }
+     }
+ 

@@ -1,0 +1,74 @@
+diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+index 3dc8ec6..f1a0d48 100644
+--- a/src/com/google/javascript/jscomp/TypeInference.java
++++ b/src/com/google/javascript/jscomp/TypeInference.java
+@@ -301,7 +301,8 @@
+   }
+ 
+   private FlowScope traverse(Node n, FlowScope scope) {
+-    switch (n.getType()) {
++    FlowScope var_941 = traverseChildren(n, scope);
++	switch (n.getType()) {
+       case Token.ASSIGN:
+         scope = traverseAssign(n, scope);
+         break;
+@@ -382,7 +383,7 @@
+       case Token.DEC:
+       case Token.INC:
+       case Token.BITNOT:
+-        scope = traverseChildren(n, scope);
++        scope = var_941;
+         n.setJSType(getNativeType(NUMBER_TYPE));
+         break;
+ 
+@@ -392,12 +393,12 @@
+         break;
+ 
+       case Token.COMMA:
+-        scope = traverseChildren(n, scope);
++        scope = var_941;
+         n.setJSType(getJSType(n.getLastChild()));
+         break;
+ 
+       case Token.TYPEOF:
+-        scope = traverseChildren(n, scope);
++        scope = var_941;
+         n.setJSType(getNativeType(STRING_TYPE));
+         break;
+ 
+@@ -413,7 +414,7 @@
+       case Token.SHNE:
+       case Token.INSTANCEOF:
+       case Token.IN:
+-        scope = traverseChildren(n, scope);
++        scope = var_941;
+         n.setJSType(getNativeType(BOOLEAN_TYPE));
+         break;
+ 
+@@ -422,7 +423,7 @@
+         break;
+ 
+       case Token.EXPR_RESULT:
+-        scope = traverseChildren(n, scope);
++        scope = var_941;
+         if (n.getFirstChild().isGetProp()) {
+           ensurePropertyDeclared(n.getFirstChild());
+         }
+@@ -438,7 +439,7 @@
+ 
+       case Token.VAR:
+       case Token.THROW:
+-        scope = traverseChildren(n, scope);
++        scope = var_941;
+         break;
+ 
+       case Token.CATCH:
+@@ -446,7 +447,7 @@
+         break;
+ 
+       case Token.CAST:
+-        scope = traverseChildren(n, scope);
++        scope = var_941;
+         break;
+     }
+ 

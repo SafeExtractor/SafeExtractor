@@ -1,0 +1,32 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/191_array.length.patch b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/191_array.length.patch
+index a62ef70..96ffa20 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/191_array.length.patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/191_array.length.patch
+@@ -1,22 +1,15 @@
+ diff --git a/src/main/java/org/apache/commons/lang3/ArrayUtils.java b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+-index a0a499a..9120cf0 100644
++index a0a499a..a72fcde 100644
+ --- a/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+ +++ b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+-@@ -3097,13 +3097,14 @@
+-      * @throws NullPointerException if array content is {@code null}
+-      */
+-     public static float[] toPrimitive(final Float[] array) {
+--        if (array == null) {
+-+        int var_191 = array.length;
+-+		if (array == null) {
+-             return null;
+--        } else if (array.length == 0) {
+-+        } else if (var_191 == 0) {
++@@ -3102,8 +3102,9 @@
++         } else if (array.length == 0) {
+              return EMPTY_FLOAT_ARRAY;
+          }
+ -        final float[] result = new float[array.length];
+ -        for (int i = 0; i < array.length; i++) {
+-+        final float[] result = new float[var_191];
+++        int var_191 = array.length;
+++		final float[] result = new float[var_191];
+ +        for (int i = 0; i < var_191; i++) {
+              result[i] = array[i].floatValue();
+          }

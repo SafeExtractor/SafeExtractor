@@ -1,0 +1,41 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/758_copysign(newInstance(getZero()),this).patch b/Users/safe/paper/Evaluation/patch/Math/ours/758_copysign(newInstance(getZero()),this).patch
+index 2550601..99d46a0 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/758_copysign(newInstance(getZero()),this).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/758_copysign(newInstance(getZero()),this).patch
+@@ -1,32 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+-index 4c20a64..1df9dad 100644
++index 4c20a64..bafbcd4 100644
+ --- a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+ +++ b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+-@@ -319,7 +319,8 @@
+-             up = !up;
+-         }
+- 
+--        if (up) {
+-+        Dfp var_758 = copysign(newInstance(getZero()), this);
+-+		if (up) {
+-             inc = power10(intLog10() - getDecimalDigits() + 1);
+-             inc = copysign(inc, this);
+- 
+-@@ -328,7 +329,7 @@
++@@ -328,7 +328,8 @@
+              }
+  
+              if (inc.equals(getZero())) {
+ -                result = copysign(newInstance(getZero()), this);
+-+                result = var_758;
+++                Dfp var_758 = copysign(newInstance(getZero()), this);
+++				result = var_758;
+              } else {
+                  result = add(inc);
+              }
+-@@ -347,7 +348,7 @@
+-             }
+- 
+-             if (inc.equals(getZero())) {
+--                result = copysign(newInstance(getZero()), this);
+-+                result = var_758;
+-             } else {
+-                 result = subtract(inc);
+-             }

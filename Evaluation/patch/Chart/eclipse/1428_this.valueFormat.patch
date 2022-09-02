@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/plot/ThermometerPlot.java b/source/org/jfree/chart/plot/ThermometerPlot.java
+index d4bd7b7..eeaa2bb 100644
+--- a/source/org/jfree/chart/plot/ThermometerPlot.java
++++ b/source/org/jfree/chart/plot/ThermometerPlot.java
+@@ -1254,19 +1254,20 @@
+             g2.setFont(this.valueFont);
+             g2.setPaint(this.valuePaint);
+             metrics = g2.getFontMetrics();
+-            switch (this.valueLocation) {
++            NumberFormat var_1428 = this.valueFormat;
++			switch (this.valueLocation) {
+                 case RIGHT:
+-                    g2.drawString(this.valueFormat.format(current),
++                    g2.drawString(var_1428.format(current),
+                             midX + getColumnRadius() + getGap(), midY);
+                     break;
+                 case LEFT:
+-                    String valueString = this.valueFormat.format(current);
++                    String valueString = var_1428.format(current);
+                     int stringWidth = metrics.stringWidth(valueString);
+                     g2.drawString(valueString, midX - getColumnRadius()
+                             - getGap() - stringWidth, midY);
+                     break;
+                 case BULB:
+-                    temp = this.valueFormat.format(current);
++                    temp = var_1428.format(current);
+                     i = metrics.stringWidth(temp) / 2;
+                     g2.drawString(temp, midX - i,
+                             stemBottom + getBulbRadius() + getGap());

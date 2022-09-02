@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..4b96137 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -1722,10 +1722,11 @@
+    * @return the condition node or null if the condition is not obviously a node
+    */
+   static Node getConditionExpression(Node n) {
+-    switch (n.getType()) {
++    Node var_2071 = n.getFirstChild();
++	switch (n.getType()) {
+       case Token.IF:
+       case Token.WHILE:
+-        return n.getFirstChild();
++        return var_2071;
+       case Token.DO:
+         return n.getLastChild();
+       case Token.FOR:
+@@ -1733,7 +1734,7 @@
+           case 3:
+             return null;
+           case 4:
+-            return n.getFirstChild().getNext();
++            return var_2071.getNext();
+         }
+         throw new IllegalArgumentException("malformed 'for' statement " + n);
+       case Token.CASE:

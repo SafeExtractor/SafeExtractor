@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/lang3/builder/ReflectionToStringBuilder.java b/src/main/java/org/apache/commons/lang3/builder/ReflectionToStringBuilder.java
+index 807fb88..cccb45b 100644
+--- a/src/main/java/org/apache/commons/lang3/builder/ReflectionToStringBuilder.java
++++ b/src/main/java/org/apache/commons/lang3/builder/ReflectionToStringBuilder.java
+@@ -476,11 +476,12 @@
+             // Reject field from inner class.
+             return false;
+         }
+-        if (Modifier.isTransient(field.getModifiers()) && !this.isAppendTransients()) {
++        int var_325 = field.getModifiers();
++		if (Modifier.isTransient(var_325) && !this.isAppendTransients()) {
+             // Reject transient fields.
+             return false;
+         }
+-        if (Modifier.isStatic(field.getModifiers()) && !this.isAppendStatics()) {
++        if (Modifier.isStatic(var_325) && !this.isAppendStatics()) {
+             // Reject static fields.
+             return false;
+         }

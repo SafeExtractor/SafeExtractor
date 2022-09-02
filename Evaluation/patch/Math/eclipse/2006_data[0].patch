@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/MatrixUtils.java b/src/main/java/org/apache/commons/math3/linear/MatrixUtils.java
+index 5b91780..af717bb 100644
+--- a/src/main/java/org/apache/commons/math3/linear/MatrixUtils.java
++++ b/src/main/java/org/apache/commons/math3/linear/MatrixUtils.java
+@@ -127,11 +127,12 @@
+     public static RealMatrix createRealMatrix(double[][] data)
+         throws NullArgumentException, DimensionMismatchException,
+         NoDataException {
+-        if (data == null ||
+-            data[0] == null) {
++        double[] var_2006 = data[0];
++		if (data == null ||
++            var_2006 == null) {
+             throw new NullArgumentException();
+         }
+-        return (data.length * data[0].length <= 4096) ?
++        return (data.length * var_2006.length <= 4096) ?
+                 new Array2DRowRealMatrix(data) : new BlockRealMatrix(data);
+     }
+ 

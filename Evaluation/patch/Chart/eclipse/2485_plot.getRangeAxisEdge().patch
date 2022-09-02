@@ -1,0 +1,35 @@
+diff --git a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+index 4a54655..e42d029 100644
+--- a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
++++ b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+@@ -1183,7 +1183,8 @@
+                                 Marker marker,
+                                 Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        RectangleEdge var_2485 = plot.getRangeAxisEdge();
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = axis.getRange();
+@@ -1198,7 +1199,7 @@
+ 
+             PlotOrientation orientation = plot.getOrientation();
+             double v = axis.valueToJava2D(value, dataArea,
+-                    plot.getRangeAxisEdge());
++                    var_2485);
+             Line2D line = null;
+             if (orientation == PlotOrientation.HORIZONTAL) {
+                 line = new Line2D.Double(v, dataArea.getMinY(), v,
+@@ -1243,9 +1244,9 @@
+                     AlphaComposite.SRC_OVER, marker.getAlpha()));
+ 
+             double start2d = axis.valueToJava2D(start, dataArea,
+-                    plot.getRangeAxisEdge());
++                    var_2485);
+             double end2d = axis.valueToJava2D(end, dataArea,
+-                    plot.getRangeAxisEdge());
++                    var_2485);
+             double low = Math.min(start2d, end2d);
+             double high = Math.max(start2d, end2d);
+ 

@@ -1,0 +1,24 @@
+diff --git a/Users/safe/paper/CaseStudy/patch/httpcomponents-core/eclipse/2_d54599238023ce0f77cb6ae2d4926960fd3fd1ad_currentTimeMillis.patch b/Users/safe/paper/CaseStudy/patch/httpcomponents-core/ours/2_d54599238023ce0f77cb6ae2d4926960fd3fd1ad_currentTimeMillis.patch
+index 719ab7b..0db4fca 100644
+--- a/Users/safe/paper/CaseStudy/patch/httpcomponents-core/eclipse/2_d54599238023ce0f77cb6ae2d4926960fd3fd1ad_currentTimeMillis.patch
++++ b/Users/safe/paper/CaseStudy/patch/httpcomponents-core/ours/2_d54599238023ce0f77cb6ae2d4926960fd3fd1ad_currentTimeMillis.patch
+@@ -1,16 +1,14 @@
+ diff --git a/httpcore5/src/main/java/org/apache/hc/core5/reactor/IOSessionImpl.java b/httpcore5/src/main/java/org/apache/hc/core5/reactor/IOSessionImpl.java
+-index 8529138..d16cea8 100644
++index 8529138..1f4bb12 100644
+ --- a/httpcore5/src/main/java/org/apache/hc/core5/reactor/IOSessionImpl.java
+ +++ b/httpcore5/src/main/java/org/apache/hc/core5/reactor/IOSessionImpl.java
+-@@ -74,8 +74,9 @@
++@@ -74,7 +74,8 @@
+          this.socketTimeout = Timeout.DISABLED;
+          this.id = String.format("i/o-%08X", COUNT.getAndIncrement());
+          this.status = new AtomicInteger(ACTIVE);
+ -        this.lastReadTime = System.currentTimeMillis();
+--        this.lastWriteTime = System.currentTimeMillis();
+ +        long currentTimeMillis = System.currentTimeMillis();
+ +		this.lastReadTime = currentTimeMillis;
+-+        this.lastWriteTime = currentTimeMillis;
++         this.lastWriteTime = System.currentTimeMillis();
+      }
+  
+-     @Override

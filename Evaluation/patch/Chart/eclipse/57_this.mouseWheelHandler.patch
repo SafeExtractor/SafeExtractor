@@ -1,0 +1,20 @@
+diff --git a/source/org/jfree/chart/ChartPanel.java b/source/org/jfree/chart/ChartPanel.java
+index 001049a..14b76e2 100644
+--- a/source/org/jfree/chart/ChartPanel.java
++++ b/source/org/jfree/chart/ChartPanel.java
+@@ -1306,11 +1306,12 @@
+      * @since 1.0.13
+      */
+     public void setMouseWheelEnabled(boolean flag) {
+-        if (flag && this.mouseWheelHandler == null) {
++        MouseWheelHandler var_57 = this.mouseWheelHandler;
++		if (flag && var_57 == null) {
+             this.mouseWheelHandler = new MouseWheelHandler(this);
+         }
+-        else if (!flag && this.mouseWheelHandler != null) {
+-            removeMouseWheelListener(this.mouseWheelHandler);
++        else if (!flag && var_57 != null) {
++            removeMouseWheelListener(var_57);
+             this.mouseWheelHandler = null;
+         }
+     }

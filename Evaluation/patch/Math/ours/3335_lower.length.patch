@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/MultivariateFunctionMappingAdapter.java b/src/main/java/org/apache/commons/math3/optimization/direct/MultivariateFunctionMappingAdapter.java
+index 89b067d..36df69b 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/MultivariateFunctionMappingAdapter.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/MultivariateFunctionMappingAdapter.java
+@@ -102,10 +102,11 @@
+         // safety checks
+         MathUtils.checkNotNull(lower);
+         MathUtils.checkNotNull(upper);
+-        if (lower.length != upper.length) {
+-            throw new DimensionMismatchException(lower.length, upper.length);
++        int var_3335 = lower.length;
++		if (var_3335 != upper.length) {
++            throw new DimensionMismatchException(var_3335, upper.length);
+         }
+-        for (int i = 0; i < lower.length; ++i) {
++        for (int i = 0; i < var_3335; ++i) {
+             // note the following test is written in such a way it also fails for NaN
+             if (!(upper[i] >= lower[i])) {
+                 throw new NumberIsTooSmallException(upper[i], lower[i], true);
+@@ -113,7 +114,7 @@
+         }
+ 
+         this.bounded = bounded;
+-        this.mappers = new Mapper[lower.length];
++        this.mappers = new Mapper[var_3335];
+         for (int i = 0; i < mappers.length; ++i) {
+             if (Double.isInfinite(lower[i])) {
+                 if (Double.isInfinite(upper[i])) {

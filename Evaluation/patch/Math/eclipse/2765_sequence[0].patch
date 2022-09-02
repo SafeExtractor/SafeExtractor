@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+index ed2ddda..90013e2 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+@@ -707,7 +707,8 @@
+               costPerTimeUnit[k] = costPerStep[k] / optimalStep[k];
+ 
+               // check convergence
+-              switch (k - targetIter) {
++              int var_2765 = sequence[0];
++			switch (k - targetIter) {
+ 
+               case -1 :
+                 if ((targetIter > 1) && ! previousRejected) {
+@@ -721,7 +722,7 @@
+                     // be reached on next iteration, using the
+                     // asymptotic evolution of error
+                     final double ratio = ((double) sequence [targetIter] * sequence[targetIter + 1]) /
+-                                         (sequence[0] * sequence[0]);
++                                         (var_2765 * var_2765);
+                     if (error > ratio * ratio) {
+                       // we don't expect to converge on next iteration
+                       // we reject the step immediately and reduce order
+@@ -747,7 +748,7 @@
+                   // estimate if there is a chance convergence will
+                   // be reached on next iteration, using the
+                   // asymptotic evolution of error
+-                  final double ratio = ((double) sequence[k+1]) / sequence[0];
++                  final double ratio = ((double) sequence[k+1]) / var_2765;
+                   if (error > ratio * ratio) {
+                     // we don't expect to converge on next iteration
+                     // we reject the step immediately

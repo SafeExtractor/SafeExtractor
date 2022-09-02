@@ -1,0 +1,31 @@
+diff --git a/source/org/jfree/chart/axis/Axis.java b/source/org/jfree/chart/axis/Axis.java
+index cabb331..740f2bd 100644
+--- a/source/org/jfree/chart/axis/Axis.java
++++ b/source/org/jfree/chart/axis/Axis.java
+@@ -1304,10 +1304,11 @@
+         Rectangle2D labelBounds = TextUtilities.getTextBounds(label, g2, fm);
+         Shape hotspot = null;
+ 
+-        if (edge == RectangleEdge.TOP) {
+-            AffineTransform t = AffineTransform.getRotateInstance(
+-                    getLabelAngle(), labelBounds.getCenterX(),
+-                    labelBounds.getCenterY());
++        AffineTransform var_305 = AffineTransform.getRotateInstance(
++		        getLabelAngle(), labelBounds.getCenterX(),
++		        labelBounds.getCenterY());
++		if (edge == RectangleEdge.TOP) {
++            AffineTransform t = var_305;
+             Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);
+             labelBounds = rotatedLabelBounds.getBounds2D();
+             float w = (float) labelBounds.getWidth();
+@@ -1323,9 +1324,7 @@
+                     + insets.getBottom());
+         }
+         else if (edge == RectangleEdge.BOTTOM) {
+-            AffineTransform t = AffineTransform.getRotateInstance(
+-                    getLabelAngle(), labelBounds.getCenterX(),
+-                    labelBounds.getCenterY());
++            AffineTransform t = var_305;
+             Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);
+             labelBounds = rotatedLabelBounds.getBounds2D();
+             float w = (float) labelBounds.getWidth();

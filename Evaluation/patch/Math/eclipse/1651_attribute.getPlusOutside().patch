@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+index 5d8a992..bd42cb8 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+@@ -818,8 +818,9 @@
+         public void visitInternalNode(final BSPTree<Euclidean2D> node) {
+             @SuppressWarnings("unchecked")
+             final BoundaryAttribute<Euclidean2D> attribute = (BoundaryAttribute<Euclidean2D>) node.getAttribute();
+-            if (attribute.getPlusOutside() != null) {
+-                addContribution(attribute.getPlusOutside(), false);
++            SubHyperplane<Euclidean2D> var_1651 = attribute.getPlusOutside();
++			if (var_1651 != null) {
++                addContribution(var_1651, false);
+             }
+             if (attribute.getPlusInside() != null) {
+                 addContribution(attribute.getPlusInside(), true);

@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/title/PaintScaleLegend.java b/source/org/jfree/chart/title/PaintScaleLegend.java
+index c489277..b03e130 100644
+--- a/source/org/jfree/chart/title/PaintScaleLegend.java
++++ b/source/org/jfree/chart/title/PaintScaleLegend.java
+@@ -58,6 +58,7 @@
+ import org.jfree.chart.axis.AxisLocation;
+ import org.jfree.chart.axis.AxisSpace;
+ import org.jfree.chart.axis.ValueAxis;
++import org.jfree.chart.block.BlockFrame;
+ import org.jfree.chart.block.LengthConstraintType;
+ import org.jfree.chart.block.RectangleConstraint;
+ import org.jfree.chart.event.AxisChangeEvent;
+@@ -540,8 +541,9 @@
+             g2.setPaint(this.backgroundPaint);
+             g2.fill(target);
+         }
+-        getFrame().draw(g2, target);
+-        getFrame().getInsets().trim(target);
++        BlockFrame var_3427 = getFrame();
++		var_3427.draw(g2, target);
++        var_3427.getInsets().trim(target);
+         target = trimPadding(target);
+         double base = this.axis.getLowerBound();
+         double increment = this.axis.getRange().getLength() / this.subdivisions;

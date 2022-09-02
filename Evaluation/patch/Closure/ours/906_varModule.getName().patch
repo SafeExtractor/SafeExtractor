@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/VarCheck.java b/src/com/google/javascript/jscomp/VarCheck.java
+index a497232..0befa52 100644
+--- a/src/com/google/javascript/jscomp/VarCheck.java
++++ b/src/com/google/javascript/jscomp/VarCheck.java
+@@ -182,21 +182,22 @@
+       if (moduleGraph.dependsOn(currModule, varModule)) {
+         // The module dependency was properly declared.
+       } else {
+-        if (scope.isGlobal()) {
++        String var_906 = varModule.getName();
++		if (scope.isGlobal()) {
+           if (moduleGraph.dependsOn(varModule, currModule)) {
+             // The variable reference violates a declared module dependency.
+             t.report(n, VIOLATED_MODULE_DEP_ERROR,
+-                     currModule.getName(), varModule.getName(), varName);
++                     currModule.getName(), var_906, varName);
+           } else {
+             // The variable reference is between two modules that have no
+             // dependency relationship. This should probably be considered an
+             // error, but just issue a warning for now.
+             t.report(n, MISSING_MODULE_DEP_ERROR,
+-                     currModule.getName(), varModule.getName(), varName);
++                     currModule.getName(), var_906, varName);
+           }
+         } else {
+           t.report(n, STRICT_MODULE_DEP_ERROR,
+-                   currModule.getName(), varModule.getName(), varName);
++                   currModule.getName(), var_906, varName);
+         }
+       }
+     }

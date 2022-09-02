@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/NameReferenceGraphReport.java b/src/com/google/javascript/jscomp/NameReferenceGraphReport.java
+index 86a5203..9303e27 100644
+--- a/src/com/google/javascript/jscomp/NameReferenceGraphReport.java
++++ b/src/com/google/javascript/jscomp/NameReferenceGraphReport.java
+@@ -298,13 +298,14 @@
+       Preconditions.checkNotNull(node1.getValue());
+       Preconditions.checkNotNull(node2.getValue());
+ 
+-      if ((node1.getValue().getQualifiedName() == null) &&
++      String var_1737 = node1.getValue().getQualifiedName();
++	if ((var_1737 == null) &&
+           (node2.getValue().getQualifiedName() == null)) {
+         return 0;
+       }
+ 
+       // Node 1, if null, comes before node 2.
+-      if (node1.getValue().getQualifiedName() == null) {
++      if (var_1737 == null) {
+         return -1;
+       }
+ 
+@@ -313,7 +314,7 @@
+         return 1;
+       }
+ 
+-      return node1.getValue().getQualifiedName().compareTo(
++      return var_1737.compareTo(
+           node2.getValue().getQualifiedName());
+     }
+   }

@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+index 171eb51..082cb2b 100644
+--- a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
++++ b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+@@ -498,7 +498,8 @@
+ 
+         // Take care of locals that might have been tainted.
+         if (!localVar || sideEffectInfo.blacklisted.contains(v)) {
+-          if (sideEffectInfo.taintedLocals.contains(v)) {
++          Set<Var> var_1350 = sideEffectInfo.taintedLocals;
++		if (var_1350.contains(v)) {
+             // If the function has global side-effects
+             // don't bother with the local side-effects.
+             sideEffectInfo.setTaintsUnknown();

@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/deps/SortedDependencies.java b/src/com/google/javascript/jscomp/deps/SortedDependencies.java
+index 95e2071..bc116ea 100644
+--- a/src/com/google/javascript/jscomp/deps/SortedDependencies.java
++++ b/src/com/google/javascript/jscomp/deps/SortedDependencies.java
+@@ -30,6 +30,7 @@
+ import com.google.common.collect.Sets;
+ 
+ import java.util.ArrayDeque;
++import java.util.ArrayList;
+ import java.util.Collection;
+ import java.util.Collections;
+ import java.util.Comparator;
+@@ -63,7 +64,8 @@
+ 
+   public SortedDependencies(List<INPUT> inputs)
+       throws CircularDependencyException {
+-    this.inputs = Lists.newArrayList(inputs);
++    ArrayList<INPUT> var_2152 = Lists.newArrayList(inputs);
++	this.inputs = var_2152;
+     noProvides = Lists.newArrayList();
+ 
+     // Collect all symbols provided in these files.
+@@ -99,7 +101,7 @@
+     // no nodes have out-degree 0. I'll leave the proof of this as an exercise
+     // to the reader.
+     if (sortedList.size() < inputs.size()) {
+-      List<INPUT> subGraph = Lists.newArrayList(inputs);
++      List<INPUT> subGraph = var_2152;
+       subGraph.removeAll(sortedList);
+ 
+       throw new CircularDependencyException(

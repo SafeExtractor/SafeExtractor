@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/events/EventState.java b/src/main/java/org/apache/commons/math3/ode/events/EventState.java
+index 5d67795..f8c9e0c 100644
+--- a/src/main/java/org/apache/commons/math3/ode/events/EventState.java
++++ b/src/main/java/org/apache/commons/math3/ode/events/EventState.java
+@@ -169,7 +169,8 @@
+ 
+         t0 = interpolator.getPreviousTime();
+         interpolator.setInterpolatedTime(t0);
+-        g0 = handler.g(t0, getCompleteState(interpolator));
++        double[] var_2608 = getCompleteState(interpolator);
++		g0 = handler.g(t0, var_2608);
+         if (g0 == 0) {
+             // excerpt from MATH-421 issue:
+             // If an ODE solver is setup with an EventHandler that return STOP
+@@ -188,7 +189,7 @@
+                                                 FastMath.abs(solver.getRelativeAccuracy() * t0));
+             final double tStart = t0 + 0.5 * epsilon;
+             interpolator.setInterpolatedTime(tStart);
+-            g0 = handler.g(tStart, getCompleteState(interpolator));
++            g0 = handler.g(tStart, var_2608);
+         }
+         g0Positive = g0 >= 0;
+ 

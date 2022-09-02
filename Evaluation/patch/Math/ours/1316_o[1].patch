@@ -1,0 +1,44 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..11b2b3e 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -1104,9 +1104,10 @@
+             o[0][0] = x00.subtract(x00.multiply(mx00).add(x01.multiply(mx10)).add(x02.multiply(mx20)).subtract(m[0][0]).multiply(0.5));
+             o[0][1] = x01.subtract(x00.multiply(mx01).add(x01.multiply(mx11)).add(x02.multiply(mx21)).subtract(m[0][1]).multiply(0.5));
+             o[0][2] = x02.subtract(x00.multiply(mx02).add(x01.multiply(mx12)).add(x02.multiply(mx22)).subtract(m[0][2]).multiply(0.5));
+-            o[1][0] = x10.subtract(x10.multiply(mx00).add(x11.multiply(mx10)).add(x12.multiply(mx20)).subtract(m[1][0]).multiply(0.5));
+-            o[1][1] = x11.subtract(x10.multiply(mx01).add(x11.multiply(mx11)).add(x12.multiply(mx21)).subtract(m[1][1]).multiply(0.5));
+-            o[1][2] = x12.subtract(x10.multiply(mx02).add(x11.multiply(mx12)).add(x12.multiply(mx22)).subtract(m[1][2]).multiply(0.5));
++            T[] var_1316 = o[1];
++			var_1316[0] = x10.subtract(x10.multiply(mx00).add(x11.multiply(mx10)).add(x12.multiply(mx20)).subtract(m[1][0]).multiply(0.5));
++            var_1316[1] = x11.subtract(x10.multiply(mx01).add(x11.multiply(mx11)).add(x12.multiply(mx21)).subtract(m[1][1]).multiply(0.5));
++            var_1316[2] = x12.subtract(x10.multiply(mx02).add(x11.multiply(mx12)).add(x12.multiply(mx22)).subtract(m[1][2]).multiply(0.5));
+             o[2][0] = x20.subtract(x20.multiply(mx00).add(x21.multiply(mx10)).add(x22.multiply(mx20)).subtract(m[2][0]).multiply(0.5));
+             o[2][1] = x21.subtract(x20.multiply(mx01).add(x21.multiply(mx11)).add(x22.multiply(mx21)).subtract(m[2][1]).multiply(0.5));
+             o[2][2] = x22.subtract(x20.multiply(mx02).add(x21.multiply(mx12)).add(x22.multiply(mx22)).subtract(m[2][2]).multiply(0.5));
+@@ -1115,9 +1116,9 @@
+             final double corr00 = o[0][0].getReal() - m[0][0].getReal();
+             final double corr01 = o[0][1].getReal() - m[0][1].getReal();
+             final double corr02 = o[0][2].getReal() - m[0][2].getReal();
+-            final double corr10 = o[1][0].getReal() - m[1][0].getReal();
+-            final double corr11 = o[1][1].getReal() - m[1][1].getReal();
+-            final double corr12 = o[1][2].getReal() - m[1][2].getReal();
++            final double corr10 = var_1316[0].getReal() - m[1][0].getReal();
++            final double corr11 = var_1316[1].getReal() - m[1][1].getReal();
++            final double corr12 = var_1316[2].getReal() - m[1][2].getReal();
+             final double corr20 = o[2][0].getReal() - m[2][0].getReal();
+             final double corr21 = o[2][1].getReal() - m[2][1].getReal();
+             final double corr22 = o[2][2].getReal() - m[2][2].getReal();
+@@ -1136,9 +1137,9 @@
+             x00 = o[0][0];
+             x01 = o[0][1];
+             x02 = o[0][2];
+-            x10 = o[1][0];
+-            x11 = o[1][1];
+-            x12 = o[1][2];
++            x10 = var_1316[0];
++            x11 = var_1316[1];
++            x12 = var_1316[2];
+             x20 = o[2][0];
+             x21 = o[2][1];
+             x22 = o[2][2];

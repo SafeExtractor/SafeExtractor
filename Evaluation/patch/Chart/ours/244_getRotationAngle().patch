@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/annotations/XYPointerAnnotation.java b/source/org/jfree/chart/annotations/XYPointerAnnotation.java
+index 5ea9d1e..a297f64 100644
+--- a/source/org/jfree/chart/annotations/XYPointerAnnotation.java
++++ b/source/org/jfree/chart/annotations/XYPointerAnnotation.java
+@@ -430,16 +430,17 @@
+         double labelY = j2DY + Math.sin(this.angle) * (this.baseRadius
+                 + this.labelOffset);
+         g2.setFont(getFont());
+-        Shape hotspot = TextUtilities.calculateRotatedStringBounds(
++        double var_244 = getRotationAngle();
++		Shape hotspot = TextUtilities.calculateRotatedStringBounds(
+                 getText(), g2, (float) labelX, (float) labelY, getTextAnchor(),
+-                getRotationAngle(), getRotationAnchor());
++                var_244, getRotationAnchor());
+         if (getBackgroundPaint() != null) {
+             g2.setPaint(getBackgroundPaint());
+             g2.fill(hotspot);
+         }
+         g2.setPaint(getPaint());
+         TextUtilities.drawRotatedString(getText(), g2, (float) labelX,
+-                (float) labelY, getTextAnchor(), getRotationAngle(),
++                (float) labelY, getTextAnchor(), var_244,
+                 getRotationAnchor());
+         if (isOutlineVisible()) {
+             g2.setStroke(getOutlineStroke());

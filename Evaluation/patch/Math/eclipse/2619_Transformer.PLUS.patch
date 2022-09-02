@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/events/FilterType.java b/src/main/java/org/apache/commons/math3/ode/events/FilterType.java
+index 438df05..6621c70 100644
+--- a/src/main/java/org/apache/commons/math3/ode/events/FilterType.java
++++ b/src/main/java/org/apache/commons/math3/ode/events/FilterType.java
+@@ -90,7 +90,8 @@
+         @Override
+         protected  Transformer selectTransformer(final Transformer previous,
+                                                  final double g, final boolean forward) {
+-            if (forward) {
++            Transformer var_2619 = Transformer.PLUS;
++			if (forward) {
+                 switch (previous) {
+                     case UNINITIALIZED :
+                         // we are initializing the first point
+@@ -99,7 +100,7 @@
+                             return Transformer.MAX;
+                         } else if (g < 0) {
+                             // initialize as if previous root (i.e. backward one) was a triggered decreasing event
+-                            return Transformer.PLUS;
++                            return var_2619;
+                         } else {
+                             // we are exactly at a root, we don't know if it is an increasing
+                             // or a decreasing event, we remain in uninitialized state
+@@ -136,7 +137,7 @@
+                         if (g <= 0) {
+                             // we have crossed the zero line on a triggered decreasing event,
+                             // we must change the transformer
+-                            return Transformer.PLUS;
++                            return var_2619;
+                         } else {
+                             // we are still in the same status
+                             return previous;
+@@ -182,7 +183,7 @@
+                         if (g >= 0) {
+                             // we have crossed the zero line on a triggered decreasing event,
+                             // we must change the transformer
+-                            return Transformer.PLUS;
++                            return var_2619;
+                         } else {
+                             // we are still in the same status
+                             return previous;

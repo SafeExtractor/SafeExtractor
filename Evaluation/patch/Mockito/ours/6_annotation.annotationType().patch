@@ -1,0 +1,16 @@
+diff --git a/src/org/mockito/internal/configuration/DefaultAnnotationEngine.java b/src/org/mockito/internal/configuration/DefaultAnnotationEngine.java
+index 3b0b1f9..284a217 100644
+--- a/src/org/mockito/internal/configuration/DefaultAnnotationEngine.java
++++ b/src/org/mockito/internal/configuration/DefaultAnnotationEngine.java
+@@ -44,8 +44,9 @@
+     }
+ 
+     private <A extends Annotation> FieldAnnotationProcessor<A> forAnnotation(A annotation) {
+-        if (annotationProcessorMap.containsKey(annotation.annotationType())) {
+-            return (FieldAnnotationProcessor<A>) annotationProcessorMap.get(annotation.annotationType());
++        Class<? extends Annotation> var_6 = annotation.annotationType();
++		if (annotationProcessorMap.containsKey(var_6)) {
++            return (FieldAnnotationProcessor<A>) annotationProcessorMap.get(var_6);
+         }
+         return new FieldAnnotationProcessor<A>() {
+             public Object process(A annotation, Field field) {

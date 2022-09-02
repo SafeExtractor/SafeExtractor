@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/AliasExternals.java b/src/com/google/javascript/jscomp/AliasExternals.java
+index fc43f34..3b6b80e 100644
+--- a/src/com/google/javascript/jscomp/AliasExternals.java
++++ b/src/com/google/javascript/jscomp/AliasExternals.java
+@@ -491,13 +491,14 @@
+       if (n.isGetProp()) {
+         Node propNameNode = n.getLastChild();
+ 
+-        if (canReplaceWithGetProp(propNameNode, n, parent)) {
+-          String name = propNameNode.getString();
++        String var_1990 = propNameNode.getString();
++		if (canReplaceWithGetProp(propNameNode, n, parent)) {
++          String name = var_1990;
+           props.get(name).recordAccessor(t);
+           accessors.add(n);
+         }
+         if (canReplaceWithSetProp(propNameNode, n, parent)) {
+-          String name = propNameNode.getString();
++          String name = var_1990;
+ 
+           props.get(name).recordMutator(t);
+           mutators.add(n);

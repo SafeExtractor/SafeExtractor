@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..2081420 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -1006,8 +1006,9 @@
+     }
+ 
+     if (jsType.isFunctionType()) {
+-      if (getConcreteFunction(jsType.toMaybeFunctionType()) != null) {
+-        return getConcreteFunction(jsType.toMaybeFunctionType());
++      ConcreteFunctionType var_1070 = getConcreteFunction(jsType.toMaybeFunctionType());
++	if (var_1070 != null) {
++        return var_1070;
+       }
+       // Since we don't have a declaration, it's not concrete.
+       return ConcreteType.ALL;

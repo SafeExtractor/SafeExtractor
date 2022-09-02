@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSType.java b/src/com/google/javascript/rhino/jstype/JSType.java
+index 11875e9..41b5a0b 100644
+--- a/src/com/google/javascript/rhino/jstype/JSType.java
++++ b/src/com/google/javascript/rhino/jstype/JSType.java
+@@ -1121,7 +1121,8 @@
+     } else if (type.isUnionType()) {
+       UnionType unionType = type.toMaybeUnionType();
+       boolean needsFiltering = false;
+-      for (JSType alt : unionType.getAlternates()) {
++      Iterable<JSType> var_2655 = unionType.getAlternates();
++	for (JSType alt : var_2655) {
+         if (alt.isNoResolvedType()) {
+           needsFiltering = true;
+           break;
+@@ -1131,7 +1132,7 @@
+       if (needsFiltering) {
+         UnionTypeBuilder builder = new UnionTypeBuilder(type.registry);
+         builder.addAlternate(type.getNativeType(JSTypeNative.NO_RESOLVED_TYPE));
+-        for (JSType alt : unionType.getAlternates()) {
++        for (JSType alt : var_2655) {
+           if (!alt.isNoResolvedType()) {
+             builder.addAlternate(alt);
+           }

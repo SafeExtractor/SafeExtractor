@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..93b51a0 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1523,7 +1523,8 @@
+                 return x;
+             }
+ 
+-            if (nans == INFINITE && x.nans == FINITE && x.mant[mant.length-1] != 0) {
++            int var_636 = x.mant[mant.length-1];
++			if (nans == INFINITE && x.nans == FINITE && var_636 != 0) {
+                 result = newInstance(this);
+                 result.sign = (byte) (sign * x.sign);
+                 return result;
+@@ -1542,7 +1543,7 @@
+             }
+ 
+             if ( (x.nans == INFINITE && nans == FINITE && mant[mant.length-1] == 0) ||
+-                    (nans == INFINITE && x.nans == FINITE && x.mant[mant.length-1] == 0) ) {
++                    (nans == INFINITE && x.nans == FINITE && var_636 == 0) ) {
+                 field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+                 result = newInstance(getZero());
+                 result.nans = QNAN;

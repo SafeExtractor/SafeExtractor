@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..170ce9f 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -596,7 +596,8 @@
+     // TODO(user): handle object literals like { a: new Foo };
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      switch (n.getType()) {
++      String var_1048 = ConcreteFunctionType.RETURN_SLOT_NAME;
++	switch (n.getType()) {
+         case Token.VAR:
+           // Variable declaration, e.g. var a = b;
+           Node name;
+@@ -691,7 +692,7 @@
+               ConcreteType newret = type.toFunction().getReturnSlot()
+                   .getType().unionWith(retType);
+               ((ConcreteScope) type.getScope()).declareSlot(
+-                  ConcreteFunctionType.RETURN_SLOT_NAME, n, newret);
++                  var_1048, n, newret);
+             }
+             scope.declareSlot(lhs.getLastChild().getString(), n, type);
+           } else {
+@@ -748,7 +749,7 @@
+           if (n.getFirstChild() != null) {
+             addAction(new VariableAssignAction(
+                 (ConcreteSlot) scope.getOwnSlot(
+-                    ConcreteFunctionType.RETURN_SLOT_NAME), n.getFirstChild()));
++                    var_1048), n.getFirstChild()));
+           }
+           break;
+       }

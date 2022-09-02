@@ -1,0 +1,47 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..18b0b78 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1969,7 +1969,7 @@
+     public Dfp sqrt() {
+ 
+         // check for unusual cases
+-        if (nans == FINITE && mant[mant.length-1] == 0) {
++        if (nans == FINITE && mant[var_689-1] == 0) {
+             // if zero
+             return newInstance(this);
+         }
+@@ -2013,18 +2013,19 @@
+         }
+ 
+         /* Coarsely estimate the mantissa */
+-        switch (x.mant[mant.length-1] / 2000) {
++        int var_689 = mant.length;
++		switch (x.mant[var_689-1] / 2000) {
+             case 0:
+-                x.mant[mant.length-1] = x.mant[mant.length-1]/2+1;
++                x.mant[var_689-1] = x.mant[var_689-1]/2+1;
+                 break;
+             case 2:
+-                x.mant[mant.length-1] = 1500;
++                x.mant[var_689-1] = 1500;
+                 break;
+             case 3:
+-                x.mant[mant.length-1] = 2200;
++                x.mant[var_689-1] = 2200;
+                 break;
+             default:
+-                x.mant[mant.length-1] = 3000;
++                x.mant[var_689-1] = 3000;
+         }
+ 
+         Dfp dx = newInstance(x);
+@@ -2050,7 +2051,7 @@
+ 
+             // if dx is zero, break.  Note testing the most sig digit
+             // is a sufficient test since dx is normalized
+-            if (dx.mant[mant.length-1] == 0) {
++            if (dx.mant[var_689-1] == 0) {
+                 break;
+             }
+         }

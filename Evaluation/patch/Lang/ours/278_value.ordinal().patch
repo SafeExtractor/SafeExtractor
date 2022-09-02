@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/lang3/EnumUtils.java b/src/main/java/org/apache/commons/lang3/EnumUtils.java
+index 7a03b59..b0535b3 100644
+--- a/src/main/java/org/apache/commons/lang3/EnumUtils.java
++++ b/src/main/java/org/apache/commons/lang3/EnumUtils.java
+@@ -227,7 +227,8 @@
+         Collections.addAll(condensed, values);
+         final long[] result = new long[(enumClass.getEnumConstants().length - 1) / Long.SIZE + 1];
+         for (final E value : condensed) {
+-            result[value.ordinal() / Long.SIZE] |= 1 << (value.ordinal() % Long.SIZE);
++            int var_278 = value.ordinal();
++			result[var_278 / Long.SIZE] |= 1 << (var_278 % Long.SIZE);
+         }
+         ArrayUtils.reverse(result);
+         return result;

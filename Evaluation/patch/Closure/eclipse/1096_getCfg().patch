@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java b/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java
+index e374ca0..4184b8f 100644
+--- a/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java
++++ b/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java
+@@ -415,8 +415,9 @@
+    * @param useNode the location of the use where the definition reaches.
+    */
+   Definition getDef(String name, Node useNode) {
+-    Preconditions.checkArgument(getCfg().hasNode(useNode));
+-    GraphNode<Node, Branch> n = getCfg().getNode(useNode);
++    ControlFlowGraph<Node> var_1096 = getCfg();
++	Preconditions.checkArgument(var_1096.hasNode(useNode));
++    GraphNode<Node, Branch> n = var_1096.getNode(useNode);
+     FlowState<MustDef> state = n.getAnnotation();
+     return state.getIn().reachingDef.get(jsScope.getVar(name));
+   }

@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java b/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java
+index 5f2b6ba..ece16a5 100644
+--- a/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYLineAndShapeRenderer.java
+@@ -1024,12 +1024,13 @@
+             }
+             entityArea = shape;
+             if (shape.intersects(dataArea)) {
+-                if (getItemShapeFilled(series, item)) {
++                Paint var_3085 = getItemPaint(series, item, selected);
++				if (getItemShapeFilled(series, item)) {
+                     if (this.useFillPaint) {
+                         g2.setPaint(getItemFillPaint(series, item, selected));
+                     }
+                     else {
+-                        g2.setPaint(getItemPaint(series, item, selected));
++                        g2.setPaint(var_3085);
+                     }
+                     g2.fill(shape);
+                 }
+@@ -1039,7 +1040,7 @@
+                                 selected));
+                     }
+                     else {
+-                        g2.setPaint(getItemPaint(series, item, selected));
++                        g2.setPaint(var_3085);
+                     }
+                     g2.setStroke(getItemOutlineStroke(series, item, selected));
+                     g2.draw(shape);

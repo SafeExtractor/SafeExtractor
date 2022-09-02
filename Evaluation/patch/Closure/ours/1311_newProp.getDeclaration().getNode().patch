@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+index 5f0a14c..0333c1d 100644
+--- a/src/com/google/javascript/jscomp/SymbolTable.java
++++ b/src/com/google/javascript/jscomp/SymbolTable.java
+@@ -970,7 +970,8 @@
+       // to build a complete index of all objects in the program. So we might
+       // already have symbols for things like "Foo.bar". If this happens,
+       // throw out the old symbol and use the type-based symbol.
+-      Symbol oldProp = symbols.get(newProp.getDeclaration().getNode(),
++      Node var_1311 = newProp.getDeclaration().getNode();
++	Symbol oldProp = symbols.get(var_1311,
+           s.getName() + "." + propName);
+       if (oldProp != null) {
+         removeSymbol(oldProp);
+@@ -980,7 +981,7 @@
+       // then skip it. This should only happen if we screwed up,
+       // and declared multiple distinct properties with the same name
+       // at the same node. We bail out here to be safe.
+-      if (symbols.get(newProp.getDeclaration().getNode(),
++      if (symbols.get(var_1311,
+               newProp.getName()) != null) {
+         logger.warning("Found duplicate symbol " + newProp);
+         continue;

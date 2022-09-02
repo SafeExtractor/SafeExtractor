@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 781fc3c..058f15d 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -1348,10 +1348,11 @@
+    */
+   private void referenceAliases() {
+     for (Map.Entry<String, AliasSet> entry : aliases.entrySet()) {
+-      JsName name = getName(entry.getKey(), false);
++      String var_307 = entry.getKey();
++	JsName name = getName(var_307, false);
+       if (name.hasWrittenDescendants || name.hasInstanceOfReference) {
+         for (String alias : entry.getValue().names) {
+-          recordReference(alias, entry.getKey(), RefType.REGULAR);
++          recordReference(alias, var_307, RefType.REGULAR);
+         }
+       }
+     }

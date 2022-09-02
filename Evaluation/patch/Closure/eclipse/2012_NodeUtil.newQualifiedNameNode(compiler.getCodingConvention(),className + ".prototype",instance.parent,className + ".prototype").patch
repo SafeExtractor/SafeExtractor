@@ -1,0 +1,35 @@
+diff --git a/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java b/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
+index 04d88ae..24f96b8 100644
+--- a/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
++++ b/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
+@@ -172,14 +172,15 @@
+   private void extractInstance(ExtractionInstance instance) {
+     PrototypeMemberDeclaration first = instance.declarations.getFirst();
+     String className = first.qualifiedClassName;
+-    if (pattern == Pattern.USE_GLOBAL_TEMP) {
++    Node var_2012 = NodeUtil.newQualifiedNameNode(
++	      compiler.getCodingConvention(), className + ".prototype",
++	      instance.parent, className + ".prototype");
++	if (pattern == Pattern.USE_GLOBAL_TEMP) {
+       // Use the temp variable to hold the prototype.
+       Node stmt = new Node(first.node.getType(),
+          IR.assign(
+               IR.name(prototypeAlias),
+-              NodeUtil.newQualifiedNameNode(
+-                  compiler.getCodingConvention(), className + ".prototype",
+-                  instance.parent, className + ".prototype")))
++              var_2012))
+           .copyInformationFromForTree(first.node);
+ 
+       instance.parent.addChildBefore(stmt, first.node);
+@@ -191,9 +192,7 @@
+            block);
+ 
+       Node call = IR.call(func,
+-           NodeUtil.newQualifiedNameNode(
+-               compiler.getCodingConvention(), className + ".prototype",
+-               instance.parent, className + ".prototype"));
++           var_2012);
+       call.putIntProp(Node.FREE_CALL, 1);
+ 
+       Node stmt = new Node(first.node.getType(), call);

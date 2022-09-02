@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 781fc3c..ee19da3 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -629,8 +629,9 @@
+ 
+       // Record global variable and function declarations
+       if (t.inGlobalScope()) {
+-        if (NodeUtil.isVarDeclaration(n)) {
+-          NameInformation ns = createNameInformation(t, n);
++        NameInformation var_278 = createNameInformation(t, n);
++		if (NodeUtil.isVarDeclaration(n)) {
++          NameInformation ns = var_278;
+           Preconditions.checkNotNull(ns);
+           recordSet(ns.name, n);
+         } else if (NodeUtil.isFunctionDeclaration(n)) {
+@@ -641,7 +642,7 @@
+             recordSet(nameInfo.name, nameNode);
+           }
+         } else if (NodeUtil.isObjectLitKey(n, parent)) {
+-          NameInformation ns = createNameInformation(t, n);
++          NameInformation ns = var_278;
+           if (ns != null) {
+             recordSet(ns.name, n);
+           }

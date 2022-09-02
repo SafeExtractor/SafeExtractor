@@ -1,0 +1,31 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/196_qtrap.stage(this,0).patch b/Users/safe/paper/Evaluation/patch/Math/ours/196_qtrap.stage(this,0).patch
+index 2234372..b3665f8 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/196_qtrap.stage(this,0).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/196_qtrap.stage(this,0).patch
+@@ -1,22 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/analysis/integration/SimpsonIntegrator.java b/src/main/java/org/apache/commons/math3/analysis/integration/SimpsonIntegrator.java
+-index fd0c647..e944f66 100644
++index fd0c647..eee5cc6 100644
+ --- a/src/main/java/org/apache/commons/math3/analysis/integration/SimpsonIntegrator.java
+ +++ b/src/main/java/org/apache/commons/math3/analysis/integration/SimpsonIntegrator.java
+-@@ -102,13 +102,14 @@
+-         throws TooManyEvaluationsException, MaxCountExceededException {
+- 
+-         TrapezoidIntegrator qtrap = new TrapezoidIntegrator();
+--        if (getMinimalIterationCount() == 1) {
+--            return (4 * qtrap.stage(this, 1) - qtrap.stage(this, 0)) / 3.0;
+-+        double var_196 = qtrap.stage(this, 0);
+-+		if (getMinimalIterationCount() == 1) {
+-+            return (4 * qtrap.stage(this, 1) - var_196) / 3.0;
+-         }
++@@ -108,7 +108,8 @@
+  
+          // Simpson's rule requires at least two trapezoid stages.
+          double olds = 0;
+ -        double oldt = qtrap.stage(this, 0);
+-+        double oldt = var_196;
+++        double var_196 = qtrap.stage(this, 0);
+++		double oldt = var_196;
+          while (true) {
+              final double t = qtrap.stage(this, iterations.getCount());
+              iterations.incrementCount();

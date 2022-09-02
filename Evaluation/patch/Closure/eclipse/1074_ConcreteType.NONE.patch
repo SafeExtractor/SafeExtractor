@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..a603182 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -1054,7 +1054,8 @@
+     Preconditions.checkNotNull(scope);
+     Preconditions.checkNotNull(expr);
+     ConcreteType ret;
+-    switch (expr.getType()) {
++    ConcreteType var_1074 = ConcreteType.NONE;
++	switch (expr.getType()) {
+       case Token.NAME:
+         StaticSlot<ConcreteType> slot = scope.getSlot(expr.getString());
+ 
+@@ -1135,7 +1136,7 @@
+           ret = targetType;
+           break;
+         }
+-        ret = ConcreteType.NONE;
++        ret = var_1074;
+         for (ConcreteFunctionType funType : targetType.getFunctions()) {
+           ret = ret.unionWith(funType.getReturnSlot().getType());
+         }
+@@ -1147,7 +1148,7 @@
+         if (constructorType.isAll()) {
+           throw new AssertionError("Attempted new call on all type!");
+         }
+-        ret = ConcreteType.NONE;
++        ret = var_1074;
+         for (ConcreteInstanceType instType
+              : constructorType.getFunctionInstanceTypes()) {
+           ret = ret.unionWith(instType);
+@@ -1179,7 +1180,7 @@
+         break;
+ 
+       default:
+-        ret = ConcreteType.NONE;
++        ret = var_1074;
+     }
+     return createTypeIntersection(ret, expr.getJSType());
+   }

@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/SpecializeModule.java b/src/com/google/javascript/jscomp/SpecializeModule.java
+index 8c0b12c..ac20072 100644
+--- a/src/com/google/javascript/jscomp/SpecializeModule.java
++++ b/src/com/google/javascript/jscomp/SpecializeModule.java
+@@ -508,16 +508,17 @@
+ 
+       Node nameNode;
+ 
+-      if (isAssignFunction) {
++      CodingConvention var_1650 = compiler.getCodingConvention();
++	if (isAssignFunction) {
+         nameNode =
+            NodeUtil.newQualifiedNameNode(
+-               compiler.getCodingConvention(), name, functionCopy, name);
++               var_1650, name, functionCopy, name);
+       } else {
+         // Grab the name node from the original function and make that
+         // function anonymous.
+         nameNode = functionCopy.getFirstChild();
+         functionCopy.replaceChild(nameNode,
+-            NodeUtil.newName(compiler.getCodingConvention(), "", nameNode));
++            NodeUtil.newName(var_1650, "", nameNode));
+       }
+ 
+       Node assignment = IR.assign(nameNode, functionCopy);

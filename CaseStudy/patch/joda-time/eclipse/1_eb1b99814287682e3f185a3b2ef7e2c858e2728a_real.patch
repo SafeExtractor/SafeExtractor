@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+index b03549f..a3d97eb 100644
+--- a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
++++ b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+@@ -493,7 +493,8 @@
+             }
+ 
+             if (st.hasMoreTokens()) {
+-                String token = st.nextToken();
++                String real = st.nextToken();
++				String token = real;
+                 if (token.equalsIgnoreCase("Rule")) {
+                     Rule r = new Rule(st);
+                     RuleSet rs = iRuleSets.get(r.iName);
+@@ -506,8 +507,8 @@
+                 } else if (token.equalsIgnoreCase("Zone")) {
+                     zone = new Zone(st);
+                 } else if (token.equalsIgnoreCase("Link")) {
+-                    iLinks.add(st.nextToken());
+-                    iLinks.add(st.nextToken());
++                    iLinks.add(real);
++                    iLinks.add(real);
+                 } else {
+                     System.out.println("Unknown line: " + line);
+                 }

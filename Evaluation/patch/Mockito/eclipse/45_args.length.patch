@@ -1,0 +1,19 @@
+diff --git a/src/org/mockito/internal/invocation/ArgumentsProcessor.java b/src/org/mockito/internal/invocation/ArgumentsProcessor.java
+index d0a6a5e..fa0f028 100644
+--- a/src/org/mockito/internal/invocation/ArgumentsProcessor.java
++++ b/src/org/mockito/internal/invocation/ArgumentsProcessor.java
+@@ -19,11 +19,12 @@
+     // expands array varArgs that are given by runtime (1, [a, b]) into true
+     // varArgs (1, a, b);
+     public static Object[] expandVarArgs(final boolean isVarArgs, final Object[] args) {
+-        if (!isVarArgs || new ArrayUtils().isEmpty(args) || args[args.length - 1] != null && !args[args.length - 1].getClass().isArray()) {
++        int var_45 = args.length;
++		if (!isVarArgs || new ArrayUtils().isEmpty(args) || args[var_45 - 1] != null && !args[var_45 - 1].getClass().isArray()) {
+             return args == null ? new Object[0] : args;
+         }
+ 
+-        final int nonVarArgsCount = args.length - 1;
++        final int nonVarArgsCount = var_45 - 1;
+         Object[] varArgs;
+         if (args[nonVarArgsCount] == null) {
+             // in case someone deliberately passed null varArg array

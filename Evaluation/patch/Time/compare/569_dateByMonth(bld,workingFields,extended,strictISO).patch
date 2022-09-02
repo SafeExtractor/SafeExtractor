@@ -1,0 +1,33 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/569_dateByMonth(bld,workingFields,extended,strictISO).patch b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/569_dateByMonth(bld,workingFields,extended,strictISO).patch
+index cdde0e9..414d522 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/569_dateByMonth(bld,workingFields,extended,strictISO).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/569_dateByMonth(bld,workingFields,extended,strictISO).patch
+@@ -1,23 +1,14 @@
+ diff --git a/src/main/java/org/joda/time/format/ISODateTimeFormat.java b/src/main/java/org/joda/time/format/ISODateTimeFormat.java
+-index af53ee4..696a0e0 100644
++index af53ee4..087193b 100644
+ --- a/src/main/java/org/joda/time/format/ISODateTimeFormat.java
+ +++ b/src/main/java/org/joda/time/format/ISODateTimeFormat.java
+-@@ -161,14 +161,15 @@
+-         boolean reducedPrec = false;
++@@ -162,7 +162,8 @@
+          DateTimeFormatterBuilder bld = new DateTimeFormatterBuilder();
+          // date
+--        if (workingFields.contains(DateTimeFieldType.monthOfYear())) {
++         if (workingFields.contains(DateTimeFieldType.monthOfYear())) {
+ -            reducedPrec = dateByMonth(bld, workingFields, extended, strictISO);
+-+        boolean var_569 = dateByMonth(bld, workingFields, extended, strictISO);
+-+		if (workingFields.contains(DateTimeFieldType.monthOfYear())) {
+-+            reducedPrec = var_569;
+++            boolean var_569 = dateByMonth(bld, workingFields, extended, strictISO);
+++			reducedPrec = var_569;
+          } else if (workingFields.contains(DateTimeFieldType.dayOfYear())) {
+              reducedPrec = dateByOrdinal(bld, workingFields, extended, strictISO);
+          } else if (workingFields.contains(DateTimeFieldType.weekOfWeekyear())) {
+-             reducedPrec = dateByWeek(bld, workingFields, extended, strictISO);
+-         } else if (workingFields.contains(DateTimeFieldType.dayOfMonth())) {
+--            reducedPrec = dateByMonth(bld, workingFields, extended, strictISO);
+-+            reducedPrec = var_569;
+-         } else if (workingFields.contains(DateTimeFieldType.dayOfWeek())) {
+-             reducedPrec = dateByWeek(bld, workingFields, extended, strictISO);
+-         } else if (workingFields.remove(DateTimeFieldType.year())) {

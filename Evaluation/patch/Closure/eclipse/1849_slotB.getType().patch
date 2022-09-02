@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/LinkedFlowScope.java b/src/com/google/javascript/jscomp/LinkedFlowScope.java
+index a97d855..acfa844 100644
+--- a/src/com/google/javascript/jscomp/LinkedFlowScope.java
++++ b/src/com/google/javascript/jscomp/LinkedFlowScope.java
+@@ -314,7 +314,8 @@
+   private boolean diffSlots(StaticSlot<JSType> slotA,
+                             StaticSlot<JSType> slotB) {
+     boolean aIsNull = slotA == null || slotA.getType() == null;
+-    boolean bIsNull = slotB == null || slotB.getType() == null;
++    JSType var_1849 = slotB.getType();
++	boolean bIsNull = slotB == null || var_1849 == null;
+     if (aIsNull && bIsNull) {
+       return false;
+     } else if (aIsNull ^ bIsNull) {
+@@ -322,7 +323,7 @@
+     }
+ 
+     // Both slots and types must be non-null.
+-    return slotA.getType().differsFrom(slotB.getType());
++    return slotA.getType().differsFrom(var_1849);
+   }
+ 
+   /**

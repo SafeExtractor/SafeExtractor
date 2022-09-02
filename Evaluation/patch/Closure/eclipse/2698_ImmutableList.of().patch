@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/rhino/jstype/PropertyMap.java b/src/com/google/javascript/rhino/jstype/PropertyMap.java
+index efbdb73..e1d6156 100644
+--- a/src/com/google/javascript/rhino/jstype/PropertyMap.java
++++ b/src/com/google/javascript/rhino/jstype/PropertyMap.java
+@@ -108,15 +108,16 @@
+    * need multiple inheritance.
+    */
+   Iterable<PropertyMap> getSecondaryParents() {
+-    if (parentSource == null) {
+-      return ImmutableList.of();
++    ImmutableList<PropertyMap> var_2698 = ImmutableList.of();
++	if (parentSource == null) {
++      return var_2698;
+     }
+     Iterable<ObjectType> extendedInterfaces =
+         parentSource.getCtorExtendedInterfaces();
+ 
+     // Most of the time, this will be empty.
+     if (Iterables.isEmpty(extendedInterfaces)) {
+-      return ImmutableList.of();
++      return var_2698;
+     }
+ 
+     return Iterables.transform(extendedInterfaces, PROP_MAP_FROM_TYPE);

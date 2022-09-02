@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..32d7996 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -970,14 +970,15 @@
+     Node processRegExpLiteral(RegExpLiteral literalNode) {
+       Node literalStringNode = newStringNode(literalNode.getValue());
+       // assume it's on the same line.
+-      literalStringNode.setLineno(literalNode.getLineno());
++      int var_2264 = literalNode.getLineno();
++	literalStringNode.setLineno(var_2264);
+       maybeSetLengthFrom(literalStringNode, literalNode);
+       Node node = newNode(Token.REGEXP, literalStringNode);
+       String flags = literalNode.getFlags();
+       if (flags != null && !flags.isEmpty()) {
+         Node flagsNode = newStringNode(flags);
+         // Assume the flags are on the same line as the literal node.
+-        flagsNode.setLineno(literalNode.getLineno());
++        flagsNode.setLineno(var_2264);
+         maybeSetLengthFrom(flagsNode, literalNode);
+         node.addChildToBack(flagsNode);
+       }

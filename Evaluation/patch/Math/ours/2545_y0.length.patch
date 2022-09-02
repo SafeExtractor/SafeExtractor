@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/MultistepIntegrator.java b/src/main/java/org/apache/commons/math3/ode/MultistepIntegrator.java
+index a729441..537d80e 100644
+--- a/src/main/java/org/apache/commons/math3/ode/MultistepIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/MultistepIntegrator.java
+@@ -224,7 +224,8 @@
+         starter.clearStepHandlers();
+ 
+         // set up one specific step handler to extract initial Nordsieck vector
+-        starter.addStepHandler(new NordsieckInitializer(nSteps, y0.length));
++        int var_2545 = y0.length;
++		starter.addStepHandler(new NordsieckInitializer(nSteps, var_2545));
+ 
+         // start integration, expecting a InitializationCompletedMarkerException
+         try {
+@@ -244,7 +245,7 @@
+                         getExpandable().computeDerivatives(t, y, yDot);
+                     }
+ 
+-                }, t0, y0, t, new double[y0.length]);
++                }, t0, y0, t, new double[var_2545]);
+             }
+ 
+         } catch (InitializationCompletedMarkerException icme) { // NOPMD

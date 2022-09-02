@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/xy/CandlestickRenderer.java b/source/org/jfree/chart/renderer/xy/CandlestickRenderer.java
+index 958e778..649c897 100644
+--- a/source/org/jfree/chart/renderer/xy/CandlestickRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/CandlestickRenderer.java
+@@ -698,7 +698,8 @@
+         else {
+             double xxWidth = 0;
+             int itemCount;
+-            switch (this.autoWidthMethod) {
++            double var_2849 = dataArea.getWidth();
++			switch (this.autoWidthMethod) {
+ 
+                 case WIDTHMETHOD_AVERAGE:
+                     itemCount = highLowData.getItemCount(series);
+@@ -706,7 +707,7 @@
+                         xxWidth = dataArea.getHeight() / itemCount;
+                     }
+                     else {
+-                        xxWidth = dataArea.getWidth() / itemCount;
++                        xxWidth = var_2849 / itemCount;
+                     }
+                     break;
+ 
+@@ -714,7 +715,7 @@
+                     // Note: It would be nice to pre-calculate this per series
+                     itemCount = highLowData.getItemCount(series);
+                     double lastPos = -1;
+-                    xxWidth = dataArea.getWidth();
++                    xxWidth = var_2849;
+                     for (int i = 0; i < itemCount; i++) {
+                         double pos = domainAxis.valueToJava2D(
+                                 highLowData.getXValue(series, i), dataArea,

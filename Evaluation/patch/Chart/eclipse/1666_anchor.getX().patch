@@ -1,0 +1,47 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..985177c 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -3267,12 +3267,13 @@
+ 
+         crosshairState.setAnchorX(Double.NaN);
+         crosshairState.setAnchorY(Double.NaN);
+-        if (anchor != null) {
++        double var_1666 = anchor.getX();
++		if (anchor != null) {
+             ValueAxis domainAxis = getDomainAxis();
+             if (domainAxis != null) {
+                 double x;
+                 if (orient == PlotOrientation.VERTICAL) {
+-                    x = domainAxis.java2DToValue(anchor.getX(), dataArea,
++                    x = domainAxis.java2DToValue(var_1666, dataArea,
+                             getDomainAxisEdge());
+                 }
+                 else {
+@@ -3289,7 +3290,7 @@
+                             getRangeAxisEdge());
+                 }
+                 else {
+-                    y = rangeAxis.java2DToValue(anchor.getX(), dataArea,
++                    y = rangeAxis.java2DToValue(var_1666, dataArea,
+                             getRangeAxisEdge());
+                 }
+                 crosshairState.setAnchorY(y);
+@@ -3435,7 +3436,7 @@
+         if (!this.domainCrosshairLockedOnData && anchor != null) {
+             double xx;
+             if (orient == PlotOrientation.VERTICAL) {
+-                xx = xAxis.java2DToValue(anchor.getX(), dataArea, xAxisEdge);
++                xx = xAxis.java2DToValue(var_1666, dataArea, xAxisEdge);
+             }
+             else {
+                 xx = xAxis.java2DToValue(anchor.getY(), dataArea, xAxisEdge);
+@@ -3459,7 +3460,7 @@
+             if (orient == PlotOrientation.VERTICAL) {
+                 yy = yAxis.java2DToValue(anchor.getY(), dataArea, yAxisEdge);
+             } else {
+-                yy = yAxis.java2DToValue(anchor.getX(), dataArea, yAxisEdge);
++                yy = yAxis.java2DToValue(var_1666, dataArea, yAxisEdge);
+             }
+             crosshairState.setCrosshairY(yy);
+         }

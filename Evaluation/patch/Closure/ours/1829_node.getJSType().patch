@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/TypedCodeGenerator.java b/src/com/google/javascript/jscomp/TypedCodeGenerator.java
+index 64c3d95..fa5c3f2 100644
+--- a/src/com/google/javascript/jscomp/TypedCodeGenerator.java
++++ b/src/com/google/javascript/jscomp/TypedCodeGenerator.java
+@@ -63,7 +63,8 @@
+       return "";
+     }
+ 
+-    JSType type = node.getJSType();
++    JSType var_1829 = node.getJSType();
++	JSType type = var_1829;
+     if (type == null) {
+       return "";
+     } else if (type.isFunctionType()) {
+@@ -76,7 +77,7 @@
+         && !type.isEmptyType()
+         && !type.isVoidType()
+         && !type.isFunctionPrototypeType()) {
+-      return "/** @type {" + node.getJSType().toAnnotationString() + "} */\n";
++      return "/** @type {" + var_1829.toAnnotationString() + "} */\n";
+     } else {
+       return "";
+     }

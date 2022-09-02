@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/DotFormatter.java b/src/com/google/javascript/jscomp/DotFormatter.java
+index 54988ed..52cb50c 100644
+--- a/src/com/google/javascript/jscomp/DotFormatter.java
++++ b/src/com/google/javascript/jscomp/DotFormatter.java
+@@ -243,14 +243,15 @@
+    */
+   public static String toDot(GraphvizGraph graph) {
+     StringBuilder builder = new StringBuilder ();
+-    builder.append(graph.isDirected() ? "digraph" : "graph");
++    boolean var_188 = graph.isDirected();
++	builder.append(var_188 ? "digraph" : "graph");
+     builder.append(INDENT);
+     builder.append(graph.getName());
+     builder.append(" {\n");
+     builder.append(INDENT);
+     builder.append("node [color=lightblue2, style=filled];\n");
+ 
+-    final String edgeSymbol = graph.isDirected() ? ARROW : LINE;
++    final String edgeSymbol = var_188 ? ARROW : LINE;
+ 
+     List<GraphvizNode> nodes = graph.getGraphvizNodes();
+ 

@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractSubHyperplane.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractSubHyperplane.java
+index 85c93bb..af4345b 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractSubHyperplane.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractSubHyperplane.java
+@@ -122,13 +122,14 @@
+     private BSPTree<T> recurseTransform(final BSPTree<T> node,
+                                         final Hyperplane<S> transformed,
+                                         final Transform<S, T> transform) {
+-        if (node.getCut() == null) {
+-            return new BSPTree<T>(node.getAttribute());
++        Object var_1704 = node.getAttribute();
++		if (node.getCut() == null) {
++            return new BSPTree<T>(var_1704);
+         }
+ 
+         @SuppressWarnings("unchecked")
+         BoundaryAttribute<T> attribute =
+-            (BoundaryAttribute<T>) node.getAttribute();
++            (BoundaryAttribute<T>) var_1704;
+         if (attribute != null) {
+             final SubHyperplane<T> tPO = (attribute.getPlusOutside() == null) ?
+                 null : transform.apply(attribute.getPlusOutside(), hyperplane, transformed);

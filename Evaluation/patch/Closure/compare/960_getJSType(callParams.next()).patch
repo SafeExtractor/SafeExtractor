@@ -1,0 +1,26 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/960_getJSType(callParams.next()).patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/960_getJSType(callParams.next()).patch
+index 4863e3c..1cdd29d 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/960_getJSType(callParams.next()).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/960_getJSType(callParams.next()).patch
+@@ -1,8 +1,8 @@
+ diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+-index 3dc8ec6..59c6955 100644
++index 3dc8ec6..2fed6ab 100644
+ --- a/src/com/google/javascript/jscomp/TypeInference.java
+ +++ b/src/com/google/javascript/jscomp/TypeInference.java
+-@@ -1121,15 +1121,16 @@
++@@ -1121,9 +1121,10 @@
+        Map<TemplateType, JSType> resolvedTypes) {
+      while (declParams.hasNext() && callParams.hasNext()) {
+        Node declParam = declParams.next();
+@@ -15,10 +15,3 @@ index 3dc8ec6..59c6955 100644
+            resolvedTypes);
+        if (declParam.isVarArgs()) {
+          while (callParams.hasNext()) {
+-           maybeResolveTemplatedType(
+-               getJSType(declParam),
+--              getJSType(callParams.next()),
+-+              var_960,
+-               resolvedTypes);
+-         }
+-       }

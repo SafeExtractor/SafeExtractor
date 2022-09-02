@@ -1,0 +1,42 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessTweaks.java b/src/com/google/javascript/jscomp/ProcessTweaks.java
+index e20b902..341c740 100644
+--- a/src/com/google/javascript/jscomp/ProcessTweaks.java
++++ b/src/com/google/javascript/jscomp/ProcessTweaks.java
+@@ -351,9 +351,10 @@
+         return;
+       }
+ 
+-      if (tweakFunc == TweakFunction.GET_COMPILER_OVERRIDES) {
++      String var_1391 = t.getSourceName();
++	if (tweakFunc == TweakFunction.GET_COMPILER_OVERRIDES) {
+         getOverridesCalls.add(
+-            new TweakFunctionCall(t.getSourceName(), tweakFunc, n));
++            new TweakFunctionCall(var_1391, tweakFunc, n));
+         return;
+       }
+ 
+@@ -396,7 +397,7 @@
+           }
+ 
+           Node tweakDefaultValueNode = tweakIdNode.getNext().getNext();
+-          tweakInfo.addRegisterCall(t.getSourceName(), tweakFunc, n,
++          tweakInfo.addRegisterCall(var_1391, tweakFunc, n,
+               tweakDefaultValueNode);
+           break;
+         case OVERRIDE_DEFAULT_VALUE:
+@@ -414,13 +415,13 @@
+           }
+ 
+           tweakDefaultValueNode = tweakIdNode.getNext();
+-          tweakInfo.addOverrideDefaultValueCall(t.getSourceName(), tweakFunc, n,
++          tweakInfo.addOverrideDefaultValueCall(var_1391, tweakFunc, n,
+               tweakDefaultValueNode);
+           break;
+         case GET_BOOLEAN:
+         case GET_NUMBER:
+         case GET_STRING:
+-          tweakInfo.addGetterCall(t.getSourceName(), tweakFunc, n);
++          tweakInfo.addGetterCall(var_1391, tweakFunc, n);
+       }
+     }
+   }

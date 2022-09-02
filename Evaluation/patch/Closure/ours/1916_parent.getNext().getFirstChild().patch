@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..103f3e7 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -725,10 +725,11 @@
+         // After the body of a CASE, the control goes to the body of the next
+         // case, without having to go to the case condition.
+         if (parent.getNext() != null) {
+-          if (parent.getNext().isCase()) {
+-            return parent.getNext().getFirstChild().getNext();
++          Node var_1916 = parent.getNext().getFirstChild();
++		if (parent.getNext().isCase()) {
++            return var_1916.getNext();
+           } else if (parent.getNext().isDefaultCase()) {
+-            return parent.getNext().getFirstChild();
++            return var_1916;
+           } else {
+             Preconditions.checkState(false, "Not reachable");
+           }

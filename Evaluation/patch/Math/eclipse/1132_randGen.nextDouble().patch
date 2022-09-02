@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/genetics/GeneticAlgorithm.java b/src/main/java/org/apache/commons/math3/genetics/GeneticAlgorithm.java
+index 445ed58..37cf77c 100644
+--- a/src/main/java/org/apache/commons/math3/genetics/GeneticAlgorithm.java
++++ b/src/main/java/org/apache/commons/math3/genetics/GeneticAlgorithm.java
+@@ -156,13 +156,14 @@
+             ChromosomePair pair = getSelectionPolicy().select(current);
+ 
+             // crossover?
+-            if (randGen.nextDouble() < getCrossoverRate()) {
++            double var_1132 = randGen.nextDouble();
++			if (var_1132 < getCrossoverRate()) {
+                 // apply crossover policy to create two offspring
+                 pair = getCrossoverPolicy().crossover(pair.getFirst(), pair.getSecond());
+             }
+ 
+             // mutation?
+-            if (randGen.nextDouble() < getMutationRate()) {
++            if (var_1132 < getMutationRate()) {
+                 // apply mutation policy to the chromosomes
+                 pair = new ChromosomePair(
+                     getMutationPolicy().mutate(pair.getFirst()),

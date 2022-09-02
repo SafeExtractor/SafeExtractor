@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/ShadowVariables.java b/src/com/google/javascript/jscomp/ShadowVariables.java
+index f627aaf..0c0fcda 100644
+--- a/src/com/google/javascript/jscomp/ShadowVariables.java
++++ b/src/com/google/javascript/jscomp/ShadowVariables.java
+@@ -152,15 +152,16 @@
+       }
+ 
+       // Using the definition of upward referencing, fill in the map.
+-      if (var.getScope() != t.getScope()) {
++      String var_538 = var.name;
++	if (var.getScope() != t.getScope()) {
+         for (Scope s = t.getScope();
+             s != var.getScope() && s.isLocal(); s = s.getParent()) {
+-          scopeUpRefMap.put(s.getRootNode(), var.name);
++          scopeUpRefMap.put(s.getRootNode(), var_538);
+         }
+       }
+ 
+       if (var.getScope() == t.getScope()) {
+-        scopeUpRefMap.put(t.getScopeRoot(), var.name);
++        scopeUpRefMap.put(t.getScopeRoot(), var_538);
+       }
+ 
+       // Find in the usage map that tracks a var and all of its usage.

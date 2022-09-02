@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/plot/ThermometerPlot.java b/source/org/jfree/chart/plot/ThermometerPlot.java
+index d4bd7b7..ef782bf 100644
+--- a/source/org/jfree/chart/plot/ThermometerPlot.java
++++ b/source/org/jfree/chart/plot/ThermometerPlot.java
+@@ -1157,7 +1157,8 @@
+         tempArea = new Area(innerStem);
+         innerThermometer.add(tempArea);
+ 
+-        if ((this.dataset != null) && (this.dataset.getValue() != null)) {
++        FontMetrics var_1424 = g2.getFontMetrics();
++		if ((this.dataset != null) && (this.dataset.getValue() != null)) {
+             double current = this.dataset.getValue().doubleValue();
+             double ds = this.rangeAxis.valueToJava2D(current, dataArea,
+                     RectangleEdge.LEFT);
+@@ -1253,7 +1254,7 @@
+             // draw text value on screen
+             g2.setFont(this.valueFont);
+             g2.setPaint(this.valuePaint);
+-            metrics = g2.getFontMetrics();
++            metrics = var_1424;
+             switch (this.valueLocation) {
+                 case RIGHT:
+                     g2.drawString(this.valueFormat.format(current),
+@@ -1280,7 +1281,7 @@
+         g2.setFont(this.valueFont);
+ 
+         //  draw units indicator
+-        metrics = g2.getFontMetrics();
++        metrics = var_1424;
+         int tickX1 = midX - getColumnRadius() - getGap() * 2
+                      - metrics.stringWidth(UNITS[this.units]);
+         if (tickX1 > area.getMinX()) {

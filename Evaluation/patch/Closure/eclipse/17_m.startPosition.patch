@@ -1,0 +1,16 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapGeneratorV1.java b/src/com/google/debugging/sourcemap/SourceMapGeneratorV1.java
+index c25e7eb..9ac6fe1 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapGeneratorV1.java
++++ b/src/com/google/debugging/sourcemap/SourceMapGeneratorV1.java
+@@ -601,8 +601,9 @@
+      */
+     private void maybeVisitParent(MappingVisitor v, Mapping parent, Mapping m)
+         throws IOException {
+-      int nextLine = getAdjustedLine(m.startPosition);
+-      int nextCol = getAdjustedCol(m.startPosition);
++      FilePosition var_17 = m.startPosition;
++	int nextLine = getAdjustedLine(var_17);
++      int nextCol = getAdjustedCol(var_17);
+       // If the previous value is null, no mapping exists.
+       Preconditions.checkState(line < nextLine || col <= nextCol);
+       if (line < nextLine || (line == nextLine && col < nextCol)) {

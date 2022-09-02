@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/util/SerialUtilities.java b/source/org/jfree/chart/util/SerialUtilities.java
+index 90edcc1..6f03bc0 100644
+--- a/source/org/jfree/chart/util/SerialUtilities.java
++++ b/source/org/jfree/chart/util/SerialUtilities.java
+@@ -539,7 +539,8 @@
+             // then write the string
+             StringBuffer plainStr = new StringBuffer();
+             char current = aci.first();
+-            while (current != CharacterIterator.DONE) {
++            char var_3654 = CharacterIterator.DONE;
++			while (current != var_3654) {
+                 plainStr = plainStr.append(current);
+                 current = aci.next();
+             }
+@@ -548,7 +549,7 @@
+             // then write the attributes and limits for each run
+             current = aci.first();
+             int begin = aci.getBeginIndex();
+-            while (current != CharacterIterator.DONE) {
++            while (current != var_3654) {
+                 // write the current character - when the reader sees that this
+                 // is not CharacterIterator.DONE, it will know to read the
+                 // run limits and attributes
+@@ -565,7 +566,7 @@
+             }
+             // write a character that signals to the reader that all runs
+             // are done...
+-            stream.writeChar(CharacterIterator.DONE);
++            stream.writeChar(var_3654);
+         }
+         else {
+             // write a flag that indicates a null

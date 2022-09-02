@@ -1,0 +1,16 @@
+diff --git a/httpcore5/src/main/java/org/apache/hc/core5/reactor/IOSessionImpl.java b/httpcore5/src/main/java/org/apache/hc/core5/reactor/IOSessionImpl.java
+index 8529138..d16cea8 100644
+--- a/httpcore5/src/main/java/org/apache/hc/core5/reactor/IOSessionImpl.java
++++ b/httpcore5/src/main/java/org/apache/hc/core5/reactor/IOSessionImpl.java
+@@ -74,8 +74,9 @@
+         this.socketTimeout = Timeout.DISABLED;
+         this.id = String.format("i/o-%08X", COUNT.getAndIncrement());
+         this.status = new AtomicInteger(ACTIVE);
+-        this.lastReadTime = System.currentTimeMillis();
+-        this.lastWriteTime = System.currentTimeMillis();
++        long currentTimeMillis = System.currentTimeMillis();
++		this.lastReadTime = currentTimeMillis;
++        this.lastWriteTime = currentTimeMillis;
+     }
+ 
+     @Override

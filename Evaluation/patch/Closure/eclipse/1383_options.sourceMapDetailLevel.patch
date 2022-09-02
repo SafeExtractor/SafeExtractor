@@ -1,0 +1,36 @@
+diff --git a/src/com/google/javascript/jscomp/CodePrinter.java b/src/com/google/javascript/jscomp/CodePrinter.java
+index fd77e51..5d2c8c4 100644
+--- a/src/com/google/javascript/jscomp/CodePrinter.java
++++ b/src/com/google/javascript/jscomp/CodePrinter.java
+@@ -19,6 +19,7 @@
+ import com.google.common.base.Preconditions;
+ import com.google.common.base.Throwables;
+ import com.google.debugging.sourcemap.FilePosition;
++import com.google.javascript.jscomp.SourceMap.DetailLevel;
+ import com.google.javascript.rhino.Node;
+ import com.google.javascript.rhino.Token;
+ 
+@@ -645,7 +646,8 @@
+    */
+   private static String toSource(Node root, Format outputFormat,
+       CompilerOptions options, SourceMap sourceMap,  boolean tagAsStrict) {
+-    Preconditions.checkState(options.sourceMapDetailLevel != null);
++    DetailLevel var_1383 = options.sourceMapDetailLevel;
++	Preconditions.checkState(var_1383 != null);
+ 
+     boolean createSourceMap = (sourceMap != null);
+     MappedCodePrinter mcp =
+@@ -655,11 +657,11 @@
+             options.preferLineBreakAtEndOfFile,
+             options.lineLengthThreshold,
+             createSourceMap,
+-            options.sourceMapDetailLevel)
++            var_1383)
+         : new PrettyCodePrinter(
+             options.lineLengthThreshold,
+             createSourceMap,
+-            options.sourceMapDetailLevel);
++            var_1383);
+     CodeGenerator cg =
+         outputFormat == Format.TYPED
+         ? new TypedCodeGenerator(mcp, options)

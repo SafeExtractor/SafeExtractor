@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/axis/LogarithmicAxis.java b/source/org/jfree/chart/axis/LogarithmicAxis.java
+index 1f440bd..1907a62 100644
+--- a/source/org/jfree/chart/axis/LogarithmicAxis.java
++++ b/source/org/jfree/chart/axis/LogarithmicAxis.java
+@@ -545,7 +545,8 @@
+ 
+             //if flag then change to log version of lowest value
+             // to make range begin at a 10^n value:
+-            if (this.autoRangeNextLogFlag) {
++            boolean var_446 = this.autoRangeNextLogFlag;
++			if (var_446) {
+                 lower = computeLogFloor(lower);
+             }
+ 
+@@ -585,7 +586,7 @@
+                 //negatives allowed or upper bound not between 0 & 1
+                 //if flag then change to log version of highest value to
+                 // make range begin at a 10^n value; else use nearest int
+-                upper = (this.autoRangeNextLogFlag) ? computeLogCeil(upper)
++                upper = var_446 ? computeLogCeil(upper)
+                     : Math.ceil(upper);
+             }
+             // ensure the autorange is at least <minRange> in size...

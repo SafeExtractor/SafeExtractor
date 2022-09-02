@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/AbstractRealMatrix.java b/src/main/java/org/apache/commons/math3/linear/AbstractRealMatrix.java
+index 6577281..559f625 100644
+--- a/src/main/java/org/apache/commons/math3/linear/AbstractRealMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/AbstractRealMatrix.java
+@@ -393,9 +393,10 @@
+         MatrixDimensionMismatchException {
+         MatrixUtils.checkSubMatrixIndex(this, selectedRows, selectedColumns);
+         final int nCols = selectedColumns.length;
+-        if ((destination.length < selectedRows.length) ||
+-            (destination[0].length < nCols)) {
+-            throw new MatrixDimensionMismatchException(destination.length, destination[0].length,
++        double[] var_1901 = destination[0];
++		if ((destination.length < selectedRows.length) ||
++            (var_1901.length < nCols)) {
++            throw new MatrixDimensionMismatchException(destination.length, var_1901.length,
+                                                        selectedRows.length, selectedColumns.length);
+         }
+ 

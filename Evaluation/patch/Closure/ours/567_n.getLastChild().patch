@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/MinimizeExitPoints.java b/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+index 317947b..05b03b7 100644
+--- a/src/com/google/javascript/jscomp/MinimizeExitPoints.java
++++ b/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+@@ -50,10 +50,11 @@
+ 
+   @Override
+   public void visit(NodeTraversal t, Node n, Node parent) {
+-    switch (n.getType()) {
++    Node var_567 = n.getLastChild();
++	switch (n.getType()) {
+       case Token.LABEL:
+         tryMinimizeExits(
+-            n.getLastChild(), Token.BREAK, n.getFirstChild().getString());
++            var_567, Token.BREAK, n.getFirstChild().getString());
+         break;
+ 
+       case Token.FOR:
+@@ -78,7 +79,7 @@
+ 
+       case Token.FUNCTION:
+         tryMinimizeExits(
+-            n.getLastChild(), Token.RETURN, null);
++            var_567, Token.RETURN, null);
+         break;
+     }
+   }

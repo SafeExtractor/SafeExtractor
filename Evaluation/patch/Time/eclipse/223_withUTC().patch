@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/joda/time/chrono/GJChronology.java b/src/main/java/org/joda/time/chrono/GJChronology.java
+index 1cc03a4..990e521 100644
+--- a/src/main/java/org/joda/time/chrono/GJChronology.java
++++ b/src/main/java/org/joda/time/chrono/GJChronology.java
+@@ -457,12 +457,13 @@
+         if (iCutoverMillis != DEFAULT_CUTOVER.getMillis()) {
+             sb.append(",cutover=");
+             DateTimeFormatter printer;
+-            if (withUTC().dayOfYear().remainder(iCutoverMillis) == 0) {
++            Chronology var_223 = withUTC();
++			if (var_223.dayOfYear().remainder(iCutoverMillis) == 0) {
+                 printer = ISODateTimeFormat.date();
+             } else {
+                 printer = ISODateTimeFormat.dateTime();
+             }
+-            printer.withChronology(withUTC()).printTo(sb, iCutoverMillis);
++            printer.withChronology(var_223).printTo(sb, iCutoverMillis);
+         }
+         
+         if (getMinimumDaysInFirstWeek() != 4) {

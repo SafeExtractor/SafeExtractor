@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+index d33ceab..4daefaa 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+@@ -305,8 +305,9 @@
+ 
+             // characterize the cut sub-hyperplane,
+             // first with respect to the plus sub-tree
+-            @SuppressWarnings("unchecked")
+-            final SubHyperplane<S>[] plusChar = (SubHyperplane<S>[]) Array.newInstance(SubHyperplane.class, 2);
++            Object var_1669 = Array.newInstance(SubHyperplane.class, 2);
++			@SuppressWarnings("unchecked")
++            final SubHyperplane<S>[] plusChar = (SubHyperplane<S>[]) var_1669;
+             characterize(node.getPlus(), node.getCut().copySelf(), plusChar);
+ 
+             if (plusChar[0] != null && !plusChar[0].isEmpty()) {
+@@ -314,7 +315,7 @@
+                 // outside cells on its plus side, we want to check if parts of this subset
+                 // do have inside cells on their minus side
+                 @SuppressWarnings("unchecked")
+-                final SubHyperplane<S>[] minusChar = (SubHyperplane<S>[]) Array.newInstance(SubHyperplane.class, 2);
++                final SubHyperplane<S>[] minusChar = (SubHyperplane<S>[]) var_1669;
+                 characterize(node.getMinus(), plusChar[0], minusChar);
+                 if (minusChar[1] != null && !minusChar[1].isEmpty()) {
+                     // this part belongs to the boundary,
+@@ -328,7 +329,7 @@
+                 // inside cells on its plus side, we want to check if parts of this subset
+                 // do have outside cells on their minus side
+                 @SuppressWarnings("unchecked")
+-                final SubHyperplane<S>[] minusChar = (SubHyperplane<S>[]) Array.newInstance(SubHyperplane.class, 2);
++                final SubHyperplane<S>[] minusChar = (SubHyperplane<S>[]) var_1669;
+                 characterize(node.getMinus(), plusChar[1], minusChar);
+                 if (minusChar[0] != null && !minusChar[0].isEmpty()) {
+                     // this part belongs to the boundary,

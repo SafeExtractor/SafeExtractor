@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..c9e6d97 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -3541,7 +3541,8 @@
+             return;
+         }
+         double y = yAxis.getRange().constrain(this.quadrantOrigin.getY());
+-        double yy = yAxis.valueToJava2D(y, area, getRangeAxisEdge());
++        RectangleEdge var_1707 = getRangeAxisEdge();
++		double yy = yAxis.valueToJava2D(y, area, var_1707);
+ 
+         double xmin = xAxis.getLowerBound();
+         double xxmin = xAxis.valueToJava2D(xmin, area, getDomainAxisEdge());
+@@ -3550,10 +3551,10 @@
+         double xxmax = xAxis.valueToJava2D(xmax, area, getDomainAxisEdge());
+ 
+         double ymin = yAxis.getLowerBound();
+-        double yymin = yAxis.valueToJava2D(ymin, area, getRangeAxisEdge());
++        double yymin = yAxis.valueToJava2D(ymin, area, var_1707);
+ 
+         double ymax = yAxis.getUpperBound();
+-        double yymax = yAxis.valueToJava2D(ymax, area, getRangeAxisEdge());
++        double yymax = yAxis.valueToJava2D(ymax, area, var_1707);
+ 
+         Rectangle2D[] r = new Rectangle2D[] {null, null, null, null};
+         if (this.quadrantPaint[0] != null) {

@@ -1,0 +1,14 @@
+diff --git a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-components/src/main/java/org/apache/nifi/controller/repository/StandardProcessSession.java b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-components/src/main/java/org/apache/nifi/controller/repository/StandardProcessSession.java
+index 4e7b286..f20213f 100644
+--- a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-components/src/main/java/org/apache/nifi/controller/repository/StandardProcessSession.java
++++ b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-components/src/main/java/org/apache/nifi/controller/repository/StandardProcessSession.java
+@@ -1406,7 +1406,8 @@
+         for (final FlowFile flowFile : flowFiles) {
+             final FlowFileRecord flowFileRecord = (FlowFileRecord) flowFile;
+ 
+-            final StandardRepositoryRecord repoRecord = this.records.remove(flowFile.getId());
++            long flowFileId = flowFile.getId();
++			final StandardRepositoryRecord repoRecord = this.records.remove(flowFileId);
+             newOwner.records.put(flowFileRecord.getId(), repoRecord);
+ 
+             // Adjust the counts for Connections for each FlowFile that was pulled from a Connection.

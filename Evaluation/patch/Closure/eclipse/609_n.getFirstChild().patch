@@ -1,0 +1,38 @@
+diff --git a/src/com/google/javascript/jscomp/RemoveUnusedVars.java b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+index 4c84735..fc62a14 100644
+--- a/src/com/google/javascript/jscomp/RemoveUnusedVars.java
++++ b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+@@ -192,12 +192,13 @@
+   private void traverseNode(Node n, Node parent, Scope scope) {
+     int type = n.getType();
+     Var var = null;
+-    switch (type) {
++    Node var_609 = n.getFirstChild();
++	switch (type) {
+       case Token.FUNCTION:
+         // If this function is a removable var, then create a continuation
+         // for it instead of traversing immediately.
+         if (NodeUtil.isFunctionDeclaration(n)) {
+-          var = scope.getVar(n.getFirstChild().getString());
++          var = scope.getVar(var_609.getString());
+         }
+ 
+         if (var != null && isRemovableVar(var)) {
+@@ -261,7 +262,7 @@
+       case Token.NAME:
+         var = scope.getVar(n.getString());
+         if (parent.isVar()) {
+-          Node value = n.getFirstChild();
++          Node value = var_609;
+           if (value != null && var != null && isRemovableVar(var) &&
+               !NodeUtil.mayHaveSideEffects(value, compiler)) {
+             // If the var is unreferenced and creating its value has no side
+@@ -299,7 +300,7 @@
+         break;
+     }
+ 
+-    for (Node c = n.getFirstChild(); c != null; c = c.getNext()) {
++    for (Node c = var_609; c != null; c = c.getNext()) {
+       traverseNode(c, n, scope);
+     }
+   }

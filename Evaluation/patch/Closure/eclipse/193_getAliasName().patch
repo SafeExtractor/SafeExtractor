@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/AliasKeywords.java b/src/com/google/javascript/jscomp/AliasKeywords.java
+index 947a1bf..0becae6 100644
+--- a/src/com/google/javascript/jscomp/AliasKeywords.java
++++ b/src/com/google/javascript/jscomp/AliasKeywords.java
+@@ -247,9 +247,10 @@
+     protected void insertAliasDeclaration(Node codeRoot) {
+       Node varNode = new Node(Token.VAR);
+       Node value = new Node(getTokenId());
+-      Node name = NodeUtil.newName(
+-          compiler.getCodingConvention(), getAliasName(),
+-          varNode, getAliasName());
++      String var_193 = getAliasName();
++	Node name = NodeUtil.newName(
++          compiler.getCodingConvention(), var_193,
++          varNode, var_193);
+       name.addChildToBack(value);
+       varNode.addChildToBack(name);
+       codeRoot.addChildrenToFront(varNode);

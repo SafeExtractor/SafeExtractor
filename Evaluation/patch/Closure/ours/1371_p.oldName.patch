@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/RenameProperties.java b/src/com/google/javascript/jscomp/RenameProperties.java
+index 7753a36..c0597aa 100644
+--- a/src/com/google/javascript/jscomp/RenameProperties.java
++++ b/src/com/google/javascript/jscomp/RenameProperties.java
+@@ -337,8 +337,9 @@
+     NameGenerator nameGen = new NameGenerator(
+         reservedNames, "", reservedCharacters);
+     for (Property p : props) {
+-      if (generatePseudoNames) {
+-        p.newName = "$" + p.oldName + "$";
++      String var_1371 = p.oldName;
++	if (generatePseudoNames) {
++        p.newName = "$" + var_1371 + "$";
+       } else {
+         // If we haven't already given this property a reusable name.
+         if (p.newName == null) {
+@@ -346,7 +347,7 @@
+         }
+       }
+       reservedNames.add(p.newName);
+-      compiler.addToDebugLog(p.oldName + " => " + p.newName);
++      compiler.addToDebugLog(var_1371 + " => " + p.newName);
+     }
+   }
+ 

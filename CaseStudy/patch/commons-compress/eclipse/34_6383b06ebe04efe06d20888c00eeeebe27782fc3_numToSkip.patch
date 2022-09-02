@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java
+index 5c08ba0..c4046d7 100644
+--- a/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java
++++ b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java
+@@ -272,10 +272,11 @@
+ 
+         final long available = currEntry.getRealSize() - entryOffset;
+         final long skipped;
+-        if (!currEntry.isSparse()) {
+-            skipped = IOUtils.skip(inputStream, Math.min(n, available));
++        long numToSkip = Math.min(n, available);
++		if (!currEntry.isSparse()) {
++            skipped = IOUtils.skip(inputStream, numToSkip);
+         } else {
+-            skipped = skipSparse(Math.min(n, available));
++            skipped = skipSparse(numToSkip);
+         }
+         count(skipped);
+         entryOffset += skipped;

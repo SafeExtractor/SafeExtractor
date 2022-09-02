@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/chart/renderer/OutlierListCollection.java b/source/org/jfree/chart/renderer/OutlierListCollection.java
+index 2dd4144..61df1e6 100644
+--- a/source/org/jfree/chart/renderer/OutlierListCollection.java
++++ b/source/org/jfree/chart/renderer/OutlierListCollection.java
+@@ -134,12 +134,13 @@
+      */
+     public boolean add(Outlier outlier) {
+ 
+-        if (this.outlierLists.isEmpty()) {
+-            return this.outlierLists.add(new OutlierList(outlier));
++        List var_2380 = this.outlierLists;
++		if (var_2380.isEmpty()) {
++            return var_2380.add(new OutlierList(outlier));
+         }
+         else {
+             boolean updated = false;
+-            for (Iterator iterator = this.outlierLists.iterator();
++            for (Iterator iterator = var_2380.iterator();
+                  iterator.hasNext();) {
+                 OutlierList list = (OutlierList) iterator.next();
+                 if (list.isOverlapped(outlier)) {
+@@ -148,7 +149,7 @@
+             }
+             if (!updated) {
+                 //System.err.print(" creating new outlier list ");
+-                updated = this.outlierLists.add(new OutlierList(outlier));
++                updated = var_2380.add(new OutlierList(outlier));
+             }
+             return updated;
+         }

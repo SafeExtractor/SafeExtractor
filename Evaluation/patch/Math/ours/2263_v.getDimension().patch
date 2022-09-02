@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java b/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java
+index 4ffd794..6524e0d 100644
+--- a/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java
++++ b/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java
+@@ -831,17 +831,18 @@
+ 
+     /** {@inheritDoc} */
+     public void setSubVector(int index, FieldVector<T> v) throws OutOfRangeException {
+-        try {
++        int var_2263 = v.getDimension();
++		try {
+             try {
+                 set(index, (ArrayFieldVector<T>) v);
+             } catch (ClassCastException cce) {
+-                for (int i = index; i < index + v.getDimension(); ++i) {
++                for (int i = index; i < index + var_2263; ++i) {
+                     data[i] = v.getEntry(i-index);
+                 }
+             }
+         } catch (IndexOutOfBoundsException e) {
+             checkIndex(index);
+-            checkIndex(index + v.getDimension() - 1);
++            checkIndex(index + var_2263 - 1);
+         }
+     }
+ 

@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..73565c8 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -1485,16 +1485,17 @@
+       pattern = makeForwardSlashBracketSafe(pattern);
+ 
+       Node regexLiteral;
+-      if (null == flags || "".equals(flags.getString())) {
++      String var_1470 = flags.getString();
++	if (null == flags || "".equals(var_1470)) {
+         // fold to /foobar/
+         regexLiteral = IR.regexp(pattern);
+       } else {
+         // fold to /foobar/gi
+-        if (!areValidRegexpFlags(flags.getString())) {
++        if (!areValidRegexpFlags(var_1470)) {
+           report(INVALID_REGULAR_EXPRESSION_FLAGS, flags);
+           return n;
+         }
+-        if (!areSafeFlagsToFold(flags.getString())) {
++        if (!areSafeFlagsToFold(var_1470)) {
+           return n;
+         }
+         n.removeChild(flags);

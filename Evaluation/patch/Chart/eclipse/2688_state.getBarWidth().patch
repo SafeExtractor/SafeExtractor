@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/chart/renderer/category/StackedBarRenderer.java b/source/org/jfree/chart/renderer/category/StackedBarRenderer.java
+index 9181693..e02e522 100644
+--- a/source/org/jfree/chart/renderer/category/StackedBarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/StackedBarRenderer.java
+@@ -306,9 +306,10 @@
+         }
+ 
+         PlotOrientation orientation = plot.getOrientation();
+-        double barW0 = domainAxis.getCategoryMiddle(column, getColumnCount(),
++        double var_2688 = state.getBarWidth();
++		double barW0 = domainAxis.getCategoryMiddle(column, getColumnCount(),
+                 dataArea, plot.getDomainAxisEdge())
+-                - state.getBarWidth() / 2.0;
++                - var_2688 / 2.0;
+ 
+         double positiveBase = getBase();
+         double negativeBase = positiveBase;
+@@ -371,10 +372,10 @@
+         Rectangle2D bar = null;
+         if (orientation == PlotOrientation.HORIZONTAL) {
+             bar = new Rectangle2D.Double(barL0, barW0, barLength,
+-                    state.getBarWidth());
++                    var_2688);
+         }
+         else {
+-            bar = new Rectangle2D.Double(barW0, barL0, state.getBarWidth(),
++            bar = new Rectangle2D.Double(barW0, barL0, var_2688,
+                     barLength);
+         }
+         if (pass == 0) {

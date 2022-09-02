@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/axis/PeriodAxis.java b/source/org/jfree/chart/axis/PeriodAxis.java
+index 3c0bc0f..03b8206 100644
+--- a/source/org/jfree/chart/axis/PeriodAxis.java
++++ b/source/org/jfree/chart/axis/PeriodAxis.java
+@@ -843,9 +843,10 @@
+                 new Date(axisMin), this.timeZone, this.locale);
+         RegularTimePeriod p2 = this.labelInfo[band].createInstance(
+                 new Date(axisMax), this.timeZone, this.locale);
+-        String label1 = this.labelInfo[band].getDateFormat().format(
++        DateFormat var_819 = this.labelInfo[band].getDateFormat();
++		String label1 = var_819.format(
+                 new Date(p1.getMiddleMillisecond()));
+-        String label2 = this.labelInfo[band].getDateFormat().format(
++        String label2 = var_819.format(
+                 new Date(p2.getMiddleMillisecond()));
+         Rectangle2D b1 = TextUtilities.getTextBounds(label1, g2,
+                 g2.getFontMetrics());
+@@ -878,7 +879,7 @@
+         while (p.getFirstMillisecond() <= axisMax) {
+             float x = (float) valueToJava2D(p.getMiddleMillisecond(), dataArea,
+                     edge);
+-            DateFormat df = this.labelInfo[band].getDateFormat();
++            DateFormat df = var_819;
+             String label = df.format(new Date(p.getMiddleMillisecond()));
+             long first = p.getFirstMillisecond();
+             long last = p.getLastMillisecond();

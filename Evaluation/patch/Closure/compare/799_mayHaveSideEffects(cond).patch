@@ -1,0 +1,35 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/799_mayHaveSideEffects(cond).patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/799_mayHaveSideEffects(cond).patch
+index b6d9af0..dfd9890 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/799_mayHaveSideEffects(cond).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/799_mayHaveSideEffects(cond).patch
+@@ -1,25 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+-index 1e1571d..3cc741c 100644
++index 1e1571d..03a8ada 100644
+ --- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+ +++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+-@@ -699,8 +699,9 @@
+-     }
++@@ -700,7 +700,8 @@
+  
+      // if (x()) { }
+--    if (!mayHaveSideEffects(thenBody) && elseBody == null) {
++     if (!mayHaveSideEffects(thenBody) && elseBody == null) {
+ -      if (mayHaveSideEffects(cond)) {
+-+    boolean var_799 = mayHaveSideEffects(cond);
+-+	if (!mayHaveSideEffects(thenBody) && elseBody == null) {
+-+      if (var_799) {
+++      boolean var_799 = mayHaveSideEffects(cond);
+++	if (var_799) {
+          // x() has side effects, just leave the condition on its own.
+          n.removeChild(cond);
+          Node replacement = NodeUtil.newExpr(cond);
+-@@ -721,7 +722,7 @@
+-       return n;  // We can't remove branches otherwise!
+-     }
+- 
+--    if (mayHaveSideEffects(cond)) {
+-+    if (var_799) {
+-       // Transform "if (a = 2) {x =2}" into "if (true) {a=2;x=2}"
+-       boolean newConditionValue = condValue == TernaryValue.TRUE;
+-       // Add an elseBody if it is needed.

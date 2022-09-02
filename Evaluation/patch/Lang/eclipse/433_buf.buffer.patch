@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/lang3/text/StrSubstitutor.java b/src/main/java/org/apache/commons/lang3/text/StrSubstitutor.java
+index 45dd74d..4e36257 100644
+--- a/src/main/java/org/apache/commons/lang3/text/StrSubstitutor.java
++++ b/src/main/java/org/apache/commons/lang3/text/StrSubstitutor.java
+@@ -665,7 +665,8 @@
+         final boolean top = priorVariables == null;
+         boolean altered = false;
+         int lengthChange = 0;
+-        char[] chars = buf.buffer;
++        char[] var_433 = buf.buffer;
++		char[] chars = var_433;
+         int bufEnd = offset + length;
+         int pos = offset;
+         while (pos < bufEnd) {
+@@ -678,7 +679,7 @@
+                 if (pos > offset && chars[pos - 1] == escape) {
+                     // escaped
+                     buf.deleteCharAt(pos - 1);
+-                    chars = buf.buffer; // in case buffer was altered
++                    chars = var_433; // in case buffer was altered
+                     lengthChange--;
+                     altered = true;
+                     bufEnd--;
+@@ -742,7 +743,7 @@
+                                     pos += change;
+                                     bufEnd += change;
+                                     lengthChange += change;
+-                                    chars = buf.buffer; // in case buffer was
++                                    chars = var_433; // in case buffer was
+                                                         // altered
+                                 }
+ 

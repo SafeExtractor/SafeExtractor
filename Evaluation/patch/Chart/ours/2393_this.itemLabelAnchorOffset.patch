@@ -1,0 +1,215 @@
+diff --git a/source/org/jfree/chart/renderer/AbstractRenderer.java b/source/org/jfree/chart/renderer/AbstractRenderer.java
+index a6f2ba6..3b911e2 100644
+--- a/source/org/jfree/chart/renderer/AbstractRenderer.java
++++ b/source/org/jfree/chart/renderer/AbstractRenderer.java
+@@ -2777,107 +2777,109 @@
+         Point2D result = null;
+         if (anchor == ItemLabelAnchor.CENTER) {
+             result = new Point2D.Double(x, y);
+-        }
+-        else if (anchor == ItemLabelAnchor.INSIDE1) {
+-            result = new Point2D.Double(x + OPP * this.itemLabelAnchorOffset,
+-                    y - ADJ * this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.INSIDE2) {
+-            result = new Point2D.Double(x + ADJ * this.itemLabelAnchorOffset,
+-                    y - OPP * this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.INSIDE3) {
+-            result = new Point2D.Double(x + this.itemLabelAnchorOffset, y);
+-        }
+-        else if (anchor == ItemLabelAnchor.INSIDE4) {
+-            result = new Point2D.Double(x + ADJ * this.itemLabelAnchorOffset,
+-                    y + OPP * this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.INSIDE5) {
+-            result = new Point2D.Double(x + OPP * this.itemLabelAnchorOffset,
+-                    y + ADJ * this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.INSIDE6) {
+-            result = new Point2D.Double(x, y + this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.INSIDE7) {
+-            result = new Point2D.Double(x - OPP * this.itemLabelAnchorOffset,
+-                    y + ADJ * this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.INSIDE8) {
+-            result = new Point2D.Double(x - ADJ * this.itemLabelAnchorOffset,
+-                    y + OPP * this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.INSIDE9) {
+-            result = new Point2D.Double(x - this.itemLabelAnchorOffset, y);
+-        }
+-        else if (anchor == ItemLabelAnchor.INSIDE10) {
+-            result = new Point2D.Double(x - ADJ * this.itemLabelAnchorOffset,
+-                    y - OPP * this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.INSIDE11) {
+-            result = new Point2D.Double(x - OPP * this.itemLabelAnchorOffset,
+-                    y - ADJ * this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.INSIDE12) {
+-            result = new Point2D.Double(x, y - this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.OUTSIDE1) {
+-            result = new Point2D.Double(
+-                    x + 2.0 * OPP * this.itemLabelAnchorOffset,
+-                    y - 2.0 * ADJ * this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.OUTSIDE2) {
+-            result = new Point2D.Double(
+-                    x + 2.0 * ADJ * this.itemLabelAnchorOffset,
+-                    y - 2.0 * OPP * this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.OUTSIDE3) {
+-            result = new Point2D.Double(x + 2.0 * this.itemLabelAnchorOffset,
+-                    y);
+-        }
+-        else if (anchor == ItemLabelAnchor.OUTSIDE4) {
+-            result = new Point2D.Double(
+-                    x + 2.0 * ADJ * this.itemLabelAnchorOffset,
+-                    y + 2.0 * OPP * this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.OUTSIDE5) {
+-            result = new Point2D.Double(
+-                    x + 2.0 * OPP * this.itemLabelAnchorOffset,
+-                    y + 2.0 * ADJ * this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.OUTSIDE6) {
+-            result = new Point2D.Double(x,
+-                    y + 2.0 * this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.OUTSIDE7) {
+-            result = new Point2D.Double(
+-                    x - 2.0 * OPP * this.itemLabelAnchorOffset,
+-                    y + 2.0 * ADJ * this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.OUTSIDE8) {
+-            result = new Point2D.Double(
+-                    x - 2.0 * ADJ * this.itemLabelAnchorOffset,
+-                    y + 2.0 * OPP * this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.OUTSIDE9) {
+-            result = new Point2D.Double(x - 2.0 * this.itemLabelAnchorOffset,
+-                    y);
+-        }
+-        else if (anchor == ItemLabelAnchor.OUTSIDE10) {
+-            result = new Point2D.Double(
+-                    x - 2.0 * ADJ * this.itemLabelAnchorOffset,
+-                    y - 2.0 * OPP * this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.OUTSIDE11) {
+-            result = new Point2D.Double(
+-                x - 2.0 * OPP * this.itemLabelAnchorOffset,
+-                y - 2.0 * ADJ * this.itemLabelAnchorOffset);
+-        }
+-        else if (anchor == ItemLabelAnchor.OUTSIDE12) {
+-            result = new Point2D.Double(x,
+-                    y - 2.0 * this.itemLabelAnchorOffset);
+-        }
++        } else {
++			double var_2393 = this.itemLabelAnchorOffset;
++			if (anchor == ItemLabelAnchor.INSIDE1) {
++			    result = new Point2D.Double(x + OPP * var_2393,
++			            y - ADJ * var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.INSIDE2) {
++			    result = new Point2D.Double(x + ADJ * var_2393,
++			            y - OPP * var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.INSIDE3) {
++			    result = new Point2D.Double(x + var_2393, y);
++			}
++			else if (anchor == ItemLabelAnchor.INSIDE4) {
++			    result = new Point2D.Double(x + ADJ * var_2393,
++			            y + OPP * var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.INSIDE5) {
++			    result = new Point2D.Double(x + OPP * var_2393,
++			            y + ADJ * var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.INSIDE6) {
++			    result = new Point2D.Double(x, y + var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.INSIDE7) {
++			    result = new Point2D.Double(x - OPP * var_2393,
++			            y + ADJ * var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.INSIDE8) {
++			    result = new Point2D.Double(x - ADJ * var_2393,
++			            y + OPP * var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.INSIDE9) {
++			    result = new Point2D.Double(x - var_2393, y);
++			}
++			else if (anchor == ItemLabelAnchor.INSIDE10) {
++			    result = new Point2D.Double(x - ADJ * var_2393,
++			            y - OPP * var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.INSIDE11) {
++			    result = new Point2D.Double(x - OPP * var_2393,
++			            y - ADJ * var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.INSIDE12) {
++			    result = new Point2D.Double(x, y - var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.OUTSIDE1) {
++			    result = new Point2D.Double(
++			            x + 2.0 * OPP * var_2393,
++			            y - 2.0 * ADJ * var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.OUTSIDE2) {
++			    result = new Point2D.Double(
++			            x + 2.0 * ADJ * var_2393,
++			            y - 2.0 * OPP * var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.OUTSIDE3) {
++			    result = new Point2D.Double(x + 2.0 * var_2393,
++			            y);
++			}
++			else if (anchor == ItemLabelAnchor.OUTSIDE4) {
++			    result = new Point2D.Double(
++			            x + 2.0 * ADJ * var_2393,
++			            y + 2.0 * OPP * var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.OUTSIDE5) {
++			    result = new Point2D.Double(
++			            x + 2.0 * OPP * var_2393,
++			            y + 2.0 * ADJ * var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.OUTSIDE6) {
++			    result = new Point2D.Double(x,
++			            y + 2.0 * var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.OUTSIDE7) {
++			    result = new Point2D.Double(
++			            x - 2.0 * OPP * var_2393,
++			            y + 2.0 * ADJ * var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.OUTSIDE8) {
++			    result = new Point2D.Double(
++			            x - 2.0 * ADJ * var_2393,
++			            y + 2.0 * OPP * var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.OUTSIDE9) {
++			    result = new Point2D.Double(x - 2.0 * var_2393,
++			            y);
++			}
++			else if (anchor == ItemLabelAnchor.OUTSIDE10) {
++			    result = new Point2D.Double(
++			            x - 2.0 * ADJ * var_2393,
++			            y - 2.0 * OPP * var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.OUTSIDE11) {
++			    result = new Point2D.Double(
++			        x - 2.0 * OPP * var_2393,
++			        y - 2.0 * ADJ * var_2393);
++			}
++			else if (anchor == ItemLabelAnchor.OUTSIDE12) {
++			    result = new Point2D.Double(x,
++			            y - 2.0 * var_2393);
++			}
++		}
+         return result;
+     }
+ 

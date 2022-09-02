@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/lang3/ArrayUtils.java b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+index a0a499a..07ddb36 100644
+--- a/src/main/java/org/apache/commons/lang3/ArrayUtils.java
++++ b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+@@ -5748,10 +5748,11 @@
+         final int length = getLength(array);
+         int diff = 0; // number of distinct indexes, i.e. number of entries that will be removed
+ 
+-        if (isNotEmpty(indices)) {
++        int var_216 = indices.length;
++		if (isNotEmpty(indices)) {
+             Arrays.sort(indices);
+ 
+-            int i = indices.length;
++            int i = var_216;
+             int prevIndex = length;
+             while (--i >= 0) {
+                 final int index = indices[i];
+@@ -5769,7 +5770,7 @@
+         if (diff < length) {
+             int end = length; // index just after last copy
+             int dest = length - diff; // number of entries so far not copied
+-            for (int i = indices.length - 1; i >= 0; i--) {
++            for (int i = var_216 - 1; i >= 0; i--) {
+                 final int index = indices[i];
+                 if (end - index > 1) { // same as (cp > 0)
+                     final int cp = end - index - 1;

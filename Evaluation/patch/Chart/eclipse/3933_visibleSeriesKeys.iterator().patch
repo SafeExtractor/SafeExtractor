@@ -1,0 +1,45 @@
+diff --git a/source/org/jfree/data/general/DatasetUtilities.java b/source/org/jfree/data/general/DatasetUtilities.java
+index 548d684..8fcfbde 100644
+--- a/source/org/jfree/data/general/DatasetUtilities.java
++++ b/source/org/jfree/data/general/DatasetUtilities.java
+@@ -1411,10 +1411,11 @@
+         double maximum = Double.NEGATIVE_INFINITY;
+ 
+         // handle three cases by dataset type
+-        if (includeInterval && dataset instanceof OHLCDataset) {
++        Iterator var_3933 = visibleSeriesKeys.iterator();
++		if (includeInterval && dataset instanceof OHLCDataset) {
+             // handle special case of OHLCDataset
+             OHLCDataset ohlc = (OHLCDataset) dataset;
+-            Iterator iterator = visibleSeriesKeys.iterator();
++            Iterator iterator = var_3933;
+             while (iterator.hasNext()) {
+                 Comparable seriesKey = (Comparable) iterator.next();
+                 int series = dataset.indexOf(seriesKey);
+@@ -1437,7 +1438,7 @@
+         else if (includeInterval && dataset instanceof BoxAndWhiskerXYDataset) {
+             // handle special case of BoxAndWhiskerXYDataset
+             BoxAndWhiskerXYDataset bx = (BoxAndWhiskerXYDataset) dataset;
+-            Iterator iterator = visibleSeriesKeys.iterator();
++            Iterator iterator = var_3933;
+             while (iterator.hasNext()) {
+                 Comparable seriesKey = (Comparable) iterator.next();
+                 int series = dataset.indexOf(seriesKey);
+@@ -1460,7 +1461,7 @@
+         else if (includeInterval && dataset instanceof IntervalXYDataset) {
+             // handle special case of IntervalXYDataset
+             IntervalXYDataset ixyd = (IntervalXYDataset) dataset;
+-            Iterator iterator = visibleSeriesKeys.iterator();
++            Iterator iterator = var_3933;
+             while (iterator.hasNext()) {
+                 Comparable seriesKey = (Comparable) iterator.next();
+                 int series = dataset.indexOf(seriesKey);
+@@ -1482,7 +1483,7 @@
+         }
+         else {
+             // standard case - plain XYDataset
+-            Iterator iterator = visibleSeriesKeys.iterator();
++            Iterator iterator = var_3933;
+             while (iterator.hasNext()) {
+                 Comparable seriesKey = (Comparable) iterator.next();
+                 int series = dataset.indexOf(seriesKey);

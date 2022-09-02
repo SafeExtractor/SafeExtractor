@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..c5dc331 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -596,7 +596,8 @@
+     // TODO(user): handle object literals like { a: new Foo };
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      switch (n.getType()) {
++      ConcreteType var_1055 = inferConcreteType(getTopScope(), n);
++	switch (n.getType()) {
+         case Token.VAR:
+           // Variable declaration, e.g. var a = b;
+           Node name;
+@@ -619,7 +620,7 @@
+         case Token.GETPROP:
+           // Property access, e.g. a.b = c;
+           if (inExterns) {
+-            ConcreteType type = inferConcreteType(getTopScope(), n);
++            ConcreteType type = var_1055;
+             // We only need to set a type if one hasn't been assigned by
+             // something else, e.g. an ASSIGN node.
+             if (type.isNone()) {
+@@ -671,7 +672,7 @@
+ 
+             if (scope == null) break;
+ 
+-            ConcreteType type = inferConcreteType(getTopScope(), n);
++            ConcreteType type = var_1055;
+             if (type.isNone() || type.isAll()) {
+               break;
+             }

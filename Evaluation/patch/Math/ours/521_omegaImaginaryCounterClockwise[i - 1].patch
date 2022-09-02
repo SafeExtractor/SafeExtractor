@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/complex/RootsOfUnity.java b/src/main/java/org/apache/commons/math3/complex/RootsOfUnity.java
+index a3270e8..dda0134 100644
+--- a/src/main/java/org/apache/commons/math3/complex/RootsOfUnity.java
++++ b/src/main/java/org/apache/commons/math3/complex/RootsOfUnity.java
+@@ -141,10 +141,11 @@
+         omegaImaginaryCounterClockwise[0] = 0.0;
+         omegaImaginaryClockwise[0] = 0.0;
+         for (int i = 1; i < absN; i++) {
+-            omegaReal[i] = omegaReal[i - 1] * cosT -
+-                    omegaImaginaryCounterClockwise[i - 1] * sinT;
++            double var_521 = omegaImaginaryCounterClockwise[i - 1];
++			omegaReal[i] = omegaReal[i - 1] * cosT -
++                    var_521 * sinT;
+             omegaImaginaryCounterClockwise[i] = omegaReal[i - 1] * sinT +
+-                    omegaImaginaryCounterClockwise[i - 1] * cosT;
++                    var_521 * cosT;
+             omegaImaginaryClockwise[i] = -omegaImaginaryCounterClockwise[i];
+         }
+         omegaCount = absN;

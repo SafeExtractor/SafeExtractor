@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/util/SerialUtilities.java b/source/org/jfree/chart/util/SerialUtilities.java
+index 90edcc1..a749cf4 100644
+--- a/source/org/jfree/chart/util/SerialUtilities.java
++++ b/source/org/jfree/chart/util/SerialUtilities.java
+@@ -405,8 +405,9 @@
+                 stream.writeObject(GeneralPath.class);
+                 PathIterator pi = shape.getPathIterator(null);
+                 float[] args = new float[6];
+-                stream.writeBoolean(pi.isDone());
+-                while (!pi.isDone()) {
++                boolean var_3649 = pi.isDone();
++				stream.writeBoolean(var_3649);
++                while (!var_3649) {
+                     int type = pi.currentSegment(args);
+                     stream.writeInt(type);
+                     // TODO: could write this to only stream the values
+@@ -416,7 +417,7 @@
+                     }
+                     stream.writeInt(pi.getWindingRule());
+                     pi.next();
+-                    stream.writeBoolean(pi.isDone());
++                    stream.writeBoolean(var_3649);
+                 }
+             }
+             else {

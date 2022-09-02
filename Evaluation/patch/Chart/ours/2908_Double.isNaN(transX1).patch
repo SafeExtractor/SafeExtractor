@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
+index aa90f2b..612eaac 100644
+--- a/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
+@@ -765,7 +765,8 @@
+         double transY1 = rangeAxis.valueToJava2D(y1, dataArea, yAxisLocation);
+ 
+         if (getPlotLines()) {
+-            if (this.drawSeriesLineAsPath) {
++            boolean var_2908 = Double.isNaN(transX1);
++			if (this.drawSeriesLineAsPath) {
+                 State s = (State) state;
+                 if (s.getSeriesIndex() != series) {
+                     // we are starting a new series path
+@@ -775,7 +776,7 @@
+                 }
+ 
+                 // update path to reflect latest point
+-                if (itemVisible && !Double.isNaN(transX1)
++                if (itemVisible && !var_2908
+                         && !Double.isNaN(transY1)) {
+                     float x = (float) transX1;
+                     float y = (float) transY1;
+@@ -833,7 +834,7 @@
+ 
+                         // only draw if we have good values
+                         if (Double.isNaN(transX0) || Double.isNaN(transY0)
+-                            || Double.isNaN(transX1) || Double.isNaN(transY1)) {
++                            || var_2908 || Double.isNaN(transY1)) {
+                             return;
+                         }
+ 

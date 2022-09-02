@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/InlineObjectLiterals.java b/src/com/google/javascript/jscomp/InlineObjectLiterals.java
+index d03988c..8a0c09b 100644
+--- a/src/com/google/javascript/jscomp/InlineObjectLiterals.java
++++ b/src/com/google/javascript/jscomp/InlineObjectLiterals.java
+@@ -368,12 +368,13 @@
+         // create a tree. In the tree the first child be the COMMA to match
+         // the parser, otherwise tree equality tests fail.
+         nodes = Lists.reverse(nodes);
+-        replacement = new Node(Token.COMMA);
++        int var_671 = Token.COMMA;
++		replacement = new Node(var_671);
+         Node cur = replacement;
+         int i;
+         for (i = 0; i < nodes.size() - 2; i++) {
+           cur.addChildToFront(nodes.get(i));
+-          Node t = new Node(Token.COMMA);
++          Node t = new Node(var_671);
+           cur.addChildToFront(t);
+           cur = t;
+         }

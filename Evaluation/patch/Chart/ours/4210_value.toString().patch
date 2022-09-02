@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/data/time/TimeSeriesTableModel.java b/source/org/jfree/data/time/TimeSeriesTableModel.java
+index 098b602..4bf0c75 100644
+--- a/source/org/jfree/data/time/TimeSeriesTableModel.java
++++ b/source/org/jfree/data/time/TimeSeriesTableModel.java
+@@ -228,12 +228,13 @@
+      */
+     public void setValueAt(Object value, int row, int column) {
+ 
+-        if (row < this.series.getItemCount()) {
++        String var_4210 = value.toString();
++		if (row < this.series.getItemCount()) {
+ 
+             // update the time series appropriately
+             if (column == 1) {
+                 try {
+-                    Double v = Double.valueOf(value.toString());
++                    Double v = Double.valueOf(var_4210);
+                     this.series.update(row, v);
+ 
+                 }
+@@ -248,7 +249,7 @@
+                 this.newTimePeriod = null;
+             }
+             else if (column == 1) {
+-                this.newValue = Double.valueOf(value.toString());
++                this.newValue = Double.valueOf(var_4210);
+             }
+         }
+     }

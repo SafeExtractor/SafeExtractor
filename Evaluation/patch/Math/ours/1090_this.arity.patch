@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/genetics/TournamentSelection.java b/src/main/java/org/apache/commons/math3/genetics/TournamentSelection.java
+index 7c35084..81ebc99 100644
+--- a/src/main/java/org/apache/commons/math3/genetics/TournamentSelection.java
++++ b/src/main/java/org/apache/commons/math3/genetics/TournamentSelection.java
+@@ -69,12 +69,13 @@
+      * @throws MathIllegalArgumentException if the tournament arity is bigger than the population size
+      */
+     private Chromosome tournament(final ListPopulation population) throws MathIllegalArgumentException {
+-        if (population.getPopulationSize() < this.arity) {
++        int var_1090 = this.arity;
++		if (population.getPopulationSize() < var_1090) {
+             throw new MathIllegalArgumentException(LocalizedFormats.TOO_LARGE_TOURNAMENT_ARITY,
+                                                    arity, population.getPopulationSize());
+         }
+         // auxiliary population
+-        ListPopulation tournamentPopulation = new ListPopulation(this.arity) {
++        ListPopulation tournamentPopulation = new ListPopulation(var_1090) {
+             public Population nextGeneration() {
+                 // not useful here
+                 return null;
+@@ -83,7 +84,7 @@
+ 
+         // create a copy of the chromosome list
+         List<Chromosome> chromosomes = new ArrayList<Chromosome> (population.getChromosomes());
+-        for (int i=0; i<this.arity; i++) {
++        for (int i=0; i<var_1090; i++) {
+             // select a random individual and add it to the tournament
+             int rind = GeneticAlgorithm.getRandomGenerator().nextInt(chromosomes.size());
+             tournamentPopulation.addChromosome(chromosomes.get(rind));

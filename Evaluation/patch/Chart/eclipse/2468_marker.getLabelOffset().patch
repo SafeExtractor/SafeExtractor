@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+index 4a54655..72ff01e 100644
+--- a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
++++ b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+@@ -1183,7 +1183,8 @@
+                                 Marker marker,
+                                 Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        RectangleInsets var_2468 = marker.getLabelOffset();
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = axis.getRange();
+@@ -1221,7 +1222,7 @@
+                 g2.setPaint(marker.getLabelPaint());
+                 Point2D coordinates = calculateRangeMarkerTextAnchorPoint(
+                         g2, orientation, dataArea, line.getBounds2D(),
+-                        marker.getLabelOffset(), LengthAdjustmentType.EXPAND,
++                        var_2468, LengthAdjustmentType.EXPAND,
+                         anchor);
+                 TextUtilities.drawAlignedString(label, g2,
+                         (float) coordinates.getX(), (float) coordinates.getY(),
+@@ -1323,7 +1324,7 @@
+                 g2.setPaint(marker.getLabelPaint());
+                 Point2D coordinates = calculateRangeMarkerTextAnchorPoint(
+                         g2, orientation, dataArea, rect,
+-                        marker.getLabelOffset(), marker.getLabelOffsetType(),
++                        var_2468, marker.getLabelOffsetType(),
+                         anchor);
+                 TextUtilities.drawAlignedString(label, g2,
+                         (float) coordinates.getX(), (float) coordinates.getY(),

@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..35729a6 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -1289,16 +1289,17 @@
+               JSType.toMaybeFunctionType(rValue.getJSType()), info, lValue)) {
+         return rValue.getJSType();
+       } else if (info != null) {
+-        if (info.hasEnumParameterType()) {
++        String var_1224 = lValue.getQualifiedName();
++		if (info.hasEnumParameterType()) {
+           if (rValue != null && rValue.isObjectLit()) {
+             return rValue.getJSType();
+           } else {
+             return createEnumTypeFromNodes(
+-                rValue, lValue.getQualifiedName(), info, lValue);
++                rValue, var_1224, info, lValue);
+           }
+         } else if (info.isConstructor() || info.isInterface()) {
+           return createFunctionTypeFromNodes(
+-              rValue, lValue.getQualifiedName(), info, lValue);
++              rValue, var_1224, info, lValue);
+         } else {
+           // Check if this is constant, and if it has a known type.
+           if (info.isConstant()) {

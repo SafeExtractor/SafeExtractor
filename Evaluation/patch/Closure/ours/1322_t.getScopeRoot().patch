@@ -1,0 +1,48 @@
+diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+index 5f0a14c..831ec08 100644
+--- a/src/com/google/javascript/jscomp/SymbolTable.java
++++ b/src/com/google/javascript/jscomp/SymbolTable.java
+@@ -1437,13 +1437,14 @@
+     @Override
+     public void enterScope(NodeTraversal t) {
+       Symbol symbol = null;
+-      if (t.inGlobalScope()) {
++      Node var_1322 = t.getScopeRoot();
++	if (t.inGlobalScope()) {
+         // Declare the global this at the first input root.
+         // This is a bizarre place to put it, but we need some
+         // location with a real file path (because all symbols
+         // must have a path).
+         // Note that root.lastChild.firstChild is the first non-extern input.
+-        Node firstInputRoot = t.getScopeRoot().getLastChild().getFirstChild();
++        Node firstInputRoot = var_1322.getLastChild().getFirstChild();
+         if (firstInputRoot != null) {
+           symbol = addSymbol(
+               GLOBAL_THIS,
+@@ -1455,7 +1456,7 @@
+         }
+       } else {
+         // Otherwise, declare a "this" property when possible.
+-        SymbolScope scope = scopes.get(t.getScopeRoot());
++        SymbolScope scope = scopes.get(var_1322);
+         Preconditions.checkNotNull(scope);
+         Symbol scopeSymbol = getSymbolForScope(scope);
+         if (scopeSymbol != null) {
+@@ -1465,7 +1466,7 @@
+             // one addressable "this" symbol.
+             symbol = propScope.getOwnSlot("this");
+             if (symbol == null) {
+-              JSType rootType = t.getScopeRoot().getJSType();
++              JSType rootType = var_1322.getJSType();
+               FunctionType fnType = rootType == null
+                   ? null : rootType.toMaybeFunctionType();
+               JSType type = fnType == null
+@@ -1475,7 +1476,7 @@
+                   type,
+                   false /* declared */,
+                   scope,
+-                  t.getScopeRoot());
++                  var_1322);
+             }
+ 
+             // TODO(nicksantos): It's non-obvious where the declaration of

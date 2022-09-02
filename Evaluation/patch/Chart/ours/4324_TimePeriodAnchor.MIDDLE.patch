@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/data/time/TimePeriodAnchor.java b/source/org/jfree/data/time/TimePeriodAnchor.java
+index 4bf751e..5d9dd65 100644
+--- a/source/org/jfree/data/time/TimePeriodAnchor.java
++++ b/source/org/jfree/data/time/TimePeriodAnchor.java
+@@ -130,13 +130,15 @@
+     private Object readResolve() throws ObjectStreamException {
+         if (this.equals(TimePeriodAnchor.START)) {
+             return TimePeriodAnchor.START;
+-        }
+-        else if (this.equals(TimePeriodAnchor.MIDDLE)) {
+-            return TimePeriodAnchor.MIDDLE;
+-        }
+-        else if (this.equals(TimePeriodAnchor.END)) {
+-            return TimePeriodAnchor.END;
+-        }
++        } else {
++			TimePeriodAnchor var_4324 = TimePeriodAnchor.MIDDLE;
++			if (this.equals(var_4324)) {
++			    return var_4324;
++			}
++			else if (this.equals(TimePeriodAnchor.END)) {
++			    return TimePeriodAnchor.END;
++			}
++		}
+         return null;
+     }
+ 

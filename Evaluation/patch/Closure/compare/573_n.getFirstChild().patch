@@ -1,0 +1,35 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/573_n.getFirstChild().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/573_n.getFirstChild().patch
+index f0e2bb4..371bf16 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/573_n.getFirstChild().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/573_n.getFirstChild().patch
+@@ -1,25 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/MinimizeExitPoints.java b/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+-index 317947b..2183149 100644
++index 317947b..037dafc 100644
+ --- a/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+ +++ b/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+-@@ -121,8 +121,9 @@
+-     }
++@@ -122,7 +122,8 @@
+  
+      // Just an 'if'.
+--    if (n.isIf()) {
++     if (n.isIf()) {
+ -      Node ifBlock = n.getFirstChild().getNext();
+-+    Node var_573 = n.getFirstChild();
+-+	if (n.isIf()) {
+-+      Node ifBlock = var_573.getNext();
+++      Node var_573 = n.getFirstChild();
+++	Node ifBlock = var_573.getNext();
+        tryMinimizeExits(ifBlock, exitType, labelName);
+        Node elseBlock = ifBlock.getNext();
+        if (elseBlock != null) {
+-@@ -133,7 +134,7 @@
+- 
+-     // Just a 'try/catch/finally'.
+-     if (n.isTry()) {
+--      Node tryBlock = n.getFirstChild();
+-+      Node tryBlock = var_573;
+-       tryMinimizeExits(tryBlock, exitType, labelName);
+-       Node allCatchNodes = NodeUtil.getCatchBlock(n);
+-       if (NodeUtil.hasCatchHandler(allCatchNodes)) {

@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+index 171eb51..6ef840f 100644
+--- a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
++++ b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+@@ -803,8 +803,9 @@
+         // Calling a constructor that modifies "this" has no side effects.
+         if (!callSite.isNew()) {
+           Node objectNode = getCallThisObject(callSite);
+-          if (objectNode != null && objectNode.isName()
+-              && !isCallOrApply(callSite)) {
++          boolean var_1355 = isCallOrApply(callSite);
++		if (objectNode != null && objectNode.isName()
++              && !var_1355) {
+             // Exclude ".call" and ".apply" as the value may still be
+             // null or undefined. We don't need to worry about this with a
+             // direct method call because null and undefined don't have any
+@@ -826,7 +827,7 @@
+             }
+           } else if (objectNode != null
+               && NodeUtil.evaluatesToLocalValue(objectNode)
+-              && !isCallOrApply(callSite)) {
++              && !var_1355) {
+             // Modifying 'this' on a known local object doesn't change any
+             // significant state.
+             // TODO(johnlenz): We can improve this by including literal values

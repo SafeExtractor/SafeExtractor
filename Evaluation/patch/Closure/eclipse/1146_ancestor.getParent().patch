@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+index 6219d26..4f32410 100644
+--- a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
++++ b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+@@ -365,9 +365,10 @@
+ 
+         // Walk up the tree to see if the key is used in a GETELEM
+         // assignment
+-        while (ancestor != null && !NodeUtil.isStatement(ancestor) &&
++        Node var_1146 = ancestor.getParent();
++		while (ancestor != null && !NodeUtil.isStatement(ancestor) &&
+             !ancestor.isGetElem()) {
+-          ancestor = ancestor.getParent();
++          ancestor = var_1146;
+         }
+ 
+         // Convert GETELEM nodes to GETPROP nodes so that they can be
+@@ -392,7 +393,7 @@
+                 prop.detachFromParent());
+             newGetProps.add(newGetProp);
+             origGetElems.add(ancestor);
+-            ancestor.getParent().replaceChild(ancestor, newGetProp);
++            var_1146.replaceChild(ancestor, newGetProp);
+           } else {
+             if (prop.isString() &&
+                 !NodeUtil.isValidPropertyName(prop.getString())) {

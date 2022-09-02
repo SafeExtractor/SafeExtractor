@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot3D.java b/source/org/jfree/chart/plot/PiePlot3D.java
+index a7aab14..9de66e7 100644
+--- a/source/org/jfree/chart/plot/PiePlot3D.java
++++ b/source/org/jfree/chart/plot/PiePlot3D.java
+@@ -633,7 +633,8 @@
+         g2.setStroke(outlineStroke);
+ 
+         // for CLOCKWISE charts, the extent will be negative...
+-        if (extent < 0.0) {
++        boolean var_1510 = isAngleAtFront(end);
++		if (extent < 0.0) {
+ 
+             if (isAngleAtFront(start)) {  // start at front
+ 
+@@ -722,7 +723,7 @@
+             else {  // the segment starts at the back (still extending
+                     // CLOCKWISE)
+ 
+-                if (!isAngleAtFront(end)) {
++                if (!var_1510) {
+                     if (extent > -180.0) {  // whole segment stays at the back
+                         if (drawBack) {
+                             Area side = new Area(new Rectangle2D.Double(
+@@ -886,7 +887,7 @@
+             }
+             else {  // segment starts at back
+ 
+-                if (!isAngleAtFront(end)) {
++                if (!var_1510) {
+                     if (extent < 180.0) {  // and finishes at back
+                         if (drawBack) {
+                             Area side = new Area(new Rectangle2D.Double(

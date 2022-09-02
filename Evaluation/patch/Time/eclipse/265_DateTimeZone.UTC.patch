@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/chrono/IslamicChronology.java b/src/main/java/org/joda/time/chrono/IslamicChronology.java
+index 9a5dcc8..2b1b3ae 100644
+--- a/src/main/java/org/joda/time/chrono/IslamicChronology.java
++++ b/src/main/java/org/joda/time/chrono/IslamicChronology.java
+@@ -201,7 +201,8 @@
+             }
+             chrono = chronos[leapYears.index];
+             if (chrono == null) {
+-                if (zone == DateTimeZone.UTC) {
++                DateTimeZone var_265 = DateTimeZone.UTC;
++				if (zone == var_265) {
+                     // First create without a lower limit.
+                     chrono = new IslamicChronology(null, null, leapYears);
+                     // Impose lower limit and make another IslamicChronology.
+@@ -210,7 +211,7 @@
+                         LimitChronology.getInstance(chrono, lowerLimit, null),
+                          null, leapYears);
+                 } else {
+-                    chrono = getInstance(DateTimeZone.UTC, leapYears);
++                    chrono = getInstance(var_265, leapYears);
+                     chrono = new IslamicChronology
+                         (ZonedChronology.getInstance(chrono, zone), null, leapYears);
+                 }

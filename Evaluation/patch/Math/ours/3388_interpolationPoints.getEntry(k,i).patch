@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..9647872 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -1329,7 +1329,8 @@
+             // Revise SLBD and SUBD if necessary because of the bounds in SL and SU.
+ 
+             for (int i = 0; i < n; i++) {
+-                final double tmp = interpolationPoints.getEntry(k, i) - trustRegionCenterOffset.getEntry(i);
++                double var_3388 = interpolationPoints.getEntry(k, i);
++				final double tmp = var_3388 - trustRegionCenterOffset.getEntry(i);
+                 if (tmp > ZERO) {
+                     if (slbd * tmp < lowerDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i)) {
+                         slbd = (lowerDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i)) / tmp;

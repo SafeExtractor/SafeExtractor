@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..8ad9e15 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -213,8 +213,9 @@
+       checks.add(suspiciousCode);
+     }
+ 
+-    if (options.checkControlStructures
+-        || options.enables(DiagnosticGroups.ES5_STRICT))  {
++    boolean var_1778 = options.enables(DiagnosticGroups.ES5_STRICT);
++	if (options.checkControlStructures
++        || var_1778)  {
+       checks.add(checkControlStructures);
+     }
+ 
+@@ -296,7 +297,7 @@
+       checks.add(checkGlobalNames);
+     }
+ 
+-    if (options.enables(DiagnosticGroups.ES5_STRICT) || options.checkCaja) {
++    if (var_1778 || options.checkCaja) {
+       checks.add(checkStrictMode);
+     }
+ 

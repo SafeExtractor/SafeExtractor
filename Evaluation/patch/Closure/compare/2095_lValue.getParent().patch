@@ -1,0 +1,29 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2095_lValue.getParent().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2095_lValue.getParent().patch
+index 418774d..3c6e905 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2095_lValue.getParent().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2095_lValue.getParent().patch
+@@ -1,19 +1,15 @@
+ diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+-index e36d1fe..af5cf43 100644
++index e36d1fe..10f2b89 100644
+ --- a/src/com/google/javascript/jscomp/NodeUtil.java
+ +++ b/src/com/google/javascript/jscomp/NodeUtil.java
+-@@ -3113,11 +3113,12 @@
+- 
+-   /** Get the owner of the given l-value node. */
+-   static Node getBestLValueOwner(@Nullable Node lValue) {
+--    if (lValue == null || lValue.getParent() == null) {
+-+    Node var_2095 = lValue.getParent();
+-+	if (lValue == null || var_2095 == null) {
++@@ -3116,8 +3116,9 @@
++     if (lValue == null || lValue.getParent() == null) {
+        return null;
+      }
+ -    if (isObjectLitKey(lValue, lValue.getParent())) {
+ -      return getBestLValue(lValue.getParent());
+-+    if (isObjectLitKey(lValue, var_2095)) {
+++    Node var_2095 = lValue.getParent();
+++	if (isObjectLitKey(lValue, var_2095)) {
+ +      return getBestLValue(var_2095);
+      } else if (isGet(lValue)) {
+        return lValue.getFirstChild();

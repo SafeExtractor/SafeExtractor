@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/DataFlowAnalysis.java b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+index 5b39646..a60976f 100644
+--- a/src/com/google/javascript/jscomp/DataFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+@@ -285,9 +285,10 @@
+    */
+   protected void joinInputs(DiGraphNode<N, Branch> node) {
+     FlowState<L> state = node.getAnnotation();
+-    if (isForward()) {
++    L var_755 = createEntryLattice();
++	if (isForward()) {
+       if (cfg.getEntry() == node) {
+-        state.setIn(createEntryLattice());
++        state.setIn(var_755);
+       } else {
+         List<DiGraphNode<N, Branch>> inNodes = cfg.getDirectedPredNodes(node);
+         if (inNodes.size() == 1) {
+@@ -307,7 +308,7 @@
+       if (inNodes.size() == 1) {
+         DiGraphNode<N, Branch> inNode = inNodes.get(0);
+         if (inNode == cfg.getImplicitReturn()) {
+-          state.setOut(createEntryLattice());
++          state.setOut(var_755);
+         } else {
+           FlowState<L> inNodeState = inNode.getAnnotation();
+           state.setOut(inNodeState.getIn());

@@ -1,0 +1,32 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/4237_containsKey(key,index).patch b/Users/safe/paper/Evaluation/patch/Math/ours/4237_containsKey(key,index).patch
+index 0b87933..3eaf2b8 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/4237_containsKey(key,index).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/4237_containsKey(key,index).patch
+@@ -1,23 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java b/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java
+-index fd55902..2f621e6 100644
++index fd55902..12dc13f 100644
+ --- a/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java
+ +++ b/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java
+-@@ -189,7 +189,8 @@
+- 
+-         final int hash  = hashOf(key);
+-         int index = hash & mask;
+--        if (containsKey(key, index)) {
+-+        boolean var_4237 = containsKey(key, index);
+-+		if (var_4237) {
+-             return values[index];
+-         }
+- 
+-@@ -201,7 +202,7 @@
++@@ -201,7 +201,8 @@
+          for (int perturb = perturb(hash); states[index] != FREE; perturb >>= PERTURB_SHIFT) {
+              j = probe(perturb, j);
+              index = j & mask;
+ -            if (containsKey(key, index)) {
+-+            if (var_4237) {
+++            boolean var_4237 = containsKey(key, index);
+++			if (var_4237) {
+                  return values[index];
+              }
+          }

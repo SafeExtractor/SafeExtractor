@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java b/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
+index a03c4f4..cb2cfef 100644
+--- a/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
+@@ -936,13 +936,14 @@
+         final int jWidth = blockWidth(jBlock);
+         int outBlockIndex = 0;
+         int outIndex = 0;
+-        double[] outBlock = out.blocks[outBlockIndex];
++        double[][] var_1989 = out.blocks;
++		double[] outBlock = var_1989[outBlockIndex];
+         for (int iBlock = 0; iBlock < blockRows; ++iBlock) {
+             final int iHeight = blockHeight(iBlock);
+             final double[] block = blocks[iBlock * blockColumns + jBlock];
+             for (int i = 0; i < iHeight; ++i) {
+                 if (outIndex >= outBlock.length) {
+-                    outBlock = out.blocks[++outBlockIndex];
++                    outBlock = var_1989[++outBlockIndex];
+                     outIndex = 0;
+                 }
+                 outBlock[outIndex++] = block[i * jWidth + jColumn];

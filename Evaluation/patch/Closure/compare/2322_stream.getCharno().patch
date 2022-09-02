@@ -1,0 +1,25 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2322_stream.getCharno().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2322_stream.getCharno().patch
+index 65baa11..e404dbc 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2322_stream.getCharno().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2322_stream.getCharno().patch
+@@ -1,8 +1,8 @@
+ diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+-index 5ef8850..2a58bb9 100644
++index 5ef8850..acf74dd 100644
+ --- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+ +++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+-@@ -1156,12 +1156,13 @@
++@@ -1156,7 +1156,8 @@
+    private Node parseAndRecordParamTypeNode(JsDocToken token) {
+      Preconditions.checkArgument(token == JsDocToken.LC);
+      int lineno = stream.getLineno();
+@@ -12,9 +12,3 @@ index 5ef8850..2a58bb9 100644
+  
+      Node typeNode = parseParamTypeExpressionAnnotation(token);
+      if (typeNode != null) {
+-       int endLineno = stream.getLineno();
+--      int endCharno = stream.getCharno();
+-+      int endCharno = var_2322;
+- 
+-       jsdocBuilder.markTypeNode(typeNode, lineno, startCharno,
+-           endLineno, endCharno, true);

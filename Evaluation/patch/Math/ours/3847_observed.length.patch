@@ -1,0 +1,33 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/inference/ChiSquareTest.java b/src/main/java/org/apache/commons/math3/stat/inference/ChiSquareTest.java
+index 813f094..2db0706 100644
+--- a/src/main/java/org/apache/commons/math3/stat/inference/ChiSquareTest.java
++++ b/src/main/java/org/apache/commons/math3/stat/inference/ChiSquareTest.java
+@@ -85,15 +85,16 @@
+         if (expected.length < 2) {
+             throw new DimensionMismatchException(expected.length, 2);
+         }
+-        if (expected.length != observed.length) {
+-            throw new DimensionMismatchException(expected.length, observed.length);
++        int var_3847 = observed.length;
++		if (expected.length != var_3847) {
++            throw new DimensionMismatchException(expected.length, var_3847);
+         }
+         MathArrays.checkPositive(expected);
+         MathArrays.checkNonNegative(observed);
+ 
+         double sumExpected = 0d;
+         double sumObserved = 0d;
+-        for (int i = 0; i < observed.length; i++) {
++        for (int i = 0; i < var_3847; i++) {
+             sumExpected += expected[i];
+             sumObserved += observed[i];
+         }
+@@ -104,7 +105,7 @@
+             rescale = true;
+         }
+         double sumSq = 0.0d;
+-        for (int i = 0; i < observed.length; i++) {
++        for (int i = 0; i < var_3847; i++) {
+             if (rescale) {
+                 final double dev = observed[i] - ratio * expected[i];
+                 sumSq += dev * dev / (ratio * expected[i]);

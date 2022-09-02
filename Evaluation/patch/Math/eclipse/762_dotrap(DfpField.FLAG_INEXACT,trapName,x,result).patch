@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+index 4c20a64..37517a1 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+@@ -353,14 +353,15 @@
+             }
+         }
+ 
+-        if (result.classify() == INFINITE && this.classify() != INFINITE) {
++        Dfp var_762 = dotrap(DfpField.FLAG_INEXACT, trapName, x, result);
++		if (result.classify() == INFINITE && this.classify() != INFINITE) {
+             getField().setIEEEFlagsBits(DfpField.FLAG_INEXACT);
+-            result = dotrap(DfpField.FLAG_INEXACT, trapName, x, result);
++            result = var_762;
+         }
+ 
+         if (result.equals(getZero()) && this.equals(getZero()) == false) {
+             getField().setIEEEFlagsBits(DfpField.FLAG_INEXACT);
+-            result = dotrap(DfpField.FLAG_INEXACT, trapName, x, result);
++            result = var_762;
+         }
+ 
+         return result;

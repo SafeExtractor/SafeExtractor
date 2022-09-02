@@ -1,0 +1,50 @@
+diff --git a/source/org/jfree/chart/JFreeChart.java b/source/org/jfree/chart/JFreeChart.java
+index 625eca5..f69b1bf 100644
+--- a/source/org/jfree/chart/JFreeChart.java
++++ b/source/org/jfree/chart/JFreeChart.java
+@@ -1308,7 +1308,8 @@
+         if (ww <= 0.0) {
+             return null;
+         }
+-        double hh = area.getHeight();
++        double var_21 = area.getHeight();
++		double hh = var_21;
+         if (hh <= 0.0) {
+             return null;
+         }
+@@ -1324,7 +1325,7 @@
+                     t.getHorizontalAlignment(), VerticalAlignment.TOP);
+             retValue = t.draw(g2, titleArea, p);
+             area.setRect(area.getX(), Math.min(area.getY() + size.height,
+-                    area.getMaxY()), area.getWidth(), Math.max(area.getHeight()
++                    area.getMaxY()), area.getWidth(), Math.max(var_21
+                     - size.height, 0));
+         }
+         else if (position == RectangleEdge.BOTTOM) {
+@@ -1333,7 +1334,7 @@
+                     t.getHorizontalAlignment(), VerticalAlignment.BOTTOM);
+             retValue = t.draw(g2, titleArea, p);
+             area.setRect(area.getX(), area.getY(), area.getWidth(),
+-                    area.getHeight() - size.height);
++                    var_21 - size.height);
+         }
+         else if (position == RectangleEdge.RIGHT) {
+             Size2D size = t.arrange(g2, constraint);
+@@ -1341,7 +1342,7 @@
+                     HorizontalAlignment.RIGHT, t.getVerticalAlignment());
+             retValue = t.draw(g2, titleArea, p);
+             area.setRect(area.getX(), area.getY(), area.getWidth()
+-                    - size.width, area.getHeight());
++                    - size.width, var_21);
+         }
+ 
+         else if (position == RectangleEdge.LEFT) {
+@@ -1350,7 +1351,7 @@
+                     HorizontalAlignment.LEFT, t.getVerticalAlignment());
+             retValue = t.draw(g2, titleArea, p);
+             area.setRect(area.getX() + size.width, area.getY(), area.getWidth()
+-                    - size.width, area.getHeight());
++                    - size.width, var_21);
+         }
+         else {
+             throw new RuntimeException("Unrecognised title position.");

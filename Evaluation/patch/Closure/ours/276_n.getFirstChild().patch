@@ -1,0 +1,36 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 781fc3c..5b7258c 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -514,17 +514,20 @@
+       } else if (NodeUtil.isVarDeclaration(n)) {
+         NameInformation ns = createNameInformation(t, n);
+         recordDepScope(n, ns);
+-      } else if (NodeUtil.isFunctionDeclaration(n)) {
+-        NameInformation ns = createNameInformation(t, n.getFirstChild());
+-        recordDepScope(n, ns);
+-      } else if (NodeUtil.isExprCall(n)) {
+-        Node callNode = n.getFirstChild();
+-        Node nameNode = callNode.getFirstChild();
+-        NameInformation ns = createNameInformation(t, nameNode);
+-        if (ns != null && ns.onlyAffectsClassDef) {
+-          recordDepScope(n, ns);
+-        }
+-      }
++      } else {
++		Node var_276 = n.getFirstChild();
++		if (NodeUtil.isFunctionDeclaration(n)) {
++		    NameInformation ns = createNameInformation(t, var_276);
++		    recordDepScope(n, ns);
++		  } else if (NodeUtil.isExprCall(n)) {
++		    Node callNode = var_276;
++		    Node nameNode = callNode.getFirstChild();
++		    NameInformation ns = createNameInformation(t, nameNode);
++		    if (ns != null && ns.onlyAffectsClassDef) {
++		      recordDepScope(n, ns);
++		    }
++		  }
++	}
+     }
+ 
+     private void recordConsumers(NodeTraversal t, Node n, Node recordNode) {

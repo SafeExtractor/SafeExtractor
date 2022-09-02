@@ -1,0 +1,44 @@
+diff --git a/source/org/jfree/chart/plot/CategoryPlot.java b/source/org/jfree/chart/plot/CategoryPlot.java
+index 24a84fd..bd92702 100644
+--- a/source/org/jfree/chart/plot/CategoryPlot.java
++++ b/source/org/jfree/chart/plot/CategoryPlot.java
+@@ -3702,7 +3702,8 @@
+                 AlphaComposite.SRC_OVER, getForegroundAlpha()));
+ 
+         DatasetRenderingOrder order = getDatasetRenderingOrder();
+-        if (order == DatasetRenderingOrder.FORWARD) {
++        Layer var_1917 = Layer.FOREGROUND;
++		if (order == DatasetRenderingOrder.FORWARD) {
+ 
+             // draw background annotations
+             int datasetCount = this.datasets.size();
+@@ -3728,7 +3729,7 @@
+                     CategoryAxis domainAxis = getDomainAxisForDataset(i);
+                     ValueAxis rangeAxis = getRangeAxisForDataset(i);
+                     r.drawAnnotations(g2, dataArea, domainAxis, rangeAxis,
+-                            Layer.FOREGROUND, state);
++                            var_1917, state);
+                 }
+             }
+         }
+@@ -3758,17 +3759,17 @@
+                     CategoryAxis domainAxis = getDomainAxisForDataset(i);
+                     ValueAxis rangeAxis = getRangeAxisForDataset(i);
+                     r.drawAnnotations(g2, dataArea, domainAxis, rangeAxis,
+-                            Layer.FOREGROUND, state);
++                            var_1917, state);
+                 }
+             }
+         }
+ 
+         // draw the foreground markers...
+         for (int i = 0; i < this.renderers.size(); i++) {
+-            drawDomainMarkers(g2, dataArea, i, Layer.FOREGROUND);
++            drawDomainMarkers(g2, dataArea, i, var_1917);
+         }
+         for (int i = 0; i < this.renderers.size(); i++) {
+-            drawRangeMarkers(g2, dataArea, i, Layer.FOREGROUND);
++            drawRangeMarkers(g2, dataArea, i, var_1917);
+         }
+ 
+         // draw the plot's annotations (if any)...

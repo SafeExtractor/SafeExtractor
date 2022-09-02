@@ -1,0 +1,49 @@
+diff --git a/src/com/google/javascript/rhino/jstype/UnionTypeBuilder.java b/src/com/google/javascript/rhino/jstype/UnionTypeBuilder.java
+index 69b6567..b163265 100644
+--- a/src/com/google/javascript/rhino/jstype/UnionTypeBuilder.java
++++ b/src/com/google/javascript/rhino/jstype/UnionTypeBuilder.java
+@@ -288,24 +288,27 @@
+   private JSType reduceAlternatesWithoutUnion() {
+     if (isAllType) {
+       return registry.getNativeType(ALL_TYPE);
+-    } else if (isNativeUnknownType) {
+-      if (areAllUnknownsChecked) {
+-        return registry.getNativeType(CHECKED_UNKNOWN_TYPE);
+-      } else {
+-        return registry.getNativeType(UNKNOWN_TYPE);
+-      }
+     } else {
+-      int size = alternates.size();
+-      if (size > maxUnionSize) {
+-        return registry.getNativeType(UNKNOWN_TYPE);
+-      } else if (size > 1) {
+-        return null;
+-      } else if (size == 1) {
+-        return alternates.iterator().next();
+-      } else {
+-        return registry.getNativeType(NO_TYPE);
+-      }
+-    }
++		JSType var_2697 = registry.getNativeType(UNKNOWN_TYPE);
++		if (isNativeUnknownType) {
++		  if (areAllUnknownsChecked) {
++		    return registry.getNativeType(CHECKED_UNKNOWN_TYPE);
++		  } else {
++		    return var_2697;
++		  }
++		} else {
++		  int size = alternates.size();
++		  if (size > maxUnionSize) {
++		    return var_2697;
++		  } else if (size > 1) {
++		    return null;
++		  } else if (size == 1) {
++		    return alternates.iterator().next();
++		  } else {
++		    return registry.getNativeType(NO_TYPE);
++		  }
++		}
++	}
+   }
+ 
+   /**

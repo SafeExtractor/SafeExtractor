@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java b/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
+index efbe8a2..4f32101 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
+@@ -281,7 +281,8 @@
+             // kase = 3     if e[k-1] is negligible, k<p, and
+             //              s(k), ..., s(p) are not negligible (qr step).
+             // kase = 4     if e(p-1) is negligible (convergence).
+-            for (k = p - 2; k >= 0; k--) {
++            double var_1853 = FastMath.abs(e[k]);
++			for (k = p - 2; k >= 0; k--) {
+                 final double threshold
+                     = TINY + EPS * (FastMath.abs(singularValues[k]) +
+                                     FastMath.abs(singularValues[k + 1]));
+@@ -292,7 +293,7 @@
+                 // indefinitely in case of NaNs because comparison on NaNs
+                 // always return false, regardless of what is checked
+                 // see issue MATH-947
+-                if (!(FastMath.abs(e[k]) > threshold)) {
++                if (!(var_1853 > threshold)) {
+                     e[k] = 0;
+                     break;
+                 }
+@@ -376,7 +377,7 @@
+                     final double scale = FastMath.max(FastMath.max(FastMath.max(maxPm1Pm2,
+                                                                                 FastMath.abs(e[p - 2])),
+                                                                    FastMath.abs(singularValues[k])),
+-                                                      FastMath.abs(e[k]));
++                                                      var_1853);
+                     final double sp = singularValues[p - 1] / scale;
+                     final double spm1 = singularValues[p - 2] / scale;
+                     final double epm1 = e[p - 2] / scale;

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Line.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Line.java
+index 7c9a28f..e87dbfd 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Line.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Line.java
+@@ -192,7 +192,8 @@
+      */
+     public Vector3D closestPoint(final Line line) {
+ 
+-        final double cos = direction.dotProduct(line.direction);
++        Vector3D var_1456 = line.direction;
++		final double cos = direction.dotProduct(var_1456);
+         final double n = 1 - cos * cos;
+         if (n < Precision.EPSILON) {
+             // the lines are parallel
+@@ -201,7 +202,7 @@
+ 
+         final Vector3D delta0 = line.zero.subtract(zero);
+         final double a        = delta0.dotProduct(direction);
+-        final double b        = delta0.dotProduct(line.direction);
++        final double b        = delta0.dotProduct(var_1456);
+ 
+         return new Vector3D(1, zero, (a - b * cos) / n, direction);
+ 

@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+index 3dc8ec6..1875c4d 100644
+--- a/src/com/google/javascript/jscomp/TypeInference.java
++++ b/src/com/google/javascript/jscomp/TypeInference.java
+@@ -301,7 +301,8 @@
+   }
+ 
+   private FlowScope traverse(Node n, FlowScope scope) {
+-    switch (n.getType()) {
++    FlowScope var_939 = traverse(n.getFirstChild(), scope);
++	switch (n.getType()) {
+       case Token.ASSIGN:
+         scope = traverseAssign(n, scope);
+         break;
+@@ -347,7 +348,7 @@
+ 
+       case Token.POS:
+       case Token.NEG:
+-        scope = traverse(n.getFirstChild(), scope);  // Find types.
++        scope = var_939;  // Find types.
+         n.setJSType(getNativeType(NUMBER_TYPE));
+         break;
+ 
+@@ -387,7 +388,7 @@
+         break;
+ 
+       case Token.PARAM_LIST:
+-        scope = traverse(n.getFirstChild(), scope);
++        scope = var_939;
+         n.setJSType(getJSType(n.getFirstChild()));
+         break;
+ 
+@@ -429,7 +430,7 @@
+         break;
+ 
+       case Token.SWITCH:
+-        scope = traverse(n.getFirstChild(), scope);
++        scope = var_939;
+         break;
+ 
+       case Token.RETURN:

@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/axis/PeriodAxis.java b/source/org/jfree/chart/axis/PeriodAxis.java
+index 3c0bc0f..0c7c64f 100644
+--- a/source/org/jfree/chart/axis/PeriodAxis.java
++++ b/source/org/jfree/chart/axis/PeriodAxis.java
+@@ -986,10 +986,11 @@
+         double result = Double.NaN;
+         double axisMin = this.first.getFirstMillisecond();
+         double axisMax = this.last.getLastMillisecond();
+-        if (RectangleEdge.isTopOrBottom(edge)) {
++        boolean var_831 = isInverted();
++		if (RectangleEdge.isTopOrBottom(edge)) {
+             double minX = area.getX();
+             double maxX = area.getMaxX();
+-            if (isInverted()) {
++            if (var_831) {
+                 result = maxX + ((value - axisMin) / (axisMax - axisMin))
+                          * (minX - maxX);
+             }
+@@ -1001,7 +1002,7 @@
+         else if (RectangleEdge.isLeftOrRight(edge)) {
+             double minY = area.getMinY();
+             double maxY = area.getMaxY();
+-            if (isInverted()) {
++            if (var_831) {
+                 result = minY + (((value - axisMin) / (axisMax - axisMin))
+                          * (maxY - minY));
+             }

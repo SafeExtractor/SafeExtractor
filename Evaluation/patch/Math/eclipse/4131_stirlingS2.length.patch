@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/CombinatoricsUtils.java b/src/main/java/org/apache/commons/math3/util/CombinatoricsUtils.java
+index a6f60a9..f8eef9a 100644
+--- a/src/main/java/org/apache/commons/math3/util/CombinatoricsUtils.java
++++ b/src/main/java/org/apache/commons/math3/util/CombinatoricsUtils.java
+@@ -363,7 +363,8 @@
+ 
+         long[][] stirlingS2 = STIRLING_S2.get();
+ 
+-        if (stirlingS2 == null) {
++        int var_4131 = stirlingS2.length;
++		if (stirlingS2 == null) {
+             // the cache has never been initialized, compute the first numbers
+             // by direct recurrence relation
+ 
+@@ -372,7 +373,7 @@
+             final int maxIndex = 26;
+             stirlingS2 = new long[maxIndex][];
+             stirlingS2[0] = new long[] { 1l };
+-            for (int i = 1; i < stirlingS2.length; ++i) {
++            for (int i = 1; i < var_4131; ++i) {
+                 stirlingS2[i] = new long[i + 1];
+                 stirlingS2[i][0] = 0;
+                 stirlingS2[i][1] = 1;
+@@ -387,7 +388,7 @@
+ 
+         }
+ 
+-        if (n < stirlingS2.length) {
++        if (n < var_4131) {
+             // the number is in the small cache
+             return stirlingS2[n][k];
+         } else {
+@@ -410,7 +411,7 @@
+                     if (sum < 0) {
+                         // there was an overflow somewhere
+                         throw new MathArithmeticException(LocalizedFormats.ARGUMENT_OUTSIDE_DOMAIN,
+-                                                          n, 0, stirlingS2.length - 1);
++                                                          n, 0, var_4131 - 1);
+                     }
+                 }
+                 return sum / factorial(k);

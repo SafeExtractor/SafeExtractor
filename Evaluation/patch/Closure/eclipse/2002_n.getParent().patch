@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/AliasExternals.java b/src/com/google/javascript/jscomp/AliasExternals.java
+index fc43f34..32aba41 100644
+--- a/src/com/google/javascript/jscomp/AliasExternals.java
++++ b/src/com/google/javascript/jscomp/AliasExternals.java
+@@ -658,8 +658,9 @@
+         if (global != null) {
+           // If a variable is declared in both externs and normal source,
+           // don't alias it.
+-          if (n.getParent().isVar() ||
+-              n.getParent().isFunction()) {
++          Node var_2002 = n.getParent();
++		if (var_2002.isVar() ||
++              var_2002.isFunction()) {
+             globals.remove(name);
+           }
+ 

@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/SubLine.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/SubLine.java
+index b5d02a4..05626c9 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/SubLine.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/SubLine.java
+@@ -199,10 +199,11 @@
+                                                new BSPTree<Euclidean1D>(Boolean.FALSE) :
+                                                new BSPTree<Euclidean1D>(subPlus, new BSPTree<Euclidean1D>(Boolean.FALSE),
+                                                                         splitTree.getPlus(), null);
+-        final BSPTree<Euclidean1D> minusTree = getRemainingRegion().isEmpty(splitTree.getMinus()) ?
++        BSPTree<Euclidean1D> var_1658 = splitTree.getMinus();
++		final BSPTree<Euclidean1D> minusTree = getRemainingRegion().isEmpty(var_1658) ?
+                                                new BSPTree<Euclidean1D>(Boolean.FALSE) :
+                                                new BSPTree<Euclidean1D>(subMinus, new BSPTree<Euclidean1D>(Boolean.FALSE),
+-                                                                        splitTree.getMinus(), null);
++                                                                        var_1658, null);
+ 
+         return new SplitSubHyperplane<Euclidean2D>(new SubLine(thisLine.copySelf(), new IntervalsSet(plusTree)),
+                                                    new SubLine(thisLine.copySelf(), new IntervalsSet(minusTree)));

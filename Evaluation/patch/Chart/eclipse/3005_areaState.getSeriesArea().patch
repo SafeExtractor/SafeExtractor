@@ -1,0 +1,83 @@
+diff --git a/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java b/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
+index 8332a80..ac23074 100644
+--- a/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
+@@ -426,7 +426,8 @@
+         if (pass == 0) {
+             //  On first pass render the areas, line and outlines
+ 
+-            if (item == 0) {
++            Polygon var_3005 = areaState.getSeriesArea();
++			if (item == 0) {
+                 // Create a new Area for the series
+                 areaState.setSeriesArea(new Polygon());
+                 areaState.setLastSeriesPoints(
+@@ -439,11 +440,11 @@
+ 
+                 // The first point is (x, 0)
+                 if (orientation == PlotOrientation.VERTICAL) {
+-                    areaState.getSeriesArea().addPoint((int) transX1,
++                    var_3005.addPoint((int) transX1,
+                             (int) transY2);
+                 }
+                 else if (orientation == PlotOrientation.HORIZONTAL) {
+-                    areaState.getSeriesArea().addPoint((int) transY2,
++                    var_3005.addPoint((int) transY2,
+                             (int) transX1);
+                 }
+             }
+@@ -451,12 +452,12 @@
+             // Add each point to Area (x, y)
+             if (orientation == PlotOrientation.VERTICAL) {
+                 Point point = new Point((int) transX1, (int) transY1);
+-                areaState.getSeriesArea().addPoint((int) point.getX(),
++                var_3005.addPoint((int) point.getX(),
+                         (int) point.getY());
+                 areaState.getCurrentSeriesPoints().push(point);
+             }
+             else if (orientation == PlotOrientation.HORIZONTAL) {
+-                areaState.getSeriesArea().addPoint((int) transY1,
++                var_3005.addPoint((int) transY1,
+                         (int) transX1);
+             }
+ 
+@@ -492,12 +493,12 @@
+ 
+                 if (orientation == PlotOrientation.VERTICAL) {
+                     // Add the last point (x,0)
+-                    areaState.getSeriesArea().addPoint((int) transX1,
++                    var_3005.addPoint((int) transX1,
+                             (int) transY2);
+                 }
+                 else if (orientation == PlotOrientation.HORIZONTAL) {
+                     // Add the last point (x,0)
+-                    areaState.getSeriesArea().addPoint((int) transY2,
++                    var_3005.addPoint((int) transY2,
+                             (int) transX1);
+                 }
+ 
+@@ -507,7 +508,7 @@
+                     Stack points = areaState.getLastSeriesPoints();
+                     while (!points.empty()) {
+                         Point point = (Point) points.pop();
+-                        areaState.getSeriesArea().addPoint((int) point.getX(),
++                        var_3005.addPoint((int) point.getX(),
+                                 (int) point.getY());
+                     }
+                 }
+@@ -515,13 +516,13 @@
+                 //  Fill the polygon
+                 g2.setPaint(seriesPaint);
+                 g2.setStroke(seriesStroke);
+-                g2.fill(areaState.getSeriesArea());
++                g2.fill(var_3005);
+ 
+                 //  Draw an outline around the Area.
+                 if (isOutline()) {
+                     g2.setStroke(lookupSeriesOutlineStroke(series));
+                     g2.setPaint(lookupSeriesOutlinePaint(series));
+-                    g2.draw(areaState.getSeriesArea());
++                    g2.draw(var_3005);
+                 }
+             }
+ 

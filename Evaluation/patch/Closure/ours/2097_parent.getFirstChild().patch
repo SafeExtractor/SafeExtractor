@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..9c2f9cc 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -3149,7 +3149,8 @@
+   static boolean isExpressionResultUsed(Node expr) {
+     // TODO(johnlenz): consider sharing some code with trySimpleUnusedResult.
+     Node parent = expr.getParent();
+-    switch (parent.getType()) {
++    Node var_2097 = parent.getFirstChild();
++	switch (parent.getType()) {
+       case Token.BLOCK:
+       case Token.EXPR_RESULT:
+         return false;
+@@ -3158,7 +3159,7 @@
+       case Token.HOOK:
+       case Token.AND:
+       case Token.OR:
+-        return (expr == parent.getFirstChild())
++        return (expr == var_2097)
+             ? true : isExpressionResultUsed(parent);
+       case Token.COMMA:
+         Node gramps = parent.getParent();
+@@ -3168,7 +3169,7 @@
+           // call to an eval. See ECMA-262 S15.1.2.1. So it's OK for the first
+           // expression to a comma to be a no-op if it's used to indirect
+           // an eval. This we pretend that this is "used".
+-          if (expr == parent.getFirstChild() &&
++          if (expr == var_2097 &&
+               parent.getChildCount() == 2 &&
+               expr.getNext().isName() &&
+               "eval".equals(expr.getNext().getString())) {
+@@ -3176,7 +3177,7 @@
+           }
+         }
+ 
+-        return (expr == parent.getFirstChild())
++        return (expr == var_2097)
+             ? false : isExpressionResultUsed(parent);
+       case Token.FOR:
+         if (!NodeUtil.isForIn(parent)) {

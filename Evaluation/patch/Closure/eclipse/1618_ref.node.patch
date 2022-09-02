@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/GlobalNamespace.java b/src/com/google/javascript/jscomp/GlobalNamespace.java
+index 1cd29f0..bfd4fd0 100644
+--- a/src/com/google/javascript/jscomp/GlobalNamespace.java
++++ b/src/com/google/javascript/jscomp/GlobalNamespace.java
+@@ -1032,9 +1032,10 @@
+     boolean isSimpleStubDeclaration() {
+       if (getRefs().size() == 1) {
+         Ref ref = refs.get(0);
+-        JSDocInfo info = ref.node.getJSDocInfo();
+-        if (ref.node.getParent() != null &&
+-            ref.node.getParent().isExprResult()) {
++        Node var_1618 = ref.node;
++		JSDocInfo info = var_1618.getJSDocInfo();
++        if (var_1618.getParent() != null &&
++            var_1618.getParent().isExprResult()) {
+           return true;
+         }
+       }

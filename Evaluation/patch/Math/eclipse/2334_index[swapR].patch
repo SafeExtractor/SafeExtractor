@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/RectangularCholeskyDecomposition.java b/src/main/java/org/apache/commons/math3/linear/RectangularCholeskyDecomposition.java
+index 56d0110..f087937 100644
+--- a/src/main/java/org/apache/commons/math3/linear/RectangularCholeskyDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/RectangularCholeskyDecomposition.java
+@@ -96,9 +96,10 @@
+ 
+             // find maximal diagonal element
+             int swapR = r;
+-            for (int i = r + 1; i < order; ++i) {
++            int var_2334 = index[swapR];
++			for (int i = r + 1; i < order; ++i) {
+                 int ii  = index[i];
+-                int isr = index[swapR];
++                int isr = var_2334;
+                 if (c[ii][ii] > c[isr][isr]) {
+                     swapR = i;
+                 }
+@@ -108,7 +109,7 @@
+             // swap elements
+             if (swapR != r) {
+                 final int tmpIndex    = index[r];
+-                index[r]              = index[swapR];
++                index[r]              = var_2334;
+                 index[swapR]          = tmpIndex;
+                 final double[] tmpRow = b[r];
+                 b[r]                  = b[swapR];

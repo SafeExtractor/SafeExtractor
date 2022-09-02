@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..9fc7cdb 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -361,16 +361,17 @@
+         continue;
+       }
+ 
+-      Node rParent = r.node.getParent();
++      Node var_717 = r.node;
++	Node rParent = var_717.getParent();
+ 
+       // There are two cases when we shouldn't flatten a reference:
+       // 1) Object literal keys, because duplicate keys show up as refs.
+       // 2) References inside a complex assign. (a = x.y = 0). These are
+       //    called TWIN references, because they show up twice in the
+       //    reference list. Only collapse the set, not the alias.
+-      if (!NodeUtil.isObjectLitKey(r.node, rParent) &&
++      if (!NodeUtil.isObjectLitKey(var_717, rParent) &&
+           (r.getTwin() == null || r.isSet())) {
+-        flattenNameRef(alias, r.node, rParent, originalName);
++        flattenNameRef(alias, var_717, rParent, originalName);
+       }
+     }
+ 

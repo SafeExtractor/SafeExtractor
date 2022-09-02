@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+index fa5c164..90d1214 100644
+--- a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
++++ b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+@@ -1341,7 +1341,8 @@
+ 
+         static PrecalculatedZone readFrom(DataInput in, String id) throws IOException {
+             // Read string pool.
+-            int poolSize = in.readUnsignedShort();
++            int var_685 = in.readUnsignedShort();
++			int poolSize = var_685;
+             String[] pool = new String[poolSize];
+             for (int i=0; i<poolSize; i++) {
+                 pool[i] = in.readUTF();
+@@ -1362,7 +1363,7 @@
+                     if (poolSize < 256) {
+                         index = in.readUnsignedByte();
+                     } else {
+-                        index = in.readUnsignedShort();
++                        index = var_685;
+                     }
+                     nameKeys[i] = pool[index];
+                 } catch (ArrayIndexOutOfBoundsException e) {

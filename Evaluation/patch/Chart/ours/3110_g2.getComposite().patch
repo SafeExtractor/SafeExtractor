@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..dd16fd6 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -1339,7 +1339,8 @@
+                                  Marker marker,
+                                  Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        Composite var_3110 = g2.getComposite();
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = domainAxis.getRange();
+@@ -1361,7 +1362,7 @@
+                         dataArea.getMaxY());
+             }
+ 
+-            final Composite originalComposite = g2.getComposite();
++            final Composite originalComposite = var_3110;
+             g2.setComposite(AlphaComposite.getInstance(
+                     AlphaComposite.SRC_OVER, marker.getAlpha()));
+             g2.setPaint(marker.getPaint());
+@@ -1419,7 +1420,7 @@
+                         dataArea.getHeight());
+             }
+ 
+-            final Composite originalComposite = g2.getComposite();
++            final Composite originalComposite = var_3110;
+             g2.setComposite(AlphaComposite.getInstance(
+                     AlphaComposite.SRC_OVER, marker.getAlpha()));
+             Paint p = marker.getPaint();

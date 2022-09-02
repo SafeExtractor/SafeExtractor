@@ -1,0 +1,56 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/MathArrays.java b/src/main/java/org/apache/commons/math3/util/MathArrays.java
+index ff729ac..2e1899a 100644
+--- a/src/main/java/org/apache/commons/math3/util/MathArrays.java
++++ b/src/main/java/org/apache/commons/math3/util/MathArrays.java
+@@ -380,27 +380,28 @@
+         final int max = val.length;
+ 
+         int index;
+-        ITEM:
++        double var_4260 = val[index];
++		ITEM:
+         for (index = 1; index < max; index++) {
+             switch (dir) {
+             case INCREASING:
+                 if (strict) {
+-                    if (val[index] <= previous) {
++                    if (var_4260 <= previous) {
+                         break ITEM;
+                     }
+                 } else {
+-                    if (val[index] < previous) {
++                    if (var_4260 < previous) {
+                         break ITEM;
+                     }
+                 }
+                 break;
+             case DECREASING:
+                 if (strict) {
+-                    if (val[index] >= previous) {
++                    if (var_4260 >= previous) {
+                         break ITEM;
+                     }
+                 } else {
+-                    if (val[index] > previous) {
++                    if (var_4260 > previous) {
+                         break ITEM;
+                     }
+                 }
+@@ -410,7 +411,7 @@
+                 throw new MathInternalError();
+             }
+ 
+-            previous = val[index];
++            previous = var_4260;
+         }
+ 
+         if (index == max) {
+@@ -420,7 +421,7 @@
+ 
+         // Loop early exit means wrong ordering.
+         if (abort) {
+-            throw new NonMonotonicSequenceException(val[index], previous, index, dir, strict);
++            throw new NonMonotonicSequenceException(var_4260, previous, index, dir, strict);
+         } else {
+             return false;
+         }

@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/TypeValidator.java b/src/com/google/javascript/jscomp/TypeValidator.java
+index 5feecd0..1fea671 100644
+--- a/src/com/google/javascript/jscomp/TypeValidator.java
++++ b/src/com/google/javascript/jscomp/TypeValidator.java
+@@ -532,10 +532,11 @@
+     // Only report duplicate declarations that have types. Other duplicates
+     // will be reported by the syntactic scope creator later in the
+     // compilation process.
+-    if (varType != null &&
+-        varType != typeRegistry.getNativeType(UNKNOWN_TYPE) &&
++    JSType var_1477 = typeRegistry.getNativeType(UNKNOWN_TYPE);
++	if (varType != null &&
++        varType != var_1477 &&
+         newType != null &&
+-        newType != typeRegistry.getNativeType(UNKNOWN_TYPE)) {
++        newType != var_1477) {
+       // If there are two typed declarations of the same variable, that
+       // is an error and the second declaration is ignored, except in the
+       // case of native types. A null input type means that the declaration

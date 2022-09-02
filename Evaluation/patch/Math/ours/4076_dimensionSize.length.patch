@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/commons/math3/transform/FastFourierTransformer.java b/src/main/java/org/apache/commons/math3/transform/FastFourierTransformer.java
+index 22d8a3d..5902e66 100644
+--- a/src/main/java/org/apache/commons/math3/transform/FastFourierTransformer.java
++++ b/src/main/java/org/apache/commons/math3/transform/FastFourierTransformer.java
+@@ -588,27 +588,28 @@
+         public Complex set(Complex magnitude, int... vector)
+                 throws DimensionMismatchException {
+ 
+-            if (vector == null) {
+-                if (dimensionSize.length > 0) {
++            int var_4076 = dimensionSize.length;
++			if (vector == null) {
++                if (var_4076 > 0) {
+                     throw new DimensionMismatchException(
+                             0,
+-                            dimensionSize.length);
++                            var_4076);
+                 }
+                 return null;
+             }
+-            if (vector.length != dimensionSize.length) {
++            if (vector.length != var_4076) {
+                 throw new DimensionMismatchException(
+                         vector.length,
+-                        dimensionSize.length);
++                        var_4076);
+             }
+ 
+             Object[] lastDimension = (Object[]) multiDimensionalComplexArray;
+-            for (int i = 0; i < dimensionSize.length - 1; i++) {
++            for (int i = 0; i < var_4076 - 1; i++) {
+                 lastDimension = (Object[]) lastDimension[vector[i]];
+             }
+ 
+-            Complex lastValue = (Complex) lastDimension[vector[dimensionSize.length - 1]];
+-            lastDimension[vector[dimensionSize.length - 1]] = magnitude;
++            Complex lastValue = (Complex) lastDimension[vector[var_4076 - 1]];
++            lastDimension[vector[var_4076 - 1]] = magnitude;
+ 
+             return lastValue;
+         }

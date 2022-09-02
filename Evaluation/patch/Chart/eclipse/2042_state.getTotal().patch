@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot.java b/source/org/jfree/chart/plot/PiePlot.java
+index 34014e9..55f7dd6 100644
+--- a/source/org/jfree/chart/plot/PiePlot.java
++++ b/source/org/jfree/chart/plot/PiePlot.java
+@@ -2657,13 +2657,14 @@
+         double angle1 = 0.0;
+         double angle2 = 0.0;
+ 
+-        if (this.direction == Rotation.CLOCKWISE) {
++        double var_2042 = state.getTotal();
++		if (this.direction == Rotation.CLOCKWISE) {
+             angle1 = state.getLatestAngle();
+-            angle2 = angle1 - value / state.getTotal() * 360.0;
++            angle2 = angle1 - value / var_2042 * 360.0;
+         }
+         else if (this.direction == Rotation.ANTICLOCKWISE) {
+             angle1 = state.getLatestAngle();
+-            angle2 = angle1 + value / state.getTotal() * 360.0;
++            angle2 = angle1 + value / var_2042 * 360.0;
+         }
+         else {
+             throw new IllegalStateException("Rotation type not recognised.");

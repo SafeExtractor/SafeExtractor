@@ -1,0 +1,40 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/193_info.getOwner().getEntityCollection().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/193_info.getOwner().getEntityCollection().patch
+index 8186768..453981c 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/193_info.getOwner().getEntityCollection().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/193_info.getOwner().getEntityCollection().patch
+@@ -1,5 +1,5 @@
+ diff --git a/source/org/jfree/chart/annotations/XYTitleAnnotation.java b/source/org/jfree/chart/annotations/XYTitleAnnotation.java
+-index 2178436..a933dc6 100644
++index 2178436..5a850db 100644
+ --- a/source/org/jfree/chart/annotations/XYTitleAnnotation.java
+ +++ b/source/org/jfree/chart/annotations/XYTitleAnnotation.java
+ @@ -55,6 +55,7 @@
+@@ -10,24 +10,13 @@ index 2178436..a933dc6 100644
+  import org.jfree.chart.plot.Plot;
+  import org.jfree.chart.plot.PlotOrientation;
+  import org.jfree.chart.plot.PlotRenderingInfo;
+-@@ -308,8 +309,9 @@
+-         yy = yy - (float) anchorPoint.getY();
++@@ -309,7 +310,8 @@
+          titleRect.setRect(xx, yy, titleRect.getWidth(), titleRect.getHeight());
+          BlockParams p = new BlockParams();
+--        if (info != null) {
++         if (info != null) {
+ -            if (info.getOwner().getEntityCollection() != null) {
+-+        EntityCollection var_193 = info.getOwner().getEntityCollection();
+-+		if (info != null) {
+-+            if (var_193 != null) {
+++            EntityCollection var_193 = info.getOwner().getEntityCollection();
+++			if (var_193 != null) {
+                  p.setGenerateEntities(true);
+              }
+          }
+-@@ -317,7 +319,7 @@
+-         if (info != null) {
+-             if (result instanceof EntityBlockResult) {
+-                 EntityBlockResult ebr = (EntityBlockResult) result;
+--                info.getOwner().getEntityCollection().addAll(
+-+                var_193.addAll(
+-                         ebr.getEntityCollection());
+-             }
+-             String toolTip = getToolTipText();

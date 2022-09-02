@@ -1,0 +1,59 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..58d21b3 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -482,7 +482,8 @@
+     // To be explicitly set to false if the node is not typeable.
+     boolean typeable = true;
+ 
+-    switch (n.getType()) {
++    JSType var_988 = getJSType(left);
++	switch (n.getType()) {
+       case Token.CAST:
+         Node expr = n.getFirstChild();
+         ensureTyped(t, n, getJSType(expr));
+@@ -583,7 +584,7 @@
+       case Token.INC:
+         left = n.getFirstChild();
+         checkPropCreation(t, left);
+-        validator.expectNumber(t, left, getJSType(left), "increment/decrement");
++        validator.expectNumber(t, left, var_988, "increment/decrement");
+         ensureTyped(t, n, NUMBER_TYPE);
+         break;
+ 
+@@ -611,7 +612,7 @@
+       case Token.POS:
+       case Token.NEG:
+         left = n.getFirstChild();
+-        validator.expectNumber(t, left, getJSType(left), "sign operator");
++        validator.expectNumber(t, left, var_988, "sign operator");
+         ensureTyped(t, n, NUMBER_TYPE);
+         break;
+ 
+@@ -630,7 +631,7 @@
+           checkTypeofString(t, left, left.getString());
+         }
+ 
+-        leftType = getJSType(left);
++        leftType = var_988;
+         rightType = getJSType(right);
+ 
+         // We do not want to warn about explicit comparisons to VOID. People
+@@ -703,7 +704,7 @@
+         left = n.getFirstChild();
+         right = n.getLastChild();
+         rightType = getJSType(right);
+-        validator.expectString(t, left, getJSType(left), "left side of 'in'");
++        validator.expectString(t, left, var_988, "left side of 'in'");
+         validator.expectObject(t, n, rightType, "'in' requires an object");
+         if (rightType.isStruct()) {
+           report(t, right, IN_USED_WITH_STRUCT);
+@@ -716,7 +717,7 @@
+         right = n.getLastChild();
+         rightType = getJSType(right).restrictByNotNullOrUndefined();
+         validator.expectAnyObject(
+-            t, left, getJSType(left), "deterministic instanceof yields false");
++            t, left, var_988, "deterministic instanceof yields false");
+         validator.expectActualObject(
+             t, right, rightType, "instanceof requires an object");
+         ensureTyped(t, n, BOOLEAN_TYPE);

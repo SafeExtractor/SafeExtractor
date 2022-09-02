@@ -1,0 +1,41 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/387_Integer.parseInt(str.substring(pos + 1)).patch b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/387_Integer.parseInt(str.substring(pos + 1)).patch
+index 9eb4012..4676c21 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/387_Integer.parseInt(str.substring(pos + 1)).patch	
++++ b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/387_Integer.parseInt(str.substring(pos + 1)).patch	
+@@ -1,32 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/lang3/math/Fraction.java b/src/main/java/org/apache/commons/lang3/math/Fraction.java
+-index a722ffe..13afaf0 100644
++index a722ffe..e1782d5 100644
+ --- a/src/main/java/org/apache/commons/lang3/math/Fraction.java
+ +++ b/src/main/java/org/apache/commons/lang3/math/Fraction.java
+-@@ -328,7 +328,8 @@
+- 
+-         // parse X Y/Z format
+-         pos = str.indexOf(' ');
+--        if (pos > 0) {
+-+        int var_387 = Integer.parseInt(str.substring(pos + 1));
+-+		if (pos > 0) {
+-             final int whole = Integer.parseInt(str.substring(0, pos));
+-             str = str.substring(pos + 1);
+-             pos = str.indexOf('/');
+-@@ -336,7 +337,7 @@
++@@ -336,7 +336,8 @@
+                  throw new NumberFormatException("The fraction could not be parsed as the format X Y/Z");
+              } else {
+                  final int numer = Integer.parseInt(str.substring(0, pos));
+ -                final int denom = Integer.parseInt(str.substring(pos + 1));
+-+                final int denom = var_387;
+++                int var_387 = Integer.parseInt(str.substring(pos + 1));
+++				final int denom = var_387;
+                  return getFraction(whole, numer, denom);
+              }
+          }
+-@@ -348,7 +349,7 @@
+-             return getFraction(Integer.parseInt(str), 1);
+-         } else {
+-             final int numer = Integer.parseInt(str.substring(0, pos));
+--            final int denom = Integer.parseInt(str.substring(pos + 1));
+-+            final int denom = var_387;
+-             return getFraction(numer, denom);
+-         }
+-     }

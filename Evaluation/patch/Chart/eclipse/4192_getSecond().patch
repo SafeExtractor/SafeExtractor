@@ -1,0 +1,20 @@
+diff --git a/source/org/jfree/data/time/Millisecond.java b/source/org/jfree/data/time/Millisecond.java
+index 5dada5d..6d16c12 100644
+--- a/source/org/jfree/data/time/Millisecond.java
++++ b/source/org/jfree/data/time/Millisecond.java
+@@ -236,11 +236,12 @@
+ 
+         RegularTimePeriod result = null;
+ 
+-        if (this.millisecond != FIRST_MILLISECOND_IN_SECOND) {
+-            result = new Millisecond(this.millisecond - 1, getSecond());
++        Second var_4192 = getSecond();
++		if (this.millisecond != FIRST_MILLISECOND_IN_SECOND) {
++            result = new Millisecond(this.millisecond - 1, var_4192);
+         }
+         else {
+-            Second previous = (Second) getSecond().previous();
++            Second previous = (Second) var_4192.previous();
+             if (previous != null) {
+                 result = new Millisecond(LAST_MILLISECOND_IN_SECOND, previous);
+             }

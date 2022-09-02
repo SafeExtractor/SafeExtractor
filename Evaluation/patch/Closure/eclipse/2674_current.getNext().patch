@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+index c8fbac8..d1c6e67 100644
+--- a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
++++ b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+@@ -1519,7 +1519,8 @@
+   /** @see #createFromTypeNodes(Node, String, StaticScope) */
+   private JSType createFromTypeNodesInternal(Node n, String sourceName,
+       StaticScope<JSType> scope) {
+-    switch (n.getType()) {
++    Node var_2674 = current.getNext();
++	switch (n.getType()) {
+       case Token.LC: // Record type.
+         return createRecordTypeFromNodes(
+             n.getFirstChild(), sourceName, scope);
+@@ -1623,7 +1624,7 @@
+           }
+ 
+           isConstructor = current.getType() == Token.NEW;
+-          current = current.getNext();
++          current = var_2674;
+         }
+ 
+         FunctionParamBuilder paramBuilder = new FunctionParamBuilder(this);
+@@ -1655,7 +1656,7 @@
+               }
+             }
+           }
+-          current = current.getNext();
++          current = var_2674;
+         }
+ 
+         JSType returnType =

@@ -1,0 +1,36 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java b/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java
+index fd55902..c063b23 100644
+--- a/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java
++++ b/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java
+@@ -281,10 +281,11 @@
+                                           final int key, final int mask) {
+         final int hash = hashOf(key);
+         int index = hash & mask;
+-        if (states[index] == FREE) {
++        int var_4242 = changeIndexSign(index);
++		if (states[index] == FREE) {
+             return index;
+         } else if (states[index] == FULL && keys[index] == key) {
+-            return changeIndexSign(index);
++            return var_4242;
+         }
+ 
+         int perturb = perturb(hash);
+@@ -306,7 +307,7 @@
+         } else if (states[index] == FULL) {
+             // due to the loop exit condition,
+             // if (states[index] == FULL) then keys[index] == key
+-            return changeIndexSign(index);
++            return var_4242;
+         }
+ 
+         final int firstRemoved = index;
+@@ -317,7 +318,7 @@
+             if (states[index] == FREE) {
+                 return firstRemoved;
+             } else if (states[index] == FULL && keys[index] == key) {
+-                return changeIndexSign(index);
++                return var_4242;
+             }
+ 
+             perturb >>= PERTURB_SHIFT;

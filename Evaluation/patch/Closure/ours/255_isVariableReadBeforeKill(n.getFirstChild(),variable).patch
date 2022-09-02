@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 9d1b56c..48ce1e6 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -378,12 +378,13 @@
+       }
+     }
+ 
+-    switch (n.getType()) {
++    VariableLiveness var_255 = isVariableReadBeforeKill(
++	  n.getFirstChild(), variable);
++	switch (n.getType()) {
+       // Conditionals
+       case Token.OR:
+       case Token.AND:
+-        VariableLiveness v1 = isVariableReadBeforeKill(
+-          n.getFirstChild(), variable);
++        VariableLiveness v1 = var_255;
+         VariableLiveness v2 = isVariableReadBeforeKill(
+           n.getLastChild(), variable);
+         // With a AND/OR the first branch always runs, but the second is
+@@ -396,8 +397,7 @@
+           return VariableLiveness.MAYBE_LIVE;
+         }
+       case Token.HOOK:
+-        VariableLiveness first = isVariableReadBeforeKill(
+-            n.getFirstChild(), variable);
++        VariableLiveness first = var_255;
+         if (first != VariableLiveness.MAYBE_LIVE) {
+           return first;
+         }

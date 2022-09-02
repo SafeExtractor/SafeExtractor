@@ -1,0 +1,63 @@
+diff --git a/src/com/google/javascript/jscomp/ClosureRewriteClass.java b/src/com/google/javascript/jscomp/ClosureRewriteClass.java
+index 4c1fcea..33bdf65 100644
+--- a/src/com/google/javascript/jscomp/ClosureRewriteClass.java
++++ b/src/com/google/javascript/jscomp/ClosureRewriteClass.java
+@@ -306,18 +306,19 @@
+     // For simplicity add everything into a block, before adding it to the AST.
+     Node block = IR.block();
+ 
+-    if (exprRoot.isVar()) {
++    Node var_852 = cls.name;
++	if (exprRoot.isVar()) {
+       // example: var ctr = function(){}
+       block.addChildToBack(
+           IR.var(
+-          cls.name.cloneTree(), cls.constructor.value)
++          var_852.cloneTree(), cls.constructor.value)
+           .srcref(exprRoot).setJSDocInfo(cls.constructor.info));
+     } else {
+       // example: ns.ctr = function(){}
+       block.addChildToBack(
+           fixupSrcref(IR.exprResult(
+           IR.assign(
+-          cls.name.cloneTree(), cls.constructor.value)
++          var_852.cloneTree(), cls.constructor.value)
+           .srcref(exprRoot).setJSDocInfo(cls.constructor.info)
+           .srcref(exprRoot))).setJSDocInfo(cls.constructor.info));
+     }
+@@ -330,7 +331,7 @@
+                   NodeUtil.newQualifiedNameNode(
+                       compiler.getCodingConvention(), "goog.inherits")
+                       .srcrefTree(cls.superClass),
+-                  cls.name.cloneTree(),
++                  var_852.cloneTree(),
+                   cls.superClass.cloneTree()).srcref(cls.superClass))));
+     }
+ 
+@@ -339,7 +340,7 @@
+       block.addChildToBack(
+           fixupSrcref(IR.exprResult(
+           fixupSrcref(IR.assign(
+-              IR.getprop(cls.name.cloneTree(),
++              IR.getprop(var_852.cloneTree(),
+                   IR.string(def.name.getString()).srcref(def.name))
+                   .srcref(def.name),
+               def.value)).setJSDocInfo(def.info))));
+@@ -353,7 +354,7 @@
+           fixupSrcref(IR.exprResult(
+           fixupSrcref(IR.assign(
+               IR.getprop(
+-                  fixupSrcref(IR.getprop(cls.name.cloneTree(),
++                  fixupSrcref(IR.getprop(var_852.cloneTree(),
+                       IR.string("prototype").srcref(def.name))),
+                   IR.string(def.name.getString()).srcref(def.name))
+                   .srcref(def.name),
+@@ -369,7 +370,7 @@
+               fixupFreeCall(
+                   IR.call(
+                       cls.classModifier,
+-                      cls.name.cloneTree())
++                      var_852.cloneTree())
+                       .srcref(cls.classModifier)))
+               .srcref(cls.classModifier));
+     }

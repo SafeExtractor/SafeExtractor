@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/SimpleDefinitionFinder.java b/src/com/google/javascript/jscomp/SimpleDefinitionFinder.java
+index fb9b5c2..ce6eb00 100644
+--- a/src/com/google/javascript/jscomp/SimpleDefinitionFinder.java
++++ b/src/com/google/javascript/jscomp/SimpleDefinitionFinder.java
+@@ -165,7 +165,8 @@
+       Definition def =
+           DefinitionsRemover.getDefinition(node, inExterns);
+       if (def != null) {
+-        String name = getSimplifiedName(def.getLValue());
++        Node var_546 = def.getLValue();
++		String name = getSimplifiedName(var_546);
+         if (name != null) {
+           Node rValue = def.getRValue();
+           if ((rValue != null) &&
+@@ -174,7 +175,7 @@
+ 
+             // Unhandled complex expression
+             Definition unknownDef =
+-                new UnknownDefinition(def.getLValue(), inExterns);
++                new UnknownDefinition(var_546, inExterns);
+             def = unknownDef;
+           }
+ 

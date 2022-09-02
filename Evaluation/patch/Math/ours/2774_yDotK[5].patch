@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/HighamHall54StepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/HighamHall54StepInterpolator.java
+index a3756ec..4418be6 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/HighamHall54StepInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/HighamHall54StepInterpolator.java
+@@ -77,7 +77,8 @@
+     final double bDot4 = theta * (375.0/16.0 + theta * (-625.0/8.0 + 125.0/2.0 * theta));
+     final double bDot5 = theta * 5.0/8.0 * (2 * theta - 1);
+ 
+-    if ((previousState != null) && (theta <= 0.5)) {
++    double[] var_2774 = yDotK[5];
++	if ((previousState != null) && (theta <= 0.5)) {
+         final double hTheta = h * theta;
+         final double b0 = hTheta * (1.0 + theta * (-15.0/4.0  + theta * (16.0/3.0 - 5.0/2.0 * theta)));
+         final double b2 = hTheta * (      theta * (459.0/32.0 + theta * (-243.0/8.0 + theta * 135.0/8.0)));
+@@ -89,7 +90,7 @@
+             final double yDot2 = yDotK[2][i];
+             final double yDot3 = yDotK[3][i];
+             final double yDot4 = yDotK[4][i];
+-            final double yDot5 = yDotK[5][i];
++            final double yDot5 = var_2774[i];
+             interpolatedState[i] =
+                     previousState[i] + b0 * yDot0 + b2 * yDot2 + b3 * yDot3 + b4 * yDot4 + b5 * yDot5;
+             interpolatedDerivatives[i] =
+@@ -107,7 +108,7 @@
+             final double yDot2 = yDotK[2][i];
+             final double yDot3 = yDotK[3][i];
+             final double yDot4 = yDotK[4][i];
+-            final double yDot5 = yDotK[5][i];
++            final double yDot5 = var_2774[i];
+             interpolatedState[i] =
+                     currentState[i] + b0 * yDot0 + b2 * yDot2 + b3 * yDot3 + b4 * yDot4 + b5 * yDot5;
+             interpolatedDerivatives[i] =

@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..d0255b0 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -624,8 +624,9 @@
+         }
+         final int nvm = nvars - 1;
+         final int base_pos = r.length - (nvm - in) * (nvm - in + 1) / 2;
+-        if (d[in] > 0.0) {
+-            rms[in + rms_off] = 1.0 / Math.sqrt(d[in]);
++        double var_3986 = d[in];
++		if (var_3986 > 0.0) {
++            rms[in + rms_off] = 1.0 / Math.sqrt(var_3986);
+         }
+         for (int col = in + 1; col < nvars; col++) {
+             pos = base_pos + col - 1 - in;

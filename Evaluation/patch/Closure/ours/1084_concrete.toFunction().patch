@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..8a93f2b 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -1345,9 +1345,10 @@
+     if (type.getSubTypes() != null) {
+       for (FunctionType sub : type.getSubTypes()) {
+         ConcreteType concrete = createType(sub);
+-        if (concrete.isFunction()
+-            && concrete.toFunction().getInstanceType() != null) {
+-          concrete = concrete.toFunction().getInstanceType();
++        ConcreteFunctionType var_1084 = concrete.toFunction();
++		if (concrete.isFunction()
++            && var_1084.getInstanceType() != null) {
++          concrete = var_1084.getInstanceType();
+           if (!set.contains(concrete)) {
+             set.add(concrete);
+             if (!getSubTypes(sub, set)) {

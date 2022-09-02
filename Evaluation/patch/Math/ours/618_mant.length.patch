@@ -1,0 +1,57 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..341dc96 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1320,11 +1320,12 @@
+         /* Handle special case when a or b is zero, by setting the exponent
+        of the zero number equal to the other one.  This avoids an alignment
+        which would cause catastropic loss of precision */
+-        if (b.mant[mant.length-1] == 0) {
++        int var_618 = mant.length;
++		if (b.mant[var_618-1] == 0) {
+             b.exp = a.exp;
+         }
+ 
+-        if (a.mant[mant.length-1] == 0) {
++        if (a.mant[var_618-1] == 0) {
+             a.exp = b.exp;
+         }
+ 
+@@ -1348,7 +1349,7 @@
+ 
+         /* add the mantissas */
+         int rh = 0; /* acts as a carry */
+-        for (int i = 0; i < mant.length; i++) {
++        for (int i = 0; i < var_618; i++) {
+             final int r = a.mant[i]+b.mant[i]+rh;
+             rh = r / RADIX;
+             result.mant[i] = r - rh * RADIX;
+@@ -1362,7 +1363,7 @@
+         if (rh != 0 && (asign == bsign)) {
+             final int lostdigit = result.mant[0];
+             result.shiftRight();
+-            result.mant[mant.length-1] = rh;
++            result.mant[var_618-1] = rh;
+             final int excp = result.round(lostdigit);
+             if (excp != 0) {
+                 result = dotrap(excp, ADD_TRAP, x, result);
+@@ -1370,8 +1371,8 @@
+         }
+ 
+         /* normalize the result */
+-        for (int i = 0; i < mant.length; i++) {
+-            if (result.mant[mant.length-1] != 0) {
++        for (int i = 0; i < var_618; i++) {
++            if (result.mant[var_618-1] != 0) {
+                 break;
+             }
+             result.shiftLeft();
+@@ -1383,7 +1384,7 @@
+         }
+ 
+         /* result is zero if after normalization the most sig. digit is zero */
+-        if (result.mant[mant.length-1] == 0) {
++        if (result.mant[var_618-1] == 0) {
+             result.exp = 0;
+ 
+             if (asign != bsign) {

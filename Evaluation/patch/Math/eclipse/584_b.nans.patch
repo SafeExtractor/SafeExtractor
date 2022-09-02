@@ -1,0 +1,35 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..55f7003 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -946,8 +946,9 @@
+      */
+     private static int compare(final Dfp a, final Dfp b) {
+         // Ignore the sign of zero
+-        if (a.mant[a.mant.length - 1] == 0 && b.mant[b.mant.length - 1] == 0 &&
+-            a.nans == FINITE && b.nans == FINITE) {
++        byte var_584 = b.nans;
++		if (a.mant[a.mant.length - 1] == 0 && b.mant[b.mant.length - 1] == 0 &&
++            a.nans == FINITE && var_584 == FINITE) {
+             return 0;
+         }
+ 
+@@ -960,15 +961,15 @@
+         }
+ 
+         // deal with the infinities
+-        if (a.nans == INFINITE && b.nans == FINITE) {
++        if (a.nans == INFINITE && var_584 == FINITE) {
+             return a.sign;
+         }
+ 
+-        if (a.nans == FINITE && b.nans == INFINITE) {
++        if (a.nans == FINITE && var_584 == INFINITE) {
+             return -b.sign;
+         }
+ 
+-        if (a.nans == INFINITE && b.nans == INFINITE) {
++        if (a.nans == INFINITE && var_584 == INFINITE) {
+             return 0;
+         }
+ 

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/chrono/BuddhistChronology.java b/src/main/java/org/joda/time/chrono/BuddhistChronology.java
+index fc6a1ec..c5dc47b 100644
+--- a/src/main/java/org/joda/time/chrono/BuddhistChronology.java
++++ b/src/main/java/org/joda/time/chrono/BuddhistChronology.java
+@@ -224,7 +224,8 @@
+                     new SkipUndoDateTimeField(this, field), BUDDHIST_OFFSET);
+             
+             // one era, so yearOfEra is the same
+-            field = fields.yearOfEra;
++            DateTimeField var_366 = fields.yearOfEra;
++			field = var_366;
+             fields.yearOfEra = new DelegatedDateTimeField(
+                 fields.year, fields.eras, DateTimeFieldType.yearOfEra());
+             
+@@ -233,7 +234,7 @@
+             fields.weekyear = new OffsetDateTimeField(
+                     new SkipUndoDateTimeField(this, field), BUDDHIST_OFFSET);
+             
+-            field = new OffsetDateTimeField(fields.yearOfEra, 99);
++            field = new OffsetDateTimeField(var_366, 99);
+             fields.centuryOfEra = new DividedDateTimeField(
+                 field, fields.eras, DateTimeFieldType.centuryOfEra(), 100);
+             fields.centuries = fields.centuryOfEra.getDurationField();

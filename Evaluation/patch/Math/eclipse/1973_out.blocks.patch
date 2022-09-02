@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java b/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
+index a03c4f4..53e8375 100644
+--- a/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
+@@ -422,8 +422,9 @@
+         final BlockRealMatrix out = new BlockRealMatrix(rows, columns);
+ 
+         // perform subtraction block-wise, to ensure good cache behavior
+-        for (int blockIndex = 0; blockIndex < out.blocks.length; ++blockIndex) {
+-            final double[] outBlock = out.blocks[blockIndex];
++        double[][] var_1973 = out.blocks;
++		for (int blockIndex = 0; blockIndex < var_1973.length; ++blockIndex) {
++            final double[] outBlock = var_1973[blockIndex];
+             final double[] tBlock = blocks[blockIndex];
+             final double[] mBlock = m.blocks[blockIndex];
+             for (int k = 0; k < outBlock.length; ++k) {

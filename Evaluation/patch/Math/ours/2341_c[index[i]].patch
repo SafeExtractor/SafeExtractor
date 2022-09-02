@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/RectangularCholeskyDecomposition.java b/src/main/java/org/apache/commons/math3/linear/RectangularCholeskyDecomposition.java
+index 56d0110..3f1b38a 100644
+--- a/src/main/java/org/apache/commons/math3/linear/RectangularCholeskyDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/RectangularCholeskyDecomposition.java
+@@ -125,10 +125,11 @@
+ 
+                 // check remaining diagonal elements
+                 for (int i = r; i < order; ++i) {
+-                    if (c[index[i]][index[i]] < -small) {
++                    double[] var_2341 = c[index[i]];
++					if (var_2341[index[i]] < -small) {
+                         // there is at least one sufficiently negative diagonal element,
+                         // the symmetric positive semidefinite matrix is wrong
+-                        throw new NonPositiveDefiniteMatrixException(c[index[i]][index[i]], i, small);
++                        throw new NonPositiveDefiniteMatrixException(var_2341[index[i]], i, small);
+                     }
+                 }
+ 

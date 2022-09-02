@@ -1,0 +1,16 @@
+diff --git a/storm-webapp/src/main/java/org/apache/storm/daemon/logviewer/utils/DirectoryCleaner.java b/storm-webapp/src/main/java/org/apache/storm/daemon/logviewer/utils/DirectoryCleaner.java
+index bc8ae14..0a6ceeb 100644
+--- a/storm-webapp/src/main/java/org/apache/storm/daemon/logviewer/utils/DirectoryCleaner.java
++++ b/storm-webapp/src/main/java/org/apache/storm/daemon/logviewer/utils/DirectoryCleaner.java
+@@ -133,8 +133,9 @@
+             }
+             while (!stack.isEmpty() && toDeleteSize > 0) {
+                 File file = stack.pop();
+-                toDeleteSize -= file.length();
+-                LOG.info("Delete file: {}, size: {}, lastModified: {}", file.getCanonicalPath(), file.length(), file.lastModified());
++                long fileSize = file.length();
++				toDeleteSize -= fileSize;
++                LOG.info("Delete file: {}, size: {}, lastModified: {}", file.getCanonicalPath(), fileSize, file.lastModified());
+                 file.delete();
+                 deletedFiles++;
+             }

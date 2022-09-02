@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/MultivariateFunctionPenaltyAdapter.java b/src/main/java/org/apache/commons/math3/optimization/direct/MultivariateFunctionPenaltyAdapter.java
+index 814be5f..5221874 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/MultivariateFunctionPenaltyAdapter.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/MultivariateFunctionPenaltyAdapter.java
+@@ -169,8 +169,9 @@
+                 double sum = 0;
+                 for (int j = i; j < scale.length; ++j) {
+                     final double overshoot;
+-                    if (point[j] < lower[j]) {
+-                        overshoot = scale[j] * (lower[j] - point[j]);
++                    double var_3319 = lower[j];
++					if (point[j] < var_3319) {
++                        overshoot = scale[j] * (var_3319 - point[j]);
+                     } else if (point[j] > upper[j]) {
+                         overshoot = scale[j] * (point[j] - upper[j]);
+                     } else {

@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java b/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
+index 04d88ae..e959231 100644
+--- a/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
++++ b/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
+@@ -170,7 +170,8 @@
+    * instead.
+    */
+   private void extractInstance(ExtractionInstance instance) {
+-    PrototypeMemberDeclaration first = instance.declarations.getFirst();
++    LinkedList<PrototypeMemberDeclaration> var_2006 = instance.declarations;
++	PrototypeMemberDeclaration first = var_2006.getFirst();
+     String className = first.qualifiedClassName;
+     if (pattern == Pattern.USE_GLOBAL_TEMP) {
+       // Use the temp variable to hold the prototype.
+@@ -199,13 +200,13 @@
+       Node stmt = new Node(first.node.getType(), call);
+       stmt.copyInformationFromForTree(first.node);
+       instance.parent.addChildBefore(stmt, first.node);
+-      for (PrototypeMemberDeclaration declar : instance.declarations) {
++      for (PrototypeMemberDeclaration declar : var_2006) {
+         block.addChildToBack(declar.node.detachFromParent());
+       }
+     }
+     // Go thought each member declaration and replace it with an assignment
+     // to the prototype variable.
+-    for (PrototypeMemberDeclaration declar : instance.declarations) {
++    for (PrototypeMemberDeclaration declar : var_2006) {
+       replacePrototypeMemberDeclaration(declar);
+     }
+   }

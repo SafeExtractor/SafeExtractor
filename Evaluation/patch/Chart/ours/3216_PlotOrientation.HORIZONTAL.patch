@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java b/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
+index cd91775..0dc9c23 100644
+--- a/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
+@@ -872,9 +872,10 @@
+         double l_y1 = x_rangeAxis.valueToJava2D(l_y0, x_dataArea,
+                 l_rangeAxisLocation);
+ 
+-        if (getShapesVisible()) {
++        PlotOrientation var_3216 = PlotOrientation.HORIZONTAL;
++		if (getShapesVisible()) {
+             Shape l_shape = getItemShape(x_series, x_item, selected);
+-            if (l_orientation == PlotOrientation.HORIZONTAL) {
++            if (l_orientation == var_3216) {
+                 l_shape = ShapeUtilities.createTranslatedShape(l_shape,
+                         l_y1, l_x1);
+             }
+@@ -936,7 +937,7 @@
+                 (x_item - 1)), x_dataArea, l_rangeAxisLocation);
+ 
+         Line2D l_line = null;
+-        if (PlotOrientation.HORIZONTAL == l_orientation) {
++        if (var_3216 == l_orientation) {
+             l_line = new Line2D.Double(l_y1, l_x1, l_y2, l_x2);
+         }
+         else if (PlotOrientation.VERTICAL == l_orientation) {

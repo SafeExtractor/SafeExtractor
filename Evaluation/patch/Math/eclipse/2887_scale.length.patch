@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerStepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerStepInterpolator.java
+index 228a008..bfc9281 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerStepInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerStepInterpolator.java
+@@ -302,11 +302,12 @@
+   public double estimateError(final double[] scale) {
+     double error = 0;
+     if (currentDegree >= 5) {
+-      for (int i = 0; i < scale.length; ++i) {
++      int var_2887 = scale.length;
++	for (int i = 0; i < var_2887; ++i) {
+         final double e = polynomials[currentDegree][i] / scale[i];
+         error += e * e;
+       }
+-      error = FastMath.sqrt(error / scale.length) * errfac[currentDegree - 5];
++      error = FastMath.sqrt(error / var_2887) * errfac[currentDegree - 5];
+     }
+     return error;
+   }

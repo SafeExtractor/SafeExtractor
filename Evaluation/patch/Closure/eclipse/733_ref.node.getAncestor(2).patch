@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..c253c17 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -666,7 +666,8 @@
+     Node rvalue = ref.node.getNext();
+     Node varNode = new Node(Token.VAR);
+     Node varParent = ref.node.getAncestor(3);
+-    Node gramps = ref.node.getAncestor(2);
++    Node var_733 = ref.node.getAncestor(2);
++	Node gramps = var_733;
+     boolean isObjLit = rvalue.isObjectLit();
+     boolean insertedVarNode = false;
+ 
+@@ -686,7 +687,7 @@
+ 
+       Node nameNode = NodeUtil.newName(
+           compiler.getCodingConvention(),
+-          alias, ref.node.getAncestor(2), n.getFullName());
++          alias, var_733, n.getFullName());
+ 
+       JSDocInfo info = ref.node.getParent().getJSDocInfo();
+       if (ref.node.getLastChild().getBooleanProp(Node.IS_CONSTANT_NAME) ||

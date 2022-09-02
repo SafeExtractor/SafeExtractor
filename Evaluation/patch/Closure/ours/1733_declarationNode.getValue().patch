@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/NameReferenceGraphReport.java b/src/com/google/javascript/jscomp/NameReferenceGraphReport.java
+index 86a5203..6e956cf 100644
+--- a/src/com/google/javascript/jscomp/NameReferenceGraphReport.java
++++ b/src/com/google/javascript/jscomp/NameReferenceGraphReport.java
+@@ -153,8 +153,9 @@
+       DiGraphNode<Name, Reference> declarationNode) {
+     // Provide the name and location of declaration,
+     // with an anchor to allow navigation to this declaration.
+-    String declName = declarationNode.getValue().getQualifiedName();
+-    JSType declType = declarationNode.getValue().getType();
++    Name var_1733 = declarationNode.getValue();
++	String declName = var_1733.getQualifiedName();
++    JSType declType = var_1733.getType();
+ 
+     builder.append("<LI> ");
+     builder.append("<A NAME=\"" + declName + "\">");
+@@ -168,7 +169,7 @@
+     // List all the definitions of this name that were found in the code.
+     // For each, list
+     List<DefinitionsRemover.Definition> defs =
+-        declarationNode.getValue().getDeclarations();
++        var_1733.getDeclarations();
+ 
+     if (defs.size() == 0) {
+        builder.append("<br>No definitions found<br>");

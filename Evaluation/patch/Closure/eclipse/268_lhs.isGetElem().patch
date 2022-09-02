@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeCollectPropertyAssignments.java b/src/com/google/javascript/jscomp/PeepholeCollectPropertyAssignments.java
+index decfc10..1e7423a 100644
+--- a/src/com/google/javascript/jscomp/PeepholeCollectPropertyAssignments.java
++++ b/src/com/google/javascript/jscomp/PeepholeCollectPropertyAssignments.java
+@@ -233,7 +233,8 @@
+     Node property = obj.getNext();
+ 
+     // The property must be statically known.
+-    if (lhs.isGetElem()
++    boolean var_268 = lhs.isGetElem();
++	if (var_268
+         && (!property.isString()
+             && !property.isNumber())) {
+       return false;
+@@ -249,7 +250,7 @@
+     Node newProperty = IR.stringKey(propertyName)
+         .copyInformationFrom(property);
+     // Preserve the quotedness of a property reference
+-    if (lhs.isGetElem()) {
++    if (var_268) {
+       newProperty.setQuotedString();
+     }
+     Node newValue = rhs.detachFromParent();

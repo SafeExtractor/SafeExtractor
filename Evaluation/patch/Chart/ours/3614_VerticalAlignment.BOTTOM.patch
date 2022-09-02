@@ -1,0 +1,33 @@
+diff --git a/source/org/jfree/chart/util/VerticalAlignment.java b/source/org/jfree/chart/util/VerticalAlignment.java
+index 8a13ee0..dfae4df 100644
+--- a/source/org/jfree/chart/util/VerticalAlignment.java
++++ b/source/org/jfree/chart/util/VerticalAlignment.java
+@@ -128,16 +128,18 @@
+     private Object readResolve() throws ObjectStreamException {
+         if (this.equals(VerticalAlignment.TOP)) {
+             return VerticalAlignment.TOP;
+-        }
+-        else if (this.equals(VerticalAlignment.BOTTOM)) {
+-            return VerticalAlignment.BOTTOM;
+-        }
+-        else if (this.equals(VerticalAlignment.CENTER)) {
+-            return VerticalAlignment.CENTER;
+-        }
+-        else {
+-            return null;  // this should never happen
+-        }
++        } else {
++			VerticalAlignment var_3614 = VerticalAlignment.BOTTOM;
++			if (this.equals(var_3614)) {
++			    return var_3614;
++			}
++			else if (this.equals(VerticalAlignment.CENTER)) {
++			    return VerticalAlignment.CENTER;
++			}
++			else {
++			    return null;  // this should never happen
++			}
++		}
+     }
+ 
+ }

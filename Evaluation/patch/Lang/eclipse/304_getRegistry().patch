@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java b/src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java
+index 1c6eaff..8abfd9a 100644
+--- a/src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java
++++ b/src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java
+@@ -169,13 +169,14 @@
+      * @param rhs the other object to register
+      */
+     static void register(final Object lhs, final Object rhs) {
+-        synchronized (EqualsBuilder.class) {
+-            if (getRegistry() == null) {
++        Set<Pair<IDKey, IDKey>> var_304 = getRegistry();
++		synchronized (EqualsBuilder.class) {
++            if (var_304 == null) {
+                 REGISTRY.set(new HashSet<Pair<IDKey, IDKey>>());
+             }
+         }
+ 
+-        final Set<Pair<IDKey, IDKey>> registry = getRegistry();
++        final Set<Pair<IDKey, IDKey>> registry = var_304;
+         final Pair<IDKey, IDKey> pair = getRegisterPair(lhs, rhs);
+         registry.add(pair);
+     }

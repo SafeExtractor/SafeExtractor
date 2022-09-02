@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/AbstractFieldMatrix.java b/src/main/java/org/apache/commons/math3/linear/AbstractFieldMatrix.java
+index 581b69d..23f3066 100644
+--- a/src/main/java/org/apache/commons/math3/linear/AbstractFieldMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/AbstractFieldMatrix.java
+@@ -433,18 +433,19 @@
+         NullArgumentException, OutOfRangeException {
+         // safety checks
+         checkSubMatrixIndex(selectedRows, selectedColumns);
+-        if ((destination.length < selectedRows.length) ||
+-            (destination[0].length < selectedColumns.length)) {
++        int var_2478 = selectedColumns.length;
++		if ((destination.length < selectedRows.length) ||
++            (destination[0].length < var_2478)) {
+             throw new MatrixDimensionMismatchException(destination.length,
+                                                        destination[0].length,
+                                                        selectedRows.length,
+-                                                       selectedColumns.length);
++                                                       var_2478);
+         }
+ 
+         // copy entries
+         for (int i = 0; i < selectedRows.length; i++) {
+             final T[] destinationI = destination[i];
+-            for (int j = 0; j < selectedColumns.length; j++) {
++            for (int j = 0; j < var_2478; j++) {
+                 destinationI[j] = getEntry(selectedRows[i], selectedColumns[j]);
+             }
+         }

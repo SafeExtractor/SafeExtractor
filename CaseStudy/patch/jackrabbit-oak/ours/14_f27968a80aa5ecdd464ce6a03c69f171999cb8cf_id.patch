@@ -1,0 +1,25 @@
+diff --git a/oak-auth-ldap/src/main/java/org/apache/jackrabbit/oak/security/authentication/ldap/impl/LdapIdentityProvider.java b/oak-auth-ldap/src/main/java/org/apache/jackrabbit/oak/security/authentication/ldap/impl/LdapIdentityProvider.java
+index a64bcb7..f64c846 100644
+--- a/oak-auth-ldap/src/main/java/org/apache/jackrabbit/oak/security/authentication/ldap/impl/LdapIdentityProvider.java
++++ b/oak-auth-ldap/src/main/java/org/apache/jackrabbit/oak/security/authentication/ldap/impl/LdapIdentityProvider.java
+@@ -212,8 +212,9 @@
+             String groupIdAttr = config.getGroupConfig().getIdAttribute();
+             String[] ca = config.getCustomAttributes();
+             Entry entry;
+-            if (ca.length == 0) {
+-                entry = connection.lookup(ref.getId(), SchemaConstants.ALL_USER_ATTRIBUTES);
++            String id = ref.getId();
++			if (ca.length == 0) {
++                entry = connection.lookup(id, SchemaConstants.ALL_USER_ATTRIBUTES);
+             }
+             else {
+                 List<String> attributes = new ArrayList<>(Arrays.asList(ca));
+@@ -222,7 +223,7 @@
+                 attributes.add(groupIdAttr);
+                 String[] attributeArray = new String[attributes.size()];
+                 attributes.toArray(attributeArray);
+-                entry = connection.lookup(ref.getId(), attributeArray);
++                entry = connection.lookup(id, attributeArray);
+             }
+             if (entry == null) {
+                 return null;

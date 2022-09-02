@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java b/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java
+index f154450..c1ee319 100644
+--- a/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java
++++ b/source/org/jfree/chart/renderer/category/BoxAndWhiskerRenderer.java
+@@ -711,7 +711,8 @@
+         Number yQ1 = bawDataset.getQ1Value(row, column);
+         Number yQ3 = bawDataset.getQ3Value(row, column);
+         Number yMax = bawDataset.getMaxRegularValue(row, column);
+-        Number yMin = bawDataset.getMinRegularValue(row, column);
++        Number var_2435 = bawDataset.getMinRegularValue(row, column);
++		Number yMin = var_2435;
+         Shape box = null;
+         if (yQ1 != null && yQ3 != null && yMax != null && yMin != null) {
+ 
+@@ -802,7 +803,7 @@
+                 double outlier = ((Number) yOutliers.get(i)).doubleValue();
+                 Number minOutlier = bawDataset.getMinOutlier(row, column);
+                 Number maxOutlier = bawDataset.getMaxOutlier(row, column);
+-                Number minRegular = bawDataset.getMinRegularValue(row, column);
++                Number minRegular = var_2435;
+                 Number maxRegular = bawDataset.getMaxRegularValue(row, column);
+                 if (outlier > maxOutlier.doubleValue()) {
+                     outlierListCollection.setHighFarOut(true);

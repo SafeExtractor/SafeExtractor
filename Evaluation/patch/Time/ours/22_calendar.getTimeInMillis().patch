@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/joda/time/LocalDateTime.java b/src/main/java/org/joda/time/LocalDateTime.java
+index 44d2ee9..fc4a303 100644
+--- a/src/main/java/org/joda/time/LocalDateTime.java
++++ b/src/main/java/org/joda/time/LocalDateTime.java
+@@ -850,7 +850,8 @@
+             }
+             // move back in units of one second until date wrong
+             while (check.isBefore(this) == false) {
+-                calendar.setTimeInMillis(calendar.getTimeInMillis() - 1000);
++                long var_22 = calendar.getTimeInMillis();
++				calendar.setTimeInMillis(var_22 - 1000);
+                 check = LocalDateTime.fromCalendarFields(calendar);
+             }
+             calendar.setTimeInMillis(calendar.getTimeInMillis() + 1000);

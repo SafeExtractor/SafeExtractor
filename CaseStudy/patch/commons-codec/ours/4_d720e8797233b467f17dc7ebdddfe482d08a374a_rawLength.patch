@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/codec/binary/BinaryCodec.java b/src/main/java/org/apache/commons/codec/binary/BinaryCodec.java
+index 590dd3e..16230ff 100644
+--- a/src/main/java/org/apache/commons/codec/binary/BinaryCodec.java
++++ b/src/main/java/org/apache/commons/codec/binary/BinaryCodec.java
+@@ -153,12 +153,13 @@
+             return EMPTY_BYTE_ARRAY;
+         }
+         // get 8 times the bytes with 3 bit shifts to the left of the length
+-        final byte[] l_ascii = new byte[raw.length << 3];
++        int rawLength = raw.length;
++		final byte[] l_ascii = new byte[rawLength << 3];
+         /*
+          * We decr index jj by 8 as we go along to not recompute indices using multiplication every time inside the
+          * loop.
+          */
+-        for (int ii = 0, jj = l_ascii.length - 1; ii < raw.length; ii++, jj -= 8) {
++        for (int ii = 0, jj = l_ascii.length - 1; ii < rawLength; ii++, jj -= 8) {
+             for (int bits = 0; bits < BITS.length; ++bits) {
+                 if ((raw[ii] & BITS[bits]) == 0) {
+                     l_ascii[jj - bits] = '0';

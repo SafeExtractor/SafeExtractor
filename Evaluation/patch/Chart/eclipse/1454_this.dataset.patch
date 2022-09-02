@@ -1,0 +1,33 @@
+diff --git a/source/org/jfree/chart/plot/WaferMapPlot.java b/source/org/jfree/chart/plot/WaferMapPlot.java
+index eba4ff8..498c7f2 100644
+--- a/source/org/jfree/chart/plot/WaferMapPlot.java
++++ b/source/org/jfree/chart/plot/WaferMapPlot.java
+@@ -271,10 +271,11 @@
+         int xchips = 35;
+         int ychips = 20;
+         double space = 1d;
+-        if (this.dataset != null) {
+-            xchips = this.dataset.getMaxChipX() + 2;
+-            ychips = this.dataset.getMaxChipY() + 2;
+-            space = this.dataset.getChipSpace();
++        WaferMapDataset var_1454 = this.dataset;
++		if (var_1454 != null) {
++            xchips = var_1454.getMaxChipX() + 2;
++            ychips = var_1454.getMaxChipY() + 2;
++            space = var_1454.getChipSpace();
+         }
+         double startX = plotArea.getX();
+         double startY = plotArea.getY();
+@@ -316,10 +317,10 @@
+                     + (space * (y - 1));
+                 chip.setFrame(upperLeftX, upperLeftY, chipWidth, chipHeight);
+                 g2.setColor(Color.white);
+-                if (this.dataset.getChipValue(x - 1, ychips - y - 1) != null) {
++                if (var_1454.getChipValue(x - 1, ychips - y - 1) != null) {
+                     g2.setPaint(
+                         this.renderer.getChipColor(
+-                            this.dataset.getChipValue(x - 1, ychips - y - 1)
++                            var_1454.getChipValue(x - 1, ychips - y - 1)
+                         )
+                     );
+                 }

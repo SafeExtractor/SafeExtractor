@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/data/statistics/DefaultMultiValueCategoryDataset.java b/source/org/jfree/data/statistics/DefaultMultiValueCategoryDataset.java
+index 95fee7a..75b31eb 100644
+--- a/source/org/jfree/data/statistics/DefaultMultiValueCategoryDataset.java
++++ b/source/org/jfree/data/statistics/DefaultMultiValueCategoryDataset.java
+@@ -147,10 +147,12 @@
+ 
+             if (this.minimumRangeValue == null) {
+                 this.minimumRangeValue = new Double(minval);
+-            }
+-            else if (minval < this.minimumRangeValue.doubleValue()) {
+-                this.minimumRangeValue = new Double(minval);
+-            }
++            } else {
++				double var_4011 = this.minimumRangeValue.doubleValue();
++				if (minval < var_4011) {
++				    this.minimumRangeValue = new Double(minval);
++				}
++			}
+             this.rangeBounds = new Range(this.minimumRangeValue.doubleValue(),
+                     this.maximumRangeValue.doubleValue());
+         }

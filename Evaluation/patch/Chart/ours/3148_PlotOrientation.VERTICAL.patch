@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..fd5dd7d 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -1539,7 +1539,8 @@
+                                 Marker marker,
+                                 Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        PlotOrientation var_3148 = PlotOrientation.VERTICAL;
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = rangeAxis.getRange();
+@@ -1555,7 +1556,7 @@
+                 line = new Line2D.Double(v, dataArea.getMinY(), v,
+                         dataArea.getMaxY());
+             }
+-            else if (orientation == PlotOrientation.VERTICAL) {
++            else if (orientation == var_3148) {
+                 line = new Line2D.Double(dataArea.getMinX(), v,
+                         dataArea.getMaxX(), v);
+             }
+@@ -1609,7 +1610,7 @@
+                         dataArea.getMinY(), high - low,
+                         dataArea.getHeight());
+             }
+-            else if (orientation == PlotOrientation.VERTICAL) {
++            else if (orientation == var_3148) {
+                 // clip top and bottom bounds to data area
+                 low = Math.max(low, dataArea.getMinY());
+                 high = Math.min(high, dataArea.getMaxY());
+@@ -1637,7 +1638,7 @@
+ 
+             // now draw the outlines, if visible...
+             if (im.getOutlinePaint() != null && im.getOutlineStroke() != null) {
+-                if (orientation == PlotOrientation.VERTICAL) {
++                if (orientation == var_3148) {
+                     Line2D line = new Line2D.Double();
+                     double x0 = dataArea.getMinX();
+                     double x1 = dataArea.getMaxX();

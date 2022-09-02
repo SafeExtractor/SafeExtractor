@@ -1,0 +1,34 @@
+diff --git a/source/org/jfree/chart/plot/MeterPlot.java b/source/org/jfree/chart/plot/MeterPlot.java
+index efd9ca4..a07a928 100644
+--- a/source/org/jfree/chart/plot/MeterPlot.java
++++ b/source/org/jfree/chart/plot/MeterPlot.java
+@@ -854,8 +854,9 @@
+         // plot the data (unless the dataset is null)...
+         ValueDataset data = getDataset();
+         if (data != null) {
+-            double dataMin = this.range.getLowerBound();
+-            double dataMax = this.range.getUpperBound();
++            Range var_1971 = this.range;
++			double dataMin = var_1971.getLowerBound();
++            double dataMax = var_1971.getUpperBound();
+ 
+             Shape savedClip = g2.getClip();
+             g2.clip(originalArea);
+@@ -868,7 +869,7 @@
+                         this.dialBackgroundPaint, true);
+             }
+             drawTicks(g2, meterArea, dataMin, dataMax);
+-            drawArcForInterval(g2, meterArea, new MeterInterval("", this.range,
++            drawArcForInterval(g2, meterArea, new MeterInterval("", var_1971,
+                     this.dialOutlinePaint, new BasicStroke(1.0f), null));
+ 
+             Iterator iterator = this.intervals.iterator();
+@@ -882,7 +883,7 @@
+                 double value = n.doubleValue();
+                 drawValueLabel(g2, meterArea);
+ 
+-                if (this.range.contains(value)) {
++                if (var_1971.contains(value)) {
+                     g2.setPaint(this.needlePaint);
+                     g2.setStroke(new BasicStroke(2.0f));
+ 

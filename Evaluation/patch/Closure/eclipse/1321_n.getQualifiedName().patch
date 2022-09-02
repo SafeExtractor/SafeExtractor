@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+index 5f0a14c..059e38f 100644
+--- a/src/com/google/javascript/jscomp/SymbolTable.java
++++ b/src/com/google/javascript/jscomp/SymbolTable.java
+@@ -1379,17 +1379,18 @@
+ 
+       if (n.isGetProp()) {
+         JSType owner = n.getFirstChild().getJSType();
+-        if (owner != null) {
++        String var_1321 = n.getQualifiedName();
++		if (owner != null) {
+           boolean defined = maybeDefineTypedReference(
+               n, n.getLastChild().getString(), owner);
+ 
+           if (defined) {
+-            tryRemoveLexicalQualifiedNameRef(n.getQualifiedName(), n);
++            tryRemoveLexicalQualifiedNameRef(var_1321, n);
+             return;
+           }
+         }
+ 
+-        tryDefineLexicalQualifiedNameRef(n.getQualifiedName(), n);
++        tryDefineLexicalQualifiedNameRef(var_1321, n);
+       } else if (n.isStringKey()) {
+         JSType owner = parent.getJSType();
+         if (owner != null) {

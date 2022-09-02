@@ -1,0 +1,46 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..e8fbeb2 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1514,7 +1514,8 @@
+         Dfp result = newInstance(getZero());
+ 
+         /* handle special cases */
+-        if (nans != FINITE || x.nans != FINITE) {
++        byte var_648 = x.nans;
++		if (nans != FINITE || var_648 != FINITE) {
+             if (isNaN()) {
+                 return this;
+             }
+@@ -1523,26 +1524,26 @@
+                 return x;
+             }
+ 
+-            if (nans == INFINITE && x.nans == FINITE && x.mant[mant.length-1] != 0) {
++            if (nans == INFINITE && var_648 == FINITE && x.mant[mant.length-1] != 0) {
+                 result = newInstance(this);
+                 result.sign = (byte) (sign * x.sign);
+                 return result;
+             }
+ 
+-            if (x.nans == INFINITE && nans == FINITE && mant[mant.length-1] != 0) {
++            if (var_648 == INFINITE && nans == FINITE && mant[mant.length-1] != 0) {
+                 result = newInstance(x);
+                 result.sign = (byte) (sign * x.sign);
+                 return result;
+             }
+ 
+-            if (x.nans == INFINITE && nans == INFINITE) {
++            if (var_648 == INFINITE && nans == INFINITE) {
+                 result = newInstance(this);
+                 result.sign = (byte) (sign * x.sign);
+                 return result;
+             }
+ 
+-            if ( (x.nans == INFINITE && nans == FINITE && mant[mant.length-1] == 0) ||
+-                    (nans == INFINITE && x.nans == FINITE && x.mant[mant.length-1] == 0) ) {
++            if ( (var_648 == INFINITE && nans == FINITE && mant[mant.length-1] == 0) ||
++                    (nans == INFINITE && var_648 == FINITE && x.mant[mant.length-1] == 0) ) {
+                 field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+                 result = newInstance(getZero());
+                 result.nans = QNAN;

@@ -1,0 +1,39 @@
+diff --git a/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java b/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java
+index e374ca0..bdb566f 100644
+--- a/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java
++++ b/src/com/google/javascript/jscomp/MustBeReachingVariableDef.java
+@@ -224,7 +224,8 @@
+    */
+   private void computeMustDef(
+       Node n, Node cfgNode, MustDef output, boolean conditional) {
+-    switch (n.getType()) {
++    Node var_1090 = n.getLastChild();
++	switch (n.getType()) {
+ 
+       case Token.BLOCK:
+       case Token.FUNCTION:
+@@ -257,13 +258,13 @@
+       case Token.AND:
+       case Token.OR:
+         computeMustDef(n.getFirstChild(), cfgNode, output, conditional);
+-        computeMustDef(n.getLastChild(), cfgNode, output, true);
++        computeMustDef(var_1090, cfgNode, output, true);
+         return;
+ 
+       case Token.HOOK:
+         computeMustDef(n.getFirstChild(), cfgNode, output, conditional);
+         computeMustDef(n.getFirstChild().getNext(), cfgNode, output, true);
+-        computeMustDef(n.getLastChild(), cfgNode, output, true);
++        computeMustDef(var_1090, cfgNode, output, true);
+         return;
+ 
+       case Token.VAR:
+@@ -282,7 +283,7 @@
+             Node name = n.getFirstChild();
+             computeMustDef(name.getNext(), cfgNode, output, conditional);
+             addToDefIfLocal(name.getString(), conditional ? null : cfgNode,
+-              n.getLastChild(), output);
++              var_1090, output);
+             return;
+           } else if (NodeUtil.isGet(n.getFirstChild())) {
+             // Treat all assignments to arguments as redefining the

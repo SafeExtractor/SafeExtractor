@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/TypeValidator.java b/src/com/google/javascript/jscomp/TypeValidator.java
+index 5feecd0..793ef35 100644
+--- a/src/com/google/javascript/jscomp/TypeValidator.java
++++ b/src/com/google/javascript/jscomp/TypeValidator.java
+@@ -583,9 +583,10 @@
+       FunctionType type) {
+     ObjectType instance = type.getInstanceType();
+     for (ObjectType implemented : type.getAllImplementedInterfaces()) {
+-      if (implemented.getImplicitPrototype() != null) {
++      ObjectType var_1479 = implemented.getImplicitPrototype();
++	if (var_1479 != null) {
+         for (String prop :
+-             implemented.getImplicitPrototype().getOwnPropertyNames()) {
++             var_1479.getOwnPropertyNames()) {
+           expectInterfaceProperty(t, n, instance, implemented, prop);
+         }
+       }

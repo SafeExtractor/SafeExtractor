@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/data/xy/XYSeriesCollection.java b/source/org/jfree/data/xy/XYSeriesCollection.java
+index 17136b3..1334a56 100644
+--- a/source/org/jfree/data/xy/XYSeriesCollection.java
++++ b/source/org/jfree/data/xy/XYSeriesCollection.java
+@@ -198,13 +198,14 @@
+     public void removeAllSeries() {
+         // Unregister the collection as a change listener to each series in
+         // the collection.
+-        for (int i = 0; i < this.data.size(); i++) {
+-          XYSeries series = (XYSeries) this.data.get(i);
++        List var_4401 = this.data;
++		for (int i = 0; i < var_4401.size(); i++) {
++          XYSeries series = (XYSeries) var_4401.get(i);
+           series.removeChangeListener(this);
+         }
+ 
+         // Remove all the series from the collection and notify listeners.
+-        this.data.clear();
++        var_4401.clear();
+         fireDatasetChanged(new DatasetChangeInfo());
+         // TODO: fill in real change details
+     }

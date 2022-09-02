@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..58280b7 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -2414,8 +2414,9 @@
+      */
+     public double toDouble() {
+ 
+-        if (isInfinite()) {
+-            if (lessThan(getZero())) {
++        Dfp var_725 = getZero();
++		if (isInfinite()) {
++            if (lessThan(var_725)) {
+                 return Double.NEGATIVE_INFINITY;
+             } else {
+                 return Double.POSITIVE_INFINITY;
+@@ -2428,7 +2429,7 @@
+ 
+         Dfp y = this;
+         boolean negate = false;
+-        int cmp0 = compare(this, getZero());
++        int cmp0 = compare(this, var_725);
+         if (cmp0 == 0) {
+             return sign < 0 ? -0.0 : +0.0;
+         } else if (cmp0 < 0) {

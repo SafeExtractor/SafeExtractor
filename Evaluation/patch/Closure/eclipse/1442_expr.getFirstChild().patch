@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..b78f399 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -659,10 +659,11 @@
+           return n;
+         }
+ 
+-        if (cond.isNot()) {
++        Node var_1442 = expr.getFirstChild();
++		if (cond.isNot()) {
+           // if(!x)bar(); -> x||bar();
+           if (isLowerPrecedenceInExpression(cond, OR_PRECEDENCE) &&
+-              isLowerPrecedenceInExpression(expr.getFirstChild(),
++              isLowerPrecedenceInExpression(var_1442,
+                   OR_PRECEDENCE)) {
+             // It's not okay to add two sets of parentheses.
+             return n;
+@@ -680,7 +681,7 @@
+ 
+         // if(x)foo(); -> x&&foo();
+         if (isLowerPrecedenceInExpression(cond, AND_PRECEDENCE) &&
+-            isLowerPrecedenceInExpression(expr.getFirstChild(),
++            isLowerPrecedenceInExpression(var_1442,
+                 AND_PRECEDENCE)) {
+           // One additional set of parentheses is worth the change even if
+           // there is no immediate code size win. However, two extra pair of

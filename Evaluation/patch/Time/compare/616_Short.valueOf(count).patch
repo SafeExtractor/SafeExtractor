@@ -1,0 +1,34 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/616_Short.valueOf(count).patch b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/616_Short.valueOf(count).patch
+index 1b71ba5..c197bc3 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/616_Short.valueOf(count).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/616_Short.valueOf(count).patch
+@@ -1,25 +1,14 @@
+ diff --git a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+-index 4e56fef..442f1f5 100644
++index 4e56fef..6fac086 100644
+ --- a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+ +++ b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+-@@ -170,8 +170,9 @@
+-         short count = 0;
++@@ -171,7 +171,8 @@
+          for (Entry<String, DateTimeZone> entry : zimap.entrySet()) {
+              String id = (String)entry.getKey();
+--            if (!idToIndex.containsKey(id)) {
+--                Short index = Short.valueOf(count);
+-+            Short var_616 = Short.valueOf(count);
+-+			if (!idToIndex.containsKey(id)) {
+-+                Short index = var_616;
+-                 idToIndex.put(id, index);
+-                 indexToId.put(index, id);
+-                 if (++count == 0) {
+-@@ -180,7 +181,7 @@
+-             }
+-             id = ((DateTimeZone)entry.getValue()).getID();
+              if (!idToIndex.containsKey(id)) {
+ -                Short index = Short.valueOf(count);
+-+                Short index = var_616;
+++                Short var_616 = Short.valueOf(count);
+++				Short index = var_616;
+                  idToIndex.put(id, index);
+                  indexToId.put(index, id);
+                  if (++count == 0) {

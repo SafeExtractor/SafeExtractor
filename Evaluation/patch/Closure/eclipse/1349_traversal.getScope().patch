@@ -1,0 +1,35 @@
+diff --git a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+index 171eb51..35ff379 100644
+--- a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
++++ b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+@@ -415,9 +415,10 @@
+             functionSideEffectMap.get(enclosingFunction);
+         Preconditions.checkNotNull(sideEffectInfo);
+ 
+-        if (NodeUtil.isAssignmentOp(node)) {
++        Scope var_1349 = traversal.getScope();
++		if (NodeUtil.isAssignmentOp(node)) {
+           visitAssignmentOrUnaryOperator(
+-              sideEffectInfo, traversal.getScope(),
++              sideEffectInfo, var_1349,
+               node, node.getFirstChild(), node.getLastChild());
+         } else {
+           switch(node.getType()) {
+@@ -429,7 +430,7 @@
+             case Token.DEC:
+             case Token.INC:
+               visitAssignmentOrUnaryOperator(
+-                  sideEffectInfo, traversal.getScope(),
++                  sideEffectInfo, var_1349,
+                   node, node.getFirstChild(), null);
+               break;
+             case Token.NAME:
+@@ -443,7 +444,7 @@
+               // new object creation or literal or known primitive result
+               // value, add it to the local blacklist.
+               if (value != null && !NodeUtil.evaluatesToLocalValue(value)) {
+-                Scope scope = traversal.getScope();
++                Scope scope = var_1349;
+                 Var var = scope.getVar(node.getString());
+                 sideEffectInfo.blacklistLocal(var);
+               }

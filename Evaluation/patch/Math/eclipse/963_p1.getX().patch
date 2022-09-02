@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/fitting/GaussianFitter.java b/src/main/java/org/apache/commons/math3/fitting/GaussianFitter.java
+index 0934668..4e0e46d 100644
+--- a/src/main/java/org/apache/commons/math3/fitting/GaussianFitter.java
++++ b/src/main/java/org/apache/commons/math3/fitting/GaussianFitter.java
+@@ -290,13 +290,14 @@
+                 = getInterpolationPointsForY(points, startIdx, idxStep, y);
+             final WeightedObservedPoint p1 = twoPoints[0];
+             final WeightedObservedPoint p2 = twoPoints[1];
+-            if (p1.getY() == y) {
+-                return p1.getX();
++            double var_963 = p1.getX();
++			if (p1.getY() == y) {
++                return var_963;
+             }
+             if (p2.getY() == y) {
+                 return p2.getX();
+             }
+-            return p1.getX() + (((y - p1.getY()) * (p2.getX() - p1.getX())) /
++            return var_963 + (((y - p1.getY()) * (p2.getX() - var_963)) /
+                                 (p2.getY() - p1.getY()));
+         }
+ 

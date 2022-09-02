@@ -1,0 +1,33 @@
+diff --git a/source/org/jfree/chart/axis/NumberAxis.java b/source/org/jfree/chart/axis/NumberAxis.java
+index f5426ab..b63d098 100644
+--- a/source/org/jfree/chart/axis/NumberAxis.java
++++ b/source/org/jfree/chart/axis/NumberAxis.java
+@@ -484,7 +484,8 @@
+                     }
+                 }
+ 
+-                if (getAutoRangeStickyZero()) {
++                double var_612 = getLowerMargin();
++				if (getAutoRangeStickyZero()) {
+                     if (upper <= 0.0) {
+                         upper = Math.min(0.0, upper + getUpperMargin() * range);
+                     }
+@@ -492,15 +493,15 @@
+                         upper = upper + getUpperMargin() * range;
+                     }
+                     if (lower >= 0.0) {
+-                        lower = Math.max(0.0, lower - getLowerMargin() * range);
++                        lower = Math.max(0.0, lower - var_612 * range);
+                     }
+                     else {
+-                        lower = lower - getLowerMargin() * range;
++                        lower = lower - var_612 * range;
+                     }
+                 }
+                 else {
+                     upper = upper + getUpperMargin() * range;
+-                    lower = lower - getLowerMargin() * range;
++                    lower = lower - var_612 * range;
+                 }
+             }
+ 

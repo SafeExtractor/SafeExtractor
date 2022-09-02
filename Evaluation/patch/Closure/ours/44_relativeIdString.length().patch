@@ -1,0 +1,31 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapGeneratorV2.java b/src/com/google/debugging/sourcemap/SourceMapGeneratorV2.java
+index 8d33887..c5f3e9d 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapGeneratorV2.java
++++ b/src/com/google/debugging/sourcemap/SourceMapGeneratorV2.java
+@@ -650,21 +650,22 @@
+       // repetition count length characters.  It is extremely unlikely that
+       // mapping id length will exceed 64 base64 characters in length so
+       // additional "!" don't signal additional id length characters.
+-      if (reps > 16 || relativeIdLength > 4) {
++      int var_44 = relativeIdString.length();
++	if (reps > 16 || relativeIdLength > 4) {
+         String repsString = valueToBase64(reps - 1, 1);
+         for (int i = 0; i < repsString.length(); i++) {
+           // TODO(johnlenz): update this to whatever is agreed to.
+           out.append('!');
+         }
+-        String sizeId = valueToBase64(relativeIdString.length() - 1, 1);
++        String sizeId = valueToBase64(var_44 - 1, 1);
+ 
+         out.append(sizeId);
+         out.append(repsString);
+       } else {
+-        int prefix = ((reps - 1) << 2) + (relativeIdString.length() - 1);
++        int prefix = ((reps - 1) << 2) + (var_44 - 1);
+         Preconditions.checkState(prefix < 64 && prefix >= 0,
+             "prefix (%s) reps(%s) map id size(%s)",
+-            prefix, reps, relativeIdString.length());
++            prefix, reps, var_44);
+         out.append(valueToBase64(prefix, 1));
+       }
+       out.append(relativeIdString);

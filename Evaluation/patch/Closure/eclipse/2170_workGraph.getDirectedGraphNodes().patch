@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/graph/GraphPruner.java b/src/com/google/javascript/jscomp/graph/GraphPruner.java
+index 9e88230..82ed005 100644
+--- a/src/com/google/javascript/jscomp/graph/GraphPruner.java
++++ b/src/com/google/javascript/jscomp/graph/GraphPruner.java
+@@ -45,7 +45,8 @@
+ 
+     // Create a work graph where all nodes with a path between them have
+     // an edge.
+-    for (DiGraphNode<N, E> node : workGraph.getDirectedGraphNodes()) {
++    Iterable<DiGraphNode<N, E>> var_2170 = workGraph.getDirectedGraphNodes();
++	for (DiGraphNode<N, E> node : var_2170) {
+       for (DiGraphEdge<N, E> inEdge : node.getInEdges()) {
+         for (DiGraphEdge<N, E> outEdge : node.getOutEdges()) {
+           N source = inEdge.getSource().getValue();
+@@ -61,7 +62,7 @@
+     // Build a complete subgraph of workGraph.
+     LinkedDirectedGraph<N, E> resultGraph =
+         LinkedDirectedGraph.create();
+-    for (DiGraphNode<N, E> node : workGraph.getDirectedGraphNodes()) {
++    for (DiGraphNode<N, E> node : var_2170) {
+       if (keep.apply(node.getValue())) {
+         resultGraph.createNode(node.getValue());
+ 

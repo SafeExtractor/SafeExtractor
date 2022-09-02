@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java b/src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java
+index fa7d47d..94ef2f3 100644
+--- a/src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java
++++ b/src/com/google/javascript/jscomp/type/ChainableReverseAbstractInterpreter.java
+@@ -415,9 +415,10 @@
+       // need is a notion of "enum subtyping", so that we could dynamically
+       // create a subtype of MyEnum restricted by string. In any case,
+       // this should catch the common case.
+-      JSType type = enumElementType.getPrimitiveType().visit(this);
++      JSType var_2462 = enumElementType.getPrimitiveType();
++	JSType type = var_2462.visit(this);
+       if (type != null &&
+-          enumElementType.getPrimitiveType().isEquivalentTo(type)) {
++          var_2462.isEquivalentTo(type)) {
+         return enumElementType;
+       } else {
+         return type;

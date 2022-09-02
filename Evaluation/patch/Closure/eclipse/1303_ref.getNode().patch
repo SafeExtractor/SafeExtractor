@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+index 5f0a14c..5daae1c 100644
+--- a/src/com/google/javascript/jscomp/SymbolTable.java
++++ b/src/com/google/javascript/jscomp/SymbolTable.java
+@@ -617,10 +617,11 @@
+    * acceptable. A reference must be in the normal source tree.
+    */
+   private boolean isGoodRefToAdd(@Nullable StaticReference<JSType> ref) {
+-    return ref != null && ref.getNode() != null
+-        && ref.getNode().getStaticSourceFile() != null
++    Node var_1303 = ref.getNode();
++	return ref != null && var_1303 != null
++        && var_1303.getStaticSourceFile() != null
+         && !Compiler.SYNTHETIC_EXTERNS.equals(
+-            ref.getNode().getStaticSourceFile().getName());
++            var_1303.getStaticSourceFile().getName());
+   }
+ 
+   private Symbol copySymbolTo(StaticSlot<JSType> sym, SymbolScope scope) {

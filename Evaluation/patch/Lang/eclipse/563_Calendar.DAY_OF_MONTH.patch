@@ -1,0 +1,49 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+index 09e636b..8caed9c 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+@@ -289,7 +289,8 @@
+         int seconds = end.get(Calendar.SECOND) - start.get(Calendar.SECOND);
+         int minutes = end.get(Calendar.MINUTE) - start.get(Calendar.MINUTE);
+         int hours = end.get(Calendar.HOUR_OF_DAY) - start.get(Calendar.HOUR_OF_DAY);
+-        int days = end.get(Calendar.DAY_OF_MONTH) - start.get(Calendar.DAY_OF_MONTH);
++        int var_563 = Calendar.DAY_OF_MONTH;
++		int days = end.get(var_563) - start.get(var_563);
+         int months = end.get(Calendar.MONTH) - start.get(Calendar.MONTH);
+         int years = end.get(Calendar.YEAR) - start.get(Calendar.YEAR);
+ 
+@@ -313,7 +314,7 @@
+        
+         if (Token.containsTokenWithValue(tokens, M)) {
+             while (days < 0) {
+-                days += start.getActualMaximum(Calendar.DAY_OF_MONTH);
++                days += start.getActualMaximum(var_563);
+                 months -= 1;
+                 start.add(Calendar.MONTH, 1);
+             }
+@@ -345,7 +346,7 @@
+                     // Not sure I grok why this is needed, but the brutal tests show it is
+                     if (start instanceof GregorianCalendar &&
+                             start.get(Calendar.MONTH) == Calendar.FEBRUARY &&
+-                            start.get(Calendar.DAY_OF_MONTH) == 29) {
++                            start.get(var_563) == 29) {
+                         days += 1;
+                     }
+                     
+@@ -358,14 +359,14 @@
+             }
+             
+             while( start.get(Calendar.MONTH) != end.get(Calendar.MONTH) ) {
+-                days += start.getActualMaximum(Calendar.DAY_OF_MONTH);
++                days += start.getActualMaximum(var_563);
+                 start.add(Calendar.MONTH, 1);
+             }
+             
+             months = 0;            
+ 
+             while (days < 0) {
+-                days += start.getActualMaximum(Calendar.DAY_OF_MONTH);
++                days += start.getActualMaximum(var_563);
+                 months -= 1;
+                 start.add(Calendar.MONTH, 1);
+             }

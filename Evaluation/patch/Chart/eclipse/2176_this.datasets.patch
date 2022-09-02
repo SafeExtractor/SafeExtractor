@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/plot/CompassPlot.java b/source/org/jfree/chart/plot/CompassPlot.java
+index 2963422..dc7e7f4 100644
+--- a/source/org/jfree/chart/plot/CompassPlot.java
++++ b/source/org/jfree/chart/plot/CompassPlot.java
+@@ -532,19 +532,20 @@
+     public void addDataset(ValueDataset dataset, MeterNeedle needle) {
+ 
+         if (dataset != null) {
+-            int i = this.datasets.length + 1;
++            ValueDataset[] var_2176 = this.datasets;
++			int i = var_2176.length + 1;
+             ValueDataset[] t = new ValueDataset[i];
+             MeterNeedle[] p = new MeterNeedle[i];
+             i = i - 2;
+             for (; i >= 0; --i) {
+-                t[i] = this.datasets[i];
++                t[i] = var_2176[i];
+                 p[i] = this.seriesNeedle[i];
+             }
+-            i = this.datasets.length;
++            i = var_2176.length;
+             t[i] = dataset;
+             p[i] = ((needle != null) ? needle : p[i - 1]);
+ 
+-            ValueDataset[] a = this.datasets;
++            ValueDataset[] a = var_2176;
+             MeterNeedle[] b = this.seriesNeedle;
+             this.datasets = t;
+             this.seriesNeedle = p;

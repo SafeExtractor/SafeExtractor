@@ -1,0 +1,18 @@
+diff --git a/nifi-nar-bundles/nifi-windows-event-log-bundle/nifi-windows-event-log-processors/src/main/java/org/apache/nifi/processors/windows/event/log/jna/EventSubscribeXmlRenderingCallback.java b/nifi-nar-bundles/nifi-windows-event-log-bundle/nifi-windows-event-log-processors/src/main/java/org/apache/nifi/processors/windows/event/log/jna/EventSubscribeXmlRenderingCallback.java
+index 451e446..dc0c51e 100644
+--- a/nifi-nar-bundles/nifi-windows-event-log-bundle/nifi-windows-event-log-processors/src/main/java/org/apache/nifi/processors/windows/event/log/jna/EventSubscribeXmlRenderingCallback.java
++++ b/nifi-nar-bundles/nifi-windows-event-log-bundle/nifi-windows-event-log-processors/src/main/java/org/apache/nifi/processors/windows/event/log/jna/EventSubscribeXmlRenderingCallback.java
+@@ -67,10 +67,11 @@
+         }
+ 
+         if (evtSubscribeNotifyAction == WEvtApi.EvtSubscribeNotifyAction.ERROR) {
+-            if (eventHandle.getPointer().getInt(0) == WEvtApi.EvtSubscribeErrors.ERROR_EVT_QUERY_RESULT_STALE) {
++            int errorCode = eventHandle.getPointer().getInt(0);
++			if (errorCode == WEvtApi.EvtSubscribeErrors.ERROR_EVT_QUERY_RESULT_STALE) {
+                 logger.error(MISSING_EVENT_MESSAGE);
+             } else {
+-                logger.error(RECEIVED_THE_FOLLOWING_WIN32_ERROR + eventHandle.getPointer().getInt(0));
++                logger.error(RECEIVED_THE_FOLLOWING_WIN32_ERROR + errorCode);
+             }
+         } else if (evtSubscribeNotifyAction == WEvtApi.EvtSubscribeNotifyAction.DELIVER) {
+             wEvtApi.EvtRender(null, eventHandle, WEvtApi.EvtRenderFlags.EVENT_XML, size, buffer, used, propertyCount);

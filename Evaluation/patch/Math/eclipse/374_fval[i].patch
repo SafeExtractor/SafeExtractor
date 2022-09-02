@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolator.java
+index 9465c2c..057ffea 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/BicubicSplineInterpolator.java
+@@ -59,12 +59,13 @@
+         // fX[j][i] = f(xval[i], yval[j])
+         final double[][] fX = new double[yLen][xLen];
+         for (int i = 0; i < xLen; i++) {
+-            if (fval[i].length != yLen) {
+-                throw new DimensionMismatchException(fval[i].length, yLen);
++            double[] var_374 = fval[i];
++			if (var_374.length != yLen) {
++                throw new DimensionMismatchException(var_374.length, yLen);
+             }
+ 
+             for (int j = 0; j < yLen; j++) {
+-                fX[j][i] = fval[i][j];
++                fX[j][i] = var_374[j];
+             }
+         }
+ 

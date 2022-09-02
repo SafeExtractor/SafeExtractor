@@ -1,0 +1,35 @@
+diff --git a/src/main/java/org/joda/time/convert/ConverterSet.java b/src/main/java/org/joda/time/convert/ConverterSet.java
+index d571c64..4d84a4c 100644
+--- a/src/main/java/org/joda/time/convert/ConverterSet.java
++++ b/src/main/java/org/joda/time/convert/ConverterSet.java
+@@ -244,9 +244,10 @@
+         int length = converters.length;
+         Converter converter;
+ 
+-        for (int i=length; --i>=0; ) {
++        Class<?> var_396 = converter.getSupportedType();
++		for (int i=length; --i>=0; ) {
+             converter = converters[i];
+-            Class<?> supportedType = converter.getSupportedType();
++            Class<?> supportedType = var_396;
+ 
+             if (supportedType == type) {
+                 // Exact match.
+@@ -276,7 +277,7 @@
+         // Eliminate supertypes.
+         for (int i=length; --i>=0; ) {
+             converter = converters[i];
+-            Class<?> supportedType = converter.getSupportedType();
++            Class<?> supportedType = var_396;
+             for (int j=length; --j>=0; ) {
+                 if (j != i && converters[j].getSupportedType().isAssignableFrom(supportedType)) {
+                     // Eliminate supertype.
+@@ -304,7 +305,7 @@
+         msg.append("\" from remaining set: ");
+         for (int i=0; i<length; i++) {
+             converter = converters[i];
+-            Class<?> supportedType = converter.getSupportedType();
++            Class<?> supportedType = var_396;
+ 
+             msg.append(converter.getClass().getName());
+             msg.append('[');

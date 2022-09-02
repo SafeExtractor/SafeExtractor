@@ -1,0 +1,29 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1470_flags.getString().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1470_flags.getString().patch
+index 185f8f1..590391c 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1470_flags.getString().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1470_flags.getString().patch
+@@ -1,20 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+-index ae568e8..73565c8 100644
++index ae568e8..7eab863 100644
+ --- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+ +++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+-@@ -1485,16 +1485,17 @@
+-       pattern = makeForwardSlashBracketSafe(pattern);
+- 
+-       Node regexLiteral;
+--      if (null == flags || "".equals(flags.getString())) {
+-+      String var_1470 = flags.getString();
+-+	if (null == flags || "".equals(var_1470)) {
+-         // fold to /foobar/
++@@ -1490,11 +1490,12 @@
+          regexLiteral = IR.regexp(pattern);
+        } else {
+          // fold to /foobar/gi
+ -        if (!areValidRegexpFlags(flags.getString())) {
+-+        if (!areValidRegexpFlags(var_1470)) {
+++        String var_1470 = flags.getString();
+++		if (!areValidRegexpFlags(var_1470)) {
+            report(INVALID_REGULAR_EXPRESSION_FLAGS, flags);
+            return n;
+          }

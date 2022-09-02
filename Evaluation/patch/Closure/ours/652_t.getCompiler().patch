@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/CheckSideEffects.java b/src/com/google/javascript/jscomp/CheckSideEffects.java
+index 7338770..03feed2 100644
+--- a/src/com/google/javascript/jscomp/CheckSideEffects.java
++++ b/src/com/google/javascript/jscomp/CheckSideEffects.java
+@@ -110,8 +110,9 @@
+ 
+     boolean isResultUsed = NodeUtil.isExpressionResultUsed(n);
+     boolean isSimpleOp = NodeUtil.isSimpleOperator(n);
+-    if (!isResultUsed &&
+-        (isSimpleOp || !NodeUtil.mayHaveSideEffects(n, t.getCompiler()))) {
++    Compiler var_652 = t.getCompiler();
++	if (!isResultUsed &&
++        (isSimpleOp || !NodeUtil.mayHaveSideEffects(n, var_652))) {
+       String msg = "This code lacks side-effects. Is there a bug?";
+       if (n.isString()) {
+         msg = "Is there a missing '+' on the previous line?";
+@@ -120,7 +121,7 @@
+             "' operator is not being used.";
+       }
+ 
+-      t.getCompiler().report(
++      var_652.report(
+           t.makeError(n, level, USELESS_CODE_ERROR, msg));
+       // TODO(johnlenz): determine if it is necessary to
+       // try to protect side-effect free statements as well.

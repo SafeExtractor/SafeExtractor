@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="Evaluatetion4EclipseMethod.commands.category"
+            name="Sample Category">
+      </category>
+      <command
+            categoryId="Evaluatetion4EclipseMethod.commands.category"
+            name="Extract Variables"
+            id="Evaluatetion4EclipseMethod.commands.sampleCommand">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="safeextractor.handlers.SampleHandler"
+            commandId="Evaluatetion4EclipseMethod.commands.sampleCommand">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="Evaluatetion4EclipseMethod.commands.sampleCommand"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               id="Evaluatetion4EclipseMethod.menus.sampleMenu"
+               label="Replicate"
+               mnemonic="M">
+            <command
+                  commandId="Evaluatetion4EclipseMethod.commands.sampleCommand"
+                  id="Evaluatetion4EclipseMethod.menus.sampleCommand"
+                  mnemonic="S">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="Evaluatetion4EclipseMethod.toolbars.sampleToolbar">
+            <command
+                  id="Evaluatetion4EclipseMethod.toolbars.sampleCommand"
+                  commandId="Evaluatetion4EclipseMethod.commands.sampleCommand"
+                  icon="icons/sample.png"
+                  tooltip="Say hello world">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+
+</plugin>

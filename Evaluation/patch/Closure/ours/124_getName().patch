@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/CompilerInput.java b/src/com/google/javascript/jscomp/CompilerInput.java
+index 4259a88..991086c 100644
+--- a/src/com/google/javascript/jscomp/CompilerInput.java
++++ b/src/com/google/javascript/jscomp/CompilerInput.java
+@@ -236,10 +236,11 @@
+         // getPathRelativeToClosureBase() here because we're not using
+         // this to generate deps files. (We're only using it for
+         // symbol dependencies.)
+-        DependencyInfo info =
++        String var_124 = getName();
++		DependencyInfo info =
+             (new JsFileParser(compiler.getErrorManager()))
+             .setIncludeGoogBase(true)
+-            .parseFile(getName(), getName(), getCode());
++            .parseFile(var_124, var_124, getCode());
+ 
+         provides.addAll(info.getProvides());
+         requires.addAll(info.getRequires());

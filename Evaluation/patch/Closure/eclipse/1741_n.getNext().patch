@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/MethodCompilerPass.java b/src/com/google/javascript/jscomp/MethodCompilerPass.java
+index 786d143..c1b11f7 100644
+--- a/src/com/google/javascript/jscomp/MethodCompilerPass.java
++++ b/src/com/google/javascript/jscomp/MethodCompilerPass.java
+@@ -144,10 +144,11 @@
+           //          name methods
+           //          string setTimeout
+           //      function
+-          if (parent.isAssign() &&
++          Node var_1741 = n.getNext();
++		if (parent.isAssign() &&
+               parent.getFirstChild() == n &&
+-              n.getNext().isFunction()) {
+-            addSignature(name, n.getNext(), t.getSourceName());
++              var_1741.isFunction()) {
++            addSignature(name, var_1741, t.getSourceName());
+           } else {
+             getSignatureStore().removeSignature(name);
+             externMethodsWithoutSignatures.add(name);

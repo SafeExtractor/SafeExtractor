@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+index fa5c164..5aeeaf5 100644
+--- a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
++++ b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+@@ -1589,8 +1589,9 @@
+         public long previousTransition(long instant) {
+             long[] transitions = iTransitions;
+             int i = Arrays.binarySearch(transitions, instant);
+-            if (i >= 0) {
+-                if (instant > Long.MIN_VALUE) {
++            long var_704 = Long.MIN_VALUE;
++			if (i >= 0) {
++                if (instant > var_704) {
+                     return instant - 1;
+                 }
+                 return instant;
+@@ -1599,7 +1600,7 @@
+             if (i < transitions.length) {
+                 if (i > 0) {
+                     long prev = transitions[i - 1];
+-                    if (prev > Long.MIN_VALUE) {
++                    if (prev > var_704) {
+                         return prev - 1;
+                     }
+                 }
+@@ -1612,7 +1613,7 @@
+                 }
+             }
+             long prev = transitions[i - 1];
+-            if (prev > Long.MIN_VALUE) {
++            if (prev > var_704) {
+                 return prev - 1;
+             }
+             return instant;

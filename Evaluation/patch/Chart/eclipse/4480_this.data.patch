@@ -1,0 +1,36 @@
+diff --git a/source/org/jfree/data/xy/XYSeries.java b/source/org/jfree/data/xy/XYSeries.java
+index c2d0ba8..8368b9c 100644
+--- a/source/org/jfree/data/xy/XYSeries.java
++++ b/source/org/jfree/data/xy/XYSeries.java
+@@ -805,8 +805,9 @@
+         // if we get to here, we know that duplicate X values are not permitted
+         XYDataItem overwritten = null;
+         int index = indexOf(item.getX());
+-        if (index >= 0) {
+-            XYDataItem existing = (XYDataItem) this.data.get(index);
++        List var_4480 = this.data;
++		if (index >= 0) {
++            XYDataItem existing = (XYDataItem) var_4480.get(index);
+             overwritten = (XYDataItem) existing.clone();
+             // figure out if we need to iterate through all the y-values
+             boolean iterate = false;
+@@ -832,16 +833,16 @@
+             // append the value to the list...
+             item = (XYDataItem) item.clone();
+             if (this.autoSort) {
+-                this.data.add(-index - 1, item);
++                var_4480.add(-index - 1, item);
+             }
+             else {
+-                this.data.add(item);
++                var_4480.add(item);
+             }
+             updateBoundsForAddedItem(item);
+ 
+             // check if this addition will exceed the maximum item count...
+             if (getItemCount() > this.maximumItemCount) {
+-                XYDataItem removed = (XYDataItem) this.data.remove(0);
++                XYDataItem removed = (XYDataItem) var_4480.remove(0);
+                 updateBoundsForRemovedItem(removed);
+             }
+         }

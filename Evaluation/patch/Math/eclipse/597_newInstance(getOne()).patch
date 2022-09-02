@@ -1,0 +1,31 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..465646f 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1091,7 +1091,8 @@
+         }
+ 
+         if (changed) {
+-            switch (rmode) {
++            Dfp var_597 = newInstance(getOne());
++			switch (rmode) {
+                 case ROUND_FLOOR:
+                     if (result.sign == -1) {
+                         // then we must increment the mantissa by one
+@@ -1112,14 +1113,14 @@
+                     Dfp a = subtract(result);  // difference between this and result
+                     a.sign = 1;            // force positive (take abs)
+                     if (a.greaterThan(half)) {
+-                        a = newInstance(getOne());
++                        a = var_597;
+                         a.sign = sign;
+                         result = result.add(a);
+                     }
+ 
+                     /** If exactly equal to 1/2 and odd then increment */
+                     if (a.equals(half) && result.exp > 0 && (result.mant[mant.length-result.exp]&1) != 0) {
+-                        a = newInstance(getOne());
++                        a = var_597;
+                         a.sign = sign;
+                         result = result.add(a);
+                     }

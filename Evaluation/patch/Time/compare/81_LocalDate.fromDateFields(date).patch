@@ -1,0 +1,26 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/81_LocalDate.fromDateFields(date).patch b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/81_LocalDate.fromDateFields(date).patch
+index 1ad7fce..da12ebe 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/81_LocalDate.fromDateFields(date).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/81_LocalDate.fromDateFields(date).patch
+@@ -1,8 +1,8 @@
+ diff --git a/src/main/java/org/joda/time/LocalDate.java b/src/main/java/org/joda/time/LocalDate.java
+-index 9806eb3..a8a2d84 100644
++index 9806eb3..a42c1ad 100644
+ --- a/src/main/java/org/joda/time/LocalDate.java
+ +++ b/src/main/java/org/joda/time/LocalDate.java
+-@@ -1002,13 +1002,14 @@
++@@ -1002,7 +1002,8 @@
+      public Date toDate() {
+          int dom = getDayOfMonth();
+          Date date = new Date(getYear() - 1900, getMonthOfYear() - 1, dom);
+@@ -12,10 +12,3 @@ index 9806eb3..a8a2d84 100644
+          if (check.isBefore(this)) {
+              // DST gap (no midnight)
+              // move forward in units of one hour until date correct
+-             while (check.equals(this) == false) {
+-                 date.setTime(date.getTime() + 3600000);
+--                check = LocalDate.fromDateFields(date);
+-+                check = var_81;
+-             }
+-             // move back in units of one second until date wrong
+-             while (date.getDate() == dom) {

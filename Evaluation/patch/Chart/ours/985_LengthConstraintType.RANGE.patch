@@ -1,0 +1,46 @@
+diff --git a/source/org/jfree/chart/block/BorderArrangement.java b/source/org/jfree/chart/block/BorderArrangement.java
+index b3ae54b..e53f042 100644
+--- a/source/org/jfree/chart/block/BorderArrangement.java
++++ b/source/org/jfree/chart/block/BorderArrangement.java
+@@ -424,11 +424,12 @@
+         double[] w = new double[5];
+         double[] h = new double[5];
+         w[0] = constraint.getWidth();
+-        if (this.topBlock != null) {
++        LengthConstraintType var_985 = LengthConstraintType.RANGE;
++		if (this.topBlock != null) {
+             RectangleConstraint c1 = new RectangleConstraint(w[0], null,
+                     LengthConstraintType.FIXED, 0.0,
+                     new Range(0.0, constraint.getHeight()),
+-                    LengthConstraintType.RANGE);
++                    var_985);
+             Size2D size = this.topBlock.arrange(g2, c1);
+             h[0] = size.height;
+         }
+@@ -436,7 +437,7 @@
+         if (this.bottomBlock != null) {
+             RectangleConstraint c2 = new RectangleConstraint(w[0], null,
+                     LengthConstraintType.FIXED, 0.0, new Range(0.0,
+-                    constraint.getHeight() - h[0]), LengthConstraintType.RANGE);
++                    constraint.getHeight() - h[0]), var_985);
+             Size2D size = this.bottomBlock.arrange(g2, c2);
+             h[1] = size.height;
+         }
+@@ -444,7 +445,7 @@
+         if (this.leftBlock != null) {
+             RectangleConstraint c3 = new RectangleConstraint(0.0,
+                     new Range(0.0, constraint.getWidth()),
+-                    LengthConstraintType.RANGE, h[2], null,
++                    var_985, h[2], null,
+                     LengthConstraintType.FIXED);
+             Size2D size = this.leftBlock.arrange(g2, c3);
+             w[2] = size.width;
+@@ -453,7 +454,7 @@
+         if (this.rightBlock != null) {
+             RectangleConstraint c4 = new RectangleConstraint(0.0,
+                     new Range(0.0, Math.max(constraint.getWidth() - w[2], 0.0)),
+-                    LengthConstraintType.RANGE, h[2], null,
++                    var_985, h[2], null,
+                     LengthConstraintType.FIXED);
+             Size2D size = this.rightBlock.arrange(g2, c4);
+             w[3] = size.width;

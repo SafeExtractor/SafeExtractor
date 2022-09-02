@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..a034172 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -539,7 +539,8 @@
+         }
+ 
+         // X == 0
+-        if (x.equals(zero)) {
++        Dfp var_824 = x.newInstance(zero.negate());
++		if (x.equals(zero)) {
+             if (Dfp.copysign(one, x).greaterThan(zero)) {
+                 // X == +0
+                 if (y.greaterThan(zero)) {
+@@ -552,7 +553,7 @@
+                 if (y.classify() == Dfp.FINITE && y.rint().equals(y) && !y.remainder(two).equals(zero)) {
+                     // If y is odd integer
+                     if (y.greaterThan(zero)) {
+-                        return x.newInstance(zero.negate());
++                        return var_824;
+                     } else {
+                         return x.newInstance(x.newInstance((byte)-1, Dfp.INFINITE));
+                     }
+@@ -603,7 +604,7 @@
+                     if (y.greaterThan(zero)) {
+                         return x.newInstance(x.newInstance((byte)-1, Dfp.INFINITE));
+                     } else {
+-                        return x.newInstance(zero.negate());
++                        return var_824;
+                     }
+                 } else {
+                     // Y is not odd integer

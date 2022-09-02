@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/FastMath.java b/src/main/java/org/apache/commons/math3/util/FastMath.java
+index 919e39f..42fcae0 100644
+--- a/src/main/java/org/apache/commons/math3/util/FastMath.java
++++ b/src/main/java/org/apache/commons/math3/util/FastMath.java
+@@ -853,7 +853,8 @@
+          * intPartA will have the upper 22 bits, intPartB will have the lower
+          * 52 bits.
+          */
+-        if (x < 0.0) {
++        double[] var_4296 = ExpIntTable.EXP_INT_TABLE_B;
++		if (x < 0.0) {
+             intVal = (int) -x;
+ 
+             if (intVal > 746) {
+@@ -887,7 +888,7 @@
+             intVal++;
+ 
+             intPartA = ExpIntTable.EXP_INT_TABLE_A[EXP_INT_TABLE_MAX_INDEX-intVal];
+-            intPartB = ExpIntTable.EXP_INT_TABLE_B[EXP_INT_TABLE_MAX_INDEX-intVal];
++            intPartB = var_4296[EXP_INT_TABLE_MAX_INDEX-intVal];
+ 
+             intVal = -intVal;
+         } else {
+@@ -902,7 +903,7 @@
+             }
+ 
+             intPartA = ExpIntTable.EXP_INT_TABLE_A[EXP_INT_TABLE_MAX_INDEX+intVal];
+-            intPartB = ExpIntTable.EXP_INT_TABLE_B[EXP_INT_TABLE_MAX_INDEX+intVal];
++            intPartB = var_4296[EXP_INT_TABLE_MAX_INDEX+intVal];
+         }
+ 
+         /* Get the fractional part of x, find the greatest multiple of 2^-10 less than

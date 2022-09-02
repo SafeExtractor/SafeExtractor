@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot.java b/source/org/jfree/chart/plot/PiePlot.java
+index 34014e9..e7e4582 100644
+--- a/source/org/jfree/chart/plot/PiePlot.java
++++ b/source/org/jfree/chart/plot/PiePlot.java
+@@ -3414,7 +3414,8 @@
+     public Shape createHotSpotShape(Graphics2D g2, Rectangle2D dataArea,
+             int section, boolean selected) {
+ 
+-        Number n = this.dataset.getValue(section);
++        PieDataset var_2084 = this.dataset;
++		Number n = var_2084.getValue(section);
+         if (n == null) {
+             return null;
+         }
+@@ -3422,11 +3423,11 @@
+         double angle1 = 0.0;
+         double angle2 = 0.0;
+ 
+-        double total = DatasetUtilities.calculatePieDatasetTotal(this.dataset);
++        double total = DatasetUtilities.calculatePieDatasetTotal(var_2084);
+         double lead = 0.0;
+         if (this.direction == Rotation.CLOCKWISE) {
+             for (int i = 0; i < section; i++) {
+-                n = this.dataset.getValue(i);
++                n = var_2084.getValue(i);
+                 if (n != null) {
+                     value = n.doubleValue();
+                     if (value >= 0.0) {

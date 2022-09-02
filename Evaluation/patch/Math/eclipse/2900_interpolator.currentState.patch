@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/sampling/AbstractStepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/sampling/AbstractStepInterpolator.java
+index 75ed7c6..ec58f0c 100644
+--- a/src/main/java/org/apache/commons/math3/ode/sampling/AbstractStepInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/ode/sampling/AbstractStepInterpolator.java
+@@ -178,13 +178,14 @@
+     h                  = interpolator.h;
+     interpolatedTime   = interpolator.interpolatedTime;
+ 
+-    if (interpolator.currentState == null) {
++    double[] var_2900 = interpolator.currentState;
++	if (var_2900 == null) {
+         currentState     = null;
+         primaryMapper    = null;
+         secondaryMappers = null;
+         allocateInterpolatedArrays(-1);
+     } else {
+-      currentState                     = interpolator.currentState.clone();
++      currentState                     = var_2900.clone();
+       interpolatedState                = interpolator.interpolatedState.clone();
+       interpolatedDerivatives          = interpolator.interpolatedDerivatives.clone();
+       interpolatedPrimaryState         = interpolator.interpolatedPrimaryState.clone();

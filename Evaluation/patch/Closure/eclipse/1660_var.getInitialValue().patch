@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+index bc570e2..5259e2d 100644
+--- a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
++++ b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+@@ -297,8 +297,9 @@
+         if (var != null) {
+           // Only process global functions.
+           if (var.isGlobal()) {
+-            if (var.getInitialValue() != null &&
+-                var.getInitialValue().isFunction()) {
++            Node var_1660 = var.getInitialValue();
++			if (var_1660 != null &&
++                var_1660.isFunction()) {
+               if (t.inGlobalScope()) {
+                 if (!processGlobalFunctionDeclaration(t, n, var)) {
+                   addGlobalUseOfSymbol(name, t.getModule(), VAR);

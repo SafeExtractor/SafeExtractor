@@ -1,0 +1,18 @@
+diff --git a/src/org/mockito/internal/invocation/InvocationMatcher.java b/src/org/mockito/internal/invocation/InvocationMatcher.java
+index d45e4c6..e7277c1 100644
+--- a/src/org/mockito/internal/invocation/InvocationMatcher.java
++++ b/src/org/mockito/internal/invocation/InvocationMatcher.java
+@@ -169,9 +169,10 @@
+     }
+ 
+     private boolean isVariableArgument(Invocation invocation, int position) {
+-        return invocation.getRawArguments().length - 1 == position
+-                && invocation.getRawArguments()[position] != null
+-                && invocation.getRawArguments()[position].getClass().isArray()
++        Object var_54 = invocation.getRawArguments()[position];
++		return invocation.getRawArguments().length - 1 == position
++                && var_54 != null
++                && var_54.getClass().isArray()
+                 && invocation.getMethod().isVarArgs();
+     }
+ 

@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/data/xy/DefaultWindDataset.java b/source/org/jfree/data/xy/DefaultWindDataset.java
+index 456abb8..3b30e89 100644
+--- a/source/org/jfree/data/xy/DefaultWindDataset.java
++++ b/source/org/jfree/data/xy/DefaultWindDataset.java
+@@ -141,7 +141,8 @@
+             List oneSeriesData = new java.util.ArrayList();
+             int maxItemCount = data[seriesIndex].length;
+             for (int itemIndex = 0; itemIndex < maxItemCount; itemIndex++) {
+-                Object xObject = data[seriesIndex][itemIndex][0];
++                Object[] var_4413 = data[seriesIndex][itemIndex];
++				Object xObject = var_4413[0];
+                 if (xObject != null) {
+                     Number xNumber;
+                     if (xObject instanceof Number) {
+@@ -156,8 +157,8 @@
+                             xNumber = new Integer(0);
+                         }
+                     }
+-                    Number windDir = (Number) data[seriesIndex][itemIndex][1];
+-                    Number windForce = (Number) data[seriesIndex][itemIndex][2];
++                    Number windDir = (Number) var_4413[1];
++                    Number windForce = (Number) var_4413[2];
+                     oneSeriesData.add(new WindDataItem(xNumber, windDir,
+                             windForce));
+                 }

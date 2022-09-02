@@ -1,0 +1,33 @@
+diff --git a/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java b/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java
+index 882b0f1..7653e94 100644
+--- a/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java
++++ b/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java
+@@ -115,6 +115,7 @@
+ import org.jfree.chart.util.BooleanList;
+ import org.jfree.chart.util.ObjectUtilities;
+ import org.jfree.chart.util.PublicCloneable;
++import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.chart.util.ShapeUtilities;
+ import org.jfree.data.category.CategoryDataset;
+ 
+@@ -759,8 +760,9 @@
+                     dataArea, plot.getDomainAxisEdge());
+         }
+         double value = v.doubleValue();
+-        double y1 = rangeAxis.valueToJava2D(value, dataArea,
+-                plot.getRangeAxisEdge());
++        RectangleEdge var_2680 = plot.getRangeAxisEdge();
++		double y1 = rangeAxis.valueToJava2D(value, dataArea,
++                var_2680);
+ 
+         if (pass == 0 && getItemLineVisible(row, column)) {
+             if (column != 0) {
+@@ -782,7 +784,7 @@
+                                 plot.getDomainAxisEdge());
+                     }
+                     double y0 = rangeAxis.valueToJava2D(previous, dataArea,
+-                            plot.getRangeAxisEdge());
++                            var_2680);
+ 
+                     Line2D line = null;
+                     if (orientation == PlotOrientation.HORIZONTAL) {

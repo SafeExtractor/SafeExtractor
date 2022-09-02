@@ -1,0 +1,44 @@
+diff --git a/src/java/org/apache/commons/math/geometry/Rotation.java b/src/java/org/apache/commons/math/geometry/Rotation.java
+index fe32c60..b65f6c0 100644
+--- a/src/java/org/apache/commons/math/geometry/Rotation.java
++++ b/src/java/org/apache/commons/math/geometry/Rotation.java
+@@ -964,9 +964,10 @@
+       double mx22 = m[0][2] * x02 + m[1][2] * x12 + m[2][2] * x22;
+ 
+       // Xn+1
+-      o[0][0] = x00 - 0.5 * (x00 * mx00 + x01 * mx10 + x02 * mx20 - m[0][0]);
+-      o[0][1] = x01 - 0.5 * (x00 * mx01 + x01 * mx11 + x02 * mx21 - m[0][1]);
+-      o[0][2] = x02 - 0.5 * (x00 * mx02 + x01 * mx12 + x02 * mx22 - m[0][2]);
++      double[] o0 = o[0];
++	o0[0] = x00 - 0.5 * (x00 * mx00 + x01 * mx10 + x02 * mx20 - m[0][0]);
++      o0[1] = x01 - 0.5 * (x00 * mx01 + x01 * mx11 + x02 * mx21 - m[0][1]);
++      o0[2] = x02 - 0.5 * (x00 * mx02 + x01 * mx12 + x02 * mx22 - m[0][2]);
+       o[1][0] = x10 - 0.5 * (x10 * mx00 + x11 * mx10 + x12 * mx20 - m[1][0]);
+       o[1][1] = x11 - 0.5 * (x10 * mx01 + x11 * mx11 + x12 * mx21 - m[1][1]);
+       o[1][2] = x12 - 0.5 * (x10 * mx02 + x11 * mx12 + x12 * mx22 - m[1][2]);
+@@ -975,9 +976,9 @@
+       o[2][2] = x22 - 0.5 * (x20 * mx02 + x21 * mx12 + x22 * mx22 - m[2][2]);
+ 
+       // correction on each elements
+-      double corr00 = o[0][0] - m[0][0];
+-      double corr01 = o[0][1] - m[0][1];
+-      double corr02 = o[0][2] - m[0][2];
++      double corr00 = o0[0] - m[0][0];
++      double corr01 = o0[1] - m[0][1];
++      double corr02 = o0[2] - m[0][2];
+       double corr10 = o[1][0] - m[1][0];
+       double corr11 = o[1][1] - m[1][1];
+       double corr12 = o[1][2] - m[1][2];
+@@ -995,9 +996,9 @@
+         return o;
+ 
+       // prepare next iteration
+-      x00 = o[0][0];
+-      x01 = o[0][1];
+-      x02 = o[0][2];
++      x00 = o0[0];
++      x01 = o0[1];
++      x02 = o0[2];
+       x10 = o[1][0];
+       x11 = o[1][1];
+       x12 = o[1][2];

@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/JvmMetrics.java b/src/com/google/javascript/jscomp/JvmMetrics.java
+index c7ec381..9a19219 100644
+--- a/src/com/google/javascript/jscomp/JvmMetrics.java
++++ b/src/com/google/javascript/jscomp/JvmMetrics.java
+@@ -162,8 +162,9 @@
+       writeOverallMemoryUsage(out, usage, "Non-heap", pretty);
+     }
+ 
+-    if (verbose) {
+-      List<MemoryPoolMXBean> mpBeans = ManagementFactory.getMemoryPoolMXBeans();
++    List<MemoryPoolMXBean> var_1878 = ManagementFactory.getMemoryPoolMXBeans();
++	if (verbose) {
++      List<MemoryPoolMXBean> mpBeans = var_1878;
+       for (MemoryPoolMXBean mpBean : mpBeans) {
+         MemoryUsage currentUsage = mpBean.getUsage();
+         MemoryUsage peakUsage = mpBean.getPeakUsage();
+@@ -179,7 +180,7 @@
+       long available = 0;
+       long current = 0;
+       long peak = 0;
+-      List<MemoryPoolMXBean> mpBeans = ManagementFactory.getMemoryPoolMXBeans();
++      List<MemoryPoolMXBean> mpBeans = var_1878;
+       for (MemoryPoolMXBean mpBean : mpBeans) {
+         MemoryUsage currentUsage = mpBean.getUsage();
+         available += currentUsage.getMax();

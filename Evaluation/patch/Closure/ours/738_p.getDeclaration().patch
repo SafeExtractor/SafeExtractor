@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..036700f 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -897,8 +897,9 @@
+       // for the same global name.)
+       if (isJsIdentifier && p != null) {
+         if (!discardKeys) {
+-          Ref newAlias =
+-              p.getDeclaration().cloneAndReclassify(Ref.Type.ALIASING_GET);
++          Ref var_738 = p.getDeclaration();
++		Ref newAlias =
++              var_738.cloneAndReclassify(Ref.Type.ALIASING_GET);
+           newAlias.node = refNode;
+           p.addRef(newAlias);
+         }

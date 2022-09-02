@@ -1,0 +1,34 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/664_chrono.year().add(next,1).patch b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/664_chrono.year().add(next,1).patch
+index 2c771c0..75fcef3 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/664_chrono.year().add(next,1).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/664_chrono.year().add(next,1).patch
+@@ -1,24 +1,14 @@
+ diff --git a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+-index fa5c164..58ec265 100644
++index fa5c164..458239a 100644
+ --- a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+ +++ b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+-@@ -564,15 +564,16 @@
+-             next = chrono.millisOfDay().add(next, iMillisOfDay);
+-             next = setDayOfMonthNext(chrono, next);
++@@ -566,7 +566,8 @@
+  
+--            if (iDayOfWeek == 0) {
+-+            long var_664 = chrono.year().add(next, 1);
+-+			if (iDayOfWeek == 0) {
++             if (iDayOfWeek == 0) {
+                  if (next <= instant) {
+ -                    next = chrono.year().add(next, 1);
+-+                    next = var_664;
+++                    long var_664 = chrono.year().add(next, 1);
+++					next = var_664;
+                      next = setDayOfMonthNext(chrono, next);
+                  }
+              } else {
+-                 next = setDayOfWeek(chrono, next);
+-                 if (next <= instant) {
+--                    next = chrono.year().add(next, 1);
+-+                    next = var_664;
+-                     next = chrono.monthOfYear().set(next, iMonthOfYear);
+-                     next = setDayOfMonthNext(chrono, next);
+-                     next = setDayOfWeek(chrono, next);

@@ -1,0 +1,31 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/801_n.getFirstChild().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/801_n.getFirstChild().patch
+index 63a32f1..8fefaea 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/801_n.getFirstChild().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/801_n.getFirstChild().patch
+@@ -1,18 +1,15 @@
+ diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+-index 1e1571d..fe38893 100644
++index 1e1571d..2cba7ea 100644
+ --- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+ +++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+-@@ -674,7 +674,8 @@
+-     Node parent = n.getParent();
+-     Preconditions.checkNotNull(parent);
+-     int type = n.getType();
+--    Node cond = n.getFirstChild();
+-+    Node var_801 = n.getFirstChild();
+-+	Node cond = var_801;
+-     Node thenBody = cond.getNext();
+-     Node elseBody = thenBody.getNext();
++@@ -738,12 +738,13 @@
++     }
+  
+-@@ -743,7 +744,7 @@
++     boolean condTrue = condValue.toBoolean(true);
++-    if (n.getChildCount() == 2) {
+++    Node var_801 = n.getFirstChild();
+++	if (n.getChildCount() == 2) {
++       Preconditions.checkState(type == Token.IF);
+  
+        if (condTrue) {
+          // Replace "if (true) { X }" with "X".

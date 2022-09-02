@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..61c5b06 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -728,15 +728,16 @@
+     double lval = lValObj;
+     double rval = rValObj;
+ 
+-    switch (opType) {
++    int var_138 = ScriptRuntime.toInt32(lval);
++	switch (opType) {
+       case Token.BITAND:
+-        result = ScriptRuntime.toInt32(lval) & ScriptRuntime.toInt32(rval);
++        result = var_138 & ScriptRuntime.toInt32(rval);
+         break;
+       case Token.BITOR:
+-        result = ScriptRuntime.toInt32(lval) | ScriptRuntime.toInt32(rval);
++        result = var_138 | ScriptRuntime.toInt32(rval);
+         break;
+       case Token.BITXOR:
+-        result = ScriptRuntime.toInt32(lval) ^ ScriptRuntime.toInt32(rval);
++        result = var_138 ^ ScriptRuntime.toInt32(rval);
+         break;
+       case Token.ADD:
+         result = lval + rval;

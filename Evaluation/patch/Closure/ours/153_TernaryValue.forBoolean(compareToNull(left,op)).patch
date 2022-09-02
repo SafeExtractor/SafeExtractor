@@ -1,0 +1,59 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..7aac110 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -949,7 +949,8 @@
+     boolean nullRight = right.isNull();
+     int lhType = getNormalizedNodeType(left);
+     int rhType = getNormalizedNodeType(right);
+-    switch (lhType) {
++    TernaryValue var_153 = TernaryValue.forBoolean(compareToNull(left, op));
++	switch (lhType) {
+       case Token.VOID:
+         if (!leftLiteral) {
+           return TernaryValue.UNKNOWN;
+@@ -1016,7 +1017,7 @@
+           return TernaryValue.forBoolean(compareToUndefined(left, op));
+         }
+         if (nullRight && isEqualityOp(op)) {
+-          return TernaryValue.forBoolean(compareToNull(left, op));
++          return var_153;
+         }
+         if (Token.STRING != right.getType()) {
+           return TernaryValue.UNKNOWN;  // Only eval if they are the same type
+@@ -1039,7 +1040,7 @@
+           return TernaryValue.forBoolean(compareToUndefined(left, op));
+         }
+         if (nullRight && isEqualityOp(op)) {
+-          return TernaryValue.forBoolean(compareToNull(left, op));
++          return var_153;
+         }
+         if (Token.NUMBER != right.getType()) {
+           return TernaryValue.UNKNOWN;  // Only eval if they are the same type
+@@ -1057,7 +1058,7 @@
+             return TernaryValue.forBoolean(compareToUndefined(right, op));
+           }
+           if (leftLiteral && nullRight && isEqualityOp(op)) {
+-            return TernaryValue.forBoolean(compareToNull(left, op));
++            return var_153;
+           }
+         }
+ 
+@@ -1086,7 +1087,7 @@
+             return TernaryValue.forBoolean(compareToUndefined(left, op));
+           }
+           if (nullRight && isEqualityOp(op)) {
+-            return TernaryValue.forBoolean(compareToNull(left, op));
++            return var_153;
+           }
+         }
+         // Nothing else for now.
+@@ -1101,7 +1102,7 @@
+             return TernaryValue.forBoolean(compareToUndefined(left, op));
+           }
+           if (nullRight && isEqualityOp(op)) {
+-            return TernaryValue.forBoolean(compareToNull(left, op));
++            return var_153;
+           }
+         }
+         // ignore the rest for now.

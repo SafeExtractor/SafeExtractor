@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..4c9f6f8 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -420,7 +420,8 @@
+         }
+ 
+         final int vSize = valueCompiler.compIndirection.length;
+-        final int dSize = derivativeCompiler.compIndirection.length;
++        int[][][] var_102 = derivativeCompiler.compIndirection;
++		final int dSize = var_102.length;
+         final int[][][] compIndirection = new int[vSize + dSize][][];
+ 
+         // the composition rules from the value part can be reused as is
+@@ -432,7 +433,7 @@
+         // underlying one did not handle
+         for (int i = 0; i < dSize; ++i) {
+             List<int[]> row = new ArrayList<int[]>();
+-            for (int[] term : derivativeCompiler.compIndirection[i]) {
++            for (int[] term : var_102[i]) {
+ 
+                 // handle term p * f_k(g(x)) * g_l1(x) * g_l2(x) * ... * g_lp(x)
+ 

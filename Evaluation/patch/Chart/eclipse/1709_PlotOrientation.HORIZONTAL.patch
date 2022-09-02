@@ -1,0 +1,44 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..7e4f0d5 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -3556,9 +3556,10 @@
+         double yymax = yAxis.valueToJava2D(ymax, area, getRangeAxisEdge());
+ 
+         Rectangle2D[] r = new Rectangle2D[] {null, null, null, null};
+-        if (this.quadrantPaint[0] != null) {
++        PlotOrientation var_1709 = PlotOrientation.HORIZONTAL;
++		if (this.quadrantPaint[0] != null) {
+             if (x > xmin && y < ymax) {
+-                if (this.orientation == PlotOrientation.HORIZONTAL) {
++                if (this.orientation == var_1709) {
+                     r[0] = new Rectangle2D.Double(Math.min(yymax, yy),
+                             Math.min(xxmin, xx), Math.abs(yy - yymax),
+                             Math.abs(xx - xxmin));
+@@ -3573,7 +3574,7 @@
+         }
+         if (this.quadrantPaint[1] != null) {
+             if (x < xmax && y < ymax) {
+-                if (this.orientation == PlotOrientation.HORIZONTAL) {
++                if (this.orientation == var_1709) {
+                     r[1] = new Rectangle2D.Double(Math.min(yymax, yy),
+                             Math.min(xxmax, xx), Math.abs(yy - yymax),
+                             Math.abs(xx - xxmax));
+@@ -3588,7 +3589,7 @@
+         }
+         if (this.quadrantPaint[2] != null) {
+             if (x > xmin && y > ymin) {
+-                if (this.orientation == PlotOrientation.HORIZONTAL) {
++                if (this.orientation == var_1709) {
+                     r[2] = new Rectangle2D.Double(Math.min(yymin, yy),
+                             Math.min(xxmin, xx), Math.abs(yy - yymin),
+                             Math.abs(xx - xxmin));
+@@ -3603,7 +3604,7 @@
+         }
+         if (this.quadrantPaint[3] != null) {
+             if (x < xmax && y > ymin) {
+-                if (this.orientation == PlotOrientation.HORIZONTAL) {
++                if (this.orientation == var_1709) {
+                     r[3] = new Rectangle2D.Double(Math.min(yymin, yy),
+                             Math.min(xxmax, xx), Math.abs(yy - yymin),
+                             Math.abs(xx - xxmax));

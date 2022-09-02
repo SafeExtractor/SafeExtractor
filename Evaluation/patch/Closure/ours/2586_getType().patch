@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/rhino/Node.java b/src/com/google/javascript/rhino/Node.java
+index 55aefbe..648e792 100644
+--- a/src/com/google/javascript/rhino/Node.java
++++ b/src/com/google/javascript/rhino/Node.java
+@@ -1983,10 +1983,11 @@
+    * {@link Token#NEW} nodes.
+    */
+   public void setSideEffectFlags(int flags) {
+-    Preconditions.checkArgument(
+-       getType() == Token.CALL || getType() == Token.NEW,
++    int var_2586 = getType();
++	Preconditions.checkArgument(
++       var_2586 == Token.CALL || var_2586 == Token.NEW,
+        "setIsNoSideEffectsCall only supports CALL and NEW nodes, got " +
+-       Token.name(getType()));
++       Token.name(var_2586));
+ 
+     putIntProp(SIDE_EFFECT_FLAGS, flags);
+   }

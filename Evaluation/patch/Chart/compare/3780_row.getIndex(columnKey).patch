@@ -1,0 +1,37 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3780_row.getIndex(columnKey).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/3780_row.getIndex(columnKey).patch
+index eb9b232..d8bf0dc 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3780_row.getIndex(columnKey).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/3780_row.getIndex(columnKey).patch
+@@ -1,27 +1,14 @@
+ diff --git a/source/org/jfree/data/KeyedObjects2D.java b/source/org/jfree/data/KeyedObjects2D.java
+-index 9d812bc..59bf615 100644
++index 9d812bc..03a7afd 100644
+ --- a/source/org/jfree/data/KeyedObjects2D.java
+ +++ b/source/org/jfree/data/KeyedObjects2D.java
+-@@ -334,10 +334,11 @@
+-         // 2. check whether the column is now empty.
+-         allNull = true;
+- 
+--        for (int item = 0, itemCount = this.rows.size(); item < itemCount;
+-+        int var_3780 = row.getIndex(columnKey);
+-+		for (int item = 0, itemCount = this.rows.size(); item < itemCount;
++@@ -337,7 +337,8 @@
++         for (int item = 0, itemCount = this.rows.size(); item < itemCount;
+               item++) {
+              row = (KeyedObjects) this.rows.get(item);
+ -            int colIndex = row.getIndex(columnKey);
+-+            int colIndex = var_3780;
+++            int var_3780 = row.getIndex(columnKey);
+++			int colIndex = var_3780;
+              if (colIndex >= 0 && row.getObject(colIndex) != null) {
+                  allNull = false;
+                  break;
+-@@ -348,7 +349,7 @@
+-             for (int item = 0, itemCount = this.rows.size(); item < itemCount;
+-                  item++) {
+-                 row = (KeyedObjects) this.rows.get(item);
+--                int colIndex = row.getIndex(columnKey);
+-+                int colIndex = var_3780;
+-                 if (colIndex >= 0) {
+-                     row.removeValue(colIndex);
+-                 }

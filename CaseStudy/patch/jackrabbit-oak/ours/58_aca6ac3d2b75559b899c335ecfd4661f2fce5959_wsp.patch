@@ -1,0 +1,38 @@
+diff --git a/oak-jcr/src/main/java/org/apache/jackrabbit/oak/jcr/xml/ImporterImpl.java b/oak-jcr/src/main/java/org/apache/jackrabbit/oak/jcr/xml/ImporterImpl.java
+index 5337585..abcca40 100644
+--- a/oak-jcr/src/main/java/org/apache/jackrabbit/oak/jcr/xml/ImporterImpl.java
++++ b/oak-jcr/src/main/java/org/apache/jackrabbit/oak/jcr/xml/ImporterImpl.java
+@@ -47,6 +47,7 @@
+ import org.apache.jackrabbit.oak.commons.PathUtils;
+ import org.apache.jackrabbit.oak.jcr.security.AccessManager;
+ import org.apache.jackrabbit.oak.jcr.session.SessionContext;
++import org.apache.jackrabbit.oak.jcr.session.WorkspaceImpl;
+ import org.apache.jackrabbit.oak.plugins.identifier.IdentifierManager;
+ import org.apache.jackrabbit.oak.plugins.memory.PropertyStates;
+ import org.apache.jackrabbit.oak.plugins.nodetype.DefinitionProvider;
+@@ -151,20 +152,21 @@
+         }
+ 
+         // TODO: review usage of write-root and object obtained from session-context (OAK-931)
+-        VersionManager vMgr = sessionContext.getWorkspace().getVersionManager();
++        WorkspaceImpl wsp = sessionContext.getWorkspace();
++		VersionManager vMgr = wsp.getVersionManager();
+         if (!vMgr.isCheckedOut(absPath)) {
+             throw new VersionException("Target node is checked in.");
+         }
+         if (importTargetTree.getStatus() != Tree.Status.NEW
+-                && sessionContext.getWorkspace().getLockManager().isLocked(absPath)) {
++                && wsp.getLockManager().isLocked(absPath)) {
+             throw new LockException("Target node is locked.");
+         }
+         ntTypesRoot = root.getTree(NODE_TYPES_PATH);
+         accessManager = sessionContext.getAccessManager();
+         baseStateIdManager = new IdentifierManager(initialRoot);
+         currentStateIdManager = new IdentifierManager(root);
+-        effectiveNodeTypeProvider = sessionContext.getWorkspace().getNodeTypeManager();
+-        definitionProvider = sessionContext.getWorkspace().getNodeTypeManager();
++        effectiveNodeTypeProvider = wsp.getNodeTypeManager();
++        definitionProvider = wsp.getNodeTypeManager();
+         // TODO: end
+ 
+         refTracker = new ReferenceChangeTracker();

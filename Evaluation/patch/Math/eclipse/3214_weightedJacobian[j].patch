@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+index 8d6a50b..2a3716a 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+@@ -798,8 +798,9 @@
+ 
+             // store the diagonal element of s and restore
+             // the corresponding diagonal element of R
+-            lmDiag[j] = weightedJacobian[j][permutation[j]];
+-            weightedJacobian[j][permutation[j]] = lmDir[j];
++            double[] var_3214 = weightedJacobian[j];
++			lmDiag[j] = var_3214[permutation[j]];
++            var_3214[permutation[j]] = lmDir[j];
+         }
+ 
+         // solve the triangular system for z, if the system is

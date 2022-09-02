@@ -1,0 +1,1512 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..7433049 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -442,782 +442,785 @@
+         // call of RESCUE that makes a call of CALFUN.
+ 
+         int state = 20;
+-        for(;;) switch (state) {
+-        case 20: {
+-            printState(20); // XXX
+-            if (trustRegionCenterInterpolationPointIndex != kbase) {
+-                int ih = 0;
+-                for (int j = 0; j < n; j++) {
+-                    for (int i = 0; i <= j; i++) {
+-                        if (i < j) {
+-                            gradientAtTrustRegionCenter.setEntry(j,  gradientAtTrustRegionCenter.getEntry(j) + modelSecondDerivativesValues.getEntry(ih) * trustRegionCenterOffset.getEntry(i));
+-                        }
+-                        gradientAtTrustRegionCenter.setEntry(i,  gradientAtTrustRegionCenter.getEntry(i) + modelSecondDerivativesValues.getEntry(ih) * trustRegionCenterOffset.getEntry(j));
+-                        ih++;
+-                    }
+-                }
+-                if (getEvaluations() > npt) {
+-                    for (int k = 0; k < npt; k++) {
+-                        double temp = ZERO;
+-                        for (int j = 0; j < n; j++) {
+-                            temp += interpolationPoints.getEntry(k, j) * trustRegionCenterOffset.getEntry(j);
+-                        }
+-                        temp *= modelSecondDerivativesParameters.getEntry(k);
+-                        for (int i = 0; i < n; i++) {
+-                            gradientAtTrustRegionCenter.setEntry(i, gradientAtTrustRegionCenter.getEntry(i) + temp * interpolationPoints.getEntry(k, i));
+-                        }
+-                    }
+-                    // throw new PathIsExploredException(); // XXX
+-                }
+-            }
++        for(;;) {
++			double var_3361 = fAtInterpolationPoints.getEntry(trustRegionCenterInterpolationPointIndex);
++			switch (state) {
++			case 20: {
++			    printState(20); // XXX
++			    if (trustRegionCenterInterpolationPointIndex != kbase) {
++			        int ih = 0;
++			        for (int j = 0; j < n; j++) {
++			            for (int i = 0; i <= j; i++) {
++			                if (i < j) {
++			                    gradientAtTrustRegionCenter.setEntry(j,  gradientAtTrustRegionCenter.getEntry(j) + modelSecondDerivativesValues.getEntry(ih) * trustRegionCenterOffset.getEntry(i));
++			                }
++			                gradientAtTrustRegionCenter.setEntry(i,  gradientAtTrustRegionCenter.getEntry(i) + modelSecondDerivativesValues.getEntry(ih) * trustRegionCenterOffset.getEntry(j));
++			                ih++;
++			            }
++			        }
++			        if (getEvaluations() > npt) {
++			            for (int k = 0; k < npt; k++) {
++			                double temp = ZERO;
++			                for (int j = 0; j < n; j++) {
++			                    temp += interpolationPoints.getEntry(k, j) * trustRegionCenterOffset.getEntry(j);
++			                }
++			                temp *= modelSecondDerivativesParameters.getEntry(k);
++			                for (int i = 0; i < n; i++) {
++			                    gradientAtTrustRegionCenter.setEntry(i, gradientAtTrustRegionCenter.getEntry(i) + temp * interpolationPoints.getEntry(k, i));
++			                }
++			            }
++			            // throw new PathIsExploredException(); // XXX
++			        }
++			    }
+ 
+-            // Generate the next point in the trust region that provides a small value
+-            // of the quadratic model subject to the constraints on the variables.
+-            // The int NTRITS is set to the number "trust region" iterations that
+-            // have occurred since the last "alternative" iteration. If the length
+-            // of XNEW-XOPT is less than HALF*RHO, however, then there is a branch to
+-            // label 650 or 680 with NTRITS=-1, instead of calculating F at XNEW.
++			    // Generate the next point in the trust region that provides a small value
++			    // of the quadratic model subject to the constraints on the variables.
++			    // The int NTRITS is set to the number "trust region" iterations that
++			    // have occurred since the last "alternative" iteration. If the length
++			    // of XNEW-XOPT is less than HALF*RHO, however, then there is a branch to
++			    // label 650 or 680 with NTRITS=-1, instead of calculating F at XNEW.
+ 
+-        }
+-        case 60: {
+-            printState(60); // XXX
+-            final ArrayRealVector gnew = new ArrayRealVector(n);
+-            final ArrayRealVector xbdi = new ArrayRealVector(n);
+-            final ArrayRealVector s = new ArrayRealVector(n);
+-            final ArrayRealVector hs = new ArrayRealVector(n);
+-            final ArrayRealVector hred = new ArrayRealVector(n);
++			}
++			case 60: {
++			    printState(60); // XXX
++			    final ArrayRealVector gnew = new ArrayRealVector(n);
++			    final ArrayRealVector xbdi = new ArrayRealVector(n);
++			    final ArrayRealVector s = new ArrayRealVector(n);
++			    final ArrayRealVector hs = new ArrayRealVector(n);
++			    final ArrayRealVector hred = new ArrayRealVector(n);
+ 
+-            final double[] dsqCrvmin = trsbox(delta, gnew, xbdi, s,
+-                                              hs, hred);
+-            dsq = dsqCrvmin[0];
+-            crvmin = dsqCrvmin[1];
++			    final double[] dsqCrvmin = trsbox(delta, gnew, xbdi, s,
++			                                      hs, hred);
++			    dsq = dsqCrvmin[0];
++			    crvmin = dsqCrvmin[1];
+ 
+-            // Computing MIN
+-            double deltaOne = delta;
+-            double deltaTwo = Math.sqrt(dsq);
+-            dnorm = Math.min(deltaOne, deltaTwo);
+-            if (dnorm < HALF * rho) {
+-                ntrits = -1;
+-                // Computing 2nd power
+-                deltaOne = TEN * rho;
+-                distsq = deltaOne * deltaOne;
+-                if (getEvaluations() <= nfsav + 2) {
+-                    state = 650; break;
+-                }
++			    // Computing MIN
++			    double deltaOne = delta;
++			    double deltaTwo = Math.sqrt(dsq);
++			    dnorm = Math.min(deltaOne, deltaTwo);
++			    if (dnorm < HALF * rho) {
++			        ntrits = -1;
++			        // Computing 2nd power
++			        deltaOne = TEN * rho;
++			        distsq = deltaOne * deltaOne;
++			        if (getEvaluations() <= nfsav + 2) {
++			            state = 650; break;
++			        }
+ 
+-                // The following choice between labels 650 and 680 depends on whether or
+-                // not our work with the current RHO seems to be complete. Either RHO is
+-                // decreased or termination occurs if the errors in the quadratic model at
+-                // the last three interpolation points compare favourably with predictions
+-                // of likely improvements to the model within distance HALF*RHO of XOPT.
++			        // The following choice between labels 650 and 680 depends on whether or
++			        // not our work with the current RHO seems to be complete. Either RHO is
++			        // decreased or termination occurs if the errors in the quadratic model at
++			        // the last three interpolation points compare favourably with predictions
++			        // of likely improvements to the model within distance HALF*RHO of XOPT.
+ 
+-                // Computing MAX
+-                deltaOne = Math.max(diffa, diffb);
+-                final double errbig = Math.max(deltaOne, diffc);
+-                final double frhosq = rho * ONE_OVER_EIGHT * rho;
+-                if (crvmin > ZERO &&
+-                    errbig > frhosq * crvmin) {
+-                    state = 650; break;
+-                }
+-                final double bdtol = errbig / rho;
+-                for (int j = 0; j < n; j++) {
+-                    double bdtest = bdtol;
+-                    if (newPoint.getEntry(j) == lowerDifference.getEntry(j)) {
+-                        bdtest = work1.getEntry(j);
+-                    }
+-                    if (newPoint.getEntry(j) == upperDifference.getEntry(j)) {
+-                        bdtest = -work1.getEntry(j);
+-                    }
+-                    if (bdtest < bdtol) {
+-                        double curv = modelSecondDerivativesValues.getEntry((j + j * j) / 2);
+-                        for (int k = 0; k < npt; k++) {
+-                            // Computing 2nd power
+-                            final double d1 = interpolationPoints.getEntry(k, j);
+-                            curv += modelSecondDerivativesParameters.getEntry(k) * (d1 * d1);
+-                        }
+-                        bdtest += HALF * curv * rho;
+-                        if (bdtest < bdtol) {
+-                            state = 650; break;
+-                        }
+-                        // throw new PathIsExploredException(); // XXX
+-                    }
+-                }
+-                state = 680; break;
+-            }
+-            ++ntrits;
++			        // Computing MAX
++			        deltaOne = Math.max(diffa, diffb);
++			        final double errbig = Math.max(deltaOne, diffc);
++			        final double frhosq = rho * ONE_OVER_EIGHT * rho;
++			        if (crvmin > ZERO &&
++			            errbig > frhosq * crvmin) {
++			            state = 650; break;
++			        }
++			        final double bdtol = errbig / rho;
++			        for (int j = 0; j < n; j++) {
++			            double bdtest = bdtol;
++			            if (newPoint.getEntry(j) == lowerDifference.getEntry(j)) {
++			                bdtest = work1.getEntry(j);
++			            }
++			            if (newPoint.getEntry(j) == upperDifference.getEntry(j)) {
++			                bdtest = -work1.getEntry(j);
++			            }
++			            if (bdtest < bdtol) {
++			                double curv = modelSecondDerivativesValues.getEntry((j + j * j) / 2);
++			                for (int k = 0; k < npt; k++) {
++			                    // Computing 2nd power
++			                    final double d1 = interpolationPoints.getEntry(k, j);
++			                    curv += modelSecondDerivativesParameters.getEntry(k) * (d1 * d1);
++			                }
++			                bdtest += HALF * curv * rho;
++			                if (bdtest < bdtol) {
++			                    state = 650; break;
++			                }
++			                // throw new PathIsExploredException(); // XXX
++			            }
++			        }
++			        state = 680; break;
++			    }
++			    ++ntrits;
+ 
+-            // Severe cancellation is likely to occur if XOPT is too far from XBASE.
+-            // If the following test holds, then XBASE is shifted so that XOPT becomes
+-            // zero. The appropriate changes are made to BMAT and to the second
+-            // derivatives of the current model, beginning with the changes to BMAT
+-            // that do not depend on ZMAT. VLAG is used temporarily for working space.
++			    // Severe cancellation is likely to occur if XOPT is too far from XBASE.
++			    // If the following test holds, then XBASE is shifted so that XOPT becomes
++			    // zero. The appropriate changes are made to BMAT and to the second
++			    // derivatives of the current model, beginning with the changes to BMAT
++			    // that do not depend on ZMAT. VLAG is used temporarily for working space.
+ 
+-        }
+-        case 90: {
+-            printState(90); // XXX
+-            if (dsq <= xoptsq * ONE_OVER_A_THOUSAND) {
+-                final double fracsq = xoptsq * ONE_OVER_FOUR;
+-                double sumpq = ZERO;
+-                // final RealVector sumVector
+-                //     = new ArrayRealVector(npt, -HALF * xoptsq).add(interpolationPoints.operate(trustRegionCenter));
+-                for (int k = 0; k < npt; k++) {
+-                    sumpq += modelSecondDerivativesParameters.getEntry(k);
+-                    double sum = -HALF * xoptsq;
+-                    for (int i = 0; i < n; i++) {
+-                        sum += interpolationPoints.getEntry(k, i) * trustRegionCenterOffset.getEntry(i);
+-                    }
+-                    // sum = sumVector.getEntry(k); // XXX "testAckley" and "testDiffPow" fail.
+-                    work2.setEntry(k, sum);
+-                    final double temp = fracsq - HALF * sum;
+-                    for (int i = 0; i < n; i++) {
+-                        work1.setEntry(i, bMatrix.getEntry(k, i));
+-                        lagrangeValuesAtNewPoint.setEntry(i, sum * interpolationPoints.getEntry(k, i) + temp * trustRegionCenterOffset.getEntry(i));
+-                        final int ip = npt + i;
+-                        for (int j = 0; j <= i; j++) {
+-                            bMatrix.setEntry(ip, j,
+-                                          bMatrix.getEntry(ip, j)
+-                                          + work1.getEntry(i) * lagrangeValuesAtNewPoint.getEntry(j)
+-                                          + lagrangeValuesAtNewPoint.getEntry(i) * work1.getEntry(j));
+-                        }
+-                    }
+-                }
++			}
++			case 90: {
++			    printState(90); // XXX
++			    if (dsq <= xoptsq * ONE_OVER_A_THOUSAND) {
++			        final double fracsq = xoptsq * ONE_OVER_FOUR;
++			        double sumpq = ZERO;
++			        // final RealVector sumVector
++			        //     = new ArrayRealVector(npt, -HALF * xoptsq).add(interpolationPoints.operate(trustRegionCenter));
++			        for (int k = 0; k < npt; k++) {
++			            sumpq += modelSecondDerivativesParameters.getEntry(k);
++			            double sum = -HALF * xoptsq;
++			            for (int i = 0; i < n; i++) {
++			                sum += interpolationPoints.getEntry(k, i) * trustRegionCenterOffset.getEntry(i);
++			            }
++			            // sum = sumVector.getEntry(k); // XXX "testAckley" and "testDiffPow" fail.
++			            work2.setEntry(k, sum);
++			            final double temp = fracsq - HALF * sum;
++			            for (int i = 0; i < n; i++) {
++			                work1.setEntry(i, bMatrix.getEntry(k, i));
++			                lagrangeValuesAtNewPoint.setEntry(i, sum * interpolationPoints.getEntry(k, i) + temp * trustRegionCenterOffset.getEntry(i));
++			                final int ip = npt + i;
++			                for (int j = 0; j <= i; j++) {
++			                    bMatrix.setEntry(ip, j,
++			                                  bMatrix.getEntry(ip, j)
++			                                  + work1.getEntry(i) * lagrangeValuesAtNewPoint.getEntry(j)
++			                                  + lagrangeValuesAtNewPoint.getEntry(i) * work1.getEntry(j));
++			                }
++			            }
++			        }
+ 
+-                // Then the revisions of BMAT that depend on ZMAT are calculated.
++			        // Then the revisions of BMAT that depend on ZMAT are calculated.
+ 
+-                for (int m = 0; m < nptm; m++) {
+-                    double sumz = ZERO;
+-                    double sumw = ZERO;
+-                    for (int k = 0; k < npt; k++) {
+-                        sumz += zMatrix.getEntry(k, m);
+-                        lagrangeValuesAtNewPoint.setEntry(k, work2.getEntry(k) * zMatrix.getEntry(k, m));
+-                        sumw += lagrangeValuesAtNewPoint.getEntry(k);
+-                    }
+-                    for (int j = 0; j < n; j++) {
+-                        double sum = (fracsq * sumz - HALF * sumw) * trustRegionCenterOffset.getEntry(j);
+-                        for (int k = 0; k < npt; k++) {
+-                            sum += lagrangeValuesAtNewPoint.getEntry(k) * interpolationPoints.getEntry(k, j);
+-                        }
+-                        work1.setEntry(j, sum);
+-                        for (int k = 0; k < npt; k++) {
+-                            bMatrix.setEntry(k, j,
+-                                          bMatrix.getEntry(k, j)
+-                                          + sum * zMatrix.getEntry(k, m));
+-                        }
+-                    }
+-                    for (int i = 0; i < n; i++) {
+-                        final int ip = i + npt;
+-                        final double temp = work1.getEntry(i);
+-                        for (int j = 0; j <= i; j++) {
+-                            bMatrix.setEntry(ip, j,
+-                                          bMatrix.getEntry(ip, j)
+-                                          + temp * work1.getEntry(j));
+-                        }
+-                    }
+-                }
++			        for (int m = 0; m < nptm; m++) {
++			            double sumz = ZERO;
++			            double sumw = ZERO;
++			            for (int k = 0; k < npt; k++) {
++			                sumz += zMatrix.getEntry(k, m);
++			                lagrangeValuesAtNewPoint.setEntry(k, work2.getEntry(k) * zMatrix.getEntry(k, m));
++			                sumw += lagrangeValuesAtNewPoint.getEntry(k);
++			            }
++			            for (int j = 0; j < n; j++) {
++			                double sum = (fracsq * sumz - HALF * sumw) * trustRegionCenterOffset.getEntry(j);
++			                for (int k = 0; k < npt; k++) {
++			                    sum += lagrangeValuesAtNewPoint.getEntry(k) * interpolationPoints.getEntry(k, j);
++			                }
++			                work1.setEntry(j, sum);
++			                for (int k = 0; k < npt; k++) {
++			                    bMatrix.setEntry(k, j,
++			                                  bMatrix.getEntry(k, j)
++			                                  + sum * zMatrix.getEntry(k, m));
++			                }
++			            }
++			            for (int i = 0; i < n; i++) {
++			                final int ip = i + npt;
++			                final double temp = work1.getEntry(i);
++			                for (int j = 0; j <= i; j++) {
++			                    bMatrix.setEntry(ip, j,
++			                                  bMatrix.getEntry(ip, j)
++			                                  + temp * work1.getEntry(j));
++			                }
++			            }
++			        }
+ 
+-                // The following instructions complete the shift, including the changes
+-                // to the second derivative parameters of the quadratic model.
++			        // The following instructions complete the shift, including the changes
++			        // to the second derivative parameters of the quadratic model.
+ 
+-                int ih = 0;
+-                for (int j = 0; j < n; j++) {
+-                    work1.setEntry(j, -HALF * sumpq * trustRegionCenterOffset.getEntry(j));
+-                    for (int k = 0; k < npt; k++) {
+-                        work1.setEntry(j, work1.getEntry(j) + modelSecondDerivativesParameters.getEntry(k) * interpolationPoints.getEntry(k, j));
+-                        interpolationPoints.setEntry(k, j, interpolationPoints.getEntry(k, j) - trustRegionCenterOffset.getEntry(j));
+-                    }
+-                    for (int i = 0; i <= j; i++) {
+-                         modelSecondDerivativesValues.setEntry(ih,
+-                                    modelSecondDerivativesValues.getEntry(ih)
+-                                    + work1.getEntry(i) * trustRegionCenterOffset.getEntry(j)
+-                                    + trustRegionCenterOffset.getEntry(i) * work1.getEntry(j));
+-                        bMatrix.setEntry(npt + i, j, bMatrix.getEntry(npt + j, i));
+-                        ih++;
+-                    }
+-                }
+-                for (int i = 0; i < n; i++) {
+-                    originShift.setEntry(i, originShift.getEntry(i) + trustRegionCenterOffset.getEntry(i));
+-                    newPoint.setEntry(i, newPoint.getEntry(i) - trustRegionCenterOffset.getEntry(i));
+-                    lowerDifference.setEntry(i, lowerDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i));
+-                    upperDifference.setEntry(i, upperDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i));
+-                    trustRegionCenterOffset.setEntry(i, ZERO);
+-                }
+-                xoptsq = ZERO;
+-            }
+-            if (ntrits == 0) {
+-                state = 210; break;
+-            }
+-            state = 230; break;
++			        int ih = 0;
++			        for (int j = 0; j < n; j++) {
++			            work1.setEntry(j, -HALF * sumpq * trustRegionCenterOffset.getEntry(j));
++			            for (int k = 0; k < npt; k++) {
++			                work1.setEntry(j, work1.getEntry(j) + modelSecondDerivativesParameters.getEntry(k) * interpolationPoints.getEntry(k, j));
++			                interpolationPoints.setEntry(k, j, interpolationPoints.getEntry(k, j) - trustRegionCenterOffset.getEntry(j));
++			            }
++			            for (int i = 0; i <= j; i++) {
++			                 modelSecondDerivativesValues.setEntry(ih,
++			                            modelSecondDerivativesValues.getEntry(ih)
++			                            + work1.getEntry(i) * trustRegionCenterOffset.getEntry(j)
++			                            + trustRegionCenterOffset.getEntry(i) * work1.getEntry(j));
++			                bMatrix.setEntry(npt + i, j, bMatrix.getEntry(npt + j, i));
++			                ih++;
++			            }
++			        }
++			        for (int i = 0; i < n; i++) {
++			            originShift.setEntry(i, originShift.getEntry(i) + trustRegionCenterOffset.getEntry(i));
++			            newPoint.setEntry(i, newPoint.getEntry(i) - trustRegionCenterOffset.getEntry(i));
++			            lowerDifference.setEntry(i, lowerDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i));
++			            upperDifference.setEntry(i, upperDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i));
++			            trustRegionCenterOffset.setEntry(i, ZERO);
++			        }
++			        xoptsq = ZERO;
++			    }
++			    if (ntrits == 0) {
++			        state = 210; break;
++			    }
++			    state = 230; break;
+ 
+-            // XBASE is also moved to XOPT by a call of RESCUE. This calculation is
+-            // more expensive than the previous shift, because new matrices BMAT and
+-            // ZMAT are generated from scratch, which may include the replacement of
+-            // interpolation points whose positions seem to be causing near linear
+-            // dependence in the interpolation conditions. Therefore RESCUE is called
+-            // only if rounding errors have reduced by at least a factor of two the
+-            // denominator of the formula for updating the H matrix. It provides a
+-            // useful safeguard, but is not invoked in most applications of BOBYQA.
++			    // XBASE is also moved to XOPT by a call of RESCUE. This calculation is
++			    // more expensive than the previous shift, because new matrices BMAT and
++			    // ZMAT are generated from scratch, which may include the replacement of
++			    // interpolation points whose positions seem to be causing near linear
++			    // dependence in the interpolation conditions. Therefore RESCUE is called
++			    // only if rounding errors have reduced by at least a factor of two the
++			    // denominator of the formula for updating the H matrix. It provides a
++			    // useful safeguard, but is not invoked in most applications of BOBYQA.
+ 
+-        }
+-        case 210: {
+-            printState(210); // XXX
+-            // Pick two alternative vectors of variables, relative to XBASE, that
+-            // are suitable as new positions of the KNEW-th interpolation point.
+-            // Firstly, XNEW is set to the point on a line through XOPT and another
+-            // interpolation point that minimizes the predicted value of the next
+-            // denominator, subject to ||XNEW - XOPT|| .LEQ. ADELT and to the SL
+-            // and SU bounds. Secondly, XALT is set to the best feasible point on
+-            // a constrained version of the Cauchy step of the KNEW-th Lagrange
+-            // function, the corresponding value of the square of this function
+-            // being returned in CAUCHY. The choice between these alternatives is
+-            // going to be made when the denominator is calculated.
++			}
++			case 210: {
++			    printState(210); // XXX
++			    // Pick two alternative vectors of variables, relative to XBASE, that
++			    // are suitable as new positions of the KNEW-th interpolation point.
++			    // Firstly, XNEW is set to the point on a line through XOPT and another
++			    // interpolation point that minimizes the predicted value of the next
++			    // denominator, subject to ||XNEW - XOPT|| .LEQ. ADELT and to the SL
++			    // and SU bounds. Secondly, XALT is set to the best feasible point on
++			    // a constrained version of the Cauchy step of the KNEW-th Lagrange
++			    // function, the corresponding value of the square of this function
++			    // being returned in CAUCHY. The choice between these alternatives is
++			    // going to be made when the denominator is calculated.
+ 
+-            final double[] alphaCauchy = altmov(knew, adelt);
+-            alpha = alphaCauchy[0];
+-            cauchy = alphaCauchy[1];
++			    final double[] alphaCauchy = altmov(knew, adelt);
++			    alpha = alphaCauchy[0];
++			    cauchy = alphaCauchy[1];
+ 
+-            for (int i = 0; i < n; i++) {
+-                trialStepPoint.setEntry(i, newPoint.getEntry(i) - trustRegionCenterOffset.getEntry(i));
+-            }
++			    for (int i = 0; i < n; i++) {
++			        trialStepPoint.setEntry(i, newPoint.getEntry(i) - trustRegionCenterOffset.getEntry(i));
++			    }
+ 
+-            // Calculate VLAG and BETA for the current choice of D. The scalar
+-            // product of D with XPT(K,.) is going to be held in W(NPT+K) for
+-            // use when VQUAD is calculated.
++			    // Calculate VLAG and BETA for the current choice of D. The scalar
++			    // product of D with XPT(K,.) is going to be held in W(NPT+K) for
++			    // use when VQUAD is calculated.
+ 
+-        }
+-        case 230: {
+-            printState(230); // XXX
+-            for (int k = 0; k < npt; k++) {
+-                double suma = ZERO;
+-                double sumb = ZERO;
+-                double sum = ZERO;
+-                for (int j = 0; j < n; j++) {
+-                    suma += interpolationPoints.getEntry(k, j) * trialStepPoint.getEntry(j);
+-                    sumb += interpolationPoints.getEntry(k, j) * trustRegionCenterOffset.getEntry(j);
+-                    sum += bMatrix.getEntry(k, j) * trialStepPoint.getEntry(j);
+-                }
+-                work3.setEntry(k, suma * (HALF * suma + sumb));
+-                lagrangeValuesAtNewPoint.setEntry(k, sum);
+-                work2.setEntry(k, suma);
+-            }
+-            beta = ZERO;
+-            for (int m = 0; m < nptm; m++) {
+-                double sum = ZERO;
+-                for (int k = 0; k < npt; k++) {
+-                    sum += zMatrix.getEntry(k, m) * work3.getEntry(k);
+-                }
+-                beta -= sum * sum;
+-                for (int k = 0; k < npt; k++) {
+-                    lagrangeValuesAtNewPoint.setEntry(k, lagrangeValuesAtNewPoint.getEntry(k) + sum * zMatrix.getEntry(k, m));
+-                }
+-            }
+-            dsq = ZERO;
+-            double bsum = ZERO;
+-            double dx = ZERO;
+-            for (int j = 0; j < n; j++) {
+-                // Computing 2nd power
+-                final double d1 = trialStepPoint.getEntry(j);
+-                dsq += d1 * d1;
+-                double sum = ZERO;
+-                for (int k = 0; k < npt; k++) {
+-                    sum += work3.getEntry(k) * bMatrix.getEntry(k, j);
+-                }
+-                bsum += sum * trialStepPoint.getEntry(j);
+-                final int jp = npt + j;
+-                for (int i = 0; i < n; i++) {
+-                    sum += bMatrix.getEntry(jp, i) * trialStepPoint.getEntry(i);
+-                }
+-                lagrangeValuesAtNewPoint.setEntry(jp, sum);
+-                bsum += sum * trialStepPoint.getEntry(j);
+-                dx += trialStepPoint.getEntry(j) * trustRegionCenterOffset.getEntry(j);
+-            }
++			}
++			case 230: {
++			    printState(230); // XXX
++			    for (int k = 0; k < npt; k++) {
++			        double suma = ZERO;
++			        double sumb = ZERO;
++			        double sum = ZERO;
++			        for (int j = 0; j < n; j++) {
++			            suma += interpolationPoints.getEntry(k, j) * trialStepPoint.getEntry(j);
++			            sumb += interpolationPoints.getEntry(k, j) * trustRegionCenterOffset.getEntry(j);
++			            sum += bMatrix.getEntry(k, j) * trialStepPoint.getEntry(j);
++			        }
++			        work3.setEntry(k, suma * (HALF * suma + sumb));
++			        lagrangeValuesAtNewPoint.setEntry(k, sum);
++			        work2.setEntry(k, suma);
++			    }
++			    beta = ZERO;
++			    for (int m = 0; m < nptm; m++) {
++			        double sum = ZERO;
++			        for (int k = 0; k < npt; k++) {
++			            sum += zMatrix.getEntry(k, m) * work3.getEntry(k);
++			        }
++			        beta -= sum * sum;
++			        for (int k = 0; k < npt; k++) {
++			            lagrangeValuesAtNewPoint.setEntry(k, lagrangeValuesAtNewPoint.getEntry(k) + sum * zMatrix.getEntry(k, m));
++			        }
++			    }
++			    dsq = ZERO;
++			    double bsum = ZERO;
++			    double dx = ZERO;
++			    for (int j = 0; j < n; j++) {
++			        // Computing 2nd power
++			        final double d1 = trialStepPoint.getEntry(j);
++			        dsq += d1 * d1;
++			        double sum = ZERO;
++			        for (int k = 0; k < npt; k++) {
++			            sum += work3.getEntry(k) * bMatrix.getEntry(k, j);
++			        }
++			        bsum += sum * trialStepPoint.getEntry(j);
++			        final int jp = npt + j;
++			        for (int i = 0; i < n; i++) {
++			            sum += bMatrix.getEntry(jp, i) * trialStepPoint.getEntry(i);
++			        }
++			        lagrangeValuesAtNewPoint.setEntry(jp, sum);
++			        bsum += sum * trialStepPoint.getEntry(j);
++			        dx += trialStepPoint.getEntry(j) * trustRegionCenterOffset.getEntry(j);
++			    }
+ 
+-            beta = dx * dx + dsq * (xoptsq + dx + dx + HALF * dsq) + beta - bsum; // Original
+-            // beta += dx * dx + dsq * (xoptsq + dx + dx + HALF * dsq) - bsum; // XXX "testAckley" and "testDiffPow" fail.
+-            // beta = dx * dx + dsq * (xoptsq + 2 * dx + HALF * dsq) + beta - bsum; // XXX "testDiffPow" fails.
++			    beta = dx * dx + dsq * (xoptsq + dx + dx + HALF * dsq) + beta - bsum; // Original
++			    // beta += dx * dx + dsq * (xoptsq + dx + dx + HALF * dsq) - bsum; // XXX "testAckley" and "testDiffPow" fail.
++			    // beta = dx * dx + dsq * (xoptsq + 2 * dx + HALF * dsq) + beta - bsum; // XXX "testDiffPow" fails.
+ 
+-            lagrangeValuesAtNewPoint.setEntry(trustRegionCenterInterpolationPointIndex,
+-                          lagrangeValuesAtNewPoint.getEntry(trustRegionCenterInterpolationPointIndex) + ONE);
++			    lagrangeValuesAtNewPoint.setEntry(trustRegionCenterInterpolationPointIndex,
++			                  lagrangeValuesAtNewPoint.getEntry(trustRegionCenterInterpolationPointIndex) + ONE);
+ 
+-            // If NTRITS is zero, the denominator may be increased by replacing
+-            // the step D of ALTMOV by a Cauchy step. Then RESCUE may be called if
+-            // rounding errors have damaged the chosen denominator.
++			    // If NTRITS is zero, the denominator may be increased by replacing
++			    // the step D of ALTMOV by a Cauchy step. Then RESCUE may be called if
++			    // rounding errors have damaged the chosen denominator.
+ 
+-            if (ntrits == 0) {
+-                // Computing 2nd power
+-                final double d1 = lagrangeValuesAtNewPoint.getEntry(knew);
+-                denom = d1 * d1 + alpha * beta;
+-                if (denom < cauchy && cauchy > ZERO) {
+-                    for (int i = 0; i < n; i++) {
+-                        newPoint.setEntry(i, alternativeNewPoint.getEntry(i));
+-                        trialStepPoint.setEntry(i, newPoint.getEntry(i) - trustRegionCenterOffset.getEntry(i));
+-                    }
+-                    cauchy = ZERO; // XXX Useful statement?
+-                    state = 230; break;
+-                }
+-                // Alternatively, if NTRITS is positive, then set KNEW to the index of
+-                // the next interpolation point to be deleted to make room for a trust
+-                // region step. Again RESCUE may be called if rounding errors have damaged_
+-                // the chosen denominator, which is the reason for attempting to select
+-                // KNEW before calculating the next value of the objective function.
++			    if (ntrits == 0) {
++			        // Computing 2nd power
++			        final double d1 = lagrangeValuesAtNewPoint.getEntry(knew);
++			        denom = d1 * d1 + alpha * beta;
++			        if (denom < cauchy && cauchy > ZERO) {
++			            for (int i = 0; i < n; i++) {
++			                newPoint.setEntry(i, alternativeNewPoint.getEntry(i));
++			                trialStepPoint.setEntry(i, newPoint.getEntry(i) - trustRegionCenterOffset.getEntry(i));
++			            }
++			            cauchy = ZERO; // XXX Useful statement?
++			            state = 230; break;
++			        }
++			        // Alternatively, if NTRITS is positive, then set KNEW to the index of
++			        // the next interpolation point to be deleted to make room for a trust
++			        // region step. Again RESCUE may be called if rounding errors have damaged_
++			        // the chosen denominator, which is the reason for attempting to select
++			        // KNEW before calculating the next value of the objective function.
+ 
+-            } else {
+-                final double delsq = delta * delta;
+-                scaden = ZERO;
+-                biglsq = ZERO;
+-                knew = 0;
+-                for (int k = 0; k < npt; k++) {
+-                    if (k == trustRegionCenterInterpolationPointIndex) {
+-                        continue;
+-                    }
+-                    double hdiag = ZERO;
+-                    for (int m = 0; m < nptm; m++) {
+-                        // Computing 2nd power
+-                        final double d1 = zMatrix.getEntry(k, m);
+-                        hdiag += d1 * d1;
+-                    }
+-                    // Computing 2nd power
+-                    final double d2 = lagrangeValuesAtNewPoint.getEntry(k);
+-                    final double den = beta * hdiag + d2 * d2;
+-                    distsq = ZERO;
+-                    for (int j = 0; j < n; j++) {
+-                        // Computing 2nd power
+-                        final double d3 = interpolationPoints.getEntry(k, j) - trustRegionCenterOffset.getEntry(j);
+-                        distsq += d3 * d3;
+-                    }
+-                    // Computing MAX
+-                    // Computing 2nd power
+-                    final double d4 = distsq / delsq;
+-                    final double temp = Math.max(ONE, d4 * d4);
+-                    if (temp * den > scaden) {
+-                        scaden = temp * den;
+-                        knew = k;
+-                        denom = den;
+-                    }
+-                    // Computing MAX
+-                    // Computing 2nd power
+-                    final double d5 = lagrangeValuesAtNewPoint.getEntry(k);
+-                    biglsq = Math.max(biglsq, temp * (d5 * d5));
+-                }
+-            }
++			    } else {
++			        final double delsq = delta * delta;
++			        scaden = ZERO;
++			        biglsq = ZERO;
++			        knew = 0;
++			        for (int k = 0; k < npt; k++) {
++			            if (k == trustRegionCenterInterpolationPointIndex) {
++			                continue;
++			            }
++			            double hdiag = ZERO;
++			            for (int m = 0; m < nptm; m++) {
++			                // Computing 2nd power
++			                final double d1 = zMatrix.getEntry(k, m);
++			                hdiag += d1 * d1;
++			            }
++			            // Computing 2nd power
++			            final double d2 = lagrangeValuesAtNewPoint.getEntry(k);
++			            final double den = beta * hdiag + d2 * d2;
++			            distsq = ZERO;
++			            for (int j = 0; j < n; j++) {
++			                // Computing 2nd power
++			                final double d3 = interpolationPoints.getEntry(k, j) - trustRegionCenterOffset.getEntry(j);
++			                distsq += d3 * d3;
++			            }
++			            // Computing MAX
++			            // Computing 2nd power
++			            final double d4 = distsq / delsq;
++			            final double temp = Math.max(ONE, d4 * d4);
++			            if (temp * den > scaden) {
++			                scaden = temp * den;
++			                knew = k;
++			                denom = den;
++			            }
++			            // Computing MAX
++			            // Computing 2nd power
++			            final double d5 = lagrangeValuesAtNewPoint.getEntry(k);
++			            biglsq = Math.max(biglsq, temp * (d5 * d5));
++			        }
++			    }
+ 
+-            // Put the variables for the next calculation of the objective function
+-            //   in XNEW, with any adjustments for the bounds.
++			    // Put the variables for the next calculation of the objective function
++			    //   in XNEW, with any adjustments for the bounds.
+ 
+-            // Calculate the value of the objective function at XBASE+XNEW, unless
+-            //   the limit on the number of calculations of F has been reached.
++			    // Calculate the value of the objective function at XBASE+XNEW, unless
++			    //   the limit on the number of calculations of F has been reached.
+ 
+-        }
+-        case 360: {
+-            printState(360); // XXX
+-            for (int i = 0; i < n; i++) {
+-                // Computing MIN
+-                // Computing MAX
+-                final double d3 = lowerBound[i];
+-                final double d4 = originShift.getEntry(i) + newPoint.getEntry(i);
+-                final double d1 = Math.max(d3, d4);
+-                final double d2 = upperBound[i];
+-                currentBest.setEntry(i, Math.min(d1, d2));
+-                if (newPoint.getEntry(i) == lowerDifference.getEntry(i)) {
+-                    currentBest.setEntry(i, lowerBound[i]);
+-                }
+-                if (newPoint.getEntry(i) == upperDifference.getEntry(i)) {
+-                    currentBest.setEntry(i, upperBound[i]);
+-                }
+-            }
++			}
++			case 360: {
++			    printState(360); // XXX
++			    for (int i = 0; i < n; i++) {
++			        // Computing MIN
++			        // Computing MAX
++			        final double d3 = lowerBound[i];
++			        final double d4 = originShift.getEntry(i) + newPoint.getEntry(i);
++			        final double d1 = Math.max(d3, d4);
++			        final double d2 = upperBound[i];
++			        currentBest.setEntry(i, Math.min(d1, d2));
++			        if (newPoint.getEntry(i) == lowerDifference.getEntry(i)) {
++			            currentBest.setEntry(i, lowerBound[i]);
++			        }
++			        if (newPoint.getEntry(i) == upperDifference.getEntry(i)) {
++			            currentBest.setEntry(i, upperBound[i]);
++			        }
++			    }
+ 
+-            f = computeObjectiveValue(currentBest.toArray());
++			    f = computeObjectiveValue(currentBest.toArray());
+ 
+-            if (!isMinimize)
+-                f = -f;
+-            if (ntrits == -1) {
+-                fsave = f;
+-                state = 720; break;
+-            }
++			    if (!isMinimize)
++			        f = -f;
++			    if (ntrits == -1) {
++			        fsave = f;
++			        state = 720; break;
++			    }
+ 
+-            // Use the quadratic model to predict the change in F due to the step D,
+-            //   and set DIFF to the error of this prediction.
++			    // Use the quadratic model to predict the change in F due to the step D,
++			    //   and set DIFF to the error of this prediction.
+ 
+-            final double fopt = fAtInterpolationPoints.getEntry(trustRegionCenterInterpolationPointIndex);
+-            double vquad = ZERO;
+-            int ih = 0;
+-            for (int j = 0; j < n; j++) {
+-                vquad += trialStepPoint.getEntry(j) * gradientAtTrustRegionCenter.getEntry(j);
+-                for (int i = 0; i <= j; i++) {
+-                    double temp = trialStepPoint.getEntry(i) * trialStepPoint.getEntry(j);
+-                    if (i == j) {
+-                        temp *= HALF;
+-                    }
+-                    vquad += modelSecondDerivativesValues.getEntry(ih) * temp;
+-                    ih++;
+-               }
+-            }
+-            for (int k = 0; k < npt; k++) {
+-                // Computing 2nd power
+-                final double d1 = work2.getEntry(k);
+-                final double d2 = d1 * d1; // "d1" must be squared first to prevent test failures.
+-                vquad += HALF * modelSecondDerivativesParameters.getEntry(k) * d2;
+-            }
+-            final double diff = f - fopt - vquad;
+-            diffc = diffb;
+-            diffb = diffa;
+-            diffa = Math.abs(diff);
+-            if (dnorm > rho) {
+-                nfsav = getEvaluations();
+-            }
++			    final double fopt = var_3361;
++			    double vquad = ZERO;
++			    int ih = 0;
++			    for (int j = 0; j < n; j++) {
++			        vquad += trialStepPoint.getEntry(j) * gradientAtTrustRegionCenter.getEntry(j);
++			        for (int i = 0; i <= j; i++) {
++			            double temp = trialStepPoint.getEntry(i) * trialStepPoint.getEntry(j);
++			            if (i == j) {
++			                temp *= HALF;
++			            }
++			            vquad += modelSecondDerivativesValues.getEntry(ih) * temp;
++			            ih++;
++			       }
++			    }
++			    for (int k = 0; k < npt; k++) {
++			        // Computing 2nd power
++			        final double d1 = work2.getEntry(k);
++			        final double d2 = d1 * d1; // "d1" must be squared first to prevent test failures.
++			        vquad += HALF * modelSecondDerivativesParameters.getEntry(k) * d2;
++			    }
++			    final double diff = f - fopt - vquad;
++			    diffc = diffb;
++			    diffb = diffa;
++			    diffa = Math.abs(diff);
++			    if (dnorm > rho) {
++			        nfsav = getEvaluations();
++			    }
+ 
+-            // Pick the next value of DELTA after a trust region step.
++			    // Pick the next value of DELTA after a trust region step.
+ 
+-            if (ntrits > 0) {
+-                if (vquad >= ZERO) {
+-                    throw new MathIllegalStateException(LocalizedFormats.TRUST_REGION_STEP_FAILED, vquad);
+-                }
+-                ratio = (f - fopt) / vquad;
+-                final double hDelta = HALF * delta;
+-                if (ratio <= ONE_OVER_TEN) {
+-                    // Computing MIN
+-                    delta = Math.min(hDelta, dnorm);
+-                } else if (ratio <= .7) {
+-                    // Computing MAX
+-                    delta = Math.max(hDelta, dnorm);
+-                } else {
+-                    // Computing MAX
+-                    delta = Math.max(hDelta, 2 * dnorm);
+-                }
+-                if (delta <= rho * 1.5) {
+-                    delta = rho;
+-                }
++			    if (ntrits > 0) {
++			        if (vquad >= ZERO) {
++			            throw new MathIllegalStateException(LocalizedFormats.TRUST_REGION_STEP_FAILED, vquad);
++			        }
++			        ratio = (f - fopt) / vquad;
++			        final double hDelta = HALF * delta;
++			        if (ratio <= ONE_OVER_TEN) {
++			            // Computing MIN
++			            delta = Math.min(hDelta, dnorm);
++			        } else if (ratio <= .7) {
++			            // Computing MAX
++			            delta = Math.max(hDelta, dnorm);
++			        } else {
++			            // Computing MAX
++			            delta = Math.max(hDelta, 2 * dnorm);
++			        }
++			        if (delta <= rho * 1.5) {
++			            delta = rho;
++			        }
+ 
+-                // Recalculate KNEW and DENOM if the new F is less than FOPT.
++			        // Recalculate KNEW and DENOM if the new F is less than FOPT.
+ 
+-                if (f < fopt) {
+-                    final int ksav = knew;
+-                    final double densav = denom;
+-                    final double delsq = delta * delta;
+-                    scaden = ZERO;
+-                    biglsq = ZERO;
+-                    knew = 0;
+-                    for (int k = 0; k < npt; k++) {
+-                        double hdiag = ZERO;
+-                        for (int m = 0; m < nptm; m++) {
+-                            // Computing 2nd power
+-                            final double d1 = zMatrix.getEntry(k, m);
+-                            hdiag += d1 * d1;
+-                        }
+-                        // Computing 2nd power
+-                        final double d1 = lagrangeValuesAtNewPoint.getEntry(k);
+-                        final double den = beta * hdiag + d1 * d1;
+-                        distsq = ZERO;
+-                        for (int j = 0; j < n; j++) {
+-                            // Computing 2nd power
+-                            final double d2 = interpolationPoints.getEntry(k, j) - newPoint.getEntry(j);
+-                            distsq += d2 * d2;
+-                        }
+-                        // Computing MAX
+-                        // Computing 2nd power
+-                        final double d3 = distsq / delsq;
+-                        final double temp = Math.max(ONE, d3 * d3);
+-                        if (temp * den > scaden) {
+-                            scaden = temp * den;
+-                            knew = k;
+-                            denom = den;
+-                        }
+-                        // Computing MAX
+-                        // Computing 2nd power
+-                        final double d4 = lagrangeValuesAtNewPoint.getEntry(k);
+-                        final double d5 = temp * (d4 * d4);
+-                        biglsq = Math.max(biglsq, d5);
+-                    }
+-                    if (scaden <= HALF * biglsq) {
+-                        knew = ksav;
+-                        denom = densav;
+-                    }
+-                }
+-            }
++			        if (f < fopt) {
++			            final int ksav = knew;
++			            final double densav = denom;
++			            final double delsq = delta * delta;
++			            scaden = ZERO;
++			            biglsq = ZERO;
++			            knew = 0;
++			            for (int k = 0; k < npt; k++) {
++			                double hdiag = ZERO;
++			                for (int m = 0; m < nptm; m++) {
++			                    // Computing 2nd power
++			                    final double d1 = zMatrix.getEntry(k, m);
++			                    hdiag += d1 * d1;
++			                }
++			                // Computing 2nd power
++			                final double d1 = lagrangeValuesAtNewPoint.getEntry(k);
++			                final double den = beta * hdiag + d1 * d1;
++			                distsq = ZERO;
++			                for (int j = 0; j < n; j++) {
++			                    // Computing 2nd power
++			                    final double d2 = interpolationPoints.getEntry(k, j) - newPoint.getEntry(j);
++			                    distsq += d2 * d2;
++			                }
++			                // Computing MAX
++			                // Computing 2nd power
++			                final double d3 = distsq / delsq;
++			                final double temp = Math.max(ONE, d3 * d3);
++			                if (temp * den > scaden) {
++			                    scaden = temp * den;
++			                    knew = k;
++			                    denom = den;
++			                }
++			                // Computing MAX
++			                // Computing 2nd power
++			                final double d4 = lagrangeValuesAtNewPoint.getEntry(k);
++			                final double d5 = temp * (d4 * d4);
++			                biglsq = Math.max(biglsq, d5);
++			            }
++			            if (scaden <= HALF * biglsq) {
++			                knew = ksav;
++			                denom = densav;
++			            }
++			        }
++			    }
+ 
+-            // Update BMAT and ZMAT, so that the KNEW-th interpolation point can be
+-            // moved. Also update the second derivative terms of the model.
++			    // Update BMAT and ZMAT, so that the KNEW-th interpolation point can be
++			    // moved. Also update the second derivative terms of the model.
+ 
+-            update(beta, denom, knew);
++			    update(beta, denom, knew);
+ 
+-            ih = 0;
+-            final double pqold = modelSecondDerivativesParameters.getEntry(knew);
+-            modelSecondDerivativesParameters.setEntry(knew, ZERO);
+-            for (int i = 0; i < n; i++) {
+-                final double temp = pqold * interpolationPoints.getEntry(knew, i);
+-                for (int j = 0; j <= i; j++) {
+-                    modelSecondDerivativesValues.setEntry(ih, modelSecondDerivativesValues.getEntry(ih) + temp * interpolationPoints.getEntry(knew, j));
+-                    ih++;
+-                }
+-            }
+-            for (int m = 0; m < nptm; m++) {
+-                final double temp = diff * zMatrix.getEntry(knew, m);
+-                for (int k = 0; k < npt; k++) {
+-                    modelSecondDerivativesParameters.setEntry(k, modelSecondDerivativesParameters.getEntry(k) + temp * zMatrix.getEntry(k, m));
+-                }
+-            }
++			    ih = 0;
++			    final double pqold = modelSecondDerivativesParameters.getEntry(knew);
++			    modelSecondDerivativesParameters.setEntry(knew, ZERO);
++			    for (int i = 0; i < n; i++) {
++			        final double temp = pqold * interpolationPoints.getEntry(knew, i);
++			        for (int j = 0; j <= i; j++) {
++			            modelSecondDerivativesValues.setEntry(ih, modelSecondDerivativesValues.getEntry(ih) + temp * interpolationPoints.getEntry(knew, j));
++			            ih++;
++			        }
++			    }
++			    for (int m = 0; m < nptm; m++) {
++			        final double temp = diff * zMatrix.getEntry(knew, m);
++			        for (int k = 0; k < npt; k++) {
++			            modelSecondDerivativesParameters.setEntry(k, modelSecondDerivativesParameters.getEntry(k) + temp * zMatrix.getEntry(k, m));
++			        }
++			    }
+ 
+-            // Include the new interpolation point, and make the changes to GOPT at
+-            // the old XOPT that are caused by the updating of the quadratic model.
++			    // Include the new interpolation point, and make the changes to GOPT at
++			    // the old XOPT that are caused by the updating of the quadratic model.
+ 
+-            fAtInterpolationPoints.setEntry(knew,  f);
+-            for (int i = 0; i < n; i++) {
+-                interpolationPoints.setEntry(knew, i, newPoint.getEntry(i));
+-                work1.setEntry(i, bMatrix.getEntry(knew, i));
+-            }
+-            for (int k = 0; k < npt; k++) {
+-                double suma = ZERO;
+-                for (int m = 0; m < nptm; m++) {
+-                    suma += zMatrix.getEntry(knew, m) * zMatrix.getEntry(k, m);
+-                }
+-                double sumb = ZERO;
+-                for (int j = 0; j < n; j++) {
+-                    sumb += interpolationPoints.getEntry(k, j) * trustRegionCenterOffset.getEntry(j);
+-                }
+-                final double temp = suma * sumb;
+-                for (int i = 0; i < n; i++) {
+-                    work1.setEntry(i, work1.getEntry(i) + temp * interpolationPoints.getEntry(k, i));
+-                }
+-            }
+-            for (int i = 0; i < n; i++) {
+-                gradientAtTrustRegionCenter.setEntry(i, gradientAtTrustRegionCenter.getEntry(i) + diff * work1.getEntry(i));
+-            }
++			    fAtInterpolationPoints.setEntry(knew,  f);
++			    for (int i = 0; i < n; i++) {
++			        interpolationPoints.setEntry(knew, i, newPoint.getEntry(i));
++			        work1.setEntry(i, bMatrix.getEntry(knew, i));
++			    }
++			    for (int k = 0; k < npt; k++) {
++			        double suma = ZERO;
++			        for (int m = 0; m < nptm; m++) {
++			            suma += zMatrix.getEntry(knew, m) * zMatrix.getEntry(k, m);
++			        }
++			        double sumb = ZERO;
++			        for (int j = 0; j < n; j++) {
++			            sumb += interpolationPoints.getEntry(k, j) * trustRegionCenterOffset.getEntry(j);
++			        }
++			        final double temp = suma * sumb;
++			        for (int i = 0; i < n; i++) {
++			            work1.setEntry(i, work1.getEntry(i) + temp * interpolationPoints.getEntry(k, i));
++			        }
++			    }
++			    for (int i = 0; i < n; i++) {
++			        gradientAtTrustRegionCenter.setEntry(i, gradientAtTrustRegionCenter.getEntry(i) + diff * work1.getEntry(i));
++			    }
+ 
+-            // Update XOPT, GOPT and KOPT if the new calculated F is less than FOPT.
++			    // Update XOPT, GOPT and KOPT if the new calculated F is less than FOPT.
+ 
+-            if (f < fopt) {
+-                trustRegionCenterInterpolationPointIndex = knew;
+-                xoptsq = ZERO;
+-                ih = 0;
+-                for (int j = 0; j < n; j++) {
+-                    trustRegionCenterOffset.setEntry(j, newPoint.getEntry(j));
+-                    // Computing 2nd power
+-                    final double d1 = trustRegionCenterOffset.getEntry(j);
+-                    xoptsq += d1 * d1;
+-                    for (int i = 0; i <= j; i++) {
+-                        if (i < j) {
+-                            gradientAtTrustRegionCenter.setEntry(j, gradientAtTrustRegionCenter.getEntry(j) + modelSecondDerivativesValues.getEntry(ih) * trialStepPoint.getEntry(i));
+-                        }
+-                        gradientAtTrustRegionCenter.setEntry(i, gradientAtTrustRegionCenter.getEntry(i) + modelSecondDerivativesValues.getEntry(ih) * trialStepPoint.getEntry(j));
+-                        ih++;
+-                    }
+-                }
+-                for (int k = 0; k < npt; k++) {
+-                    double temp = ZERO;
+-                    for (int j = 0; j < n; j++) {
+-                        temp += interpolationPoints.getEntry(k, j) * trialStepPoint.getEntry(j);
+-                    }
+-                    temp *= modelSecondDerivativesParameters.getEntry(k);
+-                    for (int i = 0; i < n; i++) {
+-                        gradientAtTrustRegionCenter.setEntry(i, gradientAtTrustRegionCenter.getEntry(i) + temp * interpolationPoints.getEntry(k, i));
+-                    }
+-                }
+-            }
++			    if (f < fopt) {
++			        trustRegionCenterInterpolationPointIndex = knew;
++			        xoptsq = ZERO;
++			        ih = 0;
++			        for (int j = 0; j < n; j++) {
++			            trustRegionCenterOffset.setEntry(j, newPoint.getEntry(j));
++			            // Computing 2nd power
++			            final double d1 = trustRegionCenterOffset.getEntry(j);
++			            xoptsq += d1 * d1;
++			            for (int i = 0; i <= j; i++) {
++			                if (i < j) {
++			                    gradientAtTrustRegionCenter.setEntry(j, gradientAtTrustRegionCenter.getEntry(j) + modelSecondDerivativesValues.getEntry(ih) * trialStepPoint.getEntry(i));
++			                }
++			                gradientAtTrustRegionCenter.setEntry(i, gradientAtTrustRegionCenter.getEntry(i) + modelSecondDerivativesValues.getEntry(ih) * trialStepPoint.getEntry(j));
++			                ih++;
++			            }
++			        }
++			        for (int k = 0; k < npt; k++) {
++			            double temp = ZERO;
++			            for (int j = 0; j < n; j++) {
++			                temp += interpolationPoints.getEntry(k, j) * trialStepPoint.getEntry(j);
++			            }
++			            temp *= modelSecondDerivativesParameters.getEntry(k);
++			            for (int i = 0; i < n; i++) {
++			                gradientAtTrustRegionCenter.setEntry(i, gradientAtTrustRegionCenter.getEntry(i) + temp * interpolationPoints.getEntry(k, i));
++			            }
++			        }
++			    }
+ 
+-            // Calculate the parameters of the least Frobenius norm interpolant to
+-            // the current data, the gradient of this interpolant at XOPT being put
+-            // into VLAG(NPT+I), I=1,2,...,N.
++			    // Calculate the parameters of the least Frobenius norm interpolant to
++			    // the current data, the gradient of this interpolant at XOPT being put
++			    // into VLAG(NPT+I), I=1,2,...,N.
+ 
+-            if (ntrits > 0) {
+-                for (int k = 0; k < npt; k++) {
+-                    lagrangeValuesAtNewPoint.setEntry(k, fAtInterpolationPoints.getEntry(k) - fAtInterpolationPoints.getEntry(trustRegionCenterInterpolationPointIndex));
+-                    work3.setEntry(k, ZERO);
+-                }
+-                for (int j = 0; j < nptm; j++) {
+-                    double sum = ZERO;
+-                    for (int k = 0; k < npt; k++) {
+-                        sum += zMatrix.getEntry(k, j) * lagrangeValuesAtNewPoint.getEntry(k);
+-                    }
+-                    for (int k = 0; k < npt; k++) {
+-                        work3.setEntry(k, work3.getEntry(k) + sum * zMatrix.getEntry(k, j));
+-                    }
+-                }
+-                for (int k = 0; k < npt; k++) {
+-                    double sum = ZERO;
+-                    for (int j = 0; j < n; j++) {
+-                        sum += interpolationPoints.getEntry(k, j) * trustRegionCenterOffset.getEntry(j);
+-                    }
+-                    work2.setEntry(k, work3.getEntry(k));
+-                    work3.setEntry(k, sum * work3.getEntry(k));
+-                }
+-                double gqsq = ZERO;
+-                double gisq = ZERO;
+-                for (int i = 0; i < n; i++) {
+-                    double sum = ZERO;
+-                    for (int k = 0; k < npt; k++) {
+-                        sum += bMatrix.getEntry(k, i) *
+-                            lagrangeValuesAtNewPoint.getEntry(k) + interpolationPoints.getEntry(k, i) * work3.getEntry(k);
+-                    }
+-                    if (trustRegionCenterOffset.getEntry(i) == lowerDifference.getEntry(i)) {
+-                        // Computing MIN
+-                        // Computing 2nd power
+-                        final double d1 = Math.min(ZERO, gradientAtTrustRegionCenter.getEntry(i));
+-                        gqsq += d1 * d1;
+-                        // Computing 2nd power
+-                        final double d2 = Math.min(ZERO, sum);
+-                        gisq += d2 * d2;
+-                    } else if (trustRegionCenterOffset.getEntry(i) == upperDifference.getEntry(i)) {
+-                        // Computing MAX
+-                        // Computing 2nd power
+-                        final double d1 = Math.max(ZERO, gradientAtTrustRegionCenter.getEntry(i));
+-                        gqsq += d1 * d1;
+-                        // Computing 2nd power
+-                        final double d2 = Math.max(ZERO, sum);
+-                        gisq += d2 * d2;
+-                    } else {
+-                        // Computing 2nd power
+-                        final double d1 = gradientAtTrustRegionCenter.getEntry(i);
+-                        gqsq += d1 * d1;
+-                        gisq += sum * sum;
+-                    }
+-                    lagrangeValuesAtNewPoint.setEntry(npt + i, sum);
+-                }
++			    if (ntrits > 0) {
++			        for (int k = 0; k < npt; k++) {
++			            lagrangeValuesAtNewPoint.setEntry(k, fAtInterpolationPoints.getEntry(k) - var_3361);
++			            work3.setEntry(k, ZERO);
++			        }
++			        for (int j = 0; j < nptm; j++) {
++			            double sum = ZERO;
++			            for (int k = 0; k < npt; k++) {
++			                sum += zMatrix.getEntry(k, j) * lagrangeValuesAtNewPoint.getEntry(k);
++			            }
++			            for (int k = 0; k < npt; k++) {
++			                work3.setEntry(k, work3.getEntry(k) + sum * zMatrix.getEntry(k, j));
++			            }
++			        }
++			        for (int k = 0; k < npt; k++) {
++			            double sum = ZERO;
++			            for (int j = 0; j < n; j++) {
++			                sum += interpolationPoints.getEntry(k, j) * trustRegionCenterOffset.getEntry(j);
++			            }
++			            work2.setEntry(k, work3.getEntry(k));
++			            work3.setEntry(k, sum * work3.getEntry(k));
++			        }
++			        double gqsq = ZERO;
++			        double gisq = ZERO;
++			        for (int i = 0; i < n; i++) {
++			            double sum = ZERO;
++			            for (int k = 0; k < npt; k++) {
++			                sum += bMatrix.getEntry(k, i) *
++			                    lagrangeValuesAtNewPoint.getEntry(k) + interpolationPoints.getEntry(k, i) * work3.getEntry(k);
++			            }
++			            if (trustRegionCenterOffset.getEntry(i) == lowerDifference.getEntry(i)) {
++			                // Computing MIN
++			                // Computing 2nd power
++			                final double d1 = Math.min(ZERO, gradientAtTrustRegionCenter.getEntry(i));
++			                gqsq += d1 * d1;
++			                // Computing 2nd power
++			                final double d2 = Math.min(ZERO, sum);
++			                gisq += d2 * d2;
++			            } else if (trustRegionCenterOffset.getEntry(i) == upperDifference.getEntry(i)) {
++			                // Computing MAX
++			                // Computing 2nd power
++			                final double d1 = Math.max(ZERO, gradientAtTrustRegionCenter.getEntry(i));
++			                gqsq += d1 * d1;
++			                // Computing 2nd power
++			                final double d2 = Math.max(ZERO, sum);
++			                gisq += d2 * d2;
++			            } else {
++			                // Computing 2nd power
++			                final double d1 = gradientAtTrustRegionCenter.getEntry(i);
++			                gqsq += d1 * d1;
++			                gisq += sum * sum;
++			            }
++			            lagrangeValuesAtNewPoint.setEntry(npt + i, sum);
++			        }
+ 
+-                // Test whether to replace the new quadratic model by the least Frobenius
+-                // norm interpolant, making the replacement if the test is satisfied.
++			        // Test whether to replace the new quadratic model by the least Frobenius
++			        // norm interpolant, making the replacement if the test is satisfied.
+ 
+-                ++itest;
+-                if (gqsq < TEN * gisq) {
+-                    itest = 0;
+-                }
+-                if (itest >= 3) {
+-                    for (int i = 0, max = Math.max(npt, nh); i < max; i++) {
+-                        if (i < n) {
+-                            gradientAtTrustRegionCenter.setEntry(i, lagrangeValuesAtNewPoint.getEntry(npt + i));
+-                        }
+-                        if (i < npt) {
+-                            modelSecondDerivativesParameters.setEntry(i, work2.getEntry(i));
+-                        }
+-                        if (i < nh) {
+-                            modelSecondDerivativesValues.setEntry(i, ZERO);
+-                        }
+-                        itest = 0;
+-                    }
+-                }
+-            }
++			        ++itest;
++			        if (gqsq < TEN * gisq) {
++			            itest = 0;
++			        }
++			        if (itest >= 3) {
++			            for (int i = 0, max = Math.max(npt, nh); i < max; i++) {
++			                if (i < n) {
++			                    gradientAtTrustRegionCenter.setEntry(i, lagrangeValuesAtNewPoint.getEntry(npt + i));
++			                }
++			                if (i < npt) {
++			                    modelSecondDerivativesParameters.setEntry(i, work2.getEntry(i));
++			                }
++			                if (i < nh) {
++			                    modelSecondDerivativesValues.setEntry(i, ZERO);
++			                }
++			                itest = 0;
++			            }
++			        }
++			    }
+ 
+-            // If a trust region step has provided a sufficient decrease in F, then
+-            // branch for another trust region calculation. The case NTRITS=0 occurs
+-            // when the new interpolation point was reached by an alternative step.
++			    // If a trust region step has provided a sufficient decrease in F, then
++			    // branch for another trust region calculation. The case NTRITS=0 occurs
++			    // when the new interpolation point was reached by an alternative step.
+ 
+-            if (ntrits == 0) {
+-                state = 60; break;
+-            }
+-            if (f <= fopt + ONE_OVER_TEN * vquad) {
+-                state = 60; break;
+-            }
++			    if (ntrits == 0) {
++			        state = 60; break;
++			    }
++			    if (f <= fopt + ONE_OVER_TEN * vquad) {
++			        state = 60; break;
++			    }
+ 
+-            // Alternatively, find out if the interpolation points are close enough
+-            //   to the best point so far.
++			    // Alternatively, find out if the interpolation points are close enough
++			    //   to the best point so far.
+ 
+-            // Computing MAX
+-            // Computing 2nd power
+-            final double d1 = TWO * delta;
+-            // Computing 2nd power
+-            final double d2 = TEN * rho;
+-            distsq = Math.max(d1 * d1, d2 * d2);
+-        }
+-        case 650: {
+-            printState(650); // XXX
+-            knew = -1;
+-            for (int k = 0; k < npt; k++) {
+-                double sum = ZERO;
+-                for (int j = 0; j < n; j++) {
+-                    // Computing 2nd power
+-                    final double d1 = interpolationPoints.getEntry(k, j) - trustRegionCenterOffset.getEntry(j);
+-                    sum += d1 * d1;
+-                }
+-                if (sum > distsq) {
+-                    knew = k;
+-                    distsq = sum;
+-                }
+-            }
++			    // Computing MAX
++			    // Computing 2nd power
++			    final double d1 = TWO * delta;
++			    // Computing 2nd power
++			    final double d2 = TEN * rho;
++			    distsq = Math.max(d1 * d1, d2 * d2);
++			}
++			case 650: {
++			    printState(650); // XXX
++			    knew = -1;
++			    for (int k = 0; k < npt; k++) {
++			        double sum = ZERO;
++			        for (int j = 0; j < n; j++) {
++			            // Computing 2nd power
++			            final double d1 = interpolationPoints.getEntry(k, j) - trustRegionCenterOffset.getEntry(j);
++			            sum += d1 * d1;
++			        }
++			        if (sum > distsq) {
++			            knew = k;
++			            distsq = sum;
++			        }
++			    }
+ 
+-            // If KNEW is positive, then ALTMOV finds alternative new positions for
+-            // the KNEW-th interpolation point within distance ADELT of XOPT. It is
+-            // reached via label 90. Otherwise, there is a branch to label 60 for
+-            // another trust region iteration, unless the calculations with the
+-            // current RHO are complete.
++			    // If KNEW is positive, then ALTMOV finds alternative new positions for
++			    // the KNEW-th interpolation point within distance ADELT of XOPT. It is
++			    // reached via label 90. Otherwise, there is a branch to label 60 for
++			    // another trust region iteration, unless the calculations with the
++			    // current RHO are complete.
+ 
+-            if (knew >= 0) {
+-                final double dist = Math.sqrt(distsq);
+-                if (ntrits == -1) {
+-                    // Computing MIN
+-                    delta = Math.min(ONE_OVER_TEN * delta, HALF * dist);
+-                    if (delta <= rho * 1.5) {
+-                        delta = rho;
+-                    }
+-                }
+-                ntrits = 0;
+-                // Computing MAX
+-                // Computing MIN
+-                final double d1 = Math.min(ONE_OVER_TEN * dist, delta);
+-                adelt = Math.max(d1, rho);
+-                dsq = adelt * adelt;
+-                state = 90; break;
+-            }
+-            if (ntrits == -1) {
+-                state = 680; break;
+-            }
+-            if (ratio > ZERO) {
+-                state = 60; break;
+-            }
+-            if (Math.max(delta, dnorm) > rho) {
+-                state = 60; break;
+-            }
++			    if (knew >= 0) {
++			        final double dist = Math.sqrt(distsq);
++			        if (ntrits == -1) {
++			            // Computing MIN
++			            delta = Math.min(ONE_OVER_TEN * delta, HALF * dist);
++			            if (delta <= rho * 1.5) {
++			                delta = rho;
++			            }
++			        }
++			        ntrits = 0;
++			        // Computing MAX
++			        // Computing MIN
++			        final double d1 = Math.min(ONE_OVER_TEN * dist, delta);
++			        adelt = Math.max(d1, rho);
++			        dsq = adelt * adelt;
++			        state = 90; break;
++			    }
++			    if (ntrits == -1) {
++			        state = 680; break;
++			    }
++			    if (ratio > ZERO) {
++			        state = 60; break;
++			    }
++			    if (Math.max(delta, dnorm) > rho) {
++			        state = 60; break;
++			    }
+ 
+-            // The calculations with the current value of RHO are complete. Pick the
+-            //   next values of RHO and DELTA.
+-        }
+-        case 680: {
+-            printState(680); // XXX
+-            if (rho > stoppingTrustRegionRadius) {
+-                delta = HALF * rho;
+-                ratio = rho / stoppingTrustRegionRadius;
+-                if (ratio <= SIXTEEN) {
+-                    rho = stoppingTrustRegionRadius;
+-                } else if (ratio <= TWO_HUNDRED_FIFTY) {
+-                    rho = Math.sqrt(ratio) * stoppingTrustRegionRadius;
+-                } else {
+-                    rho *= ONE_OVER_TEN;
+-                }
+-                delta = Math.max(delta, rho);
+-                ntrits = 0;
+-                nfsav = getEvaluations();
+-                state = 60; break;
+-            }
++			    // The calculations with the current value of RHO are complete. Pick the
++			    //   next values of RHO and DELTA.
++			}
++			case 680: {
++			    printState(680); // XXX
++			    if (rho > stoppingTrustRegionRadius) {
++			        delta = HALF * rho;
++			        ratio = rho / stoppingTrustRegionRadius;
++			        if (ratio <= SIXTEEN) {
++			            rho = stoppingTrustRegionRadius;
++			        } else if (ratio <= TWO_HUNDRED_FIFTY) {
++			            rho = Math.sqrt(ratio) * stoppingTrustRegionRadius;
++			        } else {
++			            rho *= ONE_OVER_TEN;
++			        }
++			        delta = Math.max(delta, rho);
++			        ntrits = 0;
++			        nfsav = getEvaluations();
++			        state = 60; break;
++			    }
+ 
+-            // Return from the calculation, after another Newton-Raphson step, if
+-            //   it is too short to have been tried before.
++			    // Return from the calculation, after another Newton-Raphson step, if
++			    //   it is too short to have been tried before.
+ 
+-            if (ntrits == -1) {
+-                state = 360; break;
+-            }
+-        }
+-        case 720: {
+-            printState(720); // XXX
+-            if (fAtInterpolationPoints.getEntry(trustRegionCenterInterpolationPointIndex) <= fsave) {
+-                for (int i = 0; i < n; i++) {
+-                    // Computing MIN
+-                    // Computing MAX
+-                    final double d3 = lowerBound[i];
+-                    final double d4 = originShift.getEntry(i) + trustRegionCenterOffset.getEntry(i);
+-                    final double d1 = Math.max(d3, d4);
+-                    final double d2 = upperBound[i];
+-                    currentBest.setEntry(i, Math.min(d1, d2));
+-                    if (trustRegionCenterOffset.getEntry(i) == lowerDifference.getEntry(i)) {
+-                        currentBest.setEntry(i, lowerBound[i]);
+-                    }
+-                    if (trustRegionCenterOffset.getEntry(i) == upperDifference.getEntry(i)) {
+-                        currentBest.setEntry(i, upperBound[i]);
+-                    }
+-                }
+-                f = fAtInterpolationPoints.getEntry(trustRegionCenterInterpolationPointIndex);
+-            }
+-            return f;
+-        }
+-        default: {
+-            throw new MathIllegalStateException(LocalizedFormats.SIMPLE_MESSAGE, "bobyqb");
+-        }}
++			    if (ntrits == -1) {
++			        state = 360; break;
++			    }
++			}
++			case 720: {
++			    printState(720); // XXX
++			    if (var_3361 <= fsave) {
++			        for (int i = 0; i < n; i++) {
++			            // Computing MIN
++			            // Computing MAX
++			            final double d3 = lowerBound[i];
++			            final double d4 = originShift.getEntry(i) + trustRegionCenterOffset.getEntry(i);
++			            final double d1 = Math.max(d3, d4);
++			            final double d2 = upperBound[i];
++			            currentBest.setEntry(i, Math.min(d1, d2));
++			            if (trustRegionCenterOffset.getEntry(i) == lowerDifference.getEntry(i)) {
++			                currentBest.setEntry(i, lowerBound[i]);
++			            }
++			            if (trustRegionCenterOffset.getEntry(i) == upperDifference.getEntry(i)) {
++			                currentBest.setEntry(i, upperBound[i]);
++			            }
++			        }
++			        f = var_3361;
++			    }
++			    return f;
++			}
++			default: {
++			    throw new MathIllegalStateException(LocalizedFormats.SIMPLE_MESSAGE, "bobyqb");
++			}}
++		}
+     } // bobyqb
+ 
+     // ----------------------------------------------------------------------------------------

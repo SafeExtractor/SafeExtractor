@@ -1,0 +1,38 @@
+diff --git a/source/org/jfree/chart/ChartPanel.java b/source/org/jfree/chart/ChartPanel.java
+index 001049a..6b90223 100644
+--- a/source/org/jfree/chart/ChartPanel.java
++++ b/source/org/jfree/chart/ChartPanel.java
+@@ -1605,7 +1605,8 @@
+      */
+     public void paintComponent(Graphics g) {
+         super.paintComponent(g);
+-        if (this.chart == null) {
++        JFreeChart var_77 = this.chart;
++		if (var_77 == null) {
+             return;
+         }
+         Graphics2D g2 = (Graphics2D) g.create();
+@@ -1689,12 +1690,12 @@
+                     AffineTransform st = AffineTransform.getScaleInstance(
+                             this.scaleX, this.scaleY);
+                     bufferG2.transform(st);
+-                    this.chart.draw(bufferG2, chartArea, this.anchor,
++                    var_77.draw(bufferG2, chartArea, this.anchor,
+                             this.info);
+                     bufferG2.setTransform(saved);
+                 }
+                 else {
+-                    this.chart.draw(bufferG2, bufferArea, this.anchor,
++                    var_77.draw(bufferG2, bufferArea, this.anchor,
+                             this.info);
+                 }
+ 
+@@ -1715,7 +1716,7 @@
+                         this.scaleX, this.scaleY);
+                 g2.transform(st);
+             }
+-            this.chart.draw(g2, chartArea, this.anchor, this.info);
++            var_77.draw(g2, chartArea, this.anchor, this.info);
+             g2.setTransform(saved);
+ 
+         }

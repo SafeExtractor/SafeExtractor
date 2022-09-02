@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+index 7b1dcc7..9f0ea39 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
++++ b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+@@ -549,7 +549,8 @@
+              */
+             this.r1 = this.b.copy();
+             this.y = this.m == null ? this.b.copy() : this.m.operate(this.r1);
+-            if ((this.m != null) && this.check) {
++            boolean var_2313 = this.check;
++			if ((this.m != null) && var_2313) {
+                 checkSymmetry(this.m, this.r1, this.y, this.m.operate(this.y));
+             }
+ 
+@@ -571,7 +572,7 @@
+              */
+             final RealVector v = this.y.mapMultiply(1. / this.beta1);
+             this.y = this.a.operate(v);
+-            if (this.check) {
++            if (var_2313) {
+                 checkSymmetry(this.a, v, this.y, this.a.operate(this.y));
+             }
+             /*

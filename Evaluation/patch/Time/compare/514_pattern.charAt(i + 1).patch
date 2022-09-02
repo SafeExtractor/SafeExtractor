@@ -1,0 +1,39 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/514_pattern.charAt(i + 1).patch b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/514_pattern.charAt(i + 1).patch
+index e1c1a09..db086d1 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/514_pattern.charAt(i + 1).patch	
++++ b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/514_pattern.charAt(i + 1).patch	
+@@ -1,30 +1,14 @@
+ diff --git a/src/main/java/org/joda/time/format/DateTimeFormat.java b/src/main/java/org/joda/time/format/DateTimeFormat.java
+-index 4558eb7..5e64b82 100644
++index 4558eb7..c7a8111 100644
+ --- a/src/main/java/org/joda/time/format/DateTimeFormat.java
+ +++ b/src/main/java/org/joda/time/format/DateTimeFormat.java
+-@@ -594,13 +594,14 @@
+-         int length = pattern.length();
+- 
+-         char c = pattern.charAt(i);
+--        if (c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z') {
+-+        char var_514 = pattern.charAt(i + 1);
+-+		if (c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z') {
+-             // Scan a run of the same character, which indicates a time
+-             // pattern.
++@@ -600,7 +600,8 @@
+              buf.append(c);
+  
+              while (i + 1 < length) {
+ -                char peek = pattern.charAt(i + 1);
+-+                char peek = var_514;
+++                char var_514 = pattern.charAt(i + 1);
+++				char peek = var_514;
+                  if (peek == c) {
+                      buf.append(c);
+                      i++;
+-@@ -618,7 +619,7 @@
+-                 c = pattern.charAt(i);
+-                 
+-                 if (c == '\'') {
+--                    if (i + 1 < length && pattern.charAt(i + 1) == '\'') {
+-+                    if (i + 1 < length && var_514 == '\'') {
+-                         // '' is treated as escaped '
+-                         i++;
+-                         buf.append(c);

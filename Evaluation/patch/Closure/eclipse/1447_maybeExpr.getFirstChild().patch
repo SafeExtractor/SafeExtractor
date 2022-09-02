@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..39e4d8f 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -934,8 +934,9 @@
+           // http://code.google.com/p/closure-compiler/issues/detail?id=291
+           // We try to detect this case, and not fold EXPR_RESULTs
+           // into other expressions.
+-          if (maybeExpr.getFirstChild().isCall()) {
+-            Node calledFn = maybeExpr.getFirstChild().getFirstChild();
++          Node var_1447 = maybeExpr.getFirstChild();
++		if (var_1447.isCall()) {
++            Node calledFn = var_1447.getFirstChild();
+ 
+             // We only have to worry about methods with an implicit 'this'
+             // param, or this doesn't happen.

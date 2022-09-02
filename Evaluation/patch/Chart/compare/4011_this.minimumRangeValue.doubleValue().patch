@@ -1,0 +1,40 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/4011_this.minimumRangeValue.doubleValue().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/4011_this.minimumRangeValue.doubleValue().patch
+index 8172522..7ba353d 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/4011_this.minimumRangeValue.doubleValue().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/4011_this.minimumRangeValue.doubleValue().patch
+@@ -1,22 +1,21 @@
+ diff --git a/source/org/jfree/data/statistics/DefaultMultiValueCategoryDataset.java b/source/org/jfree/data/statistics/DefaultMultiValueCategoryDataset.java
+-index 95fee7a..93bec97 100644
++index 95fee7a..75b31eb 100644
+ --- a/source/org/jfree/data/statistics/DefaultMultiValueCategoryDataset.java
+ +++ b/source/org/jfree/data/statistics/DefaultMultiValueCategoryDataset.java
+-@@ -145,13 +145,14 @@
+-                 this.maximumRangeValue = new Double(maxval);
+-             }
++@@ -147,10 +147,12 @@
+  
+--            if (this.minimumRangeValue == null) {
+-+            double var_4011 = this.minimumRangeValue.doubleValue();
+-+			if (this.minimumRangeValue == null) {
++             if (this.minimumRangeValue == null) {
+                  this.minimumRangeValue = new Double(minval);
+-             }
++-            }
+ -            else if (minval < this.minimumRangeValue.doubleValue()) {
+-+            else if (minval < var_4011) {
+-                 this.minimumRangeValue = new Double(minval);
+-             }
+--            this.rangeBounds = new Range(this.minimumRangeValue.doubleValue(),
+-+            this.rangeBounds = new Range(var_4011,
++-                this.minimumRangeValue = new Double(minval);
++-            }
+++            } else {
+++				double var_4011 = this.minimumRangeValue.doubleValue();
+++				if (minval < var_4011) {
+++				    this.minimumRangeValue = new Double(minval);
+++				}
+++			}
++             this.rangeBounds = new Range(this.minimumRangeValue.doubleValue(),
+                      this.maximumRangeValue.doubleValue());
+          }
+- 

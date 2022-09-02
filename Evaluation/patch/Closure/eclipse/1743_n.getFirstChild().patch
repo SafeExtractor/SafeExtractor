@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/MethodCompilerPass.java b/src/com/google/javascript/jscomp/MethodCompilerPass.java
+index 786d143..476fb2e 100644
+--- a/src/com/google/javascript/jscomp/MethodCompilerPass.java
++++ b/src/com/google/javascript/jscomp/MethodCompilerPass.java
+@@ -127,10 +127,11 @@
+ 
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      switch (n.getType()) {
++      Node var_1743 = n.getFirstChild();
++	switch (n.getType()) {
+         case Token.GETPROP:
+         case Token.GETELEM: {
+-          Node dest = n.getFirstChild().getNext();
++          Node dest = var_1743.getNext();
+ 
+           if (!dest.isString()) {
+             return;
+@@ -157,7 +158,7 @@
+         } break;
+ 
+         case Token.OBJECTLIT: {
+-          for (Node key = n.getFirstChild(); key != null; key = key.getNext()) {
++          for (Node key = var_1743; key != null; key = key.getNext()) {
+             Node value = key.getFirstChild();
+             String name = key.getString();
+             if (key.isStringKey()

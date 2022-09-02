@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/GenerateExports.java b/src/com/google/javascript/jscomp/GenerateExports.java
+index 40b4264..a82d9df 100644
+--- a/src/com/google/javascript/jscomp/GenerateExports.java
++++ b/src/com/google/javascript/jscomp/GenerateExports.java
+@@ -75,10 +75,11 @@
+ 
+       Node node = context.getNode().getFirstChild();
+       if (node.isGetProp()) {
+-        parent = node.getFirstChild().getQualifiedName();
+-        if (node.getFirstChild().isGetProp() &&
+-            getPropertyName(node.getFirstChild()).equals(PROTOTYPE_PROPERTY)) {
+-          grandparent = node.getFirstChild().getFirstChild().getQualifiedName();
++        Node var_2016 = node.getFirstChild();
++		parent = var_2016.getQualifiedName();
++        if (var_2016.isGetProp() &&
++            getPropertyName(var_2016).equals(PROTOTYPE_PROPERTY)) {
++          grandparent = var_2016.getFirstChild().getQualifiedName();
+         }
+       }
+ 

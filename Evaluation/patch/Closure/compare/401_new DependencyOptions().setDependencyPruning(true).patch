@@ -1,0 +1,43 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/401_new DependencyOptions().setDependencyPruning(true).patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/401_new DependencyOptions().setDependencyPruning(true).patch
+index 8e3accd..9c9e8af 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/401_new DependencyOptions().setDependencyPruning(true).patch	
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/401_new DependencyOptions().setDependencyPruning(true).patch	
+@@ -1,33 +1,16 @@
+ diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+-index ffa8bfe..bf5d72c 100644
++index ffa8bfe..b423b72 100644
+ --- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+ +++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+-@@ -218,14 +218,15 @@
+-       boolean processCommonJSModules,
+-       List<String> closureEntryPoints)
+-       throws FlagUsageException {
+--    if (onlyClosureDependencies) {
+-+    DependencyOptions var_401 = new DependencyOptions()
+-+		      .setDependencyPruning(true);
+-+	if (onlyClosureDependencies) {
+-       if (closureEntryPoints.isEmpty()) {
+-         throw new FlagUsageException("When only_closure_dependencies is "
++@@ -224,8 +224,9 @@
+            + "on, you must specify at least one closure_entry_point");
+        }
+  
+ -      return new DependencyOptions()
+ -          .setDependencyPruning(true)
+-+      return var_401
+++      DependencyOptions var_401 = new DependencyOptions()
+++          .setDependencyPruning(true);
+++	return var_401
+            .setDependencySorting(true)
+            .setMoocherDropping(true)
+            .setEntryPoints(closureEntryPoints);
+-@@ -238,8 +239,7 @@
+-     }
+-     else if (manageClosureDependencies ||
+-         closureEntryPoints.size() > 0) {
+--      return new DependencyOptions()
+--          .setDependencyPruning(true)
+-+      return var_401
+-           .setDependencySorting(true)
+-           .setMoocherDropping(false)
+-           .setEntryPoints(closureEntryPoints);

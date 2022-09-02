@@ -1,0 +1,36 @@
+diff --git a/src/com/google/javascript/jscomp/regex/RegExpTree.java b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+index c0c470a..a3c83f6 100644
+--- a/src/com/google/javascript/jscomp/regex/RegExpTree.java
++++ b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+@@ -935,18 +935,19 @@
+       int bodyLen = bodyEnd - bodyStart;
+       int min = this.min;
+       int max = this.max;
+-      if (min >= 2 && max == Integer.MAX_VALUE || max - min <= 1) {
++      int var_2432 = Integer.MAX_VALUE;
++	if (min >= 2 && max == var_2432 || max - min <= 1) {
+         int expanded =
+            // If min == max then we want to try expanding to the limit and
+            // attach the empty suffix, which is equivalent to min = max = 1,
+            // i.e. /a/ vs /a{1}/.
+            min == max
+            // Give aa+ preference over aaa*.
+-           || max == Integer.MAX_VALUE
++           || max == var_2432
+            ? min - 1
+            : min;
+         int expandedMin = min - expanded;
+-        int expandedMax = max == Integer.MAX_VALUE ? max : max - expanded;
++        int expandedMax = max == var_2432 ? max : max - expanded;
+         int suffixLen = suffixLen(min, max);
+         int expandedSuffixLen = suffixLen(expandedMin, expandedMax);
+         if (bodyLen * expanded + expandedSuffixLen < suffixLen
+@@ -962,7 +963,7 @@
+         }
+       }
+ 
+-      if (max == Integer.MAX_VALUE) {
++      if (max == var_2432) {
+         switch (min) {
+           case 0: sb.append('*'); break;
+           case 1: sb.append('+'); break;

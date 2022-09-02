@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/event/ChartChangeEventType.java b/source/org/jfree/chart/event/ChartChangeEventType.java
+index ab1acb4..8ec4495 100644
+--- a/source/org/jfree/chart/event/ChartChangeEventType.java
++++ b/source/org/jfree/chart/event/ChartChangeEventType.java
+@@ -125,13 +125,15 @@
+     private Object readResolve() throws ObjectStreamException {
+         if (this.equals(ChartChangeEventType.GENERAL)) {
+             return ChartChangeEventType.GENERAL;
+-        }
+-        else if (this.equals(ChartChangeEventType.NEW_DATASET)) {
+-            return ChartChangeEventType.NEW_DATASET;
+-        }
+-        else if (this.equals(ChartChangeEventType.DATASET_UPDATED)) {
+-            return ChartChangeEventType.DATASET_UPDATED;
+-        }
++        } else {
++			ChartChangeEventType var_1160 = ChartChangeEventType.NEW_DATASET;
++			if (this.equals(var_1160)) {
++			    return var_1160;
++			}
++			else if (this.equals(ChartChangeEventType.DATASET_UPDATED)) {
++			    return ChartChangeEventType.DATASET_UPDATED;
++			}
++		}
+         return null;
+     }
+ 

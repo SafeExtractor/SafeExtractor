@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
+index 930eb1e..c9bfcbc 100644
+--- a/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
+@@ -832,7 +832,8 @@
+ 
+                     final double sin;
+                     final double cos;
+-                    double rkk = weightedJacobian[k][pk];
++                    double[] var_1035 = weightedJacobian[k];
++					double rkk = var_1035[pk];
+                     if (FastMath.abs(rkk) < FastMath.abs(lmDiag[k])) {
+                         final double cotan = rkk / lmDiag[k];
+                         sin   = 1.0 / FastMath.sqrt(1.0 + cotan * cotan);
+@@ -845,7 +846,7 @@
+ 
+                     // compute the modified diagonal element of R and
+                     // the modified element of (Qty,0)
+-                    weightedJacobian[k][pk] = cos * rkk + sin * lmDiag[k];
++                    var_1035[pk] = cos * rkk + sin * lmDiag[k];
+                     final double temp = cos * work[k] + sin * qtbpj;
+                     qtbpj = -sin * work[k] + cos * qtbpj;
+                     work[k] = temp;

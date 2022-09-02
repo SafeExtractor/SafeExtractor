@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+index c8fbac8..1fc42a6 100644
+--- a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
++++ b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+@@ -1632,7 +1632,8 @@
+           Node args = current.getFirstChild();
+           for (Node arg = current.getFirstChild(); arg != null;
+                arg = arg.getNext()) {
+-            if (arg.getType() == Token.ELLIPSIS) {
++            int var_2675 = arg.getType();
++			if (var_2675 == Token.ELLIPSIS) {
+               if (arg.getChildCount() == 0) {
+                 paramBuilder.addVarArgs(getNativeType(UNKNOWN_TYPE));
+               } else {
+@@ -1643,7 +1644,7 @@
+             } else {
+               JSType type = createFromTypeNodesInternal(
+                   arg, sourceName, scope);
+-              if (arg.getType() == Token.EQUALS) {
++              if (var_2675 == Token.EQUALS) {
+                 boolean addSuccess = paramBuilder.addOptionalParams(type);
+                 if (!addSuccess) {
+                   reporter.warning(

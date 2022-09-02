@@ -1,0 +1,32 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapConsumerV1.java b/src/com/google/debugging/sourcemap/SourceMapConsumerV1.java
+index 8bd554f..fa7d37c 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapConsumerV1.java
++++ b/src/com/google/debugging/sourcemap/SourceMapConsumerV1.java
+@@ -160,7 +160,8 @@
+       int lastID = -1;
+       int startID = Integer.MIN_VALUE;
+       List<Byte> currentOffsets = Lists.newArrayList();
+-      for (int j = 0; j < charArray.length(); ++j) {
++      byte[] var_100 = Bytes.toArray(currentOffsets);
++	for (int j = 0; j < charArray.length(); ++j) {
+         // Keep track of the current mappingID, if the next element in the
+         // array is empty we reuse the existing mappingID for the column.
+         int mappingID = lastID;
+@@ -179,7 +180,7 @@
+           if (mappingID - lastID > Byte.MAX_VALUE
+               || mappingID - lastID < Byte.MIN_VALUE) {
+             myLineFragment = new LineFragment(
+-                startID, Bytes.toArray(currentOffsets));
++                startID, var_100);
+             currentOffsets.clear();
+             // Start a new section.
+             fragmentList.add(myLineFragment);
+@@ -193,7 +194,7 @@
+       }
+       if (startID != Integer.MIN_VALUE) {
+         myLineFragment = new LineFragment(
+-            startID, Bytes.toArray(currentOffsets));
++            startID, var_100);
+         fragmentList.add(myLineFragment);
+       }
+       characterMapBuilder.add(fragmentList.build());

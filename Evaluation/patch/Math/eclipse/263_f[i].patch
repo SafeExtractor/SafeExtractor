@@ -1,0 +1,42 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java
+index 7437838..1e7f8f7 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolatingFunction.java
+@@ -194,8 +194,9 @@
+         splines = new TricubicSplineFunction[lastI][lastJ][lastK];
+ 
+         for (int i = 0; i < lastI; i++) {
+-            if (f[i].length != yLen) {
+-                throw new DimensionMismatchException(f[i].length, yLen);
++            double[][] var_263 = f[i];
++			if (var_263.length != yLen) {
++                throw new DimensionMismatchException(var_263.length, yLen);
+             }
+             if (dFdX[i].length != yLen) {
+                 throw new DimensionMismatchException(dFdX[i].length, yLen);
+@@ -221,8 +222,8 @@
+ 
+             final int ip1 = i + 1;
+             for (int j = 0; j < lastJ; j++) {
+-                if (f[i][j].length != zLen) {
+-                    throw new DimensionMismatchException(f[i][j].length, zLen);
++                if (var_263[j].length != zLen) {
++                    throw new DimensionMismatchException(var_263[j].length, zLen);
+                 }
+                 if (dFdX[i][j].length != zLen) {
+                     throw new DimensionMismatchException(dFdX[i][j].length, zLen);
+@@ -251,10 +252,10 @@
+                     final int kp1 = k + 1;
+ 
+                     final double[] beta = new double[] {
+-                        f[i][j][k], f[ip1][j][k],
+-                        f[i][jp1][k], f[ip1][jp1][k],
+-                        f[i][j][kp1], f[ip1][j][kp1],
+-                        f[i][jp1][kp1], f[ip1][jp1][kp1],
++                        var_263[j][k], f[ip1][j][k],
++                        var_263[jp1][k], f[ip1][jp1][k],
++                        var_263[j][kp1], f[ip1][j][kp1],
++                        var_263[jp1][kp1], f[ip1][jp1][kp1],
+ 
+                         dFdX[i][j][k], dFdX[ip1][j][k],
+                         dFdX[i][jp1][k], dFdX[ip1][jp1][k],

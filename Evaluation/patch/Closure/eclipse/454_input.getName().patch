@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..5a2e52b 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -1500,17 +1500,18 @@
+       // module spec, and we're printing a bundle file, we'll have a fake
+       // input file that shouldn't be copied. So we special-case this, to
+       // make all the other cases simpler.
+-      if (input.getName().equals(
++      String var_454 = input.getName();
++	if (var_454.equals(
+               Compiler.createFillFileName(Compiler.SINGLETON_MODULE_NAME))) {
+         Preconditions.checkState(1 == Iterables.size(inputs));
+         return;
+       }
+ 
+-      String rootRelativePath = rootRelativePathsMap.get(input.getName());
++      String rootRelativePath = rootRelativePathsMap.get(var_454);
+       String displayName = rootRelativePath != null
+           ? rootRelativePath
+-          : input.getName();
+-      File file = new File(input.getName());
++          : var_454;
++      File file = new File(var_454);
+       out.append("//");
+       out.append(displayName);
+       out.append("\n");

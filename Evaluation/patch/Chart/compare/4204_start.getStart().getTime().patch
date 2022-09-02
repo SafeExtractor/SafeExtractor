@@ -1,0 +1,37 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/4204_start.getStart().getTime().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/4204_start.getStart().getTime().patch
+index 3cf65cc..525d951 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/4204_start.getStart().getTime().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/4204_start.getStart().getTime().patch
+@@ -1,28 +1,14 @@
+ diff --git a/source/org/jfree/data/time/TimePeriodValuesCollection.java b/source/org/jfree/data/time/TimePeriodValuesCollection.java
+-index ba52bd7..5b7a105 100644
++index ba52bd7..79953c8 100644
+ --- a/source/org/jfree/data/time/TimePeriodValuesCollection.java
+ +++ b/source/org/jfree/data/time/TimePeriodValuesCollection.java
+-@@ -388,11 +388,12 @@
+-                 TimePeriod start = series.getTimePeriod(
+-                         series.getMinStartIndex());
+-                 TimePeriod end = series.getTimePeriod(series.getMaxEndIndex());
+--                if (!includeInterval) {
+-+                long var_4204 = start.getStart().getTime();
+-+				if (!includeInterval) {
++@@ -392,7 +392,8 @@
+                      if (this.xPosition == TimePeriodAnchor.START) {
+                          TimePeriod maxStart = series.getTimePeriod(
+                                  series.getMaxStartIndex());
+ -                        temp = new Range(start.getStart().getTime(),
+-+                        temp = new Range(var_4204,
+++                        long var_4204 = start.getStart().getTime();
+++						temp = new Range(var_4204,
+                                  maxStart.getStart().getTime());
+                      }
+                      else if (this.xPosition == TimePeriodAnchor.MIDDLE) {
+-@@ -415,7 +416,7 @@
+-                     }
+-                 }
+-                 else {
+--                    temp = new Range(start.getStart().getTime(),
+-+                    temp = new Range(var_4204,
+-                             end.getEnd().getTime());
+-                 }
+-                 result = Range.combine(result, temp);

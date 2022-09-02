@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..612c497 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -639,9 +639,10 @@
+ 
+             if (v.unequal(zero)) {
+                 final Dfp a = v.multiply(log(x));
+-                final Dfp b = a.divide(x.getField().getLn2()).rint();
++                Dfp var_815 = x.getField().getLn2();
++				final Dfp b = a.divide(var_815).rint();
+ 
+-                final Dfp c = a.subtract(b.multiply(x.getField().getLn2()));
++                final Dfp c = a.subtract(b.multiply(var_815));
+                 r = splitPow(split(x), ui);
+                 r = r.multiply(pow(two, b.intValue()));
+                 r = r.multiply(exp(c));

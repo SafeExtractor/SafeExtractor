@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..a1382a2 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -832,8 +832,9 @@
+     // the CodePrinter specifically wants to keep them.
+     if (n.isBlock()) {
+       int count = getNonEmptyChildCount(n, 2);
+-      if (count == 0) {
+-        if (cc.shouldPreserveExtraBlocks()) {
++      boolean var_1567 = cc.shouldPreserveExtraBlocks();
++	if (count == 0) {
++        if (var_1567) {
+           cc.beginBlock();
+           cc.endBlock(cc.breakAfterBlockFor(n, context == Context.STATEMENT));
+         } else {
+@@ -847,7 +848,7 @@
+         //   Safari needs a block around function declarations.
+         //   IE6/7 needs a block around DOs.
+         Node firstAndOnlyChild = getFirstNonEmptyChild(n);
+-        boolean alwaysWrapInBlock = cc.shouldPreserveExtraBlocks();
++        boolean alwaysWrapInBlock = var_1567;
+         if (alwaysWrapInBlock || isOneExactlyFunctionOrDo(firstAndOnlyChild)) {
+           cc.beginBlock();
+           add(firstAndOnlyChild, Context.STATEMENT);

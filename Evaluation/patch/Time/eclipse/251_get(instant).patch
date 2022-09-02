@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/joda/time/chrono/GJChronology.java b/src/main/java/org/joda/time/chrono/GJChronology.java
+index 1cc03a4..e83f3ba 100644
+--- a/src/main/java/org/joda/time/chrono/GJChronology.java
++++ b/src/main/java/org/joda/time/chrono/GJChronology.java
+@@ -735,7 +735,8 @@
+         }
+ 
+         public long set(long instant, int value) {
+-            if (instant >= iCutover) {
++            int var_251 = get(instant);
++			if (instant >= iCutover) {
+                 instant = iGregorianField.set(instant, value);
+                 if (instant < iCutover) {
+                     // Only adjust if gap fully crossed.
+@@ -743,7 +744,7 @@
+                         instant = gregorianToJulian(instant);
+                     }
+                     // Verify that new value stuck.
+-                    if (get(instant) != value) {
++                    if (var_251 != value) {
+                         throw new IllegalFieldValueException
+                             (iGregorianField.getType(), Integer.valueOf(value), null, null);
+                     }
+@@ -756,7 +757,7 @@
+                         instant = julianToGregorian(instant);
+                     }
+                     // Verify that new value stuck.
+-                    if (get(instant) != value) {
++                    if (var_251 != value) {
+                        throw new IllegalFieldValueException
+                             (iJulianField.getType(), Integer.valueOf(value), null, null);
+                     }

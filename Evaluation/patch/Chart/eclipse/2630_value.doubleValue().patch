@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java b/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
+index eaf0b57..d48f7d3 100644
+--- a/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
++++ b/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
+@@ -341,7 +341,8 @@
+             // current data point...
+             double x1 = domainAxis.getCategoryMiddle(column, getColumnCount(),
+                     dataArea, plot.getDomainAxisEdge());
+-            double y1 = rangeAxis.valueToJava2D(value.doubleValue(), dataArea,
++            double var_2630 = value.doubleValue();
++			double y1 = rangeAxis.valueToJava2D(var_2630, dataArea,
+                     plot.getRangeAxisEdge());
+             g2.setPaint(getItemPaint(row, column, selected));
+             g2.setStroke(getItemStroke(row, column, selected));
+@@ -357,11 +358,11 @@
+             }
+ 
+             if (this.lastCategory == column) {
+-                if (this.min > value.doubleValue()) {
+-                    this.min = value.doubleValue();
++                if (this.min > var_2630) {
++                    this.min = var_2630;
+                 }
+-                if (this.max < value.doubleValue()) {
+-                    this.max = value.doubleValue();
++                if (this.max < var_2630) {
++                    this.max = var_2630;
+                 }
+ 
+                 // last series, so we are ready to draw the min and max
+@@ -387,8 +388,8 @@
+             }
+             else {  // reset the min and max
+                 this.lastCategory = column;
+-                this.min = value.doubleValue();
+-                this.max = value.doubleValue();
++                this.min = var_2630;
++                this.max = var_2630;
+             }
+ 
+             // connect to the previous point

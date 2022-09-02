@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+index 2e75bce..981f362 100644
+--- a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
++++ b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+@@ -867,10 +867,11 @@
+ 
+         // Does this need a VAR keyword?
+         replacementNode = candidateDefinition;
+-        if (candidateDefinition.isExprResult() &&
+-            !candidateDefinition.getFirstChild().isQualifiedName()) {
++        Node var_1530 = candidateDefinition.getFirstChild();
++		if (candidateDefinition.isExprResult() &&
++            !var_1530.isQualifiedName()) {
+           candidateDefinition.putBooleanProp(Node.IS_NAMESPACE, true);
+-          Node assignNode = candidateDefinition.getFirstChild();
++          Node assignNode = var_1530;
+           Node nameNode = assignNode.getFirstChild();
+           if (nameNode.isName()) {
+             // Need to convert this assign to a var declaration.

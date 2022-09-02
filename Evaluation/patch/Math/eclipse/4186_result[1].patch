@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/FastMathCalc.java b/src/main/java/org/apache/commons/math3/util/FastMathCalc.java
+index 07c0bdc..cfc0784 100644
+--- a/src/main/java/org/apache/commons/math3/util/FastMathCalc.java
++++ b/src/main/java/org/apache/commons/math3/util/FastMathCalc.java
+@@ -412,7 +412,8 @@
+         result[0] = a / in[0];
+         result[1] = (b*in[0]-a*in[1]) / (in[0]*in[0] + in[0]*in[1]);
+ 
+-        if (result[1] != result[1]) { // can happen if result[1] is NAN
++        double var_4186 = result[1];
++		if (var_4186 != var_4186) { // can happen if result[1] is NAN
+             result[1] = 0.0;
+         }
+ 
+@@ -422,9 +423,9 @@
+         for (int i = 0; i < 2; i++) {
+             /* this may be overkill, probably once is enough */
+             double err = 1.0 - result[0] * in[0] - result[0] * in[1] -
+-            result[1] * in[0] - result[1] * in[1];
++            var_4186 * in[0] - var_4186 * in[1];
+             /*err = 1.0 - err; */
+-            err = err * (result[0] + result[1]);
++            err = err * (result[0] + var_4186);
+             /*printf("err = %16e\n", err); */
+             result[1] += err;
+         }

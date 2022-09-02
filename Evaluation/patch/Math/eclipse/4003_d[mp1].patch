@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..e6b2cd9 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -725,7 +725,8 @@
+             mp1 = m + 1;
+ 
+             d1 = d[m];
+-            d2 = d[mp1];
++            double var_4003 = d[mp1];
++			d2 = var_4003;
+             // Special cases.
+             if (d1 > this.epsilon || d2 > this.epsilon) {
+                 X = r[m1];
+@@ -795,7 +796,7 @@
+             X = tol[m];
+             tol[m] = tol[mp1];
+             tol[mp1] = X;
+-            rss[m] = rss[mp1] + d[mp1] * rhs[mp1] * rhs[mp1];
++            rss[m] = rss[mp1] + var_4003 * rhs[mp1] * rhs[mp1];
+ 
+             m += inc;
+             ++idx;

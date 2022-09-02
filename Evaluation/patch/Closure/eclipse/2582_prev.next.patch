@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/rhino/Node.java b/src/com/google/javascript/rhino/Node.java
+index 55aefbe..a933b8f 100644
+--- a/src/com/google/javascript/rhino/Node.java
++++ b/src/com/google/javascript/rhino/Node.java
+@@ -1653,10 +1653,11 @@
+   public Node removeChildAfter(Node prev) {
+     Preconditions.checkArgument(prev.parent == this,
+         "prev is not a child of this node.");
+-    Preconditions.checkArgument(prev.next != null,
++    Node var_2582 = prev.next;
++	Preconditions.checkArgument(var_2582 != null,
+         "no next sibling.");
+ 
+-    Node child = prev.next;
++    Node child = var_2582;
+     prev.next = child.next;
+     if (child == last) last = prev;
+     child.next = null;

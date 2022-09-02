@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/lang3/ArrayUtils.java b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+index a0a499a..e3471f9 100644
+--- a/src/main/java/org/apache/commons/lang3/ArrayUtils.java
++++ b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+@@ -3167,9 +3167,12 @@
+     public static boolean[] toPrimitive(final Boolean[] array) {
+         if (array == null) {
+             return null;
+-        } else if (array.length == 0) {
+-            return EMPTY_BOOLEAN_ARRAY;
+-        }
++        } else {
++			int var_194 = array.length;
++			if (var_194 == 0) {
++			    return EMPTY_BOOLEAN_ARRAY;
++			}
++		}
+         final boolean[] result = new boolean[array.length];
+         for (int i = 0; i < array.length; i++) {
+             result[i] = array[i].booleanValue();

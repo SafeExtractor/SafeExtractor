@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..408c10f 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -364,16 +364,17 @@
+         spy = splitMult(a.getField().getLn2Split(), spx);
+ 
+         spz[0] = spz[0].add(spy[0]);
+-        spz[1] = spz[1].add(spy[1]);
++        Dfp var_799 = spz[1];
++		spz[1] = var_799.add(spy[1]);
+ 
+         spx[0] = a.newInstance(new StringBuilder().append(4*lr).toString());
+         spx[1] = a.getZero();
+         spy = splitMult(a.getField().getLn5Split(), spx);
+ 
+         spz[0] = spz[0].add(spy[0]);
+-        spz[1] = spz[1].add(spy[1]);
++        spz[1] = var_799.add(spy[1]);
+ 
+-        return a.newInstance(spz[0].add(spz[1]));
++        return a.newInstance(spz[0].add(var_799));
+ 
+     }
+ 

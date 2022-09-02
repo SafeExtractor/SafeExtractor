@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 9d1b56c..36b8593 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -207,10 +207,11 @@
+       // If we have an identity assignment such as a=a, always remove it
+       // regardless of what the liveness results because it
+       // does not change the result afterward.
+-      if (rhs != null &&
++      boolean var_242 = n.isAssign();
++	if (rhs != null &&
+           rhs.isName() &&
+           rhs.getString().equals(var.name) &&
+-          n.isAssign()) {
++          var_242) {
+         n.removeChild(rhs);
+         n.getParent().replaceChild(n, rhs);
+         compiler.reportCodeChange();
+@@ -236,7 +237,7 @@
+         return;
+       }
+ 
+-      if (n.isAssign()) {
++      if (var_242) {
+         n.removeChild(rhs);
+         n.getParent().replaceChild(n, rhs);
+       } else if (NodeUtil.isAssignmentOp(n)) {

@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/MultivariateFunctionMappingAdapter.java b/src/main/java/org/apache/commons/math3/optimization/direct/MultivariateFunctionMappingAdapter.java
+index 89b067d..274d002 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/MultivariateFunctionMappingAdapter.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/MultivariateFunctionMappingAdapter.java
+@@ -115,7 +115,8 @@
+         this.bounded = bounded;
+         this.mappers = new Mapper[lower.length];
+         for (int i = 0; i < mappers.length; ++i) {
+-            if (Double.isInfinite(lower[i])) {
++            double var_3336 = lower[i];
++			if (Double.isInfinite(var_3336)) {
+                 if (Double.isInfinite(upper[i])) {
+                     // element is unbounded, no transformation is needed
+                     mappers[i] = new NoBoundsMapper();
+@@ -126,10 +127,10 @@
+             } else {
+                 if (Double.isInfinite(upper[i])) {
+                     // element is simple-bounded on the lower side
+-                    mappers[i] = new LowerBoundMapper(lower[i]);
++                    mappers[i] = new LowerBoundMapper(var_3336);
+                 } else {
+                     // element is double-bounded
+-                    mappers[i] = new LowerUpperBoundMapper(lower[i], upper[i]);
++                    mappers[i] = new LowerUpperBoundMapper(var_3336, upper[i]);
+                 }
+             }
+         }

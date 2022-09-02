@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+index 104bdf5..a00462f 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+@@ -1229,7 +1229,8 @@
+         if (m.getColumnDimension() == 1) {
+             final double[][] d = new double[m.getRowDimension()][m.getRowDimension()];
+             for (int i = 0; i < m.getRowDimension(); i++) {
+-                d[i][i] = m.getEntry(i, 0);
++                double[] var_3306 = d[i];
++				var_3306[i] = m.getEntry(i, 0);
+             }
+             return new Array2DRowRealMatrix(d, false);
+         } else {

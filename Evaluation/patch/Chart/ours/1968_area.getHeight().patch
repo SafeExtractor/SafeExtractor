@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/plot/MeterPlot.java b/source/org/jfree/chart/plot/MeterPlot.java
+index efd9ca4..bac6faa 100644
+--- a/source/org/jfree/chart/plot/MeterPlot.java
++++ b/source/org/jfree/chart/plot/MeterPlot.java
+@@ -817,8 +817,9 @@
+         RectangleInsets insets = getInsets();
+         insets.trim(area);
+ 
+-        area.setRect(area.getX() + 4, area.getY() + 4, area.getWidth() - 8,
+-                area.getHeight() - 8);
++        double var_1968 = area.getHeight();
++		area.setRect(area.getX() + 4, area.getY() + 4, area.getWidth() - 8,
++                var_1968 - 8);
+ 
+         // draw the background
+         if (this.drawBorder) {
+@@ -831,9 +832,9 @@
+         double meterX = area.getX() + gapHorizontal / 2;
+         double meterY = area.getY() + gapVertical / 2;
+         double meterW = area.getWidth() - gapHorizontal;
+-        double meterH = area.getHeight() - gapVertical
++        double meterH = var_1968 - gapVertical
+                 + ((this.meterAngle <= 180) && (this.shape != DialShape.CIRCLE)
+-                ? area.getHeight() / 1.25 : 0);
++                ? var_1968 / 1.25 : 0);
+ 
+         double min = Math.min(meterW, meterH) / 2;
+         meterX = (meterX + meterX + meterW) / 2 - min;

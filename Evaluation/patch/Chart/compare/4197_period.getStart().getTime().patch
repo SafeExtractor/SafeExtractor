@@ -1,0 +1,31 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/4197_period.getStart().getTime().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/4197_period.getStart().getTime().patch
+index f93d331..8606756 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/4197_period.getStart().getTime().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/4197_period.getStart().getTime().patch
+@@ -1,20 +1,14 @@
+ diff --git a/source/org/jfree/data/time/TimePeriodValuesCollection.java b/source/org/jfree/data/time/TimePeriodValuesCollection.java
+-index ba52bd7..f60de88 100644
++index ba52bd7..b3cd3b5 100644
+ --- a/source/org/jfree/data/time/TimePeriodValuesCollection.java
+ +++ b/source/org/jfree/data/time/TimePeriodValuesCollection.java
+-@@ -253,11 +253,12 @@
+-      */
++@@ -254,7 +254,8 @@
+      private long getX(TimePeriod period) {
+  
+--        if (this.xPosition == TimePeriodAnchor.START) {
++         if (this.xPosition == TimePeriodAnchor.START) {
+ -            return period.getStart().getTime();
+-+        long var_4197 = period.getStart().getTime();
+-+		if (this.xPosition == TimePeriodAnchor.START) {
+-+            return var_4197;
+++            long var_4197 = period.getStart().getTime();
+++			return var_4197;
+          }
+          else if (this.xPosition == TimePeriodAnchor.MIDDLE) {
+--            return period.getStart().getTime()
+-+            return var_4197
+-                 / 2 + period.getEnd().getTime() / 2;
+-         }
+-         else if (this.xPosition == TimePeriodAnchor.END) {
++             return period.getStart().getTime()

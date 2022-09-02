@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..03a8ada 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -700,7 +700,8 @@
+ 
+     // if (x()) { }
+     if (!mayHaveSideEffects(thenBody) && elseBody == null) {
+-      if (mayHaveSideEffects(cond)) {
++      boolean var_799 = mayHaveSideEffects(cond);
++	if (var_799) {
+         // x() has side effects, just leave the condition on its own.
+         n.removeChild(cond);
+         Node replacement = NodeUtil.newExpr(cond);

@@ -1,0 +1,46 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
+index fbdafa3..ce0b97e 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
+@@ -940,7 +940,8 @@
+     double[] m1 = m[1];
+     double[] m2 = m[2];
+     double x00 = m0[0];
+-    double x01 = m0[1];
++    double var_1446 = m0[1];
++	double x01 = var_1446;
+     double x02 = m0[2];
+     double x10 = m1[0];
+     double x11 = m1[1];
+@@ -962,18 +963,18 @@
+ 
+       // Mt.Xn
+       double mx00 = m0[0] * x00 + m1[0] * x10 + m2[0] * x20;
+-      double mx10 = m0[1] * x00 + m1[1] * x10 + m2[1] * x20;
++      double mx10 = var_1446 * x00 + m1[1] * x10 + m2[1] * x20;
+       double mx20 = m0[2] * x00 + m1[2] * x10 + m2[2] * x20;
+       double mx01 = m0[0] * x01 + m1[0] * x11 + m2[0] * x21;
+-      double mx11 = m0[1] * x01 + m1[1] * x11 + m2[1] * x21;
++      double mx11 = var_1446 * x01 + m1[1] * x11 + m2[1] * x21;
+       double mx21 = m0[2] * x01 + m1[2] * x11 + m2[2] * x21;
+       double mx02 = m0[0] * x02 + m1[0] * x12 + m2[0] * x22;
+-      double mx12 = m0[1] * x02 + m1[1] * x12 + m2[1] * x22;
++      double mx12 = var_1446 * x02 + m1[1] * x12 + m2[1] * x22;
+       double mx22 = m0[2] * x02 + m1[2] * x12 + m2[2] * x22;
+ 
+       // Xn+1
+       o0[0] = x00 - 0.5 * (x00 * mx00 + x01 * mx10 + x02 * mx20 - m0[0]);
+-      o0[1] = x01 - 0.5 * (x00 * mx01 + x01 * mx11 + x02 * mx21 - m0[1]);
++      o0[1] = x01 - 0.5 * (x00 * mx01 + x01 * mx11 + x02 * mx21 - var_1446);
+       o0[2] = x02 - 0.5 * (x00 * mx02 + x01 * mx12 + x02 * mx22 - m0[2]);
+       o1[0] = x10 - 0.5 * (x10 * mx00 + x11 * mx10 + x12 * mx20 - m1[0]);
+       o1[1] = x11 - 0.5 * (x10 * mx01 + x11 * mx11 + x12 * mx21 - m1[1]);
+@@ -984,7 +985,7 @@
+ 
+       // correction on each elements
+       double corr00 = o0[0] - m0[0];
+-      double corr01 = o0[1] - m0[1];
++      double corr01 = o0[1] - var_1446;
+       double corr02 = o0[2] - m0[2];
+       double corr10 = o1[0] - m1[0];
+       double corr11 = o1[1] - m1[1];

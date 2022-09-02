@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java b/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
+index 423689d..8f01f0a 100644
+--- a/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
++++ b/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
+@@ -166,10 +166,11 @@
+ 
+         // initialize the error covariance to the process noise if it is not
+         // available from the process model
+-        if (processModel.getInitialErrorCovariance() == null) {
++        RealMatrix var_944 = processModel.getInitialErrorCovariance();
++		if (var_944 == null) {
+             errorCovariance = processNoise.copy();
+         } else {
+-            errorCovariance = processModel.getInitialErrorCovariance();
++            errorCovariance = var_944;
+         }
+ 
+         // sanity checks, the control matrix B may be null

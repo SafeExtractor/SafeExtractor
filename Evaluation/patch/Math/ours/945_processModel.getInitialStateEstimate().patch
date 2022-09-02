@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java b/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
+index 423689d..a1d1e4c 100644
+--- a/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
++++ b/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
+@@ -153,10 +153,11 @@
+ 
+         // set the initial state estimate to a zero vector if it is not
+         // available from the process model
+-        if (processModel.getInitialStateEstimate() == null) {
++        RealVector var_945 = processModel.getInitialStateEstimate();
++		if (var_945 == null) {
+             stateEstimation = new ArrayRealVector(transitionMatrix.getColumnDimension());
+         } else {
+-            stateEstimation = processModel.getInitialStateEstimate();
++            stateEstimation = var_945;
+         }
+ 
+         if (transitionMatrix.getColumnDimension() != stateEstimation.getDimension()) {

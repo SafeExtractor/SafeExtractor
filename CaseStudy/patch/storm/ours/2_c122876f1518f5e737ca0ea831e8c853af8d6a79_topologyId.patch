@@ -1,0 +1,18 @@
+diff --git a/storm-server/src/main/java/org/apache/storm/scheduler/Cluster.java b/storm-server/src/main/java/org/apache/storm/scheduler/Cluster.java
+index b5fe659..028d973 100644
+--- a/storm-server/src/main/java/org/apache/storm/scheduler/Cluster.java
++++ b/storm-server/src/main/java/org/apache/storm/scheduler/Cluster.java
+@@ -751,10 +751,11 @@
+         // remove the slot from the existing assignments
+         for (SchedulerAssignmentImpl assignment : assignments.values()) {
+             if (assignment.isSlotOccupied(slot)) {
+-                assertValidTopologyForModification(assignment.getTopologyId());
++                String topologyId = assignment.getTopologyId();
++				assertValidTopologyForModification(topologyId);
+                 assignment.unassignBySlot(slot);
+                 String nodeId = slot.getNodeId();
+-                TopologyDetails td = topologies.getById(assignment.getTopologyId());
++                TopologyDetails td = topologies.getById(topologyId);
+                 assignment.setTotalSharedOffHeapNodeMemory(
+                     nodeId, calculateSharedOffHeapNodeMemory(nodeId, assignment, td));
+                 nodeToScheduledResourcesCache.computeIfAbsent(nodeId, Cluster::makeMap).put(slot, new NormalizedResourceRequest());

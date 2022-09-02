@@ -1,0 +1,34 @@
+diff --git a/source/org/jfree/chart/renderer/category/StatisticalLineAndShapeRenderer.java b/source/org/jfree/chart/renderer/category/StatisticalLineAndShapeRenderer.java
+index c469505..445261a 100644
+--- a/source/org/jfree/chart/renderer/category/StatisticalLineAndShapeRenderer.java
++++ b/source/org/jfree/chart/renderer/category/StatisticalLineAndShapeRenderer.java
+@@ -263,8 +263,9 @@
+             x1 = domainAxis.getCategoryMiddle(column, getColumnCount(),
+                     dataArea, plot.getDomainAxisEdge());
+         }
+-        double y1 = rangeAxis.valueToJava2D(meanValue.doubleValue(), dataArea,
+-                plot.getRangeAxisEdge());
++        RectangleEdge var_2537 = plot.getRangeAxisEdge();
++		double y1 = rangeAxis.valueToJava2D(meanValue.doubleValue(), dataArea,
++                var_2537);
+ 
+         // draw the standard deviation lines *before* the shapes (if they're
+         // visible) - it looks better if the shape fill colour is different to
+@@ -272,7 +273,7 @@
+         Number sdv = statDataset.getStdDevValue(row, column);
+         if (pass == 1 && sdv != null) {
+             //standard deviation lines
+-            RectangleEdge yAxisLocation = plot.getRangeAxisEdge();
++            RectangleEdge yAxisLocation = var_2537;
+             double valueDelta = sdv.doubleValue();
+             double highVal, lowVal;
+             if ((meanValue.doubleValue() + valueDelta)
+@@ -394,7 +395,7 @@
+                                 plot.getDomainAxisEdge());
+                     }
+                     double y0 = rangeAxis.valueToJava2D(previous, dataArea,
+-                            plot.getRangeAxisEdge());
++                            var_2537);
+ 
+                     Line2D line = null;
+                     if (orientation == PlotOrientation.HORIZONTAL) {

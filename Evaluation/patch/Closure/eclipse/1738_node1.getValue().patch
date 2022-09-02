@@ -1,0 +1,34 @@
+diff --git a/src/com/google/javascript/jscomp/NameReferenceGraphReport.java b/src/com/google/javascript/jscomp/NameReferenceGraphReport.java
+index 86a5203..f153d61 100644
+--- a/src/com/google/javascript/jscomp/NameReferenceGraphReport.java
++++ b/src/com/google/javascript/jscomp/NameReferenceGraphReport.java
+@@ -295,16 +295,17 @@
+     @Override
+     public int compare(DiGraphNode<Name, Reference> node1,
+         DiGraphNode<Name, Reference> node2) {
+-      Preconditions.checkNotNull(node1.getValue());
++      Name var_1738 = node1.getValue();
++	Preconditions.checkNotNull(var_1738);
+       Preconditions.checkNotNull(node2.getValue());
+ 
+-      if ((node1.getValue().getQualifiedName() == null) &&
++      if ((var_1738.getQualifiedName() == null) &&
+           (node2.getValue().getQualifiedName() == null)) {
+         return 0;
+       }
+ 
+       // Node 1, if null, comes before node 2.
+-      if (node1.getValue().getQualifiedName() == null) {
++      if (var_1738.getQualifiedName() == null) {
+         return -1;
+       }
+ 
+@@ -313,7 +314,7 @@
+         return 1;
+       }
+ 
+-      return node1.getValue().getQualifiedName().compareTo(
++      return var_1738.getQualifiedName().compareTo(
+           node2.getValue().getQualifiedName());
+     }
+   }

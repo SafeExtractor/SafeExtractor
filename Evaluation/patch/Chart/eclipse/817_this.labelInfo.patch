@@ -1,0 +1,97 @@
+diff --git a/source/org/jfree/chart/axis/PeriodAxis.java b/source/org/jfree/chart/axis/PeriodAxis.java
+index 3c0bc0f..3ddf34c 100644
+--- a/source/org/jfree/chart/axis/PeriodAxis.java
++++ b/source/org/jfree/chart/axis/PeriodAxis.java
+@@ -823,29 +823,30 @@
+ 
+         // work out the initial gap
+         double delta1 = 0.0;
+-        FontMetrics fm = g2.getFontMetrics(this.labelInfo[band].getLabelFont());
++        PeriodAxisLabelInfo[] var_817 = this.labelInfo;
++		FontMetrics fm = g2.getFontMetrics(var_817[band].getLabelFont());
+         if (edge == RectangleEdge.BOTTOM) {
+-            delta1 = this.labelInfo[band].getPadding().calculateTopOutset(
++            delta1 = var_817[band].getPadding().calculateTopOutset(
+                     fm.getHeight());
+         }
+         else if (edge == RectangleEdge.TOP) {
+-            delta1 = this.labelInfo[band].getPadding().calculateBottomOutset(
++            delta1 = var_817[band].getPadding().calculateBottomOutset(
+                     fm.getHeight());
+         }
+         state.moveCursor(delta1, edge);
+         long axisMin = this.first.getFirstMillisecond();
+         long axisMax = this.last.getLastMillisecond();
+-        g2.setFont(this.labelInfo[band].getLabelFont());
+-        g2.setPaint(this.labelInfo[band].getLabelPaint());
++        g2.setFont(var_817[band].getLabelFont());
++        g2.setPaint(var_817[band].getLabelPaint());
+ 
+         // work out the number of periods to skip for labelling
+-        RegularTimePeriod p1 = this.labelInfo[band].createInstance(
++        RegularTimePeriod p1 = var_817[band].createInstance(
+                 new Date(axisMin), this.timeZone, this.locale);
+-        RegularTimePeriod p2 = this.labelInfo[band].createInstance(
++        RegularTimePeriod p2 = var_817[band].createInstance(
+                 new Date(axisMax), this.timeZone, this.locale);
+-        String label1 = this.labelInfo[band].getDateFormat().format(
++        String label1 = var_817[band].getDateFormat().format(
+                 new Date(p1.getMiddleMillisecond()));
+-        String label2 = this.labelInfo[band].getDateFormat().format(
++        String label2 = var_817[band].getDateFormat().format(
+                 new Date(p2.getMiddleMillisecond()));
+         Rectangle2D b1 = TextUtilities.getTextBounds(label1, g2,
+                 g2.getFontMetrics());
+@@ -864,7 +865,7 @@
+                       - p1.getFirstMillisecond();
+         int periods = (int) (ww / length) + 1;
+ 
+-        RegularTimePeriod p = this.labelInfo[band].createInstance(
++        RegularTimePeriod p = var_817[band].createInstance(
+                 new Date(axisMin), this.timeZone, this.locale);
+         Rectangle2D b = null;
+         long lastXX = 0L;
+@@ -878,7 +879,7 @@
+         while (p.getFirstMillisecond() <= axisMax) {
+             float x = (float) valueToJava2D(p.getMiddleMillisecond(), dataArea,
+                     edge);
+-            DateFormat df = this.labelInfo[band].getDateFormat();
++            DateFormat df = var_817[band].getDateFormat();
+             String label = df.format(new Date(p.getMiddleMillisecond()));
+             long first = p.getFirstMillisecond();
+             long last = p.getLastMillisecond();
+@@ -916,16 +917,16 @@
+ 
+             }
+             if (label != null) {
+-                g2.setPaint(this.labelInfo[band].getLabelPaint());
++                g2.setPaint(var_817[band].getLabelPaint());
+                 b = TextUtilities.drawAlignedString(label, g2, x, y, anchor);
+             }
+             if (lastXX > 0L) {
+-                if (this.labelInfo[band].getDrawDividers()) {
++                if (var_817[band].getDrawDividers()) {
+                     long nextXX = p.getFirstMillisecond();
+                     long mid = (lastXX + nextXX) / 2;
+                     float mid2d = (float) valueToJava2D(mid, dataArea, edge);
+-                    g2.setStroke(this.labelInfo[band].getDividerStroke());
+-                    g2.setPaint(this.labelInfo[band].getDividerPaint());
++                    g2.setStroke(var_817[band].getDividerStroke());
++                    g2.setPaint(var_817[band].getDividerPaint());
+                     g2.draw(new Line2D.Float(mid2d, y, mid2d, y + yDelta));
+                 }
+             }
+@@ -940,11 +941,11 @@
+             used = b.getHeight();
+             // work out the trailing gap
+             if (edge == RectangleEdge.BOTTOM) {
+-                used += this.labelInfo[band].getPadding().calculateBottomOutset(
++                used += var_817[band].getPadding().calculateBottomOutset(
+                         fm.getHeight());
+             }
+             else if (edge == RectangleEdge.TOP) {
+-                used += this.labelInfo[band].getPadding().calculateTopOutset(
++                used += var_817[band].getPadding().calculateTopOutset(
+                         fm.getHeight());
+             }
+         }

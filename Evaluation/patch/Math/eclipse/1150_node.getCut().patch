@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalsSet.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalsSet.java
+index 674fb0a..4e8e8aa 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalsSet.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalsSet.java
+@@ -166,8 +166,9 @@
+     public double getInf() {
+         BSPTree<Euclidean1D> node = getTree(false);
+         double  inf  = Double.POSITIVE_INFINITY;
+-        while (node.getCut() != null) {
+-            final OrientedPoint op = (OrientedPoint) node.getCut().getHyperplane();
++        SubHyperplane<Euclidean1D> var_1150 = node.getCut();
++		while (var_1150 != null) {
++            final OrientedPoint op = (OrientedPoint) var_1150.getHyperplane();
+             inf  = op.getLocation().getX();
+             node = op.isDirect() ? node.getMinus() : node.getPlus();
+         }

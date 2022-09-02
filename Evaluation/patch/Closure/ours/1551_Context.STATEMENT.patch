@@ -1,0 +1,50 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..9941403 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -144,7 +144,8 @@
+ 
+     cc.startSourceMapping(n);
+ 
+-    switch (type) {
++    Context var_1551 = Context.STATEMENT;
++	switch (type) {
+       case Token.TRY: {
+         Preconditions.checkState(first.getNext().isBlock() &&
+                 !first.getNext().hasMoreThanOneChild());
+@@ -317,7 +318,7 @@
+ 
+         add(first.getNext());
+         add(last, Context.PRESERVE_BLOCK);
+-        cc.endFunction(context == Context.STATEMENT);
++        cc.endFunction(context == var_1551);
+ 
+         if (funcNeedsParens) {
+           add(")");
+@@ -386,7 +387,7 @@
+                 n.getParent() != null &&
+                 n.getParent().isScript());
+         for (Node c = first; c != null; c = c.getNext()) {
+-          add(c, Context.STATEMENT);
++          add(c, var_1551);
+ 
+           // VAR doesn't include ';' since it gets used in expressions
+           if (c.isVar()) {
+@@ -404,7 +405,7 @@
+           }
+         }
+         if (preserveBlock) {
+-          cc.endBlock(cc.breakAfterBlockFor(n, context == Context.STATEMENT));
++          cc.endBlock(cc.breakAfterBlockFor(n, context == var_1551));
+         }
+         break;
+       }
+@@ -715,7 +716,7 @@
+         add(")");
+         cc.beginBlock();
+         addAllSiblings(first.getNext());
+-        cc.endBlock(context == Context.STATEMENT);
++        cc.endBlock(context == var_1551);
+         break;
+ 
+       case Token.CASE:

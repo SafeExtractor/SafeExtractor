@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionInjector.java b/src/com/google/javascript/jscomp/FunctionInjector.java
+index ddfb4ed..6e7cdae 100644
+--- a/src/com/google/javascript/jscomp/FunctionInjector.java
++++ b/src/com/google/javascript/jscomp/FunctionInjector.java
+@@ -144,11 +144,12 @@
+       @Override
+       public boolean apply(Node n) {
+         if (n.isName()) {
+-          return n.getString().equals("eval")
++          String var_1188 = n.getString();
++		return var_1188.equals("eval")
+             || (!fnName.isEmpty()
+-                && n.getString().equals(fnName))
++                && var_1188.equals(fnName))
+             || (!fnRecursionName.isEmpty()
+-                && n.getString().equals(fnRecursionName));
++                && var_1188.equals(fnRecursionName));
+         }
+         return false;
+       }

@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/StrictModeCheck.java b/src/com/google/javascript/jscomp/StrictModeCheck.java
+index b22f3ed..fa15ec5 100644
+--- a/src/com/google/javascript/jscomp/StrictModeCheck.java
++++ b/src/com/google/javascript/jscomp/StrictModeCheck.java
+@@ -179,8 +179,9 @@
+ 
+   /** Checks that variables, functions, and arguments are not deleted. */
+   private void checkDelete(NodeTraversal t, Node n) {
+-    if (n.getFirstChild().isName()) {
+-      Var v = t.getScope().getVar(n.getFirstChild().getString());
++    Node var_213 = n.getFirstChild();
++	if (var_213.isName()) {
++      Var v = t.getScope().getVar(var_213.getString());
+       if (v != null) {
+         t.report(n, DELETE_VARIABLE);
+       }

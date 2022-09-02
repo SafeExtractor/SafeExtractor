@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeCollectPropertyAssignments.java b/src/com/google/javascript/jscomp/PeepholeCollectPropertyAssignments.java
+index decfc10..e7e97a7 100644
+--- a/src/com/google/javascript/jscomp/PeepholeCollectPropertyAssignments.java
++++ b/src/com/google/javascript/jscomp/PeepholeCollectPropertyAssignments.java
+@@ -210,7 +210,8 @@
+         arrayLiteral.addChildToBack(emptyNode);
+         ++maxIndexAssigned;
+       }
+-      arrayLiteral.addChildToBack(rhs.detachFromParent());
++      Node var_267 = rhs.detachFromParent();
++	arrayLiteral.addChildToBack(var_267);
+     } else {
+       // An out of order assignment.  Allow it if it's a hole.
+       Node currentValue = arrayLiteral.getChildAtIndex(index);

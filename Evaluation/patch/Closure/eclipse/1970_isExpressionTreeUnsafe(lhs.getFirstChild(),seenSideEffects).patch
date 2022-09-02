@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/ExpressionDecomposer.java b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+index 2344537..2ae0b2e 100644
+--- a/src/com/google/javascript/jscomp/ExpressionDecomposer.java
++++ b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+@@ -862,13 +862,14 @@
+   private boolean isSafeAssign(Node n, boolean seenSideEffects) {
+     if (n.isAssign()) {
+       Node lhs = n.getFirstChild();
+-      switch (lhs.getType()) {
++      boolean var_1970 = isExpressionTreeUnsafe(lhs.getFirstChild(), seenSideEffects);
++	switch (lhs.getType()) {
+         case Token.NAME:
+           return true;
+         case Token.GETPROP:
+-          return !isExpressionTreeUnsafe(lhs.getFirstChild(), seenSideEffects);
++          return !var_1970;
+         case Token.GETELEM:
+-          return !isExpressionTreeUnsafe(lhs.getFirstChild(), seenSideEffects)
++          return !var_1970
+               && !isExpressionTreeUnsafe(lhs.getLastChild(), seenSideEffects);
+       }
+     }

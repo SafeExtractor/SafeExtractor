@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunctionNewtonForm.java b/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunctionNewtonForm.java
+index 4042a2d..a417358 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunctionNewtonForm.java
++++ b/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunctionNewtonForm.java
+@@ -206,10 +206,11 @@
+ 
+         coefficients[0] = a[n];
+         for (int i = n-1; i >= 0; i--) {
+-            for (int j = n-i; j > 0; j--) {
+-                coefficients[j] = coefficients[j-1] - c[i] * coefficients[j];
++            double var_456 = c[i];
++			for (int j = n-i; j > 0; j--) {
++                coefficients[j] = coefficients[j-1] - var_456 * coefficients[j];
+             }
+-            coefficients[0] = a[i] - c[i] * coefficients[0];
++            coefficients[0] = a[i] - var_456 * coefficients[0];
+         }
+ 
+         coefficientsComputed = true;

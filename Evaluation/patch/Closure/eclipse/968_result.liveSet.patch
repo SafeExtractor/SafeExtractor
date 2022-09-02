@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/LiveVariablesAnalysis.java b/src/com/google/javascript/jscomp/LiveVariablesAnalysis.java
+index 888fd39..91db441 100644
+--- a/src/com/google/javascript/jscomp/LiveVariablesAnalysis.java
++++ b/src/com/google/javascript/jscomp/LiveVariablesAnalysis.java
+@@ -165,8 +165,9 @@
+     computeGenKill(node, gen, kill, conditional);
+     LiveVariableLattice result = new LiveVariableLattice(input);
+     // L_in = L_out - Kill + Gen
+-    result.liveSet.andNot(kill);
+-    result.liveSet.or(gen);
++    BitSet var_968 = result.liveSet;
++	var_968.andNot(kill);
++    var_968.or(gen);
+     return result;
+   }
+ 

@@ -1,0 +1,42 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..b72ecf8 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -1329,27 +1329,28 @@
+             // Revise SLBD and SUBD if necessary because of the bounds in SL and SU.
+ 
+             for (int i = 0; i < n; i++) {
+-                final double tmp = interpolationPoints.getEntry(k, i) - trustRegionCenterOffset.getEntry(i);
++                double var_3381 = trustRegionCenterOffset.getEntry(i);
++				final double tmp = interpolationPoints.getEntry(k, i) - var_3381;
+                 if (tmp > ZERO) {
+-                    if (slbd * tmp < lowerDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i)) {
+-                        slbd = (lowerDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i)) / tmp;
++                    if (slbd * tmp < lowerDifference.getEntry(i) - var_3381) {
++                        slbd = (lowerDifference.getEntry(i) - var_3381) / tmp;
+                         ilbd = -i - 1;
+                     }
+-                    if (subd * tmp > upperDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i)) {
++                    if (subd * tmp > upperDifference.getEntry(i) - var_3381) {
+                         // Computing MAX
+                         subd = Math.max(sumin,
+-                                        (upperDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i)) / tmp);
++                                        (upperDifference.getEntry(i) - var_3381) / tmp);
+                         iubd = i + 1;
+                     }
+                 } else if (tmp < ZERO) {
+-                    if (slbd * tmp > upperDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i)) {
+-                        slbd = (upperDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i)) / tmp;
++                    if (slbd * tmp > upperDifference.getEntry(i) - var_3381) {
++                        slbd = (upperDifference.getEntry(i) - var_3381) / tmp;
+                         ilbd = i + 1;
+                     }
+-                    if (subd * tmp < lowerDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i)) {
++                    if (subd * tmp < lowerDifference.getEntry(i) - var_3381) {
+                         // Computing MAX
+                         subd = Math.max(sumin,
+-                                        (lowerDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i)) / tmp);
++                                        (lowerDifference.getEntry(i) - var_3381) / tmp);
+                         iubd = -i - 1;
+                     }
+                 }

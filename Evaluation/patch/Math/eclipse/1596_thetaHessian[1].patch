@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SphericalCoordinates.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SphericalCoordinates.java
+index de58d7b..b33bfd1 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SphericalCoordinates.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SphericalCoordinates.java
+@@ -315,11 +315,12 @@
+             // lower-left part of Hessian of azimuthal angle theta
+             thetaHessian = new double[2][2];
+             thetaHessian[0][0] = 2 * xOrho2 * yOrho2;
+-            thetaHessian[1][0] = yOrho2 * yOrho2 - xOrho2 * xOrho2;
+-            thetaHessian[1][1] = -2 * xOrho2 * yOrho2;
++            double[] var_1596 = thetaHessian[1];
++			var_1596[0] = yOrho2 * yOrho2 - xOrho2 * xOrho2;
++            var_1596[1] = -2 * xOrho2 * yOrho2;
+ 
+             // upper-right part is symmetric
+-            thetaHessian[0][1] = thetaHessian[1][0];
++            thetaHessian[0][1] = var_1596[0];
+ 
+             // lower-left part of Hessian of polar (co-latitude) angle phi
+             final double rhor2       = rho * r2;

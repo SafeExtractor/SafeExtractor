@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..3394c0e 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -269,14 +269,15 @@
+             return new int[1][parameters];
+         }
+ 
+-        final int vSize = valueCompiler.derivativesIndirection.length;
++        int[][] var_78 = valueCompiler.derivativesIndirection;
++		final int vSize = var_78.length;
+         final int dSize = derivativeCompiler.derivativesIndirection.length;
+         final int[][] derivativesIndirection = new int[vSize + dSize][parameters];
+ 
+         // set up the indices for the value part
+         for (int i = 0; i < vSize; ++i) {
+             // copy the first indices, the last one remaining set to 0
+-            System.arraycopy(valueCompiler.derivativesIndirection[i], 0,
++            System.arraycopy(var_78[i], 0,
+                              derivativesIndirection[i], 0,
+                              parameters - 1);
+         }

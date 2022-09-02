@@ -1,0 +1,50 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/TypeSafeDispatcher.java b/src/com/google/javascript/jscomp/parsing/TypeSafeDispatcher.java
+index 95aaacd..90f4842 100644
+--- a/src/com/google/javascript/jscomp/parsing/TypeSafeDispatcher.java
++++ b/src/com/google/javascript/jscomp/parsing/TypeSafeDispatcher.java
+@@ -118,7 +118,8 @@
+   abstract T processIllegalToken(AstNode node);
+ 
+   public T process(AstNode node) {
+-    switch (node.getType()) {
++    String var_2281 = Token.typeToName(node.getType());
++	switch (node.getType()) {
+       case Token.ADD:
+       case Token.AND:
+       case Token.BITAND:
+@@ -178,7 +179,7 @@
+           throw new IllegalStateException("Unexpected node type.  class: " +
+                                           node.getClass() +
+                                           " type: " +
+-                                          Token.typeToName(node.getType()));
++                                          var_2281);
+         }
+       case Token.BREAK:
+         return processBreakStatement((BreakStatement) node);
+@@ -209,7 +210,7 @@
+           throw new IllegalStateException("Unexpected node type.  class: " +
+                                           node.getClass() +
+                                           " type: " +
+-                                          Token.typeToName(node.getType()));
++                                          var_2281);
+         }
+       case Token.DEBUGGER:
+       case Token.FALSE:
+@@ -226,7 +227,7 @@
+           throw new IllegalStateException("Unexpected node type.  class: " +
+                                           node.getClass() +
+                                           " type: " +
+-                                          Token.typeToName(node.getType()));
++                                          var_2281);
+         }
+       case Token.FUNCTION:
+         return processFunctionNode((FunctionNode) node);
+@@ -274,7 +275,7 @@
+           throw new IllegalStateException("Unexpected node type.  class: " +
+                                           node.getClass() +
+                                           " type: " +
+-                                          Token.typeToName(node.getType()));
++                                          var_2281);
+         }
+       case Token.WHILE:
+         return processWhileLoop((WhileLoop) node);

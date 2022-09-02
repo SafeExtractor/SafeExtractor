@@ -1,0 +1,68 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..643596b 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -949,7 +949,8 @@
+     boolean nullRight = right.isNull();
+     int lhType = getNormalizedNodeType(left);
+     int rhType = getNormalizedNodeType(right);
+-    switch (lhType) {
++    boolean var_161 = isEqualityOp(op);
++	switch (lhType) {
+       case Token.VOID:
+         if (!leftLiteral) {
+           return TernaryValue.UNKNOWN;
+@@ -960,7 +961,7 @@
+         }
+ 
+       case Token.NULL:
+-        if (rightLiteral && isEqualityOp(op)) {
++        if (rightLiteral && var_161) {
+           return TernaryValue.forBoolean(compareToNull(right, op));
+         }
+         // fallthrough
+@@ -1015,7 +1016,7 @@
+         if (undefinedRight) {
+           return TernaryValue.forBoolean(compareToUndefined(left, op));
+         }
+-        if (nullRight && isEqualityOp(op)) {
++        if (nullRight && var_161) {
+           return TernaryValue.forBoolean(compareToNull(left, op));
+         }
+         if (Token.STRING != right.getType()) {
+@@ -1038,7 +1039,7 @@
+         if (undefinedRight) {
+           return TernaryValue.forBoolean(compareToUndefined(left, op));
+         }
+-        if (nullRight && isEqualityOp(op)) {
++        if (nullRight && var_161) {
+           return TernaryValue.forBoolean(compareToNull(left, op));
+         }
+         if (Token.NUMBER != right.getType()) {
+@@ -1056,7 +1057,7 @@
+           if (undefinedLeft) {
+             return TernaryValue.forBoolean(compareToUndefined(right, op));
+           }
+-          if (leftLiteral && nullRight && isEqualityOp(op)) {
++          if (leftLiteral && nullRight && var_161) {
+             return TernaryValue.forBoolean(compareToNull(left, op));
+           }
+         }
+@@ -1085,7 +1086,7 @@
+           if (undefinedRight) {
+             return TernaryValue.forBoolean(compareToUndefined(left, op));
+           }
+-          if (nullRight && isEqualityOp(op)) {
++          if (nullRight && var_161) {
+             return TernaryValue.forBoolean(compareToNull(left, op));
+           }
+         }
+@@ -1100,7 +1101,7 @@
+           if (undefinedRight) {
+             return TernaryValue.forBoolean(compareToUndefined(left, op));
+           }
+-          if (nullRight && isEqualityOp(op)) {
++          if (nullRight && var_161) {
+             return TernaryValue.forBoolean(compareToNull(left, op));
+           }
+         }

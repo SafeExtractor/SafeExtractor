@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java b/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
+index 04d88ae..e21fe7f 100644
+--- a/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
++++ b/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
+@@ -174,12 +174,13 @@
+     String className = first.qualifiedClassName;
+     if (pattern == Pattern.USE_GLOBAL_TEMP) {
+       // Use the temp variable to hold the prototype.
+-      Node stmt = new Node(first.node.getType(),
++      Node var_2012 = NodeUtil.newQualifiedNameNode(
++		      compiler.getCodingConvention(), className + ".prototype",
++		      instance.parent, className + ".prototype");
++	Node stmt = new Node(first.node.getType(),
+          IR.assign(
+               IR.name(prototypeAlias),
+-              NodeUtil.newQualifiedNameNode(
+-                  compiler.getCodingConvention(), className + ".prototype",
+-                  instance.parent, className + ".prototype")))
++              var_2012))
+           .copyInformationFromForTree(first.node);
+ 
+       instance.parent.addChildBefore(stmt, first.node);

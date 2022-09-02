@@ -1,0 +1,42 @@
+diff --git a/src/main/java/org/apache/commons/lang3/ClassUtils.java b/src/main/java/org/apache/commons/lang3/ClassUtils.java
+index 015e6dd..e90bfb4 100644
+--- a/src/main/java/org/apache/commons/lang3/ClassUtils.java
++++ b/src/main/java/org/apache/commons/lang3/ClassUtils.java
+@@ -951,20 +951,23 @@
+         className = StringUtils.deleteWhitespace(className);
+         if (className == null) {
+             throw new NullPointerException("className must not be null.");
+-        } else if (className.endsWith("[]")) {
+-            final StringBuilder classNameBuffer = new StringBuilder();
+-            while (className.endsWith("[]")) {
+-                className = className.substring(0, className.length() - 2);
+-                classNameBuffer.append("[");
+-            }
+-            final String abbreviation = abbreviationMap.get(className);
+-            if (abbreviation != null) {
+-                classNameBuffer.append(abbreviation);
+-            } else {
+-                classNameBuffer.append("L").append(className).append(";");
+-            }
+-            className = classNameBuffer.toString();
+-        }
++        } else {
++			boolean var_237 = className.endsWith("[]");
++			if (var_237) {
++			    final StringBuilder classNameBuffer = new StringBuilder();
++			    while (var_237) {
++			        className = className.substring(0, className.length() - 2);
++			        classNameBuffer.append("[");
++			    }
++			    final String abbreviation = abbreviationMap.get(className);
++			    if (abbreviation != null) {
++			        classNameBuffer.append(abbreviation);
++			    } else {
++			        classNameBuffer.append("L").append(className).append(";");
++			    }
++			    className = classNameBuffer.toString();
++			}
++		}
+         return className;
+     }
+ 

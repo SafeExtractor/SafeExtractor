@@ -1,0 +1,50 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/4221_FastMath.floor(unscaled).patch b/Users/safe/paper/Evaluation/patch/Math/ours/4221_FastMath.floor(unscaled).patch
+index 973bc2f..041b546 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/4221_FastMath.floor(unscaled).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/4221_FastMath.floor(unscaled).patch
+@@ -1,5 +1,5 @@
+ diff --git a/src/main/java/org/apache/commons/math3/util/Precision.java b/src/main/java/org/apache/commons/math3/util/Precision.java
+-index ef3b57f..1fda0bf 100644
++index ef3b57f..c2fb966 100644
+ --- a/src/main/java/org/apache/commons/math3/util/Precision.java
+ +++ b/src/main/java/org/apache/commons/math3/util/Precision.java
+ @@ -455,7 +455,8 @@
+@@ -12,18 +12,7 @@ index ef3b57f..1fda0bf 100644
+          case BigDecimal.ROUND_CEILING :
+              if (sign == -1) {
+                  unscaled = FastMath.floor(FastMath.nextAfter(unscaled, Double.NEGATIVE_INFINITY));
+-@@ -475,25 +476,25 @@
+-             break;
+-         case BigDecimal.ROUND_HALF_DOWN : {
+-             unscaled = FastMath.nextAfter(unscaled, Double.NEGATIVE_INFINITY);
+--            double fraction = unscaled - FastMath.floor(unscaled);
+-+            double fraction = unscaled - var_4221;
+-             if (fraction > 0.5) {
+-                 unscaled = FastMath.ceil(unscaled);
+-             } else {
+--                unscaled = FastMath.floor(unscaled);
+-+                unscaled = var_4221;
+-             }
++@@ -484,16 +485,16 @@
+              break;
+          }
+          case BigDecimal.ROUND_HALF_EVEN : {
+@@ -44,7 +33,7 @@ index ef3b57f..1fda0bf 100644
+                  } else { // odd
+                      unscaled = FastMath.ceil(unscaled);
+                  }
+-@@ -502,16 +503,16 @@
++@@ -502,11 +503,11 @@
+          }
+          case BigDecimal.ROUND_HALF_UP : {
+              unscaled = FastMath.nextAfter(unscaled, Double.POSITIVE_INFINITY);
+@@ -58,9 +47,3 @@ index ef3b57f..1fda0bf 100644
+              }
+              break;
+          }
+-         case BigDecimal.ROUND_UNNECESSARY :
+--            if (unscaled != FastMath.floor(unscaled)) {
+-+            if (unscaled != var_4221) {
+-                 throw new MathArithmeticException();
+-             }
+-             break;

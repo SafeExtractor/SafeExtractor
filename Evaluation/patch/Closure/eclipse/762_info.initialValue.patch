@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessDefines.java b/src/com/google/javascript/jscomp/ProcessDefines.java
+index e86001d..f0d0ebd 100644
+--- a/src/com/google/javascript/jscomp/ProcessDefines.java
++++ b/src/com/google/javascript/jscomp/ProcessDefines.java
+@@ -128,13 +128,14 @@
+       Node inputValue = dominantReplacements.get(defineName);
+       Node finalValue = inputValue != null ?
+           inputValue : info.getLastValue();
+-      if (finalValue != info.initialValue) {
++      Node var_762 = info.initialValue;
++	if (finalValue != var_762) {
+         info.initialValueParent.replaceChild(
+-            info.initialValue, finalValue.cloneTree());
++            var_762, finalValue.cloneTree());
+         compiler.addToDebugLog("Overriding @define variable " + defineName);
+         changed = changed ||
+-            finalValue.getType() != info.initialValue.getType() ||
+-            !finalValue.isEquivalentTo(info.initialValue);
++            finalValue.getType() != var_762.getType() ||
++            !finalValue.isEquivalentTo(var_762);
+       }
+     }
+ 

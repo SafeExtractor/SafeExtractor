@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/JsMessageVisitor.java b/src/com/google/javascript/jscomp/JsMessageVisitor.java
+index becd724..40315f2 100644
+--- a/src/com/google/javascript/jscomp/JsMessageVisitor.java
++++ b/src/com/google/javascript/jscomp/JsMessageVisitor.java
+@@ -346,9 +346,10 @@
+   private void checkIfMessageDuplicated(String msgName, Node msgNode) {
+     if (messageNames.containsKey(msgName)) {
+       MessageLocation location = messageNames.get(msgName);
+-      compiler.report(JSError.make(msgNode, MESSAGE_DUPLICATE_KEY,
+-          msgName, location.messageNode.getSourceFileName(),
+-          Integer.toString(location.messageNode.getLineno())));
++      Node var_343 = location.messageNode;
++	compiler.report(JSError.make(msgNode, MESSAGE_DUPLICATE_KEY,
++          msgName, var_343.getSourceFileName(),
++          Integer.toString(var_343.getLineno())));
+     }
+   }
+ 

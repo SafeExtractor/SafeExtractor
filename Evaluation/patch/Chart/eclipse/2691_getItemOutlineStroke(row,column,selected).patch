@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/renderer/category/StatisticalBarRenderer.java b/source/org/jfree/chart/renderer/category/StatisticalBarRenderer.java
+index 3a5d3e0..f4007dc 100644
+--- a/source/org/jfree/chart/renderer/category/StatisticalBarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/StatisticalBarRenderer.java
+@@ -344,9 +344,10 @@
+         g2.fill(bar);
+ 
+         // draw the outline...
+-        if (isDrawBarOutline()
++        Stroke var_2691 = getItemOutlineStroke(row, column, selected);
++		if (isDrawBarOutline()
+                 && state.getBarWidth() > BAR_OUTLINE_WIDTH_THRESHOLD) {
+-            Stroke stroke = getItemOutlineStroke(row, column, selected);
++            Stroke stroke = var_2691;
+             Paint paint = getItemOutlinePaint(row, column, selected);
+             if (stroke != null && paint != null) {
+                 g2.setStroke(stroke);
+@@ -374,7 +375,7 @@
+                 g2.setStroke(this.errorIndicatorStroke);
+             }
+             else {
+-                g2.setStroke(getItemOutlineStroke(row, column, selected));
++                g2.setStroke(var_2691);
+             }
+             Line2D line = null;
+             line = new Line2D.Double(lowVal, rectY + rectHeight / 2.0d,

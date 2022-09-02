@@ -1,0 +1,24 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2671_SerialUtilities.readPaint(stream).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/2671_SerialUtilities.readPaint(stream).patch
+index 7780b2e..02f5304 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2671_SerialUtilities.readPaint(stream).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/2671_SerialUtilities.readPaint(stream).patch
+@@ -1,16 +1,14 @@
+ diff --git a/source/org/jfree/chart/renderer/category/GanttRenderer.java b/source/org/jfree/chart/renderer/category/GanttRenderer.java
+-index fc9e2ef..8fc7384 100644
++index fc9e2ef..454538e 100644
+ --- a/source/org/jfree/chart/renderer/category/GanttRenderer.java
+ +++ b/source/org/jfree/chart/renderer/category/GanttRenderer.java
+-@@ -624,8 +624,9 @@
++@@ -624,7 +624,8 @@
+      private void readObject(ObjectInputStream stream)
+          throws IOException, ClassNotFoundException {
+          stream.defaultReadObject();
+ -        this.completePaint = SerialUtilities.readPaint(stream);
+--        this.incompletePaint = SerialUtilities.readPaint(stream);
+ +        Paint var_2671 = SerialUtilities.readPaint(stream);
+ +		this.completePaint = var_2671;
+-+        this.incompletePaint = var_2671;
++         this.incompletePaint = SerialUtilities.readPaint(stream);
+      }
+  
+- }

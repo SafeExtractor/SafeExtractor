@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..786c3a2 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -484,7 +484,8 @@
+   private void handleStmtList(Node node) {
+     Node parent = node.getParent();
+     // Special case, don't add a block of empty CATCH block to the graph.
+-    if (node.isBlock() && parent != null &&
++    boolean var_1903 = node.isBlock();
++	if (var_1903 && parent != null &&
+         parent.isTry() &&
+         NodeUtil.getCatchBlock(parent) == node &&
+         !NodeUtil.hasCatchHandler(node)) {
+@@ -514,7 +515,7 @@
+         case Token.TRY:
+           break;
+         default:
+-          if (node.isBlock() && node.isSyntheticBlock()) {
++          if (var_1903 && node.isSyntheticBlock()) {
+             createEdge(node, Branch.SYN_BLOCK, computeFollowNode(node, this));
+           }
+           break;

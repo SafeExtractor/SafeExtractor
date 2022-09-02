@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/NodeTraversal.java b/src/com/google/javascript/jscomp/NodeTraversal.java
+index 39dd0bd..8dabf9e 100644
+--- a/src/com/google/javascript/jscomp/NodeTraversal.java
++++ b/src/com/google/javascript/jscomp/NodeTraversal.java
+@@ -241,14 +241,15 @@
+   private void throwUnexpectedException(Exception unexpectedException) {
+     // If there's an unexpected exception, try to get the
+     // line number of the code that caused it.
+-    String message = unexpectedException.getMessage();
++    String var_387 = unexpectedException.getMessage();
++	String message = var_387;
+ 
+     // TODO(user): It is possible to get more information if curNode or
+     // its parent is missing. We still have the scope stack in which it is still
+     // very useful to find out at least which function caused the exception.
+     if (inputId != null) {
+       message =
+-          unexpectedException.getMessage() + "\n" +
++          var_387 + "\n" +
+           formatNodeContext("Node", curNode) +
+           (curNode == null ?
+               "" :

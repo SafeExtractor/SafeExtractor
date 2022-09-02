@@ -1,0 +1,36 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..ea6115e 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -917,10 +917,11 @@
+      * is greater than the regressors in the model
+      */
+     public RegressionResults regress(int numberOfRegressors) throws ModelSpecificationException {
+-        if (this.nobs <= numberOfRegressors) {
++        long var_4011 = this.nobs;
++		if (var_4011 <= numberOfRegressors) {
+            throw new ModelSpecificationException(
+                    LocalizedFormats.NOT_ENOUGH_DATA_FOR_NUMBER_OF_PREDICTORS,
+-                   this.nobs, numberOfRegressors);
++                   var_4011, numberOfRegressors);
+         }
+         if( numberOfRegressors > this.nvars ){
+             throw new ModelSpecificationException(
+@@ -952,7 +953,7 @@
+         }
+         if (!needsReorder) {
+             return new RegressionResults(
+-                    beta, new double[][]{cov}, true, this.nobs, rnk,
++                    beta, new double[][]{cov}, true, var_4011, rnk,
+                     this.sumy, this.sumsqy, this.sserr, this.hasIntercept, false);
+         } else {
+             double[] betaNew = new double[beta.length];
+@@ -985,7 +986,7 @@
+                 }
+             }
+             return new RegressionResults(
+-                    betaNew, new double[][]{covNew}, true, this.nobs, rnk,
++                    betaNew, new double[][]{covNew}, true, var_4011, rnk,
+                     this.sumy, this.sumsqy, this.sserr, this.hasIntercept, false);
+         }
+     }

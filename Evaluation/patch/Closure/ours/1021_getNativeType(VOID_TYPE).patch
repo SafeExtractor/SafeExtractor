@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..a8548cd 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -1791,15 +1791,16 @@
+ 
+       // if no return type is specified, undefined must be returned
+       // (it's a void function)
+-      if (returnType == null) {
+-        returnType = getNativeType(VOID_TYPE);
++      JSType var_1021 = getNativeType(VOID_TYPE);
++	if (returnType == null) {
++        returnType = var_1021;
+       }
+ 
+       // fetching the returned value's type
+       Node valueNode = n.getFirstChild();
+       JSType actualReturnType;
+       if (valueNode == null) {
+-        actualReturnType = getNativeType(VOID_TYPE);
++        actualReturnType = var_1021;
+         valueNode = n;
+       } else {
+         actualReturnType = getJSType(valueNode);

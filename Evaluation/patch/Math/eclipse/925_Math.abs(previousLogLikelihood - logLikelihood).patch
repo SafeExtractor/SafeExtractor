@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java b/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java
+index cc7b318..5cad241 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java
++++ b/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java
+@@ -164,8 +164,9 @@
+         // Initialize model to fit to initial mixture.
+         fittedModel = new MixtureMultivariateNormalDistribution(initialMixture.getComponents());
+ 
+-        while (numIterations++ <= maxIterations &&
+-               Math.abs(previousLogLikelihood - logLikelihood) > threshold) {
++        double var_925 = Math.abs(previousLogLikelihood - logLikelihood);
++		while (numIterations++ <= maxIterations &&
++               var_925 > threshold) {
+             previousLogLikelihood = logLikelihood;
+             double sumLogLikelihood = 0d;
+ 
+@@ -251,7 +252,7 @@
+                                                                     newCovMatArrays);
+         }
+ 
+-        if (Math.abs(previousLogLikelihood - logLikelihood) > threshold) {
++        if (var_925 > threshold) {
+             // Did not converge before the maximum number of iterations
+             throw new ConvergenceException();
+         }

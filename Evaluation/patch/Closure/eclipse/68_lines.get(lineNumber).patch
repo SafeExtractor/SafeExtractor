@@ -1,0 +1,22 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
+index e970d3a..7bd564c 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
++++ b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
+@@ -466,13 +466,14 @@
+    * such entry exists.
+    */
+   private OriginalMapping getPreviousMapping(int lineNumber) {
+-    do {
++    ArrayList<Entry> var_68 = lines.get(lineNumber);
++	do {
+       if (lineNumber == 0) {
+         return null;
+       }
+       lineNumber--;
+-    } while (lines.get(lineNumber) == null);
+-    ArrayList<Entry> entries = lines.get(lineNumber);
++    } while (var_68 == null);
++    ArrayList<Entry> entries = var_68;
+     return getOriginalMappingForEntry(entries.get(entries.size() - 1));
+   }
+ 

@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/renderer/xy/SamplingXYLineRenderer.java b/source/org/jfree/chart/renderer/xy/SamplingXYLineRenderer.java
+index ec442b1..51c8a74 100644
+--- a/source/org/jfree/chart/renderer/xy/SamplingXYLineRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/SamplingXYLineRenderer.java
+@@ -250,10 +250,11 @@
+                 y = (float) transX1;
+             }
+             if (s.lastPointGood) {
+-                if ((Math.abs(x - s.lastX) > s.dX)) {
++                double var_3043 = s.lowY;
++				if ((Math.abs(x - s.lastX) > s.dX)) {
+                     s.seriesPath.lineTo(x, y);
+-                    if (s.lowY < s.highY) {
+-                        s.intervalPath.moveTo((float) s.lastX, (float) s.lowY);
++                    if (var_3043 < s.highY) {
++                        s.intervalPath.moveTo((float) s.lastX, (float) var_3043);
+                         s.intervalPath.lineTo((float) s.lastX, (float) s.highY);
+                     }
+                     s.lastX = x;
+@@ -264,7 +265,7 @@
+                 }
+                 else {
+                     s.highY = Math.max(s.highY, y);
+-                    s.lowY = Math.min(s.lowY, y);
++                    s.lowY = Math.min(var_3043, y);
+                     s.closeY = y;
+                 }
+             }

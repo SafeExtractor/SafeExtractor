@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..02bf6c0 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -505,14 +505,15 @@
+     public static Dfp pow(Dfp x, final Dfp y) {
+ 
+         // make sure we don't mix number with different precision
+-        if (x.getField().getRadixDigits() != y.getField().getRadixDigits()) {
++        Dfp var_822 = x.getZero();
++		if (x.getField().getRadixDigits() != y.getField().getRadixDigits()) {
+             x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            final Dfp result = x.newInstance(x.getZero());
++            final Dfp result = x.newInstance(var_822);
+             result.nans = Dfp.QNAN;
+             return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, result);
+         }
+ 
+-        final Dfp zero = x.getZero();
++        final Dfp zero = var_822;
+         final Dfp one  = x.getOne();
+         final Dfp two  = x.getTwo();
+         boolean invert = false;

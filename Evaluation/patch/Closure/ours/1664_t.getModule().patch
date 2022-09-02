@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+index bc570e2..1701622 100644
+--- a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
++++ b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+@@ -430,14 +430,15 @@
+           firstChild != null &&
+           isGlobalFunctionDeclaration(t, firstChild)) {
+         String name = nameNode.getString();
+-        getNameInfoForName(name, VAR).getDeclarations().add(
+-            new GlobalFunction(nameNode, v, t.getModule()));
++        JSModule var_1664 = t.getModule();
++		getNameInfoForName(name, VAR).getDeclarations().add(
++            new GlobalFunction(nameNode, v, var_1664));
+ 
+         // If the function name is exported, we should create an edge here
+         // so that it's never removed.
+         if (compiler.getCodingConvention().isExported(name) ||
+             anchorUnusedVars) {
+-          addGlobalUseOfSymbol(name, t.getModule(), VAR);
++          addGlobalUseOfSymbol(name, var_1664, VAR);
+         }
+ 
+         return true;

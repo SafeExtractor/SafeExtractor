@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/renderer/WaferMapRenderer.java b/source/org/jfree/chart/renderer/WaferMapRenderer.java
+index c56827d..4b4a1cd 100644
+--- a/source/org/jfree/chart/renderer/WaferMapRenderer.java
++++ b/source/org/jfree/chart/renderer/WaferMapRenderer.java
+@@ -267,7 +267,8 @@
+      */
+     private void makeValueIndex(Number max, Number min, Set uniqueValues) {
+         double valueRange = max.doubleValue() - min.doubleValue();
+-        double valueStep = valueRange / this.paintLimit;
++        int var_2361 = this.paintLimit;
++		double valueStep = valueRange / var_2361;
+         int paint = 0;
+         double cutPoint = min.doubleValue() + valueStep;
+         for (Iterator i = uniqueValues.iterator(); i.hasNext();) {
+@@ -275,8 +276,8 @@
+             while (value.doubleValue() > cutPoint) {
+                 cutPoint += valueStep;
+                 paint++;
+-                if (paint > this.paintLimit) {
+-                    paint = this.paintLimit;
++                if (paint > var_2361) {
++                    paint = var_2361;
+                 }
+             }
+             this.paintIndex.put(value, new Integer(paint));

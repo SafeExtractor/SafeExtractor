@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java b/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+index 2b007b2..4ae134d 100644
+--- a/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
++++ b/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+@@ -276,9 +276,10 @@
+ 
+         int perturb = perturb(hash);
+         int j = index;
+-        if (states[index] == FULL) {
++        int var_4122 = probe(perturb, j);
++		if (states[index] == FULL) {
+             while (true) {
+-                j = probe(perturb, j);
++                j = var_4122;
+                 index = j & mask;
+                 perturb >>= PERTURB_SHIFT;
+ 
+@@ -298,7 +299,7 @@
+ 
+         final int firstRemoved = index;
+         while (true) {
+-            j = probe(perturb, j);
++            j = var_4122;
+             index = j & mask;
+ 
+             if (states[index] == FREE) {

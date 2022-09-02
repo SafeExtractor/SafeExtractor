@@ -1,0 +1,46 @@
+diff --git a/source/org/jfree/chart/renderer/xy/DeviationRenderer.java b/source/org/jfree/chart/renderer/xy/DeviationRenderer.java
+index f8af216..8eff73f 100644
+--- a/source/org/jfree/chart/renderer/xy/DeviationRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/DeviationRenderer.java
+@@ -283,13 +283,14 @@
+                     yAxisLocation);
+ 
+             PlotOrientation orientation = plot.getOrientation();
+-            if (orientation == PlotOrientation.HORIZONTAL) {
++            List var_3062 = drState.upperCoordinates;
++			if (orientation == PlotOrientation.HORIZONTAL) {
+                 drState.lowerCoordinates.add(new double[] {yyLow, xx});
+-                drState.upperCoordinates.add(new double[] {yyHigh, xx});
++                var_3062.add(new double[] {yyHigh, xx});
+             }
+             else if (orientation == PlotOrientation.VERTICAL) {
+                 drState.lowerCoordinates.add(new double[] {xx, yyLow});
+-                drState.upperCoordinates.add(new double[] {xx, yyHigh});
++                var_3062.add(new double[] {xx, yyHigh});
+             }
+ 
+             if (item == (dataset.getItemCount(series) - 1)) {
+@@ -306,11 +307,11 @@
+                     coords = (double[]) drState.lowerCoordinates.get(i);
+                     area.lineTo((float) coords[0], (float) coords[1]);
+                 }
+-                int count = drState.upperCoordinates.size();
+-                coords = (double[]) drState.upperCoordinates.get(count - 1);
++                int count = var_3062.size();
++                coords = (double[]) var_3062.get(count - 1);
+                 area.lineTo((float) coords[0], (float) coords[1]);
+                 for (int i = count - 2; i >= 0; i--) {
+-                    coords = (double[]) drState.upperCoordinates.get(i);
++                    coords = (double[]) var_3062.get(i);
+                     area.lineTo((float) coords[0], (float) coords[1]);
+                 }
+                 area.closePath();
+@@ -318,7 +319,7 @@
+                 g2.setComposite(originalComposite);
+ 
+                 drState.lowerCoordinates.clear();
+-                drState.upperCoordinates.clear();
++                var_3062.clear();
+             }
+         }
+         if (isLinePass(pass)) {

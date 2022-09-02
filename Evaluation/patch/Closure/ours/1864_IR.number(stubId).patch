@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/CrossModuleMethodMotion.java b/src/com/google/javascript/jscomp/CrossModuleMethodMotion.java
+index 810f309..cb89c67 100644
+--- a/src/com/google/javascript/jscomp/CrossModuleMethodMotion.java
++++ b/src/com/google/javascript/jscomp/CrossModuleMethodMotion.java
+@@ -153,9 +153,10 @@
+           int stubId = idGenerator.newId();
+ 
+           // example: JSCompiler_stubMethod(id);
+-          Node stubCall = IR.call(
++          Node var_1864 = IR.number(stubId);
++		Node stubCall = IR.call(
+               IR.name(STUB_METHOD_NAME),
+-              IR.number(stubId))
++              var_1864)
+               .copyInformationFromForTree(value);
+           stubCall.putBooleanProp(Node.FREE_CALL, true);
+ 
+@@ -168,7 +169,7 @@
+               deepestCommonModuleRef);
+           Node unstubCall = IR.call(
+               IR.name(UNSTUB_METHOD_NAME),
+-              IR.number(stubId),
++              var_1864,
+               value);
+           unstubCall.putBooleanProp(Node.FREE_CALL, true);
+           unstubParent.addChildToFront(

@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/rhino/JSDocInfoBuilder.java b/src/com/google/javascript/rhino/JSDocInfoBuilder.java
+index 2fe8dd2..d225dae 100644
+--- a/src/com/google/javascript/rhino/JSDocInfoBuilder.java
++++ b/src/com/google/javascript/rhino/JSDocInfoBuilder.java
+@@ -215,18 +215,19 @@
+       JSDocInfo.TrimmedStringPosition position =
+           new JSDocInfo.TrimmedStringPosition();
+       position.setItem(name);
+-      position.setPositionInformation(lineno, charno,
+-          lineno, charno + name.length());
++      int var_2591 = name.length();
++	position.setPositionInformation(lineno, charno,
++          lineno, charno + var_2591);
+       currentMarker.setName(position);
+ 
+       SourcePosition<Node> nodePos =
+           new JSDocInfo.NamePosition();
+       Node node = Node.newString(Token.NAME, name, lineno, charno);
+-      node.setLength(name.length());
++      node.setLength(var_2591);
+       node.setStaticSourceFile(file);
+       nodePos.setItem(node);
+       nodePos.setPositionInformation(lineno, charno,
+-          lineno, charno + name.length());
++          lineno, charno + var_2591);
+       currentMarker.setNameNode(nodePos);
+     }
+   }

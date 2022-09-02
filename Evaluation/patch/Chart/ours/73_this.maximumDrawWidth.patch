@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/ChartPanel.java b/source/org/jfree/chart/ChartPanel.java
+index 001049a..ac71129 100644
+--- a/source/org/jfree/chart/ChartPanel.java
++++ b/source/org/jfree/chart/ChartPanel.java
+@@ -1628,12 +1628,14 @@
+             this.scaleX = drawWidth / this.minimumDrawWidth;
+             drawWidth = this.minimumDrawWidth;
+             scale = true;
+-        }
+-        else if (drawWidth > this.maximumDrawWidth) {
+-            this.scaleX = drawWidth / this.maximumDrawWidth;
+-            drawWidth = this.maximumDrawWidth;
+-            scale = true;
+-        }
++        } else {
++			int var_73 = this.maximumDrawWidth;
++			if (drawWidth > var_73) {
++			    this.scaleX = drawWidth / var_73;
++			    drawWidth = var_73;
++			    scale = true;
++			}
++		}
+ 
+         if (drawHeight < this.minimumDrawHeight) {
+             this.scaleY = drawHeight / this.minimumDrawHeight;

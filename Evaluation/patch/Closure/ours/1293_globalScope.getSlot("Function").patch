@@ -1,0 +1,65 @@
+diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+index 5f0a14c..93f2e11 100644
+--- a/src/com/google/javascript/jscomp/SymbolTable.java
++++ b/src/com/google/javascript/jscomp/SymbolTable.java
+@@ -393,32 +393,35 @@
+ 
+     if (type.isGlobalThisType()) {
+       return globalScope.getSlot(GLOBAL_THIS);
+-    } else if (type.isNominalConstructor()) {
+-      return linkToCtor ?
+-          globalScope.getSlot("Function") :
+-          getSymbolDeclaredBy(type.toMaybeFunctionType());
+-    } else if (type.isFunctionPrototypeType()) {
+-      FunctionType ownerFn = ((ObjectType) type).getOwnerFunction();
+-      if (!ownerFn.isConstructor() && !ownerFn.isInterface()) {
+-        return null;
+-      }
+-      return linkToCtor ?
+-          getSymbolDeclaredBy(ownerFn) :
+-          getSymbolForInstancesOf(ownerFn);
+-    } else if (type.isInstanceType()) {
+-      FunctionType ownerFn = ((ObjectType) type).getConstructor();
+-      return linkToCtor ?
+-          getSymbolDeclaredBy(ownerFn) :
+-          getSymbolForInstancesOf(ownerFn);
+-    } else if (type.isFunctionType()) {
+-      return linkToCtor ?
+-          globalScope.getSlot("Function") :
+-          globalScope.getQualifiedSlot("Function.prototype");
+-    } else if (type.autoboxesTo() != null) {
+-      return getSymbolForTypeHelper(type.autoboxesTo(), linkToCtor);
+     } else {
+-      return null;
+-    }
++		Symbol var_1293 = globalScope.getSlot("Function");
++		if (type.isNominalConstructor()) {
++		  return linkToCtor ?
++		      var_1293 :
++		      getSymbolDeclaredBy(type.toMaybeFunctionType());
++		} else if (type.isFunctionPrototypeType()) {
++		  FunctionType ownerFn = ((ObjectType) type).getOwnerFunction();
++		  if (!ownerFn.isConstructor() && !ownerFn.isInterface()) {
++		    return null;
++		  }
++		  return linkToCtor ?
++		      getSymbolDeclaredBy(ownerFn) :
++		      getSymbolForInstancesOf(ownerFn);
++		} else if (type.isInstanceType()) {
++		  FunctionType ownerFn = ((ObjectType) type).getConstructor();
++		  return linkToCtor ?
++		      getSymbolDeclaredBy(ownerFn) :
++		      getSymbolForInstancesOf(ownerFn);
++		} else if (type.isFunctionType()) {
++		  return linkToCtor ?
++		      var_1293 :
++		      globalScope.getQualifiedSlot("Function.prototype");
++		} else if (type.autoboxesTo() != null) {
++		  return getSymbolForTypeHelper(type.autoboxesTo(), linkToCtor);
++		} else {
++		  return null;
++		}
++	}
+   }
+ 
+   public String toDebugString() {

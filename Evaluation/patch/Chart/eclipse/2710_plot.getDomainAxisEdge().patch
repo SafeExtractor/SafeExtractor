@@ -1,0 +1,34 @@
+diff --git a/source/org/jfree/chart/renderer/category/StackedAreaRenderer.java b/source/org/jfree/chart/renderer/category/StackedAreaRenderer.java
+index f8c3051..266f16d 100644
+--- a/source/org/jfree/chart/renderer/category/StackedAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/category/StackedAreaRenderer.java
+@@ -207,8 +207,9 @@
+         // leave the y values (y1, y0) untranslated as it is going to be be
+         // stacked up later by previous series values, after this it will be
+         // translated.
+-        double xx1 = domainAxis.getCategoryMiddle(column, getColumnCount(),
+-                dataArea, plot.getDomainAxisEdge());
++        RectangleEdge var_2710 = plot.getDomainAxisEdge();
++		double xx1 = domainAxis.getCategoryMiddle(column, getColumnCount(),
++                dataArea, var_2710);
+ 
+ 
+         // get the previous point and the next point so we can calculate a
+@@ -222,7 +223,7 @@
+ 
+         // FIXME: calculate xx0
+         double xx0 = domainAxis.getCategoryStart(column, getColumnCount(),
+-                dataArea, plot.getDomainAxisEdge());
++                dataArea, var_2710);
+ 
+         int itemCount = dataset.getColumnCount();
+         double y2 = 0.0;
+@@ -234,7 +235,7 @@
+                 itemCount - 1));
+ 
+         double xx2 = domainAxis.getCategoryEnd(column, getColumnCount(),
+-                dataArea, plot.getDomainAxisEdge());
++                dataArea, var_2710);
+ 
+         // FIXME: calculate xxLeft and xxRight
+         double xxLeft = xx0;

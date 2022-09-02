@@ -1,0 +1,39 @@
+diff --git a/source/org/jfree/chart/axis/Axis.java b/source/org/jfree/chart/axis/Axis.java
+index cabb331..966acd6 100644
+--- a/source/org/jfree/chart/axis/Axis.java
++++ b/source/org/jfree/chart/axis/Axis.java
+@@ -1304,7 +1304,8 @@
+         Rectangle2D labelBounds = TextUtilities.getTextBounds(label, g2, fm);
+         Shape hotspot = null;
+ 
+-        if (edge == RectangleEdge.TOP) {
++        double var_297 = insets.getTop();
++		if (edge == RectangleEdge.TOP) {
+             AffineTransform t = AffineTransform.getRotateInstance(
+                     getLabelAngle(), labelBounds.getCenterX(),
+                     labelBounds.getCenterY());
+@@ -1319,7 +1320,7 @@
+                     TextAnchor.CENTER, getLabelAngle(), TextAnchor.CENTER);
+             hotspot = new Rectangle2D.Float(labelx - w / 2.0f,
+                     labely - h / 2.0f, w, h);
+-            state.cursorUp(insets.getTop() + labelBounds.getHeight()
++            state.cursorUp(var_297 + labelBounds.getHeight()
+                     + insets.getBottom());
+         }
+         else if (edge == RectangleEdge.BOTTOM) {
+@@ -1331,13 +1332,13 @@
+             float w = (float) labelBounds.getWidth();
+             float h = (float) labelBounds.getHeight();
+             float labelx = (float) dataArea.getCenterX();
+-            float labely = (float) (state.getCursor() + insets.getTop()
++            float labely = (float) (state.getCursor() + var_297
+                     + h / 2.0);
+             TextUtilities.drawRotatedString(label, g2, labelx, labely,
+                     TextAnchor.CENTER, getLabelAngle(), TextAnchor.CENTER);
+             hotspot = new Rectangle2D.Float(labelx - w / 2.0f,
+                     labely - h / 2.0f, w, h);
+-            state.cursorDown(insets.getTop() + labelBounds.getHeight()
++            state.cursorDown(var_297 + labelBounds.getHeight()
+                     + insets.getBottom());
+         }
+         else if (edge == RectangleEdge.LEFT) {

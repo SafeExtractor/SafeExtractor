@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/apache/commons/math3/special/Beta.java b/src/main/java/org/apache/commons/math3/special/Beta.java
+index a425f99..fc68b82 100644
+--- a/src/main/java/org/apache/commons/math3/special/Beta.java
++++ b/src/main/java/org/apache/commons/math3/special/Beta.java
+@@ -423,16 +423,17 @@
+ 
+         final double a = FastMath.min(p, q);
+         final double b = FastMath.max(p, q);
+-        if (a >= 10.0) {
++        double var_3683 = FastMath.log(b);
++		if (a >= 10.0) {
+             final double w = sumDeltaMinusDeltaSum(a, b);
+             final double h = a / b;
+             final double c = h / (1.0 + h);
+             final double u = -(a - 0.5) * FastMath.log(c);
+             final double v = b * FastMath.log1p(h);
+             if (u <= v) {
+-                return (((-0.5 * FastMath.log(b) + HALF_LOG_TWO_PI) + w) - u) - v;
++                return (((-0.5 * var_3683 + HALF_LOG_TWO_PI) + w) - u) - v;
+             } else {
+-                return (((-0.5 * FastMath.log(b) + HALF_LOG_TWO_PI) + w) - v) - u;
++                return (((-0.5 * var_3683 + HALF_LOG_TWO_PI) + w) - v) - u;
+             }
+         } else if (a > 2.0) {
+             if (b > 1000.0) {
+@@ -443,7 +444,7 @@
+                     ared -= 1.0;
+                     prod *= ared / (1.0 + ared / b);
+                 }
+-                return (FastMath.log(prod) - n * FastMath.log(b)) +
++                return (FastMath.log(prod) - n * var_3683) +
+                         (Gamma.logGamma(ared) +
+                          logGammaMinusLogGammaSum(ared, b));
+             } else {

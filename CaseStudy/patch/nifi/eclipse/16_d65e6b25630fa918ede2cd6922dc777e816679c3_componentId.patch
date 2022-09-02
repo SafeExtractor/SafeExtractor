@@ -1,0 +1,21 @@
+diff --git a/nifi-nar-bundles/nifi-extension-utils/nifi-reporting-utils/src/main/java/org/apache/nifi/reporting/util/provenance/ProvenanceEventConsumer.java b/nifi-nar-bundles/nifi-extension-utils/nifi-reporting-utils/src/main/java/org/apache/nifi/reporting/util/provenance/ProvenanceEventConsumer.java
+index 75c1e60..1377575 100644
+--- a/nifi-nar-bundles/nifi-extension-utils/nifi-reporting-utils/src/main/java/org/apache/nifi/reporting/util/provenance/ProvenanceEventConsumer.java
++++ b/nifi-nar-bundles/nifi-extension-utils/nifi-reporting-utils/src/main/java/org/apache/nifi/reporting/util/provenance/ProvenanceEventConsumer.java
+@@ -234,13 +234,14 @@
+             List<ProvenanceEventRecord> filteredEvents = new ArrayList<>();
+ 
+             for (ProvenanceEventRecord provenanceEventRecord : provenanceEvents) {
+-                if(!componentIds.isEmpty() && !componentIds.contains(provenanceEventRecord.getComponentId())) {
++                String componentId = provenanceEventRecord.getComponentId();
++				if(!componentIds.isEmpty() && !componentIds.contains(componentId)) {
+                     // If we aren't filtering it out based on component ID, let's see if this component has a parent process group IDs
+                     // that is being filtered on
+                     if (componentMapHolder == null) {
+                         continue;
+                     }
+-                    final String processGroupId = componentMapHolder.getProcessGroupId(provenanceEventRecord.getComponentId(), provenanceEventRecord.getComponentType());
++                    final String processGroupId = componentMapHolder.getProcessGroupId(componentId, provenanceEventRecord.getComponentType());
+                     if (processGroupId == null || processGroupId.isEmpty()) {
+                         continue;
+                     }

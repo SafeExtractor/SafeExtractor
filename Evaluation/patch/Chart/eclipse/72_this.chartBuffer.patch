@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/ChartPanel.java b/source/org/jfree/chart/ChartPanel.java
+index 001049a..106a207 100644
+--- a/source/org/jfree/chart/ChartPanel.java
++++ b/source/org/jfree/chart/ChartPanel.java
+@@ -1653,7 +1653,8 @@
+         if (this.useBuffer) {
+ 
+             // do we need to resize the buffer?
+-            if ((this.chartBuffer == null)
++            Image var_72 = this.chartBuffer;
++			if ((var_72 == null)
+                     || (this.chartBufferWidth != available.getWidth())
+                     || (this.chartBufferHeight != available.getHeight())) {
+                 this.chartBufferWidth = (int) available.getWidth();
+@@ -1675,7 +1676,7 @@
+ 
+                 // make the background of the buffer clear and transparent
+                 Graphics2D bufferG2 = (Graphics2D)
+-                        this.chartBuffer.getGraphics();
++                        var_72.getGraphics();
+                 Composite savedComposite = bufferG2.getComposite();
+                 bufferG2.setComposite(AlphaComposite.getInstance(
+                         AlphaComposite.CLEAR, 0.0f));
+@@ -1701,7 +1702,7 @@
+             }
+ 
+             // zap the buffer onto the panel...
+-            g2.drawImage(this.chartBuffer, insets.left, insets.top, this);
++            g2.drawImage(var_72, insets.left, insets.top, this);
+ 
+         }
+ 

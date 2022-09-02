@@ -1,0 +1,53 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2315_stream.getLineno().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2315_stream.getLineno().patch
+index 68e0a89..7c00d4f 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2315_stream.getLineno().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2315_stream.getLineno().patch
+@@ -1,43 +1,16 @@
+ diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+-index 5ef8850..e32d7bb 100644
++index 5ef8850..b81f629 100644
+ --- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+ +++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+-@@ -1017,19 +1017,20 @@
+-   private JsDocToken parseSuppressTag(JsDocToken token) {
+-     if (token == JsDocToken.LC) {
+-       Set<String> suppressions = new HashSet<String>();
+--      while (true) {
+-+      int var_2315 = stream.getLineno();
+-+	while (true) {
++@@ -1021,8 +1021,9 @@
+          if (match(JsDocToken.STRING)) {
+            String name = stream.getString();
+            if (!suppressionNames.contains(name)) {
+-             parser.addParserWarning("msg.jsdoc.suppress.unknown", name,
++-            parser.addParserWarning("msg.jsdoc.suppress.unknown", name,
+ -                stream.getLineno(), stream.getCharno());
+++            int var_2315 = stream.getLineno();
+++			parser.addParserWarning("msg.jsdoc.suppress.unknown", name,
+ +                var_2315, stream.getCharno());
+            }
+  
+            suppressions.add(stream.getString());
+-           token = next();
+-         } else {
+-           parser.addParserWarning("msg.jsdoc.suppress",
+--              stream.getLineno(), stream.getCharno());
+-+              var_2315, stream.getCharno());
+-           return token;
+-         }
+- 
+-@@ -1042,12 +1043,12 @@
+- 
+-       if (!match(JsDocToken.RC)) {
+-         parser.addParserWarning("msg.jsdoc.suppress",
+--            stream.getLineno(), stream.getCharno());
+-+            var_2315, stream.getCharno());
+-       } else {
+-         token = next();
+-         if (!jsdocBuilder.recordSuppressions(suppressions)) {
+-           parser.addParserWarning("msg.jsdoc.suppress.duplicate",
+--              stream.getLineno(), stream.getCharno());
+-+              var_2315, stream.getCharno());
+-         }
+-       }
+-     }

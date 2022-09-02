@@ -1,0 +1,54 @@
+diff --git a/source/org/jfree/chart/util/RelativeDateFormat.java b/source/org/jfree/chart/util/RelativeDateFormat.java
+index f9515fe..2a61251 100644
+--- a/source/org/jfree/chart/util/RelativeDateFormat.java
++++ b/source/org/jfree/chart/util/RelativeDateFormat.java
+@@ -46,6 +46,7 @@
+ 
+ package org.jfree.chart.util;
+ 
++import java.io.PrintStream;
+ import java.text.DateFormat;
+ import java.text.DecimalFormat;
+ import java.text.FieldPosition;
+@@ -602,28 +603,29 @@
+         GregorianCalendar c1 = new GregorianCalendar(2006, 10, 1, 11, 37, 43);
+         c1.set(Calendar.MILLISECOND, 123);
+ 
+-        System.out.println("Default: ");
++        PrintStream var_3629 = System.out;
++		var_3629.println("Default: ");
+         RelativeDateFormat rdf = new RelativeDateFormat(c0.getTimeInMillis());
+-        System.out.println(rdf.format(c1.getTime()));
+-        System.out.println();
++        var_3629.println(rdf.format(c1.getTime()));
++        var_3629.println();
+ 
+-        System.out.println("Hide milliseconds: ");
++        var_3629.println("Hide milliseconds: ");
+         rdf.setSecondFormatter(new DecimalFormat("0"));
+-        System.out.println(rdf.format(c1.getTime()));
+-        System.out.println();
++        var_3629.println(rdf.format(c1.getTime()));
++        var_3629.println();
+ 
+-        System.out.println("Show zero day output: ");
++        var_3629.println("Show zero day output: ");
+         rdf.setShowZeroDays(true);
+-        System.out.println(rdf.format(c1.getTime()));
+-        System.out.println();
++        var_3629.println(rdf.format(c1.getTime()));
++        var_3629.println();
+ 
+-        System.out.println("Alternative suffixes: ");
++        var_3629.println("Alternative suffixes: ");
+         rdf.setShowZeroDays(false);
+         rdf.setDaySuffix(":");
+         rdf.setHourSuffix(":");
+         rdf.setMinuteSuffix(":");
+         rdf.setSecondSuffix("");
+-        System.out.println(rdf.format(c1.getTime()));
+-        System.out.println();
++        var_3629.println(rdf.format(c1.getTime()));
++        var_3629.println();
+     }
+ }

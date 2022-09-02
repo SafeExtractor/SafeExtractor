@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java b/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java
+index a5f5faf..2776a62 100644
+--- a/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java
++++ b/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java
+@@ -271,12 +271,13 @@
+         // use the last estimated index as the splitting index
+         final StepInterpolator si = steps.get(index);
+         final int location = locatePoint(time, si);
+-        if (location < 0) {
++        double var_2595 = si.getPreviousTime();
++		if (location < 0) {
+           iMax = index;
+-          tMax = 0.5 * (si.getPreviousTime() + si.getCurrentTime());
++          tMax = 0.5 * (var_2595 + si.getCurrentTime());
+         } else if (location > 0) {
+           iMin = index;
+-          tMin = 0.5 * (si.getPreviousTime() + si.getCurrentTime());
++          tMin = 0.5 * (var_2595 + si.getCurrentTime());
+         } else {
+           // we have found the target step, no need to continue searching
+           si.setInterpolatedTime(time);

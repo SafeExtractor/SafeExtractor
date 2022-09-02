@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math4/analysis/interpolation/SplineInterpolator.java b/src/main/java/org/apache/commons/math4/analysis/interpolation/SplineInterpolator.java
+index 1b23bba..8caee74 100644
+--- a/src/main/java/org/apache/commons/math4/analysis/interpolation/SplineInterpolator.java
++++ b/src/main/java/org/apache/commons/math4/analysis/interpolation/SplineInterpolator.java
+@@ -91,10 +91,11 @@
+         final double[] z = new double[n + 1];
+         double g = 0;
+         for (int i = 1; i < n; i++) {
+-            g = 2d * (x[i+1]  - x[i - 1]) - h[i - 1] * mu[i -1];
++            double hIm1 = h[i - 1];
++			g = 2d * (x[i+1]  - x[i - 1]) - hIm1 * mu[i -1];
+             mu[i] = h[i] / g;
+-            z[i] = (3d * (y[i + 1] * h[i - 1] - y[i] * (x[i + 1] - x[i - 1])+ y[i - 1] * h[i]) /
+-                    (h[i - 1] * h[i]) - h[i - 1] * z[i - 1]) / g;
++            z[i] = (3d * (y[i + 1] * hIm1 - y[i] * (x[i + 1] - x[i - 1])+ y[i - 1] * h[i]) /
++                    (hIm1 * h[i]) - hIm1 * z[i - 1]) / g;
+         }
+ 
+         // cubic spline coefficients --  b is linear, c quadratic, d is cubic (original y's are constants)

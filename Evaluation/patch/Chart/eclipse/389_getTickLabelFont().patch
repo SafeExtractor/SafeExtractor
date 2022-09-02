@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/axis/LogAxis.java b/source/org/jfree/chart/axis/LogAxis.java
+index f01eade..464cfe9 100644
+--- a/source/org/jfree/chart/axis/LogAxis.java
++++ b/source/org/jfree/chart/axis/LogAxis.java
+@@ -758,16 +758,17 @@
+         RectangleInsets tickLabelInsets = getTickLabelInsets();
+         double result = tickLabelInsets.getLeft() + tickLabelInsets.getRight();
+ 
+-        if (isVerticalTickLabels()) {
++        Font var_389 = getTickLabelFont();
++		if (isVerticalTickLabels()) {
+             // all tick labels have the same width (equal to the height of the
+             // font)...
+             FontRenderContext frc = g2.getFontRenderContext();
+-            LineMetrics lm = getTickLabelFont().getLineMetrics("0", frc);
++            LineMetrics lm = var_389.getLineMetrics("0", frc);
+             result += lm.getHeight();
+         }
+         else {
+             // look at lower and upper bounds...
+-            FontMetrics fm = g2.getFontMetrics(getTickLabelFont());
++            FontMetrics fm = g2.getFontMetrics(var_389);
+             Range range = getRange();
+             double lower = range.getLowerBound();
+             double upper = range.getUpperBound();

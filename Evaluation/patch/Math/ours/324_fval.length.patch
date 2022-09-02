@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java
+index 0fce857..e691ef3 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java
+@@ -39,11 +39,12 @@
+                                                            final double[][][] fval)
+         throws NoDataException, NumberIsTooSmallException,
+                DimensionMismatchException, NonMonotonicSequenceException {
+-        if (xval.length == 0 || yval.length == 0 || zval.length == 0 || fval.length == 0) {
++        int var_324 = fval.length;
++		if (xval.length == 0 || yval.length == 0 || zval.length == 0 || var_324 == 0) {
+             throw new NoDataException();
+         }
+-        if (xval.length != fval.length) {
+-            throw new DimensionMismatchException(xval.length, fval.length);
++        if (xval.length != var_324) {
++            throw new DimensionMismatchException(xval.length, var_324);
+         }
+ 
+         MathArrays.checkOrder(xval);

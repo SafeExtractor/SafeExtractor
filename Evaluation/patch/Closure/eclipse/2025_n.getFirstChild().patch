@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/StripCode.java b/src/com/google/javascript/jscomp/StripCode.java
+index 94c384a..af698a8 100644
+--- a/src/com/google/javascript/jscomp/StripCode.java
++++ b/src/com/google/javascript/jscomp/StripCode.java
+@@ -391,12 +391,13 @@
+      * @return Whether the call's return value should be stripped
+      */
+     boolean isCallWhoseReturnValueShouldBeStripped(@Nullable Node n) {
+-      return n != null &&
++      Node var_2025 = n.getFirstChild();
++	return n != null &&
+           (n.isCall() ||
+            n.isNew()) &&
+           n.hasChildren() &&
+-          (qualifiedNameBeginsWithStripType(n.getFirstChild()) ||
+-              nameEndsWithFieldNameToStrip(n.getFirstChild()));
++          (qualifiedNameBeginsWithStripType(var_2025) ||
++              nameEndsWithFieldNameToStrip(var_2025));
+     }
+ 
+     /**

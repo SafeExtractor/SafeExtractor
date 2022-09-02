@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/MatrixUtils.java b/src/main/java/org/apache/commons/math3/linear/MatrixUtils.java
+index 5b91780..012fb37 100644
+--- a/src/main/java/org/apache/commons/math3/linear/MatrixUtils.java
++++ b/src/main/java/org/apache/commons/math3/linear/MatrixUtils.java
+@@ -972,16 +972,17 @@
+     public static void solveUpperTriangularSystem(RealMatrix rm, RealVector b)
+         throws DimensionMismatchException, MathArithmeticException,
+         NonSquareMatrixException {
+-        if ((rm == null) || (b == null) || ( rm.getRowDimension() != b.getDimension())) {
++        int var_2027 = rm.getRowDimension();
++		if ((rm == null) || (b == null) || ( var_2027 != b.getDimension())) {
+             throw new DimensionMismatchException(
+-                    (rm == null) ? 0 : rm.getRowDimension(),
++                    (rm == null) ? 0 : var_2027,
+                     (b == null) ? 0 : b.getDimension());
+         }
+-        if( rm.getColumnDimension() != rm.getRowDimension() ){
+-            throw new NonSquareMatrixException(rm.getRowDimension(),
++        if( rm.getColumnDimension() != var_2027 ){
++            throw new NonSquareMatrixException(var_2027,
+                                                rm.getColumnDimension());
+         }
+-        int rows = rm.getRowDimension();
++        int rows = var_2027;
+         for( int i = rows-1 ; i >-1 ; i-- ){
+             double diag = rm.getEntry(i, i);
+             if( FastMath.abs(diag) < Precision.SAFE_MIN ){

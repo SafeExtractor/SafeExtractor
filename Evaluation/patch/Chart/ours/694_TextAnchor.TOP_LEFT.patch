@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/axis/CyclicNumberAxis.java b/source/org/jfree/chart/axis/CyclicNumberAxis.java
+index 114e296..611d9a0 100644
+--- a/source/org/jfree/chart/axis/CyclicNumberAxis.java
++++ b/source/org/jfree/chart/axis/CyclicNumberAxis.java
+@@ -692,8 +692,9 @@
+                     anchor = TextAnchor.CENTER_LEFT;
+                     if ((lastTick != null) && (lastY == y)
+                             && (currentTickValue != cycleBound)) {
+-                        anchor = isInverted()
+-                            ? TextAnchor.BOTTOM_LEFT : TextAnchor.TOP_LEFT;
++                        TextAnchor var_694 = TextAnchor.TOP_LEFT;
++						anchor = isInverted()
++                            ? TextAnchor.BOTTOM_LEFT : var_694;
+                         result.remove(result.size() - 1);
+                         result.add(new CycleBoundTick(
+                             this.boundMappedToLastCycle, lastTick.getNumber(),
+@@ -702,7 +703,7 @@
+                         );
+                         this.internalMarkerWhenTicksOverlap = true;
+                         anchor = isInverted()
+-                            ? TextAnchor.TOP_LEFT : TextAnchor.BOTTOM_LEFT;
++                            ? var_694 : TextAnchor.BOTTOM_LEFT;
+                     }
+                     rotationAnchor = anchor;
+                 }

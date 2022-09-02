@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/CheckAccessControls.java b/src/com/google/javascript/jscomp/CheckAccessControls.java
+index df50c26..311b86f 100644
+--- a/src/com/google/javascript/jscomp/CheckAccessControls.java
++++ b/src/com/google/javascript/jscomp/CheckAccessControls.java
+@@ -455,7 +455,8 @@
+     if (objectType != null) {
+       // Is this a normal property access, or are we trying to override
+       // an existing property?
+-      boolean isOverride = parent.getJSDocInfo() != null &&
++      JSDocInfo var_920 = parent.getJSDocInfo();
++	boolean isOverride = var_920 != null &&
+           parent.isAssign() &&
+           parent.getFirstChild() == getprop;
+ 
+@@ -488,7 +489,7 @@
+       if (isOverride) {
+         // Check an ASSIGN statement that's trying to override a property
+         // on a superclass.
+-        JSDocInfo overridingInfo = parent.getJSDocInfo();
++        JSDocInfo overridingInfo = var_920;
+         Visibility overridingVisibility = overridingInfo == null ?
+             Visibility.INHERITED : overridingInfo.getVisibility();
+ 

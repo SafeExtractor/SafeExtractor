@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/GlobalNamespace.java b/src/com/google/javascript/jscomp/GlobalNamespace.java
+index 1cd29f0..ed6e6e6 100644
+--- a/src/com/google/javascript/jscomp/GlobalNamespace.java
++++ b/src/com/google/javascript/jscomp/GlobalNamespace.java
+@@ -1140,15 +1140,16 @@
+      * Tries to get the doc info for a given declaration ref.
+      */
+     private static JSDocInfo getDocInfoForDeclaration(Ref ref) {
+-      if (ref.node != null) {
+-        Node refParent = ref.node.getParent();
++      Node var_1621 = ref.node;
++	if (var_1621 != null) {
++        Node refParent = var_1621.getParent();
+         switch (refParent.getType()) {
+           case Token.FUNCTION:
+           case Token.ASSIGN:
+             return refParent.getJSDocInfo();
+           case Token.VAR:
+-            return ref.node == refParent.getFirstChild() ?
+-                refParent.getJSDocInfo() : ref.node.getJSDocInfo();
++            return var_1621 == refParent.getFirstChild() ?
++                refParent.getJSDocInfo() : var_1621.getJSDocInfo();
+         }
+       }
+ 

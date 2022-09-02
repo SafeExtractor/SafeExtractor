@@ -1,0 +1,40 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/events/EventFilter.java b/src/main/java/org/apache/commons/math3/ode/events/EventFilter.java
+index 1ce89f7..bf36689 100644
+--- a/src/main/java/org/apache/commons/math3/ode/events/EventFilter.java
++++ b/src/main/java/org/apache/commons/math3/ode/events/EventFilter.java
+@@ -148,7 +148,8 @@
+ 
+             }
+         } else {
+-            if (t < extremeT) {
++            int var_2606 = updates.length;
++			if (t < extremeT) {
+                 // we are at the backward end of the history
+ 
+                 // check if a new rough root has been crossed
+@@ -161,7 +162,7 @@
+                     // but it was already valid before, so we store the switch at extremeT
+                     // for safety, to ensure the previous transformer is not applied too
+                     // close of the root
+-                    System.arraycopy(updates,      0, updates,      1, updates.length - 1);
++                    System.arraycopy(updates,      0, updates,      1, var_2606 - 1);
+                     System.arraycopy(transformers, 0, transformers, 1, transformers.length - 1);
+                     updates[0]      = extremeT;
+                     transformers[0] = next;
+@@ -176,14 +177,14 @@
+                 // we are in the middle of the history
+ 
+                 // select the transformer
+-                for (int i = 0; i < updates.length - 1; ++i) {
++                for (int i = 0; i < var_2606 - 1; ++i) {
+                     if (t <= updates[i]) {
+                         // apply the transform
+                         return transformers[i].transformed(rawG);
+                     }
+                 }
+ 
+-                return transformers[updates.length - 1].transformed(rawG);
++                return transformers[var_2606 - 1].transformed(rawG);
+ 
+             }
+        }

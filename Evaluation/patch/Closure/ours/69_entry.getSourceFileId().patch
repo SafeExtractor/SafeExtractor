@@ -1,0 +1,20 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
+index e970d3a..98b7a2a 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
++++ b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
+@@ -480,12 +480,13 @@
+    * Creates an "OriginalMapping" object for the given entry object.
+    */
+   private OriginalMapping getOriginalMappingForEntry(Entry entry) {
+-    if (entry.getSourceFileId() == UNMAPPED) {
++    int var_69 = entry.getSourceFileId();
++	if (var_69 == UNMAPPED) {
+       return null;
+     } else {
+       // Adjust the line/column here to be start at 1.
+       Builder x = OriginalMapping.newBuilder()
+-        .setOriginalFile(sources[entry.getSourceFileId()])
++        .setOriginalFile(sources[var_69])
+         .setLineNumber(entry.getSourceLine() + 1)
+         .setColumnPosition(entry.getSourceColumn() + 1);
+       if (entry.getNameId() != UNMAPPED) {

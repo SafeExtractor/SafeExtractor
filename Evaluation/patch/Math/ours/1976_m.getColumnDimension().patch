@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java b/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
+index a03c4f4..7a40a68 100644
+--- a/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
+@@ -479,7 +479,8 @@
+             // safety check
+             MatrixUtils.checkMultiplicationCompatible(this, m);
+ 
+-            final BlockRealMatrix out = new BlockRealMatrix(rows, m.getColumnDimension());
++            int var_1976 = m.getColumnDimension();
++			final BlockRealMatrix out = new BlockRealMatrix(rows, var_1976);
+ 
+             // perform multiplication block-wise, to ensure good cache behavior
+             int blockIndex = 0;
+@@ -489,7 +490,7 @@
+ 
+                 for (int jBlock = 0; jBlock < out.blockColumns; ++jBlock) {
+                     final int qStart = jBlock * BLOCK_SIZE;
+-                    final int qEnd = FastMath.min(qStart + BLOCK_SIZE, m.getColumnDimension());
++                    final int qEnd = FastMath.min(qStart + BLOCK_SIZE, var_1976);
+ 
+                     // select current block
+                     final double[] outBlock = out.blocks[blockIndex];

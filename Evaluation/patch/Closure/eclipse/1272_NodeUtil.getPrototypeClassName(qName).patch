@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/NameReferenceGraphConstruction.java b/src/com/google/javascript/jscomp/NameReferenceGraphConstruction.java
+index d61f9e9..1fde7a8 100644
+--- a/src/com/google/javascript/jscomp/NameReferenceGraphConstruction.java
++++ b/src/com/google/javascript/jscomp/NameReferenceGraphConstruction.java
+@@ -402,7 +402,8 @@
+     private Name recordPrototypePropDefinition(
+         NodeTraversal t, Node qName, JSType type,
+         @Nullable Node assign, @Nullable Node parent, @Nullable Node gParent) {
+-      JSType constructor = getType(NodeUtil.getPrototypeClassName(qName));
++      Node var_1272 = NodeUtil.getPrototypeClassName(qName);
++	JSType constructor = getType(var_1272);
+       FunctionType classType = null;
+       String className = null;
+ 
+@@ -414,7 +415,7 @@
+         // We'll guess it is a constructor even if it didn't have @constructor
+         classType = compiler.getTypeRegistry().getNativeFunctionType(
+             JSTypeNative.U2U_CONSTRUCTOR_TYPE);
+-        className = NodeUtil.getPrototypeClassName(qName).getQualifiedName();
++        className = var_1272.getQualifiedName();
+       }
+       // In case we haven't seen the function yet.
+       recordClassConstructorOrInterface(

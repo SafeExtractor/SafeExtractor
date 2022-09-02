@@ -1,0 +1,28 @@
+diff --git a/src/org/mockito/internal/invocation/ArgumentsComparator.java b/src/org/mockito/internal/invocation/ArgumentsComparator.java
+index 00849fd..32aec90 100644
+--- a/src/org/mockito/internal/invocation/ArgumentsComparator.java
++++ b/src/org/mockito/internal/invocation/ArgumentsComparator.java
+@@ -48,7 +48,8 @@
+         for (int i = 0; i < rawArgs.length; i++) {
+             Matcher m = matchers.get(i);
+             //it's a vararg because it's the last array in the arg list
+-            if (rawArgs[i] != null && rawArgs[i].getClass().isArray() && i == rawArgs.length-1) {
++            Object var_38 = rawArgs[i];
++			if (var_38 != null && var_38.getClass().isArray() && i == rawArgs.length-1) {
+                 Matcher actualMatcher;
+                 //this is necessary as the framework often decorates matchers
+                 if (m instanceof MatcherDecorator) {
+@@ -57,11 +58,11 @@
+                     actualMatcher = m;
+                 }
+                 //this is very important to only allow VarargMatchers here. If you're not sure why remove it and run all tests.
+-                if (!(actualMatcher instanceof VarargMatcher) || !actualMatcher.matches(rawArgs[i])) {
++                if (!(actualMatcher instanceof VarargMatcher) || !actualMatcher.matches(var_38)) {
+                     return false;
+                 }
+             //it's not a vararg (i.e. some ordinary argument before varargs), just do the ordinary check
+-            } else if (!m.matches(rawArgs[i])){
++            } else if (!m.matches(var_38)){
+                 return false;
+             }
+         }

@@ -1,0 +1,44 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+index c8fbac8..bd25dda 100644
+--- a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
++++ b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+@@ -276,9 +276,10 @@
+     registerNativeType(JSTypeNative.TOP_LEVEL_PROTOTYPE, TOP_LEVEL_PROTOTYPE);
+ 
+     // Object
+-    FunctionType OBJECT_FUNCTION_TYPE =
++    Node var_2658 = createOptionalParameters(ALL_TYPE);
++	FunctionType OBJECT_FUNCTION_TYPE =
+         new FunctionType(this, "Object", null,
+-            createArrowType(createOptionalParameters(ALL_TYPE), UNKNOWN_TYPE),
++            createArrowType(var_2658, UNKNOWN_TYPE),
+             null, null, true, true);
+ 
+     OBJECT_FUNCTION_TYPE.setPrototype(TOP_LEVEL_PROTOTYPE, null);
+@@ -329,7 +330,7 @@
+     // Boolean
+     FunctionType BOOLEAN_OBJECT_FUNCTION_TYPE =
+         new FunctionType(this, "Boolean", null,
+-            createArrowType(createOptionalParameters(ALL_TYPE), BOOLEAN_TYPE),
++            createArrowType(var_2658, BOOLEAN_TYPE),
+             null, null, true, true);
+     ObjectType booleanPrototype = BOOLEAN_OBJECT_FUNCTION_TYPE.getPrototype();
+     registerNativeType(
+@@ -426,7 +427,7 @@
+     // Number
+     FunctionType NUMBER_OBJECT_FUNCTION_TYPE =
+         new FunctionType(this, "Number", null,
+-            createArrowType(createOptionalParameters(ALL_TYPE), NUMBER_TYPE),
++            createArrowType(var_2658, NUMBER_TYPE),
+             null, null, true, true);
+     ObjectType numberPrototype = NUMBER_OBJECT_FUNCTION_TYPE.getPrototype();
+     registerNativeType(
+@@ -453,7 +454,7 @@
+     // String
+     FunctionType STRING_OBJECT_FUNCTION_TYPE =
+         new FunctionType(this, "String", null,
+-            createArrowType(createOptionalParameters(ALL_TYPE), STRING_TYPE),
++            createArrowType(var_2658, STRING_TYPE),
+             null, null, true, true);
+     ObjectType stringPrototype = STRING_OBJECT_FUNCTION_TYPE.getPrototype();
+     registerNativeType(

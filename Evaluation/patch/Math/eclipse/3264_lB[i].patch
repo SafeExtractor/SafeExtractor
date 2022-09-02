@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+index 104bdf5..464e358 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+@@ -681,8 +681,9 @@
+                     // XXX Remove this block in 4.0 (check performed in "Sigma" class).
+                     throw new NotPositiveException(inputSigma[i]);
+                 }
+-                if (inputSigma[i] > uB[i] - lB[i]) {
+-                    throw new OutOfRangeException(inputSigma[i], 0, uB[i] - lB[i]);
++                double var_3264 = lB[i];
++				if (inputSigma[i] > uB[i] - var_3264) {
++                    throw new OutOfRangeException(inputSigma[i], 0, uB[i] - var_3264);
+                 }
+             }
+         }

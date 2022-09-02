@@ -1,0 +1,21 @@
+diff --git a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/dto/DtoFactory.java b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/dto/DtoFactory.java
+index 6c2c3bc..6d982cb 100644
+--- a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/dto/DtoFactory.java
++++ b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/dto/DtoFactory.java
+@@ -669,11 +669,12 @@
+         dto.setDestination(createConnectableDto(connection.getDestination()));
+         dto.setVersionedComponentId(connection.getVersionedComponentId().orElse(null));
+ 
+-        dto.setBackPressureObjectThreshold(connection.getFlowFileQueue().getBackPressureObjectThreshold());
+-        dto.setBackPressureDataSizeThreshold(connection.getFlowFileQueue().getBackPressureDataSizeThreshold());
+-        dto.setFlowFileExpiration(connection.getFlowFileQueue().getFlowFileExpiration());
++        FlowFileQueue flowFileQueue = connection.getFlowFileQueue();
++		dto.setBackPressureObjectThreshold(flowFileQueue.getBackPressureObjectThreshold());
++        dto.setBackPressureDataSizeThreshold(flowFileQueue.getBackPressureDataSizeThreshold());
++        dto.setFlowFileExpiration(flowFileQueue.getFlowFileExpiration());
+         dto.setPrioritizers(new ArrayList<String>());
+-        for (final FlowFilePrioritizer comparator : connection.getFlowFileQueue().getPriorities()) {
++        for (final FlowFilePrioritizer comparator : flowFileQueue.getPriorities()) {
+             dto.getPrioritizers().add(comparator.getClass().getCanonicalName());
+         }
+ 

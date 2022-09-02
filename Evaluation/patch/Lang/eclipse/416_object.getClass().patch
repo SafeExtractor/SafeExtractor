@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/lang3/reflect/MethodUtils.java b/src/main/java/org/apache/commons/lang3/reflect/MethodUtils.java
+index b86ea28..8aaa71b 100644
+--- a/src/main/java/org/apache/commons/lang3/reflect/MethodUtils.java
++++ b/src/main/java/org/apache/commons/lang3/reflect/MethodUtils.java
+@@ -186,12 +186,13 @@
+         if (parameterTypes == null) {
+             parameterTypes = ArrayUtils.EMPTY_CLASS_ARRAY;
+         }
+-        final Method method = getAccessibleMethod(object.getClass(), methodName,
++        Class<? extends Object> var_416 = object.getClass();
++		final Method method = getAccessibleMethod(var_416, methodName,
+                 parameterTypes);
+         if (method == null) {
+             throw new NoSuchMethodException("No such accessible method: "
+                     + methodName + "() on object: "
+-                    + object.getClass().getName());
++                    + var_416.getName());
+         }
+         return method.invoke(object, args);
+     }

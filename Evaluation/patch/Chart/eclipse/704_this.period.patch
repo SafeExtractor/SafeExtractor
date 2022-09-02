@@ -1,0 +1,35 @@
+diff --git a/source/org/jfree/chart/axis/CyclicNumberAxis.java b/source/org/jfree/chart/axis/CyclicNumberAxis.java
+index 114e296..bca7fc3 100644
+--- a/source/org/jfree/chart/axis/CyclicNumberAxis.java
++++ b/source/org/jfree/chart/axis/CyclicNumberAxis.java
+@@ -764,22 +764,23 @@
+             jmax = dataArea.getMinY();
+         }
+ 
+-        if (isInverted()) {
+-            double jbreak = jmax - (vmax - vp) * (jmax - jmin) / this.period;
++        double var_704 = this.period;
++		if (isInverted()) {
++            double jbreak = jmax - (vmax - vp) * (jmax - jmin) / var_704;
+             if (java2DValue >= jbreak) {
+-                return vp + (jmax - java2DValue) * this.period / (jmax - jmin);
++                return vp + (jmax - java2DValue) * var_704 / (jmax - jmin);
+             }
+             else {
+-                return vp - (java2DValue - jmin) * this.period / (jmax - jmin);
++                return vp - (java2DValue - jmin) * var_704 / (jmax - jmin);
+             }
+         }
+         else {
+-            double jbreak = (vmax - vp) * (jmax - jmin) / this.period + jmin;
++            double jbreak = (vmax - vp) * (jmax - jmin) / var_704 + jmin;
+             if (java2DValue <= jbreak) {
+-                return vp + (java2DValue - jmin) * this.period / (jmax - jmin);
++                return vp + (java2DValue - jmin) * var_704 / (jmax - jmin);
+             }
+             else {
+-                return vp - (jmax - java2DValue) * this.period / (jmax - jmin);
++                return vp - (jmax - java2DValue) * var_704 / (jmax - jmin);
+             }
+         }
+     }

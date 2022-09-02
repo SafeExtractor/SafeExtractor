@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/InlineObjectLiterals.java b/src/com/google/javascript/jscomp/InlineObjectLiterals.java
+index d03988c..a452f25 100644
+--- a/src/com/google/javascript/jscomp/InlineObjectLiterals.java
++++ b/src/com/google/javascript/jscomp/InlineObjectLiterals.java
+@@ -91,12 +91,13 @@
+ 
+         ReferenceCollection referenceInfo = referenceMap.getReferences(v);
+ 
+-        if (isInlinableObject(referenceInfo.references)) {
++        List<Reference> var_661 = referenceInfo.references;
++		if (isInlinableObject(var_661)) {
+           // Blacklist the object itself, as well as any other values
+           // that it refers to, since they will have been moved around.
+           staleVars.add(v);
+ 
+-          Reference declaration = referenceInfo.references.get(0);
++          Reference declaration = var_661.get(0);
+           Reference init = referenceInfo.getInitializingReference();
+ 
+           // Split up the object into individual variables if the object

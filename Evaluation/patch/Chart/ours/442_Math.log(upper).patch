@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/axis/LogarithmicAxis.java b/source/org/jfree/chart/axis/LogarithmicAxis.java
+index 1f440bd..bafc353 100644
+--- a/source/org/jfree/chart/axis/LogarithmicAxis.java
++++ b/source/org/jfree/chart/axis/LogarithmicAxis.java
+@@ -460,12 +460,13 @@
+     protected double computeLogCeil(double upper) {
+ 
+         double logCeil;
+-        if (this.allowNegativesFlag) {
++        double var_442 = Math.log(upper);
++		if (this.allowNegativesFlag) {
+             //negative values are allowed
+             if (upper > 10.0) {
+                 //parameter value is > 10
+                 // The Math.log() function is based on e not 10.
+-                logCeil = Math.log(upper) / LOG10_VALUE;
++                logCeil = var_442 / LOG10_VALUE;
+                 logCeil = Math.ceil(logCeil);
+                 logCeil = Math.pow(10, logCeil);
+             }
+@@ -488,7 +489,7 @@
+             if (upper > 0.0) {
+                 //parameter value is > 0
+                 // The Math.log() function is based on e not 10.
+-                logCeil = Math.log(upper) / LOG10_VALUE;
++                logCeil = var_442 / LOG10_VALUE;
+                 logCeil = Math.ceil(logCeil);
+                 logCeil = Math.pow(10, logCeil);
+             }

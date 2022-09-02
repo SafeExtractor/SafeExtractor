@@ -1,0 +1,47 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+index 5d8a992..55d2a09 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+@@ -237,10 +237,11 @@
+         // find an edge with an hyperplane that can be inserted in the node
+         int index = 0;
+         Edge inserted =null;
+-        while (inserted == null && index < edges.size()) {
++        Line var_1621 = inserted.getLine();
++		while (inserted == null && index < edges.size()) {
+             inserted = edges.get(index++);
+             if (inserted.getNode() == null) {
+-                if (node.insertCut(inserted.getLine())) {
++                if (node.insertCut(var_1621)) {
+                     inserted.setNode(node);
+                 } else {
+                     inserted = null;
+@@ -268,8 +269,8 @@
+         final List<Edge> minusList = new ArrayList<Edge>();
+         for (final Edge edge : edges) {
+             if (edge != inserted) {
+-                final double startOffset = inserted.getLine().getOffset(edge.getStart().getLocation());
+-                final double endOffset   = inserted.getLine().getOffset(edge.getEnd().getLocation());
++                final double startOffset = var_1621.getOffset(edge.getStart().getLocation());
++                final double endOffset   = var_1621.getOffset(edge.getEnd().getLocation());
+                 Side startSide = (FastMath.abs(startOffset) <= hyperplaneThickness) ?
+                                  Side.HYPER : ((startOffset < 0) ? Side.MINUS : Side.PLUS);
+                 Side endSide   = (FastMath.abs(endOffset) <= hyperplaneThickness) ?
+@@ -278,7 +279,7 @@
+                     case PLUS:
+                         if (endSide == Side.MINUS) {
+                             // we need to insert a split point on the hyperplane
+-                            final Vertex splitPoint = edge.split(inserted.getLine());
++                            final Vertex splitPoint = edge.split(var_1621);
+                             minusList.add(splitPoint.getOutgoing());
+                             plusList.add(splitPoint.getIncoming());
+                         } else {
+@@ -288,7 +289,7 @@
+                     case MINUS:
+                         if (endSide == Side.PLUS) {
+                             // we need to insert a split point on the hyperplane
+-                            final Vertex splitPoint = edge.split(inserted.getLine());
++                            final Vertex splitPoint = edge.split(var_1621);
+                             minusList.add(splitPoint.getIncoming());
+                             plusList.add(splitPoint.getOutgoing());
+                         } else {

@@ -1,0 +1,34 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionTypeBuilder.java b/src/com/google/javascript/jscomp/FunctionTypeBuilder.java
+index db990fa..2fd7c03 100644
+--- a/src/com/google/javascript/jscomp/FunctionTypeBuilder.java
++++ b/src/com/google/javascript/jscomp/FunctionTypeBuilder.java
+@@ -42,6 +42,7 @@
+ import com.google.javascript.rhino.jstype.JSTypeRegistry;
+ import com.google.javascript.rhino.jstype.ObjectType;
+ 
++import java.util.ArrayList;
+ import java.util.Iterator;
+ import java.util.List;
+ import java.util.Set;
+@@ -334,9 +335,10 @@
+       }
+ 
+       // Implemented interfaces (for constructors only).
+-      if (info.getImplementedInterfaceCount() > 0) {
++      ArrayList<ObjectType> var_1584 = Lists.newArrayList();
++	if (info.getImplementedInterfaceCount() > 0) {
+         if (isConstructor) {
+-          implementedInterfaces = Lists.newArrayList();
++          implementedInterfaces = var_1584;
+           for (JSTypeExpression t : info.getImplementedInterfaces()) {
+             JSType maybeInterType = t.evaluate(scope, typeRegistry);
+             if (maybeInterType != null &&
+@@ -355,7 +357,7 @@
+       // extended interfaces (for interfaces only)
+       // We've already emitted a warning if this is not an interface.
+       if (isInterface) {
+-        extendedInterfaces = Lists.newArrayList();
++        extendedInterfaces = var_1584;
+         for (JSTypeExpression t : info.getExtendedInterfaces()) {
+           JSType maybeInterfaceType = t.evaluate(scope, typeRegistry);
+           if (maybeInterfaceType != null &&

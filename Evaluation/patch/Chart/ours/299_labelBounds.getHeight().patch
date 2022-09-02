@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/axis/Axis.java b/source/org/jfree/chart/axis/Axis.java
+index cabb331..b8588ad 100644
+--- a/source/org/jfree/chart/axis/Axis.java
++++ b/source/org/jfree/chart/axis/Axis.java
+@@ -1311,7 +1311,8 @@
+             Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);
+             labelBounds = rotatedLabelBounds.getBounds2D();
+             float w = (float) labelBounds.getWidth();
+-            float h = (float) labelBounds.getHeight();
++            double var_299 = labelBounds.getHeight();
++			float h = (float) var_299;
+             float labelx = (float) dataArea.getCenterX();
+             float labely = (float) (state.getCursor() - insets.getBottom()
+                     - h / 2.0);
+@@ -1319,7 +1320,7 @@
+                     TextAnchor.CENTER, getLabelAngle(), TextAnchor.CENTER);
+             hotspot = new Rectangle2D.Float(labelx - w / 2.0f,
+                     labely - h / 2.0f, w, h);
+-            state.cursorUp(insets.getTop() + labelBounds.getHeight()
++            state.cursorUp(insets.getTop() + var_299
+                     + insets.getBottom());
+         }
+         else if (edge == RectangleEdge.BOTTOM) {

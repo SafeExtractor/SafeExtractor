@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..00f3870 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -443,11 +443,12 @@
+                 int[] orders = new int[parameters];
+                 orders[parameters - 1] = 1;
+                 derivedTermF[term.length] = getPartialDerivativeIndex(parameters, order, sizes, orders);  // g_1
+-                for (int j = 2; j < term.length; ++j) {
++                int[][] var_96 = derivativeCompiler.derivativesIndirection;
++				for (int j = 2; j < term.length; ++j) {
+                     // convert the indices as the mapping for the current order
+                     // is different from the mapping with one less order
+                     derivedTermF[j] = convertIndex(term[j], parameters,
+-                                                   derivativeCompiler.derivativesIndirection,
++                                                   var_96,
+                                                    parameters, order, sizes);
+                 }
+                 Arrays.sort(derivedTermF, 2, derivedTermF.length);
+@@ -462,7 +463,7 @@
+                         // convert the indices as the mapping for the current order
+                         // is different from the mapping with one less order
+                         derivedTermG[j] = convertIndex(term[j], parameters,
+-                                                       derivativeCompiler.derivativesIndirection,
++                                                       var_96,
+                                                        parameters, order, sizes);
+                         if (j == l) {
+                             // derive this term

@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java b/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java
+index 311459c..dbf113f 100644
+--- a/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java
++++ b/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java
+@@ -556,7 +556,8 @@
+         Point2D p01 = new Point2D.Double(y0, x0 + width);
+         Point2D p02 = new Point2D.Double(p01.getX() + getXOffset(),
+                 p01.getY() - getYOffset());
+-        Point2D p03 = new Point2D.Double(p00.getX() + getXOffset(),
++        double var_2775 = p00.getX();
++		Point2D p03 = new Point2D.Double(var_2775 + getXOffset(),
+                 p00.getY() - getYOffset());
+ 
+         Point2D p0 = new Point2D.Double(y1, x0);
+@@ -575,7 +576,7 @@
+ 
+         GeneralPath top = new GeneralPath();
+         top.moveTo((float) p0.getX(), (float) p0.getY());
+-        top.lineTo((float) p00.getX(), (float) p00.getY());
++        top.lineTo((float) var_2775, (float) p00.getY());
+         top.lineTo((float) p03.getX(), (float) p03.getY());
+         top.lineTo((float) p3.getX(), (float) p3.getY());
+         top.closePath();
+@@ -591,7 +592,7 @@
+         front.moveTo((float) p0.getX(), (float) p0.getY());
+         front.lineTo((float) p1.getX(), (float) p1.getY());
+         front.lineTo((float) p01.getX(), (float) p01.getY());
+-        front.lineTo((float) p00.getX(), (float) p00.getY());
++        front.lineTo((float) var_2775, (float) p00.getY());
+         front.closePath();
+ 
+         GeneralPath left = new GeneralPath();
+@@ -602,7 +603,7 @@
+         left.closePath();
+ 
+         GeneralPath right = new GeneralPath();
+-        right.moveTo((float) p00.getX(), (float) p00.getY());
++        right.moveTo((float) var_2775, (float) p00.getY());
+         right.lineTo((float) p01.getX(), (float) p01.getY());
+         right.lineTo((float) p02.getX(), (float) p02.getY());
+         right.lineTo((float) p03.getX(), (float) p03.getY());

@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/sampling/AbstractStepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/sampling/AbstractStepInterpolator.java
+index 75ed7c6..1431cc6 100644
+--- a/src/main/java/org/apache/commons/math3/ode/sampling/AbstractStepInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/ode/sampling/AbstractStepInterpolator.java
+@@ -189,10 +189,11 @@
+       interpolatedDerivatives          = interpolator.interpolatedDerivatives.clone();
+       interpolatedPrimaryState         = interpolator.interpolatedPrimaryState.clone();
+       interpolatedPrimaryDerivatives   = interpolator.interpolatedPrimaryDerivatives.clone();
+-      interpolatedSecondaryState       = new double[interpolator.interpolatedSecondaryState.length][];
++      double[][] var_2902 = interpolator.interpolatedSecondaryState;
++	interpolatedSecondaryState       = new double[var_2902.length][];
+       interpolatedSecondaryDerivatives = new double[interpolator.interpolatedSecondaryDerivatives.length][];
+       for (int i = 0; i < interpolatedSecondaryState.length; ++i) {
+-          interpolatedSecondaryState[i]       = interpolator.interpolatedSecondaryState[i].clone();
++          interpolatedSecondaryState[i]       = var_2902[i].clone();
+           interpolatedSecondaryDerivatives[i] = interpolator.interpolatedSecondaryDerivatives[i].clone();
+       }
+     }

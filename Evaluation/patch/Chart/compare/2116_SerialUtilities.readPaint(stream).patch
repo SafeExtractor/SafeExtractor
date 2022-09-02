@@ -1,0 +1,28 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2116_SerialUtilities.readPaint(stream).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/2116_SerialUtilities.readPaint(stream).patch
+index 33c00b2..0d30a77 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2116_SerialUtilities.readPaint(stream).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/2116_SerialUtilities.readPaint(stream).patch
+@@ -1,8 +1,8 @@
+ diff --git a/source/org/jfree/chart/plot/Plot.java b/source/org/jfree/chart/plot/Plot.java
+-index 4656dc7..370dfd3 100644
++index 4656dc7..e30a1e6 100644
+ --- a/source/org/jfree/chart/plot/Plot.java
+ +++ b/source/org/jfree/chart/plot/Plot.java
+-@@ -1416,11 +1416,12 @@
++@@ -1416,7 +1416,8 @@
+      private void readObject(ObjectInputStream stream)
+          throws IOException, ClassNotFoundException {
+          stream.defaultReadObject();
+@@ -10,11 +10,5 @@ index 4656dc7..370dfd3 100644
+ +        Paint var_2116 = SerialUtilities.readPaint(stream);
+ +		this.noDataMessagePaint = var_2116;
+          this.outlineStroke = SerialUtilities.readStroke(stream);
+--        this.outlinePaint = SerialUtilities.readPaint(stream);
+-+        this.outlinePaint = var_2116;
++         this.outlinePaint = SerialUtilities.readPaint(stream);
+          // backgroundImage
+--        this.backgroundPaint = SerialUtilities.readPaint(stream);
+-+        this.backgroundPaint = var_2116;
+- 
+-         this.listenerList = new EventListenerList();
+- 

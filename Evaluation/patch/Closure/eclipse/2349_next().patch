@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..b5eb128 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -1721,7 +1721,8 @@
+    *     | '?'
+    */
+   private Node parseTypeExpression(JsDocToken token) {
+-    if (token == JsDocToken.QMARK) {
++    JsDocToken var_2349 = next();
++	if (token == JsDocToken.QMARK) {
+       // A QMARK could mean that a type is nullable, or that it's unknown.
+       // We use look-ahead 1 to determine whether it's unknown. Otherwise,
+       // we assume it means nullable. There are 5 cases:
+@@ -1734,7 +1735,7 @@
+       // {Array.<?>} - greater than
+       // I'm not a big fan of using look-ahead for this, but it makes
+       // the type language a lot nicer.
+-      token = next();
++      token = var_2349;
+       if (token == JsDocToken.COMMA ||
+           token == JsDocToken.EQUALS ||
+           token == JsDocToken.RB ||
+@@ -1748,7 +1749,7 @@
+ 
+       return wrapNode(Token.QMARK, parseBasicTypeExpression(token));
+     } else if (token == JsDocToken.BANG) {
+-      return wrapNode(Token.BANG, parseBasicTypeExpression(next()));
++      return wrapNode(Token.BANG, parseBasicTypeExpression(var_2349));
+     } else {
+       Node basicTypeExpr = parseBasicTypeExpression(token);
+       if (basicTypeExpr != null) {

@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..ae40871 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -2096,10 +2096,11 @@
+   private VariableMap runVariableRenaming(
+       AbstractCompiler compiler, VariableMap prevVariableMap,
+       Node externs, Node root) {
+-    char[] reservedChars =
+-        options.anonymousFunctionNaming.getReservedCharacters();
++    AnonymousFunctionNamingPolicy var_1807 = options.anonymousFunctionNaming;
++	char[] reservedChars =
++        var_1807.getReservedCharacters();
+     boolean preserveAnonymousFunctionNames =
+-        options.anonymousFunctionNaming != AnonymousFunctionNamingPolicy.OFF;
++        var_1807 != AnonymousFunctionNamingPolicy.OFF;
+     Set<String> reservedNames = Sets.newHashSet();
+     if (exportedNames != null) {
+       reservedNames.addAll(exportedNames);

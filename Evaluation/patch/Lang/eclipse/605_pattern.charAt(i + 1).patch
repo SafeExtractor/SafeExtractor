@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java b/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java
+index 18c8964..31cd0e9 100644
+--- a/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java
++++ b/src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java
+@@ -301,13 +301,14 @@
+         final int length = pattern.length();
+ 
+         char c = pattern.charAt(i);
+-        if (c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z') {
++        char var_605 = pattern.charAt(i + 1);
++		if (c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z') {
+             // Scan a run of the same character, which indicates a time
+             // pattern.
+             buf.append(c);
+ 
+             while (i + 1 < length) {
+-                final char peek = pattern.charAt(i + 1);
++                final char peek = var_605;
+                 if (peek == c) {
+                     buf.append(c);
+                     i++;
+@@ -325,7 +326,7 @@
+                 c = pattern.charAt(i);
+ 
+                 if (c == '\'') {
+-                    if (i + 1 < length && pattern.charAt(i + 1) == '\'') {
++                    if (i + 1 < length && var_605 == '\'') {
+                         // '' is treated as escaped '
+                         i++;
+                         buf.append(c);

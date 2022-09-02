@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/joda/time/chrono/BuddhistChronology.java b/src/main/java/org/joda/time/chrono/BuddhistChronology.java
+index fc6a1ec..379e26b 100644
+--- a/src/main/java/org/joda/time/chrono/BuddhistChronology.java
++++ b/src/main/java/org/joda/time/chrono/BuddhistChronology.java
+@@ -24,6 +24,7 @@
+ import org.joda.time.DateTimeField;
+ import org.joda.time.DateTimeFieldType;
+ import org.joda.time.DateTimeZone;
++import org.joda.time.DurationField;
+ import org.joda.time.DurationFieldType;
+ import org.joda.time.field.DelegatedDateTimeField;
+ import org.joda.time.field.DividedDateTimeField;
+@@ -243,8 +244,9 @@
+             fields.yearOfCentury = new OffsetDateTimeField(
+                 field, DateTimeFieldType.yearOfCentury(), 1);
+             
+-            field = new RemainderDateTimeField(
+-                fields.weekyear, fields.centuries, DateTimeFieldType.weekyearOfCentury(), 100);
++            DurationField var_363 = fields.centuries;
++			field = new RemainderDateTimeField(
++                fields.weekyear, var_363, DateTimeFieldType.weekyearOfCentury(), 100);
+             fields.weekyearOfCentury = new OffsetDateTimeField(
+                 field, DateTimeFieldType.weekyearOfCentury(), 1);
+             

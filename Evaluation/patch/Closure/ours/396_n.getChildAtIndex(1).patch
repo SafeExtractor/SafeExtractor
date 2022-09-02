@@ -1,0 +1,40 @@
+diff --git a/src/com/google/javascript/jscomp/TransformAMDToCJSModule.java b/src/com/google/javascript/jscomp/TransformAMDToCJSModule.java
+index 709e6f1..75174da 100644
+--- a/src/com/google/javascript/jscomp/TransformAMDToCJSModule.java
++++ b/src/com/google/javascript/jscomp/TransformAMDToCJSModule.java
+@@ -101,19 +101,22 @@
+         if (defineArity == 0) {
+           unsupportedDefineError(t, n);
+           return;
+-        } else if (defineArity == 1) {
+-          callback = n.getChildAtIndex(1);
+-          if (callback.isObjectLit()) {
+-            handleDefineObjectLiteral(parent, callback, script);
+-            return;
+-          }
+-        } else if (defineArity == 2) {
+-          requiresNode = n.getChildAtIndex(1);
+-          callback = n.getChildAtIndex(2);
+-        } else if (defineArity >= 3) {
+-          unsupportedDefineError(t, n);
+-          return;
+-        }
++        } else {
++			Node var_396 = n.getChildAtIndex(1);
++			if (defineArity == 1) {
++			  callback = var_396;
++			  if (callback.isObjectLit()) {
++			    handleDefineObjectLiteral(parent, callback, script);
++			    return;
++			  }
++			} else if (defineArity == 2) {
++			  requiresNode = var_396;
++			  callback = n.getChildAtIndex(2);
++			} else if (defineArity >= 3) {
++			  unsupportedDefineError(t, n);
++			  return;
++			}
++		}
+ 
+         if (!callback.isFunction() ||
+             (requiresNode != null && !requiresNode.isArrayLit())) {

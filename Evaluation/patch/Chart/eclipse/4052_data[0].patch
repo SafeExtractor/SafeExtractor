@@ -1,0 +1,46 @@
+diff --git a/source/org/jfree/data/statistics/Regression.java b/source/org/jfree/data/statistics/Regression.java
+index 962b978..008099d 100644
+--- a/source/org/jfree/data/statistics/Regression.java
++++ b/source/org/jfree/data/statistics/Regression.java
+@@ -255,11 +255,12 @@
+         }
+         int validItems = 0;
+         double[][] data = new double[2][itemCount];
+-        for(int item = 0; item < itemCount; item++){
++        double[] var_4052 = data[0];
++		for(int item = 0; item < itemCount; item++){
+             double x = dataset.getXValue(series, item);
+             double y = dataset.getYValue(series, item);
+             if (!Double.isNaN(x) && !Double.isNaN(y)){
+-                data[0][validItems] = x;
++                var_4052[validItems] = x;
+                 data[1][validItems] = y;
+                 validItems++;
+             }
+@@ -275,14 +276,14 @@
+         double sumY = 0.0;
+ 
+         for(int item = 0; item < validItems; item++){
+-            sumX += data[0][item];
++            sumX += var_4052[item];
+             sumY += data[1][item];
+             for(int eq = 0; eq < equations; eq++){
+                 for(int coe = 0; coe < coefficients - 1; coe++){
+-                    matrix[eq][coe] += Math.pow(data[0][item],eq + coe);
++                    matrix[eq][coe] += Math.pow(var_4052[item],eq + coe);
+                 }
+                 matrix[eq][coefficients - 1] += data[1][item]
+-                        * Math.pow(data[0][item],eq);
++                        * Math.pow(var_4052[item],eq);
+             }
+         }
+         double[][] subMatrix = calculateSubMatrix(matrix);
+@@ -305,7 +306,7 @@
+         for (int item = 0; item < validItems; item++) {
+             double yCalc = 0;
+             for (int eq = 0; eq < equations; eq++) {
+-                yCalc += result[eq] * Math.pow(data[0][item],eq);
++                yCalc += result[eq] * Math.pow(var_4052[item],eq);
+             }
+             yRegSquare += Math.pow(yCalc - meanY, 2);
+             yObsSquare += Math.pow(data[1][item] - meanY, 2);

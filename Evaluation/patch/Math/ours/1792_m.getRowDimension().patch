@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/PreconditionedIterativeLinearSolver.java b/src/main/java/org/apache/commons/math3/linear/PreconditionedIterativeLinearSolver.java
+index 4c5a25d..3dc8736 100644
+--- a/src/main/java/org/apache/commons/math3/linear/PreconditionedIterativeLinearSolver.java
++++ b/src/main/java/org/apache/commons/math3/linear/PreconditionedIterativeLinearSolver.java
+@@ -142,12 +142,13 @@
+         DimensionMismatchException {
+         checkParameters(a, b, x0);
+         if (m != null) {
+-            if (m.getColumnDimension() != m.getRowDimension()) {
++            int var_1792 = m.getRowDimension();
++			if (m.getColumnDimension() != var_1792) {
+                 throw new NonSquareOperatorException(m.getColumnDimension(),
+-                                                     m.getRowDimension());
++                                                     var_1792);
+             }
+-            if (m.getRowDimension() != a.getRowDimension()) {
+-                throw new DimensionMismatchException(m.getRowDimension(),
++            if (var_1792 != a.getRowDimension()) {
++                throw new DimensionMismatchException(var_1792,
+                                                      a.getRowDimension());
+             }
+         }

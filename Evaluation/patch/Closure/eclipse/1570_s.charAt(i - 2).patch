@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..627130b 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -1101,9 +1101,10 @@
+           // This is just to prevent developers from shooting themselves in the
+           // foot, and does not provide the level of security that you get
+           // with trustedString == false.
+-          if (i >= 2 &&
+-              ((s.charAt(i - 1) == '-' && s.charAt(i - 2) == '-') ||
+-               (s.charAt(i - 1) == ']' && s.charAt(i - 2) == ']'))) {
++          char var_1570 = s.charAt(i - 2);
++		if (i >= 2 &&
++              ((s.charAt(i - 1) == '-' && var_1570 == '-') ||
++               (s.charAt(i - 1) == ']' && var_1570 == ']'))) {
+             sb.append(GT_ESCAPED);
+           } else {
+             sb.append(c);

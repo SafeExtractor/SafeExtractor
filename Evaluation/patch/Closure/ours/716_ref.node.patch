@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..53537b2 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -332,14 +332,15 @@
+    */
+   private void flattenSimpleStubDeclaration(Name name, String alias) {
+     Ref ref = Iterables.getOnlyElement(name.getRefs());
+-    Node nameNode = NodeUtil.newName(
+-        compiler.getCodingConvention(), alias, ref.node,
++    Node var_716 = ref.node;
++	Node nameNode = NodeUtil.newName(
++        compiler.getCodingConvention(), alias, var_716,
+         name.getFullName());
+     Node varNode = IR.var(nameNode).copyInformationFrom(nameNode);
+ 
+     Preconditions.checkState(
+-        ref.node.getParent().isExprResult());
+-    Node parent = ref.node.getParent();
++        var_716.getParent().isExprResult());
++    Node parent = var_716.getParent();
+     Node gramps = parent.getParent();
+     gramps.replaceChild(parent, varNode);
+     compiler.reportCodeChange();

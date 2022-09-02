@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/SyntacticScopeCreator.java b/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
+index e1caa71..a5747db 100644
+--- a/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
++++ b/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
+@@ -195,7 +195,8 @@
+       Node parent = n.getParent();
+ 
+       // Don't allow multiple variables to be declared at the top-level scope
+-      if (scope.isGlobal()) {
++      String var_198 = NodeUtil.getSourceName(n);
++	if (scope.isGlobal()) {
+         Scope.Var origVar = scope.getVar(name);
+         Node origParent = origVar.getParentNode();
+         if (origParent.isCatch() &&
+@@ -208,7 +209,7 @@
+ 
+         if (!allowDupe) {
+           compiler.report(
+-              JSError.make(NodeUtil.getSourceName(n), n,
++              JSError.make(var_198, n,
+                            VAR_MULTIPLY_DECLARED_ERROR,
+                            name,
+                            (origVar.input != null
+@@ -219,7 +220,7 @@
+         // Disallow shadowing "arguments" as we can't handle with our current
+         // scope modeling.
+         compiler.report(
+-            JSError.make(NodeUtil.getSourceName(n), n,
++            JSError.make(var_198, n,
+                 VAR_ARGUMENTS_SHADOWED_ERROR));
+       }
+     }

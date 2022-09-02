@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+index 4652f61..844f18f 100644
+--- a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+@@ -225,10 +225,11 @@
+             cachedD = MatrixUtils.createRealDiagonalMatrix(realEigenvalues);
+ 
+             for (int i = 0; i < imagEigenvalues.length; i++) {
+-                if (Precision.compareTo(imagEigenvalues[i], 0.0, EPSILON) > 0) {
+-                    cachedD.setEntry(i, i+1, imagEigenvalues[i]);
+-                } else if (Precision.compareTo(imagEigenvalues[i], 0.0, EPSILON) < 0) {
+-                    cachedD.setEntry(i, i-1, imagEigenvalues[i]);
++                double var_2103 = imagEigenvalues[i];
++				if (Precision.compareTo(var_2103, 0.0, EPSILON) > 0) {
++                    cachedD.setEntry(i, i+1, var_2103);
++                } else if (Precision.compareTo(var_2103, 0.0, EPSILON) < 0) {
++                    cachedD.setEntry(i, i-1, var_2103);
+                 }
+             }
+         }

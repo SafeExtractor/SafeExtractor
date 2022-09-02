@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/DevirtualizePrototypeMethods.java b/src/com/google/javascript/jscomp/DevirtualizePrototypeMethods.java
+index de2b0d4..97bcaf4 100644
+--- a/src/com/google/javascript/jscomp/DevirtualizePrototypeMethods.java
++++ b/src/com/google/javascript/jscomp/DevirtualizePrototypeMethods.java
+@@ -115,7 +115,8 @@
+       return false;
+     }
+ 
+-    if (node.isGetProp()) {
++    Node var_577 = node.getFirstChild();
++	if (node.isGetProp()) {
+       if (parent.getFirstChild() != node) {
+         return false;
+       }
+@@ -129,7 +130,7 @@
+         return false;
+       }
+ 
+-      Node nameNode = node.getFirstChild();
++      Node nameNode = var_577;
+       return nameNode.isGetProp() &&
+           nameNode.getLastChild().getString().equals("prototype");
+     } else if (node.isStringKey()) {
+@@ -148,7 +149,7 @@
+         return false;
+       }
+ 
+-      Node functionNode = node.getFirstChild();
++      Node functionNode = var_577;
+       if ((functionNode == null) || !functionNode.isFunction()) {
+         return false;
+       }

@@ -1,0 +1,22 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/segment/SegmentNodeStoreService.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/segment/SegmentNodeStoreService.java
+index 5008ff0..e1c051a 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/segment/SegmentNodeStoreService.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/segment/SegmentNodeStoreService.java
+@@ -163,13 +163,14 @@
+ 
+         boolean pauseCompaction = toBoolean(lookup(context, PAUSE_COMPACTION), true);
+         boolean memoryMapping = "64".equals(mode);
+-        if (customBlobStore) {
++        int cacheSize = Integer.parseInt(size);
++		if (customBlobStore) {
+             log.info("Initializing SegmentNodeStore with BlobStore [{}]", blobStore);
+             store = new FileStore(blobStore, new File(directory),
+-                    Integer.parseInt(size), memoryMapping)
++                    cacheSize, memoryMapping)
+                     .setPauseCompaction(pauseCompaction);
+         } else {
+-            store = new FileStore(new File(directory), Integer.parseInt(size),
++            store = new FileStore(new File(directory), cacheSize,
+                     memoryMapping).setPauseCompaction(pauseCompaction);
+         }
+ 

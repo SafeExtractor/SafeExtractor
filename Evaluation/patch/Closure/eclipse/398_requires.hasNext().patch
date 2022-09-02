@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/TransformAMDToCJSModule.java b/src/com/google/javascript/jscomp/TransformAMDToCJSModule.java
+index 709e6f1..2f3abd3 100644
+--- a/src/com/google/javascript/jscomp/TransformAMDToCJSModule.java
++++ b/src/com/google/javascript/jscomp/TransformAMDToCJSModule.java
+@@ -155,9 +155,10 @@
+           iterator();
+       Iterator<Node> requires = requiresNode != null ?
+           requiresNode.children().iterator() : Iterators.<Node>emptyIterator();
+-      while (paramList.hasNext() || requires.hasNext()) {
++      boolean var_398 = requires.hasNext();
++	while (paramList.hasNext() || var_398) {
+         Node aliasNode = paramList.hasNext() ? paramList.next() : null;
+-        Node modNode = requires.hasNext() ? requires.next() : null;
++        Node modNode = var_398 ? requires.next() : null;
+         handleRequire(t, defineNode, script, callback, aliasNode, modNode);
+       }
+     }

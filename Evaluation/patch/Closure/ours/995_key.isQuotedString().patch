@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..20ed2a2 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -1066,9 +1066,10 @@
+     }
+ 
+     // Structs must have unquoted keys and dicts must have quoted keys
+-    if (litType.isStruct() && key.isQuotedString()) {
++    boolean var_995 = key.isQuotedString();
++	if (litType.isStruct() && var_995) {
+       report(t, key, ILLEGAL_OBJLIT_KEY, "struct");
+-    } else if (litType.isDict() && !key.isQuotedString()) {
++    } else if (litType.isDict() && !var_995) {
+       report(t, key, ILLEGAL_OBJLIT_KEY, "dict");
+     }
+ 

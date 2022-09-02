@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYStepRenderer.java b/source/org/jfree/chart/renderer/xy/XYStepRenderer.java
+index 6fbbf6a..ccd757e 100644
+--- a/source/org/jfree/chart/renderer/xy/XYStepRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYStepRenderer.java
+@@ -227,7 +227,8 @@
+             double transY0 = (Double.isNaN(y0) ? Double.NaN
+                     : rangeAxis.valueToJava2D(y0, dataArea, yAxisLocation));
+ 
+-            if (orientation == PlotOrientation.HORIZONTAL) {
++            double var_2860 = getStepPoint();
++			if (orientation == PlotOrientation.HORIZONTAL) {
+                 if (transY0 == transY1) {
+                     // this represents the situation
+                     // for drawing a horizontal bar.
+@@ -237,7 +238,7 @@
+                 else {  //this handles the need to perform a 'step'.
+ 
+                     // calculate the step point
+-                    double transXs = transX0 + (getStepPoint()
++                    double transXs = transX0 + (var_2860
+                             * (transX1 - transX0));
+                     drawLine(g2, state.workingLine, transY0, transX0, transY0,
+                             transXs);
+@@ -255,7 +256,7 @@
+                 }
+                 else {  //this handles the need to perform a 'step'.
+                     // calculate the step point
+-                    double transXs = transX0 + (getStepPoint()
++                    double transXs = transX0 + (var_2860
+                             * (transX1 - transX0));
+                     drawLine(g2, state.workingLine, transX0, transY0, transXs,
+                             transY0);

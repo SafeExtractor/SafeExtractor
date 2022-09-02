@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/GlobalNamespace.java b/src/com/google/javascript/jscomp/GlobalNamespace.java
+index 1cd29f0..eca8245 100644
+--- a/src/com/google/javascript/jscomp/GlobalNamespace.java
++++ b/src/com/google/javascript/jscomp/GlobalNamespace.java
+@@ -514,7 +514,8 @@
+      * @return A {@link Name.Type}
+      */
+     Name.Type getValueType(Node n) {
+-      switch (n.getType()) {
++      com.google.javascript.jscomp.GlobalNamespace.Name.Type var_1608 = Name.Type.OTHER;
++	switch (n.getType()) {
+         case Token.OBJECTLIT:
+           return Name.Type.OBJECTLIT;
+         case Token.FUNCTION:
+@@ -530,11 +531,11 @@
+           // The same line of reasoning used for the OR case applies here.
+           Node second = n.getFirstChild().getNext();
+           Name.Type t = getValueType(second);
+-          if (t != Name.Type.OTHER) return t;
++          if (t != var_1608) return t;
+           Node third = second.getNext();
+           return getValueType(third);
+       }
+-      return Name.Type.OTHER;
++      return var_1608;
+     }
+ 
+     /**

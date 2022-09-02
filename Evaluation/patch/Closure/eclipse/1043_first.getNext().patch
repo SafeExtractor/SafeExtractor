@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..15047c0 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -705,7 +705,8 @@
+           if (receiver.isGetProp()) {
+             Node first = receiver.getFirstChild();
+             // Special case the call() function.
+-            if ("call".equals(first.getNext().getString())) {
++            Node var_1043 = first.getNext();
++			if ("call".equals(var_1043.getString())) {
+               if (first.isGetProp()) {
+                 // foo.bar.call()
+                 addAction(new FunctionCallBuilder(first, receiver.getNext())
+@@ -721,7 +722,7 @@
+             } else {
+               // foo.bar()
+               addAction(new FunctionCallBuilder(first, receiver.getNext())
+-                  .setPropName(first.getNext().getString())
++                  .setPropName(var_1043.getString())
+                   .build());
+             }
+           } else {

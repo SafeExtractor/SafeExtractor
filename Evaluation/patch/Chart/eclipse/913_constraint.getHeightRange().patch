@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/block/ColumnArrangement.java b/source/org/jfree/chart/block/ColumnArrangement.java
+index ad240d9..4863f31 100644
+--- a/source/org/jfree/chart/block/ColumnArrangement.java
++++ b/source/org/jfree/chart/block/ColumnArrangement.java
+@@ -51,6 +51,7 @@
+ import org.jfree.chart.util.HorizontalAlignment;
+ import org.jfree.chart.util.Size2D;
+ import org.jfree.chart.util.VerticalAlignment;
++import org.jfree.data.Range;
+ 
+ /**
+  * Arranges blocks in a column layout.  This class is immutable.
+@@ -263,12 +264,13 @@
+         // first arrange without constraints, and see if this fits within
+         // the required ranges...
+         Size2D s1 = arrangeNN(container, g2);
+-        if (constraint.getHeightRange().contains(s1.height)) {
++        Range var_913 = constraint.getHeightRange();
++		if (var_913.contains(s1.height)) {
+             return s1;  // TODO: we didn't check the width yet
+         }
+         else {
+             RectangleConstraint c = constraint.toFixedHeight(
+-                constraint.getHeightRange().getUpperBound()
++                var_913.getUpperBound()
+             );
+             return arrangeRF(container, g2, c);
+         }

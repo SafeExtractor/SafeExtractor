@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
+index 930eb1e..b8098c4 100644
+--- a/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/fitting/leastsquares/LevenbergMarquardtOptimizer.java
+@@ -986,12 +986,13 @@
+             // transform the remaining columns
+             for (int dk = nC - 1 - k; dk > 0; --dk) {
+                 double gamma = 0;
+-                for (int j = k; j < nR; ++j) {
+-                    gamma += weightedJacobian[j][pk] * weightedJacobian[j][permutation[k + dk]];
++                int var_1046 = permutation[k + dk];
++				for (int j = k; j < nR; ++j) {
++                    gamma += weightedJacobian[j][pk] * weightedJacobian[j][var_1046];
+                 }
+                 gamma *= betak;
+                 for (int j = k; j < nR; ++j) {
+-                    weightedJacobian[j][permutation[k + dk]] -= gamma * weightedJacobian[j][pk];
++                    weightedJacobian[j][var_1046] -= gamma * weightedJacobian[j][pk];
+                 }
+             }
+         }

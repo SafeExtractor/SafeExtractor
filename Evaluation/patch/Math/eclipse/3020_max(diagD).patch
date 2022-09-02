@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+index c837709..5ee1fa3 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+@@ -770,18 +770,19 @@
+             B = eig.getV(); // eigen decomposition, B==normalized eigenvectors
+             D = eig.getD();
+             diagD = diag(D);
+-            if (min(diagD) <= 0) {
++            double var_3020 = max(diagD);
++			if (min(diagD) <= 0) {
+                 for (int i = 0; i < dimension; i++) {
+                     if (diagD.getEntry(i, 0) < 0) {
+                         diagD.setEntry(i, 0, 0);
+                     }
+                 }
+-                final double tfac = max(diagD) / 1e14;
++                final double tfac = var_3020 / 1e14;
+                 C = C.add(eye(dimension, dimension).scalarMultiply(tfac));
+                 diagD = diagD.add(ones(dimension, 1).scalarMultiply(tfac));
+             }
+-            if (max(diagD) > 1e14 * min(diagD)) {
+-                final double tfac = max(diagD) / 1e14 - min(diagD);
++            if (var_3020 > 1e14 * min(diagD)) {
++                final double tfac = var_3020 / 1e14 - min(diagD);
+                 C = C.add(eye(dimension, dimension).scalarMultiply(tfac));
+                 diagD = diagD.add(ones(dimension, 1).scalarMultiply(tfac));
+             }

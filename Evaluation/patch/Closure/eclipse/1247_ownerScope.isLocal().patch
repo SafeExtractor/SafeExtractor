@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..c4d22c0 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -2051,11 +2051,12 @@
+         Var var = scope.getVar(name);
+         if (var != null) {
+           Scope ownerScope = var.getScope();
+-          if (ownerScope.isLocal()) {
++          boolean var_1247 = ownerScope.isLocal();
++		if (var_1247) {
+             data.get(ownerScope.getRootNode()).recordAssignedName(name);
+           }
+ 
+-          if (scope != ownerScope && ownerScope.isLocal()) {
++          if (scope != ownerScope && var_1247) {
+             data.get(ownerScope.getRootNode()).recordEscapedVarName(name);
+           }
+         }

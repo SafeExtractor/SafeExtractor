@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java
+index c1a681a..6bc090a 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java
+@@ -824,17 +824,18 @@
+      * @throws OutOfRangeException if a requested variable is not present in model
+      */
+     public RegressionResults regress(int[] variablesToInclude) throws MathIllegalArgumentException{
+-        if( variablesToInclude == null || variablesToInclude.length == 0){
++        int var_3926 = variablesToInclude.length;
++		if( variablesToInclude == null || var_3926 == 0){
+           throw new MathIllegalArgumentException(LocalizedFormats.ARRAY_ZERO_LENGTH_OR_NULL_NOT_ALLOWED);
+         }
+-        if( variablesToInclude.length > 2 || (variablesToInclude.length > 1 && !hasIntercept) ){
++        if( var_3926 > 2 || (var_3926 > 1 && !hasIntercept) ){
+             throw new ModelSpecificationException(
+                     LocalizedFormats.ARRAY_SIZE_EXCEEDS_MAX_VARIABLES,
+-                    (variablesToInclude.length > 1 && !hasIntercept) ? 1 : 2);
++                    (var_3926 > 1 && !hasIntercept) ? 1 : 2);
+         }
+ 
+         if( hasIntercept ){
+-            if( variablesToInclude.length == 2 ){
++            if( var_3926 == 2 ){
+                 if( variablesToInclude[0] == 1 ){
+                     throw new ModelSpecificationException(LocalizedFormats.NOT_INCREASING_SEQUENCE);
+                 }else if( variablesToInclude[0] != 0 ){

@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..06d9d6e 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -1555,8 +1555,9 @@
+ 
+       boolean inferred = isQualifiedNameInferred(
+           qName, n, info, rhsValue, valueType);
+-      if (!inferred) {
+-        ObjectType ownerType = getObjectSlot(ownerName);
++      ObjectType var_1232 = getObjectSlot(ownerName);
++	if (!inferred) {
++        ObjectType ownerType = var_1232;
+         if (ownerType != null) {
+           // Only declare this as an official property if it has not been
+           // declared yet.
+@@ -1576,7 +1577,7 @@
+       } else if (rhsValue != null && rhsValue.isTrue()) {
+         // We declare these for delegate proxy method properties.
+         FunctionType ownerType =
+-            JSType.toMaybeFunctionType(getObjectSlot(ownerName));
++            JSType.toMaybeFunctionType(var_1232);
+         if (ownerType != null) {
+           JSType ownerTypeOfThis = ownerType.getTypeOfThis();
+           String delegateName = codingConvention.getDelegateSuperclassName();

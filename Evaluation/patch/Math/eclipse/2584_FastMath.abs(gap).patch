@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java b/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java
+index a5f5faf..75438b5 100644
+--- a/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java
++++ b/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java
+@@ -153,9 +153,10 @@
+       final double previous = lastInterpolator.getPreviousTime();
+       final double step = current - previous;
+       final double gap = model.getInitialTime() - current;
+-      if (FastMath.abs(gap) > 1.0e-3 * FastMath.abs(step)) {
++      double var_2584 = FastMath.abs(gap);
++	if (var_2584 > 1.0e-3 * FastMath.abs(step)) {
+         throw new MathIllegalArgumentException(LocalizedFormats.HOLE_BETWEEN_MODELS_TIME_RANGES,
+-                                               FastMath.abs(gap));
++                                               var_2584);
+       }
+ 
+     }

@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+index 09e636b..a3cdd7d 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+@@ -172,13 +172,14 @@
+         // there are a series of tweaks and special cases that require 
+         // trickery to replicate.
+         String duration = formatDuration(durationMillis, "d' days 'H' hours 'm' minutes 's' seconds'");
+-        if (suppressLeadingZeroElements) {
++        String var_550 = StringUtils.replaceOnce(duration, " 0 hours", "");
++		if (suppressLeadingZeroElements) {
+             // this is a temporary marker on the front. Like ^ in regexp.
+             duration = " " + duration;
+             String tmp = StringUtils.replaceOnce(duration, " 0 days", "");
+             if (tmp.length() != duration.length()) {
+                 duration = tmp;
+-                tmp = StringUtils.replaceOnce(duration, " 0 hours", "");
++                tmp = var_550;
+                 if (tmp.length() != duration.length()) {
+                     duration = tmp;
+                     tmp = StringUtils.replaceOnce(duration, " 0 minutes", "");
+@@ -200,7 +201,7 @@
+                 tmp = StringUtils.replaceOnce(duration, " 0 minutes", "");
+                 if (tmp.length() != duration.length()) {
+                     duration = tmp;
+-                    tmp = StringUtils.replaceOnce(duration, " 0 hours", "");
++                    tmp = var_550;
+                     if (tmp.length() != duration.length()) {
+                         duration = StringUtils.replaceOnce(tmp, " 0 days", "");
+                     }

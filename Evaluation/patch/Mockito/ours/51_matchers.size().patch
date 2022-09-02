@@ -1,0 +1,32 @@
+diff --git a/src/org/mockito/internal/invocation/InvocationMatcher.java b/src/org/mockito/internal/invocation/InvocationMatcher.java
+index d45e4c6..b84b0f5 100644
+--- a/src/org/mockito/internal/invocation/InvocationMatcher.java
++++ b/src/org/mockito/internal/invocation/InvocationMatcher.java
+@@ -118,7 +118,8 @@
+     }
+ 
+     public void captureArgumentsFrom(Invocation invocation) {
+-        if (invocation.getMethod().isVarArgs()) {
++        int var_51 = matchers.size();
++		if (invocation.getMethod().isVarArgs()) {
+             int indexOfVararg = invocation.getRawArguments().length - 1;
+             for (int position = 0; position < indexOfVararg; position++) {
+                 Matcher m = matchers.get(position);
+@@ -126,7 +127,7 @@
+                     ((CapturesArguments) m).captureFrom(invocation.getArgumentAt(position, Object.class));
+                 }
+             }
+-            for (int position = indexOfVararg; position < matchers.size(); position++) {
++            for (int position = indexOfVararg; position < var_51; position++) {
+                 Matcher m = matchers.get(position);
+                 if (m instanceof CapturesArguments) {
+                     ((CapturesArguments) m).captureFrom(invocation.getRawArguments()[position - indexOfVararg]);
+@@ -134,7 +135,7 @@
+             }
+ 
+         } else {
+-            for (int position = 0; position < matchers.size(); position++) {
++            for (int position = 0; position < var_51; position++) {
+                 Matcher m = matchers.get(position);
+                 if (m instanceof CapturesArguments) {
+                     ((CapturesArguments) m).captureFrom(invocation.getArgumentAt(position, Object.class));

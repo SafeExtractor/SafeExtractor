@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/CheckAccessControls.java b/src/com/google/javascript/jscomp/CheckAccessControls.java
+index df50c26..2767996 100644
+--- a/src/com/google/javascript/jscomp/CheckAccessControls.java
++++ b/src/com/google/javascript/jscomp/CheckAccessControls.java
+@@ -305,8 +305,9 @@
+       return;
+     }
+ 
+-    ObjectType objectType =
+-        ObjectType.cast(dereference(n.getFirstChild().getJSType()));
++    Node var_916 = n.getFirstChild();
++	ObjectType objectType =
++        ObjectType.cast(dereference(var_916.getJSType()));
+     String propertyName = n.getLastChild().getString();
+ 
+     if (objectType != null) {
+@@ -319,12 +320,12 @@
+         if (!deprecationInfo.isEmpty()) {
+           compiler.report(
+               t.makeError(n, DEPRECATED_PROP_REASON, propertyName,
+-                  validator.getReadableJSTypeName(n.getFirstChild(), true),
++                  validator.getReadableJSTypeName(var_916, true),
+                   deprecationInfo));
+         } else {
+           compiler.report(
+               t.makeError(n, DEPRECATED_PROP, propertyName,
+-                  validator.getReadableJSTypeName(n.getFirstChild(), true)));
++                  validator.getReadableJSTypeName(var_916, true)));
+         }
+       }
+     }

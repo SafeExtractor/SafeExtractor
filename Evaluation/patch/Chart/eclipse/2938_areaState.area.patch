@@ -1,0 +1,73 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYAreaRenderer.java b/source/org/jfree/chart/renderer/xy/XYAreaRenderer.java
+index d05eb2f..37be4ee 100644
+--- a/source/org/jfree/chart/renderer/xy/XYAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYAreaRenderer.java
+@@ -560,25 +560,26 @@
+                     (int) transZero);
+         }
+ 
+-        if (item == 0) {  // create a new area polygon for the series
++        Polygon var_2938 = areaState.area;
++		if (item == 0) {  // create a new area polygon for the series
+             areaState.area = new Polygon();
+             // the first point is (x, 0)
+             double zero = rangeAxis.valueToJava2D(0.0, dataArea,
+                     plot.getRangeAxisEdge());
+             if (plot.getOrientation() == PlotOrientation.VERTICAL) {
+-                areaState.area.addPoint((int) transX1, (int) zero);
++                var_2938.addPoint((int) transX1, (int) zero);
+             }
+             else if (plot.getOrientation() == PlotOrientation.HORIZONTAL) {
+-                areaState.area.addPoint((int) zero, (int) transX1);
++                var_2938.addPoint((int) zero, (int) transX1);
+             }
+         }
+ 
+         // Add each point to Area (x, y)
+         if (plot.getOrientation() == PlotOrientation.VERTICAL) {
+-            areaState.area.addPoint((int) transX1, (int) transY1);
++            var_2938.addPoint((int) transX1, (int) transY1);
+         }
+         else if (plot.getOrientation() == PlotOrientation.HORIZONTAL) {
+-            areaState.area.addPoint((int) transY1, (int) transX1);
++            var_2938.addPoint((int) transY1, (int) transX1);
+         }
+ 
+         PlotOrientation orientation = plot.getOrientation();
+@@ -619,11 +620,11 @@
+ 
+             if (orientation == PlotOrientation.VERTICAL) {
+                 // Add the last point (x,0)
+-                areaState.area.addPoint((int) transX1, (int) transZero);
++                var_2938.addPoint((int) transX1, (int) transZero);
+             }
+             else if (orientation == PlotOrientation.HORIZONTAL) {
+                 // Add the last point (x,0)
+-                areaState.area.addPoint((int) transZero, (int) transX1);
++                var_2938.addPoint((int) transZero, (int) transX1);
+             }
+ 
+             if (this.useFillPaint) {
+@@ -635,11 +636,11 @@
+                         dataArea);
+                 g2.setPaint(adjGP);
+             }
+-            g2.fill(areaState.area);
++            g2.fill(var_2938);
+ 
+             // draw an outline around the Area.
+             if (isOutline()) {
+-                Shape area = areaState.area;
++                Shape area = var_2938;
+ 
+                 // Java2D has some issues drawing dashed lines around "large"
+                 // geometrical shapes - for example, see bug 6620013 in the
+@@ -650,7 +651,7 @@
+                 if (outlineStroke instanceof BasicStroke) {
+                     BasicStroke bs = (BasicStroke) outlineStroke;
+                     if (bs.getDashArray() != null) {
+-                        Area poly = new Area(areaState.area);
++                        Area poly = new Area(var_2938);
+                         // we make the clip region slightly larger than the
+                         // dataArea so that the clipped edges don't show lines
+                         // on the chart

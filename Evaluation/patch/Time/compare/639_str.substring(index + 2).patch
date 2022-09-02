@@ -1,0 +1,33 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/639_str.substring(index + 2).patch b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/639_str.substring(index + 2).patch
+index d3b0448..169dc5b 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/639_str.substring(index + 2).patch	
++++ b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/639_str.substring(index + 2).patch	
+@@ -1,23 +1,14 @@
+ diff --git a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+-index 4e56fef..132eb9d 100644
++index 4e56fef..cd0bfd5 100644
+ --- a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+ +++ b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+-@@ -560,14 +560,15 @@
+-                             advance = false;
++@@ -561,7 +561,8 @@
+                          } catch (NumberFormatException e) {
+                              int index = str.indexOf(">=");
+--                            if (index > 0) {
++                             if (index > 0) {
+ -                                day = Integer.parseInt(str.substring(index + 2));
+-+                            String var_639 = str.substring(index + 2);
+-+							if (index > 0) {
+-+                                day = Integer.parseInt(var_639);
+++                                String var_639 = str.substring(index + 2);
+++								day = Integer.parseInt(var_639);
+                                  dayOfWeek = parseDayOfWeek(str.substring(0, index));
+                                  advance = true;
+                              } else {
+-                                 index = str.indexOf("<=");
+-                                 if (index > 0) {
+--                                    day = Integer.parseInt(str.substring(index + 2));
+-+                                    day = Integer.parseInt(var_639);
+-                                     dayOfWeek = parseDayOfWeek(str.substring(0, index));
+-                                     advance = false;
+-                                 } else {

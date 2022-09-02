@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+index 6219d26..d70bb24 100644
+--- a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
++++ b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+@@ -385,8 +385,9 @@
+           peepholePasses.process(null, ancestorClone.getChildAtIndex(1));
+           Node prop = ancestorClone.getChildAtIndex(1);
+ 
+-          if (prop.isString() &&
+-            NodeUtil.isValidPropertyName(prop.getString())) {
++          boolean var_1149 = NodeUtil.isValidPropertyName(prop.getString());
++		if (prop.isString() &&
++            var_1149) {
+             Node target = ancestorClone.getFirstChild();
+             Node newGetProp = IR.getprop(target.detachFromParent(),
+                 prop.detachFromParent());
+@@ -395,7 +396,7 @@
+             ancestor.getParent().replaceChild(ancestor, newGetProp);
+           } else {
+             if (prop.isString() &&
+-                !NodeUtil.isValidPropertyName(prop.getString())) {
++                !var_1149) {
+               t.report(n,
+                   JQUERY_UNABLE_TO_EXPAND_INVALID_NAME_ERROR,
+                   prop.getString());

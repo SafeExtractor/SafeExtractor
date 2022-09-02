@@ -1,0 +1,36 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/4243_probe(perturb,j).patch b/Users/safe/paper/Evaluation/patch/Math/ours/4243_probe(perturb,j).patch
+index 31e555e..a866f40 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/4243_probe(perturb,j).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/4243_probe(perturb,j).patch
+@@ -1,26 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java b/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java
+-index fd55902..21c2a45 100644
++index fd55902..fb55d35 100644
+ --- a/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java
+ +++ b/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java
+-@@ -289,9 +289,10 @@
+- 
+-         int perturb = perturb(hash);
++@@ -291,7 +291,8 @@
+          int j = index;
+--        if (states[index] == FULL) {
+-+        int var_4243 = probe(perturb, j);
+-+		if (states[index] == FULL) {
++         if (states[index] == FULL) {
+              while (true) {
+ -                j = probe(perturb, j);
+-+                j = var_4243;
+++                int var_4243 = probe(perturb, j);
+++				j = var_4243;
+                  index = j & mask;
+                  perturb >>= PERTURB_SHIFT;
+  
+-@@ -311,7 +312,7 @@
+- 
+-         final int firstRemoved = index;
+-         while (true) {
+--            j = probe(perturb, j);
+-+            j = var_4243;
+-             index = j & mask;
+- 
+-             if (states[index] == FREE) {

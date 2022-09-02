@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/joda/time/chrono/BuddhistChronology.java b/src/main/java/org/joda/time/chrono/BuddhistChronology.java
+index fc6a1ec..0b8b90e 100644
+--- a/src/main/java/org/joda/time/chrono/BuddhistChronology.java
++++ b/src/main/java/org/joda/time/chrono/BuddhistChronology.java
+@@ -219,14 +219,15 @@
+             fields.eras = UnsupportedDurationField.getInstance(DurationFieldType.eras());
+             
+             // julian chrono removed zero, but we need to put it back
+-            DateTimeField field = fields.year;
++            DateTimeField var_364 = fields.year;
++			DateTimeField field = var_364;
+             fields.year = new OffsetDateTimeField(
+                     new SkipUndoDateTimeField(this, field), BUDDHIST_OFFSET);
+             
+             // one era, so yearOfEra is the same
+             field = fields.yearOfEra;
+             fields.yearOfEra = new DelegatedDateTimeField(
+-                fields.year, fields.eras, DateTimeFieldType.yearOfEra());
++                var_364, fields.eras, DateTimeFieldType.yearOfEra());
+             
+             // julian chrono removed zero, but we need to put it back
+             field = fields.weekyear;

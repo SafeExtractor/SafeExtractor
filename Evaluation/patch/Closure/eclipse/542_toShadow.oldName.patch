@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/ShadowVariables.java b/src/com/google/javascript/jscomp/ShadowVariables.java
+index f627aaf..a465dd8 100644
+--- a/src/com/google/javascript/jscomp/ShadowVariables.java
++++ b/src/com/google/javascript/jscomp/ShadowVariables.java
+@@ -272,22 +272,23 @@
+       // L1, by definition of upward referencing, The name L1 is now in the
+       // set of upward referencing names of the current scope up to the
+       // declaring scope of the best shadow variable.
+-      Var shadowed = s.getVar(toShadow.oldName);
++      String var_542 = toShadow.oldName;
++	Var shadowed = s.getVar(var_542);
+       if (shadowed != null) {
+         for (Scope curScope = s; curScope != shadowed.scope;
+             curScope = curScope.getParent()) {
+-          scopeUpRefMap.put(curScope.getRootNode(), toShadow.oldName);
++          scopeUpRefMap.put(curScope.getRootNode(), var_542);
+         }
+       }
+ 
+       // Mark all the references as shadowed.
+       for (Node n : references) {
+-        n.setString(toShadow.oldName);
++        n.setString(var_542);
+         Node cur = n;
+         while(cur != s.getRootNode()) {
+           cur = cur.getParent();
+           if (cur.isFunction()) {
+-            scopeUpRefMap.put(cur, toShadow.oldName);
++            scopeUpRefMap.put(cur, var_542);
+           }
+         }
+       }

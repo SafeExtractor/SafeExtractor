@@ -1,0 +1,36 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/2216_iter.value().patch b/Users/safe/paper/Evaluation/patch/Math/ours/2216_iter.value().patch
+index 90c38fa..2c17d3b 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/2216_iter.value().patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/2216_iter.value().patch
+@@ -1,26 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java b/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java
+-index 9468a5e..f3ebd0a 100644
++index 9468a5e..e313c94 100644
+ --- a/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java
+ +++ b/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java
+-@@ -585,17 +585,18 @@
+-         }
+- 
+-         OpenIntToFieldHashMap<T>.Iterator iter = entries.iterator();
+--        while (iter.hasNext()) {
+-+        T var_2216 = iter.value();
+-+		while (iter.hasNext()) {
++@@ -588,7 +588,8 @@
++         while (iter.hasNext()) {
+              iter.advance();
+              T test = other.getEntry(iter.key());
+ -            if (!test.equals(iter.value())) {
+-+            if (!test.equals(var_2216)) {
+++            T var_2216 = iter.value();
+++			if (!test.equals(var_2216)) {
+                  return false;
+              }
+          }
+-         iter = other.getEntries().iterator();
+-         while (iter.hasNext()) {
+-             iter.advance();
+--            T test = iter.value();
+-+            T test = var_2216;
+-             if (!test.equals(getEntry(iter.key()))) {
+-                 return false;
+-             }

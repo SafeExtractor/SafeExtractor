@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..5a671fa 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -570,13 +570,14 @@
+     for (cur = node, lastJump = node;
+         !isBreakTarget(cur, label);
+         cur = parent, parent = parent.getParent()) {
+-      if (cur.isTry() && NodeUtil.hasFinally(cur)
+-          && cur.getLastChild() != previous) {
++      Node var_1909 = cur.getLastChild();
++	if (cur.isTry() && NodeUtil.hasFinally(cur)
++          && var_1909 != previous) {
+         if (lastJump == node) {
+           createEdge(lastJump, Branch.UNCOND, computeFallThrough(
+-              cur.getLastChild()));
++              var_1909));
+         } else {
+-          finallyMap.put(lastJump, computeFallThrough(cur.getLastChild()));
++          finallyMap.put(lastJump, computeFallThrough(var_1909));
+         }
+         lastJump = cur;
+       }

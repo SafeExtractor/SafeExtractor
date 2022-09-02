@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/InstrumentFunctions.java b/src/com/google/javascript/jscomp/InstrumentFunctions.java
+index 330e767..2a4bacb 100644
+--- a/src/com/google/javascript/jscomp/InstrumentFunctions.java
++++ b/src/com/google/javascript/jscomp/InstrumentFunctions.java
+@@ -137,20 +137,21 @@
+                            new RemoveCallback(declarationsToRemove));
+     NodeTraversal.traverse(compiler, root, new InstrumentCallback());
+ 
+-    if (!appNameSetter.isEmpty()) {
++    Node var_683 = compiler.getNodeForCodeInsertion(null);
++	if (!appNameSetter.isEmpty()) {
+       Node call = IR.call(
+           IR.name(appNameSetter),
+           IR.string(appNameStr));
+       call.putBooleanProp(Node.FREE_CALL, true);
+       Node expr = IR.exprResult(call);
+ 
+-      Node addingRoot = compiler.getNodeForCodeInsertion(null);
++      Node addingRoot = var_683;
+       addingRoot.addChildrenToFront(expr);
+       compiler.reportCodeChange();
+     }
+ 
+     if (initCode != null) {
+-      Node addingRoot = compiler.getNodeForCodeInsertion(null);
++      Node addingRoot = var_683;
+       addingRoot.addChildrenToFront(initCode);
+       compiler.reportCodeChange();
+     }

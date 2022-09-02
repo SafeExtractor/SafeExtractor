@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunctionLagrangeForm.java b/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunctionLagrangeForm.java
+index 315c3dd..b6c8397 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunctionLagrangeForm.java
++++ b/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunctionLagrangeForm.java
+@@ -74,13 +74,14 @@
+         this.x = new double[x.length];
+         this.y = new double[y.length];
+         System.arraycopy(x, 0, this.x, 0, x.length);
+-        System.arraycopy(y, 0, this.y, 0, y.length);
++        double[] var_461 = this.y;
++		System.arraycopy(y, 0, var_461, 0, y.length);
+         coefficientsComputed = false;
+ 
+         if (!verifyInterpolationArray(x, y, false)) {
+-            MathArrays.sortInPlace(this.x, this.y);
++            MathArrays.sortInPlace(this.x, var_461);
+             // Second check in case some abscissa is duplicated.
+-            verifyInterpolationArray(this.x, this.y, true);
++            verifyInterpolationArray(this.x, var_461, true);
+         }
+     }
+ 

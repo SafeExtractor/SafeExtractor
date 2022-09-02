@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+index c8fbac8..f2565d8 100644
+--- a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
++++ b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+@@ -1525,8 +1525,9 @@
+             n.getFirstChild(), sourceName, scope);
+ 
+       case Token.BANG: // Not nullable
+-        return createFromTypeNodesInternal(
+-            n.getFirstChild(), sourceName, scope)
++        JSType var_2667 = createFromTypeNodesInternal(
++            n.getFirstChild(), sourceName, scope);
++		return var_2667
+             .restrictByNotNullOrUndefined();
+ 
+       case Token.QMARK: // Nullable or unknown

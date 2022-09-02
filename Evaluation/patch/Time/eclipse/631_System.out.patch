@@ -1,0 +1,58 @@
+diff --git a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+index 4e56fef..70a1934 100644
+--- a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
++++ b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+@@ -24,6 +24,7 @@
+ import java.io.IOException;
+ import java.io.InputStream;
+ import java.io.OutputStream;
++import java.io.PrintStream;
+ import java.util.ArrayList;
+ import java.util.HashMap;
+ import java.util.List;
+@@ -386,7 +387,8 @@
+ 
+         Map<String, DateTimeZone> map = new TreeMap<String, DateTimeZone>();
+ 
+-        System.out.println("Writing zoneinfo files");
++        PrintStream var_631 = System.out;
++		var_631.println("Writing zoneinfo files");
+         for (int i=0; i<iZones.size(); i++) {
+             Zone zone = iZones.get(i);
+             DateTimeZoneBuilder builder = new DateTimeZoneBuilder();
+@@ -397,7 +399,7 @@
+                 map.put(tz.getID(), tz);
+                 if (outputDir != null) {
+                     if (ZoneInfoCompiler.verbose()) {
+-                        System.out.println("Writing " + tz.getID());
++                        var_631.println("Writing " + tz.getID());
+                     }
+                     File file = new File(outputDir, tz.getID());
+                     if (!file.getParentFile().exists()) {
+@@ -416,7 +418,7 @@
+                     in.close();
+ 
+                     if (!original.equals(tz2)) {
+-                        System.out.println("*e* Error in " + tz.getID() +
++                        var_631.println("*e* Error in " + tz.getID() +
+                                            ": Didn't read properly from file");
+                     }
+                 }
+@@ -430,7 +432,7 @@
+                 DateTimeZone tz = map.get(id);
+                 if (tz == null) {
+                     if (pass > 0) {
+-                        System.out.println("Cannot find time zone '" + id +
++                        var_631.println("Cannot find time zone '" + id +
+                                            "' to link alias '" + alias + "' to");
+                     }
+                 } else {
+@@ -440,7 +442,7 @@
+         }
+ 
+         if (outputDir != null) {
+-            System.out.println("Writing ZoneInfoMap");
++            var_631.println("Writing ZoneInfoMap");
+             File file = new File(outputDir, "ZoneInfoMap");
+             if (!file.getParentFile().exists()) {
+                 file.getParentFile().mkdirs();

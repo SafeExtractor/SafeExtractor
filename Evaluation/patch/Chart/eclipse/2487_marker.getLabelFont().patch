@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+index 4a54655..6d98305 100644
+--- a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
++++ b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+@@ -1183,7 +1183,8 @@
+                                 Marker marker,
+                                 Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        Font var_2487 = marker.getLabelFont();
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = axis.getRange();
+@@ -1216,7 +1217,7 @@
+             String label = marker.getLabel();
+             RectangleAnchor anchor = marker.getLabelAnchor();
+             if (label != null) {
+-                Font labelFont = marker.getLabelFont();
++                Font labelFont = var_2487;
+                 g2.setFont(labelFont);
+                 g2.setPaint(marker.getLabelPaint());
+                 Point2D coordinates = calculateRangeMarkerTextAnchorPoint(
+@@ -1318,7 +1319,7 @@
+             String label = marker.getLabel();
+             RectangleAnchor anchor = marker.getLabelAnchor();
+             if (label != null) {
+-                Font labelFont = marker.getLabelFont();
++                Font labelFont = var_2487;
+                 g2.setFont(labelFont);
+                 g2.setPaint(marker.getLabelPaint());
+                 Point2D coordinates = calculateRangeMarkerTextAnchorPoint(

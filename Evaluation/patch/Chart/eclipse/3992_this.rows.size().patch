@@ -1,0 +1,43 @@
+diff --git a/source/org/jfree/data/jdbc/JDBCXYDataset.java b/source/org/jfree/data/jdbc/JDBCXYDataset.java
+index 95cd49c..619b2f2 100644
+--- a/source/org/jfree/data/jdbc/JDBCXYDataset.java
++++ b/source/org/jfree/data/jdbc/JDBCXYDataset.java
+@@ -296,8 +296,9 @@
+             }
+ 
+             // Might need to add, to free memory from any previous result sets
+-            if (this.rows != null) {
+-                for (int column = 0; column < this.rows.size(); column++) {
++            int var_3992 = this.rows.size();
++			if (this.rows != null) {
++                for (int column = 0; column < var_3992; column++) {
+                     ArrayList row = (ArrayList) this.rows.get(column);
+                     row.clear();
+                 }
+@@ -351,7 +352,7 @@
+             }
+ 
+             /// a kludge to make everything work when no rows returned
+-            if (this.rows.size() == 0) {
++            if (var_3992 == 0) {
+                 ArrayList newRow = new ArrayList();
+                 for (int column = 0; column < numberOfColumns; column++) {
+                     if (columnTypes[column] != Types.NULL) {
+@@ -362,7 +363,7 @@
+             }
+ 
+             /// Determine max and min values.
+-            if (this.rows.size() < 1) {
++            if (var_3992 < 1) {
+                 this.maxValue = 0.0;
+                 this.minValue = 0.0;
+             }
+@@ -370,7 +371,7 @@
+                 ArrayList row = (ArrayList) this.rows.get(0);
+                 this.maxValue = Double.NEGATIVE_INFINITY;
+                 this.minValue = Double.POSITIVE_INFINITY;
+-                for (int rowNum = 0; rowNum < this.rows.size(); ++rowNum) {
++                for (int rowNum = 0; rowNum < var_3992; ++rowNum) {
+                     row = (ArrayList) this.rows.get(rowNum);
+                     for (int column = 1; column < numberOfColumns; column++) {
+                         Object testValue = row.get(column);

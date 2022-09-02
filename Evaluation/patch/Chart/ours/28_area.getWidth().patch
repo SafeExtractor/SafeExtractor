@@ -1,0 +1,50 @@
+diff --git a/source/org/jfree/chart/JFreeChart.java b/source/org/jfree/chart/JFreeChart.java
+index 625eca5..315615c 100644
+--- a/source/org/jfree/chart/JFreeChart.java
++++ b/source/org/jfree/chart/JFreeChart.java
+@@ -1304,7 +1304,8 @@
+         }
+         Rectangle2D titleArea;
+         RectangleEdge position = t.getPosition();
+-        double ww = area.getWidth();
++        double var_28 = area.getWidth();
++		double ww = var_28;
+         if (ww <= 0.0) {
+             return null;
+         }
+@@ -1324,7 +1325,7 @@
+                     t.getHorizontalAlignment(), VerticalAlignment.TOP);
+             retValue = t.draw(g2, titleArea, p);
+             area.setRect(area.getX(), Math.min(area.getY() + size.height,
+-                    area.getMaxY()), area.getWidth(), Math.max(area.getHeight()
++                    area.getMaxY()), var_28, Math.max(area.getHeight()
+                     - size.height, 0));
+         }
+         else if (position == RectangleEdge.BOTTOM) {
+@@ -1332,7 +1333,7 @@
+             titleArea = createAlignedRectangle2D(size, area,
+                     t.getHorizontalAlignment(), VerticalAlignment.BOTTOM);
+             retValue = t.draw(g2, titleArea, p);
+-            area.setRect(area.getX(), area.getY(), area.getWidth(),
++            area.setRect(area.getX(), area.getY(), var_28,
+                     area.getHeight() - size.height);
+         }
+         else if (position == RectangleEdge.RIGHT) {
+@@ -1340,7 +1341,7 @@
+             titleArea = createAlignedRectangle2D(size, area,
+                     HorizontalAlignment.RIGHT, t.getVerticalAlignment());
+             retValue = t.draw(g2, titleArea, p);
+-            area.setRect(area.getX(), area.getY(), area.getWidth()
++            area.setRect(area.getX(), area.getY(), var_28
+                     - size.width, area.getHeight());
+         }
+ 
+@@ -1349,7 +1350,7 @@
+             titleArea = createAlignedRectangle2D(size, area,
+                     HorizontalAlignment.LEFT, t.getVerticalAlignment());
+             retValue = t.draw(g2, titleArea, p);
+-            area.setRect(area.getX() + size.width, area.getY(), area.getWidth()
++            area.setRect(area.getX() + size.width, area.getY(), var_28
+                     - size.width, area.getHeight());
+         }
+         else {

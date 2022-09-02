@@ -1,0 +1,33 @@
+diff --git a/src/main/java/org/apache/commons/lang3/math/Fraction.java b/src/main/java/org/apache/commons/lang3/math/Fraction.java
+index a722ffe..2450a5e 100644
+--- a/src/main/java/org/apache/commons/lang3/math/Fraction.java
++++ b/src/main/java/org/apache/commons/lang3/math/Fraction.java
+@@ -328,15 +328,16 @@
+ 
+         // parse X Y/Z format
+         pos = str.indexOf(' ');
+-        if (pos > 0) {
++        String var_389 = str.substring(pos + 1);
++		if (pos > 0) {
+             final int whole = Integer.parseInt(str.substring(0, pos));
+-            str = str.substring(pos + 1);
++            str = var_389;
+             pos = str.indexOf('/');
+             if (pos < 0) {
+                 throw new NumberFormatException("The fraction could not be parsed as the format X Y/Z");
+             } else {
+                 final int numer = Integer.parseInt(str.substring(0, pos));
+-                final int denom = Integer.parseInt(str.substring(pos + 1));
++                final int denom = Integer.parseInt(var_389);
+                 return getFraction(whole, numer, denom);
+             }
+         }
+@@ -348,7 +349,7 @@
+             return getFraction(Integer.parseInt(str), 1);
+         } else {
+             final int numer = Integer.parseInt(str.substring(0, pos));
+-            final int denom = Integer.parseInt(str.substring(pos + 1));
++            final int denom = Integer.parseInt(var_389);
+             return getFraction(numer, denom);
+         }
+     }

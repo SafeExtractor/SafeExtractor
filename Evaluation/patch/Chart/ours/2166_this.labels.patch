@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/plot/PieLabelDistributor.java b/source/org/jfree/chart/plot/PieLabelDistributor.java
+index 01d2d44..9705b99 100644
+--- a/source/org/jfree/chart/plot/PieLabelDistributor.java
++++ b/source/org/jfree/chart/plot/PieLabelDistributor.java
+@@ -44,6 +44,7 @@
+ package org.jfree.chart.plot;
+ 
+ import java.util.Collections;
++import java.util.List;
+ 
+ /**
+  * This class distributes the section labels for one side of a pie chart so
+@@ -183,14 +184,15 @@
+     protected void spreadEvenly(double minY, double height) {
+         double y = minY;
+         double sumOfLabelHeights = 0.0;
+-        for (int i = 0; i < this.labels.size(); i++) {
++        List var_2166 = this.labels;
++		for (int i = 0; i < var_2166.size(); i++) {
+             sumOfLabelHeights += getPieLabelRecord(i).getLabelHeight();
+         }
+         double gap = height - sumOfLabelHeights;
+-        if (this.labels.size() > 1) {
+-            gap = gap / (this.labels.size() - 1);
++        if (var_2166.size() > 1) {
++            gap = gap / (var_2166.size() - 1);
+         }
+-        for (int i = 0; i < this.labels.size(); i++) {
++        for (int i = 0; i < var_2166.size(); i++) {
+             PieLabelRecord record = getPieLabelRecord(i);
+             y = y + record.getLabelHeight() / 2.0;
+             record.setAllocatedY(y);

@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/ChartPanel.java b/source/org/jfree/chart/ChartPanel.java
+index 001049a..62f836d 100644
+--- a/source/org/jfree/chart/ChartPanel.java
++++ b/source/org/jfree/chart/ChartPanel.java
+@@ -1650,7 +1650,8 @@
+                 drawHeight);
+ 
+         // are we using the chart buffer?
+-        if (this.useBuffer) {
++        double var_78 = this.scaleX;
++		if (this.useBuffer) {
+ 
+             // do we need to resize the buffer?
+             if ((this.chartBuffer == null)
+@@ -1687,7 +1688,7 @@
+                 if (scale) {
+                     AffineTransform saved = bufferG2.getTransform();
+                     AffineTransform st = AffineTransform.getScaleInstance(
+-                            this.scaleX, this.scaleY);
++                            var_78, this.scaleY);
+                     bufferG2.transform(st);
+                     this.chart.draw(bufferG2, chartArea, this.anchor,
+                             this.info);
+@@ -1712,7 +1713,7 @@
+             g2.translate(insets.left, insets.top);
+             if (scale) {
+                 AffineTransform st = AffineTransform.getScaleInstance(
+-                        this.scaleX, this.scaleY);
++                        var_78, this.scaleY);
+                 g2.transform(st);
+             }
+             this.chart.draw(g2, chartArea, this.anchor, this.info);

@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/MethodCompilerPass.java b/src/com/google/javascript/jscomp/MethodCompilerPass.java
+index 786d143..1ae2c53 100644
+--- a/src/com/google/javascript/jscomp/MethodCompilerPass.java
++++ b/src/com/google/javascript/jscomp/MethodCompilerPass.java
+@@ -181,10 +181,11 @@
+ 
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      switch (n.getType()) {
++      Node var_1747 = n.getFirstChild();
++	switch (n.getType()) {
+         case Token.GETPROP:
+         case Token.GETELEM:
+-          Node dest = n.getFirstChild().getNext();
++          Node dest = var_1747.getNext();
+ 
+           if (dest.isString()) {
+             if (dest.getString().equals("prototype")) {
+@@ -207,7 +208,7 @@
+           break;
+ 
+         case Token.OBJECTLIT:
+-          for (Node key = n.getFirstChild(); key != null; key = key.getNext()) {
++          for (Node key = var_1747; key != null; key = key.getNext()) {
+             switch(key.getType()) {
+               case Token.STRING_KEY:
+                 addPossibleSignature(key.getString(), key.getFirstChild(), t);

@@ -1,0 +1,86 @@
+diff --git a/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer2.java b/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer2.java
+index b17bcd4..0f7fd14 100644
+--- a/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer2.java
++++ b/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer2.java
+@@ -278,7 +278,8 @@
+ 
+         GeneralPath left = new GeneralPath();
+         GeneralPath right = new GeneralPath();
+-        if (y1 >= 0.0) {  // handle positive value
++        PlotOrientation var_3071 = PlotOrientation.VERTICAL;
++		if (y1 >= 0.0) {  // handle positive value
+             transY1 = (float) rangeAxis.valueToJava2D(y1 + stack1[1], dataArea,
+                     edge1);
+             float transStack1 = (float) rangeAxis.valueToJava2D(stack1[1],
+@@ -291,7 +292,7 @@
+                 double yleft = (y0 + y1) / 2.0 + stackLeft[1];
+                 float transYLeft
+                     = (float) rangeAxis.valueToJava2D(yleft, dataArea, edge1);
+-                if (orientation == PlotOrientation.VERTICAL) {
++                if (orientation == var_3071) {
+                     left.moveTo(transX1, transY1);
+                     left.lineTo(transX1, transStack1);
+                     left.lineTo(transXLeft, transStackLeft);
+@@ -306,7 +307,7 @@
+                 left.closePath();
+             }
+             else {
+-                if (orientation == PlotOrientation.VERTICAL) {
++                if (orientation == var_3071) {
+                     left.moveTo(transX1, transStack1);
+                     left.lineTo(transX1, transY1);
+                     left.lineTo(transXLeft, transStackLeft);
+@@ -326,7 +327,7 @@
+                 double yright = (y1 + y2) / 2.0 + stackRight[1];
+                 float transYRight
+                     = (float) rangeAxis.valueToJava2D(yright, dataArea, edge1);
+-                if (orientation == PlotOrientation.VERTICAL) {
++                if (orientation == var_3071) {
+                     right.moveTo(transX1, transStack1);
+                     right.lineTo(transX1, transY1);
+                     right.lineTo(transXRight, transYRight);
+@@ -341,7 +342,7 @@
+                 right.closePath();
+             }
+             else {
+-                if (orientation == PlotOrientation.VERTICAL) {
++                if (orientation == var_3071) {
+                     right.moveTo(transX1, transStack1);
+                     right.lineTo(transX1, transY1);
+                     right.lineTo(transXRight, transStackRight);
+@@ -364,7 +365,7 @@
+ 
+             // LEFT POLYGON
+             if (y0 >= 0.0) {
+-                if (orientation == PlotOrientation.VERTICAL) {
++                if (orientation == var_3071) {
+                     left.moveTo(transX1, transStack1);
+                     left.lineTo(transX1, transY1);
+                     left.lineTo(transXLeft, transStackLeft);
+@@ -380,7 +381,7 @@
+                 double yleft = (y0 + y1) / 2.0 + stackLeft[0];
+                 float transYLeft = (float) rangeAxis.valueToJava2D(yleft,
+                         dataArea, edge1);
+-                if (orientation == PlotOrientation.VERTICAL) {
++                if (orientation == var_3071) {
+                     left.moveTo(transX1, transY1);
+                     left.lineTo(transX1, transStack1);
+                     left.lineTo(transXLeft, transStackLeft);
+@@ -399,7 +400,7 @@
+ 
+             // RIGHT POLYGON
+             if (y2 >= 0.0) {
+-                if (orientation == PlotOrientation.VERTICAL) {
++                if (orientation == var_3071) {
+                     right.moveTo(transX1, transStack1);
+                     right.lineTo(transX1, transY1);
+                     right.lineTo(transXRight, transStackRight);
+@@ -415,7 +416,7 @@
+                 double yright = (y1 + y2) / 2.0 + stackRight[0];
+                 float transYRight = (float) rangeAxis.valueToJava2D(yright,
+                         dataArea, edge1);
+-                if (orientation == PlotOrientation.VERTICAL) {
++                if (orientation == var_3071) {
+                     right.moveTo(transX1, transStack1);
+                     right.lineTo(transX1, transY1);
+                     right.lineTo(transXRight, transYRight);

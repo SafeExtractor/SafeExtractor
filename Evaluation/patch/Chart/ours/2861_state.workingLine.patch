@@ -1,0 +1,56 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYStepRenderer.java b/source/org/jfree/chart/renderer/xy/XYStepRenderer.java
+index 6fbbf6a..7a66ad2 100644
+--- a/source/org/jfree/chart/renderer/xy/XYStepRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYStepRenderer.java
+@@ -227,11 +227,12 @@
+             double transY0 = (Double.isNaN(y0) ? Double.NaN
+                     : rangeAxis.valueToJava2D(y0, dataArea, yAxisLocation));
+ 
+-            if (orientation == PlotOrientation.HORIZONTAL) {
++            Line2D var_2861 = state.workingLine;
++			if (orientation == PlotOrientation.HORIZONTAL) {
+                 if (transY0 == transY1) {
+                     // this represents the situation
+                     // for drawing a horizontal bar.
+-                    drawLine(g2, state.workingLine, transY0, transX0, transY1,
++                    drawLine(g2, var_2861, transY0, transX0, transY1,
+                             transX1);
+                 }
+                 else {  //this handles the need to perform a 'step'.
+@@ -239,29 +240,29 @@
+                     // calculate the step point
+                     double transXs = transX0 + (getStepPoint()
+                             * (transX1 - transX0));
+-                    drawLine(g2, state.workingLine, transY0, transX0, transY0,
++                    drawLine(g2, var_2861, transY0, transX0, transY0,
+                             transXs);
+-                    drawLine(g2, state.workingLine, transY0, transXs, transY1,
++                    drawLine(g2, var_2861, transY0, transXs, transY1,
+                             transXs);
+-                    drawLine(g2, state.workingLine, transY1, transXs, transY1,
++                    drawLine(g2, var_2861, transY1, transXs, transY1,
+                             transX1);
+                 }
+             }
+             else if (orientation == PlotOrientation.VERTICAL) {
+                 if (transY0 == transY1) { // this represents the situation
+                                           // for drawing a horizontal bar.
+-                    drawLine(g2, state.workingLine, transX0, transY0, transX1,
++                    drawLine(g2, var_2861, transX0, transY0, transX1,
+                             transY1);
+                 }
+                 else {  //this handles the need to perform a 'step'.
+                     // calculate the step point
+                     double transXs = transX0 + (getStepPoint()
+                             * (transX1 - transX0));
+-                    drawLine(g2, state.workingLine, transX0, transY0, transXs,
++                    drawLine(g2, var_2861, transX0, transY0, transXs,
+                             transY0);
+-                    drawLine(g2, state.workingLine, transXs, transY0, transXs,
++                    drawLine(g2, var_2861, transXs, transY0, transXs,
+                             transY1);
+-                    drawLine(g2, state.workingLine, transXs, transY1, transX1,
++                    drawLine(g2, var_2861, transXs, transY1, transX1,
+                             transY1);
+                 }
+             }

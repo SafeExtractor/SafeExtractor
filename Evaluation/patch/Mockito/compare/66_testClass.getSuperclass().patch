@@ -1,0 +1,21 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Mockito/eclipse/66_testClass.getSuperclass().patch b/home/safe/SafeExtractor/Evaluation/patch/Mockito/ours/66_testClass.getSuperclass().patch
+index cbb64d0..e69de29 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Mockito/eclipse/66_testClass.getSuperclass().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Mockito/ours/66_testClass.getSuperclass().patch
+@@ -1,16 +0,0 @@
+-diff --git a/src/org/mockito/internal/matchers/apachecommons/EqualsBuilder.java b/src/org/mockito/internal/matchers/apachecommons/EqualsBuilder.java
+-index 76704f9..a53cd60 100644
+---- a/src/org/mockito/internal/matchers/apachecommons/EqualsBuilder.java
+-+++ b/src/org/mockito/internal/matchers/apachecommons/EqualsBuilder.java
+-@@ -252,8 +252,9 @@
+-         EqualsBuilder equalsBuilder = new EqualsBuilder();
+-         try {
+-             reflectionAppend(lhs, rhs, testClass, equalsBuilder, testTransients, excludeFields);
+--            while (testClass.getSuperclass() != null && testClass != reflectUpToClass) {
+--                testClass = testClass.getSuperclass();
+-+            Class var_66 = testClass.getSuperclass();
+-+			while (var_66 != null && testClass != reflectUpToClass) {
+-+                testClass = var_66;
+-                 reflectionAppend(lhs, rhs, testClass, equalsBuilder, testTransients, excludeFields);
+-             }
+-         } catch (IllegalArgumentException e) {

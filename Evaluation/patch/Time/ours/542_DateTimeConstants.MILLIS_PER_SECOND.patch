@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
+index c3dd8cc..8f791d9 100644
+--- a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
++++ b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
+@@ -1123,8 +1123,9 @@
+                 return;
+             }
+             int value = (int) valueLong;
+-            if (iFieldType >= SECONDS_MILLIS) {
+-                value = (int) (valueLong / DateTimeConstants.MILLIS_PER_SECOND);
++            int var_542 = DateTimeConstants.MILLIS_PER_SECOND;
++			if (iFieldType >= SECONDS_MILLIS) {
++                value = (int) (valueLong / var_542);
+             }
+ 
+             if (iPrefix != null) {
+@@ -1138,9 +1139,9 @@
+                 FormatUtils.appendPaddedInteger(buf, value, minDigits);
+             }
+             if (iFieldType >= SECONDS_MILLIS) {
+-                int dp = (int) (Math.abs(valueLong) % DateTimeConstants.MILLIS_PER_SECOND);
++                int dp = (int) (Math.abs(valueLong) % var_542);
+                 if (iFieldType == SECONDS_MILLIS || dp > 0) {
+-                    if (valueLong < 0 && valueLong > -DateTimeConstants.MILLIS_PER_SECOND) {
++                    if (valueLong < 0 && valueLong > -var_542) {
+                         buf.insert(bufLen, '-');
+                     }
+                     buf.append('.');

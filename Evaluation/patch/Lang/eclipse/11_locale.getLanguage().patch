@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/lang3/LocaleUtils.java b/src/main/java/org/apache/commons/lang3/LocaleUtils.java
+index 7be8730..2639a6f 100644
+--- a/src/main/java/org/apache/commons/lang3/LocaleUtils.java
++++ b/src/main/java/org/apache/commons/lang3/LocaleUtils.java
+@@ -189,11 +189,12 @@
+         final List<Locale> list = new ArrayList<Locale>(4);
+         if (locale != null) {
+             list.add(locale);
+-            if (locale.getVariant().length() > 0) {
+-                list.add(new Locale(locale.getLanguage(), locale.getCountry()));
++            String var_11 = locale.getLanguage();
++			if (locale.getVariant().length() > 0) {
++                list.add(new Locale(var_11, locale.getCountry()));
+             }
+             if (locale.getCountry().length() > 0) {
+-                list.add(new Locale(locale.getLanguage(), ""));
++                list.add(new Locale(var_11, ""));
+             }
+             if (list.contains(defaultLocale) == false) {
+                 list.add(defaultLocale);

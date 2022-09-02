@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..ba9b638 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -623,7 +623,8 @@
+             }
+         }
+ 
+-        if (invert && !y.rint().equals(y)) {
++        boolean var_818 = y.rint().equals(y);
++		if (invert && !var_818) {
+             x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+             return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x.newInstance((byte)1, Dfp.QNAN));
+         }

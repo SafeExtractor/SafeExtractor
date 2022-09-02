@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java b/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java
+index 311459c..32df381 100644
+--- a/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java
++++ b/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java
+@@ -753,7 +753,8 @@
+         Shape[] result = new Shape[6];
+         Point2D p00 = new Point2D.Double(x0, y0);
+         Point2D p01 = new Point2D.Double(x0 + width, y0);
+-        Point2D p02 = new Point2D.Double(p01.getX() + getXOffset(),
++        double var_2804 = p01.getX();
++		Point2D p02 = new Point2D.Double(var_2804 + getXOffset(),
+                 p01.getY() - getYOffset());
+         Point2D p03 = new Point2D.Double(p00.getX() + getXOffset(),
+                 p00.getY() - getYOffset());
+@@ -768,7 +769,7 @@
+ 
+         GeneralPath right = new GeneralPath();
+         right.moveTo((float) p1.getX(), (float) p1.getY());
+-        right.lineTo((float) p01.getX(), (float) p01.getY());
++        right.lineTo((float) var_2804, (float) p01.getY());
+         right.lineTo((float) p02.getX(), (float) p02.getY());
+         right.lineTo((float) p2.getX(), (float) p2.getY());
+         right.closePath();
+@@ -790,7 +791,7 @@
+         GeneralPath front = new GeneralPath();
+         front.moveTo((float) p0.getX(), (float) p0.getY());
+         front.lineTo((float) p1.getX(), (float) p1.getY());
+-        front.lineTo((float) p01.getX(), (float) p01.getY());
++        front.lineTo((float) var_2804, (float) p01.getY());
+         front.lineTo((float) p00.getX(), (float) p00.getY());
+         front.closePath();
+ 
+@@ -803,7 +804,7 @@
+ 
+         GeneralPath bottom = new GeneralPath();
+         bottom.moveTo((float) p00.getX(), (float) p00.getY());
+-        bottom.lineTo((float) p01.getX(), (float) p01.getY());
++        bottom.lineTo((float) var_2804, (float) p01.getY());
+         bottom.lineTo((float) p02.getX(), (float) p02.getY());
+         bottom.lineTo((float) p03.getX(), (float) p03.getY());
+         bottom.closePath();

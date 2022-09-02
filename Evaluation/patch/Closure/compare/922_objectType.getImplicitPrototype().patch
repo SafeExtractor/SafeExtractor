@@ -1,0 +1,31 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/922_objectType.getImplicitPrototype().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/922_objectType.getImplicitPrototype().patch
+index 82b8685..d168cae 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/922_objectType.getImplicitPrototype().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/922_objectType.getImplicitPrototype().patch
+@@ -1,21 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/CheckAccessControls.java b/src/com/google/javascript/jscomp/CheckAccessControls.java
+-index df50c26..0af44d4 100644
++index df50c26..3e9dd50 100644
+ --- a/src/com/google/javascript/jscomp/CheckAccessControls.java
+ +++ b/src/com/google/javascript/jscomp/CheckAccessControls.java
+-@@ -461,12 +461,13 @@
+- 
++@@ -462,7 +462,8 @@
+        // Find the lowest property defined on a class with visibility
+        // information.
+--      if (isOverride) {
++       if (isOverride) {
+ -        objectType = objectType.getImplicitPrototype();
+-+      ObjectType var_922 = objectType.getImplicitPrototype();
+-+	if (isOverride) {
+-+        objectType = var_922;
+++        ObjectType var_922 = objectType.getImplicitPrototype();
+++		objectType = var_922;
+        }
+        JSDocInfo docInfo = null;
+        for (; objectType != null;
+--           objectType = objectType.getImplicitPrototype()) {
+-+           objectType = var_922) {
+-         docInfo = objectType.getOwnPropertyJSDocInfo(propertyName);
+-         if (docInfo != null &&
+-             docInfo.getVisibility() != Visibility.INHERITED) {

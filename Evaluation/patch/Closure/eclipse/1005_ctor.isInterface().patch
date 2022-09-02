@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..b3ed49a 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -1272,7 +1272,8 @@
+    * type is a supertype of the current type.
+    */
+   private static boolean hasUnknownOrEmptySupertype(FunctionType ctor) {
+-    Preconditions.checkArgument(ctor.isConstructor() || ctor.isInterface());
++    boolean var_1005 = ctor.isInterface();
++	Preconditions.checkArgument(ctor.isConstructor() || var_1005);
+     Preconditions.checkArgument(!ctor.isUnknownType());
+ 
+     // The type system should notice inheritance cycles on its own
+@@ -1291,7 +1292,7 @@
+       if (ctor == null) {
+         return false;
+       }
+-      Preconditions.checkState(ctor.isConstructor() || ctor.isInterface());
++      Preconditions.checkState(ctor.isConstructor() || var_1005);
+     }
+   }
+ 

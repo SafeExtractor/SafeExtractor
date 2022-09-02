@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/axis/LogAxis.java b/source/org/jfree/chart/axis/LogAxis.java
+index f01eade..5370f76 100644
+--- a/source/org/jfree/chart/axis/LogAxis.java
++++ b/source/org/jfree/chart/axis/LogAxis.java
+@@ -523,9 +523,10 @@
+         double current = start;
+         while (current <= end) {
+             double v = calculateValue(current);
+-            if (range.contains(v)) {
++            TextAnchor var_381 = TextAnchor.CENTER;
++			if (range.contains(v)) {
+                 ticks.add(new NumberTick(TickType.MAJOR, v, createTickLabel(v),
+-                        textAnchor, TextAnchor.CENTER, 0.0));
++                        textAnchor, var_381, 0.0));
+             }
+             // add minor ticks (for gridlines)
+             double next = Math.pow(this.base, current
+@@ -534,7 +535,7 @@
+                 double minorV = v + i * ((next - v) / minorTickCount);
+                 if (range.contains(minorV)) {
+                     ticks.add(new NumberTick(TickType.MINOR, minorV, "",
+-                            textAnchor, TextAnchor.CENTER, 0.0));
++                            textAnchor, var_381, 0.0));
+                 }
+             }
+             current = current + this.tickUnit.getSize();

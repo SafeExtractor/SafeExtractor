@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/axis/PeriodAxis.java b/source/org/jfree/chart/axis/PeriodAxis.java
+index 3c0bc0f..421cd2f 100644
+--- a/source/org/jfree/chart/axis/PeriodAxis.java
++++ b/source/org/jfree/chart/axis/PeriodAxis.java
+@@ -836,7 +836,8 @@
+         long axisMin = this.first.getFirstMillisecond();
+         long axisMax = this.last.getLastMillisecond();
+         g2.setFont(this.labelInfo[band].getLabelFont());
+-        g2.setPaint(this.labelInfo[band].getLabelPaint());
++        Paint var_820 = this.labelInfo[band].getLabelPaint();
++		g2.setPaint(var_820);
+ 
+         // work out the number of periods to skip for labelling
+         RegularTimePeriod p1 = this.labelInfo[band].createInstance(
+@@ -916,7 +917,7 @@
+ 
+             }
+             if (label != null) {
+-                g2.setPaint(this.labelInfo[band].getLabelPaint());
++                g2.setPaint(var_820);
+                 b = TextUtilities.drawAlignedString(label, g2, x, y, anchor);
+             }
+             if (lastXX > 0L) {

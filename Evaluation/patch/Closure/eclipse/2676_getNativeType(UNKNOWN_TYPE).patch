@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+index c8fbac8..2b75cbb 100644
+--- a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
++++ b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+@@ -1519,7 +1519,8 @@
+   /** @see #createFromTypeNodes(Node, String, StaticScope) */
+   private JSType createFromTypeNodesInternal(Node n, String sourceName,
+       StaticScope<JSType> scope) {
+-    switch (n.getType()) {
++    JSType var_2676 = getNativeType(UNKNOWN_TYPE);
++	switch (n.getType()) {
+       case Token.LC: // Record type.
+         return createRecordTypeFromNodes(
+             n.getFirstChild(), sourceName, scope);
+@@ -1532,7 +1533,7 @@
+       case Token.QMARK: // Nullable or unknown
+         Node firstChild = n.getFirstChild();
+         if (firstChild == null) {
+-          return getNativeType(UNKNOWN_TYPE);
++          return var_2676;
+         }
+         return createDefaultObjectUnion(
+             createFromTypeNodesInternal(
+@@ -1565,7 +1566,7 @@
+         return builder.build();
+ 
+       case Token.EMPTY: // When the return value of a function is not specified
+-        return getNativeType(UNKNOWN_TYPE);
++        return var_2676;
+ 
+       case Token.VOID: // Only allowed in the return value of a function.
+         return getNativeType(VOID_TYPE);
+@@ -1634,7 +1635,7 @@
+                arg = arg.getNext()) {
+             if (arg.getType() == Token.ELLIPSIS) {
+               if (arg.getChildCount() == 0) {
+-                paramBuilder.addVarArgs(getNativeType(UNKNOWN_TYPE));
++                paramBuilder.addVarArgs(var_2676);
+               } else {
+                 paramBuilder.addVarArgs(
+                     createFromTypeNodesInternal(

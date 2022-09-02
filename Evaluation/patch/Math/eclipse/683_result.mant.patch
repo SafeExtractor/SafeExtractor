@@ -1,0 +1,31 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..ad2c88d 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1932,20 +1932,21 @@
+         Dfp result = newInstance(this);
+ 
+         int rl = 0;
+-        for (int i = mant.length-1; i >= 0; i--) {
+-            final int r = rl*RADIX + result.mant[i];
++        int[] var_683 = result.mant;
++		for (int i = mant.length-1; i >= 0; i--) {
++            final int r = rl*RADIX + var_683[i];
+             final int rh = r / divisor;
+             rl = r - rh * divisor;
+-            result.mant[i] = rh;
++            var_683[i] = rh;
+         }
+ 
+-        if (result.mant[mant.length-1] == 0) {
++        if (var_683[mant.length-1] == 0) {
+             // normalize
+             result.shiftLeft();
+             final int r = rl * RADIX;        // compute the next digit and put it in
+             final int rh = r / divisor;
+             rl = r - rh * divisor;
+-            result.mant[0] = rh;
++            var_683[0] = rh;
+         }
+ 
+         final int excp = result.round(rl * RADIX / divisor);  // do the rounding

@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/FastMath.java b/src/main/java/org/apache/commons/math3/util/FastMath.java
+index 919e39f..97e4942 100644
+--- a/src/main/java/org/apache/commons/math3/util/FastMath.java
++++ b/src/main/java/org/apache/commons/math3/util/FastMath.java
+@@ -3738,16 +3738,17 @@
+                 final double recip[] = new double[2];
+ 
+                 // Populate expIntTable
+-                for (int i = 0; i < FastMath.EXP_INT_TABLE_MAX_INDEX; i++) {
++                int var_4354 = FastMath.EXP_INT_TABLE_MAX_INDEX;
++				for (int i = 0; i < var_4354; i++) {
+                     FastMathCalc.expint(i, tmp);
+-                    EXP_INT_TABLE_A[i + FastMath.EXP_INT_TABLE_MAX_INDEX] = tmp[0];
+-                    EXP_INT_TABLE_B[i + FastMath.EXP_INT_TABLE_MAX_INDEX] = tmp[1];
++                    EXP_INT_TABLE_A[i + var_4354] = tmp[0];
++                    EXP_INT_TABLE_B[i + var_4354] = tmp[1];
+ 
+                     if (i != 0) {
+                         // Negative integer powers
+                         FastMathCalc.splitReciprocal(tmp, recip);
+-                        EXP_INT_TABLE_A[FastMath.EXP_INT_TABLE_MAX_INDEX - i] = recip[0];
+-                        EXP_INT_TABLE_B[FastMath.EXP_INT_TABLE_MAX_INDEX - i] = recip[1];
++                        EXP_INT_TABLE_A[var_4354 - i] = recip[0];
++                        EXP_INT_TABLE_B[var_4354 - i] = recip[1];
+                     }
+                 }
+             } else {

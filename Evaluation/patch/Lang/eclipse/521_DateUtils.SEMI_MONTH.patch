@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DateUtils.java b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+index b16af53..538fa3a 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DateUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+@@ -1005,11 +1005,12 @@
+ 
+         boolean roundUp = false;
+         for (final int[] aField : fields) {
+-            for (final int element : aField) {
++            int var_521 = DateUtils.SEMI_MONTH;
++			for (final int element : aField) {
+                 if (element == field) {
+                     //This is our field... we stop looping
+                     if (modType == MODIFY_CEILING || (modType == MODIFY_ROUND && roundUp)) {
+-                        if (field == DateUtils.SEMI_MONTH) {
++                        if (field == var_521) {
+                             //This is a special case that's hard to generalize
+                             //If the date is 1, we round up to 16, otherwise
+                             //  we subtract 15 days and add 1 month
+@@ -1045,7 +1046,7 @@
+             boolean offsetSet = false;
+             //These are special types of fields that require different rounding rules
+             switch (field) {
+-                case DateUtils.SEMI_MONTH:
++                case var_521:
+                     if (aField[0] == Calendar.DATE) {
+                         //If we're going to drop the DATE field's value,
+                         //  we want to do this our own way.

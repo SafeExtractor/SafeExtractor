@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..e364dd6 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -946,7 +946,8 @@
+      */
+     private static int compare(final Dfp a, final Dfp b) {
+         // Ignore the sign of zero
+-        if (a.mant[a.mant.length - 1] == 0 && b.mant[b.mant.length - 1] == 0 &&
++        int var_581 = a.mant.length;
++		if (a.mant[var_581 - 1] == 0 && b.mant[b.mant.length - 1] == 0 &&
+             a.nans == FINITE && b.nans == FINITE) {
+             return 0;
+         }
+@@ -984,7 +985,7 @@
+         }
+ 
+         // compare the mantissas
+-        for (int i = a.mant.length - 1; i >= 0; i--) {
++        for (int i = var_581 - 1; i >= 0; i--) {
+             if (a.mant[i] > b.mant[i]) {
+                 return a.sign;
+             }

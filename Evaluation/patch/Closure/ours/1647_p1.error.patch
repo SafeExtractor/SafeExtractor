@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/BasicErrorManager.java b/src/com/google/javascript/jscomp/BasicErrorManager.java
+index 3d19f3c..e319470 100644
+--- a/src/com/google/javascript/jscomp/BasicErrorManager.java
++++ b/src/com/google/javascript/jscomp/BasicErrorManager.java
+@@ -142,7 +142,8 @@
+       }
+ 
+       // sourceName comparison
+-      String source1 = p1.error.sourceName;
++      JSError var_1647 = p1.error;
++	String source1 = var_1647.sourceName;
+       String source2 = p2.error.sourceName;
+       if (source1 != null && source2 != null) {
+         int sourceCompare = source1.compareTo(source2);
+@@ -155,7 +156,7 @@
+         return P1_GT_P2;
+       }
+       // lineno comparison
+-      int lineno1 = p1.error.lineNumber;
++      int lineno1 = var_1647.lineNumber;
+       int lineno2 = p2.error.lineNumber;
+       if (lineno1 != lineno2) {
+         return lineno1 - lineno2;
+@@ -165,7 +166,7 @@
+         return P1_GT_P2;
+       }
+       // charno comparison
+-      int charno1 = p1.error.getCharno();
++      int charno1 = var_1647.getCharno();
+       int charno2 = p2.error.getCharno();
+       if (charno1 != charno2) {
+         return charno1 - charno2;
+@@ -175,7 +176,7 @@
+         return P1_GT_P2;
+       }
+       // description
+-      return p1.error.description.compareTo(p2.error.description);
++      return var_1647.description.compareTo(p2.error.description);
+     }
+   }
+ 

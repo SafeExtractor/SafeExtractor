@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java b/src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java
+index 1c6eaff..3b1d399 100644
+--- a/src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java
++++ b/src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java
+@@ -355,7 +355,8 @@
+         final EqualsBuilder equalsBuilder = new EqualsBuilder();
+         try {
+             reflectionAppend(lhs, rhs, testClass, equalsBuilder, testTransients, excludeFields);
+-            while (testClass.getSuperclass() != null && testClass != reflectUpToClass) {
++            Class<?> var_307 = testClass.getSuperclass();
++			while (var_307 != null && testClass != reflectUpToClass) {
+                 testClass = testClass.getSuperclass();
+                 reflectionAppend(lhs, rhs, testClass, equalsBuilder, testTransients, excludeFields);
+             }

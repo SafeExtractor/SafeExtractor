@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+index 067e1df..645ee42 100644
+--- a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
++++ b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+@@ -559,7 +559,8 @@
+      */
+     public synchronized RegularTimePeriod advanceTime() {
+         RegularTimePeriod nextInstant = this.pointsInTime[this.newestAt].next();
+-        this.newestAt = this.oldestAt;  // newestAt takes value previously held
++        int var_4283 = this.oldestAt;
++		this.newestAt = var_4283;  // newestAt takes value previously held
+                                         // by oldestAT
+         /***
+          * The next 10 lines or so should be expanded if data can be negative
+@@ -572,7 +573,7 @@
+             oldMax = this.maxValue.floatValue();
+         }
+         for (int s = 0; s < getSeriesCount(); s++) {
+-            if (this.valueHistory[s].getData(this.oldestAt) == oldMax) {
++            if (this.valueHistory[s].getData(var_4283) == oldMax) {
+                 extremaChanged = true;
+             }
+             if (extremaChanged) {
+@@ -591,7 +592,7 @@
+         this.pointsInTime[this.newestAt] = nextInstant;
+         // Now advance "oldestAt", wrapping at end of the array
+         this.oldestAt++;
+-        if (this.oldestAt >= this.historyCount) {
++        if (var_4283 >= this.historyCount) {
+             this.oldestAt = 0;
+         }
+         // Update the domain limits:

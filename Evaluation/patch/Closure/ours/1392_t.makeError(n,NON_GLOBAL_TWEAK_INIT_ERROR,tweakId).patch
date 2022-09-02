@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessTweaks.java b/src/com/google/javascript/jscomp/ProcessTweaks.java
+index e20b902..8e62211 100644
+--- a/src/com/google/javascript/jscomp/ProcessTweaks.java
++++ b/src/com/google/javascript/jscomp/ProcessTweaks.java
+@@ -372,7 +372,8 @@
+         allTweaks.put(tweakId, tweakInfo);
+       }
+ 
+-      switch (tweakFunc) {
++      JSError var_1392 = t.makeError(n, NON_GLOBAL_TWEAK_INIT_ERROR, tweakId);
++	switch (tweakFunc) {
+         case REGISTER_BOOLEAN:
+         case REGISTER_NUMBER:
+         case REGISTER_STRING:
+@@ -384,7 +385,7 @@
+           // Ensure tweaks are registered in the global scope.
+           if (!t.inGlobalScope()) {
+             compiler.report(
+-                t.makeError(n, NON_GLOBAL_TWEAK_INIT_ERROR, tweakId));
++                var_1392);
+             break;
+           }
+ 
+@@ -403,7 +404,7 @@
+           // Ensure tweaks overrides occur in the global scope.
+           if (!t.inGlobalScope()) {
+             compiler.report(
+-                t.makeError(n, NON_GLOBAL_TWEAK_INIT_ERROR, tweakId));
++                var_1392);
+             break;
+           }
+           // Ensure tweak overrides occur before the tweak is registered.

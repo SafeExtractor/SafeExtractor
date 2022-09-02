@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/AmbiguateProperties.java b/src/com/google/javascript/jscomp/AmbiguateProperties.java
+index 68c3996..65cadd5 100644
+--- a/src/com/google/javascript/jscomp/AmbiguateProperties.java
++++ b/src/com/google/javascript/jscomp/AmbiguateProperties.java
+@@ -308,8 +308,9 @@
+ 
+     // An instance is related to its subclasses.
+     FunctionType constructor = type.toObjectType().getConstructor();
+-    if (constructor != null && constructor.getSubTypes() != null) {
+-      for (FunctionType subType : constructor.getSubTypes()) {
++    List<FunctionType> var_699 = constructor.getSubTypes();
++	if (constructor != null && var_699 != null) {
++      for (FunctionType subType : var_699) {
+         addRelatedInstance(subType, related);
+       }
+     }

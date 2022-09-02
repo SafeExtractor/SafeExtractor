@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/PolyhedronsSet.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/PolyhedronsSet.java
+index ac1e894..5a07a1d 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/PolyhedronsSet.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/PolyhedronsSet.java
+@@ -298,9 +298,10 @@
+             (((SubPlane) attribute.getPlusOutside()).getRemainingRegion().checkPoint(point2D) == Location.INSIDE)) {
+             return attribute.getPlusOutside();
+         }
+-        if ((attribute.getPlusInside() != null) &&
+-            (((SubPlane) attribute.getPlusInside()).getRemainingRegion().checkPoint(point2D) == Location.INSIDE)) {
+-            return attribute.getPlusInside();
++        SubHyperplane<Euclidean3D> var_1345 = attribute.getPlusInside();
++		if ((var_1345 != null) &&
++            (((SubPlane) var_1345).getRemainingRegion().checkPoint(point2D) == Location.INSIDE)) {
++            return var_1345;
+         }
+         return null;
+     }

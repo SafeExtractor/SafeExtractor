@@ -1,0 +1,24 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/223_SerialUtilities.readPaint(stream).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/223_SerialUtilities.readPaint(stream).patch
+index fa65768..66efed0 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/223_SerialUtilities.readPaint(stream).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/223_SerialUtilities.readPaint(stream).patch
+@@ -1,16 +1,14 @@
+ diff --git a/source/org/jfree/chart/annotations/XYShapeAnnotation.java b/source/org/jfree/chart/annotations/XYShapeAnnotation.java
+-index 2fae007..41f4f8e 100644
++index 2fae007..36565c0 100644
+ --- a/source/org/jfree/chart/annotations/XYShapeAnnotation.java
+ +++ b/source/org/jfree/chart/annotations/XYShapeAnnotation.java
+-@@ -306,8 +306,9 @@
++@@ -306,7 +306,8 @@
+          stream.defaultReadObject();
+          this.shape = SerialUtilities.readShape(stream);
+          this.stroke = SerialUtilities.readStroke(stream);
+ -        this.outlinePaint = SerialUtilities.readPaint(stream);
+--        this.fillPaint = SerialUtilities.readPaint(stream);
+ +        Paint var_223 = SerialUtilities.readPaint(stream);
+ +		this.outlinePaint = var_223;
+-+        this.fillPaint = var_223;
++         this.fillPaint = SerialUtilities.readPaint(stream);
+      }
+  
+- }

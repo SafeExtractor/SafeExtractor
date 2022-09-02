@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/RenamePrototypes.java b/src/com/google/javascript/jscomp/RenamePrototypes.java
+index c051306..34f9b64 100644
+--- a/src/com/google/javascript/jscomp/RenamePrototypes.java
++++ b/src/com/google/javascript/jscomp/RenamePrototypes.java
+@@ -353,11 +353,12 @@
+      * an assignment (in the case of Foo.prototype = ...).
+      */
+     private void processPrototypeParent(Node n, CompilerInput input) {
+-      switch (n.getType()) {
++      Node var_1823 = n.getFirstChild().getNext();
++	switch (n.getType()) {
+         // Foo.prototype.getBar = function() { ... }
+         case Token.GETPROP:
+         case Token.GETELEM:
+-          Node dest = n.getFirstChild().getNext();
++          Node dest = var_1823;
+           if (dest.isString()) {
+             markPrototypePropertyCandidate(dest, input);
+           }
+@@ -368,7 +369,7 @@
+         case Token.CALL:
+           Node map;
+           if (n.isAssign()) {
+-            map = n.getFirstChild().getNext();
++            map = var_1823;
+           } else {
+             map = n.getLastChild();
+           }

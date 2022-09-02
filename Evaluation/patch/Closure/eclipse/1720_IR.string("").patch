@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+index 63538e3..9126e7a 100644
+--- a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
++++ b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+@@ -461,9 +461,10 @@
+     foldedSize += arrayFoldedChildren.size() - 1;
+ 
+     int originalSize = InlineCostEstimator.getCost(n);
+-    switch (arrayFoldedChildren.size()) {
++    Node var_1720 = IR.string("");
++	switch (arrayFoldedChildren.size()) {
+       case 0:
+-        Node emptyStringNode = IR.string("");
++        Node emptyStringNode = var_1720;
+         n.getParent().replaceChild(n, emptyStringNode);
+         reportCodeChange();
+         return emptyStringNode;
+@@ -477,7 +478,7 @@
+           // If the Node is not a string literal, ensure that
+           // it is coerced to a string.
+           Node replacement = IR.add(
+-              IR.string("").srcref(n),
++              var_1720.srcref(n),
+               foldedStringNode);
+           foldedStringNode = replacement;
+         }

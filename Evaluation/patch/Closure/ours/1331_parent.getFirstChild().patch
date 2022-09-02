@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowGraph.java b/src/com/google/javascript/jscomp/ControlFlowGraph.java
+index c0764c0..15f8752 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowGraph.java
++++ b/src/com/google/javascript/jscomp/ControlFlowGraph.java
+@@ -158,7 +158,8 @@
+    */
+   public static boolean isEnteringNewCfgNode(Node n) {
+     Node parent = n.getParent();
+-    switch (parent.getType()) {
++    Node var_1331 = parent.getFirstChild();
++	switch (parent.getType()) {
+       case Token.BLOCK:
+       case Token.SCRIPT:
+       case Token.TRY:
+@@ -171,7 +172,7 @@
+         // is atomic without change in control flow. The next change of
+         // control is going into the function's body, represented by the second
+         // child.
+-        return n != parent.getFirstChild().getNext();
++        return n != var_1331.getNext();
+       case Token.WHILE:
+       case Token.DO:
+       case Token.IF:
+@@ -190,7 +191,7 @@
+         if (NodeUtil.isForIn(parent)) {
+           // TODO(user): Investigate how we should handle the case where
+           // we have a very complex expression inside the FOR-IN header.
+-          return n != parent.getFirstChild();
++          return n != var_1331;
+         } else {
+           return NodeUtil.getConditionExpression(parent) != n;
+         }
+@@ -198,7 +199,7 @@
+       case Token.CASE:
+       case Token.CATCH:
+       case Token.WITH:
+-        return n != parent.getFirstChild();
++        return n != var_1331;
+       default:
+         return false;
+     }

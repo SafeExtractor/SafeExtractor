@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/lang3/EnumUtils.java b/src/main/java/org/apache/commons/lang3/EnumUtils.java
+index 7a03b59..80fa665 100644
+--- a/src/main/java/org/apache/commons/lang3/EnumUtils.java
++++ b/src/main/java/org/apache/commons/lang3/EnumUtils.java
+@@ -225,9 +225,10 @@
+         Validate.noNullElements(values);
+         final EnumSet<E> condensed = EnumSet.noneOf(enumClass);
+         Collections.addAll(condensed, values);
+-        final long[] result = new long[(enumClass.getEnumConstants().length - 1) / Long.SIZE + 1];
++        int var_277 = Long.SIZE;
++		final long[] result = new long[(enumClass.getEnumConstants().length - 1) / var_277 + 1];
+         for (final E value : condensed) {
+-            result[value.ordinal() / Long.SIZE] |= 1 << (value.ordinal() % Long.SIZE);
++            result[value.ordinal() / var_277] |= 1 << (value.ordinal() % var_277);
+         }
+         ArrayUtils.reverse(result);
+         return result;

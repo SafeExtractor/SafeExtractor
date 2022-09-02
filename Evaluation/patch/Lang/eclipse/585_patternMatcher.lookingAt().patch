@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/FastDateParser.java b/src/main/java/org/apache/commons/lang3/time/FastDateParser.java
+index b9bb413..5e6422a 100644
+--- a/src/main/java/org/apache/commons/lang3/time/FastDateParser.java
++++ b/src/main/java/org/apache/commons/lang3/time/FastDateParser.java
+@@ -113,7 +113,8 @@
+         final List<Strategy> collector = new ArrayList<Strategy>();
+ 
+         final Matcher patternMatcher= formatPattern.matcher(pattern);
+-        if(!patternMatcher.lookingAt()) {
++        boolean var_585 = patternMatcher.lookingAt();
++		if(!var_585) {
+             throw new IllegalArgumentException(
+                     "Illegal pattern character '" + pattern.charAt(patternMatcher.regionStart()) + "'");
+         }
+@@ -122,7 +123,7 @@
+         Strategy currentStrategy= getStrategy(currentFormatField, definingCalendar);
+         for(;;) {
+             patternMatcher.region(patternMatcher.end(), patternMatcher.regionEnd());
+-            if(!patternMatcher.lookingAt()) {
++            if(!var_585) {
+                 nextStrategy = null;
+                 break;
+             }

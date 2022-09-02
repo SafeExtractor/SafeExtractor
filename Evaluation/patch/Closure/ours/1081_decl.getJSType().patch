@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..457a7aa 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -1239,8 +1239,9 @@
+     if (funType == null) {
+       functionFromDeclaration.put(decl,
+           funType = new ConcreteFunctionType(this, decl, parent));
+-      if (decl.getJSType() != null) {
+-        functionFromJSType.put(decl.getJSType().toMaybeFunctionType(), funType);
++      JSType var_1081 = decl.getJSType();
++	if (var_1081 != null) {
++        functionFromJSType.put(var_1081.toMaybeFunctionType(), funType);
+       }
+     }
+     return funType;

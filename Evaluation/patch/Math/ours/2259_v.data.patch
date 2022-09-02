@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java b/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java
+index 4ffd794..be53815 100644
+--- a/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java
++++ b/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java
+@@ -658,11 +658,12 @@
+      */
+     public ArrayFieldVector<T> ebeDivide(ArrayFieldVector<T> v)
+         throws DimensionMismatchException, MathArithmeticException {
+-        checkVectorDimensions(v.data.length);
++        T[] var_2259 = v.data;
++		checkVectorDimensions(var_2259.length);
+         T[] out = MathArrays.buildArray(field, data.length);
+         for (int i = 0; i < data.length; i++) {
+             try {
+-                out[i] = data[i].divide(v.data[i]);
++                out[i] = data[i].divide(var_2259[i]);
+             } catch (final MathArithmeticException e) {
+                 throw new MathArithmeticException(LocalizedFormats.INDEX, i);
+             }

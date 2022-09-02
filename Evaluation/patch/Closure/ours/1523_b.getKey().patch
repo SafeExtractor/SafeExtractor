@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+index 2e75bce..c4a97e1 100644
+--- a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
++++ b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+@@ -610,13 +610,14 @@
+         // To speed things up, only consider cases where len(b) <= 10
+         List<String> errors = Lists.newArrayList();
+         for (Map.Entry<String, String> b : cssNames.entrySet()) {
+-          if (b.getKey().length() > 10) continue;
++          String var_1523 = b.getKey();
++		if (var_1523.length() > 10) continue;
+           for (Map.Entry<String, String> a : cssNames.entrySet()) {
+-            String combined = cssNames.get(a.getKey() + "-" + b.getKey());
++            String combined = cssNames.get(a.getKey() + "-" + var_1523);
+             if (combined != null &&
+                 !combined.equals(a.getValue() + "-" + b.getValue())) {
+-              errors.add("map(" + a.getKey() + "-" + b.getKey() +") != map(" +
+-                         a.getKey() + ")-map(" + b.getKey() +")");
++              errors.add("map(" + a.getKey() + "-" + var_1523 +") != map(" +
++                         a.getKey() + ")-map(" + var_1523 +")");
+             }
+           }
+         }

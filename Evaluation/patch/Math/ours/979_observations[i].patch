@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/fitting/HarmonicFitter.java b/src/main/java/org/apache/commons/math3/fitting/HarmonicFitter.java
+index 12badd2..a430153 100644
+--- a/src/main/java/org/apache/commons/math3/fitting/HarmonicFitter.java
++++ b/src/main/java/org/apache/commons/math3/fitting/HarmonicFitter.java
+@@ -365,8 +365,9 @@
+                 // one step forward
+                 final double previousX = currentX;
+                 final double previousY = currentY;
+-                currentX = observations[i].getX();
+-                currentY = observations[i].getY();
++                WeightedObservedPoint var_979 = observations[i];
++				currentX = var_979.getX();
++                currentY = var_979.getY();
+                 final double currentYPrime = (currentY - previousY) / (currentX - previousX);
+ 
+                 double omegaX = omega * currentX;

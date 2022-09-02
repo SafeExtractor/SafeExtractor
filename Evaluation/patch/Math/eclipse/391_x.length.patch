@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/SplineInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/SplineInterpolator.java
+index bce2e18..0096a41 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/SplineInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/SplineInterpolator.java
+@@ -67,17 +67,18 @@
+         throws DimensionMismatchException,
+                NumberIsTooSmallException,
+                NonMonotonicSequenceException {
+-        if (x.length != y.length) {
+-            throw new DimensionMismatchException(x.length, y.length);
++        int var_391 = x.length;
++		if (var_391 != y.length) {
++            throw new DimensionMismatchException(var_391, y.length);
+         }
+ 
+-        if (x.length < 3) {
++        if (var_391 < 3) {
+             throw new NumberIsTooSmallException(LocalizedFormats.NUMBER_OF_POINTS,
+-                                                x.length, 3, true);
++                                                var_391, 3, true);
+         }
+ 
+         // Number of intervals.  The number of data points is n + 1.
+-        final int n = x.length - 1;
++        final int n = var_391 - 1;
+ 
+         MathArrays.checkOrder(x);
+ 

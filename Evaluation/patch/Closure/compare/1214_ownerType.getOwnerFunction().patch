@@ -1,0 +1,24 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1214_ownerType.getOwnerFunction().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1214_ownerType.getOwnerFunction().patch
+index b2a79ce..e69de29 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1214_ownerType.getOwnerFunction().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1214_ownerType.getOwnerFunction().patch
+@@ -1,19 +0,0 @@
+-diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+-index 461cddc..2f6da3f 100644
+---- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
+-+++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+-@@ -928,10 +928,11 @@
+- 
+-           // Infer the context type.
+-           boolean searchedForThisType = false;
+--          if (ownerType != null && ownerType.isFunctionPrototypeType() &&
+--              ownerType.getOwnerFunction().hasInstanceType()) {
+-+          FunctionType var_1214 = ownerType.getOwnerFunction();
+-+		if (ownerType != null && ownerType.isFunctionPrototypeType() &&
+-+              var_1214.hasInstanceType()) {
+-             builder.inferThisType(
+--                info, ownerType.getOwnerFunction().getInstanceType());
+-+                info, var_1214.getInstanceType());
+-             searchedForThisType = true;
+-           } else if (ownerNode != null && ownerNode.isThis()) {
+-             // If 'this' has a type, use that instead.

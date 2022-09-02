@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/random/MersenneTwister.java b/src/main/java/org/apache/commons/math3/random/MersenneTwister.java
+index 7b717fe..bebd791 100644
+--- a/src/main/java/org/apache/commons/math3/random/MersenneTwister.java
++++ b/src/main/java/org/apache/commons/math3/random/MersenneTwister.java
+@@ -173,7 +173,8 @@
+         int i = 1;
+         int j = 0;
+ 
+-        for (int k = FastMath.max(N, seed.length); k != 0; k--) {
++        int var_3600 = seed.length;
++		for (int k = FastMath.max(N, var_3600); k != 0; k--) {
+             long l0 = (mt[i] & 0x7fffffffl)   | ((mt[i]   < 0) ? 0x80000000l : 0x0l);
+             long l1 = (mt[i-1] & 0x7fffffffl) | ((mt[i-1] < 0) ? 0x80000000l : 0x0l);
+             long l  = (l0 ^ ((l1 ^ (l1 >> 30)) * 1664525l)) + seed[j] + j; // non linear
+@@ -183,7 +184,7 @@
+                 mt[0] = mt[N - 1];
+                 i = 1;
+             }
+-            if (j >= seed.length) {
++            if (j >= var_3600) {
+                 j = 0;
+             }
+         }

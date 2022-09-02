@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/random/StableRandomGenerator.java b/src/main/java/org/apache/commons/math3/random/StableRandomGenerator.java
+index 6fbbacf..cd80efb 100644
+--- a/src/main/java/org/apache/commons/math3/random/StableRandomGenerator.java
++++ b/src/main/java/org/apache/commons/math3/random/StableRandomGenerator.java
+@@ -100,7 +100,8 @@
+         double x;
+         // when beta = 0, zeta is zero as well
+         // Thus we can exclude it from the formula
+-        if (beta == 0d) {
++        double var_3670 = FastMath.cos(phi);
++		if (beta == 0d) {
+             // Cauchy distribution case
+             if (alpha == 1d) {
+                 x = FastMath.tan(phi);
+@@ -108,11 +109,11 @@
+                 x = FastMath.pow(omega * FastMath.cos((1 - alpha) * phi),
+                     1d / alpha - 1d) *
+                     FastMath.sin(alpha * phi) /
+-                    FastMath.pow(FastMath.cos(phi), 1d / alpha);
++                    FastMath.pow(var_3670, 1d / alpha);
+             }
+         } else {
+             // Generic stable distribution
+-            double cosPhi = FastMath.cos(phi);
++            double cosPhi = var_3670;
+             // to avoid rounding errors around alpha = 1
+             if (FastMath.abs(alpha - 1d) > 1e-8) {
+                 double alphaPhi = alpha * phi;

@@ -1,0 +1,81 @@
+diff --git a/src/main/java/org/apache/commons/lang3/math/NumberUtils.java b/src/main/java/org/apache/commons/lang3/math/NumberUtils.java
+index 70b8d64..7e0925c 100644
+--- a/src/main/java/org/apache/commons/lang3/math/NumberUtils.java
++++ b/src/main/java/org/apache/commons/lang3/math/NumberUtils.java
+@@ -463,9 +463,10 @@
+                 break;
+             }
+         }
+-        if (pfxLen > 0) { // we have a hex number
++        int var_364 = str.length();
++		if (pfxLen > 0) { // we have a hex number
+             char firstSigDigit = 0; // strip leading zeroes
+-            for(int i = pfxLen; i < str.length(); i++) {
++            for(int i = pfxLen; i < var_364; i++) {
+                 firstSigDigit = str.charAt(i);
+                 if (firstSigDigit == '0') { // count leading zeroes
+                     pfxLen++;
+@@ -473,7 +474,7 @@
+                     break;
+                 }
+             }
+-            final int hexDigits = str.length() - pfxLen;
++            final int hexDigits = var_364 - pfxLen;
+             if (hexDigits > 16 || (hexDigits == 16 && firstSigDigit > '7')) { // too many for Long
+                 return createBigInteger(str);
+             }
+@@ -482,7 +483,7 @@
+             }
+             return createInteger(str);
+         }
+-        final char lastChar = str.charAt(str.length() - 1);
++        final char lastChar = str.charAt(var_364 - 1);
+         String mant;
+         String dec;
+         String exp;
+@@ -495,7 +496,7 @@
+         if (decPos > -1) { // there is a decimal point
+ 
+             if (expPos > -1) { // there is an exponent
+-                if (expPos < decPos || expPos > str.length()) { // prevents double exponent causing IOOBE
++                if (expPos < decPos || expPos > var_364) { // prevents double exponent causing IOOBE
+                     throw new NumberFormatException(str + " is not a valid number.");
+                 }
+                 dec = str.substring(decPos + 1, expPos);
+@@ -506,7 +507,7 @@
+             numDecimals = dec.length(); // gets number of digits past the decimal to ensure no loss of precision for floating point numbers.
+         } else {
+             if (expPos > -1) {
+-                if (expPos > str.length()) { // prevents double exponent causing IOOBE
++                if (expPos > var_364) { // prevents double exponent causing IOOBE
+                     throw new NumberFormatException(str + " is not a valid number.");
+                 }
+                 mant = str.substring(0, expPos);
+@@ -516,13 +517,13 @@
+             dec = null;
+         }
+         if (!Character.isDigit(lastChar) && lastChar != '.') {
+-            if (expPos > -1 && expPos < str.length() - 1) {
+-                exp = str.substring(expPos + 1, str.length() - 1);
++            if (expPos > -1 && expPos < var_364 - 1) {
++                exp = str.substring(expPos + 1, var_364 - 1);
+             } else {
+                 exp = null;
+             }
+             //Requesting a specific type..
+-            final String numeric = str.substring(0, str.length() - 1);
++            final String numeric = str.substring(0, var_364 - 1);
+             final boolean allZeros = isAllZeros(mant) && isAllZeros(exp);
+             switch (lastChar) {
+                 case 'l' :
+@@ -576,8 +577,8 @@
+         }
+         //User doesn't have a preference on the return type, so let's start
+         //small and go from there...
+-        if (expPos > -1 && expPos < str.length() - 1) {
+-            exp = str.substring(expPos + 1, str.length());
++        if (expPos > -1 && expPos < var_364 - 1) {
++            exp = str.substring(expPos + 1, var_364);
+         } else {
+             exp = null;
+         }

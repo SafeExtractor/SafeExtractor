@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..d162ea5 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -3737,7 +3737,8 @@
+         Map axisStateMap = new HashMap();
+ 
+         // draw the top axes
+-        double cursor = dataArea.getMinY() - this.axisOffset.calculateTopOutset(
++        RectangleInsets var_1716 = this.axisOffset;
++		double cursor = dataArea.getMinY() - var_1716.calculateTopOutset(
+                 dataArea.getHeight());
+         Iterator iterator = axisCollection.getAxesAtTop().iterator();
+         while (iterator.hasNext()) {
+@@ -3750,7 +3751,7 @@
+ 
+         // draw the bottom axes
+         cursor = dataArea.getMaxY()
+-                 + this.axisOffset.calculateBottomOutset(dataArea.getHeight());
++                 + var_1716.calculateBottomOutset(dataArea.getHeight());
+         iterator = axisCollection.getAxesAtBottom().iterator();
+         while (iterator.hasNext()) {
+             ValueAxis axis = (ValueAxis) iterator.next();
+@@ -3762,7 +3763,7 @@
+ 
+         // draw the left axes
+         cursor = dataArea.getMinX()
+-                 - this.axisOffset.calculateLeftOutset(dataArea.getWidth());
++                 - var_1716.calculateLeftOutset(dataArea.getWidth());
+         iterator = axisCollection.getAxesAtLeft().iterator();
+         while (iterator.hasNext()) {
+             ValueAxis axis = (ValueAxis) iterator.next();
+@@ -3774,7 +3775,7 @@
+ 
+         // draw the right axes
+         cursor = dataArea.getMaxX()
+-                 + this.axisOffset.calculateRightOutset(dataArea.getWidth());
++                 + var_1716.calculateRightOutset(dataArea.getWidth());
+         iterator = axisCollection.getAxesAtRight().iterator();
+         while (iterator.hasNext()) {
+             ValueAxis axis = (ValueAxis) iterator.next();

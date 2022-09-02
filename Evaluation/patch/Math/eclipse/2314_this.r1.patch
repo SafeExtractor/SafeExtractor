@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+index 7b1dcc7..745a29d 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
++++ b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+@@ -548,12 +548,13 @@
+              * if b = 0.
+              */
+             this.r1 = this.b.copy();
+-            this.y = this.m == null ? this.b.copy() : this.m.operate(this.r1);
++            RealVector var_2314 = this.r1;
++			this.y = this.m == null ? this.b.copy() : this.m.operate(var_2314);
+             if ((this.m != null) && this.check) {
+-                checkSymmetry(this.m, this.r1, this.y, this.m.operate(this.y));
++                checkSymmetry(this.m, var_2314, this.y, this.m.operate(this.y));
+             }
+ 
+-            this.beta1 = this.r1.dotProduct(this.y);
++            this.beta1 = var_2314.dotProduct(this.y);
+             if (this.beta1 < 0.) {
+                 throwNPDLOException(this.m, this.y);
+             }
+@@ -580,7 +581,7 @@
+              */
+             daxpy(-this.shift, v, this.y);
+             final double alpha = v.dotProduct(this.y);
+-            daxpy(-alpha / this.beta1, this.r1, this.y);
++            daxpy(-alpha / this.beta1, var_2314, this.y);
+             /*
+              * At this point
+              *   alpha = alpha[1]

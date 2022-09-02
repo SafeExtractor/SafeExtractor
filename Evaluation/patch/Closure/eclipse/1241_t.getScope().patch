@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..5c2b766 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -2042,12 +2042,13 @@
+         return;
+       }
+ 
+-      if (n.isName() && NodeUtil.isLValue(n) &&
++      Scope var_1241 = t.getScope();
++	if (n.isName() && NodeUtil.isLValue(n) &&
+           // Be careful of bleeding functions, which create variables
+           // in the inner scope, not the scope where the name appears.
+           !NodeUtil.isBleedingFunctionName(n)) {
+         String name = n.getString();
+-        Scope scope = t.getScope();
++        Scope scope = var_1241;
+         Var var = scope.getVar(name);
+         if (var != null) {
+           Scope ownerScope = var.getScope();
+@@ -2062,7 +2063,7 @@
+       } else if (n.isGetProp() && n.isUnscopedQualifiedName() &&
+           NodeUtil.isLValue(n)) {
+         String name = NodeUtil.getRootOfQualifiedName(n).getString();
+-        Scope scope = t.getScope();
++        Scope scope = var_1241;
+         Var var = scope.getVar(name);
+         if (var != null) {
+           Scope ownerScope = var.getScope();

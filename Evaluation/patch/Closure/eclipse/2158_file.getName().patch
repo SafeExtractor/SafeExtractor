@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/deps/DepsGenerator.java b/src/com/google/javascript/jscomp/deps/DepsGenerator.java
+index 135c87c..3606827 100644
+--- a/src/com/google/javascript/jscomp/deps/DepsGenerator.java
++++ b/src/com/google/javascript/jscomp/deps/DepsGenerator.java
+@@ -276,11 +276,12 @@
+     Map<String, DependencyInfo> depsFiles = Maps.newHashMap();
+     for (SourceFile file : deps) {
+       if (!shouldSkipDepsFile(file)) {
+-        List<DependencyInfo>
++        String var_2158 = file.getName();
++		List<DependencyInfo>
+             depInfos = depsParser.parseFileReader(
+-                file.getName(), file.getCodeReader());
++                var_2158, file.getCodeReader());
+         if (depInfos.isEmpty()) {
+-          reportNoDepsInDepsFile(file.getName());
++          reportNoDepsInDepsFile(var_2158);
+         } else {
+           for (DependencyInfo info : depInfos) {
+             depsFiles.put(info.getPathRelativeToClosureBase(), info);

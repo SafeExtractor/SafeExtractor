@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 781fc3c..51dda5b 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -1797,19 +1797,20 @@
+       return parent.getLastChild() == n;
+     }
+ 
+-    switch (parent.getType()) {
++    Node var_327 = parent.getFirstChild();
++	switch (parent.getType()) {
+       case Token.NAME:
+       case Token.RETURN:
+         return true;
+       case Token.AND:
+       case Token.OR:
+       case Token.HOOK:
+-        return parent.getFirstChild() == n;
++        return var_327 == n;
+       case Token.FOR:
+-        return parent.getFirstChild().getNext() == n;
++        return var_327.getNext() == n;
+       case Token.IF:
+       case Token.WHILE:
+-        return parent.getFirstChild() == n;
++        return var_327 == n;
+       case Token.DO:
+         return parent.getLastChild() == n;
+       default:

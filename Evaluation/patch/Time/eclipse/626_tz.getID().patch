@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+index 4e56fef..c909516 100644
+--- a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
++++ b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+@@ -393,13 +393,14 @@
+             zone.addToBuilder(builder, iRuleSets);
+             final DateTimeZone original = builder.toDateTimeZone(zone.iName, true);
+             DateTimeZone tz = original;
+-            if (test(tz.getID(), tz)) {
+-                map.put(tz.getID(), tz);
++            String var_626 = tz.getID();
++			if (test(var_626, tz)) {
++                map.put(var_626, tz);
+                 if (outputDir != null) {
+                     if (ZoneInfoCompiler.verbose()) {
+-                        System.out.println("Writing " + tz.getID());
++                        System.out.println("Writing " + var_626);
+                     }
+-                    File file = new File(outputDir, tz.getID());
++                    File file = new File(outputDir, var_626);
+                     if (!file.getParentFile().exists()) {
+                         file.getParentFile().mkdirs();
+                     }
+@@ -412,11 +413,11 @@
+ 
+                     // Test if it can be read back.
+                     InputStream in = new FileInputStream(file);
+-                    DateTimeZone tz2 = DateTimeZoneBuilder.readFrom(in, tz.getID());
++                    DateTimeZone tz2 = DateTimeZoneBuilder.readFrom(in, var_626);
+                     in.close();
+ 
+                     if (!original.equals(tz2)) {
+-                        System.out.println("*e* Error in " + tz.getID() +
++                        System.out.println("*e* Error in " + var_626 +
+                                            ": Didn't read properly from file");
+                     }
+                 }

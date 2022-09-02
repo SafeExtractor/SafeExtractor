@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSimplifyRegExp.java b/src/com/google/javascript/jscomp/PeepholeSimplifyRegExp.java
+index 8812cce..77f6460 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSimplifyRegExp.java
++++ b/src/com/google/javascript/jscomp/PeepholeSimplifyRegExp.java
+@@ -31,7 +31,8 @@
+     if (subtree.isRegExp()) {
+       // Split regexp into pattern and flags.
+       String pattern = subtree.getFirstChild().getString();
+-      String flags = subtree.getChildCount() == 2
++      int var_472 = subtree.getChildCount();
++	String flags = var_472 == 2
+           ? subtree.getLastChild().getString() : "";
+       // Parse to an AST and optimize.
+       RegExpTree regexTree;
+@@ -67,7 +68,7 @@
+         subtree.getFirstChild().setString(newPattern);
+         if (!"".equals(newFlags)) {
+           subtree.getLastChild().setString(newFlags);
+-        } else if (subtree.getChildCount() == 2) {
++        } else if (var_472 == 2) {
+           subtree.getLastChild().detachFromParent();
+         }
+         reportCodeChange();

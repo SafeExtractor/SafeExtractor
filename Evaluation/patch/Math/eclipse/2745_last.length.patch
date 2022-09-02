@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+index ed2ddda..509fc67 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+@@ -529,8 +529,9 @@
+                            final double[][] diag, final double[] last) {
+ 
+     // update the diagonal
+-    for (int j = 1; j < k; ++j) {
+-      for (int i = 0; i < last.length; ++i) {
++    int var_2745 = last.length;
++	for (int j = 1; j < k; ++j) {
++      for (int i = 0; i < var_2745; ++i) {
+         // Aitken-Neville's recursive formula
+         diag[k-j-1][i] = diag[k-j][i] +
+                          coeff[k+offset][j-1] * (diag[k-j][i] - diag[k-j-1][i]);
+@@ -538,7 +539,7 @@
+     }
+ 
+     // update the last element
+-    for (int i = 0; i < last.length; ++i) {
++    for (int i = 0; i < var_2745; ++i) {
+       // Aitken-Neville's recursive formula
+       last[i] = diag[0][i] + coeff[k+offset][k-1] * (diag[0][i] - last[i]);
+     }

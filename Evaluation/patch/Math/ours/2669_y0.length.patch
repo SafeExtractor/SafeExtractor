@@ -1,0 +1,52 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
+index 2ff86a0..177acfe 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
+@@ -226,7 +226,8 @@
+ 
+       // iterate over step size, ensuring local normalized error is smaller than 1
+       double error = 10;
+-      while (error >= 1.0) {
++      int var_2669 = y0.length;
++	while (error >= 1.0) {
+ 
+         if (firstTime || !fsal) {
+           // first stage
+@@ -263,7 +264,7 @@
+         // next stages
+         for (int k = 1; k < stages; ++k) {
+ 
+-          for (int j = 0; j < y0.length; ++j) {
++          for (int j = 0; j < var_2669; ++j) {
+             double sum = a[k-1][0] * yDotK[0][j];
+             for (int l = 1; l < k; ++l) {
+               sum += a[k-1][l] * yDotK[l][j];
+@@ -276,7 +277,7 @@
+         }
+ 
+         // estimate the state at the end of the step
+-        for (int j = 0; j < y0.length; ++j) {
++        for (int j = 0; j < var_2669; ++j) {
+           double sum    = b[0] * yDotK[0][j];
+           for (int l = 1; l < stages; ++l) {
+             sum    += b[l] * yDotK[l][j];
+@@ -298,8 +299,8 @@
+ 
+       // local error is small enough: accept the step, trigger events and step handlers
+       interpolator.storeTime(stepStart + stepSize);
+-      System.arraycopy(yTmp, 0, y, 0, y0.length);
+-      System.arraycopy(yDotK[stages - 1], 0, yDotTmp, 0, y0.length);
++      System.arraycopy(yTmp, 0, y, 0, var_2669);
++      System.arraycopy(yDotK[stages - 1], 0, yDotTmp, 0, var_2669);
+       stepStart = acceptStep(interpolator, y, yDotTmp, t);
+       System.arraycopy(y, 0, yTmp, 0, y.length);
+ 
+@@ -310,7 +311,7 @@
+ 
+           if (fsal) {
+               // save the last evaluation for the next step
+-              System.arraycopy(yDotTmp, 0, yDotK[0], 0, y0.length);
++              System.arraycopy(yDotTmp, 0, yDotK[0], 0, var_2669);
+           }
+ 
+           // stepsize control for next step

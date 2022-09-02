@@ -1,0 +1,16 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot.java b/source/org/jfree/chart/plot/PiePlot.java
+index 34014e9..3cfefc9 100644
+--- a/source/org/jfree/chart/plot/PiePlot.java
++++ b/source/org/jfree/chart/plot/PiePlot.java
+@@ -3652,8 +3652,9 @@
+      */
+     public Object clone() throws CloneNotSupportedException {
+         PiePlot clone = (PiePlot) super.clone();
+-        if (clone.dataset != null) {
+-            clone.dataset.addChangeListener(clone);
++        PieDataset var_2091 = clone.dataset;
++		if (var_2091 != null) {
++            var_2091.addChangeListener(clone);
+         }
+         if (this.urlGenerator instanceof PublicCloneable) {
+             clone.urlGenerator = (PieURLGenerator) ObjectUtilities.clone(

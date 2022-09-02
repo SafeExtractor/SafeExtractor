@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/chrono/BasicMonthOfYearDateTimeField.java b/src/main/java/org/joda/time/chrono/BasicMonthOfYearDateTimeField.java
+index 051caed..ca26df2 100644
+--- a/src/main/java/org/joda/time/chrono/BasicMonthOfYearDateTimeField.java
++++ b/src/main/java/org/joda/time/chrono/BasicMonthOfYearDateTimeField.java
+@@ -207,7 +207,8 @@
+         if (valueToAdd == 0) {
+             return values;
+         }
+-        if (partial.size() > 0 && partial.getFieldType(0).equals(DateTimeFieldType.monthOfYear()) && fieldIndex == 0) {
++        int var_345 = partial.size();
++		if (var_345 > 0 && partial.getFieldType(0).equals(DateTimeFieldType.monthOfYear()) && fieldIndex == 0) {
+             // month is largest field and being added to, such as month-day
+             int curMonth0 = partial.getValue(0) - 1;
+             int newMonth = ((curMonth0 + (valueToAdd % 12) + 12) % 12) + 1;
+@@ -215,7 +216,7 @@
+         }
+         if (DateTimeUtils.isContiguous(partial)) {
+             long instant = 0L;
+-            for (int i = 0, isize = partial.size(); i < isize; i++) {
++            for (int i = 0, isize = var_345; i < isize; i++) {
+                 instant = partial.getFieldType(i).getField(iChronology).set(instant, values[i]);
+             }
+             instant = add(instant, valueToAdd);

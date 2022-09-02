@@ -1,0 +1,44 @@
+diff --git a/src/java/org/apache/commons/math/geometry/Rotation.java b/src/java/org/apache/commons/math/geometry/Rotation.java
+index fe32c60..d6e4611 100644
+--- a/src/java/org/apache/commons/math/geometry/Rotation.java
++++ b/src/java/org/apache/commons/math/geometry/Rotation.java
+@@ -970,9 +970,10 @@
+       o[1][0] = x10 - 0.5 * (x10 * mx00 + x11 * mx10 + x12 * mx20 - m[1][0]);
+       o[1][1] = x11 - 0.5 * (x10 * mx01 + x11 * mx11 + x12 * mx21 - m[1][1]);
+       o[1][2] = x12 - 0.5 * (x10 * mx02 + x11 * mx12 + x12 * mx22 - m[1][2]);
+-      o[2][0] = x20 - 0.5 * (x20 * mx00 + x21 * mx10 + x22 * mx20 - m[2][0]);
+-      o[2][1] = x21 - 0.5 * (x20 * mx01 + x21 * mx11 + x22 * mx21 - m[2][1]);
+-      o[2][2] = x22 - 0.5 * (x20 * mx02 + x21 * mx12 + x22 * mx22 - m[2][2]);
++      double[] o2 = o[2];
++	o2[0] = x20 - 0.5 * (x20 * mx00 + x21 * mx10 + x22 * mx20 - m[2][0]);
++      o2[1] = x21 - 0.5 * (x20 * mx01 + x21 * mx11 + x22 * mx21 - m[2][1]);
++      o2[2] = x22 - 0.5 * (x20 * mx02 + x21 * mx12 + x22 * mx22 - m[2][2]);
+ 
+       // correction on each elements
+       double corr00 = o[0][0] - m[0][0];
+@@ -981,9 +982,9 @@
+       double corr10 = o[1][0] - m[1][0];
+       double corr11 = o[1][1] - m[1][1];
+       double corr12 = o[1][2] - m[1][2];
+-      double corr20 = o[2][0] - m[2][0];
+-      double corr21 = o[2][1] - m[2][1];
+-      double corr22 = o[2][2] - m[2][2];
++      double corr20 = o2[0] - m[2][0];
++      double corr21 = o2[1] - m[2][1];
++      double corr22 = o2[2] - m[2][2];
+ 
+       // Frobenius norm of the correction
+       fn1 = corr00 * corr00 + corr01 * corr01 + corr02 * corr02
+@@ -1001,9 +1002,9 @@
+       x10 = o[1][0];
+       x11 = o[1][1];
+       x12 = o[1][2];
+-      x20 = o[2][0];
+-      x21 = o[2][1];
+-      x22 = o[2][2];
++      x20 = o2[0];
++      x21 = o2[1];
++      x22 = o2[2];
+       fn  = fn1;
+ 
+     }

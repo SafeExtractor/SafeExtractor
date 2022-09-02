@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..6a39dae 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -1613,9 +1613,10 @@
+ 
+     boolean restArg = false;
+     token = next();
+-    if (token == JsDocToken.ELLIPSIS) {
++    JsDocToken var_2343 = JsDocToken.RC;
++	if (token == JsDocToken.ELLIPSIS) {
+       token = next();
+-      if (token == JsDocToken.RC) {
++      if (token == var_2343) {
+         // EMPTY represents the UNKNOWN type in the Type AST.
+         return wrapNode(Token.ELLIPSIS, IR.empty());
+       }
+@@ -1633,7 +1634,7 @@
+         typeNode = wrapNode(Token.EQUALS, typeNode);
+       }
+ 
+-      if (!match(JsDocToken.RC)) {
++      if (!match(var_2343)) {
+         reportTypeSyntaxWarning("msg.jsdoc.missing.rc");
+       } else {
+         next();

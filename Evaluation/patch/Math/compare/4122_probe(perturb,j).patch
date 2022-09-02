@@ -1,0 +1,35 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/4122_probe(perturb,j).patch b/Users/safe/paper/Evaluation/patch/Math/ours/4122_probe(perturb,j).patch
+index f84b3b8..0cd8d0f 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/4122_probe(perturb,j).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/4122_probe(perturb,j).patch
+@@ -1,26 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java b/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+-index 2b007b2..4ae134d 100644
++index 2b007b2..166f59f 100644
+ --- a/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+ +++ b/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+-@@ -276,9 +276,10 @@
+- 
+-         int perturb = perturb(hash);
+-         int j = index;
+--        if (states[index] == FULL) {
+-+        int var_4122 = probe(perturb, j);
+-+		if (states[index] == FULL) {
+-             while (true) {
+--                j = probe(perturb, j);
+-+                j = var_4122;
+-                 index = j & mask;
+-                 perturb >>= PERTURB_SHIFT;
+- 
+-@@ -298,7 +299,7 @@
++@@ -298,7 +298,8 @@
+  
+          final int firstRemoved = index;
+          while (true) {
+ -            j = probe(perturb, j);
+-+            j = var_4122;
+++            int var_4122 = probe(perturb, j);
+++			j = var_4122;
+              index = j & mask;
+  
+              if (states[index] == FREE) {

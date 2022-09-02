@@ -1,0 +1,33 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..0625dcc 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -264,10 +264,11 @@
+       checks.add(objectPropertyStringPreprocess);
+     }
+ 
+-    if (options.checkTypes || options.inferTypes) {
++    boolean var_1776 = options.checkTypes;
++	if (var_1776 || options.inferTypes) {
+       checks.add(resolveTypes);
+       checks.add(inferTypes);
+-      if (options.checkTypes) {
++      if (var_1776) {
+         checks.add(checkTypes);
+       } else {
+         checks.add(inferJsDocInfo);
+@@ -281,12 +282,12 @@
+     }
+ 
+     if (options.checkUnreachableCode.isOn() ||
+-        (options.checkTypes && options.checkMissingReturn.isOn())) {
++        (var_1776 && options.checkMissingReturn.isOn())) {
+       checks.add(checkControlFlow);
+     }
+ 
+     // CheckAccessControls only works if check types is on.
+-    if (options.checkTypes &&
++    if (var_1776 &&
+         (options.enables(DiagnosticGroups.ACCESS_CONTROLS)
+          || options.enables(DiagnosticGroups.CONSTANT_PROPERTY))) {
+       checks.add(checkAccessControls);

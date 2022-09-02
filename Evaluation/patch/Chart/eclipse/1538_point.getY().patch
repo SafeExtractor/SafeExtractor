@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/plot/SpiderWebPlot.java b/source/org/jfree/chart/plot/SpiderWebPlot.java
+index 06e0bc2..584e262 100644
+--- a/source/org/jfree/chart/plot/SpiderWebPlot.java
++++ b/source/org/jfree/chart/plot/SpiderWebPlot.java
+@@ -1316,7 +1316,8 @@
+ 
+                     Point2D point = getWebPoint(plotArea, angle,
+                             value / this.maxValue);
+-                    polygon.addPoint((int) point.getX(), (int) point.getY());
++                    double var_1538 = point.getY();
++					polygon.addPoint((int) point.getX(), (int) var_1538);
+ 
+                     // put an elipse at the point being plotted..
+ 
+@@ -1325,7 +1326,7 @@
+                     Stroke outlineStroke = getSeriesOutlineStroke(series);
+ 
+                     Ellipse2D head = new Ellipse2D.Double(point.getX()
+-                            - headW / 2, point.getY() - headH / 2, headW,
++                            - headW / 2, var_1538 - headH / 2, headW,
+                             headH);
+                     g2.setPaint(paint);
+                     g2.fill(head);
+@@ -1357,7 +1358,7 @@
+ 
+                         Shape area = new Rectangle(
+                                 (int) (point.getX() - headW),
+-                                (int) (point.getY() - headH),
++                                (int) (var_1538 - headH),
+                                 (int) (headW * 2), (int) (headH * 2));
+                         CategoryItemEntity entity = new CategoryItemEntity(
+                                 area, tip, url, this.dataset,

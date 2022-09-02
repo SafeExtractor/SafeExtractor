@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/axis/ValueAxis.java b/source/org/jfree/chart/axis/ValueAxis.java
+index 5972cdd..b45dc7d 100644
+--- a/source/org/jfree/chart/axis/ValueAxis.java
++++ b/source/org/jfree/chart/axis/ValueAxis.java
+@@ -696,14 +696,15 @@
+                         tick.getAngle(), tick.getRotationAnchor());
+             }
+ 
+-            if ((isTickMarksVisible() && tick.getTickType().equals(
++            TickType var_573 = tick.getTickType();
++			if ((isTickMarksVisible() && var_573.equals(
+                     TickType.MAJOR)) || (isMinorTickMarksVisible() 
+-                    && tick.getTickType().equals(TickType.MINOR))) {
++                    && var_573.equals(TickType.MINOR))) {
+ 
+-                double ol = (tick.getTickType().equals(TickType.MINOR)) ?
++                double ol = (var_573.equals(TickType.MINOR)) ?
+                     getMinorTickMarkOutsideLength() : getTickMarkOutsideLength();
+ 
+-                double il = (tick.getTickType().equals(TickType.MINOR)) ?
++                double il = (var_573.equals(TickType.MINOR)) ?
+                     getMinorTickMarkInsideLength() : getTickMarkInsideLength();
+ 
+                 float xx = (float) valueToJava2D(tick.getValue(), dataArea,

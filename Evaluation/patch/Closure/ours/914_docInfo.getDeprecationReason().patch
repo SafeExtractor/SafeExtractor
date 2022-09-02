@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/CheckAccessControls.java b/src/com/google/javascript/jscomp/CheckAccessControls.java
+index df50c26..6d49171 100644
+--- a/src/com/google/javascript/jscomp/CheckAccessControls.java
++++ b/src/com/google/javascript/jscomp/CheckAccessControls.java
+@@ -284,10 +284,11 @@
+     if (docInfo != null && docInfo.isDeprecated() &&
+         shouldEmitDeprecationWarning(t, n, parent)) {
+ 
+-      if (docInfo.getDeprecationReason() != null) {
++      String var_914 = docInfo.getDeprecationReason();
++	if (var_914 != null) {
+         compiler.report(
+             t.makeError(n, DEPRECATED_NAME_REASON, n.getString(),
+-                docInfo.getDeprecationReason()));
++                var_914));
+       } else {
+         compiler.report(
+             t.makeError(n, DEPRECATED_NAME, n.getString()));

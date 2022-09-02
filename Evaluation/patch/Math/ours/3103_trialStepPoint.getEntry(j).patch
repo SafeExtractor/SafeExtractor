@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..9a88792 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -836,9 +836,10 @@
+             double vquad = ZERO;
+             int ih = 0;
+             for (int j = 0; j < n; j++) {
+-                vquad += trialStepPoint.getEntry(j) * gradientAtTrustRegionCenter.getEntry(j);
++                double var_3103 = trialStepPoint.getEntry(j);
++				vquad += var_3103 * gradientAtTrustRegionCenter.getEntry(j);
+                 for (int i = 0; i <= j; i++) {
+-                    double temp = trialStepPoint.getEntry(i) * trialStepPoint.getEntry(j);
++                    double temp = trialStepPoint.getEntry(i) * var_3103;
+                     if (i == j) {
+                         temp *= HALF;
+                     }

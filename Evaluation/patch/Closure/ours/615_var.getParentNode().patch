@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/RemoveUnusedVars.java b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+index 4c84735..a53c150 100644
+--- a/src/com/google/javascript/jscomp/RemoveUnusedVars.java
++++ b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+@@ -738,8 +738,9 @@
+           boolean assignedToUnknownValue = false;
+           boolean hasPropertyAssign = false;
+ 
+-          if (var.getParentNode().isVar() &&
+-              !NodeUtil.isForIn(var.getParentNode().getParent())) {
++          Node var_615 = var.getParentNode();
++		if (var_615.isVar() &&
++              !NodeUtil.isForIn(var_615.getParent())) {
+             Node value = var.getInitialValue();
+             assignedToUnknownValue = value != null &&
+                 !NodeUtil.isLiteralValue(value, true);

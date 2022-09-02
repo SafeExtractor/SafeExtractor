@@ -1,0 +1,36 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..b20121e 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -1119,17 +1119,20 @@
+               msg,
+               sourceName,
+               operand.getLineno(), "", 0);
+-        } else  if (type == Token.INC || type == Token.DEC) {
+-          if (!validAssignmentTarget(operand)) {
+-            String msg = (type == Token.INC)
+-                ? "invalid increment target"
+-                : "invalid decrement target";
+-            errorReporter.error(
+-                msg,
+-                sourceName,
+-                operand.getLineno(), "", 0);
+-          }
+-        }
++        } else {
++			int var_2268 = Token.INC;
++			if (type == var_2268 || type == Token.DEC) {
++			  if (!validAssignmentTarget(operand)) {
++			    String msg = (type == var_2268)
++			        ? "invalid increment target"
++			        : "invalid decrement target";
++			    errorReporter.error(
++			        msg,
++			        sourceName,
++			        operand.getLineno(), "", 0);
++			  }
++			}
++		}
+ 
+         Node node = newNode(type, operand);
+         if (exprNode.isPostfix()) {

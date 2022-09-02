@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/renderer/xy/StackedXYBarRenderer.java b/source/org/jfree/chart/renderer/xy/StackedXYBarRenderer.java
+index ccc914a..9fe58dd 100644
+--- a/source/org/jfree/chart/renderer/xy/StackedXYBarRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/StackedXYBarRenderer.java
+@@ -236,14 +236,15 @@
+ 
+         if (!(dataset instanceof IntervalXYDataset
+                 && dataset instanceof TableXYDataset)) {
+-            String message = "dataset (type " + dataset.getClass().getName()
++            Class<? extends XYDataset> var_3055 = dataset.getClass();
++			String message = "dataset (type " + var_3055.getName()
+                 + ") has wrong type:";
+             boolean and = false;
+-            if (!IntervalXYDataset.class.isAssignableFrom(dataset.getClass())) {
++            if (!IntervalXYDataset.class.isAssignableFrom(var_3055)) {
+                 message += " it is no IntervalXYDataset";
+                 and = true;
+             }
+-            if (!TableXYDataset.class.isAssignableFrom(dataset.getClass())) {
++            if (!TableXYDataset.class.isAssignableFrom(var_3055)) {
+                 if (and) {
+                     message += " and";
+                 }

@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..89bc720 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -467,8 +467,9 @@
+     }
+ 
+     // Tries to convert x = x + y -> x += y;
+-    if (!right.hasChildren() ||
+-        right.getFirstChild().getNext() != right.getLastChild()) {
++    Node var_134 = right.getFirstChild();
++	if (!right.hasChildren() ||
++        var_134.getNext() != right.getLastChild()) {
+       // RHS must have two children.
+       return n;
+     }
+@@ -478,11 +479,11 @@
+     }
+ 
+     Node newRight;
+-    if (areNodesEqualForInlining(left, right.getFirstChild())) {
++    if (areNodesEqualForInlining(left, var_134)) {
+       newRight = right.getLastChild();
+     } else if (NodeUtil.isCommutative(right.getType()) &&
+           areNodesEqualForInlining(left, right.getLastChild())) {
+-      newRight = right.getFirstChild();
++      newRight = var_134;
+     } else {
+       return n;
+     }

@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/regex/CharRanges.java b/src/com/google/javascript/jscomp/regex/CharRanges.java
+index 0736d68..a26253b 100644
+--- a/src/com/google/javascript/jscomp/regex/CharRanges.java
++++ b/src/com/google/javascript/jscomp/regex/CharRanges.java
+@@ -246,7 +246,8 @@
+     int[] intersection = new int[Math.min(aLen, bLen)];
+     int intersectionIdx = 0;
+     int pos = Math.min(aRanges[0], bRanges[0]);
+-    while (aIdx < aLen && bIdx < bLen) {
++    int var_2392 = intersection.length;
++	while (aIdx < aLen && bIdx < bLen) {
+       if (aRanges[aIdx + 1] <= pos) {
+         aIdx += 2;
+       } else if (bRanges[bIdx + 1] <= pos) {
+@@ -263,7 +264,7 @@
+               && pos == intersection[intersectionIdx - 1]) {
+             intersection[intersectionIdx - 1] = end;
+           } else {
+-            if (intersectionIdx == intersection.length) {
++            if (intersectionIdx == var_2392) {
+               int[] newArr = new int[intersectionIdx * 2];
+               System.arraycopy(intersection, 0, newArr, 0, intersectionIdx);
+               intersection = newArr;
+@@ -275,7 +276,7 @@
+         }
+       }
+     }
+-    if (intersectionIdx != intersection.length) {
++    if (intersectionIdx != var_2392) {
+       int[] newArr = new int[intersectionIdx];
+       System.arraycopy(intersection, 0, newArr, 0, intersectionIdx);
+       intersection = newArr;

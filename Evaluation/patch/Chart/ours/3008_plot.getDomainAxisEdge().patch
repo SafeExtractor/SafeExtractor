@@ -1,0 +1,33 @@
+diff --git a/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java b/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
+index 8332a80..25df37c 100644
+--- a/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
+@@ -96,6 +96,7 @@
+ import org.jfree.chart.util.ObjectUtilities;
+ import org.jfree.chart.util.PaintUtilities;
+ import org.jfree.chart.util.PublicCloneable;
++import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.chart.util.SerialUtilities;
+ import org.jfree.chart.util.ShapeUtilities;
+ import org.jfree.data.Range;
+@@ -415,8 +416,9 @@
+ 
+         //  Get height adjustment based on stack and translate to Java2D values
+         double ph1 = getPreviousHeight(tdataset, series, item);
+-        double transX1 = domainAxis.valueToJava2D(x1, dataArea,
+-                plot.getDomainAxisEdge());
++        RectangleEdge var_3008 = plot.getDomainAxisEdge();
++		double transX1 = domainAxis.valueToJava2D(x1, dataArea,
++                var_3008);
+         double transY1 = rangeAxis.valueToJava2D(y1 + ph1, dataArea,
+                 plot.getRangeAxisEdge());
+ 
+@@ -467,7 +469,7 @@
+                     double y0 = dataset.getYValue(series, item - 1);
+                     double ph0 = getPreviousHeight(tdataset, series, item - 1);
+                     double transX0 = domainAxis.valueToJava2D(x0, dataArea,
+-                            plot.getDomainAxisEdge());
++                            var_3008);
+                     double transY0 = rangeAxis.valueToJava2D(y0 + ph0,
+                             dataArea, plot.getRangeAxisEdge());
+ 

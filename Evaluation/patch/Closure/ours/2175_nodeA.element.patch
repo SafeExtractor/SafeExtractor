@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/graph/StandardUnionFind.java b/src/com/google/javascript/jscomp/graph/StandardUnionFind.java
+index 1362ba2..64a2338 100644
+--- a/src/com/google/javascript/jscomp/graph/StandardUnionFind.java
++++ b/src/com/google/javascript/jscomp/graph/StandardUnionFind.java
+@@ -79,13 +79,14 @@
+     Node<E> nodeA = findRootOrCreateNode(a);
+     Node<E> nodeB = findRootOrCreateNode(b);
+ 
+-    if (nodeA == nodeB) {
+-      return nodeA.element;
++    E var_2175 = nodeA.element;
++	if (nodeA == nodeB) {
++      return var_2175;
+     }
+     if (nodeA.rank > nodeB.rank) {
+       nodeB.parent = nodeA;
+       nodeA.size += nodeB.size;
+-      return nodeA.element;
++      return var_2175;
+     }
+     nodeA.parent = nodeB;
+     if (nodeA.rank == nodeB.rank) {

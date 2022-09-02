@@ -1,0 +1,35 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/574_StringUtils.leftPad(Integer.toString(milliseconds),count,'0').patch b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/574_StringUtils.leftPad(Integer.toString(milliseconds),count,'0').patch
+index 9c088aa..ecd2631 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/574_StringUtils.leftPad(Integer.toString(milliseconds),count,'0').patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/574_StringUtils.leftPad(Integer.toString(milliseconds),count,'0').patch
+@@ -1,24 +1,16 @@
+ diff --git a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+-index 09e636b..87f90b9 100644
++index 09e636b..68b0be8 100644
+ --- a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+ +++ b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+-@@ -448,15 +448,16 @@
+-                             .toString(seconds));
+-                     lastOutputSeconds = true;
++@@ -450,8 +450,9 @@
+                  } else if (value == S) {
+--                    if (lastOutputSeconds) {
+-+                    String var_574 = StringUtils.leftPad(Integer.toString(milliseconds), count, '0');
+-+					if (lastOutputSeconds) {
++                     if (lastOutputSeconds) {
+                          milliseconds += 1000;
+-                         final String str = padWithZeros
++-                        final String str = padWithZeros
+ -                                ? StringUtils.leftPad(Integer.toString(milliseconds), count, '0')
+++                        String var_574 = StringUtils.leftPad(Integer.toString(milliseconds), count, '0');
+++						final String str = padWithZeros
+ +                                ? var_574
+                                  : Integer.toString(milliseconds);
+                          buffer.append(str.substring(1));
+                      } else {
+-                         buffer.append(padWithZeros
+--                                ? StringUtils.leftPad(Integer.toString(milliseconds), count, '0')
+-+                                ? var_574
+-                                 : Integer.toString(milliseconds));
+-                     }
+-                     lastOutputSeconds = false;

@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/RungeKuttaIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/RungeKuttaIntegrator.java
+index cc55dbe..92cd129 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/RungeKuttaIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/RungeKuttaIntegrator.java
+@@ -135,9 +135,10 @@
+       for (int k = 1; k < stages; ++k) {
+ 
+           for (int j = 0; j < y0.length; ++j) {
+-              double sum = a[k-1][0] * yDotK[0][j];
++              double[] var_2693 = a[k-1];
++			double sum = var_2693[0] * yDotK[0][j];
+               for (int l = 1; l < k; ++l) {
+-                  sum += a[k-1][l] * yDotK[l][j];
++                  sum += var_2693[l] * yDotK[l][j];
+               }
+               yTmp[j] = y[j] + stepSize * sum;
+           }

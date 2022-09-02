@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/MinimizeExitPoints.java b/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+index 317947b..8441183 100644
+--- a/src/com/google/javascript/jscomp/MinimizeExitPoints.java
++++ b/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+@@ -50,7 +50,8 @@
+ 
+   @Override
+   public void visit(NodeTraversal t, Node n, Node parent) {
+-    switch (n.getType()) {
++    Node var_565 = NodeUtil.getLoopCodeBlock(n);
++	switch (n.getType()) {
+       case Token.LABEL:
+         tryMinimizeExits(
+             n.getLastChild(), Token.BREAK, n.getFirstChild().getString());
+@@ -59,12 +60,12 @@
+       case Token.FOR:
+       case Token.WHILE:
+         tryMinimizeExits(
+-            NodeUtil.getLoopCodeBlock(n), Token.CONTINUE, null);
++            var_565, Token.CONTINUE, null);
+         break;
+ 
+       case Token.DO:
+         tryMinimizeExits(
+-            NodeUtil.getLoopCodeBlock(n), Token.CONTINUE, null);
++            var_565, Token.CONTINUE, null);
+ 
+         Node cond = NodeUtil.getConditionExpression(n);
+         if (NodeUtil.getImpureBooleanValue(cond) == TernaryValue.FALSE) {

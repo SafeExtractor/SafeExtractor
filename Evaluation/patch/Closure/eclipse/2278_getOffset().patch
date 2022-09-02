@@ -1,0 +1,37 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocTokenStream.java b/src/com/google/javascript/jscomp/parsing/JsDocTokenStream.java
+index 0fc2b3b..67d5fd2 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocTokenStream.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocTokenStream.java
+@@ -334,11 +334,12 @@
+   }
+ 
+   protected int getChar() {
+-    if (ungetCursor != 0) {
++    int var_2278 = getOffset();
++	if (ungetCursor != 0) {
+       cursor++;
+       --ungetCursor;
+       if (charno == -1) {
+-        charno = getOffset();
++        charno = var_2278;
+       }
+       return ungetBuffer[ungetCursor];
+     }
+@@ -348,7 +349,7 @@
+       if (sourceCursor == sourceEnd) {
+         hitEOF = true;
+         if (charno == -1) {
+-          charno = getOffset();
++          charno = var_2278;
+         }
+         return EOF_CHAR;
+       }
+@@ -382,7 +383,7 @@
+       }
+ 
+       if (charno == -1) {
+-        charno = getOffset();
++        charno = var_2278;
+       }
+ 
+       return c;

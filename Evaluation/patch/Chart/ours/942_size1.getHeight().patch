@@ -1,0 +1,19 @@
+diff --git a/source/org/jfree/chart/block/BorderArrangement.java b/source/org/jfree/chart/block/BorderArrangement.java
+index b3ae54b..83ba829 100644
+--- a/source/org/jfree/chart/block/BorderArrangement.java
++++ b/source/org/jfree/chart/block/BorderArrangement.java
+@@ -252,11 +252,12 @@
+     protected Size2D arrangeFR(BlockContainer container, Graphics2D g2,
+                                RectangleConstraint constraint) {
+         Size2D size1 = arrangeFN(container, g2, constraint.getWidth());
+-        if (constraint.getHeightRange().contains(size1.getHeight())) {
++        double var_942 = size1.getHeight();
++		if (constraint.getHeightRange().contains(var_942)) {
+             return size1;
+         }
+         else {
+-            double h = constraint.getHeightRange().constrain(size1.getHeight());
++            double h = constraint.getHeightRange().constrain(var_942);
+             RectangleConstraint c2 = constraint.toFixedHeight(h);
+             return arrange(container, g2, c2);
+         }

@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/AmbiguateProperties.java b/src/com/google/javascript/jscomp/AmbiguateProperties.java
+index 68c3996..3f1c5be 100644
+--- a/src/com/google/javascript/jscomp/AmbiguateProperties.java
++++ b/src/com/google/javascript/jscomp/AmbiguateProperties.java
+@@ -453,10 +453,11 @@
+   private class ProcessProperties extends AbstractPostOrderCallback {
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      switch (n.getType()) {
++      JSType var_702 = getJSType(n.getFirstChild());
++	switch (n.getType()) {
+         case Token.GETPROP: {
+           Node propNode = n.getFirstChild().getNext();
+-          JSType jstype = getJSType(n.getFirstChild());
++          JSType jstype = var_702;
+           maybeMarkCandidate(propNode, jstype, t);
+           break;
+         }
+@@ -468,7 +469,7 @@
+             // We only want keys that were unquoted.
+             // Keys are STRING, GET, SET
+             if (!key.isQuotedString()) {
+-              JSType jstype = getJSType(n.getFirstChild());
++              JSType jstype = var_702;
+               maybeMarkCandidate(key, jstype, t);
+             } else {
+               // Ensure that we never rename some other property in a way

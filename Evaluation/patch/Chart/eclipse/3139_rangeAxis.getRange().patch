@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..eaecca8 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -1539,10 +1539,11 @@
+                                 Marker marker,
+                                 Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        Range var_3139 = rangeAxis.getRange();
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+-            Range range = rangeAxis.getRange();
++            Range range = var_3139;
+             if (!range.contains(value)) {
+                 return;
+             }
+@@ -1587,7 +1588,7 @@
+             IntervalMarker im = (IntervalMarker) marker;
+             double start = im.getStartValue();
+             double end = im.getEndValue();
+-            Range range = rangeAxis.getRange();
++            Range range = var_3139;
+             if (!(range.intersects(start, end))) {
+                 return;
+             }

@@ -1,0 +1,16 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/observation/ChangeProcessor.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/observation/ChangeProcessor.java
+index bb91f37..980c1bf 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/observation/ChangeProcessor.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/observation/ChangeProcessor.java
+@@ -161,8 +161,9 @@
+                 FilterProvider provider = filterProvider.get();
+                 // FIXME don't rely on toString for session id
+                 if (provider.includeCommit(contentSession.toString(), info)) {
+-                    ImmutableTree beforeTree = getTree(previousRoot, provider.getPath());
+-                    ImmutableTree afterTree = getTree(root, provider.getPath());
++                    String basePath = provider.getPath();
++					ImmutableTree beforeTree = getTree(previousRoot, basePath);
++                    ImmutableTree afterTree = getTree(root, basePath);
+                     Filter userFilter = provider.getFilter(beforeTree, afterTree, ntManager);
+                     Filter acFilter = new FilterBuilder().accessControl(permissionProvider)
+                             .createFilter(beforeTree, afterTree, ntManager);

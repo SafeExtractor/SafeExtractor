@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+index 4652f61..ca79b16 100644
+--- a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+@@ -659,9 +659,10 @@
+                         realEigenvalues[i + 1] = q + u;
+                         q = c * t - h;
+                         for (int ia = 0; ia < n; ia++) {
+-                            p = z[ia][i + 1];
+-                            z[ia][i + 1] = s * z[ia][i] + c * p;
+-                            z[ia][i] = c * z[ia][i] - s * p;
++                            double[] var_2119 = z[ia];
++							p = var_2119[i + 1];
++                            var_2119[i + 1] = s * var_2119[i] + c * p;
++                            var_2119[i] = c * var_2119[i] - s * p;
+                         }
+                     }
+                     if (t == 0.0 && i >= j) {

@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java b/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
+index 04d88ae..3286a86 100644
+--- a/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
++++ b/src/com/google/javascript/jscomp/ExtractPrototypeMemberDeclarations.java
+@@ -297,7 +297,8 @@
+     private ExtractionInstance(PrototypeMemberDeclaration head, Node parent) {
+       this.parent = parent;
+       declarations.add(head);
+-      delta = pattern.perExtractionOverhead + pattern.perMemberOverhead;
++      int var_2015 = pattern.perMemberOverhead;
++	delta = pattern.perExtractionOverhead + var_2015;
+ 
+       for (Node cur = head.node.getNext(); cur != null; cur = cur.getNext()) {
+ 
+@@ -315,7 +316,7 @@
+           break;
+         }
+         declarations.add(prototypeMember);
+-        delta += pattern.perMemberOverhead;
++        delta += var_2015;
+       }
+     }
+ 

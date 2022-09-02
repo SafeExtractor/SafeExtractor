@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..5003bc3 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -522,11 +522,12 @@
+                 final double bdtol = errbig / rho;
+                 for (int j = 0; j < n; j++) {
+                     double bdtest = bdtol;
+-                    if (newPoint.getEntry(j) == lowerDifference.getEntry(j)) {
+-                        bdtest = work1.getEntry(j);
++                    double var_3349 = work1.getEntry(j);
++					if (newPoint.getEntry(j) == lowerDifference.getEntry(j)) {
++                        bdtest = var_3349;
+                     }
+                     if (newPoint.getEntry(j) == upperDifference.getEntry(j)) {
+-                        bdtest = -work1.getEntry(j);
++                        bdtest = -var_3349;
+                     }
+                     if (bdtest < bdtol) {
+                         double curv = modelSecondDerivativesValues.getEntry((j + j * j) / 2);

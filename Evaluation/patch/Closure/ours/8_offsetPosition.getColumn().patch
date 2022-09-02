@@ -1,0 +1,27 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapGeneratorV1.java b/src/com/google/debugging/sourcemap/SourceMapGeneratorV1.java
+index c25e7eb..0885cf1 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapGeneratorV1.java
++++ b/src/com/google/debugging/sourcemap/SourceMapGeneratorV1.java
+@@ -196,8 +196,9 @@
+ 
+     // NOTE: When multiple outputs are concatenated together, the positions in
+     // the mapping are relative to offsetPosition.
+-    if (offsetPosition.getLine() == 0
+-        && offsetPosition.getColumn() == 0) {
++    int var_8 = offsetPosition.getColumn();
++	if (offsetPosition.getLine() == 0
++        && var_8 == 0) {
+       mapping.startPosition = startPosition;
+       mapping.endPosition = endPosition;
+     } else {
+@@ -206,8 +207,8 @@
+       // the *last* line of the source file to which the code is
+       // being generated.
+       int offsetLine = offsetPosition.getLine();
+-      int startOffsetPosition = offsetPosition.getColumn();
+-      int endOffsetPosition = offsetPosition.getColumn();
++      int startOffsetPosition = var_8;
++      int endOffsetPosition = var_8;
+ 
+       if (startPosition.getLine() > 0) {
+         startOffsetPosition = 0;

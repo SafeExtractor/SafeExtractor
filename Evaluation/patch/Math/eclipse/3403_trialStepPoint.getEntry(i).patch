@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..fb98ddc 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -2216,7 +2216,8 @@
+             for (int i = 0; i < n; i++) {
+                 // Computing MAX
+                 // Computing MIN
+-                final double min = Math.min(trustRegionCenterOffset.getEntry(i) + trialStepPoint.getEntry(i),
++                double var_3403 = trialStepPoint.getEntry(i);
++				final double min = Math.min(trustRegionCenterOffset.getEntry(i) + var_3403,
+                                             upperDifference.getEntry(i));
+                 newPoint.setEntry(i, Math.max(min, lowerDifference.getEntry(i)));
+                 if (xbdi.getEntry(i) == MINUS_ONE) {
+@@ -2227,7 +2228,7 @@
+                 }
+                 trialStepPoint.setEntry(i, newPoint.getEntry(i) - trustRegionCenterOffset.getEntry(i));
+                 // Computing 2nd power
+-                final double d1 = trialStepPoint.getEntry(i);
++                final double d1 = var_3403;
+                 dsq += d1 * d1;
+             }
+             return new double[] { dsq, crvmin };

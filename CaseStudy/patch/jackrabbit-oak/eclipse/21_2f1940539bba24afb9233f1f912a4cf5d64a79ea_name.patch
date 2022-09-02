@@ -1,0 +1,14 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/commit/MergingNodeStateDiff.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/commit/MergingNodeStateDiff.java
+index 57cf467..b0a589c 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/commit/MergingNodeStateDiff.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/commit/MergingNodeStateDiff.java
+@@ -99,7 +99,8 @@
+         PropertyConflictHandler propertyConflictHandler = propertyConflictHandlers.get(conflictType);
+         if (propertyConflictHandler != null) {
+             for (PropertyState ours : conflictInfo.getProperties()) {
+-                PropertyState theirs = parent.getProperty(ours.getName());
++                String name = ours.getName();
++				PropertyState theirs = parent.getProperty(name);
+                 Resolution resolution = propertyConflictHandler.resolve(ours, theirs);
+                 applyResolution(resolution, conflictType, ours);
+             }

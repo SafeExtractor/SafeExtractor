@@ -1,0 +1,38 @@
+diff --git a/src/com/google/javascript/jscomp/AliasExternals.java b/src/com/google/javascript/jscomp/AliasExternals.java
+index fc43f34..aa495c1 100644
+--- a/src/com/google/javascript/jscomp/AliasExternals.java
++++ b/src/com/google/javascript/jscomp/AliasExternals.java
+@@ -29,6 +29,7 @@
+ import com.google.javascript.rhino.Token;
+ 
+ import java.util.Arrays;
++import java.util.Collection;
+ import java.util.IdentityHashMap;
+ import java.util.List;
+ import java.util.Map;
+@@ -230,7 +231,8 @@
+     // Iterate through the reserved names, decide what to change
+     // This could have been done during property traversal, but
+     // This gives opportunity for review & modification if needed
+-    for (Symbol prop : props.values()) {
++    Collection<Symbol> var_1983 = props.values();
++	for (Symbol prop : var_1983) {
+       if (prop.name.length() >= MIN_PROP_SIZE) {
+         if (prop.accessorCount >= requiredUsage) {
+           prop.aliasAccessor = true;
+@@ -253,13 +255,13 @@
+     // And add the accessor and mutator functions, if needed. Property names are
+     // grouped together so that the CollapseVariableDeclarations pass can put
+     // them in a single variable declaration statement.
+-    for (Symbol prop : props.values()) {
++    for (Symbol prop : var_1983) {
+       if (prop.aliasAccessor) {
+         addAccessorPropName(prop.name, getAddingRoot(prop.deepestModuleAccess));
+       }
+     }
+ 
+-    for (Symbol prop : props.values()) {
++    for (Symbol prop : var_1983) {
+       if (prop.aliasMutator) {
+         addMutatorFunction(prop.name, getAddingRoot(prop.deepestModuleMutate));
+       }

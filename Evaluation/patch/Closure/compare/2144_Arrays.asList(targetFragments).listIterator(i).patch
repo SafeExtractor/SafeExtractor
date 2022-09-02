@@ -1,0 +1,47 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2144_Arrays.asList(targetFragments).listIterator(i).patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2144_Arrays.asList(targetFragments).listIterator(i).patch
+index a62ae1c..1caa931 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2144_Arrays.asList(targetFragments).listIterator(i).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2144_Arrays.asList(targetFragments).listIterator(i).patch
+@@ -1,5 +1,5 @@
+ diff --git a/src/com/google/javascript/jscomp/deps/PathUtil.java b/src/com/google/javascript/jscomp/deps/PathUtil.java
+-index 68efd2a..190311e 100644
++index 68efd2a..9a5334d 100644
+ --- a/src/com/google/javascript/jscomp/deps/PathUtil.java
+ +++ b/src/com/google/javascript/jscomp/deps/PathUtil.java
+ @@ -23,6 +23,7 @@
+@@ -10,30 +10,16 @@ index 68efd2a..190311e 100644
+  
+  /**
+   * Utility methods for manipulation of UNIX-like paths.
+-@@ -175,7 +176,8 @@
+-     String[] targetFragments = targetPath.split("/");
+- 
+-     int i = -1;
+--    do {
+-+    ListIterator<String> var_2144 = Arrays.asList(targetFragments).listIterator(i);
+-+	do {
+-       i += 1;
+-       if (i == baseFragments.length && i == targetFragments.length) {
++@@ -186,9 +187,10 @@
+          // Eg) base: /java/com/google
+-@@ -188,7 +190,7 @@
++         //   target: /java/com/google/c/ui
+          //   result: c/ui
+-         return Joiner.on("/").join(
++-        return Joiner.on("/").join(
+++        ListIterator<String> var_2144 = Arrays.asList(targetFragments).listIterator(i);
+++		return Joiner.on("/").join(
+              Lists.newArrayList(
+ -                Arrays.asList(targetFragments).listIterator(i)));
+ +                var_2144));
+        } else if (i == targetFragments.length) {
+          // Eg) base: /java/com/google/c/ui
+          //   target: /java/com/google
+-@@ -203,6 +205,6 @@
+-     //   result: ../common/base
+-     return Strings.repeat("../", baseFragments.length - i) +
+-         Joiner.on("/").join(
+--            Lists.newArrayList(Arrays.asList(targetFragments).listIterator(i)));
+-+            Lists.newArrayList(var_2144));
+-   }
+- }

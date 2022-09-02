@@ -1,0 +1,54 @@
+diff --git a/source/org/jfree/chart/JFreeChart.java b/source/org/jfree/chart/JFreeChart.java
+index 625eca5..3e5bd6b 100644
+--- a/source/org/jfree/chart/JFreeChart.java
++++ b/source/org/jfree/chart/JFreeChart.java
+@@ -1334,27 +1334,29 @@
+             retValue = t.draw(g2, titleArea, p);
+             area.setRect(area.getX(), area.getY(), area.getWidth(),
+                     area.getHeight() - size.height);
+-        }
+-        else if (position == RectangleEdge.RIGHT) {
+-            Size2D size = t.arrange(g2, constraint);
+-            titleArea = createAlignedRectangle2D(size, area,
+-                    HorizontalAlignment.RIGHT, t.getVerticalAlignment());
+-            retValue = t.draw(g2, titleArea, p);
+-            area.setRect(area.getX(), area.getY(), area.getWidth()
+-                    - size.width, area.getHeight());
+-        }
++        } else {
++			VerticalAlignment var_31 = t.getVerticalAlignment();
++			if (position == RectangleEdge.RIGHT) {
++			    Size2D size = t.arrange(g2, constraint);
++			    titleArea = createAlignedRectangle2D(size, area,
++			            HorizontalAlignment.RIGHT, var_31);
++			    retValue = t.draw(g2, titleArea, p);
++			    area.setRect(area.getX(), area.getY(), area.getWidth()
++			            - size.width, area.getHeight());
++			}
+ 
+-        else if (position == RectangleEdge.LEFT) {
+-            Size2D size = t.arrange(g2, constraint);
+-            titleArea = createAlignedRectangle2D(size, area,
+-                    HorizontalAlignment.LEFT, t.getVerticalAlignment());
+-            retValue = t.draw(g2, titleArea, p);
+-            area.setRect(area.getX() + size.width, area.getY(), area.getWidth()
+-                    - size.width, area.getHeight());
+-        }
+-        else {
+-            throw new RuntimeException("Unrecognised title position.");
+-        }
++			else if (position == RectangleEdge.LEFT) {
++			    Size2D size = t.arrange(g2, constraint);
++			    titleArea = createAlignedRectangle2D(size, area,
++			            HorizontalAlignment.LEFT, var_31);
++			    retValue = t.draw(g2, titleArea, p);
++			    area.setRect(area.getX() + size.width, area.getY(), area.getWidth()
++			            - size.width, area.getHeight());
++			}
++			else {
++			    throw new RuntimeException("Unrecognised title position.");
++			}
++		}
+         EntityCollection result = null;
+         if (retValue instanceof EntityBlockResult) {
+             EntityBlockResult ebr = (EntityBlockResult) retValue;

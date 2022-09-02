@@ -1,0 +1,48 @@
+diff --git a/src/com/google/javascript/jscomp/ExpressionDecomposer.java b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+index 2344537..9c050b1 100644
+--- a/src/com/google/javascript/jscomp/ExpressionDecomposer.java
++++ b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+@@ -164,8 +164,9 @@
+              child = parent,
+              parent = child.getParent()) {
+       int parentType = parent.getType();
+-      Preconditions.checkState(
+-          !isConditionalOp(parent) || child == parent.getFirstChild());
++      Node var_1954 = parent.getFirstChild();
++	Preconditions.checkState(
++          !isConditionalOp(parent) || child == var_1954);
+       if (parentType == Token.ASSIGN) {
+           if (isSafeAssign(parent, state.sideEffects)) {
+             // It is always safe to inline "foo()" for expressions such as
+@@ -180,7 +181,7 @@
+             // in these cases the checks below are necessary.
+           } else {
+             // Alias "next()" in "next().foo"
+-            Node left = parent.getFirstChild();
++            Node left = var_1954;
+             int type = left.getType();
+             if (left != child) {
+               Preconditions.checkState(NodeUtil.isGet(left));
+@@ -191,8 +192,8 @@
+             }
+           }
+       } else if (parentType == Token.CALL
+-          && NodeUtil.isGet(parent.getFirstChild())) {
+-        Node functionExpression = parent.getFirstChild();
++          && NodeUtil.isGet(var_1954)) {
++        Node functionExpression = var_1954;
+         decomposeSubExpressions(functionExpression.getNext(), child, state);
+         // Now handle the call expression
+         if (isExpressionTreeUnsafe(functionExpression, state.sideEffects)
+@@ -211,9 +212,9 @@
+           parent = replacement;
+         }
+       } else if (parentType == Token.OBJECTLIT) {
+-        decomposeObjectLiteralKeys(parent.getFirstChild(), child, state);
++        decomposeObjectLiteralKeys(var_1954, child, state);
+       } else {
+-        decomposeSubExpressions(parent.getFirstChild(), child, state);
++        decomposeSubExpressions(var_1954, child, state);
+       }
+     }
+ 

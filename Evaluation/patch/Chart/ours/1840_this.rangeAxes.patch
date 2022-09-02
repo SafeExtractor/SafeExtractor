@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/chart/plot/CategoryPlot.java b/source/org/jfree/chart/plot/CategoryPlot.java
+index 24a84fd..c0eaab3 100644
+--- a/source/org/jfree/chart/plot/CategoryPlot.java
++++ b/source/org/jfree/chart/plot/CategoryPlot.java
+@@ -1274,13 +1274,14 @@
+      * to all registered listeners.
+      */
+     public void clearRangeAxes() {
+-        for (int i = 0; i < this.rangeAxes.size(); i++) {
+-            ValueAxis axis = (ValueAxis) this.rangeAxes.get(i);
++        ObjectList var_1840 = this.rangeAxes;
++		for (int i = 0; i < var_1840.size(); i++) {
++            ValueAxis axis = (ValueAxis) var_1840.get(i);
+             if (axis != null) {
+                 axis.removeChangeListener(this);
+             }
+         }
+-        this.rangeAxes.clear();
++        var_1840.clear();
+         fireChangeEvent();
+     }
+ 

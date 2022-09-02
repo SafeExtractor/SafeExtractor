@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/joda/time/chrono/BasicChronology.java b/src/main/java/org/joda/time/chrono/BasicChronology.java
+index 63f394a..c14b3a5 100644
+--- a/src/main/java/org/joda/time/chrono/BasicChronology.java
++++ b/src/main/java/org/joda/time/chrono/BasicChronology.java
+@@ -743,7 +743,8 @@
+     //-----------------------------------------------------------------------
+     // Although accessed by multiple threads, this method doesn't need to be synchronized.
+     private YearInfo getYearInfo(int year) {
+-        YearInfo info = iYearInfoCache[year & CACHE_MASK];
++        YearInfo var_385 = iYearInfoCache[year & CACHE_MASK];
++		YearInfo info = var_385;
+         if (info == null || info.iYear != year) {
+             info = new YearInfo(year, calculateFirstDayOfYearMillis(year));
+             iYearInfoCache[year & CACHE_MASK] = info;

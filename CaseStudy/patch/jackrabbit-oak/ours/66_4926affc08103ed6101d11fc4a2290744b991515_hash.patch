@@ -1,0 +1,14 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/observation/ChangeDispatcher.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/observation/ChangeDispatcher.java
+index c94209b..0dcf0cd 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/observation/ChangeDispatcher.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/observation/ChangeDispatcher.java
+@@ -314,7 +314,8 @@
+ 
+         @Override
+         public int hashCode() {
+-            return 31 * before.hashCode() + after.hashCode();
++            int hash = before.hashCode();
++			return 31 * hash + after.hashCode();
+         }
+ 
+         private static String getStringOrNull(NodeState commitInfo, String name) {

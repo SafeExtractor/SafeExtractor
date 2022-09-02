@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/HessenbergTransformer.java b/src/main/java/org/apache/commons/math3/linear/HessenbergTransformer.java
+index e38600c..456f2d3 100644
+--- a/src/main/java/org/apache/commons/math3/linear/HessenbergTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/HessenbergTransformer.java
+@@ -93,7 +93,8 @@
+             }
+ 
+             for (int m = high - 1; m >= 1; m--) {
+-                if (householderVectors[m][m - 1] != 0.0) {
++                double var_2435 = householderVectors[m][m - 1];
++				if (var_2435 != 0.0) {
+                     for (int i = m + 1; i <= high; i++) {
+                         ort[i] = householderVectors[i][m - 1];
+                     }
+@@ -106,7 +107,7 @@
+                         }
+ 
+                         // Double division avoids possible underflow
+-                        g = (g / ort[m]) / householderVectors[m][m - 1];
++                        g = (g / ort[m]) / var_2435;
+ 
+                         for (int i = m; i <= high; i++) {
+                             pa[i][j] += g * ort[i];

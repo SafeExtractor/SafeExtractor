@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/lang3/text/StrTokenizer.java b/src/main/java/org/apache/commons/lang3/text/StrTokenizer.java
+index 7430b1c..fa10d21 100644
+--- a/src/main/java/org/apache/commons/lang3/text/StrTokenizer.java
++++ b/src/main/java/org/apache/commons/lang3/text/StrTokenizer.java
+@@ -685,13 +685,14 @@
+     private int readNextToken(final char[] chars, int start, final int len, final StrBuilder workArea, final List<String> tokens) {
+         // skip all leading whitespace, unless it is the
+         // field delimiter or the quote character
+-        while (start < len) {
++        int var_464 = getQuoteMatcher().isMatch(chars, start, start, len);
++		while (start < len) {
+             final int removeLen = Math.max(
+                     getIgnoredMatcher().isMatch(chars, start, start, len),
+                     getTrimmerMatcher().isMatch(chars, start, start, len));
+             if (removeLen == 0 ||
+                 getDelimiterMatcher().isMatch(chars, start, start, len) > 0 ||
+-                getQuoteMatcher().isMatch(chars, start, start, len) > 0) {
++                var_464 > 0) {
+                 break;
+             }
+             start += removeLen;
+@@ -711,7 +712,7 @@
+         }
+         
+         // handle found token
+-        final int quoteLen = getQuoteMatcher().isMatch(chars, start, start, len);
++        final int quoteLen = var_464;
+         if (quoteLen > 0) {
+             return readWithQuotes(chars, start + quoteLen, len, workArea, tokens, start, quoteLen);
+         }

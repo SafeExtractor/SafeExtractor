@@ -1,0 +1,14 @@
+diff --git a/storm-core/src/jvm/org/apache/storm/metric/cgroup/CGroupMetricsBase.java b/storm-core/src/jvm/org/apache/storm/metric/cgroup/CGroupMetricsBase.java
+index 74bb42c..67e9bed 100644
+--- a/storm-core/src/jvm/org/apache/storm/metric/cgroup/CGroupMetricsBase.java
++++ b/storm-core/src/jvm/org/apache/storm/metric/cgroup/CGroupMetricsBase.java
+@@ -40,7 +40,8 @@
+         enabled = false;
+         String hierarchyDir = (String)conf.get(Config.STORM_CGROUP_HIERARCHY_DIR);
+         if (hierarchyDir == null || hierarchyDir.isEmpty()) {
+-            LOG.warn("{} is disabled {} is not set", getClass().getSimpleName(), Config.STORM_CGROUP_HIERARCHY_DIR);
++            String simpleName = getClass().getSimpleName();
++			LOG.warn("{} is disabled {} is not set", simpleName, Config.STORM_CGROUP_HIERARCHY_DIR);
+             return;
+         }
+         //Good so far, check if we are in a CGroup

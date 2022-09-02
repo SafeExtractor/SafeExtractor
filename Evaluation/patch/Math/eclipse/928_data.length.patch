@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java b/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java
+index cc7b318..d0d88e0 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java
++++ b/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java
+@@ -302,17 +302,18 @@
+                                                                  final int numComponents)
+         throws NotStrictlyPositiveException,
+                DimensionMismatchException {
+-        if (data.length < 2) {
+-            throw new NotStrictlyPositiveException(data.length);
++        int var_928 = data.length;
++		if (var_928 < 2) {
++            throw new NotStrictlyPositiveException(var_928);
+         }
+         if (numComponents < 2) {
+             throw new NumberIsTooSmallException(numComponents, 2, true);
+         }
+-        if (numComponents > data.length) {
+-            throw new NumberIsTooLargeException(numComponents, data.length, true);
++        if (numComponents > var_928) {
++            throw new NumberIsTooLargeException(numComponents, var_928, true);
+         }
+ 
+-        final int numRows = data.length;
++        final int numRows = var_928;
+         final int numCols = data[0].length;
+ 
+         // sort the data

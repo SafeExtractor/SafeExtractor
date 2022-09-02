@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/ExpressionDecomposer.java b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+index 2344537..754c072 100644
+--- a/src/com/google/javascript/jscomp/ExpressionDecomposer.java
++++ b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+@@ -363,8 +363,9 @@
+       case Token.AND:
+         // a = x&&y --> if (a=x) {a=y} else {}
+         cond = buildResultExpression(first, needResult, tempName);
+-        trueExpr.addChildToFront(NodeUtil.newExpr(
+-            buildResultExpression(last, needResult, tempName)));
++        Node var_1962 = NodeUtil.newExpr(
++            buildResultExpression(last, needResult, tempName));
++		trueExpr.addChildToFront(var_1962);
+         break;
+       case Token.OR:
+         // a = x||y --> if (a=x) {} else {a=y}

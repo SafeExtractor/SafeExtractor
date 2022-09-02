@@ -1,0 +1,28 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1710_input.length().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1710_input.length().patch
+index c79799d..f1b5313 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1710_input.length().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1710_input.length().patch
+@@ -1,19 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+-index 63538e3..8483a83 100644
++index 63538e3..f366e3c 100644
+ --- a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+ +++ b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+-@@ -190,14 +190,15 @@
+-    * @return string with leading and trailing zeros removed
+-    */
+-   private String normalizeNumericString(String input) {
+--    if (input == null || input.length() == 0) {
+-+    int var_1710 = input.length();
+-+	if (input == null || var_1710 == 0) {
++@@ -194,10 +194,11 @@
+        return input;
+      }
+  
+ -    int startIndex = 0, endIndex = input.length() - 1;
+-+    int startIndex = 0, endIndex = var_1710 - 1;
+++    int var_1710 = input.length();
+++	int startIndex = 0, endIndex = var_1710 - 1;
+  
+      // Remove leading zeros
+ -    while (startIndex < input.length() && input.charAt(startIndex) == '0' &&

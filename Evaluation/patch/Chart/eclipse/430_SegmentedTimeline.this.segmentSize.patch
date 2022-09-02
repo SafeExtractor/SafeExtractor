@@ -1,0 +1,19 @@
+diff --git a/source/org/jfree/chart/axis/SegmentedTimeline.java b/source/org/jfree/chart/axis/SegmentedTimeline.java
+index 3d7dbe0..bd0f6ff 100644
+--- a/source/org/jfree/chart/axis/SegmentedTimeline.java
++++ b/source/org/jfree/chart/axis/SegmentedTimeline.java
+@@ -1256,10 +1256,11 @@
+          */
+         protected Segment(long millisecond) {
+             this.segmentNumber = calculateSegmentNumber(millisecond);
+-            this.segmentStart = SegmentedTimeline.this.startTime
+-                + this.segmentNumber * SegmentedTimeline.this.segmentSize;
++            long var_430 = SegmentedTimeline.this.segmentSize;
++			this.segmentStart = SegmentedTimeline.this.startTime
++                + this.segmentNumber * var_430;
+             this.segmentEnd
+-                = this.segmentStart + SegmentedTimeline.this.segmentSize - 1;
++                = this.segmentStart + var_430 - 1;
+             this.millisecond = millisecond;
+         }
+ 

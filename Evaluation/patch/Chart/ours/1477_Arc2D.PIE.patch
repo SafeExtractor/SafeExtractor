@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot3D.java b/source/org/jfree/chart/plot/PiePlot3D.java
+index a7aab14..0bab176 100644
+--- a/source/org/jfree/chart/plot/PiePlot3D.java
++++ b/source/org/jfree/chart/plot/PiePlot3D.java
+@@ -390,7 +390,8 @@
+         Stroke outlineStroke;
+ 
+         Iterator iterator = sectionKeys.iterator();
+-        while (iterator.hasNext()) {
++        int var_1477 = Arc2D.PIE;
++		while (iterator.hasNext()) {
+ 
+             Comparable currentKey = (Comparable) iterator.next();
+             Number dataValue = dataset.getValue(currentKey);
+@@ -412,7 +413,7 @@
+             if (Math.abs(angle2 - angle1) > getMinimumArcAngleToDraw()) {
+                 arcList.add(new Arc2D.Double(arcX, arcY + depth,
+                         pieArea.getWidth(), pieArea.getHeight() - depth,
+-                        angle1, angle2 - angle1, Arc2D.PIE));
++                        angle1, angle2 - angle1, var_1477));
+             }
+             else {
+                 arcList.add(null);
+@@ -452,7 +453,7 @@
+         int[] xs;
+         int[] ys;
+         arc = new Arc2D.Double(arcX, arcY + depth, pieArea.getWidth(),
+-                pieArea.getHeight() - depth, 0, 360, Arc2D.PIE);
++                pieArea.getHeight() - depth, 0, 360, var_1477);
+ 
+         int categoryCount = arcList.size();
+         for (int categoryIndex = 0; categoryIndex < categoryCount;
+@@ -537,7 +538,7 @@
+             }
+             upperArc = new Arc2D.Double(arcX, arcY, pieArea.getWidth(),
+                     pieArea.getHeight() - depth, arc.getAngleStart(),
+-                    arc.getAngleExtent(), Arc2D.PIE);
++                    arc.getAngleExtent(), var_1477);
+ 
+             Comparable currentKey = (Comparable) sectionKeys.get(sectionIndex);
+             paint = lookupSectionPaint(currentKey, true);

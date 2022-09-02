@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/InferJSDocInfo.java b/src/com/google/javascript/jscomp/InferJSDocInfo.java
+index b2cb704..ab22dc7 100644
+--- a/src/com/google/javascript/jscomp/InferJSDocInfo.java
++++ b/src/com/google/javascript/jscomp/InferJSDocInfo.java
+@@ -93,7 +93,8 @@
+   public void visit(NodeTraversal t, Node n, Node parent) {
+     JSDocInfo docInfo;
+ 
+-    switch (n.getType()) {
++    boolean var_1701 = parent.isAssign();
++	switch (n.getType()) {
+       // Infer JSDocInfo on types of all type declarations on variables.
+       case Token.NAME:
+         if (parent == null) {
+@@ -103,7 +104,7 @@
+         // Only allow JSDoc on VARs, function declarations, and assigns.
+         if (!parent.isVar() &&
+             !NodeUtil.isFunctionDeclaration(parent) &&
+-            !(parent.isAssign() &&
++            !(var_1701 &&
+               n == parent.getFirstChild())) {
+           return;
+         }
+@@ -158,7 +159,7 @@
+         // /** @deprecated */
+         // obj.prop;
+         if (parent.isExprResult() ||
+-            (parent.isAssign() &&
++            (var_1701 &&
+              parent.getFirstChild() == n)) {
+           docInfo = n.getJSDocInfo();
+           if (docInfo == null) {

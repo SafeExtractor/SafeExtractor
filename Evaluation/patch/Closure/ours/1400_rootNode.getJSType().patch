@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/Scope.java b/src/com/google/javascript/jscomp/Scope.java
+index 7ed2b6f..41f2012 100644
+--- a/src/com/google/javascript/jscomp/Scope.java
++++ b/src/com/google/javascript/jscomp/Scope.java
+@@ -455,12 +455,13 @@
+    */
+   @Override
+   public JSType getTypeOfThis() {
+-    if (isGlobal()) {
+-      return ObjectType.cast(rootNode.getJSType());
++    JSType var_1400 = rootNode.getJSType();
++	if (isGlobal()) {
++      return ObjectType.cast(var_1400);
+     }
+ 
+     Preconditions.checkState(rootNode.isFunction());
+-    JSType nodeType = rootNode.getJSType();
++    JSType nodeType = var_1400;
+     if (nodeType != null && nodeType.isFunctionType()) {
+       return nodeType.toMaybeFunctionType().getTypeOfThis();
+     } else {

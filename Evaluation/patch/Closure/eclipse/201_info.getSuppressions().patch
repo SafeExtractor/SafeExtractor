@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/SyntacticScopeCreator.java b/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
+index e1caa71..025a58a 100644
+--- a/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
++++ b/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
+@@ -16,6 +16,8 @@
+ 
+ package com.google.javascript.jscomp;
+ 
++import java.util.Set;
++
+ import com.google.common.base.Preconditions;
+ import com.google.javascript.rhino.InputId;
+ import com.google.javascript.rhino.JSDocInfo;
+@@ -260,7 +262,8 @@
+     if (info == null) {
+       info = parent.getJSDocInfo();
+     }
+-    if (info != null && info.getSuppressions().contains("duplicate")) {
++    Set<String> var_201 = info.getSuppressions();
++	if (info != null && var_201.contains("duplicate")) {
+       return true;
+     }
+ 
+@@ -268,7 +271,7 @@
+     if (info == null) {
+       info = origParent.getJSDocInfo();
+     }
+-    return (info != null && info.getSuppressions().contains("duplicate"));
++    return (info != null && var_201.contains("duplicate"));
+   }
+ 
+   /**

@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+index 6219d26..6f5ab71 100644
+--- a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
++++ b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+@@ -291,8 +291,9 @@
+ 
+     // Check to see if the first argument is something we recognize and can
+     // expand.
+-    if (!objectToLoopOver.isObjectLit() &&
+-        !(objectToLoopOver.isArrayLit() &&
++    boolean var_1139 = objectToLoopOver.isArrayLit();
++	if (!objectToLoopOver.isObjectLit() &&
++        !(var_1139 &&
+         isArrayLitValidForExpansion(objectToLoopOver))) {
+       t.report(n, JQUERY_UNABLE_TO_EXPAND_INVALID_LIT_ERROR, (String)null);
+       return;
+@@ -306,7 +307,7 @@
+         NodeUtil.getFunctionBody(callbackFunction),
+         new FindCallbackArgumentReferences(callbackFunction,
+             keyNodeReferences, valueNodeReferences,
+-            objectToLoopOver.isArrayLit()));
++            var_1139));
+ 
+     if(keyNodeReferences.size() == 0) {
+      // We didn't do anything useful ...

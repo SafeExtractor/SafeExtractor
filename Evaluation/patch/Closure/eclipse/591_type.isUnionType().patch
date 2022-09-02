@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/InlineProperties.java b/src/com/google/javascript/jscomp/InlineProperties.java
+index 185c38e..54ff877 100644
+--- a/src/com/google/javascript/jscomp/InlineProperties.java
++++ b/src/com/google/javascript/jscomp/InlineProperties.java
+@@ -119,9 +119,10 @@
+ 
+   /** Returns true if properties on this type should not be renamed. */
+   private boolean isInvalidatingType(JSType type) {
+-    if (type.isUnionType()) {
++    boolean var_591 = type.isUnionType();
++	if (var_591) {
+       type = type.restrictByNotNullOrUndefined();
+-      if (type.isUnionType()) {
++      if (var_591) {
+         for (JSType alt : type.toMaybeUnionType().getAlternates()) {
+           if (isInvalidatingType(alt)) {
+             return true;

@@ -1,0 +1,60 @@
+diff --git a/src/com/google/javascript/jscomp/MinimizeExitPoints.java b/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+index 317947b..3557abb 100644
+--- a/src/com/google/javascript/jscomp/MinimizeExitPoints.java
++++ b/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+@@ -132,7 +132,8 @@
+     }
+ 
+     // Just a 'try/catch/finally'.
+-    if (n.isTry()) {
++    Node var_572 = n.getLastChild();
++	if (n.isTry()) {
+       Node tryBlock = n.getFirstChild();
+       tryMinimizeExits(tryBlock, exitType, labelName);
+       Node allCatchNodes = NodeUtil.getCatchBlock(n);
+@@ -143,21 +144,21 @@
+         tryMinimizeExits(catchCodeBlock, exitType, labelName);
+       }
+       if (NodeUtil.hasFinally(n)) {
+-        Node finallyBlock = n.getLastChild();
++        Node finallyBlock = var_572;
+         tryMinimizeExits(finallyBlock, exitType, labelName);
+       }
+     }
+ 
+     // Just a 'label'.
+     if (n.isLabel()) {
+-      Node labelBlock = n.getLastChild();
++      Node labelBlock = var_572;
+       tryMinimizeExits(labelBlock, exitType, labelName);
+     }
+ 
+     // TODO(johnlenz): The last case of SWITCH statement?
+ 
+     // The rest assumes a block with at least one child, bail on anything else.
+-    if (!n.isBlock() || n.getLastChild() == null) {
++    if (!n.isBlock() || var_572 == null) {
+       return;
+     }
+ 
+@@ -188,17 +189,17 @@
+         }
+       }
+ 
+-      if (c == n.getLastChild()) {
++      if (c == var_572) {
+         break;
+       }
+     }
+ 
+     // Now try to minimize the exits of the last child, if it is removed
+     // look at what has become the last child.
+-    for (Node c = n.getLastChild(); c != null; c = n.getLastChild()) {
++    for (Node c = var_572; c != null; c = var_572) {
+       tryMinimizeExits(c, exitType, labelName);
+       // If the node is still the last child, we are done.
+-      if (c == n.getLastChild()) {
++      if (c == var_572) {
+         break;
+       }
+     }

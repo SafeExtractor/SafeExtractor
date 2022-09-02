@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 781fc3c..e1a25da 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -1843,13 +1843,14 @@
+    * Extract a list of subexpressions that act as right hand sides.
+    */
+   private List<Node> getRhsSubexpressions(Node n) {
+-    switch (n.getType()) {
++    List<Node> var_330 = Collections.emptyList();
++	switch (n.getType()) {
+       case Token.EXPR_RESULT:
+         // process body
+         return getRhsSubexpressions(n.getFirstChild());
+       case Token.FUNCTION:
+         // function nodes have no RHS
+-        return Collections.emptyList();
++        return var_330;
+       case Token.NAME:
+         {
+           // parent is a var node.  RHS is the first child
+@@ -1857,7 +1858,7 @@
+           if (rhs != null) {
+             return Lists.newArrayList(rhs);
+           } else {
+-            return Collections.emptyList();
++            return var_330;
+           }
+         }
+       case Token.ASSIGN:

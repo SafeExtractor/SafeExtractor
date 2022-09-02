@@ -1,0 +1,33 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+index 7b1dcc7..e8c8d4e 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
++++ b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+@@ -596,10 +596,11 @@
+             }
+             this.oldb = this.beta1;
+             this.beta = this.r2.dotProduct(this.y);
+-            if (this.beta < 0.) {
++            double var_2320 = this.beta;
++			if (var_2320 < 0.) {
+                 throwNPDLOException(this.m, this.y);
+             }
+-            this.beta = FastMath.sqrt(this.beta);
++            this.beta = FastMath.sqrt(var_2320);
+             /*
+              * At this point
+              *   oldb = beta[1]
+@@ -609,12 +610,12 @@
+              */
+             this.cgnorm = this.beta1;
+             this.gbar = alpha;
+-            this.dbar = this.beta;
++            this.dbar = var_2320;
+             this.gammaZeta = this.beta1;
+             this.minusEpsZeta = 0.;
+             this.bstep = 0.;
+             this.snprod = 1.;
+-            this.tnorm = alpha * alpha + this.beta * this.beta;
++            this.tnorm = alpha * alpha + var_2320 * var_2320;
+             this.ynorm2 = 0.;
+             this.gmax = FastMath.abs(alpha) + MACH_PREC;
+             this.gmin = this.gmax;

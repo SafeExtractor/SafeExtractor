@@ -1,0 +1,33 @@
+diff --git a/src/com/google/javascript/jscomp/CheckGlobalNames.java b/src/com/google/javascript/jscomp/CheckGlobalNames.java
+index d035d9d..8d13c38 100644
+--- a/src/com/google/javascript/jscomp/CheckGlobalNames.java
++++ b/src/com/google/javascript/jscomp/CheckGlobalNames.java
+@@ -171,13 +171,14 @@
+           // A.prototype counts as a reference to A.
+           boolean isPrototypeGet = (ref.type == Ref.Type.PROTOTYPE_GET);
+           Name owner = isPrototypeGet ? name : parent;
+-          boolean singleGlobalParentDecl =
++          Ref var_832 = owner.getDeclaration();
++		boolean singleGlobalParentDecl =
+               owner != null &&
+-              owner.getDeclaration() != null &&
++              var_832 != null &&
+               owner.localSets == 0;
+ 
+           if (singleGlobalParentDecl &&
+-              owner.getDeclaration().preOrderIndex > ref.preOrderIndex) {
++              var_832.preOrderIndex > ref.preOrderIndex) {
+             String refName = isPrototypeGet
+                 ? name.getFullName() + ".prototype"
+                 : name.getFullName();
+@@ -186,8 +187,8 @@
+                     NAME_DEFINED_LATE_WARNING,
+                     refName,
+                     owner.getFullName(),
+-                    owner.getDeclaration().source.getName(),
+-                    String.valueOf(owner.getDeclaration().node.getLineno())));
++                    var_832.source.getName(),
++                    String.valueOf(var_832.node.getLineno())));
+           }
+         }
+       }

@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java b/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java
+index 9468a5e..47688e1 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java
++++ b/src/main/java/org/apache/commons/math3/linear/SparseFieldVector.java
+@@ -460,10 +460,11 @@
+         while (iter.hasNext()) {
+             iter.advance();
+             int key = iter.key();
+-            if (entries.containsKey(key)) {
+-                res.setEntry(key, entries.get(key).subtract(iter.value()));
++            T var_2212 = iter.value();
++			if (entries.containsKey(key)) {
++                res.setEntry(key, entries.get(key).subtract(var_2212));
+             } else {
+-                res.setEntry(key, field.getZero().subtract(iter.value()));
++                res.setEntry(key, field.getZero().subtract(var_2212));
+             }
+         }
+         return res;

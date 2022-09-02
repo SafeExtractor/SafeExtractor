@@ -1,0 +1,34 @@
+diff --git a/source/org/jfree/chart/renderer/xy/SamplingXYLineRenderer.java b/source/org/jfree/chart/renderer/xy/SamplingXYLineRenderer.java
+index ec442b1..f986af6 100644
+--- a/source/org/jfree/chart/renderer/xy/SamplingXYLineRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/SamplingXYLineRenderer.java
+@@ -241,7 +241,8 @@
+ 
+         State s = (State) state;
+         // update path to reflect latest point
+-        if (!Double.isNaN(transX1) && !Double.isNaN(transY1)) {
++        GeneralPath var_3048 = s.intervalPath;
++		if (!Double.isNaN(transX1) && !Double.isNaN(transY1)) {
+             float x = (float) transX1;
+             float y = (float) transY1;
+             PlotOrientation orientation = plot.getOrientation();
+@@ -253,8 +254,8 @@
+                 if ((Math.abs(x - s.lastX) > s.dX)) {
+                     s.seriesPath.lineTo(x, y);
+                     if (s.lowY < s.highY) {
+-                        s.intervalPath.moveTo((float) s.lastX, (float) s.lowY);
+-                        s.intervalPath.lineTo((float) s.lastX, (float) s.highY);
++                        var_3048.moveTo((float) s.lastX, (float) s.lowY);
++                        var_3048.lineTo((float) s.lastX, (float) s.highY);
+                     }
+                     s.lastX = x;
+                     s.openY = y;
+@@ -293,7 +294,7 @@
+             g2.setStroke(getItemStroke(series, item, selected));
+             g2.setPaint(getItemPaint(series, item, selected));
+             g2.draw(s.seriesPath);
+-            g2.draw(s.intervalPath);
++            g2.draw(var_3048);
+         }
+     }
+ 

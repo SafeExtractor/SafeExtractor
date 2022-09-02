@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/JsMessageExtractor.java b/src/com/google/javascript/jscomp/JsMessageExtractor.java
+index 710eb92..bb6a181 100644
+--- a/src/com/google/javascript/jscomp/JsMessageExtractor.java
++++ b/src/com/google/javascript/jscomp/JsMessageExtractor.java
+@@ -130,11 +130,12 @@
+ 
+     ExtractMessagesVisitor extractCompilerPass =
+         new ExtractMessagesVisitor(compiler);
+-    if (compiler.getErrors().length == 0) {
++    JSError[] var_1581 = compiler.getErrors();
++	if (var_1581.length == 0) {
+       extractCompilerPass.process(null, compiler.getRoot());
+     }
+ 
+-    JSError[] errors = compiler.getErrors();
++    JSError[] errors = var_1581;
+     // Check for errors.
+     if (errors.length > 0) {
+       StringBuilder msg = new StringBuilder("JSCompiler errors\n");

@@ -1,0 +1,41 @@
+diff --git a/Users/safe/paper/CaseStudy/patch/commons-math/eclipse/14_e5002ce3f6a625bfd52f63fa38279c09178e8354_p.patch b/Users/safe/paper/CaseStudy/patch/commons-math/ours/14_e5002ce3f6a625bfd52f63fa38279c09178e8354_p.patch
+index 77ebf23..56c70ae 100644
+--- a/Users/safe/paper/CaseStudy/patch/commons-math/eclipse/14_e5002ce3f6a625bfd52f63fa38279c09178e8354_p.patch
++++ b/Users/safe/paper/CaseStudy/patch/commons-math/ours/14_e5002ce3f6a625bfd52f63fa38279c09178e8354_p.patch
+@@ -1,33 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/hull/GrahamScan.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/hull/GrahamScan.java
+-index dc14f0d..39e7b9c 100644
++index dc14f0d..f11ed39 100644
+ --- a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/hull/GrahamScan.java
+ +++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/hull/GrahamScan.java
+-@@ -97,15 +97,16 @@
++@@ -97,7 +97,8 @@
+  
+          // push the first two points on the stack
+          final Iterator<Vertex> it = pointsSortedByAngle.iterator();
+ -        hullVertices.add(it.next().point);
+--        hullVertices.add(it.next().point);
+ +        Vector2D p = it.next().point;
+ +		hullVertices.add(p);
+-+        hullVertices.add(p);
++         hullVertices.add(it.next().point);
+  
+          Vector2D currentPoint = null;
+-         while (it.hasNext() || currentPoint != null) {
+-             // push the current point to form a line segment if there is only one element
+-             final int size = hullVertices.size();
+-             if (size == 1) {
+--                hullVertices.add(currentPoint != null ? currentPoint : it.next().point);
+-+                hullVertices.add(currentPoint != null ? currentPoint : p);
+-                 currentPoint = null;
+-                 continue;
+-             }
+-@@ -116,7 +117,7 @@
+-             final Line line = new Line(p1, p2, tolerance);
+- 
+-             if (currentPoint == null) {
+--                currentPoint = it.next().point;
+-+                currentPoint = p;
+-             }
+- 
+-             // test if the current point is to the left of the line

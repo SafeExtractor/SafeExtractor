@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/text/TextBlock.java b/source/org/jfree/chart/text/TextBlock.java
+index 708fe7a..664c321 100644
+--- a/source/org/jfree/chart/text/TextBlock.java
++++ b/source/org/jfree/chart/text/TextBlock.java
+@@ -228,7 +228,8 @@
+                      double angle) {
+ 
+         Size2D d = calculateDimensions(g2);
+-        float[] offsets = calculateOffsets(anchor, d.getWidth(), d.getHeight());
++        double var_3384 = d.getWidth();
++		float[] offsets = calculateOffsets(anchor, var_3384, d.getHeight());
+         Iterator iterator = this.lines.iterator();
+         float yCursor = 0.0f;
+         while (iterator.hasNext()) {
+@@ -236,11 +237,11 @@
+             Size2D dimension = line.calculateDimensions(g2);
+             float lineOffset = 0.0f;
+             if (this.lineAlignment == HorizontalAlignment.CENTER) {
+-                lineOffset = (float) (d.getWidth() - dimension.getWidth())
++                lineOffset = (float) (var_3384 - dimension.getWidth())
+                     / 2.0f;
+             }
+             else if (this.lineAlignment == HorizontalAlignment.RIGHT) {
+-                lineOffset = (float) (d.getWidth() - dimension.getWidth());
++                lineOffset = (float) (var_3384 - dimension.getWidth());
+             }
+             line.draw(g2, anchorX + offsets[0] + lineOffset, anchorY
+                     + offsets[1] + yCursor, TextAnchor.TOP_LEFT, rotateX,

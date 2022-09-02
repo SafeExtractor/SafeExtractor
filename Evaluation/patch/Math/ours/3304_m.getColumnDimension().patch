@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+index 104bdf5..a2edf98 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+@@ -1226,7 +1226,8 @@
+      * matrix representing the diagonal if m is a n-by-n matrix.
+      */
+     private static RealMatrix diag(final RealMatrix m) {
+-        if (m.getColumnDimension() == 1) {
++        int var_3304 = m.getColumnDimension();
++		if (var_3304 == 1) {
+             final double[][] d = new double[m.getRowDimension()][m.getRowDimension()];
+             for (int i = 0; i < m.getRowDimension(); i++) {
+                 d[i][i] = m.getEntry(i, 0);
+@@ -1234,7 +1235,7 @@
+             return new Array2DRowRealMatrix(d, false);
+         } else {
+             final double[][] d = new double[m.getRowDimension()][1];
+-            for (int i = 0; i < m.getColumnDimension(); i++) {
++            for (int i = 0; i < var_3304; i++) {
+                 d[i][0] = m.getEntry(i, i);
+             }
+             return new Array2DRowRealMatrix(d, false);

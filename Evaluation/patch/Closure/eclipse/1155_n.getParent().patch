@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+index 6219d26..ba28f5c 100644
+--- a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
++++ b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+@@ -448,8 +448,9 @@
+     // Check to see if the return value of the original jQuery.expandedEach
+     // call is used. If so, we need to wrap each loop expansion in an anonymous
+     // function and return the original objectToLoopOver.
+-    if (n.getParent().isExprResult()) {
+-      Node parent = n.getParent();
++    Node var_1155 = n.getParent();
++	if (var_1155.isExprResult()) {
++      Node parent = var_1155;
+       Node grandparent = parent.getParent();
+       Node insertAfter = parent;
+       while (expandedBlock.hasChildren()) {

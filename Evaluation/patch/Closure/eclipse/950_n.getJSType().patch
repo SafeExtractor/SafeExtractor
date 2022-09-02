@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+index 3dc8ec6..4f7a88c 100644
+--- a/src/com/google/javascript/jscomp/TypeInference.java
++++ b/src/com/google/javascript/jscomp/TypeInference.java
+@@ -670,10 +670,11 @@
+   private FlowScope traverseName(Node n, FlowScope scope) {
+     String varName = n.getString();
+     Node value = n.getFirstChild();
+-    JSType type = n.getJSType();
++    JSType var_950 = n.getJSType();
++	JSType type = var_950;
+     if (value != null) {
+       scope = traverse(value, scope);
+-      updateScopeForTypeChange(scope, n, n.getJSType() /* could be null */,
++      updateScopeForTypeChange(scope, n, var_950 /* could be null */,
+           getJSType(value));
+       return scope;
+     } else {

@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/LoggerErrorManager.java b/src/com/google/javascript/jscomp/LoggerErrorManager.java
+index 00a76b7..1f762dc 100644
+--- a/src/com/google/javascript/jscomp/LoggerErrorManager.java
++++ b/src/com/google/javascript/jscomp/LoggerErrorManager.java
+@@ -48,12 +48,13 @@
+ 
+   @Override
+   public void println(CheckLevel level, JSError error) {
+-    switch (level) {
++    String var_1184 = error.format(level, formatter);
++	switch (level) {
+       case ERROR:
+-        logger.severe(error.format(level, formatter));
++        logger.severe(var_1184);
+         break;
+       case WARNING:
+-        logger.warning(error.format(level, formatter));
++        logger.warning(var_1184);
+         break;
+       case OFF:
+         break;

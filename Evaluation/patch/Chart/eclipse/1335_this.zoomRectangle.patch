@@ -1,0 +1,42 @@
+diff --git a/source/org/jfree/chart/panel/ZoomHandler.java b/source/org/jfree/chart/panel/ZoomHandler.java
+index ab08810..7676478 100644
+--- a/source/org/jfree/chart/panel/ZoomHandler.java
++++ b/source/org/jfree/chart/panel/ZoomHandler.java
+@@ -142,7 +142,8 @@
+ 
+     public void mouseReleased(MouseEvent e) {
+ 
+-        if (this.zoomRectangle == null) {
++        Rectangle2D var_1335 = this.zoomRectangle;
++		if (var_1335 == null) {
+             return;
+         }
+         ChartPanel panel = (ChartPanel) e.getSource();
+@@ -179,7 +180,7 @@
+                 if (!vZoom) {
+                     x = this.zoomPoint.getX();
+                     y = screenDataArea.getMinY();
+-                    w = Math.min(this.zoomRectangle.getWidth(),
++                    w = Math.min(var_1335.getWidth(),
+                             maxX - this.zoomPoint.getX());
+                     h = screenDataArea.getHeight();
+                 }
+@@ -187,15 +188,15 @@
+                     x = screenDataArea.getMinX();
+                     y = this.zoomPoint.getY();
+                     w = screenDataArea.getWidth();
+-                    h = Math.min(this.zoomRectangle.getHeight(),
++                    h = Math.min(var_1335.getHeight(),
+                             maxY - this.zoomPoint.getY());
+                 }
+                 else {
+                     x = this.zoomPoint.getX();
+                     y = this.zoomPoint.getY();
+-                    w = Math.min(this.zoomRectangle.getWidth(),
++                    w = Math.min(var_1335.getWidth(),
+                             maxX - this.zoomPoint.getX());
+-                    h = Math.min(this.zoomRectangle.getHeight(),
++                    h = Math.min(var_1335.getHeight(),
+                             maxY - this.zoomPoint.getY());
+                 }
+                 Rectangle2D zoomArea = new Rectangle2D.Double(x, y, w, h);

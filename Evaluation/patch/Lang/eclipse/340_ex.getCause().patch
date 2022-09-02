@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/lang3/concurrent/ConcurrentUtils.java b/src/main/java/org/apache/commons/lang3/concurrent/ConcurrentUtils.java
+index 1bc080a..f167040 100644
+--- a/src/main/java/org/apache/commons/lang3/concurrent/ConcurrentUtils.java
++++ b/src/main/java/org/apache/commons/lang3/concurrent/ConcurrentUtils.java
+@@ -80,12 +80,13 @@
+      */
+     public static ConcurrentRuntimeException extractCauseUnchecked(
+             final ExecutionException ex) {
+-        if (ex == null || ex.getCause() == null) {
++        Throwable var_340 = ex.getCause();
++		if (ex == null || var_340 == null) {
+             return null;
+         }
+ 
+         throwCause(ex);
+-        return new ConcurrentRuntimeException(ex.getMessage(), ex.getCause());
++        return new ConcurrentRuntimeException(ex.getMessage(), var_340);
+     }
+ 
+     /**

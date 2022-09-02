@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/plot/CompassPlot.java b/source/org/jfree/chart/plot/CompassPlot.java
+index 2963422..8e68727 100644
+--- a/source/org/jfree/chart/plot/CompassPlot.java
++++ b/source/org/jfree/chart/plot/CompassPlot.java
+@@ -536,16 +536,17 @@
+             ValueDataset[] t = new ValueDataset[i];
+             MeterNeedle[] p = new MeterNeedle[i];
+             i = i - 2;
+-            for (; i >= 0; --i) {
++            MeterNeedle[] var_2177 = this.seriesNeedle;
++			for (; i >= 0; --i) {
+                 t[i] = this.datasets[i];
+-                p[i] = this.seriesNeedle[i];
++                p[i] = var_2177[i];
+             }
+             i = this.datasets.length;
+             t[i] = dataset;
+             p[i] = ((needle != null) ? needle : p[i - 1]);
+ 
+             ValueDataset[] a = this.datasets;
+-            MeterNeedle[] b = this.seriesNeedle;
++            MeterNeedle[] b = var_2177;
+             this.datasets = t;
+             this.seriesNeedle = p;
+ 

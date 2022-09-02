@@ -1,0 +1,41 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3136_marker.getLabel().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/3136_marker.getLabel().patch
+index c3f0a8c..80820bd 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3136_marker.getLabel().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/3136_marker.getLabel().patch
+@@ -1,32 +1,14 @@
+ diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+-index a558724..c14ffe5 100644
++index a558724..ce2f4a6 100644
+ --- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+ +++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+-@@ -1539,7 +1539,8 @@
+-                                 Marker marker,
+-                                 Rectangle2D dataArea) {
+- 
+--        if (marker instanceof ValueMarker) {
+-+        String var_3136 = marker.getLabel();
+-+		if (marker instanceof ValueMarker) {
+-             ValueMarker vm = (ValueMarker) marker;
+-             double value = vm.getValue();
+-             Range range = rangeAxis.getRange();
+-@@ -1567,7 +1568,7 @@
++@@ -1567,7 +1567,8 @@
+              g2.setStroke(marker.getStroke());
+              g2.draw(line);
+  
+ -            String label = marker.getLabel();
+-+            String label = var_3136;
+-             RectangleAnchor anchor = marker.getLabelAnchor();
+-             if (label != null) {
+-                 Font labelFont = marker.getLabelFont();
+-@@ -1669,7 +1670,7 @@
+-                 }
+-             }
+- 
+--            String label = marker.getLabel();
+-+            String label = var_3136;
+++            String var_3136 = marker.getLabel();
+++			String label = var_3136;
+              RectangleAnchor anchor = marker.getLabelAnchor();
+              if (label != null) {
+                  Font labelFont = marker.getLabelFont();

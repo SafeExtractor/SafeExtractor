@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..daf214c 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -547,15 +547,16 @@
+ 
+       // Parse module inputs.
+       int numJsFiles = -1;
+-      try {
+-        numJsFiles = Integer.parseInt(parts[1]);
++      String var_415 = parts[1];
++	try {
++        numJsFiles = Integer.parseInt(var_415);
+       } catch (NumberFormatException ignored) {
+         numJsFiles = -1;
+       }
+ 
+       // We will allow modules of zero input.
+       if (numJsFiles < 0) {
+-        throw new FlagUsageException("Invalid JS file count '" + parts[1]
++        throw new FlagUsageException("Invalid JS file count '" + var_415
+             + "' for module: " + name);
+       }
+       if (nextJsFileIndex + numJsFiles > totalNumJsFiles) {

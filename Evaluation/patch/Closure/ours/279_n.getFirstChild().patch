@@ -1,0 +1,39 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 781fc3c..654e98e 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -628,13 +628,14 @@
+     public void visit(NodeTraversal t, Node n, Node parent) {
+ 
+       // Record global variable and function declarations
+-      if (t.inGlobalScope()) {
++      Node var_279 = n.getFirstChild();
++	if (t.inGlobalScope()) {
+         if (NodeUtil.isVarDeclaration(n)) {
+           NameInformation ns = createNameInformation(t, n);
+           Preconditions.checkNotNull(ns);
+           recordSet(ns.name, n);
+         } else if (NodeUtil.isFunctionDeclaration(n)) {
+-          Node nameNode = n.getFirstChild();
++          Node nameNode = var_279;
+           NameInformation ns = createNameInformation(t, nameNode);
+           if (ns != null) {
+             JsName nameInfo = getName(nameNode.getString(), true);
+@@ -650,7 +651,7 @@
+ 
+       // Record assignments and call sites
+       if (n.isAssign()) {
+-        Node nameNode = n.getFirstChild();
++        Node nameNode = var_279;
+ 
+         NameInformation ns = createNameInformation(t, nameNode);
+         if (ns != null) {
+@@ -661,7 +662,7 @@
+           }
+         }
+       } else if (n.isCall()) {
+-        Node nameNode = n.getFirstChild();
++        Node nameNode = var_279;
+         NameInformation ns = createNameInformation(t, nameNode);
+         if (ns != null && ns.onlyAffectsClassDef) {
+           JsName name = getName(ns.name, true);

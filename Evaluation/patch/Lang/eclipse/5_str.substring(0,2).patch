@@ -1,0 +1,33 @@
+diff --git a/src/main/java/org/apache/commons/lang3/LocaleUtils.java b/src/main/java/org/apache/commons/lang3/LocaleUtils.java
+index 7be8730..d4cf66f 100644
+--- a/src/main/java/org/apache/commons/lang3/LocaleUtils.java
++++ b/src/main/java/org/apache/commons/lang3/LocaleUtils.java
+@@ -131,15 +131,16 @@
+             throw new IllegalArgumentException("Invalid locale format: " + str);
+         }
+         final char ch3 = str.charAt(3);
+-        if (ch3 == '_') {
+-            return new Locale(str.substring(0, 2), "", str.substring(4));
++        String var_5 = str.substring(0, 2);
++		if (ch3 == '_') {
++            return new Locale(var_5, "", str.substring(4));
+         }
+         final char ch4 = str.charAt(4);
+         if (!Character.isUpperCase(ch3) || !Character.isUpperCase(ch4)) {
+             throw new IllegalArgumentException("Invalid locale format: " + str);
+         }
+         if (len == 5) {
+-            return new Locale(str.substring(0, 2), str.substring(3, 5));
++            return new Locale(var_5, str.substring(3, 5));
+         }
+         if (len < 7) {
+             throw new IllegalArgumentException("Invalid locale format: " + str);
+@@ -147,7 +148,7 @@
+         if (str.charAt(5) != '_') {
+             throw new IllegalArgumentException("Invalid locale format: " + str);
+         }
+-        return new Locale(str.substring(0, 2), str.substring(3, 5), str.substring(6));
++        return new Locale(var_5, str.substring(3, 5), str.substring(6));
+     }
+ 
+     //-----------------------------------------------------------------------

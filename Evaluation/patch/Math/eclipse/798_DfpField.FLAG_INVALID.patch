@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..6bbdbb1 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -323,8 +323,9 @@
+         // Check the arguments somewhat here
+         if (a.equals(a.getZero()) || a.lessThan(a.getZero()) || a.isNaN()) {
+             // negative, zero or NaN
+-            a.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            return a.dotrap(DfpField.FLAG_INVALID, "ln", a, a.newInstance((byte)1, Dfp.QNAN));
++            int var_798 = DfpField.FLAG_INVALID;
++			a.getField().setIEEEFlagsBits(var_798);
++            return a.dotrap(var_798, "ln", a, a.newInstance((byte)1, Dfp.QNAN));
+         }
+ 
+         if (a.classify() == Dfp.INFINITE) {

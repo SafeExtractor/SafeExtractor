@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..00a744a 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -219,14 +219,15 @@
+       NodeTraversal nodeTraversal, Node n, Node parent) {
+     astPosition.put(n, astPositionCounter++);
+ 
+-    switch (n.getType()) {
++    final int var_1888 = Token.TRY;
++	switch (n.getType()) {
+       case Token.FUNCTION:
+         if (shouldTraverseFunctions || n == cfg.getEntry().getValue()) {
+           exceptionHandler.push(n);
+           return true;
+         }
+         return false;
+-      case Token.TRY:
++      case var_1888:
+         exceptionHandler.push(n);
+         return true;
+     }
+@@ -275,7 +276,7 @@
+         case Token.RETURN:
+         case Token.THROW:
+           return false;
+-        case Token.TRY:
++        case var_1888:
+           /* Just before we are about to visit the second child of the TRY node,
+            * we know that we will be visiting either the CATCH or the FINALLY.
+            * In other words, we know that the post order traversal of the TRY

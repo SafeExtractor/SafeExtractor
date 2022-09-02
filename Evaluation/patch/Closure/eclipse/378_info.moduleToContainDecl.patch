@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/AliasStrings.java b/src/com/google/javascript/jscomp/AliasStrings.java
+index 437c030..113f00f 100644
+--- a/src/com/google/javascript/jscomp/AliasStrings.java
++++ b/src/com/google/javascript/jscomp/AliasStrings.java
+@@ -161,14 +161,15 @@
+         if (info.numOccurrences != 1) {
+           // Check whether the current module depends on the module containing
+           // the declaration.
+-          if (module != null &&
+-              info.moduleToContainDecl != null &&
+-              module != info.moduleToContainDecl &&
+-              !moduleGraph.dependsOn(module, info.moduleToContainDecl)) {
++          JSModule var_378 = info.moduleToContainDecl;
++		if (module != null &&
++              var_378 != null &&
++              module != var_378 &&
++              !moduleGraph.dependsOn(module, var_378)) {
+             // We need to declare this string in the deepest module in the
+             // module dependency graph that both of these modules depend on.
+             module = moduleGraph.getDeepestCommonDependency(
+-                module, info.moduleToContainDecl);
++                module, var_378);
+           } else {
+             // use the previously saved insertion location.
+             return;

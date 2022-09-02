@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/NameReferenceGraphConstruction.java b/src/com/google/javascript/jscomp/NameReferenceGraphConstruction.java
+index d61f9e9..88953ca 100644
+--- a/src/com/google/javascript/jscomp/NameReferenceGraphConstruction.java
++++ b/src/com/google/javascript/jscomp/NameReferenceGraphConstruction.java
+@@ -33,6 +33,7 @@
+ 
+ import java.util.ArrayList;
+ import java.util.Collection;
++import java.util.List;
+ 
+ import javax.annotation.Nullable;
+ 
+@@ -506,8 +507,9 @@
+            graph.defineNameIfNotExists(
+                classType.getReferenceName() + ".prototype." + prop, false));
+       }
+-      if (classType.getSubTypes() != null) {
+-        for (FunctionType subclass : classType.getSubTypes()) {
++      List<FunctionType> var_1273 = classType.getSubTypes();
++	if (var_1273 != null) {
++        for (FunctionType subclass : var_1273) {
+             recordSubclassPrototypePropUse(subclass, prop, ref);
+         }
+       }

@@ -1,0 +1,14 @@
+diff --git a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mappings.java b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mappings.java
+index b3dea58..72ec852 100644
+--- a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mappings.java
++++ b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mappings.java
+@@ -343,7 +343,8 @@
+                 return null;
+             }
+ 
+-            classMapping = createClassMapping(Class.class.cast(clazz));
++            Class asClass = Class.class.cast(clazz);
++			classMapping = createClassMapping(asClass);
+             final ClassMapping existing = classes.putIfAbsent(clazz, classMapping);
+             if (existing != null) {
+                 classMapping = existing;

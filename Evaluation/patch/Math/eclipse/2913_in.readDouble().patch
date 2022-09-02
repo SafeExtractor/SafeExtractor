@@ -1,0 +1,40 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/sampling/AbstractStepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/sampling/AbstractStepInterpolator.java
+index 75ed7c6..9ef520a 100644
+--- a/src/main/java/org/apache/commons/math3/ode/sampling/AbstractStepInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/ode/sampling/AbstractStepInterpolator.java
+@@ -571,11 +571,12 @@
+     throws IOException, ClassNotFoundException {
+ 
+     final int dimension = in.readInt();
+-    globalPreviousTime  = in.readDouble();
+-    globalCurrentTime   = in.readDouble();
+-    softPreviousTime    = in.readDouble();
+-    softCurrentTime     = in.readDouble();
+-    h                   = in.readDouble();
++    double var_2913 = in.readDouble();
++	globalPreviousTime  = var_2913;
++    globalCurrentTime   = var_2913;
++    softPreviousTime    = var_2913;
++    softCurrentTime     = var_2913;
++    h                   = var_2913;
+     forward             = in.readBoolean();
+     primaryMapper       = (EquationsMapper) in.readObject();
+     secondaryMappers    = new EquationsMapper[in.read()];
+@@ -589,7 +590,7 @@
+     } else {
+         currentState  = new double[dimension];
+         for (int i = 0; i < currentState.length; ++i) {
+-            currentState[i] = in.readDouble();
++            currentState[i] = var_2913;
+         }
+     }
+ 
+@@ -599,7 +600,7 @@
+ 
+     finalized = true;
+ 
+-    return in.readDouble();
++    return var_2913;
+ 
+   }
+ 

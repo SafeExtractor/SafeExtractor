@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/tz/FixedDateTimeZone.java b/src/main/java/org/joda/time/tz/FixedDateTimeZone.java
+index 7d17d7d..6788f84 100644
+--- a/src/main/java/org/joda/time/tz/FixedDateTimeZone.java
++++ b/src/main/java/org/joda/time/tz/FixedDateTimeZone.java
+@@ -74,14 +74,15 @@
+      * @since 1.5
+      */
+     public java.util.TimeZone toTimeZone() {
+-        String id = getID();
++        String var_714 = getID();
++		String id = var_714;
+         if (id.length() == 6 && (id.startsWith("+") || id.startsWith("-"))) {
+             // standard format offset [+-]hh:mm
+             // our ID is without any prefix, so we need to add the GMT back
+-            return java.util.TimeZone.getTimeZone("GMT" + getID());
++            return java.util.TimeZone.getTimeZone("GMT" + var_714);
+         }
+         // unusual offset, so setup a SimpleTimeZone as best we can
+-        return new java.util.SimpleTimeZone(iWallOffset, getID());
++        return new java.util.SimpleTimeZone(iWallOffset, var_714);
+     }
+ 
+     public boolean equals(Object obj) {

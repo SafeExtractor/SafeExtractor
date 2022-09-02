@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/OptimizeReturns.java b/src/com/google/javascript/jscomp/OptimizeReturns.java
+index b2d47ed..0b128be 100644
+--- a/src/com/google/javascript/jscomp/OptimizeReturns.java
++++ b/src/com/google/javascript/jscomp/OptimizeReturns.java
+@@ -135,10 +135,11 @@
+         @Override
+         public void visit(Node node) {
+           if (node.isReturn() && node.hasOneChild()) {
+-            boolean keepValue = NodeUtil.mayHaveSideEffects(
+-                node.getFirstChild(), compiler);
++            Node var_805 = node.getFirstChild();
++			boolean keepValue = NodeUtil.mayHaveSideEffects(
++                var_805, compiler);
+             if (!keepValue) {
+-              defFinder.removeReferences(node.getFirstChild());
++              defFinder.removeReferences(var_805);
+             }
+             Node result = node.removeFirstChild();
+             if (keepValue) {

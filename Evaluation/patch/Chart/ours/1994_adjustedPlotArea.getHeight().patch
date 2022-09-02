@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/plot/CombinedDomainXYPlot.java b/source/org/jfree/chart/plot/CombinedDomainXYPlot.java
+index 15d08a7..6905875 100644
+--- a/source/org/jfree/chart/plot/CombinedDomainXYPlot.java
++++ b/source/org/jfree/chart/plot/CombinedDomainXYPlot.java
+@@ -379,11 +379,12 @@
+         double x = adjustedPlotArea.getX();
+         double y = adjustedPlotArea.getY();
+         double usableSize = 0.0;
+-        if (orientation == PlotOrientation.HORIZONTAL) {
++        double var_1994 = adjustedPlotArea.getHeight();
++		if (orientation == PlotOrientation.HORIZONTAL) {
+             usableSize = adjustedPlotArea.getWidth() - this.gap * (n - 1);
+         }
+         else if (orientation == PlotOrientation.VERTICAL) {
+-            usableSize = adjustedPlotArea.getHeight() - this.gap * (n - 1);
++            usableSize = var_1994 - this.gap * (n - 1);
+         }
+ 
+         for (int i = 0; i < n; i++) {
+@@ -393,7 +394,7 @@
+             if (orientation == PlotOrientation.HORIZONTAL) {
+                 double w = usableSize * plot.getWeight() / totalWeight;
+                 this.subplotAreas[i] = new Rectangle2D.Double(x, y, w,
+-                        adjustedPlotArea.getHeight());
++                        var_1994);
+                 x = x + w + this.gap;
+             }
+             else if (orientation == PlotOrientation.VERTICAL) {

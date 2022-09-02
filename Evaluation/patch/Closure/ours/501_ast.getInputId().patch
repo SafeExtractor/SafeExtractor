@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+index 5f6b2c5..5ac9d40 100644
+--- a/src/com/google/javascript/jscomp/Compiler.java
++++ b/src/com/google/javascript/jscomp/Compiler.java
+@@ -1143,10 +1143,11 @@
+    * @throws IllegalStateException if an input for this ast already exists.
+    */
+   boolean addNewSourceAst(JsAst ast) {
+-    CompilerInput oldInput = getInput(ast.getInputId());
++    InputId var_501 = ast.getInputId();
++	CompilerInput oldInput = getInput(var_501);
+     if (oldInput != null) {
+       throw new IllegalStateException(
+-          "Input already exists: " + ast.getInputId().getIdName());
++          "Input already exists: " + var_501.getIdName());
+     }
+     Node newRoot = ast.getAstRoot(this);
+     if (newRoot == null) {
+@@ -1163,7 +1164,7 @@
+       modules.get(0).add(newInput);
+     }
+ 
+-    putCompilerInput(ast.getInputId(), newInput);
++    putCompilerInput(var_501, newInput);
+ 
+     return true;
+   }

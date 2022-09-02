@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..5d3449f 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -431,7 +431,8 @@
+         final T squaredSine = q1.multiply(q1).add(q2.multiply(q2)).add(q3.multiply(q3));
+         if (squaredSine.getReal() == 0) {
+             final Field<T> field = squaredSine.getField();
+-            return new FieldVector3D<T>(field.getOne(), field.getZero(), field.getZero());
++            T var_1229 = field.getZero();
++			return new FieldVector3D<T>(field.getOne(), var_1229, var_1229);
+         } else if (q0.getReal() < 0) {
+             T inverse = squaredSine.sqrt().reciprocal();
+             return new FieldVector3D<T>(q1.multiply(inverse), q2.multiply(inverse), q3.multiply(inverse));

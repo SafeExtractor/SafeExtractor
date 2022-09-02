@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/GradientFunction.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/GradientFunction.java
+index 942dc42..0038d71 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/GradientFunction.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/GradientFunction.java
+@@ -42,18 +42,19 @@
+     public double[] value(double[] point) {
+ 
+         // set up parameters
+-        final DerivativeStructure[] dsX = new DerivativeStructure[point.length];
+-        for (int i = 0; i < point.length; ++i) {
+-            dsX[i] = new DerivativeStructure(point.length, 1, i, point[i]);
++        int var_160 = point.length;
++		final DerivativeStructure[] dsX = new DerivativeStructure[var_160];
++        for (int i = 0; i < var_160; ++i) {
++            dsX[i] = new DerivativeStructure(var_160, 1, i, point[i]);
+         }
+ 
+         // compute the derivatives
+         final DerivativeStructure dsY = f.value(dsX);
+ 
+         // extract the gradient
+-        final double[] y = new double[point.length];
+-        final int[] orders = new int[point.length];
+-        for (int i = 0; i < point.length; ++i) {
++        final double[] y = new double[var_160];
++        final int[] orders = new int[var_160];
++        for (int i = 0; i < var_160; ++i) {
+             orders[i] = 1;
+             y[i] = dsY.getPartialDerivative(orders);
+             orders[i] = 0;

@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java b/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
+index eaf0b57..0bfd6d4 100644
+--- a/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
++++ b/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
+@@ -344,7 +344,8 @@
+             double y1 = rangeAxis.valueToJava2D(value.doubleValue(), dataArea,
+                     plot.getRangeAxisEdge());
+             g2.setPaint(getItemPaint(row, column, selected));
+-            g2.setStroke(getItemStroke(row, column, selected));
++            Stroke var_2640 = getItemStroke(row, column, selected);
++			g2.setStroke(var_2640);
+             Shape shape = null;
+             shape = new Rectangle2D.Double(x1 - 4, y1 - 4, 8.0, 8.0);
+ 
+@@ -404,7 +405,7 @@
+                         double y0 = rangeAxis.valueToJava2D(previous, dataArea,
+                                 plot.getRangeAxisEdge());
+                         g2.setPaint(getItemPaint(row, column, selected));
+-                        g2.setStroke(getItemStroke(row, column, selected));
++                        g2.setStroke(var_2640);
+                         Line2D line;
+                         if (orient == PlotOrientation.VERTICAL) {
+                             line = new Line2D.Double(x0, y0, x1, y1);

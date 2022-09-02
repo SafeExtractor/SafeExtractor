@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+index 6219d26..5132b92 100644
+--- a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
++++ b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+@@ -26,6 +26,7 @@
+ import com.google.javascript.rhino.Node;
+ import com.google.javascript.rhino.Token;
+ 
++import java.util.ArrayList;
+ import java.util.Iterator;
+ import java.util.List;
+ import java.util.Set;
+@@ -299,8 +300,9 @@
+     }
+ 
+     // Find all references to the callback function arguments
+-    List<Node> keyNodeReferences = Lists.newArrayList();
+-    List<Node> valueNodeReferences = Lists.newArrayList();
++    ArrayList<Node> var_1140 = Lists.newArrayList();
++	List<Node> keyNodeReferences = var_1140;
++    List<Node> valueNodeReferences = var_1140;
+ 
+     NodeTraversal.traverse(compiler,
+         NodeUtil.getFunctionBody(callbackFunction),

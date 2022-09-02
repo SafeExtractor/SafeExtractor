@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/regex/RegExpTree.java b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+index c0c470a..203d5d0 100644
+--- a/src/com/google/javascript/jscomp/regex/RegExpTree.java
++++ b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+@@ -834,7 +834,8 @@
+ 
+     @Override
+     public RegExpTree simplify(String flags) {
+-      RegExpTree body = this.body.simplify(flags);
++      RegExpTree var_2424 = this.body;
++	RegExpTree body = var_2424.simplify(flags);
+       if (max == 0 && !body.hasCapturingGroup()) { return Empty.INSTANCE; }
+       if (body instanceof Empty || NEVER_MATCHES.equals(body)) { return body; }
+       int min = this.min;

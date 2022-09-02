@@ -1,0 +1,14 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/stats/Clock.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/stats/Clock.java
+index a0b6b7d..df9a43b 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/stats/Clock.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/stats/Clock.java
+@@ -168,7 +168,8 @@
+         private long ns = System.nanoTime();
+         @Override
+         public synchronized long getTime() {
+-            long nsIncrease = Math.max(System.nanoTime() - ns, 0); // >= 0
++            long nowns = System.nanoTime();
++			long nsIncrease = Math.max(nowns - ns, 0); // >= 0
+             long msIncrease = nsIncrease / NS_IN_MS;
+             if (ACCURATE_CLOCK_GRANULARITY > 1) {
+                 msIncrease -= msIncrease % ACCURATE_CLOCK_GRANULARITY;

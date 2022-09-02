@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..95aeec5 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -1198,7 +1198,8 @@
+     if (jsType == null || jsType.isUnknownType() || concreteType.isNone()) {
+       ret = concreteType;
+     } else if (concreteType.isUnion() || concreteType.isSingleton()) {
+-      ret = concreteType.intersectWith(createTypeWithSubTypes(jsType));
++      ConcreteType var_1080 = createTypeWithSubTypes(jsType);
++	ret = concreteType.intersectWith(var_1080);
+     } else {
+       Preconditions.checkState(concreteType.isAll());
+       ret = createTypeWithSubTypes(jsType);

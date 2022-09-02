@@ -1,0 +1,39 @@
+diff --git a/source/org/jfree/chart/plot/ThermometerPlot.java b/source/org/jfree/chart/plot/ThermometerPlot.java
+index d4bd7b7..734eef7 100644
+--- a/source/org/jfree/chart/plot/ThermometerPlot.java
++++ b/source/org/jfree/chart/plot/ThermometerPlot.java
+@@ -1190,10 +1190,11 @@
+ 
+                 // draw start of normal range
+                 double value = this.subrangeInfo[NORMAL][RANGE_LOW];
+-                if (range.contains(value)) {
++                double var_1418 = this.rangeAxis.valueToJava2D(value, dataArea,
++				        RectangleEdge.LEFT);
++				if (range.contains(value)) {
+                     double x = midX + getColumnRadius() + 2;
+-                    double y = this.rangeAxis.valueToJava2D(value, dataArea,
+-                            RectangleEdge.LEFT);
++                    double y = var_1418;
+                     Line2D line = new Line2D.Double(x, y, x + 10, y);
+                     g2.setPaint(this.subrangePaint[NORMAL]);
+                     g2.draw(line);
+@@ -1203,8 +1204,7 @@
+                 value = this.subrangeInfo[WARNING][RANGE_LOW];
+                 if (range.contains(value)) {
+                     double x = midX + getColumnRadius() + 2;
+-                    double y = this.rangeAxis.valueToJava2D(value, dataArea,
+-                            RectangleEdge.LEFT);
++                    double y = var_1418;
+                     Line2D line = new Line2D.Double(x, y, x + 10, y);
+                     g2.setPaint(this.subrangePaint[WARNING]);
+                     g2.draw(line);
+@@ -1214,8 +1214,7 @@
+                 value = this.subrangeInfo[CRITICAL][RANGE_LOW];
+                 if (range.contains(value)) {
+                     double x = midX + getColumnRadius() + 2;
+-                    double y = this.rangeAxis.valueToJava2D(value, dataArea,
+-                            RectangleEdge.LEFT);
++                    double y = var_1418;
+                     Line2D line = new Line2D.Double(x, y, x + 10, y);
+                     g2.setPaint(this.subrangePaint[CRITICAL]);
+                     g2.draw(line);

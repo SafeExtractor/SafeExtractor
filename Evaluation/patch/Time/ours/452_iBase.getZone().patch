@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/joda/time/field/LenientDateTimeField.java b/src/main/java/org/joda/time/field/LenientDateTimeField.java
+index 6cf4c71..26c2b1a 100644
+--- a/src/main/java/org/joda/time/field/LenientDateTimeField.java
++++ b/src/main/java/org/joda/time/field/LenientDateTimeField.java
+@@ -17,6 +17,7 @@
+ 
+ import org.joda.time.Chronology;
+ import org.joda.time.DateTimeField;
++import org.joda.time.DateTimeZone;
+ 
+ /**
+  * Converts a strict DateTimeField into a lenient one. By being lenient, the
+@@ -69,9 +70,10 @@
+     public long set(long instant, int value) {
+         // lenient needs to handle time zone chronologies
+         // so we do the calculation using local milliseconds
+-        long localInstant = iBase.getZone().convertUTCToLocal(instant);
++        DateTimeZone var_452 = iBase.getZone();
++		long localInstant = var_452.convertUTCToLocal(instant);
+         long difference = FieldUtils.safeSubtract(value, get(instant));
+         localInstant = getType().getField(iBase.withUTC()).add(localInstant, difference);
+-        return iBase.getZone().convertLocalToUTC(localInstant, false, instant);
++        return var_452.convertLocalToUTC(localInstant, false, instant);
+     }
+ }

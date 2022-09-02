@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/SubLine.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/SubLine.java
+index b5d02a4..82b6af6 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/SubLine.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/SubLine.java
+@@ -194,12 +194,13 @@
+         final SubHyperplane<Euclidean1D> subPlus  = new OrientedPoint(x, !direct).wholeHyperplane();
+         final SubHyperplane<Euclidean1D> subMinus = new OrientedPoint(x,  direct).wholeHyperplane();
+ 
+-        final BSPTree<Euclidean1D> splitTree = getRemainingRegion().getTree(false).split(subMinus);
+-        final BSPTree<Euclidean1D> plusTree  = getRemainingRegion().isEmpty(splitTree.getPlus()) ?
++        Region<Euclidean1D> var_1659 = getRemainingRegion();
++		final BSPTree<Euclidean1D> splitTree = var_1659.getTree(false).split(subMinus);
++        final BSPTree<Euclidean1D> plusTree  = var_1659.isEmpty(splitTree.getPlus()) ?
+                                                new BSPTree<Euclidean1D>(Boolean.FALSE) :
+                                                new BSPTree<Euclidean1D>(subPlus, new BSPTree<Euclidean1D>(Boolean.FALSE),
+                                                                         splitTree.getPlus(), null);
+-        final BSPTree<Euclidean1D> minusTree = getRemainingRegion().isEmpty(splitTree.getMinus()) ?
++        final BSPTree<Euclidean1D> minusTree = var_1659.isEmpty(splitTree.getMinus()) ?
+                                                new BSPTree<Euclidean1D>(Boolean.FALSE) :
+                                                new BSPTree<Euclidean1D>(subMinus, new BSPTree<Euclidean1D>(Boolean.FALSE),
+                                                                         splitTree.getMinus(), null);

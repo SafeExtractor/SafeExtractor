@@ -1,0 +1,45 @@
+diff --git a/nifi-nar-bundles/nifi-update-attribute-bundle/nifi-update-attribute-processor/src/main/java/org/apache/nifi/processors/attributes/UpdateAttribute.java b/nifi-nar-bundles/nifi-update-attribute-bundle/nifi-update-attribute-processor/src/main/java/org/apache/nifi/processors/attributes/UpdateAttribute.java
+index 86f523a..6c98f4c 100644
+--- a/nifi-nar-bundles/nifi-update-attribute-bundle/nifi-update-attribute-processor/src/main/java/org/apache/nifi/processors/attributes/UpdateAttribute.java
++++ b/nifi-nar-bundles/nifi-update-attribute-bundle/nifi-update-attribute-processor/src/main/java/org/apache/nifi/processors/attributes/UpdateAttribute.java
+@@ -583,24 +583,25 @@
+ 
+         // go through each action
+         for (final Action action : actions.values()) {
+-            if (!action.getAttribute().equals(DELETE_ATTRIBUTES.getName())) {
++            String attribute = action.getAttribute();
++			if (!attribute.equals(DELETE_ATTRIBUTES.getName())) {
+                 try {
+                     final String newAttributeValue = getPropertyValue(action.getValue(), context).evaluateAttributeExpressions(flowfile, null, null, statefulAttributes).getValue();
+ 
+                     // log if appropriate
+                     if (logger.isDebugEnabled()) {
+-                        logger.debug(String.format("%s setting attribute '%s' = '%s' for %s per rule '%s'.", this, action.getAttribute(), newAttributeValue, flowfile, ruleName));
++                        logger.debug(String.format("%s setting attribute '%s' = '%s' for %s per rule '%s'.", this, attribute, newAttributeValue, flowfile, ruleName));
+                     }
+ 
+                     if (statefulAttributesToSet != null) {
+-                        if(!action.getAttribute().equals("UpdateAttribute.matchedRule")) {
+-                            statefulAttributesToSet.put(action.getAttribute(), newAttributeValue);
++                        if(!attribute.equals("UpdateAttribute.matchedRule")) {
++                            statefulAttributesToSet.put(attribute, newAttributeValue);
+                         }
+                     }
+ 
+-                    attributesToUpdate.put(action.getAttribute(), newAttributeValue);
++                    attributesToUpdate.put(attribute, newAttributeValue);
+                 } catch (final ProcessException pe) {
+-                    throw new ProcessException(String.format("Unable to evaluate new value for attribute '%s': %s.", action.getAttribute(), pe), pe);
++                    throw new ProcessException(String.format("Unable to evaluate new value for attribute '%s': %s.", attribute, pe), pe);
+                 }
+             } else {
+                 try {
+@@ -624,7 +625,7 @@
+                         }
+                     }
+                 } catch (final ProcessException pe) {
+-                    throw new ProcessException(String.format("Unable to delete attribute '%s': %s.", action.getAttribute(), pe), pe);
++                    throw new ProcessException(String.format("Unable to delete attribute '%s': %s.", attribute, pe), pe);
+                 }
+             }
+         }

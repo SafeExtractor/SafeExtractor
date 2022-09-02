@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/rhino/jstype/UnionType.java b/src/com/google/javascript/rhino/jstype/UnionType.java
+index 585bd8f..277a5ff 100644
+--- a/src/com/google/javascript/rhino/jstype/UnionType.java
++++ b/src/com/google/javascript/rhino/jstype/UnionType.java
+@@ -582,17 +582,18 @@
+       }
+ 
+       ObjectType obj = a.toObjectType();
+-      if (obj == null) {
++      JSTypeNative var_2634 = JSTypeNative.ALL_TYPE;
++	if (obj == null) {
+         if (currentValue == null && currentCommonSuper == null) {
+           // If obj is not an object, then it must be a value.
+           currentValue = a;
+         } else {
+           // Multiple values and objects will always collapse to the ALL_TYPE.
+-          return getNativeType(JSTypeNative.ALL_TYPE);
++          return getNativeType(var_2634);
+         }
+       } else if (currentValue != null) {
+         // Values and objects will always collapse to the ALL_TYPE.
+-        return getNativeType(JSTypeNative.ALL_TYPE);
++        return getNativeType(var_2634);
+       } else if (currentCommonSuper == null) {
+         currentCommonSuper = obj;
+       } else {

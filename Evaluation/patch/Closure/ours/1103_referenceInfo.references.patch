@@ -1,0 +1,49 @@
+diff --git a/src/com/google/javascript/jscomp/InlineVariables.java b/src/com/google/javascript/jscomp/InlineVariables.java
+index 5c7408d..4344f2d 100644
+--- a/src/com/google/javascript/jscomp/InlineVariables.java
++++ b/src/com/google/javascript/jscomp/InlineVariables.java
+@@ -254,8 +254,9 @@
+     private void inlineNonConstants(
+         Var v, ReferenceCollection referenceInfo,
+         boolean maybeModifiedArguments) {
+-      int refCount = referenceInfo.references.size();
+-      Reference declaration = referenceInfo.references.get(0);
++      List<Reference> var_1103 = referenceInfo.references;
++	int refCount = var_1103.size();
++      Reference declaration = var_1103.get(0);
+       Reference init = referenceInfo.getInitializingReference();
+       int firstRefAfterInit = (declaration == init) ? 2 : 3;
+ 
+@@ -272,12 +273,12 @@
+           value = NodeUtil.newUndefinedNode(srcLocation);
+         }
+         Preconditions.checkNotNull(value);
+-        inlineWellDefinedVariable(v, value, referenceInfo.references);
++        inlineWellDefinedVariable(v, value, var_1103);
+         staleVars.add(v);
+       } else if (refCount == firstRefAfterInit) {
+         // The variable likely only read once, try some more
+         // complex inlining heuristics.
+-        Reference reference = referenceInfo.references.get(
++        Reference reference = var_1103.get(
+             firstRefAfterInit - 1);
+         if (canInline(declaration, init, reference)) {
+           inline(v, declaration, init, reference);
+@@ -289,7 +290,7 @@
+           // the variable declaration.
+           Node value = init.getAssignedValue();
+           Preconditions.checkNotNull(value);
+-          inlineWellDefinedVariable(v, value, referenceInfo.references);
++          inlineWellDefinedVariable(v, value, var_1103);
+           staleVars.add(v);
+         }
+       }
+@@ -301,7 +302,7 @@
+       if (!maybeModifiedArguments &&
+           !staleVars.contains(v) && referenceInfo.isWellDefined() &&
+           referenceInfo.isAssignedOnceInLifetime()) {
+-        List<Reference> refs = referenceInfo.references;
++        List<Reference> refs = var_1103;
+         for (int i = 1 /* start from a read */; i < refs.size(); i++) {
+           Node nameNode = refs.get(i).getNode();
+           if (aliasCandidates.containsKey(nameNode)) {

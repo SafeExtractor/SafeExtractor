@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..3d07f13 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -668,8 +668,9 @@
+             return n;
+           }
+ 
+-          Node or = IR.or(
+-              cond.removeFirstChild(),
++          Node var_1443 = cond.removeFirstChild();
++		Node or = IR.or(
++              var_1443,
+               expr.removeFirstChild()).srcref(n);
+           Node newExpr = NodeUtil.newExpr(or);
+           parent.replaceChild(n, newExpr);

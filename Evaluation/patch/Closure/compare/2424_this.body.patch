@@ -1,0 +1,24 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2424_this.body.patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2424_this.body.patch
+index 03cbb4f..d7ae0bf 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2424_this.body.patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2424_this.body.patch
+@@ -1,5 +1,5 @@
+ diff --git a/src/com/google/javascript/jscomp/regex/RegExpTree.java b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+-index c0c470a..903c90c 100644
++index c0c470a..203d5d0 100644
+ --- a/src/com/google/javascript/jscomp/regex/RegExpTree.java
+ +++ b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+ @@ -834,7 +834,8 @@
+@@ -12,12 +12,3 @@ index c0c470a..903c90c 100644
+        if (max == 0 && !body.hasCapturingGroup()) { return Empty.INSTANCE; }
+        if (body instanceof Empty || NEVER_MATCHES.equals(body)) { return body; }
+        int min = this.min;
+-@@ -853,7 +854,7 @@
+-       }
+-       if (min == 1 && max == 1) { return body; }
+-       boolean greedy = this.greedy || min == max;
+--      return body.equals(this.body) && min == this.min && max == this.max
+-+      return body.equals(var_2424) && min == this.min && max == this.max
+-           && greedy == this.greedy
+-           ? this
+-           : new Repetition(body, min, max, greedy).simplify(flags);

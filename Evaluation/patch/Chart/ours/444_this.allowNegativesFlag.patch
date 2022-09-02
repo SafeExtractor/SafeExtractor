@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/axis/LogarithmicAxis.java b/source/org/jfree/chart/axis/LogarithmicAxis.java
+index 1f440bd..d8a8822 100644
+--- a/source/org/jfree/chart/axis/LogarithmicAxis.java
++++ b/source/org/jfree/chart/axis/LogarithmicAxis.java
+@@ -515,7 +515,8 @@
+ 
+             double lower;
+             Range r = vap.getDataRange(this);
+-            if (r == null) {
++            boolean var_444 = this.allowNegativesFlag;
++			if (r == null) {
+                    //no real data present
+                 r = getDefaultAutoRange();
+                 lower = r.getLowerBound();    //get lower bound value
+@@ -524,7 +525,7 @@
+                 //actual data is present
+                 lower = r.getLowerBound();    //get lower bound value
+                 if (this.strictValuesFlag
+-                        && !this.allowNegativesFlag && lower <= 0.0) {
++                        && !var_444 && lower <= 0.0) {
+                     //strict flag set, allow-negatives not set and values <= 0
+                     throw new RuntimeException("Values less than or equal to "
+                             + "zero not allowed with logarithmic axis");
+@@ -549,7 +550,7 @@
+                 lower = computeLogFloor(lower);
+             }
+ 
+-            if (!this.allowNegativesFlag && lower >= 0.0
++            if (!var_444 && lower >= 0.0
+                     && lower < SMALL_LOG_VALUE) {
+                 //negatives not allowed and lower range bound is zero
+                 lower = r.getLowerBound();    //use data range bound instead
+@@ -569,7 +570,7 @@
+                 upper = Math.pow(10, (logUpper + (logAbs * upperMargin)));
+             }
+ 
+-            if (!this.allowNegativesFlag && upper < 1.0 && upper > 0.0
++            if (!var_444 && upper < 1.0 && upper > 0.0
+                     && lower > 0.0) {
+                 //negatives not allowed and upper bound between 0 & 1
+                 //round up to nearest significant digit for bound:

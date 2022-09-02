@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..fec1bd0 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -1017,7 +1017,8 @@
+   private JsDocToken parseSuppressTag(JsDocToken token) {
+     if (token == JsDocToken.LC) {
+       Set<String> suppressions = new HashSet<String>();
+-      while (true) {
++      JsDocToken var_2314 = next();
++	while (true) {
+         if (match(JsDocToken.STRING)) {
+           String name = stream.getString();
+           if (!suppressionNames.contains(name)) {
+@@ -1026,7 +1027,7 @@
+           }
+ 
+           suppressions.add(stream.getString());
+-          token = next();
++          token = var_2314;
+         } else {
+           parser.addParserWarning("msg.jsdoc.suppress",
+               stream.getLineno(), stream.getCharno());
+@@ -1034,7 +1035,7 @@
+         }
+ 
+         if (match(JsDocToken.PIPE)) {
+-          token = next();
++          token = var_2314;
+         } else {
+           break;
+         }
+@@ -1044,7 +1045,7 @@
+         parser.addParserWarning("msg.jsdoc.suppress",
+             stream.getLineno(), stream.getCharno());
+       } else {
+-        token = next();
++        token = var_2314;
+         if (!jsdocBuilder.recordSuppressions(suppressions)) {
+           parser.addParserWarning("msg.jsdoc.suppress.duplicate",
+               stream.getLineno(), stream.getCharno());

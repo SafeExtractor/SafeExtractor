@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java b/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java
+index 882b0f1..9b479d0 100644
+--- a/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java
++++ b/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java
+@@ -762,7 +762,8 @@
+         double y1 = rangeAxis.valueToJava2D(value, dataArea,
+                 plot.getRangeAxisEdge());
+ 
+-        if (pass == 0 && getItemLineVisible(row, column)) {
++        Paint var_2674 = getItemPaint(row, column, selected);
++		if (pass == 0 && getItemLineVisible(row, column)) {
+             if (column != 0) {
+                 Number previousValue = dataset.getValue(row, column - 1);
+                 if (previousValue != null) {
+@@ -791,7 +792,7 @@
+                     else if (orientation == PlotOrientation.VERTICAL) {
+                         line = new Line2D.Double(x0, y0, x1, y1);
+                     }
+-                    g2.setPaint(getItemPaint(row, column, selected));
++                    g2.setPaint(var_2674);
+                     g2.setStroke(getItemStroke(row, column, selected));
+                     g2.draw(line);
+                 }
+@@ -813,7 +814,7 @@
+                         g2.setPaint(getItemFillPaint(row, column, selected));
+                     }
+                     else {
+-                        g2.setPaint(getItemPaint(row, column, selected));
++                        g2.setPaint(var_2674);
+                     }
+                     g2.fill(shape);
+                 }
+@@ -823,7 +824,7 @@
+                                 selected));
+                     }
+                     else {
+-                        g2.setPaint(getItemPaint(row, column, selected));
++                        g2.setPaint(var_2674);
+                     }
+                     g2.setStroke(getItemOutlineStroke(row, column, selected));
+                     g2.draw(shape);

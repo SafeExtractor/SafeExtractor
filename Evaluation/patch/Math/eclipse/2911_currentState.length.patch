@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/sampling/AbstractStepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/sampling/AbstractStepInterpolator.java
+index 75ed7c6..4d29937 100644
+--- a/src/main/java/org/apache/commons/math3/ode/sampling/AbstractStepInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/ode/sampling/AbstractStepInterpolator.java
+@@ -517,10 +517,11 @@
+   protected void writeBaseExternal(final ObjectOutput out)
+     throws IOException {
+ 
+-    if (currentState == null) {
++    int var_2911 = currentState.length;
++	if (currentState == null) {
+         out.writeInt(-1);
+     } else {
+-        out.writeInt(currentState.length);
++        out.writeInt(var_2911);
+     }
+     out.writeDouble(globalPreviousTime);
+     out.writeDouble(globalCurrentTime);
+@@ -535,7 +536,7 @@
+     }
+ 
+     if (currentState != null) {
+-        for (int i = 0; i < currentState.length; ++i) {
++        for (int i = 0; i < var_2911; ++i) {
+             out.writeDouble(currentState[i]);
+         }
+     }

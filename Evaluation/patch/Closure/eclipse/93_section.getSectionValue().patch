@@ -1,0 +1,19 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapGeneratorV3.java b/src/com/google/debugging/sourcemap/SourceMapGeneratorV3.java
+index 5ba6e4b..acca921 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapGeneratorV3.java
++++ b/src/com/google/debugging/sourcemap/SourceMapGeneratorV3.java
+@@ -630,10 +630,11 @@
+       out.append("{\n");
+       appendFirstField(out, "offset",
+           offsetValue(section.getLine(), section.getColumn()));
+-      if (section.getSectionType() == SourceMapSection.SectionType.URL) {
+-        appendField(out, "url", escapeString(section.getSectionValue()));
++      String var_93 = section.getSectionValue();
++	if (section.getSectionType() == SourceMapSection.SectionType.URL) {
++        appendField(out, "url", escapeString(var_93));
+       } else if (section.getSectionType() == SourceMapSection.SectionType.MAP) {
+-        appendField(out, "map", section.getSectionValue());
++        appendField(out, "map", var_93);
+       } else {
+         throw new IOException("Unexpected section type");
+       }

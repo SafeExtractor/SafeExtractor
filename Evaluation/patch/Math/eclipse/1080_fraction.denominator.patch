@@ -1,0 +1,40 @@
+diff --git a/src/main/java/org/apache/commons/math3/fraction/Fraction.java b/src/main/java/org/apache/commons/math3/fraction/Fraction.java
+index 002dae9..e52da00 100644
+--- a/src/main/java/org/apache/commons/math3/fraction/Fraction.java
++++ b/src/main/java/org/apache/commons/math3/fraction/Fraction.java
+@@ -494,21 +494,22 @@
+         }
+         // if denominators are randomly distributed, d1 will be 1 about 61%
+         // of the time.
+-        int d1 = ArithmeticUtils.gcd(denominator, fraction.denominator);
++        int var_1080 = fraction.denominator;
++		int d1 = ArithmeticUtils.gcd(denominator, var_1080);
+         if (d1==1) {
+             // result is ( (u*v' +/- u'v) / u'v')
+-            int uvp = ArithmeticUtils.mulAndCheck(numerator, fraction.denominator);
++            int uvp = ArithmeticUtils.mulAndCheck(numerator, var_1080);
+             int upv = ArithmeticUtils.mulAndCheck(fraction.numerator, denominator);
+             return new Fraction
+                 (isAdd ? ArithmeticUtils.addAndCheck(uvp, upv) :
+                  ArithmeticUtils.subAndCheck(uvp, upv),
+-                 ArithmeticUtils.mulAndCheck(denominator, fraction.denominator));
++                 ArithmeticUtils.mulAndCheck(denominator, var_1080));
+         }
+         // the quantity 't' requires 65 bits of precision; see knuth 4.5.1
+         // exercise 7.  we're going to use a BigInteger.
+         // t = u(v'/d1) +/- v(u'/d1)
+         BigInteger uvp = BigInteger.valueOf(numerator)
+-        .multiply(BigInteger.valueOf(fraction.denominator/d1));
++        .multiply(BigInteger.valueOf(var_1080/d1));
+         BigInteger upv = BigInteger.valueOf(fraction.numerator)
+         .multiply(BigInteger.valueOf(denominator/d1));
+         BigInteger t = isAdd ? uvp.add(upv) : uvp.subtract(upv);
+@@ -525,7 +526,7 @@
+         }
+         return new Fraction (w.intValue(),
+                 ArithmeticUtils.mulAndCheck(denominator/d1,
+-                        fraction.denominator/d2));
++                        var_1080/d2));
+     }
+ 
+     /**

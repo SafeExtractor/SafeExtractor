@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSType.java b/src/com/google/javascript/rhino/jstype/JSType.java
+index 11875e9..599fcd2 100644
+--- a/src/com/google/javascript/rhino/jstype/JSType.java
++++ b/src/com/google/javascript/rhino/jstype/JSType.java
+@@ -658,7 +658,8 @@
+ 
+     boolean thisUnknown = isUnknownType();
+     boolean thatUnknown = that.isUnknownType();
+-    if (thisUnknown || thatUnknown) {
++    boolean var_2650 = isNominalType();
++	if (thisUnknown || thatUnknown) {
+       if (eqMethod == EquivalenceMethod.INVARIANT) {
+         // If we're checking for invariance, the unknown type is invariant
+         // with everyone.
+@@ -668,7 +669,7 @@
+         // both unknown.
+         return thisUnknown && thatUnknown;
+       } else if (thisUnknown && thatUnknown &&
+-          (isNominalType() ^ that.isNominalType())) {
++          (var_2650 ^ that.isNominalType())) {
+         // If they're both unknown, but one is a nominal type and the other
+         // is not, then we should fail out immediately. This ensures that
+         // we won't unbox the unknowns further down.
+@@ -716,7 +717,7 @@
+           thisRootType.checkEquivalenceHelper(thatRootType, eqMethod);
+     }
+ 
+-    if (isNominalType() && that.isNominalType()) {
++    if (var_2650 && that.isNominalType()) {
+       return toObjectType().getReferenceName().equals(
+           that.toObjectType().getReferenceName());
+     }

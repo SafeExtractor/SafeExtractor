@@ -1,0 +1,36 @@
+diff --git a/source/org/jfree/chart/JFreeChart.java b/source/org/jfree/chart/JFreeChart.java
+index 625eca5..f260003 100644
+--- a/source/org/jfree/chart/JFreeChart.java
++++ b/source/org/jfree/chart/JFreeChart.java
+@@ -165,6 +165,7 @@
+ import java.awt.Image;
+ import java.awt.Paint;
+ import java.awt.RenderingHints;
++import java.awt.RenderingHints.Key;
+ import java.awt.Shape;
+ import java.awt.Stroke;
+ import java.awt.geom.AffineTransform;
+@@ -873,7 +874,8 @@
+      */
+     public void setAntiAlias(boolean flag) {
+ 
+-        Object val = this.renderingHints.get(RenderingHints.KEY_ANTIALIASING);
++        Key var_7 = RenderingHints.KEY_ANTIALIASING;
++		Object val = this.renderingHints.get(var_7);
+         if (val == null) {
+             val = RenderingHints.VALUE_ANTIALIAS_DEFAULT;
+         }
+@@ -883,11 +885,11 @@
+             return;
+         }
+         if (flag) {
+-            this.renderingHints.put(RenderingHints.KEY_ANTIALIASING,
++            this.renderingHints.put(var_7,
+                                     RenderingHints.VALUE_ANTIALIAS_ON);
+         }
+         else {
+-            this.renderingHints.put(RenderingHints.KEY_ANTIALIASING,
++            this.renderingHints.put(var_7,
+                                     RenderingHints.VALUE_ANTIALIAS_OFF);
+         }
+         fireChartChanged();

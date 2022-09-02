@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..bca91bb 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -1156,9 +1156,10 @@
+ 
+         // create the function value and derivatives
+         double[] function = new double[1 + order];
+-        function[0] = FastMath.cos(operand[operandOffset]);
++        double var_126 = operand[operandOffset];
++		function[0] = FastMath.cos(var_126);
+         if (order > 0) {
+-            function[1] = -FastMath.sin(operand[operandOffset]);
++            function[1] = -FastMath.sin(var_126);
+             for (int i = 2; i <= order; ++i) {
+                 function[i] = -function[i - 2];
+             }

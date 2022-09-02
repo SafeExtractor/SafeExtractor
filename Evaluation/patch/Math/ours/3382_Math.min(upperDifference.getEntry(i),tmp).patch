@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..bcde1a4 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -1520,8 +1520,9 @@
+                 final double scale = -gw / curv;
+                 for (int i = 0; i < n; i++) {
+                     final double tmp = trustRegionCenterOffset.getEntry(i) + scale * work1.getEntry(i);
+-                    alternativeNewPoint.setEntry(i, Math.max(lowerDifference.getEntry(i),
+-                                              Math.min(upperDifference.getEntry(i), tmp)));
++                    double var_3382 = Math.min(upperDifference.getEntry(i), tmp);
++					alternativeNewPoint.setEntry(i, Math.max(lowerDifference.getEntry(i),
++                                              var_3382));
+                 }
+                 // Computing 2nd power
+                 final double d1 = HALF * gw * scale;

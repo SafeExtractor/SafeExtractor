@@ -1,0 +1,45 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..51a4940 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -1379,7 +1379,8 @@
+ 
+     // Read the content from the first line.
+     String line = stream.getRemainingJSDocLine();
+-    if (option != WhitespaceOption.PRESERVE) {
++    WhitespaceOption var_2328 = WhitespaceOption.PRESERVE;
++	if (option != var_2328) {
+       line = line.trim();
+     }
+ 
+@@ -1430,7 +1431,7 @@
+ 
+           boolean isEOC = token == JsDocToken.EOC;
+           if (!isEOC) {
+-            if (lineStartChar != -1 && option == WhitespaceOption.PRESERVE) {
++            if (lineStartChar != -1 && option == var_2328) {
+               int numSpaces = stream.getCharno() - lineStartChar;
+               for (int i = 0; i < numSpaces; i++) {
+                 builder.append(' ');
+@@ -1447,10 +1448,10 @@
+               // When we're capturing a license block, annotations
+               // in the block are OK.
+               (token == JsDocToken.ANNOTATION &&
+-               option != WhitespaceOption.PRESERVE)) {
++               option != var_2328)) {
+             String multilineText = builder.toString();
+ 
+-            if (option != WhitespaceOption.PRESERVE) {
++            if (option != var_2328) {
+               multilineText = multilineText.trim();
+             }
+ 
+@@ -1469,7 +1470,7 @@
+ 
+           line = stream.getRemainingJSDocLine();
+ 
+-          if (option != WhitespaceOption.PRESERVE) {
++          if (option != var_2328) {
+             line = trimEnd(line);
+           }
+ 

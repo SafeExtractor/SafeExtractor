@@ -1,0 +1,34 @@
+diff --git a/src/com/google/javascript/rhino/jstype/FunctionType.java b/src/com/google/javascript/rhino/jstype/FunctionType.java
+index 7388448..9589e3e 100644
+--- a/src/com/google/javascript/rhino/jstype/FunctionType.java
++++ b/src/com/google/javascript/rhino/jstype/FunctionType.java
+@@ -792,7 +792,8 @@
+   private FunctionType tryMergeFunctionPiecewise(
+       FunctionType other, boolean leastSuper) {
+     Node newParamsNode = null;
+-    if (call.hasEqualParameters(other.call, EquivalenceMethod.IDENTITY)) {
++    ArrowType var_2602 = other.call;
++	if (call.hasEqualParameters(var_2602, EquivalenceMethod.IDENTITY)) {
+       newParamsNode = call.parameters;
+     } else {
+       // If the parameters are not equal, don't try to merge them.
+@@ -801,8 +802,8 @@
+     }
+ 
+     JSType newReturnType = leastSuper ?
+-        call.returnType.getLeastSupertype(other.call.returnType) :
+-        call.returnType.getGreatestSubtype(other.call.returnType);
++        call.returnType.getLeastSupertype(var_2602.returnType) :
++        call.returnType.getGreatestSubtype(var_2602.returnType);
+ 
+     JSType newTypeOfThis = null;
+     if (isEquivalent(typeOfThis, other.typeOfThis)) {
+@@ -815,7 +816,7 @@
+     }
+ 
+     boolean newReturnTypeInferred =
+-        call.returnTypeInferred || other.call.returnTypeInferred;
++        call.returnTypeInferred || var_2602.returnTypeInferred;
+ 
+     return new FunctionType(
+         registry, null, null,

@@ -1,0 +1,45 @@
+diff --git a/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java b/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
+index eaf0b57..d76d63e 100644
+--- a/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
++++ b/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
+@@ -86,6 +86,7 @@
+ import org.jfree.chart.plot.CategoryPlot;
+ import org.jfree.chart.plot.PlotOrientation;
+ import org.jfree.chart.util.PaintUtilities;
++import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.chart.util.SerialUtilities;
+ import org.jfree.data.category.CategoryDataset;
+ 
+@@ -341,8 +342,9 @@
+             // current data point...
+             double x1 = domainAxis.getCategoryMiddle(column, getColumnCount(),
+                     dataArea, plot.getDomainAxisEdge());
+-            double y1 = rangeAxis.valueToJava2D(value.doubleValue(), dataArea,
+-                    plot.getRangeAxisEdge());
++            RectangleEdge var_2635 = plot.getRangeAxisEdge();
++			double y1 = rangeAxis.valueToJava2D(value.doubleValue(), dataArea,
++                    var_2635);
+             g2.setPaint(getItemPaint(row, column, selected));
+             g2.setStroke(getItemStroke(row, column, selected));
+             Shape shape = null;
+@@ -369,9 +371,9 @@
+                     g2.setPaint(this.groupPaint);
+                     g2.setStroke(this.groupStroke);
+                     double minY = rangeAxis.valueToJava2D(this.min, dataArea,
+-                            plot.getRangeAxisEdge());
++                            var_2635);
+                     double maxY = rangeAxis.valueToJava2D(this.max, dataArea,
+-                            plot.getRangeAxisEdge());
++                            var_2635);
+ 
+                     if (orient == PlotOrientation.VERTICAL) {
+                         g2.draw(new Line2D.Double(x1, minY, x1, maxY));
+@@ -402,7 +404,7 @@
+                                 getColumnCount(), dataArea,
+                                 plot.getDomainAxisEdge());
+                         double y0 = rangeAxis.valueToJava2D(previous, dataArea,
+-                                plot.getRangeAxisEdge());
++                                var_2635);
+                         g2.setPaint(getItemPaint(row, column, selected));
+                         g2.setStroke(getItemStroke(row, column, selected));
+                         Line2D line;

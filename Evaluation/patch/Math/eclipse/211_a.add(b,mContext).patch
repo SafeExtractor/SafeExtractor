@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/integration/gauss/LegendreHighPrecisionRuleFactory.java b/src/main/java/org/apache/commons/math3/analysis/integration/gauss/LegendreHighPrecisionRuleFactory.java
+index cbfa95d..eda448a 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/integration/gauss/LegendreHighPrecisionRuleFactory.java
++++ b/src/main/java/org/apache/commons/math3/analysis/integration/gauss/LegendreHighPrecisionRuleFactory.java
+@@ -127,7 +127,8 @@
+             }
+             // Now pa = P[n+1](a), and pma = P[n](a). Same holds for b.
+             // Middle of the interval.
+-            BigDecimal c = a.add(b, mContext).multiply(oneHalf, mContext);
++            BigDecimal var_211 = a.add(b, mContext);
++			BigDecimal c = var_211.multiply(oneHalf, mContext);
+             // P[j-1](c)
+             BigDecimal pmc = BigDecimal.ONE;
+             // P[j](c)
+@@ -166,7 +167,7 @@
+                         pma = pmc;
+                         pa = pc;
+                     }
+-                    c = a.add(b, mContext).multiply(oneHalf, mContext);
++                    c = var_211.multiply(oneHalf, mContext);
+                 }
+             }
+             final BigDecimal nP = new BigDecimal(numberOfPoints, mContext);

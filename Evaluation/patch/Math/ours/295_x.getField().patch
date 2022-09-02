@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java
+index 56f7bb3..71fe1c1 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java
+@@ -20,6 +20,7 @@
+ import java.util.Arrays;
+ import java.util.List;
+ 
++import org.apache.commons.math3.Field;
+ import org.apache.commons.math3.analysis.differentiation.DerivativeStructure;
+ import org.apache.commons.math3.analysis.differentiation.UnivariateDifferentiableVectorFunction;
+ import org.apache.commons.math3.analysis.polynomials.PolynomialFunction;
+@@ -204,8 +205,9 @@
+         checkInterpolation();
+ 
+         final DerivativeStructure[] value = new DerivativeStructure[topDiagonal.get(0).length];
+-        Arrays.fill(value, x.getField().getZero());
+-        DerivativeStructure valueCoeff = x.getField().getOne();
++        Field<DerivativeStructure> var_295 = x.getField();
++		Arrays.fill(value, var_295.getZero());
++        DerivativeStructure valueCoeff = var_295.getOne();
+         for (int i = 0; i < topDiagonal.size(); ++i) {
+             double[] dividedDifference = topDiagonal.get(i);
+             for (int k = 0; k < value.length; ++k) {

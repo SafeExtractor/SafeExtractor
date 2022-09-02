@@ -1,0 +1,53 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2975_x.length.patch b/Users/safe/paper/Evaluation/patch/Chart/ours/2975_x.length.patch
+index 0553dcd..2ad4882 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2975_x.length.patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/2975_x.length.patch
+@@ -1,19 +1,14 @@
+ diff --git a/source/org/jfree/chart/renderer/xy/CyclicXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/CyclicXYItemRenderer.java
+-index bdc095b..c348c69 100644
++index bdc095b..81b1920 100644
+ --- a/source/org/jfree/chart/renderer/xy/CyclicXYItemRenderer.java
+ +++ b/source/org/jfree/chart/renderer/xy/CyclicXYItemRenderer.java
+-@@ -201,7 +201,8 @@
+-             }
+-         }
+- 
+--        if (rangeAxis instanceof CyclicNumberAxis) {
+-+        int var_2975 = x.length;
+-+		if (rangeAxis instanceof CyclicNumberAxis) {
+-             cnay = (CyclicNumberAxis) rangeAxis;
+-             ycycleBound = cnay.getCycleBound();
++@@ -207,21 +207,22 @@
+              yBoundMapping = cnay.isBoundMappedToLastCycle();
+-@@ -210,18 +211,18 @@
+-             if ((y[0] != y[1]) && ((ycycleBound >= y[0])
++             // The split may occur in either x splitted segments, if any, but
++             // not in both
++-            if ((y[0] != y[1]) && ((ycycleBound >= y[0])
+++            int var_2975 = x.length;
+++			if ((y[0] != y[1]) && ((ycycleBound >= y[0])
+                      && (ycycleBound <= y[1])
+                      || (ycycleBound >= y[1]) && (ycycleBound <= y[0]))) {
+ -                double[] nx = new double[x.length + 1];
+@@ -34,21 +29,3 @@ index bdc095b..c348c69 100644
+                      && (ycycleBound <= y[2])
+                      || (ycycleBound >= y[2]) && (ycycleBound <= y[1]))) {
+                  double[] nx = new double[4];
+-@@ -236,7 +237,7 @@
+-         }
+- 
+-         // If the line is not wrapping, then parent is OK
+--        if (x.length == 2) {
+-+        if (var_2975 == 2) {
+-             super.drawItem(g2, state, dataArea, plot, domainAxis,
+-                     rangeAxis, dataset, series, item, selected, pass);
+-             return;
+-@@ -282,7 +283,7 @@
+-         super.drawItem(g2, state, dataArea, plot, domainAxis, rangeAxis,
+-                 newset, series, 2, selected, pass);
+- 
+--        if (x.length == 4) {
+-+        if (var_2975 == 4) {
+-             if (cnax != null) {
+-                 if (xcycleBound == x[2]) {
+-                     cnax.setBoundMappedToLastCycle(x[3] <= xcycleBound);

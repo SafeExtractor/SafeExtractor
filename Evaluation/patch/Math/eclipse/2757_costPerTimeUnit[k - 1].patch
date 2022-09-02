@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+index ed2ddda..3f3126b 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+@@ -872,22 +872,23 @@
+         firstStepAlreadyComputed = true;
+ 
+         int optimalIter;
+-        if (k == 1) {
++        double var_2757 = costPerTimeUnit[k-1];
++		if (k == 1) {
+           optimalIter = 2;
+           if (previousRejected) {
+             optimalIter = 1;
+           }
+         } else if (k <= targetIter) {
+           optimalIter = k;
+-          if (costPerTimeUnit[k-1] < orderControl1 * costPerTimeUnit[k]) {
++          if (var_2757 < orderControl1 * costPerTimeUnit[k]) {
+             optimalIter = k-1;
+-          } else if (costPerTimeUnit[k] < orderControl2 * costPerTimeUnit[k-1]) {
++          } else if (costPerTimeUnit[k] < orderControl2 * var_2757) {
+             optimalIter = FastMath.min(k+1, sequence.length - 2);
+           }
+         } else {
+           optimalIter = k - 1;
+           if ((k > 2) &&
+-              (costPerTimeUnit[k-2] < orderControl1 * costPerTimeUnit[k-1])) {
++              (costPerTimeUnit[k-2] < orderControl1 * var_2757)) {
+             optimalIter = k - 2;
+           }
+           if (costPerTimeUnit[k] < orderControl2 * costPerTimeUnit[optimalIter]) {
+@@ -906,7 +907,7 @@
+             hNew = optimalStep[optimalIter];
+           } else {
+             if ((k < targetIter) &&
+-                (costPerTimeUnit[k] < orderControl2 * costPerTimeUnit[k-1])) {
++                (costPerTimeUnit[k] < orderControl2 * var_2757)) {
+               hNew = filterStep(optimalStep[k] * costPerStep[optimalIter+1] / costPerStep[k],
+                                forward, false);
+             } else {

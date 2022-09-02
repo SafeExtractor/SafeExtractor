@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/chart/renderer/category/BarRenderer.java b/source/org/jfree/chart/renderer/category/BarRenderer.java
+index 37da044..33a8711 100644
+--- a/source/org/jfree/chart/renderer/category/BarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/BarRenderer.java
+@@ -1017,13 +1017,14 @@
+ 
+         // draw the bar...
+         Rectangle2D bar = null;
+-        if (orientation == PlotOrientation.HORIZONTAL) {
++        double var_2737 = state.getBarWidth();
++		if (orientation == PlotOrientation.HORIZONTAL) {
+             bar = new Rectangle2D.Double(barL0 - barL0Adj, barW0,
+-                    barLength + barLengthAdj, state.getBarWidth());
++                    barLength + barLengthAdj, var_2737);
+         }
+         else {
+             bar = new Rectangle2D.Double(barW0, barL0 - barL0Adj,
+-                    state.getBarWidth(), barLength + barLengthAdj);
++                    var_2737, barLength + barLengthAdj);
+         }
+         if (getShadowsVisible()) {
+             this.barPainter.paintBarShadow(g2, this, row, column, selected, 

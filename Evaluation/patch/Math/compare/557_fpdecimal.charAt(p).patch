@@ -1,0 +1,53 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/557_fpdecimal.charAt(p).patch b/Users/safe/paper/Evaluation/patch/Math/ours/557_fpdecimal.charAt(p).patch
+index 91f0d7c..9c6bb29 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/557_fpdecimal.charAt(p).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/557_fpdecimal.charAt(p).patch
+@@ -1,16 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+-index e6de61f..0666bcb 100644
++index e6de61f..81b21cc 100644
+ --- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+ +++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+-@@ -410,16 +410,17 @@
+- 
++@@ -411,15 +411,16 @@
+          // Move p to first significant digit
+          int decimalPos = 0;
+--        for (;;) {
++         for (;;) {
+ -            if (fpdecimal.charAt(p) >= '1' && fpdecimal.charAt(p) <= '9') {
+-+        char var_557 = fpdecimal.charAt(p);
+-+		for (;;) {
+-+            if (var_557 >= '1' && var_557 <= '9') {
+++            char var_557 = fpdecimal.charAt(p);
+++			if (var_557 >= '1' && var_557 <= '9') {
+                  break;
+              }
+  
+@@ -24,26 +22,3 @@ index e6de61f..0666bcb 100644
+                  decimalFound = true;
+              }
+  
+-@@ -447,19 +448,19 @@
+-                 break;
+-             }
+- 
+--            if (fpdecimal.charAt(p) == '.') {
+-+            if (var_557 == '.') {
+-                 decimalFound = true;
+-                 decimalPos = significantDigits;
+-                 p++;
+-                 continue;
+-             }
+- 
+--            if (fpdecimal.charAt(p) < '0' || fpdecimal.charAt(p) > '9') {
+-+            if (var_557 < '0' || var_557 > '9') {
+-                 p++;
+-                 continue;
+-             }
+- 
+--            striped[q] = fpdecimal.charAt(p);
+-+            striped[q] = var_557;
+-             q++;
+-             p++;
+-             significantDigits++;

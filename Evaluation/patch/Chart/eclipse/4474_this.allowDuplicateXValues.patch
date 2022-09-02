@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/data/xy/XYSeries.java b/source/org/jfree/data/xy/XYSeries.java
+index c2d0ba8..64019ce 100644
+--- a/source/org/jfree/data/xy/XYSeries.java
++++ b/source/org/jfree/data/xy/XYSeries.java
+@@ -505,13 +505,14 @@
+             throw new IllegalArgumentException("Null 'item' argument.");
+         }
+         item = (XYDataItem) item.clone();
+-        if (this.autoSort) {
++        boolean var_4474 = this.allowDuplicateXValues;
++		if (this.autoSort) {
+             int index = Collections.binarySearch(this.data, item);
+             if (index < 0) {
+                 this.data.add(-index - 1, item);
+             }
+             else {
+-                if (this.allowDuplicateXValues) {
++                if (var_4474) {
+                     // need to make sure we are adding *after* any duplicates
+                     int size = this.data.size();
+                     while (index < size && item.compareTo(
+@@ -531,7 +532,7 @@
+             }
+         }
+         else {
+-            if (!this.allowDuplicateXValues) {
++            if (!var_4474) {
+                 // can't allow duplicate values, so we need to check whether
+                 // there is an item with the given x-value already
+                 int index = indexOf(item.getX());

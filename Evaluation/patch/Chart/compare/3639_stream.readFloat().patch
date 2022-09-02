@@ -1,0 +1,32 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3639_stream.readFloat().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/3639_stream.readFloat().patch
+index c61237f..2978086 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3639_stream.readFloat().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/3639_stream.readFloat().patch
+@@ -1,21 +1,14 @@
+ diff --git a/source/org/jfree/chart/util/SerialUtilities.java b/source/org/jfree/chart/util/SerialUtilities.java
+-index 90edcc1..4fc9dd1 100644
++index 90edcc1..0854cc5 100644
+ --- a/source/org/jfree/chart/util/SerialUtilities.java
+ +++ b/source/org/jfree/chart/util/SerialUtilities.java
+-@@ -199,12 +199,13 @@
+-         if (!isNull) {
+-             Class c = (Class) stream.readObject();
+-             if (c.equals(BasicStroke.class)) {
+--                float width = stream.readFloat();
+-+                float var_3639 = stream.readFloat();
+-+				float width = var_3639;
++@@ -202,7 +202,8 @@
++                 float width = stream.readFloat();
+                  int cap = stream.readInt();
+                  int join = stream.readInt();
+ -                float miterLimit = stream.readFloat();
+-+                float miterLimit = var_3639;
+++                float var_3639 = stream.readFloat();
+++				float miterLimit = var_3639;
+                  float[] dash = (float[]) stream.readObject();
+--                float dashPhase = stream.readFloat();
+-+                float dashPhase = var_3639;
++                 float dashPhase = stream.readFloat();
+                  result = new BasicStroke(width, cap, join, miterLimit, dash,
+-                         dashPhase);
+-             }

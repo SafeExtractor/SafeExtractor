@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..638a831 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -603,7 +603,8 @@
+     Node notChild = n.getFirstChild();
+     // negative operator of the current one : == -> != for instance.
+     int complementOperator;
+-    switch (notChild.getType()) {
++    int var_1428 = Token.SHNE;
++	switch (notChild.getType()) {
+       case Token.EQ:
+         complementOperator = Token.NE;
+         break;
+@@ -611,9 +612,9 @@
+         complementOperator = Token.EQ;
+         break;
+       case Token.SHEQ:
+-        complementOperator = Token.SHNE;
++        complementOperator = var_1428;
+         break;
+-      case Token.SHNE:
++      case var_1428:
+         complementOperator = Token.SHEQ;
+         break;
+       // GT, GE, LT, LE are not handled in this because !(x<NaN) != x>=NaN.

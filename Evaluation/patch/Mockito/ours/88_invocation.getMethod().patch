@@ -1,0 +1,28 @@
+diff --git a/src/org/mockito/internal/stubbing/answers/ReturnsArgumentAt.java b/src/org/mockito/internal/stubbing/answers/ReturnsArgumentAt.java
+index 059074d..092972f 100644
+--- a/src/org/mockito/internal/stubbing/answers/ReturnsArgumentAt.java
++++ b/src/org/mockito/internal/stubbing/answers/ReturnsArgumentAt.java
+@@ -9,6 +9,7 @@
+ import org.mockito.stubbing.Answer;
+ 
+ import java.io.Serializable;
++import java.lang.reflect.Method;
+ 
+ /**
+  * Returns the passed parameter identity at specified index.
+@@ -95,11 +96,12 @@
+     public Class returnedTypeOnSignature(InvocationOnMock invocation) {
+         int actualArgumentPosition = actualArgumentPosition(invocation);
+ 
+-        if(!invocation.getMethod().isVarArgs()) {
+-            return invocation.getMethod().getParameterTypes()[actualArgumentPosition];
++        Method var_88 = invocation.getMethod();
++		if(!var_88.isVarArgs()) {
++            return var_88.getParameterTypes()[actualArgumentPosition];
+         }
+ 
+-        Class<?>[] parameterTypes = invocation.getMethod().getParameterTypes();
++        Class<?>[] parameterTypes = var_88.getParameterTypes();
+         int varargPosition = parameterTypes.length - 1;
+ 
+         if(actualArgumentPosition < varargPosition) {

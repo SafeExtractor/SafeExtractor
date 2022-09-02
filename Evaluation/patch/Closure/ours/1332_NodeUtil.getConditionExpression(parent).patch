@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowGraph.java b/src/com/google/javascript/jscomp/ControlFlowGraph.java
+index c0764c0..9b7cdc1 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowGraph.java
++++ b/src/com/google/javascript/jscomp/ControlFlowGraph.java
+@@ -158,7 +158,8 @@
+    */
+   public static boolean isEnteringNewCfgNode(Node n) {
+     Node parent = n.getParent();
+-    switch (parent.getType()) {
++    Node var_1332 = NodeUtil.getConditionExpression(parent);
++	switch (parent.getType()) {
+       case Token.BLOCK:
+       case Token.SCRIPT:
+       case Token.TRY:
+@@ -177,7 +178,7 @@
+       case Token.IF:
+         // These control structures are represented by a node that holds the
+         // condition. Each of them is a branch node based on its condition.
+-        return NodeUtil.getConditionExpression(parent) != n;
++        return var_1332 != n;
+ 
+       case Token.FOR:
+         // The FOR(;;) node differs from other control structures in that
+@@ -192,7 +193,7 @@
+           // we have a very complex expression inside the FOR-IN header.
+           return n != parent.getFirstChild();
+         } else {
+-          return NodeUtil.getConditionExpression(parent) != n;
++          return var_1332 != n;
+         }
+       case Token.SWITCH:
+       case Token.CASE:

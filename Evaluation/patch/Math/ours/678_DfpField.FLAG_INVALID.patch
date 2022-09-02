@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..3a883a9 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1922,10 +1922,11 @@
+ 
+         // range check divisor
+         if (divisor < 0 || divisor >= RADIX) {
+-            field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
++            int var_678 = DfpField.FLAG_INVALID;
++			field.setIEEEFlagsBits(var_678);
+             Dfp result = newInstance(getZero());
+             result.nans = QNAN;
+-            result = dotrap(DfpField.FLAG_INVALID, DIVIDE_TRAP, result, result);
++            result = dotrap(var_678, DIVIDE_TRAP, result, result);
+             return result;
+         }
+ 

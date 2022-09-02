@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/AdamsMoultonIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/AdamsMoultonIntegrator.java
+index 5d5a7a7..c9ac2f7 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/AdamsMoultonIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/AdamsMoultonIntegrator.java
+@@ -219,9 +219,10 @@
+         // initialize working arrays
+         final double[] y0   = equations.getCompleteState();
+         final double[] y    = y0.clone();
+-        final double[] yDot = new double[y.length];
+-        final double[] yTmp = new double[y.length];
+-        final double[] predictedScaled = new double[y.length];
++        int var_2783 = y.length;
++		final double[] yDot = new double[var_2783];
++        final double[] yTmp = new double[var_2783];
++        final double[] predictedScaled = new double[var_2783];
+         Array2DRowRealMatrix nordsieckTmp = null;
+ 
+         // set up two interpolators sharing the integrator arrays
+@@ -293,7 +294,7 @@
+             updateHighOrderDerivativesPhase2(predictedScaled, correctedScaled, nordsieckTmp);
+ 
+             // discrete events handling
+-            System.arraycopy(yTmp, 0, y, 0, y.length);
++            System.arraycopy(yTmp, 0, y, 0, var_2783);
+             interpolator.reinitialize(stepEnd, stepSize, correctedScaled, nordsieckTmp);
+             interpolator.storeTime(stepStart);
+             interpolator.shift();

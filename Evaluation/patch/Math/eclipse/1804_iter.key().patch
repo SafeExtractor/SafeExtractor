@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java b/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+index 55d2b6a..540a44a 100644
+--- a/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
++++ b/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+@@ -478,15 +478,16 @@
+         checkVectorDimensions(v.getDimension());
+         double max = 0;
+         Iterator iter = entries.iterator();
+-        while (iter.hasNext()) {
++        int var_1804 = iter.key();
++		while (iter.hasNext()) {
+             iter.advance();
+-            double delta = FastMath.abs(iter.value() - v.getEntry(iter.key()));
++            double delta = FastMath.abs(iter.value() - v.getEntry(var_1804));
+             max += delta;
+         }
+         iter = v.getEntries().iterator();
+         while (iter.hasNext()) {
+             iter.advance();
+-            int key = iter.key();
++            int key = var_1804;
+             if (!entries.containsKey(key)) {
+                 double delta = FastMath.abs(iter.value());
+                 max +=  FastMath.abs(delta);

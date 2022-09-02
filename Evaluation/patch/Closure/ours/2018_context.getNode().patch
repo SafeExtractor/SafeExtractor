@@ -1,0 +1,45 @@
+diff --git a/src/com/google/javascript/jscomp/GenerateExports.java b/src/com/google/javascript/jscomp/GenerateExports.java
+index 40b4264..3800ab8 100644
+--- a/src/com/google/javascript/jscomp/GenerateExports.java
++++ b/src/com/google/javascript/jscomp/GenerateExports.java
+@@ -73,7 +73,8 @@
+       String parent = null;
+       String grandparent = null;
+ 
+-      Node node = context.getNode().getFirstChild();
++      Node var_2018 = context.getNode();
++	Node node = var_2018.getFirstChild();
+       if (node.isGetProp()) {
+         parent = node.getFirstChild().getQualifiedName();
+         if (node.getFirstChild().isGetProp() &&
+@@ -95,25 +96,25 @@
+         call = IR.call(
+             NodeUtil.newQualifiedNameNode(
+                 convention, exportSymbolFunction,
+-                context.getNode(), export),
++                var_2018, export),
+             IR.string(export),
+             NodeUtil.newQualifiedNameNode(
+                 convention, export,
+-                context.getNode(), export));
++                var_2018, export));
+       } else {
+         // exportProperty(object, publicName, symbol);
+         String property = getPropertyName(node);
+         call = IR.call(
+             NodeUtil.newQualifiedNameNode(
+                 convention, exportPropertyFunction,
+-                context.getNode(), exportPropertyFunction),
++                var_2018, exportPropertyFunction),
+             NodeUtil.newQualifiedNameNode(
+                 convention, parent,
+-                context.getNode(), exportPropertyFunction),
++                var_2018, exportPropertyFunction),
+             IR.string(property),
+             NodeUtil.newQualifiedNameNode(
+                 convention, export,
+-                context.getNode(), exportPropertyFunction));
++                var_2018, exportPropertyFunction));
+       }
+ 
+       Node expression = IR.exprResult(call);

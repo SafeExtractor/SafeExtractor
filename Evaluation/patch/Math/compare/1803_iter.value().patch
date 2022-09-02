@@ -1,0 +1,35 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/1803_iter.value().patch b/Users/safe/paper/Evaluation/patch/Math/ours/1803_iter.value().patch
+index 7331763..bcf7311 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/1803_iter.value().patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/1803_iter.value().patch
+@@ -1,26 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java b/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+-index 55d2b6a..f826ecc 100644
++index 55d2b6a..942255b 100644
+ --- a/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+ +++ b/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+-@@ -478,9 +478,10 @@
+-         checkVectorDimensions(v.getDimension());
+-         double max = 0;
+-         Iterator iter = entries.iterator();
+--        while (iter.hasNext()) {
+-+        double var_1803 = iter.value();
+-+		while (iter.hasNext()) {
+-             iter.advance();
+--            double delta = FastMath.abs(iter.value() - v.getEntry(iter.key()));
+-+            double delta = FastMath.abs(var_1803 - v.getEntry(iter.key()));
+-             max += delta;
+-         }
+-         iter = v.getEntries().iterator();
+-@@ -488,7 +489,7 @@
++@@ -488,7 +488,8 @@
+              iter.advance();
+              int key = iter.key();
+              if (!entries.containsKey(key)) {
+ -                double delta = FastMath.abs(iter.value());
+-+                double delta = FastMath.abs(var_1803);
+++                double var_1803 = iter.value();
+++				double delta = FastMath.abs(var_1803);
+                  max +=  FastMath.abs(delta);
+              }
+          }

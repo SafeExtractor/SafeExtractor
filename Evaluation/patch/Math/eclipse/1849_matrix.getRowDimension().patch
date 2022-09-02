@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java b/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
+index efbe8a2..317cc57 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
+@@ -89,15 +89,16 @@
+         final double[][] A;
+ 
+          // "m" is always the largest dimension.
+-        if (matrix.getRowDimension() < matrix.getColumnDimension()) {
++        int var_1849 = matrix.getRowDimension();
++		if (var_1849 < matrix.getColumnDimension()) {
+             transposed = true;
+             A = matrix.transpose().getData();
+             m = matrix.getColumnDimension();
+-            n = matrix.getRowDimension();
++            n = var_1849;
+         } else {
+             transposed = false;
+             A = matrix.getData();
+-            m = matrix.getRowDimension();
++            m = var_1849;
+             n = matrix.getColumnDimension();
+         }
+ 

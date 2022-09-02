@@ -1,0 +1,49 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..5407f37 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1695,14 +1695,15 @@
+         int excp;       // exceptions
+ 
+         // make sure we don't mix number with different precision
+-        if (field.getRadixDigits() != divisor.field.getRadixDigits()) {
++        Dfp var_665 = getZero();
++		if (field.getRadixDigits() != divisor.field.getRadixDigits()) {
+             field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            final Dfp result = newInstance(getZero());
++            final Dfp result = newInstance(var_665);
+             result.nans = QNAN;
+             return dotrap(DfpField.FLAG_INVALID, DIVIDE_TRAP, divisor, result);
+         }
+ 
+-        Dfp result = newInstance(getZero());
++        Dfp result = newInstance(var_665);
+ 
+         /* handle special cases */
+         if (nans != FINITE || divisor.nans != FINITE) {
+@@ -1721,14 +1722,14 @@
+             }
+ 
+             if (divisor.nans == INFINITE && nans == FINITE) {
+-                result = newInstance(getZero());
++                result = newInstance(var_665);
+                 result.sign = (byte) (sign * divisor.sign);
+                 return result;
+             }
+ 
+             if (divisor.nans == INFINITE && nans == INFINITE) {
+                 field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-                result = newInstance(getZero());
++                result = newInstance(var_665);
+                 result.nans = QNAN;
+                 result = dotrap(DfpField.FLAG_INVALID, DIVIDE_TRAP, divisor, result);
+                 return result;
+@@ -1738,7 +1739,7 @@
+         /* Test for divide by zero */
+         if (divisor.mant[mant.length-1] == 0) {
+             field.setIEEEFlagsBits(DfpField.FLAG_DIV_ZERO);
+-            result = newInstance(getZero());
++            result = newInstance(var_665);
+             result.sign = (byte) (sign * divisor.sign);
+             result.nans = INFINITE;
+             result = dotrap(DfpField.FLAG_DIV_ZERO, DIVIDE_TRAP, divisor, result);

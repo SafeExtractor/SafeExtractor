@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+index ed2ddda..9a7b433 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+@@ -488,7 +488,8 @@
+         yTmp[i]       = middle;
+       }
+ 
+-      computeDerivatives(t, yEnd, f[j+1]);
++      double[] var_2732 = f[j+1];
++	computeDerivatives(t, yEnd, var_2732);
+ 
+       // stability check
+       if (performTest && (j <= maxChecks) && (k < maxIter)) {
+@@ -499,7 +500,7 @@
+         }
+         double deltaNorm = 0.0;
+         for (int l = 0; l < scale.length; ++l) {
+-          final double ratio = (f[j+1][l] - f[0][l]) / scale[l];
++          final double ratio = (var_2732[l] - f[0][l]) / scale[l];
+           deltaNorm += ratio * ratio;
+         }
+         if (deltaNorm > 4 * FastMath.max(1.0e-15, initialNorm)) {

@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+index 4652f61..bcb4528 100644
+--- a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+@@ -734,12 +734,13 @@
+         imagEigenvalues = new double[matT.length];
+ 
+         for (int i = 0; i < realEigenvalues.length; i++) {
+-            if (i == (realEigenvalues.length - 1) ||
++            double var_2128 = matT[i][i];
++			if (i == (realEigenvalues.length - 1) ||
+                 Precision.equals(matT[i + 1][i], 0.0, EPSILON)) {
+-                realEigenvalues[i] = matT[i][i];
++                realEigenvalues[i] = var_2128;
+             } else {
+                 final double x = matT[i + 1][i + 1];
+-                final double p = 0.5 * (matT[i][i] - x);
++                final double p = 0.5 * (var_2128 - x);
+                 final double z = FastMath.sqrt(FastMath.abs(p * p + matT[i + 1][i] * matT[i][i + 1]));
+                 realEigenvalues[i] = x + p;
+                 imagEigenvalues[i] = z;

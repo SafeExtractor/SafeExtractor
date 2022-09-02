@@ -1,0 +1,39 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/inference/ChiSquareTest.java b/src/main/java/org/apache/commons/math3/stat/inference/ChiSquareTest.java
+index 813f094..4109922 100644
+--- a/src/main/java/org/apache/commons/math3/stat/inference/ChiSquareTest.java
++++ b/src/main/java/org/apache/commons/math3/stat/inference/ChiSquareTest.java
+@@ -411,11 +411,12 @@
+         throws DimensionMismatchException, NotPositiveException, ZeroException {
+ 
+         // Make sure lengths are same
+-        if (observed1.length < 2) {
+-            throw new DimensionMismatchException(observed1.length, 2);
++        int var_3854 = observed1.length;
++		if (var_3854 < 2) {
++            throw new DimensionMismatchException(var_3854, 2);
+         }
+-        if (observed1.length != observed2.length) {
+-            throw new DimensionMismatchException(observed1.length, observed2.length);
++        if (var_3854 != observed2.length) {
++            throw new DimensionMismatchException(var_3854, observed2.length);
+         }
+ 
+         // Ensure non-negative counts
+@@ -427,7 +428,7 @@
+         long countSum2 = 0;
+         boolean unequalCounts = false;
+         double weight = 0.0;
+-        for (int i = 0; i < observed1.length; i++) {
++        for (int i = 0; i < var_3854; i++) {
+             countSum1 += observed1[i];
+             countSum2 += observed2[i];
+         }
+@@ -445,7 +446,7 @@
+         double dev = 0.0d;
+         double obs1 = 0.0d;
+         double obs2 = 0.0d;
+-        for (int i = 0; i < observed1.length; i++) {
++        for (int i = 0; i < var_3854; i++) {
+             if (observed1[i] == 0 && observed2[i] == 0) {
+                 throw new ZeroException(LocalizedFormats.OBSERVED_COUNTS_BOTTH_ZERO_FOR_ENTRY, i);
+             } else {

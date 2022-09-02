@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/MethodCompilerPass.java b/src/com/google/javascript/jscomp/MethodCompilerPass.java
+index 786d143..31eec9f 100644
+--- a/src/com/google/javascript/jscomp/MethodCompilerPass.java
++++ b/src/com/google/javascript/jscomp/MethodCompilerPass.java
+@@ -25,6 +25,7 @@
+ import com.google.javascript.rhino.Node;
+ import com.google.javascript.rhino.Token;
+ 
++import java.util.ArrayList;
+ import java.util.List;
+ import java.util.Set;
+ 
+@@ -77,9 +78,10 @@
+     }
+ 
+ 
+-    List<Node> externsAndJs = Lists.newArrayList(externs, root);
++    ArrayList<Node> var_1740 = Lists.newArrayList(externs, root);
++	List<Node> externsAndJs = var_1740;
+     NodeTraversal.traverseRoots(
+-        compiler, Lists.newArrayList(externs, root), new GatherSignatures());
++        compiler, var_1740, new GatherSignatures());
+     NodeTraversal.traverseRoots(
+         compiler, externsAndJs, getActingCallback());
+   }

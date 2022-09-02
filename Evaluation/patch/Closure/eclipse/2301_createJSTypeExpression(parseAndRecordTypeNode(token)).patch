@@ -1,0 +1,35 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..2425e44 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -228,7 +228,9 @@
+               // Mark the beginning of the annotation.
+               jsdocBuilder.markAnnotation(annotationName, lineno, charno);
+ 
+-              switch (annotation) {
++              JSTypeExpression var_2301 = createJSTypeExpression(
++			    parseAndRecordTypeNode(token));
++			switch (annotation) {
+                 case AUTHOR:
+                   if (jsdocBuilder.shouldParseDocumentation()) {
+                     ExtractionInfo authorInfo = extractSingleLineBlock();
+@@ -378,8 +380,7 @@
+ 
+                   type = null;
+                   if (token != JsDocToken.EOL && token != JsDocToken.EOC) {
+-                    type = createJSTypeExpression(
+-                        parseAndRecordTypeNode(token));
++                    type = var_2301;
+                   }
+ 
+                   if (type == null) {
+@@ -567,8 +568,7 @@
+                   type = null;
+ 
+                   if (token == JsDocToken.LC) {
+-                    type = createJSTypeExpression(
+-                        parseAndRecordTypeNode(token));
++                    type = var_2301;
+ 
+                     if (type == null) {
+                       // parsing error reported during recursive descent

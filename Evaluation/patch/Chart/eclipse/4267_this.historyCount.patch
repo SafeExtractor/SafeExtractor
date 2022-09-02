@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+index 067e1df..b1486f6 100644
+--- a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
++++ b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+@@ -312,9 +312,10 @@
+      */
+     public synchronized long setTimeBase(RegularTimePeriod start) {
+ 
+-        if (this.pointsInTime[0] == null) {
++        int var_4267 = this.historyCount;
++		if (this.pointsInTime[0] == null) {
+             this.pointsInTime[0] = start;
+-            for (int i = 1; i < this.historyCount; i++) {
++            for (int i = 1; i < var_4267; i++) {
+                 this.pointsInTime[i] = this.pointsInTime[i - 1].next();
+             }
+         }
+@@ -326,7 +327,7 @@
+         );
+         this.deltaTime = nextL - oldestL;
+         this.oldestAt = 0;
+-        this.newestAt = this.historyCount - 1;
++        this.newestAt = var_4267 - 1;
+         findDomainLimits();
+         return this.deltaTime;
+ 

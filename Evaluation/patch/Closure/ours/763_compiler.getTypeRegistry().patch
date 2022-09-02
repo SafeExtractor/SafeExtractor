@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessDefines.java b/src/com/google/javascript/jscomp/ProcessDefines.java
+index e86001d..211d83a 100644
+--- a/src/com/google/javascript/jscomp/ProcessDefines.java
++++ b/src/com/google/javascript/jscomp/ProcessDefines.java
+@@ -29,6 +29,7 @@
+ import com.google.javascript.rhino.Token;
+ import com.google.javascript.rhino.jstype.JSType;
+ import com.google.javascript.rhino.jstype.JSTypeNative;
++import com.google.javascript.rhino.jstype.JSTypeRegistry;
+ 
+ import java.text.MessageFormat;
+ import java.util.ArrayDeque;
+@@ -158,9 +159,10 @@
+    * Only defines of literal number, string, or boolean are supported.
+    */
+   private boolean isValidDefineType(JSTypeExpression expression) {
+-    JSType type = expression.evaluate(null, compiler.getTypeRegistry());
++    JSTypeRegistry var_763 = compiler.getTypeRegistry();
++	JSType type = expression.evaluate(null, var_763);
+     return !type.isUnknownType() && type.isSubtype(
+-        compiler.getTypeRegistry().getNativeType(
++        var_763.getNativeType(
+             JSTypeNative.NUMBER_STRING_BOOLEAN));
+   }
+ 

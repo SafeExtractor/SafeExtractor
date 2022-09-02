@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/needle/ArrowNeedle.java b/source/org/jfree/chart/needle/ArrowNeedle.java
+index 276b983..3a1800d 100644
+--- a/source/org/jfree/chart/needle/ArrowNeedle.java
++++ b/source/org/jfree/chart/needle/ArrowNeedle.java
+@@ -100,16 +100,17 @@
+         shape.setLine(x, minY, x, maxY);
+ 
+         GeneralPath shape1 = new GeneralPath();
+-        if (this.isArrowAtTop) {
++        int var_1264 = getSize();
++		if (this.isArrowAtTop) {
+             shape1.moveTo(x, minY);
+-            minY += 4 * getSize();
++            minY += 4 * var_1264;
+         }
+         else {
+             shape1.moveTo(x, maxY);
+-            minY = maxY - 4 * getSize();
++            minY = maxY - 4 * var_1264;
+         }
+-        shape1.lineTo(x + getSize(), minY);
+-        shape1.lineTo(x - getSize(), minY);
++        shape1.lineTo(x + var_1264, minY);
++        shape1.lineTo(x - var_1264, minY);
+         shape1.closePath();
+ 
+         if ((rotate != null) && (angle != 0)) {

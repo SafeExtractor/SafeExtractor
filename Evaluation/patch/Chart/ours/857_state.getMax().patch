@@ -1,0 +1,74 @@
+diff --git a/source/org/jfree/chart/axis/CategoryAxis.java b/source/org/jfree/chart/axis/CategoryAxis.java
+index 9c5f5bc..54da89b 100644
+--- a/source/org/jfree/chart/axis/CategoryAxis.java
++++ b/source/org/jfree/chart/axis/CategoryAxis.java
+@@ -979,7 +979,8 @@
+ 
+             int categoryIndex = 0;
+             Iterator iterator = ticks.iterator();
+-            while (iterator.hasNext()) {
++            double var_857 = state.getMax();
++			while (iterator.hasNext()) {
+ 
+                 CategoryTick tick = (CategoryTick) iterator.next();
+                 g2.setFont(getTickLabelFont(tick.getCategory()));
+@@ -997,7 +998,7 @@
+                     x1 = getCategoryEnd(categoryIndex, ticks.size(), dataArea,
+                             edge);
+                     y1 = state.getCursor() - this.categoryLabelPositionOffset;
+-                    y0 = y1 - state.getMax();
++                    y0 = y1 - var_857;
+                 }
+                 else if (edge == RectangleEdge.BOTTOM) {
+                     x0 = getCategoryStart(categoryIndex, ticks.size(),
+@@ -1005,7 +1006,7 @@
+                     x1 = getCategoryEnd(categoryIndex, ticks.size(), dataArea,
+                             edge);
+                     y0 = state.getCursor() + this.categoryLabelPositionOffset;
+-                    y1 = y0 + state.getMax();
++                    y1 = y0 + var_857;
+                 }
+                 else if (edge == RectangleEdge.LEFT) {
+                     y0 = getCategoryStart(categoryIndex, ticks.size(),
+@@ -1013,7 +1014,7 @@
+                     y1 = getCategoryEnd(categoryIndex, ticks.size(), dataArea,
+                             edge);
+                     x1 = state.getCursor() - this.categoryLabelPositionOffset;
+-                    x0 = x1 - state.getMax();
++                    x0 = x1 - var_857;
+                 }
+                 else if (edge == RectangleEdge.RIGHT) {
+                     y0 = getCategoryStart(categoryIndex, ticks.size(),
+@@ -1021,7 +1022,7 @@
+                     y1 = getCategoryEnd(categoryIndex, ticks.size(), dataArea,
+                             edge);
+                     x0 = state.getCursor() + this.categoryLabelPositionOffset;
+-                    x1 = x0 - state.getMax();
++                    x1 = x0 - var_857;
+                 }
+                 Rectangle2D area = new Rectangle2D.Double(x0, y0, (x1 - x0),
+                         (y1 - y0));
+@@ -1050,19 +1051,19 @@
+             }
+ 
+             if (edge.equals(RectangleEdge.TOP)) {
+-                double h = state.getMax() + this.categoryLabelPositionOffset;
++                double h = var_857 + this.categoryLabelPositionOffset;
+                 state.cursorUp(h);
+             }
+             else if (edge.equals(RectangleEdge.BOTTOM)) {
+-                double h = state.getMax() + this.categoryLabelPositionOffset;
++                double h = var_857 + this.categoryLabelPositionOffset;
+                 state.cursorDown(h);
+             }
+             else if (edge == RectangleEdge.LEFT) {
+-                double w = state.getMax() + this.categoryLabelPositionOffset;
++                double w = var_857 + this.categoryLabelPositionOffset;
+                 state.cursorLeft(w);
+             }
+             else if (edge == RectangleEdge.RIGHT) {
+-                double w = state.getMax() + this.categoryLabelPositionOffset;
++                double w = var_857 + this.categoryLabelPositionOffset;
+                 state.cursorRight(w);
+             }
+         }

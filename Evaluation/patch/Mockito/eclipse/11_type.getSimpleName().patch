@@ -1,0 +1,16 @@
+diff --git a/src/org/mockito/internal/configuration/SpyAnnotationEngine.java b/src/org/mockito/internal/configuration/SpyAnnotationEngine.java
+index aef8ceb..9ee90e2 100644
+--- a/src/org/mockito/internal/configuration/SpyAnnotationEngine.java
++++ b/src/org/mockito/internal/configuration/SpyAnnotationEngine.java
+@@ -93,8 +93,9 @@
+             Class<?> enclosing = type.getEnclosingClass();
+             if (enclosing != null) {
+                 if (!enclosing.isInstance(testInstance)) {
+-                    throw new MockitoException("@Spy annotation can only initialize inner classes declared in the test. "
+-                            + "Inner class: '" + type.getSimpleName() + "', "
++                    String var_11 = type.getSimpleName();
++					throw new MockitoException("@Spy annotation can only initialize inner classes declared in the test. "
++                            + "Inner class: '" + var_11 + "', "
+                             + "outer class: '" + enclosing.getSimpleName() + "'.");
+                 }
+                 return Mockito.mock(type, settings

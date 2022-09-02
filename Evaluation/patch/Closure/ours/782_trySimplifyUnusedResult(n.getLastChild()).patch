@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..3f620e9 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -174,7 +174,8 @@
+     switch (n.getType()) {
+       case Token.HOOK:
+         Node trueNode = trySimplifyUnusedResult(n.getFirstChild().getNext());
+-        Node falseNode = trySimplifyUnusedResult(n.getLastChild());
++        Node var_782 = trySimplifyUnusedResult(n.getLastChild());
++		Node falseNode = var_782;
+         // If one or more of the conditional children were removed,
+         // transform the HOOK to an equivalent operation:
+         //    x() ? foo() : 1 --> x() && foo()

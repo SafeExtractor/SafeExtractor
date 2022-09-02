@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..240525d 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -3195,8 +3195,9 @@
+    *     containing execution scope.
+    */
+   static boolean isExecutedExactlyOnce(Node n) {
+-    inspect: do {
+-      Node parent = n.getParent();
++    Node var_2101 = n.getParent();
++	inspect: do {
++      Node parent = var_2101;
+       switch (parent.getType()) {
+         case Token.IF:
+         case Token.HOOK:
+@@ -3236,7 +3237,7 @@
+           // Done, we've reached the scope root.
+           break inspect;
+       }
+-    } while ((n = n.getParent()) != null);
++    } while ((n = var_2101) != null);
+     return true;
+   }
+ 

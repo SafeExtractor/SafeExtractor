@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/VarCheck.java b/src/com/google/javascript/jscomp/VarCheck.java
+index a497232..1f15d3f 100644
+--- a/src/com/google/javascript/jscomp/VarCheck.java
++++ b/src/com/google/javascript/jscomp/VarCheck.java
+@@ -145,13 +145,14 @@
+     // Check that the var has been declared.
+     Scope scope = t.getScope();
+     Scope.Var var = scope.getVar(varName);
+-    if (var == null) {
++    CompilerInput var_904 = t.getInput();
++	if (var == null) {
+       if (NodeUtil.isFunctionExpression(parent)) {
+         // e.g. [ function foo() {} ], it's okay if "foo" isn't defined in the
+         // current scope.
+       } else {
+         // The extern checks are stricter, don't report a second error.
+-        if (!strictExternCheck || !t.getInput().isExtern()) {
++        if (!strictExternCheck || !var_904.isExtern()) {
+           t.report(n, UNDEFINED_VAR_ERROR, varName);
+         }
+ 
+@@ -166,7 +167,7 @@
+       return;
+     }
+ 
+-    CompilerInput currInput = t.getInput();
++    CompilerInput currInput = var_904;
+     CompilerInput varInput = var.input;
+     if (currInput == varInput || currInput == null || varInput == null) {
+       // The variable was defined in the same file. This is fine.

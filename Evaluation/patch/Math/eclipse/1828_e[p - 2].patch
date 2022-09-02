@@ -1,0 +1,33 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java b/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
+index efbe8a2..defa943 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
+@@ -325,10 +325,11 @@
+             }
+             k++;
+             // Perform the task indicated by kase.
+-            switch (kase) {
++            double var_1828 = e[p - 2];
++			switch (kase) {
+                 // Deflate negligible s(p).
+                 case 1: {
+-                    double f = e[p - 2];
++                    double f = var_1828;
+                     e[p - 2] = 0;
+                     for (int j = p - 2; j >= k; j--) {
+                         double t = FastMath.hypot(singularValues[j], f);
+@@ -374,12 +375,12 @@
+                     final double maxPm1Pm2 = FastMath.max(FastMath.abs(singularValues[p - 1]),
+                                                           FastMath.abs(singularValues[p - 2]));
+                     final double scale = FastMath.max(FastMath.max(FastMath.max(maxPm1Pm2,
+-                                                                                FastMath.abs(e[p - 2])),
++                                                                                FastMath.abs(var_1828)),
+                                                                    FastMath.abs(singularValues[k])),
+                                                       FastMath.abs(e[k]));
+                     final double sp = singularValues[p - 1] / scale;
+                     final double spm1 = singularValues[p - 2] / scale;
+-                    final double epm1 = e[p - 2] / scale;
++                    final double epm1 = var_1828 / scale;
+                     final double sk = singularValues[k] / scale;
+                     final double ek = e[k] / scale;
+                     final double b = ((spm1 + sp) * (spm1 - sp) + epm1 * epm1) / 2.0;

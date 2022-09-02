@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/distribution/MultivariateNormalDistribution.java b/src/main/java/org/apache/commons/math3/distribution/MultivariateNormalDistribution.java
+index 75f45b3..2bcfc5c 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/MultivariateNormalDistribution.java
++++ b/src/main/java/org/apache/commons/math3/distribution/MultivariateNormalDistribution.java
+@@ -234,7 +234,8 @@
+         final double[] preMultiplied = covarianceMatrixInverse.preMultiply(centered);
+         double sum = 0;
+         for (int i = 0; i < preMultiplied.length; i++) {
+-            sum += preMultiplied[i] * centered[i];
++            double var_858 = centered[i];
++			sum += preMultiplied[i] * var_858;
+         }
+         return FastMath.exp(-0.5 * sum);
+     }

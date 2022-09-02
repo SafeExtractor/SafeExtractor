@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+index c837709..3003948 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+@@ -706,7 +706,8 @@
+             // minor correction if hsig==false
+             double oldFac = hsig ? 0 : ccov1 * cc * (2 - cc);
+             oldFac += 1 - ccov1 - ccovmu;
+-            if (isActiveCMA) {
++            RealMatrix var_3017 = arpos.transpose();
++			if (isActiveCMA) {
+                 // Adapt covariance matrix C active CMA
+                 negccov = (1 - ccovmu) * 0.25 * mueff /
+                     (Math.pow(dimension + 2, 1.5) + 2 * mueff);
+@@ -741,7 +742,7 @@
+                     .add(arpos.scalarMultiply( // plus rank one update
+                                               ccovmu + (1 - negalphaold) * negccov) // plus rank mu update
+                          .multiply(times(repmat(weights, 1, dimension),
+-                                         arpos.transpose())))
++                                         var_3017)))
+                     .subtract(Cneg.scalarMultiply(negccov));
+             } else {
+                 // Adapt covariance matrix C - nonactive
+@@ -749,7 +750,7 @@
+                     .add(roneu) // plus rank one update
+                     .add(arpos.scalarMultiply(ccovmu) // plus rank mu update
+                          .multiply(times(repmat(weights, 1, dimension),
+-                                         arpos.transpose())));
++                                         var_3017)));
+             }
+         }
+         updateBD(negccov);

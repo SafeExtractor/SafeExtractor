@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java b/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java
+index 522fe94..5513f9f 100644
+--- a/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java
++++ b/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java
+@@ -323,7 +323,8 @@
+       // TODO(user): Side-effect is OK sometimes. As long as there are no
+       // side-effect function down all paths to the use. Once we have all the
+       // side-effect analysis tool.
+-      if (NodeUtil.mayHaveSideEffects(def.getLastChild(), compiler)) {
++      Node var_1502 = def.getLastChild();
++	if (NodeUtil.mayHaveSideEffects(var_1502, compiler)) {
+         return false;
+       }
+ 
+@@ -360,7 +361,7 @@
+       // TODO(johnlenz): rework catch expression handling when we
+       // have lexical scope support so catch expressions don't
+       // need to be special cased.
+-      if (NodeUtil.has(def.getLastChild(),
++      if (NodeUtil.has(var_1502,
+           new Predicate<Node>() {
+               @Override
+               public boolean apply(Node input) {

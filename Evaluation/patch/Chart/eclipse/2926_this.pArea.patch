@@ -1,0 +1,88 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java b/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java
+index 6117418..e62e47e 100644
+--- a/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java
+@@ -374,7 +374,8 @@
+         // avoid possible sun.dc.pr.PRException: endPath: bad path
+         transY1 = restrictValueToDataArea(transY1, plot, dataArea);
+ 
+-        if (this.pArea == null && !Double.isNaN(y1)) {
++        Polygon var_2926 = this.pArea;
++		if (var_2926 == null && !Double.isNaN(y1)) {
+ 
+             // Create a new Area for the series
+             this.pArea = new Polygon();
+@@ -388,10 +389,10 @@
+ 
+             // The first point is (x, this.baseYValue)
+             if (orientation == PlotOrientation.VERTICAL) {
+-                this.pArea.addPoint((int) transX1, (int) transY2);
++                var_2926.addPoint((int) transX1, (int) transY2);
+             }
+             else if (orientation == PlotOrientation.HORIZONTAL) {
+-                this.pArea.addPoint((int) transY2, (int) transX1);
++                var_2926.addPoint((int) transY2, (int) transX1);
+             }
+         }
+ 
+@@ -425,10 +426,10 @@
+             if (transY0 != transY1) {
+                 // not just a horizontal bar but need to perform a 'step'.
+                 if (orientation == PlotOrientation.VERTICAL) {
+-                    this.pArea.addPoint((int) transX1, (int) transY0);
++                    var_2926.addPoint((int) transX1, (int) transY0);
+                 }
+                 else if (orientation == PlotOrientation.HORIZONTAL) {
+-                    this.pArea.addPoint((int) transY0, (int) transX1);
++                    var_2926.addPoint((int) transY0, (int) transX1);
+                 }
+             }
+         }
+@@ -437,10 +438,10 @@
+         if (!Double.isNaN(y1)) {
+             // Add each point to Area (x, y)
+             if (orientation == PlotOrientation.VERTICAL) {
+-                this.pArea.addPoint((int) transX1, (int) transY1);
++                var_2926.addPoint((int) transX1, (int) transY1);
+             }
+             else if (orientation == PlotOrientation.HORIZONTAL) {
+-                this.pArea.addPoint((int) transY1, (int) transX1);
++                var_2926.addPoint((int) transY1, (int) transX1);
+             }
+ 
+             if (getShapesVisible()) {
+@@ -475,7 +476,7 @@
+         // Check if the item is the last item for the series or if it
+         // is a NULL value and number of items > 0.  We can't draw an area for
+         // a single point.
+-        if (getPlotArea() && item > 0 && this.pArea != null
++        if (getPlotArea() && item > 0 && var_2926 != null
+                           && (item == (itemCount - 1) || Double.isNaN(y1))) {
+ 
+             double transY2 = rangeAxis.valueToJava2D(getRangeBase(), dataArea,
+@@ -486,21 +487,21 @@
+ 
+             if (orientation == PlotOrientation.VERTICAL) {
+                 // Add the last point (x,0)
+-                this.pArea.addPoint((int) transX1, (int) transY2);
++                var_2926.addPoint((int) transX1, (int) transY2);
+             }
+             else if (orientation == PlotOrientation.HORIZONTAL) {
+                 // Add the last point (x,0)
+-                this.pArea.addPoint((int) transY2, (int) transX1);
++                var_2926.addPoint((int) transY2, (int) transX1);
+             }
+ 
+             // fill the polygon
+-            g2.fill(this.pArea);
++            g2.fill(var_2926);
+ 
+             // draw an outline around the Area.
+             if (isOutline()) {
+                 g2.setStroke(plot.getOutlineStroke());
+                 g2.setPaint(plot.getOutlinePaint());
+-                g2.draw(this.pArea);
++                g2.draw(var_2926);
+             }
+ 
+             // start new area when needed (see above)

@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/RenameProperties.java b/src/com/google/javascript/jscomp/RenameProperties.java
+index 7753a36..f6594ec 100644
+--- a/src/com/google/javascript/jscomp/RenameProperties.java
++++ b/src/com/google/javascript/jscomp/RenameProperties.java
+@@ -374,15 +374,16 @@
+ 
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      switch (n.getType()) {
++      Node var_1373 = n.getFirstChild();
++	switch (n.getType()) {
+         case Token.GETPROP:
+-          Node dest = n.getFirstChild().getNext();
++          Node dest = var_1373.getNext();
+           if (dest.isString()) {
+             externedNames.add(dest.getString());
+           }
+           break;
+         case Token.OBJECTLIT:
+-          for (Node child = n.getFirstChild();
++          for (Node child = var_1373;
+                child != null;
+                child = child.getNext()) {
+             externedNames.add(child.getString());

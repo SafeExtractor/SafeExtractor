@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/renderer/category/ScatterRenderer.java b/source/org/jfree/chart/renderer/category/ScatterRenderer.java
+index 36218bf..cf4dd21 100644
+--- a/source/org/jfree/chart/renderer/category/ScatterRenderer.java
++++ b/source/org/jfree/chart/renderer/category/ScatterRenderer.java
+@@ -61,6 +61,7 @@
+ import org.jfree.chart.axis.CategoryAxis;
+ import org.jfree.chart.axis.ValueAxis;
+ import org.jfree.chart.event.RendererChangeEvent;
++import org.jfree.chart.labels.CategorySeriesLabelGenerator;
+ import org.jfree.chart.plot.CategoryPlot;
+ import org.jfree.chart.plot.PlotOrientation;
+ import org.jfree.chart.util.BooleanList;
+@@ -474,8 +475,9 @@
+                     dataset, series);
+             String description = label;
+             String toolTipText = null;
+-            if (getLegendItemToolTipGenerator() != null) {
+-                toolTipText = getLegendItemToolTipGenerator().generateLabel(
++            CategorySeriesLabelGenerator var_2583 = getLegendItemToolTipGenerator();
++			if (var_2583 != null) {
++                toolTipText = var_2583.generateLabel(
+                         dataset, series);
+             }
+             String urlText = null;

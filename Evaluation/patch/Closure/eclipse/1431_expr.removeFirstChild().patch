@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..269778c 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -659,7 +659,8 @@
+           return n;
+         }
+ 
+-        if (cond.isNot()) {
++        Node var_1431 = expr.removeFirstChild();
++		if (cond.isNot()) {
+           // if(!x)bar(); -> x||bar();
+           if (isLowerPrecedenceInExpression(cond, OR_PRECEDENCE) &&
+               isLowerPrecedenceInExpression(expr.getFirstChild(),
+@@ -670,7 +671,7 @@
+ 
+           Node or = IR.or(
+               cond.removeFirstChild(),
+-              expr.removeFirstChild()).srcref(n);
++              var_1431).srcref(n);
+           Node newExpr = NodeUtil.newExpr(or);
+           parent.replaceChild(n, newExpr);
+           reportCodeChange();
+@@ -690,7 +691,7 @@
+         }
+ 
+         n.removeChild(cond);
+-        Node and = IR.and(cond, expr.removeFirstChild()).srcref(n);
++        Node and = IR.and(cond, var_1431).srcref(n);
+         Node newExpr = NodeUtil.newExpr(and);
+         parent.replaceChild(n, newExpr);
+         reportCodeChange();

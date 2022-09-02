@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/Normalize.java b/src/com/google/javascript/jscomp/Normalize.java
+index 98b136e..646e344 100644
+--- a/src/com/google/javascript/jscomp/Normalize.java
++++ b/src/com/google/javascript/jscomp/Normalize.java
+@@ -573,8 +573,9 @@
+             extractForInitializer(c, insertBefore, insertBeforeParent);
+             break;
+           case Token.FOR:
+-            if (NodeUtil.isForIn(c)) {
+-              Node first = c.getFirstChild();
++            Node var_1258 = c.getFirstChild();
++			if (NodeUtil.isForIn(c)) {
++              Node first = var_1258;
+               if (first.isVar()) {
+                 // Transform:
+                 //    for (var a = 1 in b) {}
+@@ -587,8 +588,8 @@
+                 insertBeforeParent.addChildBefore(newStatement, insertBefore);
+                 reportCodeChange("FOR-IN var declaration");
+               }
+-            } else if (!c.getFirstChild().isEmpty()) {
+-              Node init = c.getFirstChild();
++            } else if (!var_1258.isEmpty()) {
++              Node init = var_1258;
+               Node empty = IR.empty();
+               empty.copyInformationFrom(c);
+               c.replaceChild(init, empty);

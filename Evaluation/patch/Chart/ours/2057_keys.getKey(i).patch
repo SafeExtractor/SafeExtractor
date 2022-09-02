@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot.java b/source/org/jfree/chart/plot/PiePlot.java
+index 34014e9..5ad2be8 100644
+--- a/source/org/jfree/chart/plot/PiePlot.java
++++ b/source/org/jfree/chart/plot/PiePlot.java
+@@ -2983,8 +2983,9 @@
+         double verticalLinkRadius = state.getLinkArea().getHeight() / 2.0;
+ 
+         for (int i = 0; i < keys.getItemCount(); i++) {
+-            String label = this.labelGenerator.generateSectionLabel(
+-                    this.dataset, keys.getKey(i));
++            Comparable var_2057 = keys.getKey(i);
++			String label = this.labelGenerator.generateSectionLabel(
++                    this.dataset, var_2057);
+ 
+             if (label != null) {
+                 TextBlock block = TextUtilities.createTextBlock(label,
+@@ -3006,10 +3007,10 @@
+                               - Math.sin(theta) * verticalLinkRadius;
+                 double hh = labelBox.getHeight(g2);
+                 this.labelDistributor.addPieLabelRecord(new PieLabelRecord(
+-                        keys.getKey(i), theta, baseY, labelBox, hh,
++                        var_2057, theta, baseY, labelBox, hh,
+                         lGap / 2.0 + lGap / 2.0 * Math.cos(theta),
+                         1.0 - getLabelLinkDepth()
+-                        + getExplodePercent(keys.getKey(i))));
++                        + getExplodePercent(var_2057)));
+             }
+         }
+         double hh = plotArea.getHeight();

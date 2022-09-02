@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+index 5f6b2c5..0ed37ee 100644
+--- a/src/com/google/javascript/jscomp/Compiler.java
++++ b/src/com/google/javascript/jscomp/Compiler.java
+@@ -290,15 +290,18 @@
+       options.checkTypes = true;
+     } else if (options.disables(DiagnosticGroups.CHECK_TYPES)) {
+       options.checkTypes = false;
+-    } else if (!options.checkTypes) {
+-      // If DiagnosticGroups did not override the plain checkTypes
+-      // option, and checkTypes is enabled, then turn off the
+-      // parser type warnings.
+-      options.setWarningLevel(
+-          DiagnosticGroup.forType(
+-              RhinoErrorReporter.TYPE_PARSE_ERROR),
+-          CheckLevel.OFF);
+-    }
++    } else {
++		boolean var_481 = options.checkTypes;
++		if (!var_481) {
++		  // If DiagnosticGroups did not override the plain checkTypes
++		  // option, and checkTypes is enabled, then turn off the
++		  // parser type warnings.
++		  options.setWarningLevel(
++		      DiagnosticGroup.forType(
++		          RhinoErrorReporter.TYPE_PARSE_ERROR),
++		      CheckLevel.OFF);
++		}
++	}
+ 
+     if (options.checkGlobalThisLevel.isOn() &&
+         !options.disables(DiagnosticGroups.GLOBAL_THIS)) {

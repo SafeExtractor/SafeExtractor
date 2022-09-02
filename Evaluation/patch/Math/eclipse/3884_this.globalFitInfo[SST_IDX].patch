@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java b/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java
+index 8b9d8e0..eaee993 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java
+@@ -122,9 +122,10 @@
+         this.globalFitInfo[SSE_IDX] = sse;
+         this.globalFitInfo[MSE_IDX] = this.globalFitInfo[SSE_IDX] /
+                 (nobs - rank);
+-        this.globalFitInfo[RSQ_IDX] = 1.0 -
++        double var_3884 = this.globalFitInfo[SST_IDX];
++		this.globalFitInfo[RSQ_IDX] = 1.0 -
+                 this.globalFitInfo[SSE_IDX] /
+-                this.globalFitInfo[SST_IDX];
++                var_3884;
+ 
+         if (!containsConstant) {
+             this.globalFitInfo[ADJRSQ_IDX] = 1.0-

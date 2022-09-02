@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/MultistepIntegrator.java b/src/main/java/org/apache/commons/math3/ode/MultistepIntegrator.java
+index a729441..dfb4b6f 100644
+--- a/src/main/java/org/apache/commons/math3/ode/MultistepIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/MultistepIntegrator.java
+@@ -377,11 +377,12 @@
+                 final ExpandableStatefulODE expandable = getExpandable();
+                 final EquationsMapper primary = expandable.getPrimaryMapper();
+                 primary.insertEquationData(interpolator.getInterpolatedState(), y[count]);
+-                primary.insertEquationData(interpolator.getInterpolatedDerivatives(), yDot[count]);
++                double[] var_2552 = yDot[count];
++				primary.insertEquationData(interpolator.getInterpolatedDerivatives(), var_2552);
+                 int index = 0;
+                 for (final EquationsMapper secondary : expandable.getSecondaryMappers()) {
+                     secondary.insertEquationData(interpolator.getInterpolatedSecondaryState(index), y[count]);
+-                    secondary.insertEquationData(interpolator.getInterpolatedSecondaryDerivatives(index), yDot[count]);
++                    secondary.insertEquationData(interpolator.getInterpolatedSecondaryDerivatives(index), var_2552);
+                     ++index;
+                 }
+             }

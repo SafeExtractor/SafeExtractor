@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..346fc02 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -393,7 +393,8 @@
+   }
+ 
+   private void handleFor(Node forNode) {
+-    if (forNode.getChildCount() == 4) {
++    Branch var_1897 = Branch.ON_TRUE;
++	if (forNode.getChildCount() == 4) {
+       // We have for (init; cond; iter) { body }
+       Node init = forNode.getFirstChild();
+       Node cond = init.getNext();
+@@ -403,7 +404,7 @@
+       // checking the condition (for the first time).
+       createEdge(init, Branch.UNCOND, forNode);
+       // The edge that transfer control to the beginning of the loop body.
+-      createEdge(forNode, Branch.ON_TRUE, computeFallThrough(body));
++      createEdge(forNode, var_1897, computeFallThrough(body));
+       // The edge to end of the loop.
+       createEdge(forNode, Branch.ON_FALSE,
+           computeFollowNode(forNode, this));
+@@ -423,7 +424,7 @@
+       // The collection behaves like init.
+       createEdge(collection, Branch.UNCOND, forNode);
+       // The edge that transfer control to the beginning of the loop body.
+-      createEdge(forNode, Branch.ON_TRUE, computeFallThrough(body));
++      createEdge(forNode, var_1897, computeFallThrough(body));
+       // The edge to end of the loop.
+       createEdge(forNode, Branch.ON_FALSE,
+           computeFollowNode(forNode, this));

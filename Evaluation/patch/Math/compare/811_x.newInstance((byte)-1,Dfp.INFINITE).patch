@@ -1,0 +1,41 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/811_x.newInstance((byte)-1,Dfp.INFINITE).patch b/Users/safe/paper/Evaluation/patch/Math/ours/811_x.newInstance((byte)-1,Dfp.INFINITE).patch
+index 932f084..cc1ffb0 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/811_x.newInstance((byte)-1,Dfp.INFINITE).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/811_x.newInstance((byte)-1,Dfp.INFINITE).patch
+@@ -1,32 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+-index af670fc..9e54481 100644
++index af670fc..b340cfa 100644
+ --- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+ +++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+-@@ -539,7 +539,8 @@
+-         }
+- 
+-         // X == 0
+--        if (x.equals(zero)) {
+-+        Dfp var_811 = x.newInstance((byte)-1, Dfp.INFINITE);
+-+		if (x.equals(zero)) {
+-             if (Dfp.copysign(one, x).greaterThan(zero)) {
+-                 // X == +0
+-                 if (y.greaterThan(zero)) {
+-@@ -554,7 +555,7 @@
+-                     if (y.greaterThan(zero)) {
+-                         return x.newInstance(zero.negate());
+-                     } else {
+--                        return x.newInstance(x.newInstance((byte)-1, Dfp.INFINITE));
+-+                        return x.newInstance(var_811);
+-                     }
+-                 } else {
+-                     // Y is not odd integer
+-@@ -601,7 +602,7 @@
++@@ -601,7 +601,8 @@
+                  if (y.classify() == Dfp.FINITE && y.rint().equals(y) && !y.remainder(two).equals(zero)) {
+                      // If y is odd integer
+                      if (y.greaterThan(zero)) {
+ -                        return x.newInstance(x.newInstance((byte)-1, Dfp.INFINITE));
+-+                        return x.newInstance(var_811);
+++                        Dfp var_811 = x.newInstance((byte)-1, Dfp.INFINITE);
+++						return x.newInstance(var_811);
+                      } else {
+                          return x.newInstance(zero.negate());
+                      }

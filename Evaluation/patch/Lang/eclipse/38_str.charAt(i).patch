@@ -1,0 +1,36 @@
+diff --git a/src/main/java/org/apache/commons/lang3/StringUtils.java b/src/main/java/org/apache/commons/lang3/StringUtils.java
+index 04b53fa..badfa86 100644
+--- a/src/main/java/org/apache/commons/lang3/StringUtils.java
++++ b/src/main/java/org/apache/commons/lang3/StringUtils.java
+@@ -2982,10 +2982,11 @@
+         int i = 0, start = 0;
+         boolean match = false;
+         boolean lastMatch = false;
+-        if (separatorChars == null) {
++        char var_38 = str.charAt(i);
++		if (separatorChars == null) {
+             // Null separator means use whitespace
+             while (i < len) {
+-                if (Character.isWhitespace(str.charAt(i))) {
++                if (Character.isWhitespace(var_38)) {
+                     if (match || preserveAllTokens) {
+                         lastMatch = true;
+                         if (sizePlus1++ == max) {
+@@ -3006,7 +3007,7 @@
+             // Optimise 1 character case
+             final char sep = separatorChars.charAt(0);
+             while (i < len) {
+-                if (str.charAt(i) == sep) {
++                if (var_38 == sep) {
+                     if (match || preserveAllTokens) {
+                         lastMatch = true;
+                         if (sizePlus1++ == max) {
+@@ -3026,7 +3027,7 @@
+         } else {
+             // standard case
+             while (i < len) {
+-                if (separatorChars.indexOf(str.charAt(i)) >= 0) {
++                if (separatorChars.indexOf(var_38) >= 0) {
+                     if (match || preserveAllTokens) {
+                         lastMatch = true;
+                         if (sizePlus1++ == max) {

@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+index 067e1df..4ca0fb5 100644
+--- a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
++++ b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+@@ -558,7 +558,8 @@
+      * @return The new time period.
+      */
+     public synchronized RegularTimePeriod advanceTime() {
+-        RegularTimePeriod nextInstant = this.pointsInTime[this.newestAt].next();
++        RegularTimePeriod[] var_4285 = this.pointsInTime;
++		RegularTimePeriod nextInstant = var_4285[this.newestAt].next();
+         this.newestAt = this.oldestAt;  // newestAt takes value previously held
+                                         // by oldestAT
+         /***
+@@ -588,7 +589,7 @@
+             this.valueHistory[s].enterData(this.newestAt, wiper);
+         }
+         // Update the array of TimePeriods:
+-        this.pointsInTime[this.newestAt] = nextInstant;
++        var_4285[this.newestAt] = nextInstant;
+         // Now advance "oldestAt", wrapping at end of the array
+         this.oldestAt++;
+         if (this.oldestAt >= this.historyCount) {

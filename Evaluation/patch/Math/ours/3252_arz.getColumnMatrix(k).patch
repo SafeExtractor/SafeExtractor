@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+index 104bdf5..c1f4144 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+@@ -523,11 +523,12 @@
+             for (int k = 0; k < lambda; k++) {
+                 RealMatrix arxk = null;
+                 for (int i = 0; i < checkFeasableCount + 1; i++) {
+-                    if (diagonalOnly <= 0) {
+-                        arxk = xmean.add(BD.multiply(arz.getColumnMatrix(k))
++                    RealMatrix var_3252 = arz.getColumnMatrix(k);
++					if (diagonalOnly <= 0) {
++                        arxk = xmean.add(BD.multiply(var_3252)
+                                          .scalarMultiply(sigma)); // m + sig * Normal(0,C)
+                     } else {
+-                        arxk = xmean.add(times(diagD,arz.getColumnMatrix(k))
++                        arxk = xmean.add(times(diagD,var_3252)
+                                          .scalarMultiply(sigma));
+                     }
+                     if (i >= checkFeasableCount ||

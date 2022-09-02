@@ -1,0 +1,33 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/495_FastMath.abs(fb).patch b/Users/safe/paper/Evaluation/patch/Math/ours/495_FastMath.abs(fb).patch
+index 3507fcf..2fce31c 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/495_FastMath.abs(fb).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/495_FastMath.abs(fb).patch
+@@ -1,22 +1,15 @@
+ diff --git a/src/main/java/org/apache/commons/math3/analysis/solvers/BrentSolver.java b/src/main/java/org/apache/commons/math3/analysis/solvers/BrentSolver.java
+-index 670d707..95dddbf 100644
++index 670d707..c4487cd 100644
+ --- a/src/main/java/org/apache/commons/math3/analysis/solvers/BrentSolver.java
+ +++ b/src/main/java/org/apache/commons/math3/analysis/solvers/BrentSolver.java
+-@@ -154,7 +154,8 @@
+-         final double eps = getRelativeAccuracy();
+- 
+-         while (true) {
+--            if (FastMath.abs(fc) < FastMath.abs(fb)) {
+-+            double var_495 = FastMath.abs(fb);
+-+			if (FastMath.abs(fc) < var_495) {
+-                 a = b;
+-                 b = c;
+-                 c = a;
+-@@ -171,7 +172,7 @@
++@@ -170,8 +170,9 @@
++                 Precision.equals(fb, 0))  {
+                  return b;
+              }
+-             if (FastMath.abs(e) < tol ||
++-            if (FastMath.abs(e) < tol ||
+ -                FastMath.abs(fa) <= FastMath.abs(fb)) {
+++            double var_495 = FastMath.abs(fb);
+++			if (FastMath.abs(e) < tol ||
+ +                FastMath.abs(fa) <= var_495) {
+                  // Force bisection.
+                  d = m;

@@ -1,0 +1,23 @@
+diff --git a/src/java/org/apache/commons/math/ode/nonstiff/DormandPrince853StepInterpolator.java b/src/java/org/apache/commons/math/ode/nonstiff/DormandPrince853StepInterpolator.java
+index 4d63350..8e7d905 100644
+--- a/src/java/org/apache/commons/math/ode/nonstiff/DormandPrince853StepInterpolator.java
++++ b/src/java/org/apache/commons/math/ode/nonstiff/DormandPrince853StepInterpolator.java
+@@ -144,14 +144,15 @@
+ 
+       // compute the interpolation vectors for this time step
+       for (int i = 0; i < interpolatedState.length; ++i) {
+-        v[0][i] = h * (b_01 * yDotK[0][i]  + b_06 * yDotK[5][i] + b_07 * yDotK[6][i] +
+-                       b_08 * yDotK[7][i]  + b_09 * yDotK[8][i] + b_10 * yDotK[9][i] +
++        double yDot9 = yDotK[8][i];
++		v[0][i] = h * (b_01 * yDotK[0][i]  + b_06 * yDotK[5][i] + b_07 * yDotK[6][i] +
++                       b_08 * yDotK[7][i]  + b_09 * yDot9 + b_10 * yDotK[9][i] +
+                        b_11 * yDotK[10][i] + b_12 * yDotK[11][i]);
+         v[1][i] = h * yDotK[0][i] - v[0][i];
+         v[2][i] = v[0][i] - v[1][i] - h * yDotK[12][i];
+         for (int k = 0; k < d.length; ++k) {
+           v[k+3][i] = h * (d[k][0] * yDotK[0][i]  + d[k][1] * yDotK[5][i]  + d[k][2] * yDotK[6][i] +
+-                           d[k][3] * yDotK[7][i]  + d[k][4] * yDotK[8][i]  + d[k][5] * yDotK[9][i] +
++                           d[k][3] * yDotK[7][i]  + d[k][4] * yDot9  + d[k][5] * yDotK[9][i] +
+                            d[k][6] * yDotK[10][i] + d[k][7] * yDotK[11][i] + d[k][8] * yDotK[12][i] +
+                            d[k][9]  * yDotKLast[0][i] +
+                            d[k][10] * yDotKLast[1][i] +

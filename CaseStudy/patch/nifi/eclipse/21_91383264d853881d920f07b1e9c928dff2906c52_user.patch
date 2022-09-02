@@ -1,0 +1,16 @@
+diff --git a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ProcessGroupResource.java b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ProcessGroupResource.java
+index 0b634a1..3aef381 100644
+--- a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ProcessGroupResource.java
++++ b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ProcessGroupResource.java
+@@ -513,8 +513,9 @@
+         // authorize access
+         serviceFacade.authorizeAccess(lookup -> {
+             final Authorizable processGroup = lookup.getProcessGroup(groupId).getAuthorizable();
+-            processGroup.authorize(authorizer, RequestAction.READ, NiFiUserUtils.getNiFiUser());
+-            processGroup.authorize(authorizer, RequestAction.WRITE, NiFiUserUtils.getNiFiUser());
++            NiFiUser user = NiFiUserUtils.getNiFiUser();
++			processGroup.authorize(authorizer, RequestAction.READ, user);
++            processGroup.authorize(authorizer, RequestAction.WRITE, user);
+         });
+ 
+         final VariableRegistryUpdateRequest request = varRegistryUpdateRequests.remove(updateId);

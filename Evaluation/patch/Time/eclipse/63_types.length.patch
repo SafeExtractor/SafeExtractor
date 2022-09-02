@@ -1,0 +1,31 @@
+diff --git a/src/main/java/org/joda/time/Partial.java b/src/main/java/org/joda/time/Partial.java
+index 6ff2771..aacc82a 100644
+--- a/src/main/java/org/joda/time/Partial.java
++++ b/src/main/java/org/joda/time/Partial.java
+@@ -196,21 +196,22 @@
+         if (values == null) {
+             throw new IllegalArgumentException("Values array must not be null");
+         }
+-        if (values.length != types.length) {
++        int var_63 = types.length;
++		if (values.length != var_63) {
+             throw new IllegalArgumentException("Values array must be the same length as the types array");
+         }
+-        if (types.length == 0) {
++        if (var_63 == 0) {
+             iTypes = types;
+             iValues = values;
+             return;
+         }
+-        for (int i = 0; i < types.length; i++) {
++        for (int i = 0; i < var_63; i++) {
+             if (types[i] == null) {
+                 throw new IllegalArgumentException("Types array must not contain null: index " + i);
+             }
+         }
+         DurationField lastUnitField = null;
+-        for (int i = 0; i < types.length; i++) {
++        for (int i = 0; i < var_63; i++) {
+             DateTimeFieldType loopType = types[i];
+             DurationField loopUnitField = loopType.getDurationType().getField(iChronology);
+             if (i > 0) {

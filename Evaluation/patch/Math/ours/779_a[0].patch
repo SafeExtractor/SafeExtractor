@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..879a9d0 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -110,8 +110,9 @@
+     protected static Dfp[] splitMult(final Dfp[] a, final Dfp[] b) {
+         final Dfp[] result = new Dfp[2];
+ 
+-        result[1] = a[0].getZero();
+-        result[0] = a[0].multiply(b[0]);
++        Dfp var_779 = a[0];
++		result[1] = var_779.getZero();
++        result[0] = var_779.multiply(b[0]);
+ 
+         /* If result[0] is infinite or zero, don't compute result[1].
+          * Attempting to do so may produce NaNs.
+@@ -121,7 +122,7 @@
+             return result;
+         }
+ 
+-        result[1] = a[0].multiply(b[1]).add(a[1].multiply(b[0])).add(a[1].multiply(b[1]));
++        result[1] = var_779.multiply(b[1]).add(a[1].multiply(b[0])).add(a[1].multiply(b[1]));
+ 
+         return result;
+     }

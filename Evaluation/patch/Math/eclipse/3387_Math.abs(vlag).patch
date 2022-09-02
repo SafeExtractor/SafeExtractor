@@ -1,0 +1,43 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..89e182c 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -1361,11 +1361,12 @@
+             step = slbd;
+             int isbd = ilbd;
+             double vlag = Double.NaN;
+-            if (k == knew) {
++            double var_3387 = Math.abs(vlag);
++			if (k == knew) {
+                 final double diff = dderiv - ONE;
+                 vlag = slbd * (dderiv - slbd * diff);
+                 final double d1 = subd * (dderiv - subd * diff);
+-                if (Math.abs(d1) > Math.abs(vlag)) {
++                if (Math.abs(d1) > var_3387) {
+                     step = subd;
+                     vlag = d1;
+                     isbd = iubd;
+@@ -1375,7 +1376,7 @@
+                 final double d4 = d2 - diff * subd;
+                 if (d3 * d4 < ZERO) {
+                     final double d5 = d2 * d2 / diff;
+-                    if (Math.abs(d5) > Math.abs(vlag)) {
++                    if (Math.abs(d5) > var_3387) {
+                         step = d2 / diff;
+                         vlag = d5;
+                         isbd = 0;
+@@ -1387,12 +1388,12 @@
+             } else {
+                 vlag = slbd * (ONE - slbd);
+                 final double tmp = subd * (ONE - subd);
+-                if (Math.abs(tmp) > Math.abs(vlag)) {
++                if (Math.abs(tmp) > var_3387) {
+                     step = subd;
+                     vlag = tmp;
+                     isbd = iubd;
+                 }
+-                if (subd > HALF && Math.abs(vlag) < ONE_OVER_FOUR) {
++                if (subd > HALF && var_3387 < ONE_OVER_FOUR) {
+                     step = HALF;
+                     vlag = ONE_OVER_FOUR;
+                     isbd = 0;

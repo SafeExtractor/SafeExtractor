@@ -1,0 +1,26 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/542_absYA.lessThan(absYB).patch b/Users/safe/paper/Evaluation/patch/Math/ours/542_absYA.lessThan(absYB).patch
+index a8b22c6..03e60c2 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/542_absYA.lessThan(absYB).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/542_absYA.lessThan(absYB).patch
+@@ -1,8 +1,8 @@
+ diff --git a/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java b/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
+-index 372c699..df881b3 100644
++index 372c699..5cd4041 100644
+ --- a/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
+ +++ b/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
+-@@ -261,13 +261,14 @@
++@@ -261,7 +261,8 @@
+  
+              // check convergence of bracketing interval
+              Dfp maxX = absXA.lessThan(absXB) ? absXB : absXA;
+@@ -12,10 +12,3 @@ index 372c699..df881b3 100644
+              final Dfp xTol = absoluteAccuracy.add(relativeAccuracy.multiply(maxX));
+              if (xB.subtract(xA).subtract(xTol).negativeOrNull() ||
+                  maxY.lessThan(functionValueAccuracy)) {
+-                 switch (allowedSolution) {
+-                 case ANY_SIDE :
+--                    return absYA.lessThan(absYB) ? xA : xB;
+-+                    return var_542 ? xA : xB;
+-                 case LEFT_SIDE :
+-                     return xA;
+-                 case RIGHT_SIDE :

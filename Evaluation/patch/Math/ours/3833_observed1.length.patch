@@ -1,0 +1,35 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/inference/GTest.java b/src/main/java/org/apache/commons/math3/stat/inference/GTest.java
+index 78ab705..5da173e 100644
+--- a/src/main/java/org/apache/commons/math3/stat/inference/GTest.java
++++ b/src/main/java/org/apache/commons/math3/stat/inference/GTest.java
+@@ -349,11 +349,12 @@
+             throws DimensionMismatchException, NotPositiveException, ZeroException {
+ 
+         // Make sure lengths are same
+-        if (observed1.length < 2) {
+-            throw new DimensionMismatchException(observed1.length, 2);
++        int var_3833 = observed1.length;
++		if (var_3833 < 2) {
++            throw new DimensionMismatchException(var_3833, 2);
+         }
+-        if (observed1.length != observed2.length) {
+-            throw new DimensionMismatchException(observed1.length, observed2.length);
++        if (var_3833 != observed2.length) {
++            throw new DimensionMismatchException(var_3833, observed2.length);
+         }
+ 
+         // Ensure non-negative counts
+@@ -365,10 +366,10 @@
+         long countSum2 = 0;
+ 
+         // Compute and compare count sums
+-        final long[] collSums = new long[observed1.length];
+-        final long[][] k = new long[2][observed1.length];
++        final long[] collSums = new long[var_3833];
++        final long[][] k = new long[2][var_3833];
+ 
+-        for (int i = 0; i < observed1.length; i++) {
++        for (int i = 0; i < var_3833; i++) {
+             if (observed1[i] == 0 && observed2[i] == 0) {
+                 throw new ZeroException(LocalizedFormats.OBSERVED_COUNTS_BOTTH_ZERO_FOR_ENTRY, i);
+             } else {

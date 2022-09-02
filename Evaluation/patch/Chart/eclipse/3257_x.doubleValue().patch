@@ -1,0 +1,37 @@
+diff --git a/source/org/jfree/chart/renderer/xy/WindItemRenderer.java b/source/org/jfree/chart/renderer/xy/WindItemRenderer.java
+index 871db8f..404325b 100644
+--- a/source/org/jfree/chart/renderer/xy/WindItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/WindItemRenderer.java
+@@ -137,11 +137,12 @@
+ 
+         RectangleEdge domainAxisLocation = plot.getDomainAxisEdge();
+         RectangleEdge rangeAxisLocation = plot.getRangeAxisEdge();
+-        ax1 = domainAxis.valueToJava2D(x.doubleValue(), plotArea,
++        double var_3257 = x.doubleValue();
++		ax1 = domainAxis.valueToJava2D(var_3257, plotArea,
+                 domainAxisLocation);
+         ay1 = rangeAxis.valueToJava2D(0.0, plotArea, rangeAxisLocation);
+ 
+-        rax2 = x.doubleValue() + (windForce * Math.cos(wdirt) * 8000000.0);
++        rax2 = var_3257 + (windForce * Math.cos(wdirt) * 8000000.0);
+         ray2 = windForce * Math.sin(wdirt);
+ 
+         ax2 = domainAxis.valueToJava2D(rax2, plotArea, domainAxisLocation);
+@@ -167,7 +168,7 @@
+         double aldir = Math.toRadians(windDir.doubleValue()
+                 * (-30.0) - 90.0 - 5.0);
+         ralx2 = wforce.doubleValue() * Math.cos(aldir) * 8000000 * 0.8
+-        + x.doubleValue();
++        + var_3257;
+         raly2 = wforce.doubleValue() * Math.sin(aldir) * 0.8;
+ 
+         alx2 = domainAxis.valueToJava2D(ralx2, plotArea, domainAxisLocation);
+@@ -179,7 +180,7 @@
+         double ardir = Math.toRadians(windDir.doubleValue()
+                 * (-30.0) - 90.0 + 5.0);
+         rarx2 = wforce.doubleValue() * Math.cos(ardir) * 8000000 * 0.8
+-                + x.doubleValue();
++                + var_3257;
+         rary2 = wforce.doubleValue() * Math.sin(ardir) * 0.8;
+ 
+         arx2 = domainAxis.valueToJava2D(rarx2, plotArea, domainAxisLocation);

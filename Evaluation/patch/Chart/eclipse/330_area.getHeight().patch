@@ -1,0 +1,37 @@
+diff --git a/source/org/jfree/chart/axis/AxisSpace.java b/source/org/jfree/chart/axis/AxisSpace.java
+index d869ec6..cc4b068 100644
+--- a/source/org/jfree/chart/axis/AxisSpace.java
++++ b/source/org/jfree/chart/axis/AxisSpace.java
+@@ -291,18 +291,20 @@
+                 area.getX(), area.getMaxY() - this.top,
+                 area.getWidth(), this.bottom
+             );
+-        }
+-        else if (edge == RectangleEdge.LEFT) {
+-            result = new Rectangle2D.Double(
+-                area.getX(), area.getY(), this.left, area.getHeight()
+-            );
+-        }
+-        else if (edge == RectangleEdge.RIGHT) {
+-            result = new Rectangle2D.Double(
+-                area.getMaxX() - this.right, area.getY(),
+-                this.right, area.getHeight()
+-            );
+-        }
++        } else {
++			double var_330 = area.getHeight();
++			if (edge == RectangleEdge.LEFT) {
++			    result = new Rectangle2D.Double(
++			        area.getX(), area.getY(), this.left, var_330
++			    );
++			}
++			else if (edge == RectangleEdge.RIGHT) {
++			    result = new Rectangle2D.Double(
++			        area.getMaxX() - this.right, area.getY(),
++			        this.right, var_330
++			    );
++			}
++		}
+         return result;
+     }
+ 

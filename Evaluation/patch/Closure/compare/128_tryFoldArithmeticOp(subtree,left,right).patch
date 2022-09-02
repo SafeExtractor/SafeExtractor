@@ -1,0 +1,39 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/128_tryFoldArithmeticOp(subtree,left,right).patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/128_tryFoldArithmeticOp(subtree,left,right).patch
+index 78435bc..31aa55c 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/128_tryFoldArithmeticOp(subtree,left,right).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/128_tryFoldArithmeticOp(subtree,left,right).patch
+@@ -1,30 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+-index 7378f31..e053a1a 100644
++index 7378f31..5ac1542 100644
+ --- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+ +++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+-@@ -114,7 +114,8 @@
+-     }
+- 
+-     // If we've reached here, node is truly a binary operator.
+--    switch(subtree.getType()) {
+-+    Node var_128 = tryFoldArithmeticOp(subtree, left, right);
+-+	switch(subtree.getType()) {
+-       case Token.GETPROP:
+-         return tryFoldGetProp(subtree, left, right);
+- 
+-@@ -155,13 +156,13 @@
++@@ -155,7 +155,8 @@
+        case Token.SUB:
+        case Token.DIV:
+        case Token.MOD:
+ -        return tryFoldArithmeticOp(subtree, left, right);
+-+        return var_128;
+++        Node var_128 = tryFoldArithmeticOp(subtree, left, right);
+++		return var_128;
+  
+        case Token.MUL:
+        case Token.BITAND:
+-       case Token.BITOR:
+-       case Token.BITXOR:
+--        Node result = tryFoldArithmeticOp(subtree, left, right);
+-+        Node result = var_128;
+-         if (result != subtree) {
+-           return result;
+-         }

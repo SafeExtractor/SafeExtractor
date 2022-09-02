@@ -1,0 +1,14 @@
+diff --git a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/state/providers/zookeeper/ZooKeeperStateProvider.java b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/state/providers/zookeeper/ZooKeeperStateProvider.java
+index 5c8b4c4..f6776d3 100644
+--- a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/state/providers/zookeeper/ZooKeeperStateProvider.java
++++ b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/state/providers/zookeeper/ZooKeeperStateProvider.java
+@@ -331,7 +331,8 @@
+             try {
+                 keeper.setData(path, data, version);
+             } catch (final KeeperException ke) {
+-                if (ke.code() == Code.NONODE) {
++                Object exceptionCode = ke.code();
++				if (exceptionCode == Code.NONODE) {
+                     createNode(path, data);
+                     return;
+                 } else {

@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java b/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
+index 372c699..677a87f 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
++++ b/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
+@@ -242,7 +242,8 @@
+         }
+ 
+         // prepare a work array for inverse polynomial interpolation
+-        final Dfp[] tmpX = new Dfp[x.length];
++        int var_546 = x.length;
++		final Dfp[] tmpX = new Dfp[var_546];
+ 
+         // current tightest bracketing of the root
+         Dfp xA    = x[signChangeIndex - 1];
+@@ -351,13 +352,13 @@
+                 System.arraycopy(y, start, y, 0, nbPoints);
+                 signChangeIndex -= start;
+ 
+-            } else  if (nbPoints == x.length) {
++            } else  if (nbPoints == var_546) {
+ 
+                 // we have to drop one point in order to insert the new one
+                 nbPoints--;
+ 
+                 // keep the tightest bracketing interval as centered as possible
+-                if (signChangeIndex >= (x.length + 1) / 2) {
++                if (signChangeIndex >= (var_546 + 1) / 2) {
+                     // we drop the lowest point, we have to shift the arrays and the index
+                     System.arraycopy(x, 1, x, 0, nbPoints);
+                     System.arraycopy(y, 1, y, 0, nbPoints);

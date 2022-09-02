@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..8a601eb 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -159,9 +159,10 @@
+         result[0] = base[0].getOne();
+         result[1] = base[0].getZero();
+ 
+-        if (a == 0) {
++        Dfp var_786 = result[0];
++		if (a == 0) {
+             // Special case a = 0
+-            return result[0].add(result[1]);
++            return var_786.add(result[1]);
+         }
+ 
+         if (a < 0) {
+@@ -193,13 +194,13 @@
+ 
+         } while (a >= 1);
+ 
+-        result[0] = result[0].add(result[1]);
++        result[0] = var_786.add(result[1]);
+ 
+         if (invert) {
+-            result[0] = base[0].getOne().divide(result[0]);
++            result[0] = base[0].getOne().divide(var_786);
+         }
+ 
+-        return result[0];
++        return var_786;
+ 
+     }
+ 

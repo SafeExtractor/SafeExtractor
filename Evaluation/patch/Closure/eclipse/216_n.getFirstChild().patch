@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/StrictModeCheck.java b/src/com/google/javascript/jscomp/StrictModeCheck.java
+index b22f3ed..bea52f5 100644
+--- a/src/com/google/javascript/jscomp/StrictModeCheck.java
++++ b/src/com/google/javascript/jscomp/StrictModeCheck.java
+@@ -218,9 +218,10 @@
+ 
+   /** Checks that label names are valid. */
+   private void checkLabel(NodeTraversal t, Node n) {
+-    if (n.getFirstChild().getString().endsWith("__")) {
++    Node var_216 = n.getFirstChild();
++	if (var_216.getString().endsWith("__")) {
+       if (!noCajaChecks) {
+-        t.report(n.getFirstChild(), ILLEGAL_NAME);
++        t.report(var_216, ILLEGAL_NAME);
+       }
+     }
+   }

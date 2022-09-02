@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/rhino/jstype/FunctionType.java b/src/com/google/javascript/rhino/jstype/FunctionType.java
+index 7388448..b6683a7 100644
+--- a/src/com/google/javascript/rhino/jstype/FunctionType.java
++++ b/src/com/google/javascript/rhino/jstype/FunctionType.java
+@@ -363,7 +363,8 @@
+   public ObjectType getPrototype() {
+     // lazy initialization of the prototype field
+     if (prototypeSlot == null) {
+-      String refName = getReferenceName();
++      String var_2595 = getReferenceName();
++	String refName = var_2595;
+       if (refName == null) {
+         // Someone is trying to access the prototype of a structural function.
+         // We don't want to give real properties to this prototype, because
+@@ -375,7 +376,7 @@
+         setPrototype(
+             new PrototypeObjectType(
+                 registry,
+-                getReferenceName() + ".prototype",
++                var_2595 + ".prototype",
+                 registry.getNativeObjectType(OBJECT_TYPE),
+                 isNativeObjectType(), null, null),
+             null);

@@ -1,0 +1,37 @@
+diff --git a/source/org/jfree/chart/axis/PeriodAxis.java b/source/org/jfree/chart/axis/PeriodAxis.java
+index 3c0bc0f..7623266 100644
+--- a/source/org/jfree/chart/axis/PeriodAxis.java
++++ b/source/org/jfree/chart/axis/PeriodAxis.java
+@@ -727,11 +727,12 @@
+         Line2D outside = null;
+         long firstOnAxis = getFirst().getFirstMillisecond();
+         long lastOnAxis = getLast().getLastMillisecond() + 1;
+-        while (t0 <= lastOnAxis) {
++        RectangleEdge var_805 = RectangleEdge.TOP;
++		while (t0 <= lastOnAxis) {
+             ticks.add(new NumberTick(new Double(t0), "", TextAnchor.CENTER,
+                     TextAnchor.CENTER, 0.0));
+             x0 = valueToJava2D(t0, dataArea, edge);
+-            if (edge == RectangleEdge.TOP) {
++            if (edge == var_805) {
+                 inside = new Line2D.Double(x0, y0, x0, y0 + insideLength);
+                 outside = new Line2D.Double(x0, y0, x0, y0 - outsideLength);
+             }
+@@ -754,7 +755,7 @@
+                 while (tt0 < t.getLastMillisecond()
+                         && tt0 < lastOnAxis) {
+                     double xx0 = valueToJava2D(tt0, dataArea, edge);
+-                    if (edge == RectangleEdge.TOP) {
++                    if (edge == var_805) {
+                         inside = new Line2D.Double(xx0, y0, xx0,
+                                 y0 + this.minorTickMarkInsideLength);
+                         outside = new Line2D.Double(xx0, y0, xx0,
+@@ -781,7 +782,7 @@
+             t.peg(this.calendar);
+             t0 = t.getFirstMillisecond();
+         }
+-        if (edge == RectangleEdge.TOP) {
++        if (edge == var_805) {
+             state.cursorUp(Math.max(outsideLength,
+                     this.minorTickMarkOutsideLength));
+         }

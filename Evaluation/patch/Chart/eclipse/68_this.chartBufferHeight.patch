@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/ChartPanel.java b/source/org/jfree/chart/ChartPanel.java
+index 001049a..86f123e 100644
+--- a/source/org/jfree/chart/ChartPanel.java
++++ b/source/org/jfree/chart/ChartPanel.java
+@@ -1653,14 +1653,15 @@
+         if (this.useBuffer) {
+ 
+             // do we need to resize the buffer?
+-            if ((this.chartBuffer == null)
++            int var_68 = this.chartBufferHeight;
++			if ((this.chartBuffer == null)
+                     || (this.chartBufferWidth != available.getWidth())
+-                    || (this.chartBufferHeight != available.getHeight())) {
++                    || (var_68 != available.getHeight())) {
+                 this.chartBufferWidth = (int) available.getWidth();
+                 this.chartBufferHeight = (int) available.getHeight();
+                 GraphicsConfiguration gc = g2.getDeviceConfiguration();
+                 this.chartBuffer = gc.createCompatibleImage(
+-                        this.chartBufferWidth, this.chartBufferHeight,
++                        this.chartBufferWidth, var_68,
+                         Transparency.TRANSLUCENT);
+                 this.refreshBuffer = true;
+             }
+@@ -1671,7 +1672,7 @@
+                 this.refreshBuffer = false; // clear the flag
+ 
+                 Rectangle2D bufferArea = new Rectangle2D.Double(
+-                        0, 0, this.chartBufferWidth, this.chartBufferHeight);
++                        0, 0, this.chartBufferWidth, var_68);
+ 
+                 // make the background of the buffer clear and transparent
+                 Graphics2D bufferG2 = (Graphics2D)
+@@ -1680,7 +1681,7 @@
+                 bufferG2.setComposite(AlphaComposite.getInstance(
+                         AlphaComposite.CLEAR, 0.0f));
+                 Rectangle r = new Rectangle(0, 0, this.chartBufferWidth,
+-                        this.chartBufferHeight);
++                        var_68);
+                 bufferG2.fill(r);
+                 bufferG2.setComposite(savedComposite);
+ 

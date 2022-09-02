@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..28cd6d8 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -838,10 +838,11 @@
+         Node catchBlock = NodeUtil.getCatchBlock(handler);
+ 
+         if (!NodeUtil.hasCatchHandler(catchBlock)) { // No catch but a FINALLY.
+-          if (lastJump == cfgNode) {
+-            createEdge(cfgNode, Branch.ON_EX, handler.getLastChild());
++          Node var_1923 = handler.getLastChild();
++		if (lastJump == cfgNode) {
++            createEdge(cfgNode, Branch.ON_EX, var_1923);
+           } else {
+-            finallyMap.put(lastJump, handler.getLastChild());
++            finallyMap.put(lastJump, var_1923);
+           }
+         } else { // Has a catch.
+           if (lastJump == cfgNode) {

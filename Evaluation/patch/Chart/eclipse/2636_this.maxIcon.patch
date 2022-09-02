@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java b/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
+index eaf0b57..5c025b3 100644
+--- a/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
++++ b/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
+@@ -373,15 +373,16 @@
+                     double maxY = rangeAxis.valueToJava2D(this.max, dataArea,
+                             plot.getRangeAxisEdge());
+ 
+-                    if (orient == PlotOrientation.VERTICAL) {
++                    Icon var_2636 = this.maxIcon;
++					if (orient == PlotOrientation.VERTICAL) {
+                         g2.draw(new Line2D.Double(x1, minY, x1, maxY));
+                         this.minIcon.paintIcon(null, g2, (int) x1, (int) minY);
+-                        this.maxIcon.paintIcon(null, g2, (int) x1, (int) maxY);
++                        var_2636.paintIcon(null, g2, (int) x1, (int) maxY);
+                     }
+                     else {
+                         g2.draw(new Line2D.Double(minY, x1, maxY, x1));
+                         this.minIcon.paintIcon(null, g2, (int) minY, (int) x1);
+-                        this.maxIcon.paintIcon(null, g2, (int) maxY, (int) x1);
++                        var_2636.paintIcon(null, g2, (int) maxY, (int) x1);
+                     }
+                 }
+             }

@@ -1,0 +1,43 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..203d329 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -177,6 +177,7 @@
+ import org.jfree.chart.util.ObjectUtilities;
+ import org.jfree.chart.util.PublicCloneable;
+ import org.jfree.chart.util.RectangleAnchor;
++import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.chart.util.RectangleInsets;
+ import org.jfree.data.Range;
+ import org.jfree.data.general.DatasetUtilities;
+@@ -1539,7 +1540,8 @@
+                                 Marker marker,
+                                 Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        RectangleEdge var_3150 = plot.getRangeAxisEdge();
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = rangeAxis.getRange();
+@@ -1548,7 +1550,7 @@
+             }
+ 
+             double v = rangeAxis.valueToJava2D(value, dataArea,
+-                    plot.getRangeAxisEdge());
++                    var_3150);
+             PlotOrientation orientation = plot.getOrientation();
+             Line2D line = null;
+             if (orientation == PlotOrientation.HORIZONTAL) {
+@@ -1593,9 +1595,9 @@
+             }
+ 
+             double start2d = rangeAxis.valueToJava2D(start, dataArea,
+-                    plot.getRangeAxisEdge());
++                    var_3150);
+             double end2d = rangeAxis.valueToJava2D(end, dataArea,
+-                    plot.getRangeAxisEdge());
++                    var_3150);
+             double low = Math.min(start2d, end2d);
+             double high = Math.max(start2d, end2d);
+ 

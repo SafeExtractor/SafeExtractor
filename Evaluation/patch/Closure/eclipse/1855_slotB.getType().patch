@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/LinkedFlowScope.java b/src/com/google/javascript/jscomp/LinkedFlowScope.java
+index a97d855..5818589 100644
+--- a/src/com/google/javascript/jscomp/LinkedFlowScope.java
++++ b/src/com/google/javascript/jscomp/LinkedFlowScope.java
+@@ -448,7 +448,8 @@
+         StaticSlot<JSType> slotB = slotsB.get(name);
+ 
+         JSType joinedType = null;
+-        if (slotB == null || slotB.getType() == null) {
++        JSType var_1855 = slotB.getType();
++		if (slotB == null || var_1855 == null) {
+           StaticSlot<JSType> fnSlot
+               = joinedScopeB.getFunctionScope().getSlot(name);
+           JSType fnSlotType = fnSlot == null ? null : fnSlot.getType();
+@@ -467,12 +468,12 @@
+             symbols.put(name, slotB);
+           } else {
+             // Case #4
+-            joinedType = slotB.getType().getLeastSupertype(fnSlotType);
++            joinedType = var_1855.getLeastSupertype(fnSlotType);
+           }
+         } else {
+           // Case #5
+           joinedType =
+-              slotA.getType().getLeastSupertype(slotB.getType());
++              slotA.getType().getLeastSupertype(var_1855);
+         }
+ 
+         if (joinedType != null) {

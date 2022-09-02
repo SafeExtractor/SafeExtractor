@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..dc2925a 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -660,7 +660,8 @@
+             // and we can choose to have phi in the interval [0 ; PI]
+             final FieldVector3D<T> v1 = applyTo(vector(0, 0, 1));
+             final FieldVector3D<T> v2 = applyInverseTo(vector(0, 0, 1));
+-            if ((v2.getZ().getReal() < -0.9999999999) || (v2.getZ().getReal() > 0.9999999999)) {
++            double var_1238 = v2.getZ().getReal();
++			if ((var_1238 < -0.9999999999) || (var_1238 > 0.9999999999)) {
+                 throw new CardanEulerSingularityException(false);
+             }
+             return buildArray(v1.getX().atan2(v1.getY().negate()),

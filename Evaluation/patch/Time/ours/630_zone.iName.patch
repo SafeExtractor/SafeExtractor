@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+index 4e56fef..7bfa133 100644
+--- a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
++++ b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+@@ -391,7 +391,8 @@
+             Zone zone = iZones.get(i);
+             DateTimeZoneBuilder builder = new DateTimeZoneBuilder();
+             zone.addToBuilder(builder, iRuleSets);
+-            final DateTimeZone original = builder.toDateTimeZone(zone.iName, true);
++            String var_630 = zone.iName;
++			final DateTimeZone original = builder.toDateTimeZone(var_630, true);
+             DateTimeZone tz = original;
+             if (test(tz.getID(), tz)) {
+                 map.put(tz.getID(), tz);
+@@ -405,7 +406,7 @@
+                     }
+                     OutputStream out = new FileOutputStream(file);
+                     try {
+-                        builder.writeTo(zone.iName, out);
++                        builder.writeTo(var_630, out);
+                     } finally {
+                         out.close();
+                     }

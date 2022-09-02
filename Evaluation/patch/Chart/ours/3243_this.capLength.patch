@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYErrorRenderer.java b/source/org/jfree/chart/renderer/xy/XYErrorRenderer.java
+index 4af9465..16bf1ba 100644
+--- a/source/org/jfree/chart/renderer/xy/XYErrorRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYErrorRenderer.java
+@@ -315,7 +315,8 @@
+                 && getItemVisible(series, item)) {
+             IntervalXYDataset ixyd = (IntervalXYDataset) dataset;
+             PlotOrientation orientation = plot.getOrientation();
+-            if (this.drawXError) {
++            double var_3243 = this.capLength;
++			if (this.drawXError) {
+                 // draw the error bar for the x-interval
+                 double x0 = ixyd.getStartXValue(series, item);
+                 double x1 = ixyd.getEndXValue(series, item);
+@@ -328,7 +329,7 @@
+                 Line2D line;
+                 Line2D cap1 = null;
+                 Line2D cap2 = null;
+-                double adj = this.capLength / 2.0;
++                double adj = var_3243 / 2.0;
+                 if (orientation == PlotOrientation.VERTICAL) {
+                     line = new Line2D.Double(xx0, yy, xx1, yy);
+                     cap1 = new Line2D.Double(xx0, yy - adj, xx0, yy + adj);
+@@ -368,7 +369,7 @@
+                 Line2D line;
+                 Line2D cap1 = null;
+                 Line2D cap2 = null;
+-                double adj = this.capLength / 2.0;
++                double adj = var_3243 / 2.0;
+                 if (orientation == PlotOrientation.VERTICAL) {
+                     line = new Line2D.Double(xx, yy0, xx, yy1);
+                     cap1 = new Line2D.Double(xx - adj, yy0, xx + adj, yy0);

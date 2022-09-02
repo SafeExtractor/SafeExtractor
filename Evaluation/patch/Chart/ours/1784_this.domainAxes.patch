@@ -1,0 +1,18 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..9b9dcd5 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -5644,9 +5644,10 @@
+     public Object clone() throws CloneNotSupportedException {
+ 
+         XYPlot clone = (XYPlot) super.clone();
+-        clone.domainAxes = (ObjectList) ObjectUtilities.clone(this.domainAxes);
+-        for (int i = 0; i < this.domainAxes.size(); i++) {
+-            ValueAxis axis = (ValueAxis) this.domainAxes.get(i);
++        ObjectList var_1784 = this.domainAxes;
++		clone.domainAxes = (ObjectList) ObjectUtilities.clone(var_1784);
++        for (int i = 0; i < var_1784.size(); i++) {
++            ValueAxis axis = (ValueAxis) var_1784.get(i);
+             if (axis != null) {
+                 ValueAxis clonedAxis = (ValueAxis) axis.clone();
+                 clone.domainAxes.set(i, clonedAxis);

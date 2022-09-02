@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+index 63538e3..4090aea 100644
+--- a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
++++ b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+@@ -426,7 +426,8 @@
+     Node prev = null;
+     Node elem = arrayNode.getFirstChild();
+     // Merges adjacent String nodes.
+-    while (elem != null) {
++    String var_1719 = sb.toString();
++	while (elem != null) {
+       if (NodeUtil.isImmutableValue(elem) || elem.isEmpty()) {
+         if (sb == null) {
+           sb = new StringBuilder();
+@@ -440,7 +441,7 @@
+           // + 2 for the quotes.
+           foldedSize += sb.length() + 2;
+           arrayFoldedChildren.add(
+-              IR.string(sb.toString()).copyInformationFrom(prev));
++              IR.string(var_1719).copyInformationFrom(prev));
+           sb = null;
+         }
+         foldedSize += InlineCostEstimator.getCost(elem);
+@@ -455,7 +456,7 @@
+       // + 2 for the quotes.
+       foldedSize += sb.length() + 2;
+       arrayFoldedChildren.add(
+-          IR.string(sb.toString()).copyInformationFrom(prev));
++          IR.string(var_1719).copyInformationFrom(prev));
+     }
+     // one for each comma.
+     foldedSize += arrayFoldedChildren.size() - 1;

@@ -1,0 +1,32 @@
+diff --git a/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/JsonbAccessMode.java b/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/JsonbAccessMode.java
+index b723229..3c9b444 100644
+--- a/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/JsonbAccessMode.java
++++ b/johnzon-jsonb/src/main/java/org/apache/johnzon/jsonb/JsonbAccessMode.java
+@@ -462,20 +462,21 @@
+             // handle optionals since mapper is still only java 7
+             final Type type;
+             final Function<Object, Object> reader;
+-            if (isOptional(finalReader)) {
+-                type = ParameterizedType.class.cast(finalReader.getType()).getActualTypeArguments()[0];
++            Type readerType = finalReader.getType();
++			if (isOptional(finalReader)) {
++                type = ParameterizedType.class.cast(readerType).getActualTypeArguments()[0];
+                 reader = i -> ofNullable(finalReader.read(i)).map(o -> Optional.class.cast(o).orElse(null)).orElse(null);
+-            } else if (OptionalInt.class == finalReader.getType()) {
++            } else if (OptionalInt.class == readerType) {
+                 type = int.class;
+                 reader = i -> OptionalInt.class.cast(finalReader.read(i)).orElse(0);
+-            } else if (OptionalLong.class == finalReader.getType()) {
++            } else if (OptionalLong.class == readerType) {
+                 type = long.class;
+                 reader = i -> OptionalLong.class.cast(finalReader.read(i)).orElse(0);
+-            } else if (OptionalDouble.class == finalReader.getType()) {
++            } else if (OptionalDouble.class == readerType) {
+                 type = double.class;
+                 reader = i -> OptionalDouble.class.cast(finalReader.read(i)).orElse(0);
+             } else {
+-                type = finalReader.getType();
++                type = readerType;
+                 reader = finalReader::read;
+             }
+ 

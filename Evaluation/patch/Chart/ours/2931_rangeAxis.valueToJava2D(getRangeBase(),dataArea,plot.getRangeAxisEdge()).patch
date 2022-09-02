@@ -1,0 +1,33 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java b/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java
+index 6117418..62d1129 100644
+--- a/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java
+@@ -374,14 +374,15 @@
+         // avoid possible sun.dc.pr.PRException: endPath: bad path
+         transY1 = restrictValueToDataArea(transY1, plot, dataArea);
+ 
+-        if (this.pArea == null && !Double.isNaN(y1)) {
++        double var_2931 = rangeAxis.valueToJava2D(getRangeBase(), dataArea,
++		        plot.getRangeAxisEdge());
++		if (this.pArea == null && !Double.isNaN(y1)) {
+ 
+             // Create a new Area for the series
+             this.pArea = new Polygon();
+ 
+             // start from Y = rangeBase
+-            double transY2 = rangeAxis.valueToJava2D(getRangeBase(), dataArea,
+-                    plot.getRangeAxisEdge());
++            double transY2 = var_2931;
+ 
+             // avoid possible sun.dc.pr.PRException: endPath: bad path
+             transY2 = restrictValueToDataArea(transY2, plot, dataArea);
+@@ -478,8 +479,7 @@
+         if (getPlotArea() && item > 0 && this.pArea != null
+                           && (item == (itemCount - 1) || Double.isNaN(y1))) {
+ 
+-            double transY2 = rangeAxis.valueToJava2D(getRangeBase(), dataArea,
+-                    plot.getRangeAxisEdge());
++            double transY2 = var_2931;
+ 
+             // avoid possible sun.dc.pr.PRException: endPath: bad path
+             transY2 = restrictValueToDataArea(transY2, plot, dataArea);

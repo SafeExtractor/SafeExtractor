@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java b/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
+index efbe8a2..3f87798 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
+@@ -89,16 +89,17 @@
+         final double[][] A;
+ 
+          // "m" is always the largest dimension.
+-        if (matrix.getRowDimension() < matrix.getColumnDimension()) {
++        int var_1833 = matrix.getColumnDimension();
++		if (matrix.getRowDimension() < var_1833) {
+             transposed = true;
+             A = matrix.transpose().getData();
+-            m = matrix.getColumnDimension();
++            m = var_1833;
+             n = matrix.getRowDimension();
+         } else {
+             transposed = false;
+             A = matrix.getData();
+             m = matrix.getRowDimension();
+-            n = matrix.getColumnDimension();
++            n = var_1833;
+         }
+ 
+         singularValues = new double[n];

@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/chart/panel/CrosshairOverlay.java b/source/org/jfree/chart/panel/CrosshairOverlay.java
+index 2fc3cdd..257e2d2 100644
+--- a/source/org/jfree/chart/panel/CrosshairOverlay.java
++++ b/source/org/jfree/chart/panel/CrosshairOverlay.java
+@@ -192,13 +192,14 @@
+      * {@link OverlayChangeEvent} to all registered listeners.
+      */
+     public void clearRangeCrosshairs() {
+-        if (this.yCrosshairs.isEmpty()) {
++        List var_1268 = this.yCrosshairs;
++		if (var_1268.isEmpty()) {
+             return;  // nothing to do
+         }
+         List crosshairs = getRangeCrosshairs();
+         for (int i = 0; i < crosshairs.size(); i++) {
+             Crosshair c = (Crosshair) crosshairs.get(i);
+-            this.yCrosshairs.remove(c);
++            var_1268.remove(c);
+             c.removePropertyChangeListener(this);
+         }
+         fireOverlayChanged();

@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessCommonJSModules.java b/src/com/google/javascript/jscomp/ProcessCommonJSModules.java
+index 6777957..837a2bc 100644
+--- a/src/com/google/javascript/jscomp/ProcessCommonJSModules.java
++++ b/src/com/google/javascript/jscomp/ProcessCommonJSModules.java
+@@ -230,10 +230,11 @@
+     private void visitModuleExports(Node prop) {
+       String moduleName = guessCJSModuleName(prop.getSourceFileName());
+       Node module = prop.getChildAtIndex(0);
+-      module.putProp(Node.ORIGINALNAME_PROP, "module");
++      int var_1930 = Node.ORIGINALNAME_PROP;
++	module.putProp(var_1930, "module");
+       module.setString(moduleName);
+       Node exports = prop.getChildAtIndex(1);
+-      exports.putProp(Node.ORIGINALNAME_PROP, "exports");
++      exports.putProp(var_1930, "exports");
+       exports.setString("module$exports");
+       modulesWithExports.add(moduleName);
+     }

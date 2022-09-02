@@ -1,0 +1,31 @@
+diff --git a/src/main/java/org/apache/commons/math3/random/RandomDataGenerator.java b/src/main/java/org/apache/commons/math3/random/RandomDataGenerator.java
+index bbee2a3..49a6593 100644
+--- a/src/main/java/org/apache/commons/math3/random/RandomDataGenerator.java
++++ b/src/main/java/org/apache/commons/math3/random/RandomDataGenerator.java
+@@ -206,10 +206,11 @@
+                                                 lower, upper, false);
+         }
+         final long max = (upper - lower) + 1;
+-        if (max <= 0) {
++        RandomGenerator var_3674 = getRandomGenerator();
++		if (max <= 0) {
+             // the range is too wide to fit in a positive long (larger than 2^63); as it covers
+             // more than half the long range, we use directly a simple rejection method
+-            final RandomGenerator rng = getRandomGenerator();
++            final RandomGenerator rng = var_3674;
+             while (true) {
+                 final long r = rng.nextLong();
+                 if (r >= lower && r <= upper) {
+@@ -218,10 +219,10 @@
+             }
+         } else if (max < Integer.MAX_VALUE){
+             // we can shift the range and generate directly a positive int
+-            return lower + getRandomGenerator().nextInt((int) max);
++            return lower + var_3674.nextInt((int) max);
+         } else {
+             // we can shift the range and generate directly a positive long
+-            return lower + nextLong(getRandomGenerator(), max);
++            return lower + nextLong(var_3674, max);
+         }
+     }
+ 

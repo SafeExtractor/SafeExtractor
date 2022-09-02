@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/InferJSDocInfo.java b/src/com/google/javascript/jscomp/InferJSDocInfo.java
+index b2cb704..45b50a9 100644
+--- a/src/com/google/javascript/jscomp/InferJSDocInfo.java
++++ b/src/com/google/javascript/jscomp/InferJSDocInfo.java
+@@ -93,7 +93,8 @@
+   public void visit(NodeTraversal t, Node n, Node parent) {
+     JSDocInfo docInfo;
+ 
+-    switch (n.getType()) {
++    JSDocInfo var_1700 = parent.getJSDocInfo();
++	switch (n.getType()) {
+       // Infer JSDocInfo on types of all type declarations on variables.
+       case Token.NAME:
+         if (parent == null) {
+@@ -121,7 +122,7 @@
+         if (docInfo == null &&
+             !(parent.isVar() &&
+                 !parent.hasOneChild())) {
+-          docInfo = parent.getJSDocInfo();
++          docInfo = var_1700;
+         }
+ 
+         // Try to find the type of the NAME.
+@@ -162,7 +163,7 @@
+              parent.getFirstChild() == n)) {
+           docInfo = n.getJSDocInfo();
+           if (docInfo == null) {
+-            docInfo = parent.getJSDocInfo();
++            docInfo = var_1700;
+           }
+           if (docInfo != null) {
+             ObjectType lhsType =

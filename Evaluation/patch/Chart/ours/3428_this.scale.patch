@@ -1,0 +1,48 @@
+diff --git a/source/org/jfree/chart/title/PaintScaleLegend.java b/source/org/jfree/chart/title/PaintScaleLegend.java
+index c489277..b612ee0 100644
+--- a/source/org/jfree/chart/title/PaintScaleLegend.java
++++ b/source/org/jfree/chart/title/PaintScaleLegend.java
+@@ -547,13 +547,14 @@
+         double increment = this.axis.getRange().getLength() / this.subdivisions;
+         Rectangle2D r = new Rectangle2D.Double();
+ 
+-        if (RectangleEdge.isTopOrBottom(getPosition())) {
++        PaintScale var_3428 = this.scale;
++		if (RectangleEdge.isTopOrBottom(getPosition())) {
+             RectangleEdge axisEdge = Plot.resolveRangeAxisLocation(
+                     this.axisLocation, PlotOrientation.HORIZONTAL);
+             if (axisEdge == RectangleEdge.TOP) {
+                 for (int i = 0; i < this.subdivisions; i++) {
+                     double v = base + (i * increment);
+-                    Paint p = this.scale.getPaint(v);
++                    Paint p = var_3428.getPaint(v);
+                     double vv0 = this.axis.valueToJava2D(v, target,
+                             RectangleEdge.TOP);
+                     double vv1 = this.axis.valueToJava2D(v + increment, target,
+@@ -578,7 +579,7 @@
+             else if (axisEdge == RectangleEdge.BOTTOM) {
+                 for (int i = 0; i < this.subdivisions; i++) {
+                     double v = base + (i * increment);
+-                    Paint p = this.scale.getPaint(v);
++                    Paint p = var_3428.getPaint(v);
+                     double vv0 = this.axis.valueToJava2D(v, target,
+                             RectangleEdge.BOTTOM);
+                     double vv1 = this.axis.valueToJava2D(v + increment, target,
+@@ -607,7 +608,7 @@
+             if (axisEdge == RectangleEdge.LEFT) {
+                 for (int i = 0; i < this.subdivisions; i++) {
+                     double v = base + (i * increment);
+-                    Paint p = this.scale.getPaint(v);
++                    Paint p = var_3428.getPaint(v);
+                     double vv0 = this.axis.valueToJava2D(v, target,
+                             RectangleEdge.LEFT);
+                     double vv1 = this.axis.valueToJava2D(v + increment, target,
+@@ -632,7 +633,7 @@
+             else if (axisEdge == RectangleEdge.RIGHT) {
+                 for (int i = 0; i < this.subdivisions; i++) {
+                     double v = base + (i * increment);
+-                    Paint p = this.scale.getPaint(v);
++                    Paint p = var_3428.getPaint(v);
+                     double vv0 = this.axis.valueToJava2D(v, target,
+                             RectangleEdge.LEFT);
+                     double vv1 = this.axis.valueToJava2D(v + increment, target,

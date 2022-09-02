@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..ca033ce 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -1813,7 +1813,7 @@
+         typeName.charAt(typeName.length() - 1) == '.') {
+       skipEOLs();
+       if (match(JsDocToken.STRING)) {
+-        next();
++        JsDocToken var_2357 = next();
+         typeName += stream.getString();
+       }
+     }
+@@ -1823,7 +1823,7 @@
+     if (match(JsDocToken.LT)) {
+       next();
+       skipEOLs();
+-      Node memberType = parseTypeExpressionList(next());
++      Node memberType = parseTypeExpressionList(var_2357);
+       if (memberType != null) {
+         typeNameNode.addChildToFront(memberType);
+ 

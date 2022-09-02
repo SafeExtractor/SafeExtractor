@@ -1,0 +1,46 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYAreaRenderer2.java b/source/org/jfree/chart/renderer/xy/XYAreaRenderer2.java
+index d34a512..d5f021a 100644
+--- a/source/org/jfree/chart/renderer/xy/XYAreaRenderer2.java
++++ b/source/org/jfree/chart/renderer/xy/XYAreaRenderer2.java
+@@ -105,6 +105,7 @@
+ import org.jfree.chart.plot.XYPlot;
+ import org.jfree.chart.urls.XYURLGenerator;
+ import org.jfree.chart.util.PublicCloneable;
++import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.chart.util.SerialUtilities;
+ import org.jfree.chart.util.ShapeUtilities;
+ import org.jfree.data.xy.XYDataset;
+@@ -292,8 +293,9 @@
+ 
+         double transX1 = domainAxis.valueToJava2D(x1, dataArea,
+                 plot.getDomainAxisEdge());
+-        double transY1 = rangeAxis.valueToJava2D(y1, dataArea,
+-                plot.getRangeAxisEdge());
++        RectangleEdge var_2835 = plot.getRangeAxisEdge();
++		double transY1 = rangeAxis.valueToJava2D(y1, dataArea,
++                var_2835);
+ 
+         // get the previous point and the next point so we can calculate a
+         // "hot spot" for the area (used by the chart entity)...
+@@ -305,7 +307,7 @@
+         double transX0 = domainAxis.valueToJava2D(x0, dataArea,
+                 plot.getDomainAxisEdge());
+         double transY0 = rangeAxis.valueToJava2D(y0, dataArea,
+-                plot.getRangeAxisEdge());
++                var_2835);
+ 
+         int itemCount = dataset.getItemCount(series);
+         double x2 = dataset.getXValue(series, Math.min(item + 1,
+@@ -318,10 +320,10 @@
+         double transX2 = domainAxis.valueToJava2D(x2, dataArea,
+                 plot.getDomainAxisEdge());
+         double transY2 = rangeAxis.valueToJava2D(y2, dataArea,
+-                plot.getRangeAxisEdge());
++                var_2835);
+ 
+         double transZero = rangeAxis.valueToJava2D(0.0, dataArea,
+-                plot.getRangeAxisEdge());
++                var_2835);
+         Polygon hotspot = null;
+         if (plot.getOrientation() == PlotOrientation.HORIZONTAL) {
+             hotspot = new Polygon();

@@ -1,0 +1,37 @@
+diff --git a/source/org/jfree/chart/axis/DateAxis.java b/source/org/jfree/chart/axis/DateAxis.java
+index 059bc3a..5167e0d 100644
+--- a/source/org/jfree/chart/axis/DateAxis.java
++++ b/source/org/jfree/chart/axis/DateAxis.java
+@@ -1860,24 +1860,25 @@
+      * @param upperPercent  the new upper bound.
+      */
+     public void zoomRange(double lowerPercent, double upperPercent) {
+-        double start = this.timeline.toTimelineValue(
++        Timeline var_549 = this.timeline;
++		double start = var_549.toTimelineValue(
+             (long) getRange().getLowerBound()
+         );
+-        double length = (this.timeline.toTimelineValue(
++        double length = (var_549.toTimelineValue(
+                 (long) getRange().getUpperBound())
+-                - this.timeline.toTimelineValue(
++                - var_549.toTimelineValue(
+                     (long) getRange().getLowerBound()));
+         Range adjusted = null;
+         if (isInverted()) {
+-            adjusted = new DateRange(this.timeline.toMillisecond((long) (start
++            adjusted = new DateRange(var_549.toMillisecond((long) (start
+                     + (length * (1 - upperPercent)))),
+-                    this.timeline.toMillisecond((long) (start + (length
++                    var_549.toMillisecond((long) (start + (length
+                     * (1 - lowerPercent)))));
+         }
+         else {
+-            adjusted = new DateRange(this.timeline.toMillisecond(
++            adjusted = new DateRange(var_549.toMillisecond(
+                     (long) (start + length * lowerPercent)),
+-                    this.timeline.toMillisecond((long) (start + length
++                    var_549.toMillisecond((long) (start + length
+                     * upperPercent)));
+         }
+         setRange(adjusted);

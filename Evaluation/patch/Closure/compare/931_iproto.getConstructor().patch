@@ -1,0 +1,24 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/931_iproto.getConstructor().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/931_iproto.getConstructor().patch
+index 72f86b2..e69de29 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/931_iproto.getConstructor().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/931_iproto.getConstructor().patch
+@@ -1,19 +0,0 @@
+-diff --git a/src/com/google/javascript/jscomp/CheckAccessControls.java b/src/com/google/javascript/jscomp/CheckAccessControls.java
+-index df50c26..9fc2b86 100644
+---- a/src/com/google/javascript/jscomp/CheckAccessControls.java
+-+++ b/src/com/google/javascript/jscomp/CheckAccessControls.java
+-@@ -708,11 +708,12 @@
+-   private JSType getFinalParentClass(JSType type) {
+-     if (type != null) {
+-       ObjectType iproto = ObjectType.cast(type).getImplicitPrototype();
+--      while (iproto != null && iproto.getConstructor() == null) {
+-+      FunctionType var_931 = iproto.getConstructor();
+-+	while (iproto != null && var_931 == null) {
+-         iproto = iproto.getImplicitPrototype();
+-       }
+-       if (iproto != null) {
+--        Node source = iproto.getConstructor().getSource();
+-+        Node source = var_931.getSource();
+-         JSDocInfo jsDoc = source != null ? NodeUtil.getBestJSDocInfo(source) : null;
+-         if (jsDoc != null && jsDoc.isConstant()) {
+-           return iproto;

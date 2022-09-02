@@ -1,0 +1,46 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..abab3f2 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1514,7 +1514,8 @@
+         Dfp result = newInstance(getZero());
+ 
+         /* handle special cases */
+-        if (nans != FINITE || x.nans != FINITE) {
++        byte var_649 = x.sign;
++		if (nans != FINITE || x.nans != FINITE) {
+             if (isNaN()) {
+                 return this;
+             }
+@@ -1525,19 +1526,19 @@
+ 
+             if (nans == INFINITE && x.nans == FINITE && x.mant[mant.length-1] != 0) {
+                 result = newInstance(this);
+-                result.sign = (byte) (sign * x.sign);
++                result.sign = (byte) (sign * var_649);
+                 return result;
+             }
+ 
+             if (x.nans == INFINITE && nans == FINITE && mant[mant.length-1] != 0) {
+                 result = newInstance(x);
+-                result.sign = (byte) (sign * x.sign);
++                result.sign = (byte) (sign * var_649);
+                 return result;
+             }
+ 
+             if (x.nans == INFINITE && nans == INFINITE) {
+                 result = newInstance(this);
+-                result.sign = (byte) (sign * x.sign);
++                result.sign = (byte) (sign * var_649);
+                 return result;
+             }
+ 
+@@ -1581,7 +1582,7 @@
+ 
+         // Fixup the exponent.
+         result.exp = exp + x.exp + md - 2 * mant.length + 1;
+-        result.sign = (byte)((sign == x.sign)?1:-1);
++        result.sign = (byte)((sign == var_649)?1:-1);
+ 
+         if (result.mant[mant.length-1] == 0) {
+             // if result is zero, set exp to zero

@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/InlineFunctions.java b/src/com/google/javascript/jscomp/InlineFunctions.java
+index 008ffe5..ea054aa 100644
+--- a/src/com/google/javascript/jscomp/InlineFunctions.java
++++ b/src/com/google/javascript/jscomp/InlineFunctions.java
+@@ -254,8 +254,9 @@
+       if (fs.canInline()) {
+         // store it for use when inlining.
+         fs.setFn(fn);
+-        if (injector.isDirectCallNodeReplacementPossible(
+-            fn.getFunctionNode())) {
++        Node var_1169 = fn.getFunctionNode();
++		if (injector.isDirectCallNodeReplacementPossible(
++            var_1169)) {
+           fs.inlineDirectly(true);
+         }
+ 
+@@ -271,7 +272,7 @@
+         if (fs.canInline()) {
+           fs.setModule(module);
+ 
+-          Node fnNode = fn.getFunctionNode();
++          Node fnNode = var_1169;
+           Set<String> namesToAlias =
+               FunctionArgumentInjector.findModifiedParameters(fnNode);
+           if (!namesToAlias.isEmpty()) {

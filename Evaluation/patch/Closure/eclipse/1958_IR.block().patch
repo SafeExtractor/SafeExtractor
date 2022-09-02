@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/ExpressionDecomposer.java b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+index 2344537..10d33d2 100644
+--- a/src/com/google/javascript/jscomp/ExpressionDecomposer.java
++++ b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+@@ -349,8 +349,9 @@
+ 
+     // Transform the conditional to an IF statement.
+     Node cond = null;
+-    Node trueExpr = IR.block().srcref(expr);
+-    Node falseExpr = IR.block().srcref(expr);
++    Node var_1958 = IR.block();
++	Node trueExpr = var_1958.srcref(expr);
++    Node falseExpr = var_1958.srcref(expr);
+     switch (expr.getType()) {
+       case Token.HOOK:
+         // a = x?y:z --> if (x) {a=y} else {a=z}

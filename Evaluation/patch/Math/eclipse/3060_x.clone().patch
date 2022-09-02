@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/PowellOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/PowellOptimizer.java
+index 0c47b5c..9f8493a 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/PowellOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/PowellOptimizer.java
+@@ -187,7 +187,8 @@
+ 
+         double[] x = guess;
+         double fVal = computeObjectiveValue(x);
+-        double[] x1 = x.clone();
++        double[] var_3060 = x.clone();
++		double[] x1 = var_3060;
+         while (true) {
+             incrementIterationCount();
+ 
+@@ -239,7 +240,7 @@
+                 x2[i] = 2 * x[i] - x1[i];
+             }
+ 
+-            x1 = x.clone();
++            x1 = var_3060;
+             fX2 = computeObjectiveValue(x2);
+ 
+             if (fX > fX2) {

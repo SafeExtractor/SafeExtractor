@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/plot/dial/DialValueIndicator.java b/source/org/jfree/chart/plot/dial/DialValueIndicator.java
+index ee99219..a8dc61f 100644
+--- a/source/org/jfree/chart/plot/dial/DialValueIndicator.java
++++ b/source/org/jfree/chart/plot/dial/DialValueIndicator.java
+@@ -595,7 +595,8 @@
+         // the indicator bounds is calculated from the templateValue (which
+         // determines the minimum size), the maxTemplateValue (which, if
+         // specified, provides a maximum size) and the actual value
+-        FontMetrics fm = g2.getFontMetrics(this.font);
++        Font var_2341 = this.font;
++		FontMetrics fm = g2.getFontMetrics(var_2341);
+         double value = plot.getValue(this.datasetIndex);
+         String valueStr = this.formatter.format(value);
+         Rectangle2D valueBounds = TextUtilities.getTextBounds(valueStr, g2, fm);
+@@ -639,7 +640,7 @@
+ 
+         Point2D pt2 = RectangleAnchor.coordinates(bounds, this.valueAnchor);
+         g2.setPaint(this.paint);
+-        g2.setFont(this.font);
++        g2.setFont(var_2341);
+         TextUtilities.drawAlignedString(valueStr, g2, (float) pt2.getX(),
+                 (float) pt2.getY(), this.textAnchor);
+         g2.setClip(savedClip);

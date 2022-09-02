@@ -1,0 +1,16 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/spi/security/authorization/restriction/CompositeRestrictionProvider.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/spi/security/authorization/restriction/CompositeRestrictionProvider.java
+index 57a6b71..4f5f6e0 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/spi/security/authorization/restriction/CompositeRestrictionProvider.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/spi/security/authorization/restriction/CompositeRestrictionProvider.java
+@@ -110,8 +110,9 @@
+             }
+         }
+         for (RestrictionDefinition def : supported) {
+-            if (def.isMandatory() && !rNames.contains(def.getName())) {
+-                throw new AccessControlException("Mandatory restriction " + def.getName() + " is missing.");
++            String defName = def.getName();
++			if (def.isMandatory() && !rNames.contains(defName)) {
++                throw new AccessControlException("Mandatory restriction " + defName + " is missing.");
+             }
+         }
+     }

@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+index 2e75bce..5c6d188 100644
+--- a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
++++ b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+@@ -496,11 +496,12 @@
+     } else {
+       Node parent = scopeRoot.getParent();
+       if (parent != null) {
+-        if (parent.isAssign() ||
++        Node var_1517 = parent.getFirstChild();
++		if (parent.isAssign() ||
+             parent.getLastChild() == scopeRoot &&
+-            parent.getFirstChild().isQualifiedName()) {
++            var_1517.isQualifiedName()) {
+           // x.y.z = function() {...};
+-          return parent.getFirstChild();
++          return var_1517;
+         } else if (parent.isName()) {
+           // var x = function() {...};
+           return parent;

@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/labels/AbstractPieItemLabelGenerator.java b/source/org/jfree/chart/labels/AbstractPieItemLabelGenerator.java
+index 1c214e3..fb891fd 100644
+--- a/source/org/jfree/chart/labels/AbstractPieItemLabelGenerator.java
++++ b/source/org/jfree/chart/labels/AbstractPieItemLabelGenerator.java
+@@ -147,8 +147,9 @@
+         double total = DatasetUtilities.calculatePieDatasetTotal(dataset);
+         result[0] = key.toString();
+         Number value = dataset.getValue(key);
+-        if (value != null) {
+-            result[1] = this.numberFormat.format(value);
++        NumberFormat var_1170 = this.numberFormat;
++		if (value != null) {
++            result[1] = var_1170.format(value);
+         }
+         else {
+             result[1] = "null";
+@@ -161,7 +162,7 @@
+             }
+         }
+         result[2] = this.percentFormat.format(percent);
+-        result[3] = this.numberFormat.format(total);
++        result[3] = var_1170.format(total);
+         return result;
+     }
+ 

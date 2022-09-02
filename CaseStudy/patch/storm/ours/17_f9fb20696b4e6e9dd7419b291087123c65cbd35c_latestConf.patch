@@ -1,0 +1,18 @@
+diff --git a/storm-core/src/jvm/org/apache/storm/daemon/worker/LogConfigManager.java b/storm-core/src/jvm/org/apache/storm/daemon/worker/LogConfigManager.java
+index 12663e9..555a5ec 100644
+--- a/storm-core/src/jvm/org/apache/storm/daemon/worker/LogConfigManager.java
++++ b/storm-core/src/jvm/org/apache/storm/daemon/worker/LogConfigManager.java
+@@ -78,10 +78,11 @@
+             }
+ 
+             // Look for deleted log timeouts
+-            for (String loggerName : latestLogConfig.get().descendingKeySet()) {
++            TreeMap<String, LogLevel> latestConf = latestLogConfig.get();
++			for (String loggerName : latestConf.descendingKeySet()) {
+                 if (! newLogConfigs.containsKey(loggerName)) {
+                     // if we had a timeout, but the timeout is no longer active
+-                    setLoggerLevel(logContext, loggerName, latestLogConfig.get().get(loggerName).get_reset_log_level());
++                    setLoggerLevel(logContext, loggerName, latestConf.get(loggerName).get_reset_log_level());
+ 
+                 }
+             }

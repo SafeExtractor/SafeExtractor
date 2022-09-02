@@ -1,0 +1,68 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java b/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java
+index 6117418..86188cb 100644
+--- a/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java
+@@ -365,7 +365,8 @@
+         double x1 = dataset.getXValue(series, item);
+         double y1 = dataset.getYValue(series, item);
+         double x = x1;
+-        double y = Double.isNaN(y1) ? getRangeBase() : y1;
++        boolean var_2923 = Double.isNaN(y1);
++		double y = var_2923 ? getRangeBase() : y1;
+         double transX1 = domainAxis.valueToJava2D(x, dataArea,
+                 plot.getDomainAxisEdge());
+         double transY1 = rangeAxis.valueToJava2D(y, dataArea,
+@@ -374,7 +375,7 @@
+         // avoid possible sun.dc.pr.PRException: endPath: bad path
+         transY1 = restrictValueToDataArea(transY1, plot, dataArea);
+ 
+-        if (this.pArea == null && !Double.isNaN(y1)) {
++        if (this.pArea == null && !var_2923) {
+ 
+             // Create a new Area for the series
+             this.pArea = new Polygon();
+@@ -404,7 +405,7 @@
+         if (item > 0) {
+             // get the previous data point...
+             x0 = dataset.getXValue(series, item - 1);
+-            y0 = Double.isNaN(y1) ? y1 : dataset.getYValue(series, item - 1);
++            y0 = var_2923 ? y1 : dataset.getYValue(series, item - 1);
+ 
+             x = x0;
+             y = Double.isNaN(y0) ? getRangeBase() : y0;
+@@ -416,7 +417,7 @@
+             // avoid possible sun.dc.pr.PRException: endPath: bad path
+             transY0 = restrictValueToDataArea(transY0, plot, dataArea);
+ 
+-            if (Double.isNaN(y1)) {
++            if (var_2923) {
+                 // NULL value -> insert point on base line
+                 // instead of 'step point'
+                 transX1 = transX0;
+@@ -434,7 +435,7 @@
+         }
+ 
+         Shape shape = null;
+-        if (!Double.isNaN(y1)) {
++        if (!var_2923) {
+             // Add each point to Area (x, y)
+             if (orientation == PlotOrientation.VERTICAL) {
+                 this.pArea.addPoint((int) transX1, (int) transY1);
+@@ -476,7 +477,7 @@
+         // is a NULL value and number of items > 0.  We can't draw an area for
+         // a single point.
+         if (getPlotArea() && item > 0 && this.pArea != null
+-                          && (item == (itemCount - 1) || Double.isNaN(y1))) {
++                          && (item == (itemCount - 1) || var_2923)) {
+ 
+             double transY2 = rangeAxis.valueToJava2D(getRangeBase(), dataArea,
+                     plot.getRangeAxisEdge());
+@@ -508,7 +509,7 @@
+         }
+ 
+         // do we need to update the crosshair values?
+-        if (!Double.isNaN(y1)) {
++        if (!var_2923) {
+             int domainAxisIndex = plot.getDomainAxisIndex(domainAxis);
+             int rangeAxisIndex = plot.getRangeAxisIndex(rangeAxis);
+             XYCrosshairState crosshairState = state.getCrosshairState();

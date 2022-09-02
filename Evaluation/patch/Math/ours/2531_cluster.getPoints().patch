@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/ml/clustering/MultiKMeansPlusPlusClusterer.java b/src/main/java/org/apache/commons/math3/ml/clustering/MultiKMeansPlusPlusClusterer.java
+index fa970ac..242d68b 100644
+--- a/src/main/java/org/apache/commons/math3/ml/clustering/MultiKMeansPlusPlusClusterer.java
++++ b/src/main/java/org/apache/commons/math3/ml/clustering/MultiKMeansPlusPlusClusterer.java
+@@ -94,12 +94,13 @@
+             // compute the variance of the current list
+             double varianceSum = 0.0;
+             for (final CentroidCluster<T> cluster : clusters) {
+-                if (!cluster.getPoints().isEmpty()) {
++                List<T> var_2531 = cluster.getPoints();
++				if (!var_2531.isEmpty()) {
+ 
+                     // compute the distance variance of the current cluster
+                     final Clusterable center = cluster.getCenter();
+                     final Variance stat = new Variance();
+-                    for (final T point : cluster.getPoints()) {
++                    for (final T point : var_2531) {
+                         stat.increment(distance(point, center));
+                     }
+                     varianceSum += stat.getResult();

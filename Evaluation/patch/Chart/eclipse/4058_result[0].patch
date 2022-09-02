@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/data/statistics/Regression.java b/source/org/jfree/data/statistics/Regression.java
+index 962b978..d1eac2b 100644
+--- a/source/org/jfree/data/statistics/Regression.java
++++ b/source/org/jfree/data/statistics/Regression.java
+@@ -340,14 +340,15 @@
+             return result;
+         }
+         // check for zero pivot element
+-        if (result[0][0] == 0) {
++        double[] var_4058 = result[0];
++		if (var_4058[0] == 0) {
+             boolean found = false;
+             for (int i = 0; i < result.length; i ++) {
+                 if (result[i][0] != 0) {
+                     found = true;
+-                    double[] temp = result[0];
++                    double[] temp = var_4058;
+                     for (int j = 0; j < result[i].length; j++) {
+-                        result[0][j] = result[i][j];
++                        var_4058[j] = result[i][j];
+                     }
+                     for (int j = 0; j < temp.length; j++) {
+                         result[i][j] = temp[j];

@@ -1,0 +1,46 @@
+diff --git a/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java
+index 9031f24..ac0725c 100644
+--- a/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java
++++ b/src/main/java/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java
+@@ -254,11 +254,12 @@
+         }
+         TarArchiveEntry entry = (TarArchiveEntry) archiveEntry;
+         Map<String, String> paxHeaders = new HashMap<String, String>();
+-        final byte[] nameBytes = encoding.encode(entry.getName()).array();
++        String entryName = entry.getName();
++		final byte[] nameBytes = encoding.encode(entryName).array();
+         if (nameBytes.length >= TarConstants.NAMELEN) {
+ 
+             if (longFileMode == LONGFILE_POSIX) {
+-                paxHeaders.put("path", entry.getName());
++                paxHeaders.put("path", entryName);
+             } else if (longFileMode == LONGFILE_GNU) {
+                 // create a TarEntry for the LongLink, the contents
+                 // of which are the entry's name
+@@ -271,7 +272,7 @@
+                 write(0); // NUL terminator
+                 closeArchiveEntry();
+             } else if (longFileMode != LONGFILE_TRUNCATE) {
+-                throw new RuntimeException("file name '" + entry.getName()
++                throw new RuntimeException("file name '" + entryName
+                                            + "' is too long ( > "
+                                            + TarConstants.NAMELEN + " bytes)");
+             }
+@@ -284,7 +285,7 @@
+         }
+ 
+         if (paxHeaders.size() > 0) {
+-            writePaxHeaders(entry.getName(), paxHeaders);
++            writePaxHeaders(entryName, paxHeaders);
+         }
+ 
+         entry.writeEntryHeader(recordBuf, encoding,
+@@ -298,7 +299,7 @@
+         } else {
+             currSize = entry.getSize();
+         }
+-        currName = entry.getName();
++        currName = entryName;
+         haveUnclosedEntry = true;
+     }
+ 

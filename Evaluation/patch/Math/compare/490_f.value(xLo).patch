@@ -1,0 +1,32 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/490_f.value(xLo).patch b/Users/safe/paper/Evaluation/patch/Math/ours/490_f.value(xLo).patch
+index 7de7412..0651407 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/490_f.value(xLo).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/490_f.value(xLo).patch
+@@ -1,23 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/analysis/solvers/UnivariateSolverUtils.java b/src/main/java/org/apache/commons/math3/analysis/solvers/UnivariateSolverUtils.java
+-index ec20578..f026f2b 100644
++index ec20578..e3c5309 100644
+ --- a/src/main/java/org/apache/commons/math3/analysis/solvers/UnivariateSolverUtils.java
+ +++ b/src/main/java/org/apache/commons/math3/analysis/solvers/UnivariateSolverUtils.java
+-@@ -113,7 +113,8 @@
+-         final double step = FastMath.max(bracketing.getAbsoluteAccuracy(),
+-                                          FastMath.abs(baseRoot * bracketing.getRelativeAccuracy()));
+-         double xLo        = FastMath.max(min, baseRoot - step);
+--        double fLo        = f.value(xLo);
+-+        double var_490 = f.value(xLo);
+-+		double fLo        = var_490;
+-         double xHi        = FastMath.min(max, baseRoot + step);
+-         double fHi        = f.value(xHi);
+-         int remainingEval = maxEval - 2;
+-@@ -150,7 +151,7 @@
++@@ -150,7 +150,8 @@
+              // update the lower bound
+              if (changeLo) {
+                  xLo = FastMath.max(min, xLo - step);
+ -                fLo  = f.value(xLo);
+-+                fLo  = var_490;
+++                double var_490 = f.value(xLo);
+++				fLo  = var_490;
+                  remainingEval--;
+              }
+  

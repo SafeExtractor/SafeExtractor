@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/joda/time/format/DateTimeFormatter.java b/src/main/java/org/joda/time/format/DateTimeFormatter.java
+index 16cc6fd..043baf0 100644
+--- a/src/main/java/org/joda/time/format/DateTimeFormatter.java
++++ b/src/main/java/org/joda/time/format/DateTimeFormatter.java
+@@ -908,8 +908,9 @@
+         if (newPos >= 0) {
+             if (newPos >= text.length()) {
+                 long millis = bucket.computeMillis(true, text);
+-                if (iOffsetParsed && bucket.getOffsetInteger() != null) {
+-                    int parsedOffset = bucket.getOffsetInteger();
++                Integer var_526 = bucket.getOffsetInteger();
++				if (iOffsetParsed && var_526 != null) {
++                    int parsedOffset = var_526;
+                     DateTimeZone parsedZone = DateTimeZone.forOffsetMillis(parsedOffset);
+                     chrono = chrono.withZone(parsedZone);
+                 } else if (bucket.getZone() != null) {

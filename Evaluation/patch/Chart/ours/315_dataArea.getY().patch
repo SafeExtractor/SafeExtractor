@@ -1,0 +1,31 @@
+diff --git a/source/org/jfree/chart/axis/Axis.java b/source/org/jfree/chart/axis/Axis.java
+index cabb331..cb37a09 100644
+--- a/source/org/jfree/chart/axis/Axis.java
++++ b/source/org/jfree/chart/axis/Axis.java
+@@ -1414,15 +1414,17 @@
+         else if (edge == RectangleEdge.BOTTOM) {
+             axisLine = new Line2D.Double(dataArea.getX(), cursor,
+                     dataArea.getMaxX(), cursor);
+-        }
+-        else if (edge == RectangleEdge.LEFT) {
+-            axisLine = new Line2D.Double(cursor, dataArea.getY(), cursor,
+-                    dataArea.getMaxY());
+-        }
+-        else if (edge == RectangleEdge.RIGHT) {
+-            axisLine = new Line2D.Double(cursor, dataArea.getY(), cursor,
+-                    dataArea.getMaxY());
+-        }
++        } else {
++			double var_315 = dataArea.getY();
++			if (edge == RectangleEdge.LEFT) {
++			    axisLine = new Line2D.Double(cursor, var_315, cursor,
++			            dataArea.getMaxY());
++			}
++			else if (edge == RectangleEdge.RIGHT) {
++			    axisLine = new Line2D.Double(cursor, var_315, cursor,
++			            dataArea.getMaxY());
++			}
++		}
+         g2.setPaint(this.axisLinePaint);
+         g2.setStroke(this.axisLineStroke);
+         g2.draw(axisLine);

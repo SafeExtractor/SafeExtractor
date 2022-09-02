@@ -1,0 +1,43 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1722_IR.string(sb.toString()).copyInformationFrom(prev).patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1722_IR.string(sb.toString()).copyInformationFrom(prev).patch
+index 1c43255..4f87954 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1722_IR.string(sb.toString()).copyInformationFrom(prev).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1722_IR.string(sb.toString()).copyInformationFrom(prev).patch
+@@ -1,32 +1,16 @@
+ diff --git a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+-index 63538e3..6cf1555 100644
++index 63538e3..89df6a1 100644
+ --- a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+ +++ b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+-@@ -426,7 +426,8 @@
+-     Node prev = null;
+-     Node elem = arrayNode.getFirstChild();
+-     // Merges adjacent String nodes.
+--    while (elem != null) {
+-+    Node var_1722 = IR.string(sb.toString()).copyInformationFrom(prev);
+-+	while (elem != null) {
+-       if (NodeUtil.isImmutableValue(elem) || elem.isEmpty()) {
+-         if (sb == null) {
+-           sb = new StringBuilder();
+-@@ -440,7 +441,7 @@
++@@ -439,8 +439,9 @@
++           Preconditions.checkNotNull(prev);
+            // + 2 for the quotes.
+            foldedSize += sb.length() + 2;
+-           arrayFoldedChildren.add(
++-          arrayFoldedChildren.add(
+ -              IR.string(sb.toString()).copyInformationFrom(prev));
+++          Node var_1722 = IR.string(sb.toString()).copyInformationFrom(prev);
+++		arrayFoldedChildren.add(
+ +              var_1722);
+            sb = null;
+          }
+          foldedSize += InlineCostEstimator.getCost(elem);
+-@@ -455,7 +456,7 @@
+-       // + 2 for the quotes.
+-       foldedSize += sb.length() + 2;
+-       arrayFoldedChildren.add(
+--          IR.string(sb.toString()).copyInformationFrom(prev));
+-+          var_1722);
+-     }
+-     // one for each comma.
+-     foldedSize += arrayFoldedChildren.size() - 1;

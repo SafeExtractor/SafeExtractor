@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/chart/renderer/LookupPaintScale.java b/source/org/jfree/chart/renderer/LookupPaintScale.java
+index 02830c8..8ab407c 100644
+--- a/source/org/jfree/chart/renderer/LookupPaintScale.java
++++ b/source/org/jfree/chart/renderer/LookupPaintScale.java
+@@ -248,12 +248,13 @@
+      */
+     public void add(double value, Paint paint) {
+         PaintItem item = new PaintItem(value, paint);
+-        int index = Collections.binarySearch(this.lookupTable, item);
++        List var_2374 = this.lookupTable;
++		int index = Collections.binarySearch(var_2374, item);
+         if (index >= 0) {
+-            this.lookupTable.set(index, item);
++            var_2374.set(index, item);
+         }
+         else {
+-            this.lookupTable.add(-(index + 1), item);
++            var_2374.add(-(index + 1), item);
+         }
+     }
+ 

@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..bf4b84e 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -78,13 +78,14 @@
+   @Override
+   @SuppressWarnings("fallthrough")
+   public Node optimizeSubtree(Node node) {
+-    switch(node.getType()) {
++    Node var_1413 = tryReplaceExitWithBreak(node);
++	switch(node.getType()) {
+       case Token.RETURN: {
+         Node result = tryRemoveRedundantExit(node);
+         if (result != node) {
+           return result;
+         }
+-        result = tryReplaceExitWithBreak(node);
++        result = var_1413;
+         if (result != node) {
+           return result;
+         }
+@@ -96,7 +97,7 @@
+         if (result != node) {
+           return result;
+         }
+-        return tryReplaceExitWithBreak(node);
++        return var_1413;
+       }
+ 
+       // TODO(johnlenz): Maybe remove redundant BREAK and CONTINUE. Overlaps

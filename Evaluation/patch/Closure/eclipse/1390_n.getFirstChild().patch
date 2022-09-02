@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessTweaks.java b/src/com/google/javascript/jscomp/ProcessTweaks.java
+index e20b902..b52d04c 100644
+--- a/src/com/google/javascript/jscomp/ProcessTweaks.java
++++ b/src/com/google/javascript/jscomp/ProcessTweaks.java
+@@ -345,7 +345,8 @@
+         return;
+       }
+ 
+-      String callName = n.getFirstChild().getQualifiedName();
++      Node var_1390 = n.getFirstChild();
++	String callName = var_1390.getQualifiedName();
+       TweakFunction tweakFunc = TWEAK_FUNCTIONS_MAP.get(callName);
+       if (tweakFunc == null) {
+         return;
+@@ -358,7 +359,7 @@
+       }
+ 
+       // Ensure the first parameter (the tweak ID) is a string literal.
+-      Node tweakIdNode = n.getFirstChild().getNext();
++      Node tweakIdNode = var_1390.getNext();
+       if (!tweakIdNode.isString()) {
+         compiler.report(t.makeError(tweakIdNode, NON_LITERAL_TWEAK_ID_ERROR));
+         return;

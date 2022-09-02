@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/lang3/text/StrTokenizer.java b/src/main/java/org/apache/commons/lang3/text/StrTokenizer.java
+index 7430b1c..ca37092 100644
+--- a/src/main/java/org/apache/commons/lang3/text/StrTokenizer.java
++++ b/src/main/java/org/apache/commons/lang3/text/StrTokenizer.java
+@@ -689,9 +689,10 @@
+             final int removeLen = Math.max(
+                     getIgnoredMatcher().isMatch(chars, start, start, len),
+                     getTrimmerMatcher().isMatch(chars, start, start, len));
+-            if (removeLen == 0 ||
++            int var_464 = getQuoteMatcher().isMatch(chars, start, start, len);
++			if (removeLen == 0 ||
+                 getDelimiterMatcher().isMatch(chars, start, start, len) > 0 ||
+-                getQuoteMatcher().isMatch(chars, start, start, len) > 0) {
++                var_464 > 0) {
+                 break;
+             }
+             start += removeLen;

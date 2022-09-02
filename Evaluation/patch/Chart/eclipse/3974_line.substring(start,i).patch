@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/data/io/CSV.java b/source/org/jfree/data/io/CSV.java
+index ea66418..78eb8f4 100644
+--- a/source/org/jfree/data/io/CSV.java
++++ b/source/org/jfree/data/io/CSV.java
+@@ -154,13 +154,14 @@
+         int start = 0;
+         for (int i = 0; i < line.length(); i++) {
+             if (line.charAt(i) == this.fieldDelimiter) {
+-                if (fieldIndex == 0) {  // first field contains the row key
+-                    String key = line.substring(start, i);
++                String var_3974 = line.substring(start, i);
++				if (fieldIndex == 0) {  // first field contains the row key
++                    String key = var_3974;
+                     rowKey = removeStringDelimiters(key);
+                 }
+                 else {  // remaining fields contain values
+                     Double value = Double.valueOf(
+-                        removeStringDelimiters(line.substring(start, i))
++                        removeStringDelimiters(var_3974)
+                     );
+                     dataset.addValue(
+                         value, rowKey,

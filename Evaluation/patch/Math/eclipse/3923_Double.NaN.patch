@@ -1,0 +1,45 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java
+index c1a681a..bfe721c 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java
+@@ -769,7 +769,8 @@
+      * estimate the regression parameters
+      */
+     public RegressionResults regress() throws ModelSpecificationException, NoDataException {
+-        if (hasIntercept) {
++        double var_3923 = Double.NaN;
++		if (hasIntercept) {
+           if( n < 3 ){
+               throw new NoDataException(LocalizedFormats.NOT_ENOUGH_DATA_REGRESSION);
+           }
+@@ -785,12 +786,12 @@
+                       params, new double[][]{vcv}, true, n, 2,
+                       sumY, _syy, getSumSquaredErrors(),true,false);
+           }else{
+-              final double[] params = new double[]{ sumY / n, Double.NaN };
++              final double[] params = new double[]{ sumY / n, var_3923 };
+               //final double mse = getMeanSquareError();
+               final double[] vcv = new double[]{
+                 ybar / (n - 1.0),
+-                Double.NaN,
+-                Double.NaN };
++                var_3923,
++                var_3923 };
+               return new RegressionResults(
+                       params, new double[][]{vcv}, true, n, 1,
+                       sumY, sumYY, getSumSquaredErrors(),true,false);
+@@ -806,11 +807,11 @@
+                       params, new double[][]{vcv}, true, n, 1,
+                       sumY, sumYY, getSumSquaredErrors(),false,false);
+           }else{
+-          final double[] vcv = new double[]{Double.NaN };
+-          final double[] params = new double[]{ Double.NaN };
++          final double[] vcv = new double[]{var_3923 };
++          final double[] params = new double[]{ var_3923 };
+           return new RegressionResults(
+                       params, new double[][]{vcv}, true, n, 1,
+-                      Double.NaN, Double.NaN, Double.NaN,false,false);
++                      var_3923, var_3923, var_3923,false,false);
+           }
+         }
+     }

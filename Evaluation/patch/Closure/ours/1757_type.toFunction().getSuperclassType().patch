@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/ConcreteType.java b/src/com/google/javascript/jscomp/ConcreteType.java
+index 7bf7593..e2daa18 100644
+--- a/src/com/google/javascript/jscomp/ConcreteType.java
++++ b/src/com/google/javascript/jscomp/ConcreteType.java
+@@ -215,8 +215,9 @@
+   List<ConcreteFunctionType> getSuperclassTypes() {
+     return getMatchingTypes(new TypeFilter<ConcreteFunctionType>(NO_FUNCTIONS) {
+       @Override public ConcreteFunctionType filter(ConcreteType type) {
+-        return type.isFunction()
+-          && type.toFunction().getSuperclassType() != null
++        ConcreteFunctionType var_1757 = type.toFunction().getSuperclassType();
++		return type.isFunction()
++          && var_1757 != null
+           ? type.toFunction().getSuperclassType() : null;
+       }
+     });

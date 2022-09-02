@@ -1,0 +1,34 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+index 2e75bce..17878fc 100644
+--- a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
++++ b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+@@ -27,6 +27,7 @@
+ import com.google.javascript.rhino.Node;
+ import com.google.javascript.rhino.Token;
+ 
++import java.util.ArrayList;
+ import java.util.List;
+ import java.util.Map;
+ import java.util.Set;
+@@ -591,9 +592,10 @@
+         return;
+       }
+ 
+-      if (style == CssRenamingMap.Style.BY_PART) {
++      ArrayList<String> var_1525 = Lists.newArrayList();
++	if (style == CssRenamingMap.Style.BY_PART) {
+         // Make sure that no keys contain -'s
+-        List<String> errors = Lists.newArrayList();
++        List<String> errors = var_1525;
+         for (String key : cssNames.keySet()) {
+           if (key.contains("-")) {
+             errors.add(key);
+@@ -608,7 +610,7 @@
+         // n^2 check over the map which makes sure that if "a-b" in
+         // the map, then map(a-b) = map(a)-map(b).
+         // To speed things up, only consider cases where len(b) <= 10
+-        List<String> errors = Lists.newArrayList();
++        List<String> errors = var_1525;
+         for (Map.Entry<String, String> b : cssNames.entrySet()) {
+           if (b.getKey().length() > 10) continue;
+           for (Map.Entry<String, String> a : cssNames.entrySet()) {

@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/TypeSafeDispatcher.java b/src/com/google/javascript/jscomp/parsing/TypeSafeDispatcher.java
+index 95aaacd..ade49ce 100644
+--- a/src/com/google/javascript/jscomp/parsing/TypeSafeDispatcher.java
++++ b/src/com/google/javascript/jscomp/parsing/TypeSafeDispatcher.java
+@@ -223,8 +223,9 @@
+         } else  if (node instanceof ForLoop) {
+           return processForLoop((ForLoop) node);
+         } else {
+-          throw new IllegalStateException("Unexpected node type.  class: " +
+-                                          node.getClass() +
++          Class<? extends AstNode> var_2282 = node.getClass();
++		throw new IllegalStateException("Unexpected node type.  class: " +
++                                          var_2282 +
+                                           " type: " +
+                                           Token.typeToName(node.getType()));
+         }

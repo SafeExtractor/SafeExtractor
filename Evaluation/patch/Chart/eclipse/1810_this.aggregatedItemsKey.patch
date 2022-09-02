@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/plot/MultiplePiePlot.java b/source/org/jfree/chart/plot/MultiplePiePlot.java
+index f85acab..aabea7d 100644
+--- a/source/org/jfree/chart/plot/MultiplePiePlot.java
++++ b/source/org/jfree/chart/plot/MultiplePiePlot.java
+@@ -462,9 +462,10 @@
+             PieDataset piedataset = null;
+             PieDataset dd = new CategoryToPieDataset(this.dataset,
+                     this.dataExtractOrder, pieIndex);
+-            if (this.limit > 0.0) {
++            Comparable var_1810 = this.aggregatedItemsKey;
++			if (this.limit > 0.0) {
+                 piedataset = DatasetUtilities.createConsolidatedPieDataset(
+-                        dd, this.aggregatedItemsKey, this.limit);
++                        dd, var_1810, this.limit);
+             }
+             else {
+                 piedataset = dd;
+@@ -477,7 +478,7 @@
+             for (int i = 0; i < piedataset.getItemCount(); i++) {
+                 Comparable key = piedataset.getKey(i);
+                 Paint p;
+-                if (key.equals(this.aggregatedItemsKey)) {
++                if (key.equals(var_1810)) {
+                     p = this.aggregatedItemsPaint;
+                 }
+                 else {

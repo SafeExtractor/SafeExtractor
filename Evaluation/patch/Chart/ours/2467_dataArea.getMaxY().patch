@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+index 4a54655..38d255c 100644
+--- a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
++++ b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+@@ -1183,7 +1183,8 @@
+                                 Marker marker,
+                                 Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        double var_2467 = dataArea.getMaxY();
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = axis.getRange();
+@@ -1202,7 +1203,7 @@
+             Line2D line = null;
+             if (orientation == PlotOrientation.HORIZONTAL) {
+                 line = new Line2D.Double(v, dataArea.getMinY(), v,
+-                        dataArea.getMaxY());
++                        var_2467);
+             }
+             else if (orientation == PlotOrientation.VERTICAL) {
+                 line = new Line2D.Double(dataArea.getMinX(), v,
+@@ -1262,7 +1263,7 @@
+             else if (orientation == PlotOrientation.VERTICAL) {
+                 // clip top and bottom bounds to data area
+                 low = Math.max(low, dataArea.getMinY());
+-                high = Math.min(high, dataArea.getMaxY());
++                high = Math.min(high, var_2467);
+                 rect = new Rectangle2D.Double(dataArea.getMinX(),
+                         low, dataArea.getWidth(),
+                         high - low);
+@@ -1301,7 +1302,7 @@
+                 else { // PlotOrientation.HORIZONTAL
+                     Line2D line = new Line2D.Double();
+                     double y0 = dataArea.getMinY();
+-                    double y1 = dataArea.getMaxY();
++                    double y1 = var_2467;
+                     g2.setPaint(im.getOutlinePaint());
+                     g2.setStroke(im.getOutlineStroke());
+                     if (range.contains(start)) {

@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/InlineVariables.java b/src/com/google/javascript/jscomp/InlineVariables.java
+index 5c7408d..058fa44 100644
+--- a/src/com/google/javascript/jscomp/InlineVariables.java
++++ b/src/com/google/javascript/jscomp/InlineVariables.java
+@@ -22,6 +22,7 @@
+ import com.google.common.collect.Maps;
+ import com.google.common.collect.Sets;
+ import com.google.javascript.jscomp.CodingConvention.SubclassRelationship;
++import com.google.javascript.jscomp.ReferenceCollectingCallback.BasicBlock;
+ import com.google.javascript.jscomp.ReferenceCollectingCallback.Behavior;
+ import com.google.javascript.jscomp.ReferenceCollectingCallback.Reference;
+ import com.google.javascript.jscomp.ReferenceCollectingCallback.ReferenceCollection;
+@@ -536,8 +537,9 @@
+ 
+       // Be very conservative and do no cross control structures or
+       // scope boundaries
+-      if (declaration.getBasicBlock() != initialization.getBasicBlock()
+-          || declaration.getBasicBlock() != reference.getBasicBlock()) {
++      BasicBlock var_1110 = declaration.getBasicBlock();
++	if (var_1110 != initialization.getBasicBlock()
++          || var_1110 != reference.getBasicBlock()) {
+         return false;
+       }
+ 

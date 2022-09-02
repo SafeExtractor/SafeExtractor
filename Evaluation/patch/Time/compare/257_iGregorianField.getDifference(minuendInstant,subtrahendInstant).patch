@@ -1,0 +1,36 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/257_iGregorianField.getDifference(minuendInstant,subtrahendInstant).patch b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/257_iGregorianField.getDifference(minuendInstant,subtrahendInstant).patch
+index bef8ce2..f4dee6c 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/257_iGregorianField.getDifference(minuendInstant,subtrahendInstant).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/257_iGregorianField.getDifference(minuendInstant,subtrahendInstant).patch
+@@ -1,26 +1,14 @@
+ diff --git a/src/main/java/org/joda/time/chrono/GJChronology.java b/src/main/java/org/joda/time/chrono/GJChronology.java
+-index 1cc03a4..132e712 100644
++index 1cc03a4..411495b 100644
+ --- a/src/main/java/org/joda/time/chrono/GJChronology.java
+ +++ b/src/main/java/org/joda/time/chrono/GJChronology.java
+-@@ -1069,9 +1069,10 @@
+-         }
+- 
++@@ -1071,7 +1071,8 @@
+          public int getDifference(long minuendInstant, long subtrahendInstant) {
+--            if (minuendInstant >= iCutover) {
+-+            int var_257 = iGregorianField.getDifference(minuendInstant, subtrahendInstant);
+-+			if (minuendInstant >= iCutover) {
++             if (minuendInstant >= iCutover) {
+                  if (subtrahendInstant >= iCutover) {
+ -                    return iGregorianField.getDifference(minuendInstant, subtrahendInstant);
+-+                    return var_257;
+++                    int var_257 = iGregorianField.getDifference(minuendInstant, subtrahendInstant);
+++					return var_257;
+                  }
+                  // Remember, the add is being reversed. Since subtrahend is
+                  // Julian, convert minuend to Julian to match.
+-@@ -1084,7 +1085,7 @@
+-                 // Remember, the add is being reversed. Since subtrahend is
+-                 // Gregorian, convert minuend to Gregorian to match.
+-                 minuendInstant = julianToGregorian(minuendInstant);
+--                return iGregorianField.getDifference(minuendInstant, subtrahendInstant);
+-+                return var_257;
+-             }
+-         }
+- 

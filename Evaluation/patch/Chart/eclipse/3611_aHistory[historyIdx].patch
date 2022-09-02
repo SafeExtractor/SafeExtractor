@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/util/DefaultShadowGenerator.java b/source/org/jfree/chart/util/DefaultShadowGenerator.java
+index f97affa..cfc0e01 100644
+--- a/source/org/jfree/chart/util/DefaultShadowGenerator.java
++++ b/source/org/jfree/chart/util/DefaultShadowGenerator.java
+@@ -214,7 +214,8 @@
+ 
+         // horizontal pass
+ 
+-        for (int y = 0, bufferOffset = 0; y < dstHeight; y++, bufferOffset = y * dstWidth) {
++        int var_3611 = aHistory[historyIdx];
++		for (int y = 0, bufferOffset = 0; y < dstHeight; y++, bufferOffset = y * dstWidth) {
+             aSum = 0;
+             historyIdx = 0;
+             for (int x = 0; x < shadowSize; x++, bufferOffset++) {
+@@ -230,7 +231,7 @@
+                 dataBuffer[bufferOffset] = a << 24 | shadowRgb;
+ 
+                 // substract the oldest pixel from the sum
+-                aSum -= aHistory[historyIdx];
++                aSum -= var_3611;
+ 
+                 // get the lastest pixel
+                 a = dataBuffer[bufferOffset + right] >>> 24;
+@@ -260,7 +261,7 @@
+                 dataBuffer[bufferOffset] = a << 24 | shadowRgb;
+ 
+                 // substract the oldest pixel from the sum
+-                aSum -= aHistory[historyIdx];
++                aSum -= var_3611;
+ 
+                 // get the lastest pixel
+                 a = dataBuffer[bufferOffset + lastPixelOffset] >>> 24;

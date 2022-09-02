@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/OpenMapRealMatrix.java b/src/main/java/org/apache/commons/math3/linear/OpenMapRealMatrix.java
+index 31c5863..82522cb 100644
+--- a/src/main/java/org/apache/commons/math3/linear/OpenMapRealMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/OpenMapRealMatrix.java
+@@ -157,8 +157,9 @@
+         final OpenMapRealMatrix out = new OpenMapRealMatrix(this);
+         for (OpenIntToDoubleHashMap.Iterator iterator = m.entries.iterator(); iterator.hasNext();) {
+             iterator.advance();
+-            final int row = iterator.key() / columns;
+-            final int col = iterator.key() - row * columns;
++            int var_2512 = iterator.key();
++			final int row = var_2512 / columns;
++            final int col = var_2512 - row * columns;
+             out.setEntry(row, col, getEntry(row, col) - iterator.value());
+         }
+ 

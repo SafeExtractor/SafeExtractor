@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+index fa5c164..d0b2e4c 100644
+--- a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
++++ b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+@@ -32,6 +32,7 @@
+ 
+ import org.joda.time.Chronology;
+ import org.joda.time.DateTime;
++import org.joda.time.DateTimeField;
+ import org.joda.time.DateTimeUtils;
+ import org.joda.time.DateTimeZone;
+ import org.joda.time.Period;
+@@ -672,8 +673,9 @@
+                 next = setDayOfMonth(chrono, next);
+             } catch (IllegalArgumentException e) {
+                 if (iMonthOfYear == 2 && iDayOfMonth == 29) {
+-                    while (chrono.year().isLeap(next) == false) {
+-                        next = chrono.year().add(next, 1);
++                    DateTimeField var_676 = chrono.year();
++					while (var_676.isLeap(next) == false) {
++                        next = var_676.add(next, 1);
+                     }
+                     next = setDayOfMonth(chrono, next);
+                 } else {

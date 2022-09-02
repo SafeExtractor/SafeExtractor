@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..2111fba 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -1749,7 +1749,8 @@
+             clone.baseToolTipGenerator = (XYToolTipGenerator) pc.clone();
+         }
+ 
+-        if (clone.legendItemLabelGenerator instanceof PublicCloneable) {
++        XYSeriesLabelGenerator var_3169 = clone.legendItemLabelGenerator;
++		if (var_3169 instanceof PublicCloneable) {
+             clone.legendItemLabelGenerator = (XYSeriesLabelGenerator)
+                     ObjectUtilities.clone(this.legendItemLabelGenerator);
+         }
+@@ -1767,7 +1768,7 @@
+         clone.backgroundAnnotations = (List) ObjectUtilities.deepClone(
+                 this.backgroundAnnotations);
+ 
+-        if (clone.legendItemLabelGenerator instanceof PublicCloneable) {
++        if (var_3169 instanceof PublicCloneable) {
+             clone.legendItemLabelGenerator = (XYSeriesLabelGenerator)
+                     ObjectUtilities.clone(this.legendItemLabelGenerator);
+         }

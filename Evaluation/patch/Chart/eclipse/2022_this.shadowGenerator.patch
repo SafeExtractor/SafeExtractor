@@ -1,0 +1,33 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot.java b/source/org/jfree/chart/plot/PiePlot.java
+index 34014e9..59b5274 100644
+--- a/source/org/jfree/chart/plot/PiePlot.java
++++ b/source/org/jfree/chart/plot/PiePlot.java
+@@ -2453,7 +2453,8 @@
+             Graphics2D savedG2 = g2;
+             Rectangle2D savedDataArea = area;
+             BufferedImage dataImage = null;
+-            if (this.shadowGenerator != null) {
++            ShadowGenerator var_2022 = this.shadowGenerator;
++			if (var_2022 != null) {
+                 dataImage = new BufferedImage((int) area.getWidth(),
+                     (int) area.getHeight(), BufferedImage.TYPE_INT_ARGB);
+                 g2 = dataImage.createGraphics();
+@@ -2461,14 +2462,14 @@
+                 area = new Rectangle(0, 0, dataImage.getWidth(), dataImage.getHeight());
+             }
+             drawPie(g2, area, info);
+-            if (this.shadowGenerator != null) {
+-                BufferedImage shadowImage = this.shadowGenerator.createDropShadow(dataImage);
++            if (var_2022 != null) {
++                BufferedImage shadowImage = var_2022.createDropShadow(dataImage);
+                 g2 = savedG2;
+                 area = savedDataArea;
+                 g2.drawImage(shadowImage, (int) savedDataArea.getX()
+-                        + this.shadowGenerator.calculateOffsetX(),
++                        + var_2022.calculateOffsetX(),
+                         (int) savedDataArea.getY()
+-                        + this.shadowGenerator.calculateOffsetY(), null);
++                        + var_2022.calculateOffsetY(), null);
+                 g2.drawImage(dataImage, (int) savedDataArea.getX(),
+                         (int) savedDataArea.getY(), null);
+             }

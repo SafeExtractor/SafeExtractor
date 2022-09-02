@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..837757d 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -257,19 +257,20 @@
+             continue;
+           }
+ 
+-          if (ref.type == Ref.Type.DELETE_PROP) {
++          Type var_713 = ref.type;
++		if (var_713 == Ref.Type.DELETE_PROP) {
+             if (initialized) {
+               warnAboutNamespaceRedefinition(name, ref);
+             }
+           } else if (
+-              ref.type == Ref.Type.SET_FROM_GLOBAL ||
+-              ref.type == Ref.Type.SET_FROM_LOCAL) {
++              var_713 == Ref.Type.SET_FROM_GLOBAL ||
++              var_713 == Ref.Type.SET_FROM_LOCAL) {
+             if (initialized) {
+               warnAboutNamespaceRedefinition(name, ref);
+             }
+ 
+             initialized = true;
+-          } else if (ref.type == Ref.Type.ALIASING_GET) {
++          } else if (var_713 == Ref.Type.ALIASING_GET) {
+             warnAboutNamespaceAliasing(name, ref);
+           }
+         }

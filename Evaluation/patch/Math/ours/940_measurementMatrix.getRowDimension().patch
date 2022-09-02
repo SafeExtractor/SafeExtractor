@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java b/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
+index 423689d..c304eee 100644
+--- a/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
++++ b/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
+@@ -196,19 +196,20 @@
+         MatrixUtils.checkAdditionCompatible(transitionMatrix, processNoise);
+ 
+         // column dimension of H must be equal to row dimension of A
+-        if (measurementMatrix.getColumnDimension() != transitionMatrix.getRowDimension()) {
+-            throw new MatrixDimensionMismatchException(measurementMatrix.getRowDimension(),
++        int var_940 = measurementMatrix.getRowDimension();
++		if (measurementMatrix.getColumnDimension() != transitionMatrix.getRowDimension()) {
++            throw new MatrixDimensionMismatchException(var_940,
+                                                        measurementMatrix.getColumnDimension(),
+-                                                       measurementMatrix.getRowDimension(),
++                                                       var_940,
+                                                        transitionMatrix.getRowDimension());
+         }
+ 
+         // row dimension of R must be equal to row dimension of H
+-        if (measNoise.getRowDimension() != measurementMatrix.getRowDimension() ||
++        if (measNoise.getRowDimension() != var_940 ||
+             measNoise.getColumnDimension() != 1) {
+             throw new MatrixDimensionMismatchException(measNoise.getRowDimension(),
+                                                        measNoise.getColumnDimension(),
+-                                                       measurementMatrix.getRowDimension(), 1);
++                                                       var_940, 1);
+         }
+     }
+ 

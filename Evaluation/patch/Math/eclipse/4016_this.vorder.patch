@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..a1e9155 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -944,8 +944,9 @@
+         }
+ 
+         boolean needsReorder = false;
+-        for (int i = 0; i < numberOfRegressors; i++) {
+-            if (this.vorder[i] != i) {
++        int[] var_4016 = this.vorder;
++		for (int i = 0; i < numberOfRegressors; i++) {
++            if (var_4016[i] != i) {
+                 needsReorder = true;
+                 break;
+             }
+@@ -961,7 +962,7 @@
+             int[] newIndices = new int[beta.length];
+             for (int i = 0; i < nvars; i++) {
+                 for (int j = 0; j < numberOfRegressors; j++) {
+-                    if (this.vorder[j] == i) {
++                    if (var_4016[j] == i) {
+                         betaNew[i] = beta[ j];
+                         newIndices[i] = j;
+                     }

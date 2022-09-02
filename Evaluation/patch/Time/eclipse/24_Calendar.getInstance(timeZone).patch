@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/LocalDateTime.java b/src/main/java/org/joda/time/LocalDateTime.java
+index 44d2ee9..4438f9d 100644
+--- a/src/main/java/org/joda/time/LocalDateTime.java
++++ b/src/main/java/org/joda/time/LocalDateTime.java
+@@ -838,7 +838,8 @@
+      * @see #toDate()
+      */
+     private Date correctDstTransition(Date date, final TimeZone timeZone) {
+-        Calendar calendar = Calendar.getInstance(timeZone);
++        Calendar var_24 = Calendar.getInstance(timeZone);
++		Calendar calendar = var_24;
+         calendar.setTime(date);
+         LocalDateTime check = LocalDateTime.fromCalendarFields(calendar);
+         if (check.isBefore(this)) {
+@@ -856,7 +857,7 @@
+             calendar.setTimeInMillis(calendar.getTimeInMillis() + 1000);
+         } else if (check.equals(this)) {
+             // check for DST overlap
+-            final Calendar earlier = Calendar.getInstance(timeZone);
++            final Calendar earlier = var_24;
+             earlier.setTimeInMillis(calendar.getTimeInMillis() - timeZone.getDSTSavings());
+             check = LocalDateTime.fromCalendarFields(earlier);
+             if (check.equals(this)) {

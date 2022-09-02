@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/StrictModeCheck.java b/src/com/google/javascript/jscomp/StrictModeCheck.java
+index b22f3ed..564a5c0 100644
+--- a/src/com/google/javascript/jscomp/StrictModeCheck.java
++++ b/src/com/google/javascript/jscomp/StrictModeCheck.java
+@@ -128,14 +128,15 @@
+    * of a variable, function, or argument.
+    */
+   private static boolean isDeclaration(Node n) {
+-    switch (n.getParent().getType()) {
++    Node var_209 = n.getParent();
++	switch (var_209.getType()) {
+       case Token.VAR:
+       case Token.FUNCTION:
+       case Token.CATCH:
+         return true;
+ 
+       case Token.PARAM_LIST:
+-        return n.getParent().getParent().isFunction();
++        return var_209.getParent().isFunction();
+ 
+       default:
+         return false;

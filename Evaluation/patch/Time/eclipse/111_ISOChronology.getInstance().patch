@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/joda/time/DateTimeUtils.java b/src/main/java/org/joda/time/DateTimeUtils.java
+index 391cafd..f322990 100644
+--- a/src/main/java/org/joda/time/DateTimeUtils.java
++++ b/src/main/java/org/joda/time/DateTimeUtils.java
+@@ -193,12 +193,13 @@
+      * @return the chronology, never null
+      */
+     public static final Chronology getInstantChronology(ReadableInstant instant) {
+-        if (instant == null) {
+-            return ISOChronology.getInstance();
++        ISOChronology var_111 = ISOChronology.getInstance();
++		if (instant == null) {
++            return var_111;
+         }
+         Chronology chrono = instant.getChronology();
+         if (chrono == null) {
+-            return ISOChronology.getInstance();
++            return var_111;
+         }
+         return chrono;
+     }

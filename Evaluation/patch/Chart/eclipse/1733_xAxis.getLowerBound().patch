@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..1011dec 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -3829,7 +3829,8 @@
+             int passCount = renderer.getPassCount();
+ 
+             SeriesRenderingOrder seriesOrder = getSeriesRenderingOrder();
+-            if (seriesOrder == SeriesRenderingOrder.REVERSE) {
++            double var_1733 = xAxis.getLowerBound();
++			if (seriesOrder == SeriesRenderingOrder.REVERSE) {
+                 //render series in reverse order
+                 for (int pass = 0; pass < passCount; pass++) {
+                     int seriesCount = dataset.getSeriesCount();
+@@ -3841,7 +3842,7 @@
+                         }
+                         if (state.getProcessVisibleItemsOnly()) {
+                             int[] itemBounds = RendererUtilities.findLiveItems(
+-                                    dataset, series, xAxis.getLowerBound(),
++                                    dataset, series, var_1733,
+                                     xAxis.getUpperBound());
+                             firstItem = Math.max(itemBounds[0] - 1, 0);
+                             lastItem = Math.min(itemBounds[1] + 1, lastItem);
+@@ -3872,7 +3873,7 @@
+                         int lastItem = dataset.getItemCount(series) - 1;
+                         if (state.getProcessVisibleItemsOnly()) {
+                             int[] itemBounds = RendererUtilities.findLiveItems(
+-                                    dataset, series, xAxis.getLowerBound(),
++                                    dataset, series, var_1733,
+                                     xAxis.getUpperBound());
+                             firstItem = Math.max(itemBounds[0] - 1, 0);
+                             lastItem = Math.min(itemBounds[1] + 1, lastItem);

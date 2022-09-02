@@ -1,0 +1,36 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..ff6891a 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -73,7 +73,8 @@
+    * for expressions with side-effects.
+    */
+   static TernaryValue getImpureBooleanValue(Node n) {
+-    switch (n.getType()) {
++    Node var_2030 = n.getFirstChild();
++	switch (n.getType()) {
+       case Token.ASSIGN:
+       case Token.COMMA:
+         // For ASSIGN and COMMA the value is the value of the RHS.
+@@ -82,18 +83,18 @@
+         TernaryValue value = getImpureBooleanValue(n.getLastChild());
+         return value.not();
+       case Token.AND: {
+-        TernaryValue lhs = getImpureBooleanValue(n.getFirstChild());
++        TernaryValue lhs = getImpureBooleanValue(var_2030);
+         TernaryValue rhs = getImpureBooleanValue(n.getLastChild());
+         return lhs.and(rhs);
+       }
+       case Token.OR:  {
+-        TernaryValue lhs = getImpureBooleanValue(n.getFirstChild());
++        TernaryValue lhs = getImpureBooleanValue(var_2030);
+         TernaryValue rhs = getImpureBooleanValue(n.getLastChild());
+         return lhs.or(rhs);
+       }
+       case Token.HOOK:  {
+         TernaryValue trueValue = getImpureBooleanValue(
+-            n.getFirstChild().getNext());
++            var_2030.getNext());
+         TernaryValue falseValue = getImpureBooleanValue(n.getLastChild());
+         if (trueValue.equals(falseValue)) {
+           return trueValue;

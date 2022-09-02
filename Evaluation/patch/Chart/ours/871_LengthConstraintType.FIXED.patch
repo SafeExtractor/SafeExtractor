@@ -1,0 +1,43 @@
+diff --git a/source/org/jfree/chart/block/GridArrangement.java b/source/org/jfree/chart/block/GridArrangement.java
+index 7aa4631..4b776d9 100644
+--- a/source/org/jfree/chart/block/GridArrangement.java
++++ b/source/org/jfree/chart/block/GridArrangement.java
+@@ -103,11 +103,12 @@
+                           RectangleConstraint constraint) {
+         LengthConstraintType w = constraint.getWidthConstraintType();
+         LengthConstraintType h = constraint.getHeightConstraintType();
+-        if (w == LengthConstraintType.NONE) {
++        LengthConstraintType var_871 = LengthConstraintType.FIXED;
++		if (w == LengthConstraintType.NONE) {
+             if (h == LengthConstraintType.NONE) {
+                 return arrangeNN(container, g2);
+             }
+-            else if (h == LengthConstraintType.FIXED) {
++            else if (h == var_871) {
+                 return arrangeNF(container, g2, constraint);
+             }
+             else if (h == LengthConstraintType.RANGE) {
+@@ -115,12 +116,12 @@
+                 return arrangeNR(container, g2, constraint);
+             }
+         }
+-        else if (w == LengthConstraintType.FIXED) {
++        else if (w == var_871) {
+             if (h == LengthConstraintType.NONE) {
+                 // find optimum height
+                 return arrangeFN(container, g2, constraint);
+             }
+-            else if (h == LengthConstraintType.FIXED) {
++            else if (h == var_871) {
+                 return arrangeFF(container, g2, constraint);
+             }
+             else if (h == LengthConstraintType.RANGE) {
+@@ -134,7 +135,7 @@
+                 // find optimum height
+                 return arrangeRN(container, g2, constraint);
+             }
+-            else if (h == LengthConstraintType.FIXED) {
++            else if (h == var_871) {
+                 // fixed width
+                 return arrangeRF(container, g2, constraint);
+             }

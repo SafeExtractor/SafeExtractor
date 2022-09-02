@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..0dd044e 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -983,9 +983,10 @@
+       return ConcreteType.ALL;
+     }
+ 
+-    if ((name.getFirstChild() != null)
+-        && (name.getFirstChild().isFunction())) {
+-      return createConcreteFunction(name.getFirstChild(), scope);
++    Node var_1065 = name.getFirstChild();
++	if ((var_1065 != null)
++        && (var_1065.isFunction())) {
++      return createConcreteFunction(var_1065, scope);
+     }
+ 
+     return createType(name.getJSType());

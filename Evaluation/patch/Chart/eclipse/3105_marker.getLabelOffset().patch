@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..dcf48fb 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -1339,7 +1339,8 @@
+                                  Marker marker,
+                                  Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        RectangleInsets var_3105 = marker.getLabelOffset();
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = domainAxis.getRange();
+@@ -1376,7 +1377,7 @@
+                 g2.setPaint(marker.getLabelPaint());
+                 Point2D coordinates = calculateDomainMarkerTextAnchorPoint(
+                         g2, orientation, dataArea, line.getBounds2D(),
+-                        marker.getLabelOffset(),
++                        var_3105,
+                         LengthAdjustmentType.EXPAND, anchor);
+                 TextUtilities.drawAlignedString(label, g2,
+                         (float) coordinates.getX(), (float) coordinates.getY(),
+@@ -1478,7 +1479,7 @@
+                 g2.setPaint(marker.getLabelPaint());
+                 Point2D coordinates = calculateDomainMarkerTextAnchorPoint(
+                         g2, orientation, dataArea, rect,
+-                        marker.getLabelOffset(), marker.getLabelOffsetType(),
++                        var_3105, marker.getLabelOffsetType(),
+                         anchor);
+                 TextUtilities.drawAlignedString(label, g2,
+                         (float) coordinates.getX(), (float) coordinates.getY(),

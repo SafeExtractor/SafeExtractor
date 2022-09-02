@@ -1,0 +1,35 @@
+diff --git a/src/com/google/javascript/jscomp/LinkedFlowScope.java b/src/com/google/javascript/jscomp/LinkedFlowScope.java
+index a97d855..ad8840c 100644
+--- a/src/com/google/javascript/jscomp/LinkedFlowScope.java
++++ b/src/com/google/javascript/jscomp/LinkedFlowScope.java
+@@ -448,7 +448,8 @@
+         StaticSlot<JSType> slotB = slotsB.get(name);
+ 
+         JSType joinedType = null;
+-        if (slotB == null || slotB.getType() == null) {
++        JSType var_1856 = slotA.getType();
++		if (slotB == null || slotB.getType() == null) {
+           StaticSlot<JSType> fnSlot
+               = joinedScopeB.getFunctionScope().getSlot(name);
+           JSType fnSlotType = fnSlot == null ? null : fnSlot.getType();
+@@ -456,9 +457,9 @@
+             // Case #1 -- already inserted.
+           } else {
+             // Case #3
+-            joinedType = slotA.getType().getLeastSupertype(fnSlotType);
++            joinedType = var_1856.getLeastSupertype(fnSlotType);
+           }
+-        } else if (slotA == null || slotA.getType() == null) {
++        } else if (slotA == null || var_1856 == null) {
+           StaticSlot<JSType> fnSlot
+               = joinedScopeA.getFunctionScope().getSlot(name);
+           JSType fnSlotType = fnSlot == null ? null : fnSlot.getType();
+@@ -472,7 +473,7 @@
+         } else {
+           // Case #5
+           joinedType =
+-              slotA.getType().getLeastSupertype(slotB.getType());
++              var_1856.getLeastSupertype(slotB.getType());
+         }
+ 
+         if (joinedType != null) {

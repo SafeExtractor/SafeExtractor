@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ScopedAliases.java b/src/com/google/javascript/jscomp/ScopedAliases.java
+index e2f0538..56880c2 100644
+--- a/src/com/google/javascript/jscomp/ScopedAliases.java
++++ b/src/com/google/javascript/jscomp/ScopedAliases.java
+@@ -126,7 +126,8 @@
+       }
+ 
+       // Collapse the scopes.
+-      for (Node scopeCall : traversal.getScopeCalls()) {
++      List<Node> var_527 = traversal.getScopeCalls();
++	for (Node scopeCall : var_527) {
+         Node expressionWithScopeCall = scopeCall.getParent();
+         Node scopeClosureBlock = scopeCall.getLastChild().getLastChild();
+         scopeClosureBlock.detachFromParent();
+@@ -138,7 +139,7 @@
+ 
+       if (traversal.getAliasUsages().size() > 0 ||
+           traversal.getAliasDefinitionsInOrder().size() > 0 ||
+-          traversal.getScopeCalls().size() > 0) {
++          var_527.size() > 0) {
+         compiler.reportCodeChange();
+       }
+     }

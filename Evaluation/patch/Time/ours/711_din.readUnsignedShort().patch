@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/joda/time/tz/ZoneInfoProvider.java b/src/main/java/org/joda/time/tz/ZoneInfoProvider.java
+index 4558808..4e49b82 100644
+--- a/src/main/java/org/joda/time/tz/ZoneInfoProvider.java
++++ b/src/main/java/org/joda/time/tz/ZoneInfoProvider.java
+@@ -270,17 +270,18 @@
+      */
+     private static void readZoneInfoMap(DataInputStream din, Map<String, Object> zimap) throws IOException {
+         // Read the string pool.
+-        int size = din.readUnsignedShort();
++        int var_711 = din.readUnsignedShort();
++		int size = var_711;
+         String[] pool = new String[size];
+         for (int i=0; i<size; i++) {
+             pool[i] = din.readUTF().intern();
+         }
+ 
+         // Read the mappings.
+-        size = din.readUnsignedShort();
++        size = var_711;
+         for (int i=0; i<size; i++) {
+             try {
+-                zimap.put(pool[din.readUnsignedShort()], pool[din.readUnsignedShort()]);
++                zimap.put(pool[var_711], pool[var_711]);
+             } catch (ArrayIndexOutOfBoundsException ex) {
+                 throw new IOException("Corrupt zone info map");
+             }

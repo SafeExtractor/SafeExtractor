@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java b/src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java
+index c8e366b..f830d41 100644
+--- a/src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java
++++ b/src/main/java/org/apache/commons/compress/archivers/zip/ZipFile.java
+@@ -775,7 +775,8 @@
+         ze.setCrc(ZipLong.getValue(cfhBuf, off));
+         off += WORD;
+ 
+-        ze.setCompressedSize(ZipLong.getValue(cfhBuf, off));
++        long size = ZipLong.getValue(cfhBuf, off);
++		ze.setCompressedSize(size);
+         off += WORD;
+ 
+         ze.setSize(ZipLong.getValue(cfhBuf, off));

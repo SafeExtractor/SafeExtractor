@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/LUDecomposition.java b/src/main/java/org/apache/commons/math3/linear/LUDecomposition.java
+index 65185d3..50df1c8 100644
+--- a/src/main/java/org/apache/commons/math3/linear/LUDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/LUDecomposition.java
+@@ -141,10 +141,11 @@
+             }
+ 
+             // Pivot if necessary
+-            if (max != col) {
++            double[] var_2279 = lu[col];
++			if (max != col) {
+                 double tmp = 0;
+                 final double[] luMax = lu[max];
+-                final double[] luCol = lu[col];
++                final double[] luCol = var_2279;
+                 for (int i = 0; i < m; i++) {
+                     tmp = luMax[i];
+                     luMax[i] = luCol[i];
+@@ -157,7 +158,7 @@
+             }
+ 
+             // Divide the lower elements by the "winning" diagonal elt.
+-            final double luDiag = lu[col][col];
++            final double luDiag = var_2279[col];
+             for (int row = col + 1; row < m; row++) {
+                 lu[row][col] /= luDiag;
+             }

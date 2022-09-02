@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+index 8d6a50b..234fb45 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+@@ -788,10 +788,11 @@
+ 
+                     // accumulate the tranformation in the row of s
+                     for (int i = k + 1; i < solvedCols; ++i) {
+-                        double rik = weightedJacobian[i][pk];
++                        double[] var_3207 = weightedJacobian[i];
++						double rik = var_3207[pk];
+                         final double temp2 = cos * rik + sin * lmDiag[i];
+                         lmDiag[i] = -sin * rik + cos * lmDiag[i];
+-                        weightedJacobian[i][pk] = temp2;
++                        var_3207[pk] = temp2;
+                     }
+                 }
+             }

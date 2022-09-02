@@ -1,0 +1,39 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2642_getReferencedType().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2642_getReferencedType().patch
+index 0712763..f3fa2a6 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2642_getReferencedType().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2642_getReferencedType().patch
+@@ -1,28 +1,16 @@
+ diff --git a/src/com/google/javascript/rhino/jstype/NamedType.java b/src/com/google/javascript/rhino/jstype/NamedType.java
+-index 9fb2191..bb7be0b 100644
++index 9fb2191..6fe0b05 100644
+ --- a/src/com/google/javascript/rhino/jstype/NamedType.java
+ +++ b/src/com/google/javascript/rhino/jstype/NamedType.java
+-@@ -191,11 +191,12 @@
+-       handleTypeCycle(t);
+-     }
+- 
+--    if (resolved) {
+-+    JSType var_2642 = getReferencedType();
+-+	if (resolved) {
++@@ -194,8 +194,9 @@
++     if (resolved) {
+        super.resolveInternal(t, enclosing);
+        finishPropertyContinuations();
+-       return registry.isLastGeneration() ?
++-      return registry.isLastGeneration() ?
+ -          getReferencedType() : this;
+++      JSType var_2642 = getReferencedType();
+++	return registry.isLastGeneration() ?
+ +          var_2642 : this;
+      }
+  
+      resolveViaProperties(t, enclosing);
+-@@ -208,7 +209,7 @@
+-       finishPropertyContinuations();
+-     }
+-     return registry.isLastGeneration() ?
+--        getReferencedType() : this;
+-+        var_2642 : this;
+-   }
+- 
+-   /**

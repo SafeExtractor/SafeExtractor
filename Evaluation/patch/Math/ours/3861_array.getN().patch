@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/inference/OneWayAnova.java b/src/main/java/org/apache/commons/math3/stat/inference/OneWayAnova.java
+index edb2282..a314655 100644
+--- a/src/main/java/org/apache/commons/math3/stat/inference/OneWayAnova.java
++++ b/src/main/java/org/apache/commons/math3/stat/inference/OneWayAnova.java
+@@ -285,9 +285,10 @@
+ 
+             // check if each category has enough data
+             for (final SummaryStatistics array : categoryData) {
+-                if (array.getN() <= 1) {
++                long var_3861 = array.getN();
++				if (var_3861 <= 1) {
+                     throw new DimensionMismatchException(LocalizedFormats.TWO_OR_MORE_VALUES_IN_CATEGORY_REQUIRED,
+-                                                         (int) array.getN(), 2);
++                                                         (int) var_3861, 2);
+                 }
+             }
+         }

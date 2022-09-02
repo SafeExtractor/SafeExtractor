@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/renderer/category/LineRenderer3D.java b/source/org/jfree/chart/renderer/category/LineRenderer3D.java
+index 68c0447..a492452 100644
+--- a/source/org/jfree/chart/renderer/category/LineRenderer3D.java
++++ b/source/org/jfree/chart/renderer/category/LineRenderer3D.java
+@@ -457,9 +457,10 @@
+ 
+             GeneralPath path = null;
+             PlotOrientation orientation = plot.getOrientation();
+-            if (orientation == PlotOrientation.HORIZONTAL) {
+-                float x = (float) axis.valueToJava2D(value, adjusted,
+-                        plot.getRangeAxisEdge());
++            double var_2558 = axis.valueToJava2D(value, adjusted,
++			        plot.getRangeAxisEdge());
++			if (orientation == PlotOrientation.HORIZONTAL) {
++                float x = (float) var_2558;
+                 float y = (float) adjusted.getMaxY();
+                 path = new GeneralPath();
+                 path.moveTo(x, y);
+@@ -471,8 +472,7 @@
+                 path.closePath();
+             }
+             else if (orientation == PlotOrientation.VERTICAL) {
+-                float y = (float) axis.valueToJava2D(value, adjusted,
+-                        plot.getRangeAxisEdge());
++                float y = (float) var_2558;
+                 float x = (float) dataArea.getX();
+                 path = new GeneralPath();
+                 path.moveTo(x, y);

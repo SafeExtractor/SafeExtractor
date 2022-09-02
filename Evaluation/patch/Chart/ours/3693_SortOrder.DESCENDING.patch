@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/chart/util/SortOrder.java b/source/org/jfree/chart/util/SortOrder.java
+index a56b456..9b180fc 100644
+--- a/source/org/jfree/chart/util/SortOrder.java
++++ b/source/org/jfree/chart/util/SortOrder.java
+@@ -128,10 +128,12 @@
+     private Object readResolve() throws ObjectStreamException {
+         if (this.equals(SortOrder.ASCENDING)) {
+             return SortOrder.ASCENDING;
+-        }
+-        else if (this.equals(SortOrder.DESCENDING)) {
+-            return SortOrder.DESCENDING;
+-        }
++        } else {
++			SortOrder var_3693 = SortOrder.DESCENDING;
++			if (this.equals(var_3693)) {
++			    return var_3693;
++			}
++		}
+         return null;
+     }
+ }
+\ No newline at end of file

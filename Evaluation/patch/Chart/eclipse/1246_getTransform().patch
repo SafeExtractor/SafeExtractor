@@ -1,0 +1,33 @@
+diff --git a/source/org/jfree/chart/needle/ShipNeedle.java b/source/org/jfree/chart/needle/ShipNeedle.java
+index 2bbd038..c356850 100644
+--- a/source/org/jfree/chart/needle/ShipNeedle.java
++++ b/source/org/jfree/chart/needle/ShipNeedle.java
+@@ -46,6 +46,7 @@
+ package org.jfree.chart.needle;
+ 
+ import java.awt.Graphics2D;
++import java.awt.geom.AffineTransform;
+ import java.awt.geom.Arc2D;
+ import java.awt.geom.GeneralPath;
+ import java.awt.geom.Point2D;
+@@ -79,14 +80,15 @@
+         shape.append(new Arc2D.Double(0.0, -7.0, 10, 14, 154.5, 25.5,
+                 Arc2D.OPEN), true);
+         shape.closePath();
+-        getTransform().setToTranslation(plotArea.getMinX(), plotArea.getMaxY());
+-        getTransform().scale(plotArea.getWidth(), plotArea.getHeight() / 3);
+-        shape.transform(getTransform());
++        AffineTransform var_1246 = getTransform();
++		var_1246.setToTranslation(plotArea.getMinX(), plotArea.getMaxY());
++        var_1246.scale(plotArea.getWidth(), plotArea.getHeight() / 3);
++        shape.transform(var_1246);
+ 
+         if ((rotate != null) && (angle != 0)) {
+             /// we have rotation
+-            getTransform().setToRotation(angle, rotate.getX(), rotate.getY());
+-            shape.transform(getTransform());
++            var_1246.setToRotation(angle, rotate.getX(), rotate.getY());
++            shape.transform(var_1246);
+         }
+ 
+         defaultDisplay(g2, shape);

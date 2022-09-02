@@ -1,0 +1,32 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/723_dotrap(DfpField.FLAG_INEXACT,NEXT_AFTER_TRAP,x,result).patch b/Users/safe/paper/Evaluation/patch/Math/ours/723_dotrap(DfpField.FLAG_INEXACT,NEXT_AFTER_TRAP,x,result).patch
+index 410e931..6043165 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/723_dotrap(DfpField.FLAG_INEXACT,NEXT_AFTER_TRAP,x,result).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/723_dotrap(DfpField.FLAG_INEXACT,NEXT_AFTER_TRAP,x,result).patch
+@@ -1,23 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+-index e6de61f..5e4e14e 100644
++index e6de61f..014798d 100644
+ --- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+ +++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+-@@ -2394,14 +2394,15 @@
+-             result = this.subtract(inc);
+-         }
+- 
+--        if (result.classify() == INFINITE && this.classify() != INFINITE) {
+-+        Dfp var_723 = dotrap(DfpField.FLAG_INEXACT, NEXT_AFTER_TRAP, x, result);
+-+		if (result.classify() == INFINITE && this.classify() != INFINITE) {
+-             field.setIEEEFlagsBits(DfpField.FLAG_INEXACT);
+--            result = dotrap(DfpField.FLAG_INEXACT, NEXT_AFTER_TRAP, x, result);
+-+            result = var_723;
+-         }
++@@ -2401,7 +2401,8 @@
+  
+          if (result.equals(getZero()) && this.equals(getZero()) == false) {
+              field.setIEEEFlagsBits(DfpField.FLAG_INEXACT);
+ -            result = dotrap(DfpField.FLAG_INEXACT, NEXT_AFTER_TRAP, x, result);
+-+            result = var_723;
+++            Dfp var_723 = dotrap(DfpField.FLAG_INEXACT, NEXT_AFTER_TRAP, x, result);
+++			result = var_723;
+          }
+  
+          return result;

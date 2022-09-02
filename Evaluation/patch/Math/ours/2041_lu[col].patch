@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/FieldLUDecomposition.java b/src/main/java/org/apache/commons/math3/linear/FieldLUDecomposition.java
+index 513606d..aabb6af 100644
+--- a/src/main/java/org/apache/commons/math3/linear/FieldLUDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/FieldLUDecomposition.java
+@@ -141,12 +141,13 @@
+             }
+ 
+             // Pivot if necessary
+-            if (nonZero != col) {
++            T[] var_2041 = lu[col];
++			if (nonZero != col) {
+                 T tmp = field.getZero();
+                 for (int i = 0; i < m; i++) {
+                     tmp = lu[nonZero][i];
+-                    lu[nonZero][i] = lu[col][i];
+-                    lu[col][i] = tmp;
++                    lu[nonZero][i] = var_2041[i];
++                    var_2041[i] = tmp;
+                 }
+                 int temp = pivot[nonZero];
+                 pivot[nonZero] = pivot[col];
+@@ -155,7 +156,7 @@
+             }
+ 
+             // Divide the lower elements by the "winning" diagonal elt.
+-            final T luDiag = lu[col][col];
++            final T luDiag = var_2041[col];
+             for (int row = col + 1; row < m; row++) {
+                 final T[] luRow = lu[row];
+                 luRow[col] = luRow[col].divide(luDiag);

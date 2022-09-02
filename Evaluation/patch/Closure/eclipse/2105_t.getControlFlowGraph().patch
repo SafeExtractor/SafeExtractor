@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/CheckMissingReturn.java b/src/com/google/javascript/jscomp/CheckMissingReturn.java
+index 8210f98..8d83c13 100644
+--- a/src/com/google/javascript/jscomp/CheckMissingReturn.java
++++ b/src/com/google/javascript/jscomp/CheckMissingReturn.java
+@@ -95,15 +95,16 @@
+       return;
+     }
+ 
+-    if (fastAllPathsReturnCheck(t.getControlFlowGraph())) {
++    ControlFlowGraph<Node> var_2105 = t.getControlFlowGraph();
++	if (fastAllPathsReturnCheck(var_2105)) {
+       return;
+     }
+ 
+     CheckPathsBetweenNodes<Node, ControlFlowGraph.Branch> test =
+         new CheckPathsBetweenNodes<Node, ControlFlowGraph.Branch>(
+-            t.getControlFlowGraph(),
+-            t.getControlFlowGraph().getEntry(),
+-            t.getControlFlowGraph().getImplicitReturn(),
++            var_2105,
++            var_2105.getEntry(),
++            var_2105.getImplicitReturn(),
+             IS_RETURN, GOES_THROUGH_TRUE_CONDITION_PREDICATE);
+ 
+     if (!test.allPathsSatisfyPredicate()) {

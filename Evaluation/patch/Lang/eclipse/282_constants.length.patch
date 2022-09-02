@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/lang3/EnumUtils.java b/src/main/java/org/apache/commons/lang3/EnumUtils.java
+index 7a03b59..8f5618a 100644
+--- a/src/main/java/org/apache/commons/lang3/EnumUtils.java
++++ b/src/main/java/org/apache/commons/lang3/EnumUtils.java
+@@ -288,7 +288,8 @@
+      */
+     private static <E extends Enum<E>> Class<E> checkBitVectorable(final Class<E> enumClass) {
+         final E[] constants = asEnum(enumClass).getEnumConstants();
+-        Validate.isTrue(constants.length <= Long.SIZE, CANNOT_STORE_S_S_VALUES_IN_S_BITS, constants.length,
++        int var_282 = constants.length;
++		Validate.isTrue(var_282 <= Long.SIZE, CANNOT_STORE_S_S_VALUES_IN_S_BITS, var_282,
+             enumClass.getSimpleName(), Long.SIZE);
+ 
+         return enumClass;

@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..26a3baf 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -339,7 +339,8 @@
+     if (!config.outputManifests.isEmpty()) {
+       Set<String> uniqueNames = Sets.newHashSet();
+       for (String filename : config.outputManifests) {
+-        if (!uniqueNames.add(filename)) {
++        boolean var_402 = uniqueNames.add(filename);
++		if (!var_402) {
+           throw new FlagUsageException("output_manifest flags specify " +
+               "duplicate file names: " + filename);
+         }

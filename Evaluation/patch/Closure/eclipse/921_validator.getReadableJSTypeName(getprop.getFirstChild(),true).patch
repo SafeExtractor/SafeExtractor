@@ -1,0 +1,70 @@
+diff --git a/src/com/google/javascript/jscomp/CheckAccessControls.java b/src/com/google/javascript/jscomp/CheckAccessControls.java
+index df50c26..a2b684f 100644
+--- a/src/com/google/javascript/jscomp/CheckAccessControls.java
++++ b/src/com/google/javascript/jscomp/CheckAccessControls.java
+@@ -510,35 +510,37 @@
+         if (sameInput) {
+           // private access is always allowed in the same file.
+           return;
+-        } else if (visibility == Visibility.PRIVATE &&
+-            (currentClass == null || !ownerType.isEquivalentTo(currentClass))) {
+-          if (docInfo.isConstructor() &&
+-              isValidPrivateConstructorAccess(parent)) {
+-            return;
+-          }
++        } else {
++			String var_921 = validator.getReadableJSTypeName(
++			      getprop.getFirstChild(), true);
++			if (visibility == Visibility.PRIVATE &&
++			    (currentClass == null || !ownerType.isEquivalentTo(currentClass))) {
++			  if (docInfo.isConstructor() &&
++			      isValidPrivateConstructorAccess(parent)) {
++			    return;
++			  }
+ 
+-          // private access is not allowed outside the file from a different
+-          // enclosing class.
+-          compiler.report(
+-              t.makeError(getprop,
+-                  BAD_PRIVATE_PROPERTY_ACCESS,
+-                  propertyName,
+-                  validator.getReadableJSTypeName(
+-                      getprop.getFirstChild(), true)));
+-        } else if (visibility == Visibility.PROTECTED) {
+-          // There are 3 types of legal accesses of a protected property:
+-          // 1) Accesses in the same file
+-          // 2) Overriding the property in a subclass
+-          // 3) Accessing the property from inside a subclass
+-          // The first two have already been checked for.
+-          if (currentClass == null || !currentClass.isSubtype(ownerType)) {
+-            compiler.report(
+-                t.makeError(getprop,  BAD_PROTECTED_PROPERTY_ACCESS,
+-                    propertyName,
+-                    validator.getReadableJSTypeName(
+-                        getprop.getFirstChild(), true)));
+-          }
+-        }
++			  // private access is not allowed outside the file from a different
++			  // enclosing class.
++			  compiler.report(
++			      t.makeError(getprop,
++			          BAD_PRIVATE_PROPERTY_ACCESS,
++			          propertyName,
++			          var_921));
++			} else if (visibility == Visibility.PROTECTED) {
++			  // There are 3 types of legal accesses of a protected property:
++			  // 1) Accesses in the same file
++			  // 2) Overriding the property in a subclass
++			  // 3) Accessing the property from inside a subclass
++			  // The first two have already been checked for.
++			  if (currentClass == null || !currentClass.isSubtype(ownerType)) {
++			    compiler.report(
++			        t.makeError(getprop,  BAD_PROTECTED_PROPERTY_ACCESS,
++			            propertyName,
++			            var_921));
++			  }
++			}
++		}
+       }
+     }
+   }

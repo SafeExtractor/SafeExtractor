@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+index 4e56fef..393cc85 100644
+--- a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
++++ b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+@@ -479,7 +479,8 @@
+ 
+             StringTokenizer st = new StringTokenizer(line, " \t");
+ 
+-            if (Character.isWhitespace(line.charAt(0)) && st.hasMoreTokens()) {
++            boolean var_632 = st.hasMoreTokens();
++			if (Character.isWhitespace(line.charAt(0)) && var_632) {
+                 if (zone != null) {
+                     // Zone continuation
+                     zone.chain(st);
+@@ -492,7 +493,7 @@
+                 zone = null;
+             }
+ 
+-            if (st.hasMoreTokens()) {
++            if (var_632) {
+                 String token = st.nextToken();
+                 if (token.equalsIgnoreCase("Rule")) {
+                     Rule r = new Rule(st);

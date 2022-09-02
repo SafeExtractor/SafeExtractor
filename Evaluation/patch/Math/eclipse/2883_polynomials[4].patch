@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerStepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerStepInterpolator.java
+index 228a008..551d619 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerStepInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerStepInterpolator.java
+@@ -267,7 +267,8 @@
+ 
+       // compute the remaining coefficients
+       final double ph0 = 0.5 * (currentState[i] + y1[i]) + 0.125 * (aspl + bspl);
+-      polynomials[4][i] = 16 * (yMidDots[0][i] - ph0);
++      double[] var_2883 = polynomials[4];
++	var_2883[i] = 16 * (yMidDots[0][i] - ph0);
+ 
+       if (mu > 0) {
+         final double ph1 = ydiff + 0.25 * (aspl - bspl);
+@@ -275,7 +276,7 @@
+ 
+         if (mu > 1) {
+           final double ph2 = yp1 - yp0;
+-          polynomials[6][i] = 16 * (yMidDots[2][i] - ph2 + polynomials[4][i]);
++          polynomials[6][i] = 16 * (yMidDots[2][i] - ph2 + var_2883[i]);
+ 
+           if (mu > 2) {
+             final double ph3 = 6 * (bspl - aspl);

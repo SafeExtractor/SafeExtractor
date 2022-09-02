@@ -1,0 +1,47 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/400_new DependencyOptions().setDependencyPruning(true).setDependencySorting(true).patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/400_new DependencyOptions().setDependencyPruning(true).setDependencySorting(true).patch
+index d353000..d0aa108 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/400_new DependencyOptions().setDependencyPruning(true).setDependencySorting(true).patch	
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/400_new DependencyOptions().setDependencyPruning(true).setDependencySorting(true).patch	
+@@ -1,36 +1,17 @@
+ diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+-index ffa8bfe..7f3d769 100644
++index ffa8bfe..2ad5021 100644
+ --- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+ +++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+-@@ -218,15 +218,16 @@
+-       boolean processCommonJSModules,
+-       List<String> closureEntryPoints)
+-       throws FlagUsageException {
+--    if (onlyClosureDependencies) {
+-+    DependencyOptions var_400 = new DependencyOptions()
+-+		      .setDependencyPruning(true)
+-+		      .setDependencySorting(true);
+-+	if (onlyClosureDependencies) {
+-       if (closureEntryPoints.isEmpty()) {
+-         throw new FlagUsageException("When only_closure_dependencies is "
++@@ -224,9 +224,10 @@
+            + "on, you must specify at least one closure_entry_point");
+        }
+  
+ -      return new DependencyOptions()
+--          .setDependencyPruning(true)
+++      DependencyOptions var_400 = new DependencyOptions()
++           .setDependencyPruning(true)
+ -          .setDependencySorting(true)
+-+      return var_400
+++          .setDependencySorting(true);
+++	return var_400
+            .setMoocherDropping(true)
+            .setEntryPoints(closureEntryPoints);
+      } else if (processCommonJSModules) {
+-@@ -238,9 +239,7 @@
+-     }
+-     else if (manageClosureDependencies ||
+-         closureEntryPoints.size() > 0) {
+--      return new DependencyOptions()
+--          .setDependencyPruning(true)
+--          .setDependencySorting(true)
+-+      return var_400
+-           .setMoocherDropping(false)
+-           .setEntryPoints(closureEntryPoints);
+-     }

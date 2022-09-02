@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/VariableReferenceCheck.java b/src/com/google/javascript/jscomp/VariableReferenceCheck.java
+index c934263..ceea45a 100644
+--- a/src/com/google/javascript/jscomp/VariableReferenceCheck.java
++++ b/src/com/google/javascript/jscomp/VariableReferenceCheck.java
+@@ -135,7 +135,8 @@
+           // Look through all the declarations we've found so far, and
+           // check if any of them are before this block.
+           for (BasicBlock declaredBlock : blocksWithDeclarations) {
+-            if (declaredBlock.provablyExecutesBefore(basicBlock)) {
++            boolean var_222 = declaredBlock.provablyExecutesBefore(basicBlock);
++			if (var_222) {
+               // TODO(johnlenz): Fix AST generating clients that so they would
+               // have property StaticSourceFile attached at each node. Or
+               // better yet, make sure the generated code never violates

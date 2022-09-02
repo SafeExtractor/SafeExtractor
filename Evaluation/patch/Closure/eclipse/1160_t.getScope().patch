@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+index 6219d26..f603766 100644
+--- a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
++++ b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+@@ -550,11 +550,12 @@
+     public void visit(NodeTraversal t, Node n, Node parent) {
+       // In the top scope, "this" is a reference to "value"
+       boolean isThis = false;
+-      if (t.getScope() == this.startingScope) {
++      Scope var_1160 = t.getScope();
++	if (var_1160 == this.startingScope) {
+         isThis = n.isThis();
+       }
+ 
+-      if (isThis || n.isName() && !isShadowed(n.getString(), t.getScope())) {
++      if (isThis || n.isName() && !isShadowed(n.getString(), var_1160)) {
+         String nodeValue = isThis ? null : n.getString();
+         if (!isThis && keyName != null && nodeValue.equals(keyName)) {
+           keyReferences.add(n);

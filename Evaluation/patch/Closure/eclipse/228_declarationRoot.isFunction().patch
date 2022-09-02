@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/MakeDeclaredNamesUnique.java b/src/com/google/javascript/jscomp/MakeDeclaredNamesUnique.java
+index 3743287..e6cc022 100644
+--- a/src/com/google/javascript/jscomp/MakeDeclaredNamesUnique.java
++++ b/src/com/google/javascript/jscomp/MakeDeclaredNamesUnique.java
+@@ -76,11 +76,12 @@
+   public void enterScope(NodeTraversal t) {
+     Node declarationRoot = t.getScopeRoot();
+     Renamer renamer;
+-    if (nameStack.isEmpty()) {
++    boolean var_228 = declarationRoot.isFunction();
++	if (nameStack.isEmpty()) {
+       // If the contextual renamer is being used, the starting context can not
+       // be a function.
+       Preconditions.checkState(
+-          !declarationRoot.isFunction() ||
++          !var_228 ||
+           !(rootRenamer instanceof ContextualRenamer));
+       Preconditions.checkState(t.inGlobalScope());
+       renamer = rootRenamer;
+@@ -88,7 +89,7 @@
+       renamer = nameStack.peek().forChildScope();
+     }
+ 
+-    if (!declarationRoot.isFunction()) {
++    if (!var_228) {
+       // Add the block declarations
+       findDeclaredNames(declarationRoot, null, renamer);
+     }

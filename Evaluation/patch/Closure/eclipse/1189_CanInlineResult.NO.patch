@@ -1,0 +1,39 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionInjector.java b/src/com/google/javascript/jscomp/FunctionInjector.java
+index ddfb4ed..05b0786 100644
+--- a/src/com/google/javascript/jscomp/FunctionInjector.java
++++ b/src/com/google/javascript/jscomp/FunctionInjector.java
+@@ -177,8 +177,9 @@
+     // context.  Modify the API to take a structure describing the function.
+ 
+     // Allow direct function calls or "fn.call" style calls.
+-    if (!isSupportedCallType(callNode)) {
+-      return CanInlineResult.NO;
++    CanInlineResult var_1189 = CanInlineResult.NO;
++	if (!isSupportedCallType(callNode)) {
++      return var_1189;
+     }
+ 
+     // Limit where functions that contain functions can be inline.  Introducing
+@@ -189,11 +190,11 @@
+       if (!assumeMinimumCapture && !t.inGlobalScope()) {
+         // TODO(johnlenz): Allow inlining into any scope without local names or
+         // inner functions.
+-        return CanInlineResult.NO;
++        return var_1189;
+       } else if (NodeUtil.isWithinLoop(callNode)) {
+         // An inner closure maybe relying on a local value holding a value for a
+         // single iteration through a loop.
+-        return CanInlineResult.NO;
++        return var_1189;
+       }
+     }
+ 
+@@ -201,7 +202,7 @@
+     if (referencesThis && !NodeUtil.isFunctionObjectCall(callNode)) {
+       // TODO(johnlenz): Allow 'this' references to be replaced with a
+       // global 'this' object.
+-      return CanInlineResult.NO;
++      return var_1189;
+     }
+ 
+     if (mode == InliningMode.DIRECT) {

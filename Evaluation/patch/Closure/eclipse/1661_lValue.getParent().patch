@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+index bc570e2..78d31e4 100644
+--- a/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
++++ b/src/com/google/javascript/jscomp/AnalyzePrototypeProperties.java
+@@ -389,11 +389,12 @@
+      */
+     private String getPrototypePropertyNameFromRValue(Node rValue) {
+       Node lValue = NodeUtil.getBestLValue(rValue);
+-      if (lValue == null ||
+-          lValue.getParent() == null ||
+-          lValue.getParent().getParent() == null ||
+-          !(NodeUtil.isObjectLitKey(lValue, lValue.getParent()) ||
+-            NodeUtil.isExprAssign(lValue.getParent().getParent()))) {
++      Node var_1661 = lValue.getParent();
++	if (lValue == null ||
++          var_1661 == null ||
++          var_1661.getParent() == null ||
++          !(NodeUtil.isObjectLitKey(lValue, var_1661) ||
++            NodeUtil.isExprAssign(var_1661.getParent()))) {
+         return null;
+       }
+ 

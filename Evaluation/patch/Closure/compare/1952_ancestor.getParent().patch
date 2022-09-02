@@ -1,0 +1,31 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1952_ancestor.getParent().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1952_ancestor.getParent().patch
+index 36f6a07..65702c8 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1952_ancestor.getParent().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1952_ancestor.getParent().patch
+@@ -1,21 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/ClosureCodeRemoval.java b/src/com/google/javascript/jscomp/ClosureCodeRemoval.java
+-index 4507c94..1bb3436 100644
++index 4507c94..642ab5c 100644
+ --- a/src/com/google/javascript/jscomp/ClosureCodeRemoval.java
+ +++ b/src/com/google/javascript/jscomp/ClosureCodeRemoval.java
+-@@ -105,12 +105,13 @@
+-       this.parent = assignNode;
++@@ -106,7 +106,8 @@
+  
+        Node ancestor = assignNode;
+--      do {
++       do {
+ -        ancestor = ancestor.getParent();
+-+      Node var_1952 = ancestor.getParent();
+-+	do {
+-+        ancestor = var_1952;
+++        Node var_1952 = ancestor.getParent();
+++		ancestor = var_1952;
+          assignAncestors.add(ancestor);
+        } while (ancestor.isAssign() &&
+                 ancestor.getFirstChild().isQualifiedName());
+--      lastAncestor = ancestor.getParent();
+-+      lastAncestor = var_1952;
+-     }
+- 
+-     /**

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+index 8d6a50b..dadb444 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+@@ -590,7 +590,8 @@
+             work1[pj] = s;
+             dxNorm += s * s;
+         }
+-        dxNorm = FastMath.sqrt(dxNorm);
++        double var_3201 = FastMath.sqrt(dxNorm);
++		dxNorm = var_3201;
+         double fp = dxNorm - delta;
+         if (fp <= 0.1 * delta) {
+             lmPar = 0;
+@@ -665,7 +666,7 @@
+                 work3[pj] = s;
+                 dxNorm += s * s;
+             }
+-            dxNorm = FastMath.sqrt(dxNorm);
++            dxNorm = var_3201;
+             double previousFP = fp;
+             fp = dxNorm - delta;
+ 

@@ -1,0 +1,23 @@
+diff --git a/src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java b/src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java
+index 54f2c3f..b191c9e 100644
+--- a/src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java
++++ b/src/org/mockito/internal/stubbing/defaultanswers/ReturnsDeepStubs.java
+@@ -57,7 +57,8 @@
+     }
+ 
+     private Object deepStub(InvocationOnMock invocation, GenericMetadataSupport returnTypeGenericMetadata) throws Throwable {
+-        InternalMockHandler<Object> handler = new MockUtil().getMockHandler(invocation.getMock());
++        Object var_91 = invocation.getMock();
++		InternalMockHandler<Object> handler = new MockUtil().getMockHandler(var_91);
+         InvocationContainerImpl container = (InvocationContainerImpl) handler.getInvocationContainer();
+ 
+         // matches invocation for verification
+@@ -69,7 +70,7 @@
+ 
+         // record deep stub answer
+         return recordDeepStubAnswer(
+-                newDeepStubMock(returnTypeGenericMetadata, invocation.getMock()),
++                newDeepStubMock(returnTypeGenericMetadata, var_91),
+                 container
+         );
+     }

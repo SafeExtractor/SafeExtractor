@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..4879763 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -506,7 +506,8 @@
+ 
+     @Override
+     public Collection<Assignment> getAssignments(ConcreteScope scope) {
+-      ConcreteType thisType = ConcreteType.NONE;
++      ConcreteType var_1040 = ConcreteType.NONE;
++	ConcreteType thisType = var_1040;
+       ConcreteType recvType = inferConcreteType(scope, receiver);
+ 
+       // If a property name was specified, then the receiver is actually the
+@@ -526,7 +527,7 @@
+       // If this is a call to new, then a new instance of the receiver is
+       // created and passed in as the value of this.
+       if (isNewCall) {
+-        thisType = ConcreteType.NONE;
++        thisType = var_1040;
+         for (ConcreteInstanceType instType
+              : recvType.getFunctionInstanceTypes()) {
+           thisType = thisType.unionWith(instType);

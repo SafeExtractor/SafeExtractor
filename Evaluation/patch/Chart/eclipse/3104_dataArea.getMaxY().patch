@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..8ce0f92 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -1339,7 +1339,8 @@
+                                  Marker marker,
+                                  Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        double var_3104 = dataArea.getMaxY();
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = domainAxis.getRange();
+@@ -1358,7 +1359,7 @@
+             }
+             else if (orientation == PlotOrientation.VERTICAL) {
+                 line = new Line2D.Double(v, dataArea.getMinY(), v,
+-                        dataArea.getMaxY());
++                        var_3104);
+             }
+ 
+             final Composite originalComposite = g2.getComposite();
+@@ -1405,7 +1406,7 @@
+             if (orientation == PlotOrientation.HORIZONTAL) {
+                 // clip top and bottom bounds to data area
+                 low = Math.max(low, dataArea.getMinY());
+-                high = Math.min(high, dataArea.getMaxY());
++                high = Math.min(high, var_3104);
+                 rect = new Rectangle2D.Double(dataArea.getMinX(),
+                         low, dataArea.getWidth(),
+                         high - low);
+@@ -1441,7 +1442,7 @@
+                 if (orientation == PlotOrientation.VERTICAL) {
+                     Line2D line = new Line2D.Double();
+                     double y0 = dataArea.getMinY();
+-                    double y1 = dataArea.getMaxY();
++                    double y1 = var_3104;
+                     g2.setPaint(im.getOutlinePaint());
+                     g2.setStroke(im.getOutlineStroke());
+                     if (range.contains(start)) {

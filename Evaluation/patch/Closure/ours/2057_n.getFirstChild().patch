@@ -1,0 +1,59 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..9bd7ac8 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -794,7 +794,8 @@
+       Node n, boolean checkForNewObjects, AbstractCompiler compiler) {
+     // Rather than id which ops may have side effects, id the ones
+     // that we know to be safe
+-    switch (n.getType()) {
++    Node var_2057 = n.getFirstChild();
++	switch (n.getType()) {
+       // other side-effect free statements and expressions
+       case Token.CAST:
+       case Token.AND:
+@@ -825,7 +826,7 @@
+         if (checkForNewObjects) {
+           return true;
+         }
+-        for (Node c = n.getFirstChild(); c != null; c = c.getNext()) {
++        for (Node c = var_2057; c != null; c = c.getNext()) {
+           if (checkForStateChangeHelper(
+                   c.getFirstChild(), checkForNewObjects, compiler)) {
+             return true;
+@@ -842,7 +843,7 @@
+ 
+       case Token.VAR:    // empty var statement (no declaration)
+       case Token.NAME:   // variable by itself
+-        if (n.getFirstChild() != null) {
++        if (var_2057 != null) {
+           return true;
+         }
+         break;
+@@ -881,7 +882,7 @@
+         }
+ 
+         if (isAssignmentOp(n)) {
+-          Node assignTarget = n.getFirstChild();
++          Node assignTarget = var_2057;
+           if (assignTarget.isName()) {
+             return true;
+           }
+@@ -891,7 +892,7 @@
+           // b) The LHS has side effects, or
+           // c) A name on the LHS will exist beyond the life of this statement.
+           if (checkForStateChangeHelper(
+-                  n.getFirstChild(), checkForNewObjects, compiler) ||
++                  var_2057, checkForNewObjects, compiler) ||
+               checkForStateChangeHelper(
+                   n.getLastChild(), checkForNewObjects, compiler)) {
+             return true;
+@@ -928,7 +929,7 @@
+         return true;
+     }
+ 
+-    for (Node c = n.getFirstChild(); c != null; c = c.getNext()) {
++    for (Node c = var_2057; c != null; c = c.getNext()) {
+       if (checkForStateChangeHelper(c, checkForNewObjects, compiler)) {
+         return true;
+       }

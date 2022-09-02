@@ -1,0 +1,16 @@
+diff --git a/oak-solr-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/solr/index/SolrIndexEditor.java b/oak-solr-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/solr/index/SolrIndexEditor.java
+index b53877f..ed02611 100644
+--- a/oak-solr-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/solr/index/SolrIndexEditor.java
++++ b/oak-solr-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/solr/index/SolrIndexEditor.java
+@@ -240,8 +240,9 @@
+                             inputDocument.addField(property.getName(), s);
+                         }
+                     } else {
+-                        inputDocument.addField(
+-                                property.getName(), property.getValue(Type.STRING));
++                        String value = property.getValue(Type.STRING);
++						inputDocument.addField(
++                                property.getName(), value);
+                     }
+                 }
+             }

@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..6b1d455 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -1648,8 +1648,9 @@
+     } else if (functionType.isInterface()) {
+       // Interface must extend only interfaces
+       for (ObjectType extInterface : functionType.getExtendedInterfaces()) {
+-        if (extInterface.getConstructor() != null
+-            && !extInterface.getConstructor().isInterface()) {
++        FunctionType var_1013 = extInterface.getConstructor();
++		if (var_1013 != null
++            && !var_1013.isInterface()) {
+           compiler.report(
+               t.makeError(n, CONFLICTING_EXTENDED_TYPE,
+                           "interface", functionPrivateName));

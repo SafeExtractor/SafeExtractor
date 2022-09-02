@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 781fc3c..64a6f70 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -1741,13 +1741,14 @@
+             Token.name(parent.getType()));
+     }
+ 
+-    switch (n.getType()) {
++    boolean var_326 = parent.isFor();
++	switch (n.getType()) {
+       case Token.EXPR_RESULT:
+       case Token.FUNCTION:
+       case Token.VAR:
+         break;
+       case Token.ASSIGN:
+-        Preconditions.checkArgument(parent.isFor(),
++        Preconditions.checkArgument(var_326,
+             "Unsupported assignment in replaceWithRhs. parent: %s",
+             Token.name(parent.getType()));
+         break;
+@@ -1763,7 +1764,7 @@
+       replacements.addAll(getSideEffectNodes(rhs));
+     }
+ 
+-    if (parent.isFor()) {
++    if (var_326) {
+       // tweak replacements array s.t. it is a single expression node.
+       if (replacements.isEmpty()) {
+         replacements.add(IR.empty());

@@ -1,0 +1,38 @@
+diff --git a/source/org/jfree/chart/plot/ThermometerPlot.java b/source/org/jfree/chart/plot/ThermometerPlot.java
+index d4bd7b7..acd209f 100644
+--- a/source/org/jfree/chart/plot/ThermometerPlot.java
++++ b/source/org/jfree/chart/plot/ThermometerPlot.java
+@@ -1190,12 +1190,13 @@
+ 
+                 // draw start of normal range
+                 double value = this.subrangeInfo[NORMAL][RANGE_LOW];
+-                if (range.contains(value)) {
++                Paint[] var_1434 = this.subrangePaint;
++				if (range.contains(value)) {
+                     double x = midX + getColumnRadius() + 2;
+                     double y = this.rangeAxis.valueToJava2D(value, dataArea,
+                             RectangleEdge.LEFT);
+                     Line2D line = new Line2D.Double(x, y, x + 10, y);
+-                    g2.setPaint(this.subrangePaint[NORMAL]);
++                    g2.setPaint(var_1434[NORMAL]);
+                     g2.draw(line);
+                 }
+ 
+@@ -1206,7 +1207,7 @@
+                     double y = this.rangeAxis.valueToJava2D(value, dataArea,
+                             RectangleEdge.LEFT);
+                     Line2D line = new Line2D.Double(x, y, x + 10, y);
+-                    g2.setPaint(this.subrangePaint[WARNING]);
++                    g2.setPaint(var_1434[WARNING]);
+                     g2.draw(line);
+                 }
+ 
+@@ -1217,7 +1218,7 @@
+                     double y = this.rangeAxis.valueToJava2D(value, dataArea,
+                             RectangleEdge.LEFT);
+                     Line2D line = new Line2D.Double(x, y, x + 10, y);
+-                    g2.setPaint(this.subrangePaint[CRITICAL]);
++                    g2.setPaint(var_1434[CRITICAL]);
+                     g2.draw(line);
+                 }
+             }

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..1d880b5 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -2081,7 +2081,8 @@
+             for (int i = 0; i < n; i++) {
+                 if (xbdi.getEntry(i) == ZERO) {
+                     tempa = trustRegionCenterOffset.getEntry(i) + trialStepPoint.getEntry(i) - lowerDifference.getEntry(i);
+-                    tempb = upperDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i) - trialStepPoint.getEntry(i);
++                    double var_3405 = upperDifference.getEntry(i);
++					tempb = var_3405 - trustRegionCenterOffset.getEntry(i) - trialStepPoint.getEntry(i);
+                     if (tempa <= ZERO) {
+                         ++nact;
+                         xbdi.setEntry(i, MINUS_ONE);
+@@ -2108,7 +2109,7 @@
+                         }
+                     }
+                     // Computing 2nd power
+-                    d1 = upperDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i);
++                    d1 = var_3405 - trustRegionCenterOffset.getEntry(i);
+                     temp = ssq - d1 * d1;
+                     if (temp > ZERO) {
+                         temp = Math.sqrt(temp) + s.getEntry(i);

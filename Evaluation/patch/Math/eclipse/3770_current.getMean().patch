@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/descriptive/AggregateSummaryStatistics.java b/src/main/java/org/apache/commons/math3/stat/descriptive/AggregateSummaryStatistics.java
+index 9577f5a..b17d8e0 100644
+--- a/src/main/java/org/apache/commons/math3/stat/descriptive/AggregateSummaryStatistics.java
++++ b/src/main/java/org/apache/commons/math3/stat/descriptive/AggregateSummaryStatistics.java
+@@ -317,7 +317,8 @@
+         double sum = current.getSum();
+         double max = current.getMax();
+         double m2 = current.getSecondMoment();
+-        double mean = current.getMean();
++        double var_3770 = current.getMean();
++		double mean = var_3770;
+         while (iterator.hasNext()) {
+             current = iterator.next();
+             if (current.getMin() < min || Double.isNaN(min)) {
+@@ -330,7 +331,7 @@
+             final double oldN = n;
+             final double curN = current.getN();
+             n += curN;
+-            final double meanDiff = current.getMean() - mean;
++            final double meanDiff = var_3770 - mean;
+             mean = sum / n;
+             m2 = m2 + current.getSecondMoment() + meanDiff * meanDiff * oldN * curN / n;
+         }

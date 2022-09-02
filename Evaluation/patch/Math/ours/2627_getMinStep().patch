@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/AdaptiveStepsizeIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/AdaptiveStepsizeIntegrator.java
+index cac90f9..868a263 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/AdaptiveStepsizeIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/AdaptiveStepsizeIntegrator.java
+@@ -295,8 +295,9 @@
+                       FastMath.pow(0.01 / maxInv2, 1.0 / order);
+     h = FastMath.min(100.0 * FastMath.abs(h), h1);
+     h = FastMath.max(h, 1.0e-12 * FastMath.abs(t0));  // avoids cancellation when computing t1 - t0
+-    if (h < getMinStep()) {
+-      h = getMinStep();
++    double var_2627 = getMinStep();
++	if (h < var_2627) {
++      h = var_2627;
+     }
+     if (h > getMaxStep()) {
+       h = getMaxStep();

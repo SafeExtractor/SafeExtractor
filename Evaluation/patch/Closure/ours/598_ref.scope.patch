@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java b/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java
+index 497be42..b83bcfe 100644
+--- a/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java
++++ b/src/com/google/javascript/jscomp/ReferenceCollectingCallback.java
+@@ -338,9 +338,10 @@
+     boolean isEscaped() {
+       Scope scope = null;
+       for (Reference ref : references) {
+-        if (scope == null) {
+-          scope = ref.scope;
+-        } else if (scope != ref.scope) {
++        Scope var_598 = ref.scope;
++		if (scope == null) {
++          scope = var_598;
++        } else if (scope != var_598) {
+           return true;
+         }
+       }

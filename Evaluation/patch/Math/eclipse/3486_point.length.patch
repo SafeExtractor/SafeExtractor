@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/fitting/CurveFitter.java b/src/main/java/org/apache/commons/math3/optimization/fitting/CurveFitter.java
+index f497da9..ee1ba31 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/fitting/CurveFitter.java
++++ b/src/main/java/org/apache/commons/math3/optimization/fitting/CurveFitter.java
+@@ -270,8 +270,9 @@
+         public DerivativeStructure[] value(DerivativeStructure[] point) {
+ 
+             // extract parameters
+-            final double[] parameters = new double[point.length];
+-            for (int k = 0; k < point.length; ++k) {
++            int var_3486 = point.length;
++			final double[] parameters = new double[var_3486];
++            for (int k = 0; k < var_3486; ++k) {
+                 parameters[k] = point[k].getValue();
+             }
+ 
+@@ -282,9 +283,9 @@
+ 
+                 // build the DerivativeStructure by adding first the value as a constant
+                 // and then adding derivatives
+-                DerivativeStructure vi = new DerivativeStructure(point.length, 1, f.value(observed.getX(), parameters));
+-                for (int k = 0; k < point.length; ++k) {
+-                    vi = vi.add(new DerivativeStructure(point.length, 1, k, 0.0));
++                DerivativeStructure vi = new DerivativeStructure(var_3486, 1, f.value(observed.getX(), parameters));
++                for (int k = 0; k < var_3486; ++k) {
++                    vi = vi.add(new DerivativeStructure(var_3486, 1, k, 0.0));
+                 }
+ 
+                 values[i++] = vi;

@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+index 104bdf5..cd4a8eb 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+@@ -500,14 +500,15 @@
+          // -------------------- Initialization --------------------------------
+         isMinimize = getGoalType().equals(GoalType.MINIMIZE);
+         final FitnessFunction fitfun = new FitnessFunction();
+-        final double[] guess = getStartPoint();
++        double[] var_3257 = getStartPoint();
++		final double[] guess = var_3257;
+         // number of objective variables/problem dimension
+         dimension = guess.length;
+         initializeCMA(guess);
+         iterations = 0;
+         double bestValue = fitfun.value(guess);
+         push(fitnessHistory, bestValue);
+-        PointValuePair optimum = new PointValuePair(getStartPoint(),
++        PointValuePair optimum = new PointValuePair(var_3257,
+                 isMinimize ? bestValue : -bestValue);
+         PointValuePair lastResult = null;
+ 

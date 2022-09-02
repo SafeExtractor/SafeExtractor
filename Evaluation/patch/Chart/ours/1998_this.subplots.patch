@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/plot/CombinedDomainXYPlot.java b/source/org/jfree/chart/plot/CombinedDomainXYPlot.java
+index 15d08a7..988ecb2 100644
+--- a/source/org/jfree/chart/plot/CombinedDomainXYPlot.java
++++ b/source/org/jfree/chart/plot/CombinedDomainXYPlot.java
+@@ -369,10 +369,11 @@
+         Rectangle2D adjustedPlotArea = space.shrink(plotArea, null);
+ 
+         // work out the maximum height or width of the non-shared axes...
+-        int n = this.subplots.size();
++        List var_1998 = this.subplots;
++		int n = var_1998.size();
+         int totalWeight = 0;
+         for (int i = 0; i < n; i++) {
+-            XYPlot sub = (XYPlot) this.subplots.get(i);
++            XYPlot sub = (XYPlot) var_1998.get(i);
+             totalWeight += sub.getWeight();
+         }
+         this.subplotAreas = new Rectangle2D[n];
+@@ -387,7 +388,7 @@
+         }
+ 
+         for (int i = 0; i < n; i++) {
+-            XYPlot plot = (XYPlot) this.subplots.get(i);
++            XYPlot plot = (XYPlot) var_1998.get(i);
+ 
+             // calculate sub-plot area
+             if (orientation == PlotOrientation.HORIZONTAL) {

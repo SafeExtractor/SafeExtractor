@@ -1,0 +1,31 @@
+diff --git a/src/main/java/org/apache/commons/math3/random/StableRandomGenerator.java b/src/main/java/org/apache/commons/math3/random/StableRandomGenerator.java
+index 6fbbacf..62084ef 100644
+--- a/src/main/java/org/apache/commons/math3/random/StableRandomGenerator.java
++++ b/src/main/java/org/apache/commons/math3/random/StableRandomGenerator.java
+@@ -90,7 +90,8 @@
+     public double nextNormalizedDouble() {
+         // we need 2 uniform random numbers to calculate omega and phi
+         double omega = -FastMath.log(generator.nextDouble());
+-        double phi = FastMath.PI * (generator.nextDouble() - 0.5);
++        double var_3671 = FastMath.PI;
++		double phi = var_3671 * (generator.nextDouble() - 0.5);
+ 
+         // Normal distribution case (Box-Muller algorithm)
+         if (alpha == 2d) {
+@@ -121,12 +122,12 @@
+                     (FastMath.cos(invAlphaPhi) + zeta * FastMath.sin(invAlphaPhi)) /
+                      FastMath.pow(omega * cosPhi, (1 - alpha) / alpha);
+             } else {
+-                double betaPhi = FastMath.PI / 2 + beta * phi;
+-                x = 2d / FastMath.PI * (betaPhi * FastMath.tan(phi) - beta *
+-                    FastMath.log(FastMath.PI / 2d * omega * cosPhi / betaPhi));
++                double betaPhi = var_3671 / 2 + beta * phi;
++                x = 2d / var_3671 * (betaPhi * FastMath.tan(phi) - beta *
++                    FastMath.log(var_3671 / 2d * omega * cosPhi / betaPhi));
+ 
+                 if (alpha != 1d) {
+-                    x = x + beta * FastMath.tan(FastMath.PI * alpha / 2);
++                    x = x + beta * FastMath.tan(var_3671 * alpha / 2);
+                 }
+             }
+         }

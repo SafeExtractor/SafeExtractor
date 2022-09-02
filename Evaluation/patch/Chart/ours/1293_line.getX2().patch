@@ -1,0 +1,31 @@
+diff --git a/source/org/jfree/chart/panel/CrosshairOverlay.java b/source/org/jfree/chart/panel/CrosshairOverlay.java
+index 2fc3cdd..0a49ff2 100644
+--- a/source/org/jfree/chart/panel/CrosshairOverlay.java
++++ b/source/org/jfree/chart/panel/CrosshairOverlay.java
+@@ -398,7 +398,8 @@
+         Rectangle rect = line.getBounds();
+ 
+         // we expect the line to be vertical or horizontal
+-        if (line.getX1() == line.getX2()) {  // vertical
++        double var_1293 = line.getX2();
++		if (line.getX1() == var_1293) {  // vertical
+             x = line.getX1();
+             y = (line.getY1() + line.getY2()) / 2.0;
+             if (left) {
+@@ -415,13 +416,13 @@
+             }
+         }
+         else {  // horizontal
+-            x = (line.getX1() + line.getX2()) / 2.0;
++            x = (line.getX1() + var_1293) / 2.0;
+             y = line.getY1();
+             if (left) {
+-                x = Math.min(line.getX1(), line.getX2()) + deltaX;
++                x = Math.min(line.getX1(), var_1293) + deltaX;
+             }
+             if (right) {
+-                x = Math.max(line.getX1(), line.getX2()) - deltaX;
++                x = Math.max(line.getX1(), var_1293) - deltaX;
+             }
+             if (top) {
+                 y = y - deltaY;

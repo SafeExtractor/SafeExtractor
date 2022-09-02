@@ -1,0 +1,93 @@
+diff --git a/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java b/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java
+index aa25ddd..038c137 100644
+--- a/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java
++++ b/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java
+@@ -126,7 +126,8 @@
+       FlowScope blindScope, boolean outcome) {
+     // Check for the typeof operator.
+     int operatorToken = condition.getType();
+-    switch (operatorToken) {
++    Node var_2483 = condition.getFirstChild();
++	switch (operatorToken) {
+       case Token.EQ:
+       case Token.NE:
+       case Token.SHEQ:
+@@ -136,9 +137,9 @@
+         Node right;
+         if (operatorToken == Token.CASE) {
+           left = condition.getParent().getFirstChild(); // the switch condition
+-          right = condition.getFirstChild();
++          right = var_2483;
+         } else {
+-          left = condition.getFirstChild();
++          left = var_2483;
+           right = condition.getLastChild();
+         }
+ 
+@@ -169,19 +170,19 @@
+     switch (operatorToken) {
+       case Token.AND:
+         if (outcome) {
+-          return caseAndOrNotShortCircuiting(condition.getFirstChild(),
++          return caseAndOrNotShortCircuiting(var_2483,
+               condition.getLastChild(), blindScope, true);
+         } else {
+-          return caseAndOrMaybeShortCircuiting(condition.getFirstChild(),
++          return caseAndOrMaybeShortCircuiting(var_2483,
+               condition.getLastChild(), blindScope, true);
+         }
+ 
+       case Token.OR:
+         if (!outcome) {
+-          return caseAndOrNotShortCircuiting(condition.getFirstChild(),
++          return caseAndOrNotShortCircuiting(var_2483,
+               condition.getLastChild(), blindScope, false);
+         } else {
+-          return caseAndOrMaybeShortCircuiting(condition.getFirstChild(),
++          return caseAndOrMaybeShortCircuiting(var_2483,
+               condition.getLastChild(), blindScope, false);
+         }
+ 
+@@ -219,14 +220,14 @@
+ 
+       case Token.ASSIGN:
+         return firstPreciserScopeKnowingConditionOutcome(
+-            condition.getFirstChild(),
++            var_2483,
+             firstPreciserScopeKnowingConditionOutcome(
+-                condition.getFirstChild().getNext(), blindScope, outcome),
++                var_2483.getNext(), blindScope, outcome),
+             outcome);
+ 
+       case Token.NOT:
+         return firstPreciserScopeKnowingConditionOutcome(
+-            condition.getFirstChild(), blindScope, !outcome);
++            var_2483, blindScope, !outcome);
+ 
+       case Token.LE:
+       case Token.LT:
+@@ -239,20 +240,20 @@
+ 
+       case Token.INSTANCEOF:
+         return caseInstanceOf(
+-            condition.getFirstChild(), condition.getLastChild(), blindScope,
++            var_2483, condition.getLastChild(), blindScope,
+             outcome);
+ 
+       case Token.IN:
+-        if (outcome && condition.getFirstChild().isString()) {
++        if (outcome && var_2483.isString()) {
+           return caseIn(condition.getLastChild(),
+-              condition.getFirstChild().getString(), blindScope);
++              var_2483.getString(), blindScope);
+         }
+         break;
+ 
+       case Token.CASE:
+         Node left =
+             condition.getParent().getFirstChild(); // the switch condition
+-        Node right = condition.getFirstChild();
++        Node right = var_2483;
+         if (outcome) {
+           return caseEquality(left, right, blindScope, SHEQ);
+         } else {

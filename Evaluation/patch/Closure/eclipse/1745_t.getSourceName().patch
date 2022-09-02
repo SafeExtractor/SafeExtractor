@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/MethodCompilerPass.java b/src/com/google/javascript/jscomp/MethodCompilerPass.java
+index 786d143..e4c0277 100644
+--- a/src/com/google/javascript/jscomp/MethodCompilerPass.java
++++ b/src/com/google/javascript/jscomp/MethodCompilerPass.java
+@@ -127,7 +127,8 @@
+ 
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      switch (n.getType()) {
++      String var_1745 = t.getSourceName();
++	switch (n.getType()) {
+         case Token.GETPROP:
+         case Token.GETELEM: {
+           Node dest = n.getFirstChild().getNext();
+@@ -147,7 +148,7 @@
+           if (parent.isAssign() &&
+               parent.getFirstChild() == n &&
+               n.getNext().isFunction()) {
+-            addSignature(name, n.getNext(), t.getSourceName());
++            addSignature(name, n.getNext(), var_1745);
+           } else {
+             getSignatureStore().removeSignature(name);
+             externMethodsWithoutSignatures.add(name);
+@@ -162,7 +163,7 @@
+             String name = key.getString();
+             if (key.isStringKey()
+                 && value.isFunction()) {
+-              addSignature(name, value, t.getSourceName());
++              addSignature(name, value, var_1745);
+             } else {
+               getSignatureStore().removeSignature(name);
+               externMethodsWithoutSignatures.add(name);

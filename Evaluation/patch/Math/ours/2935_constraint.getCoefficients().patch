@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java b/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java
+index 07f397b..22b0f10 100644
+--- a/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java
++++ b/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java
+@@ -233,12 +233,13 @@
+             int row = getNumObjectiveFunctions() + i;
+ 
+             // decision variable coefficients
+-            copyArray(constraint.getCoefficients().toArray(), matrix.getDataRef()[row]);
++            RealVector var_2935 = constraint.getCoefficients();
++			copyArray(var_2935.toArray(), matrix.getDataRef()[row]);
+ 
+             // x-
+             if (!restrictToNonNegative) {
+                 matrix.setEntry(row, getSlackVariableOffset() - 1,
+-                    getInvertedCoefficientSum(constraint.getCoefficients()));
++                    getInvertedCoefficientSum(var_2935));
+             }
+ 
+             // RHS

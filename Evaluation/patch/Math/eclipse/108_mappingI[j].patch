@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..f9f8e50 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -782,9 +782,10 @@
+             final int[][] mappingI = multIndirection[i];
+             double r = 0;
+             for (int j = 0; j < mappingI.length; ++j) {
+-                r += mappingI[j][0] *
+-                     lhs[lhsOffset + mappingI[j][1]] *
+-                     rhs[rhsOffset + mappingI[j][2]];
++                int[] var_108 = mappingI[j];
++				r += var_108[0] *
++                     lhs[lhsOffset + var_108[1]] *
++                     rhs[rhsOffset + var_108[2]];
+             }
+             result[resultOffset + i] = r;
+         }

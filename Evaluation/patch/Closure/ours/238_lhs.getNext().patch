@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 9d1b56c..f36de49 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -181,13 +181,14 @@
+         n.isInc() || n.isDec()) {
+ 
+       Node lhs = n.getFirstChild();
+-      Node rhs = lhs.getNext();
++      Node var_238 = lhs.getNext();
++	Node rhs = var_238;
+ 
+       // Recurse first. Example: dead_x = dead_y = 1; We try to clean up dead_y
+       // first.
+       if (rhs != null) {
+         tryRemoveAssignment(t, rhs, exprRoot, state);
+-        rhs = lhs.getNext();
++        rhs = var_238;
+       }
+ 
+       Scope scope = t.getScope();

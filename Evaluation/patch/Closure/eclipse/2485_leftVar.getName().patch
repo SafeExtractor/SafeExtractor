@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java b/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java
+index aa25ddd..d2379c5 100644
+--- a/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java
++++ b/src/com/google/javascript/jscomp/type/SemanticReverseAbstractInterpreter.java
+@@ -364,12 +364,13 @@
+     rightScope = firstPreciserScopeKnowingConditionOutcome(
+         right, rightScope, !condition);
+     StaticSlot<JSType> rightVar = rightScope.findUniqueRefinedSlot(blindScope);
+-    if (rightVar == null || !leftVar.getName().equals(rightVar.getName())) {
++    String var_2485 = leftVar.getName();
++	if (rightVar == null || !var_2485.equals(rightVar.getName())) {
+       return blindScope;
+     }
+     JSType type = leftVar.getType().getLeastSupertype(rightVar.getType());
+     FlowScope informed = blindScope.createChildFlowScope();
+-    informed.inferSlotType(leftVar.getName(), type);
++    informed.inferSlotType(var_2485, type);
+     return informed;
+   }
+ 

@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java b/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java
+index b3412e0..25241bb 100644
+--- a/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java
+@@ -165,13 +165,14 @@
+             for (int col = minor+1; col < qrt.length; col++) {
+                 final double[] qrtCol = qrt[col];
+                 double alpha = 0;
+-                for (int row = minor; row < qrtCol.length; row++) {
++                int var_2163 = qrtCol.length;
++				for (int row = minor; row < var_2163; row++) {
+                     alpha -= qrtCol[row] * qrtMinor[row];
+                 }
+                 alpha /= a * qrtMinor[minor];
+ 
+                 // Subtract the column vector alpha*v from x.
+-                for (int row = minor; row < qrtCol.length; row++) {
++                for (int row = minor; row < var_2163; row++) {
+                     qrtCol[row] -= alpha * qrtMinor[row];
+                 }
+             }

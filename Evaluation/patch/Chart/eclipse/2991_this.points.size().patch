@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java b/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java
+index 6841362..22f97b0 100644
+--- a/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java
+@@ -202,11 +202,12 @@
+         if (item == dataset.getItemCount(series) - 1) {
+             State s = (State) state;
+             // construct path
+-            if (this.points.size() > 1) {
++            int var_2991 = this.points.size();
++			if (var_2991 > 1) {
+                 // we need at least two points to draw something
+                 ControlPoint cp0 = (ControlPoint) this.points.get(0);
+                 s.seriesPath.moveTo(cp0.x, cp0.y);
+-                if (this.points.size() == 2) {
++                if (var_2991 == 2) {
+                     // we need at least 3 points to spline. Draw simple line
+                     // for two points
+                     ControlPoint cp1 = (ControlPoint) this.points.get(1);
+@@ -214,7 +215,7 @@
+                 }
+                 else {
+                     // construct spline
+-                    int np = this.points.size(); // number of points
++                    int np = var_2991; // number of points
+                     float[] d = new float[np]; // Newton form coefficients
+                     float[] x = new float[np]; // x-coordinates of nodes
+                     float y;

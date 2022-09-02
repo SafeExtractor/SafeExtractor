@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..6d93685 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -637,7 +637,8 @@
+    * @param defines The list of names of existing defines.
+    */
+   static boolean isValidDefineValue(Node val, Set<String> defines) {
+-    switch (val.getType()) {
++    Node var_2055 = val.getFirstChild();
++	switch (val.getType()) {
+       case Token.STRING:
+       case Token.NUMBER:
+       case Token.TRUE:
+@@ -665,14 +666,14 @@
+       case Token.SHNE:
+       case Token.SUB:
+       case Token.URSH:
+-        return isValidDefineValue(val.getFirstChild(), defines)
++        return isValidDefineValue(var_2055, defines)
+             && isValidDefineValue(val.getLastChild(), defines);
+ 
+       // Unary operators are valid if the child is valid.
+       case Token.NOT:
+       case Token.NEG:
+       case Token.POS:
+-        return isValidDefineValue(val.getFirstChild(), defines);
++        return isValidDefineValue(var_2055, defines);
+ 
+       // Names are valid if and only if they are defines themselves.
+       case Token.NAME:

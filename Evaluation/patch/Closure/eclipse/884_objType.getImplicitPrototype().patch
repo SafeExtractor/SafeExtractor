@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/DisambiguateProperties.java b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+index c64c178..507a7e6 100644
+--- a/src/com/google/javascript/jscomp/DisambiguateProperties.java
++++ b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+@@ -871,11 +871,12 @@
+           foundType = topInterface.getConstructor().getPrototype();
+         }
+       } else {
+-        while (objType != null && objType.getImplicitPrototype() != objType) {
++        ObjectType var_884 = objType.getImplicitPrototype();
++		while (objType != null && var_884 != objType) {
+           if (objType.hasOwnProperty(field)) {
+             foundType = objType;
+           }
+-          objType = objType.getImplicitPrototype();
++          objType = var_884;
+         }
+       }
+ 

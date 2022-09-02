@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/FastMath.java b/src/main/java/org/apache/commons/math3/util/FastMath.java
+index 919e39f..a68ef14 100644
+--- a/src/main/java/org/apache/commons/math3/util/FastMath.java
++++ b/src/main/java/org/apache/commons/math3/util/FastMath.java
+@@ -3068,8 +3068,9 @@
+         if (n < -2098) {
+             return (d > 0) ? 0.0 : -0.0;
+         }
+-        if (n > 2097) {
+-            return (d > 0) ? Double.POSITIVE_INFINITY : Double.NEGATIVE_INFINITY;
++        double var_4345 = Double.NEGATIVE_INFINITY;
++		if (n > 2097) {
++            return (d > 0) ? Double.POSITIVE_INFINITY : var_4345;
+         }
+ 
+         // decompose d
+@@ -3120,13 +3121,13 @@
+                 if (scaledExponent < 2047) {
+                     return Double.longBitsToDouble(sign | (((long) scaledExponent) << 52) | mantissa);
+                 } else {
+-                    return (sign == 0L) ? Double.POSITIVE_INFINITY : Double.NEGATIVE_INFINITY;
++                    return (sign == 0L) ? Double.POSITIVE_INFINITY : var_4345;
+                 }
+ 
+             } else if (scaledExponent < 2047) {
+                 return Double.longBitsToDouble(sign | (((long) scaledExponent) << 52) | mantissa);
+             } else {
+-                return (sign == 0L) ? Double.POSITIVE_INFINITY : Double.NEGATIVE_INFINITY;
++                return (sign == 0L) ? Double.POSITIVE_INFINITY : var_4345;
+             }
+         }
+ 

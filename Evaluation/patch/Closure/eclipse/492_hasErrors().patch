@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+index 5f6b2c5..184c0d5 100644
+--- a/src/com/google/javascript/jscomp/Compiler.java
++++ b/src/com/google/javascript/jscomp/Compiler.java
+@@ -709,7 +709,8 @@
+     // 15 percent of the work is assumed to be for parsing (based on some
+     // minimal analysis on big JS projects, of course this depends on options)
+     setProgress(0.15, "parse");
+-    if (hasErrors()) {
++    boolean var_492 = hasErrors();
++	if (var_492) {
+       return;
+     }
+ 
+@@ -725,7 +726,7 @@
+ 
+     if (!options.skipAllPasses) {
+       check();
+-      if (hasErrors()) {
++      if (var_492) {
+         return;
+       }
+ 

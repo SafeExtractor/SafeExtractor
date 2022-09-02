@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java b/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
+index cd91775..0ea9f87 100644
+--- a/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
+@@ -492,11 +492,12 @@
+ 
+         // fast-forward through leading tails
+         boolean b_fastForwardDone = false;
+-        while (!b_fastForwardDone) {
++        double var_3197 = x_dataset.getXValue(0, l_minuendItem + 1);
++		while (!b_fastForwardDone) {
+             // get the x and y coordinates
+             l_x1 = x_dataset.getXValue(0, l_minuendItem);
+             l_y1 = x_dataset.getYValue(0, l_minuendItem);
+-            l_x2 = x_dataset.getXValue(0, l_minuendItem + 1);
++            l_x2 = var_3197;
+             l_y2 = x_dataset.getYValue(0, l_minuendItem + 1);
+ 
+             l_minuendCurX  = new Double(l_x1);
+@@ -583,7 +584,7 @@
+                 l_minuendMaxY = Math.max(l_minuendMaxY, l_y1);
+                 l_minuendMinY = Math.min(l_minuendMinY, l_y1);
+ 
+-                l_x2 = x_dataset.getXValue(0, l_minuendItem + 1);
++                l_x2 = var_3197;
+                 l_y2 = x_dataset.getYValue(0, l_minuendItem + 1);
+                 l_minuendNextX = new Double(l_x2);
+                 l_minuendNextY = new Double(l_y2);

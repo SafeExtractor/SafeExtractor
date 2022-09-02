@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/FastDateParser.java b/src/main/java/org/apache/commons/lang3/time/FastDateParser.java
+index b9bb413..ad76c9c 100644
+--- a/src/main/java/org/apache/commons/lang3/time/FastDateParser.java
++++ b/src/main/java/org/apache/commons/lang3/time/FastDateParser.java
+@@ -120,7 +120,8 @@
+ 
+         currentFormatField= patternMatcher.group();
+         Strategy currentStrategy= getStrategy(currentFormatField, definingCalendar);
+-        for(;;) {
++        boolean var_586 = currentStrategy.addRegex(this, regex);
++		for(;;) {
+             patternMatcher.region(patternMatcher.end(), patternMatcher.regionEnd());
+             if(!patternMatcher.lookingAt()) {
+                 nextStrategy = null;
+@@ -128,7 +129,7 @@
+             }
+             final String nextFormatField= patternMatcher.group();
+             nextStrategy = getStrategy(nextFormatField, definingCalendar);
+-            if(currentStrategy.addRegex(this, regex)) {
++            if(var_586) {
+                 collector.add(currentStrategy);
+             }
+             currentFormatField= nextFormatField;
+@@ -137,7 +138,7 @@
+         if (patternMatcher.regionStart() != patternMatcher.regionEnd()) {
+             throw new IllegalArgumentException("Failed to parse \""+pattern+"\" ; gave up at index "+patternMatcher.regionStart());
+         }
+-        if(currentStrategy.addRegex(this, regex)) {
++        if(var_586) {
+             collector.add(currentStrategy);
+         }
+         currentFormatField= null;

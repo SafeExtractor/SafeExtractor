@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/CombinatoricsUtils.java b/src/main/java/org/apache/commons/math3/util/CombinatoricsUtils.java
+index a6f60a9..ab9543d 100644
+--- a/src/main/java/org/apache/commons/math3/util/CombinatoricsUtils.java
++++ b/src/main/java/org/apache/commons/math3/util/CombinatoricsUtils.java
+@@ -374,11 +374,12 @@
+             stirlingS2[0] = new long[] { 1l };
+             for (int i = 1; i < stirlingS2.length; ++i) {
+                 stirlingS2[i] = new long[i + 1];
+-                stirlingS2[i][0] = 0;
+-                stirlingS2[i][1] = 1;
+-                stirlingS2[i][i] = 1;
++                long[] var_4130 = stirlingS2[i];
++				var_4130[0] = 0;
++                var_4130[1] = 1;
++                var_4130[i] = 1;
+                 for (int j = 2; j < i; ++j) {
+-                    stirlingS2[i][j] = j * stirlingS2[i - 1][j] + stirlingS2[i - 1][j - 1];
++                    var_4130[j] = j * stirlingS2[i - 1][j] + stirlingS2[i - 1][j - 1];
+                 }
+             }
+ 

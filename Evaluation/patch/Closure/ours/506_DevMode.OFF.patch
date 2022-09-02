@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+index 5f6b2c5..bdf0d45 100644
+--- a/src/com/google/javascript/jscomp/Compiler.java
++++ b/src/com/google/javascript/jscomp/Compiler.java
+@@ -1280,7 +1280,8 @@
+    *     and the main root
+    */
+   Node parseInputs() {
+-    boolean devMode = options.devMode != DevMode.OFF;
++    DevMode var_506 = DevMode.OFF;
++	boolean devMode = options.devMode != var_506;
+ 
+     // If old roots exist (we are parsing a second time), detach each of the
+     // individual file parse trees.
+@@ -1387,7 +1388,7 @@
+           // input file. This information is used to construct the SourceMap.
+           SourceInformationAnnotator sia =
+               new SourceInformationAnnotator(
+-                  input.getName(), options.devMode != DevMode.OFF);
++                  input.getName(), options.devMode != var_506);
+           NodeTraversal.traverse(this, n, sia);
+         }
+ 

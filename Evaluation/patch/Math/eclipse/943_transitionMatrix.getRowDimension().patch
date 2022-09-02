@@ -1,0 +1,44 @@
+diff --git a/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java b/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
+index 423689d..52ab0d0 100644
+--- a/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
++++ b/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
+@@ -175,9 +175,10 @@
+         // sanity checks, the control matrix B may be null
+ 
+         // A must be a square matrix
+-        if (!transitionMatrix.isSquare()) {
++        int var_943 = transitionMatrix.getRowDimension();
++		if (!transitionMatrix.isSquare()) {
+             throw new NonSquareMatrixException(
+-                    transitionMatrix.getRowDimension(),
++                    var_943,
+                     transitionMatrix.getColumnDimension());
+         }
+ 
+@@ -185,22 +186,22 @@
+         if (controlMatrix != null &&
+             controlMatrix.getRowDimension() > 0 &&
+             controlMatrix.getColumnDimension() > 0 &&
+-            (controlMatrix.getRowDimension() != transitionMatrix.getRowDimension() ||
++            (controlMatrix.getRowDimension() != var_943 ||
+              controlMatrix.getColumnDimension() != 1)) {
+             throw new MatrixDimensionMismatchException(controlMatrix.getRowDimension(),
+                                                        controlMatrix.getColumnDimension(),
+-                                                       transitionMatrix.getRowDimension(), 1);
++                                                       var_943, 1);
+         }
+ 
+         // Q must be equal to A
+         MatrixUtils.checkAdditionCompatible(transitionMatrix, processNoise);
+ 
+         // column dimension of H must be equal to row dimension of A
+-        if (measurementMatrix.getColumnDimension() != transitionMatrix.getRowDimension()) {
++        if (measurementMatrix.getColumnDimension() != var_943) {
+             throw new MatrixDimensionMismatchException(measurementMatrix.getRowDimension(),
+                                                        measurementMatrix.getColumnDimension(),
+                                                        measurementMatrix.getRowDimension(),
+-                                                       transitionMatrix.getRowDimension());
++                                                       var_943);
+         }
+ 
+         // row dimension of R must be equal to row dimension of H

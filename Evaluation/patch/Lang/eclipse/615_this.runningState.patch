@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/StopWatch.java b/src/main/java/org/apache/commons/lang3/time/StopWatch.java
+index 1b6f870..362cb80 100644
+--- a/src/main/java/org/apache/commons/lang3/time/StopWatch.java
++++ b/src/main/java/org/apache/commons/lang3/time/StopWatch.java
+@@ -281,11 +281,12 @@
+      * @since 3.0
+      */
+     public long getNanoTime() {
+-        if (this.runningState == STATE_STOPPED || this.runningState == STATE_SUSPENDED) {
++        int var_615 = this.runningState;
++		if (var_615 == STATE_STOPPED || var_615 == STATE_SUSPENDED) {
+             return this.stopTime - this.startTime;
+-        } else if (this.runningState == STATE_UNSTARTED) {
++        } else if (var_615 == STATE_UNSTARTED) {
+             return 0;
+-        } else if (this.runningState == STATE_RUNNING) {
++        } else if (var_615 == STATE_RUNNING) {
+             return System.nanoTime() - this.startTime;
+         }
+         throw new RuntimeException("Illegal running state has occurred.");

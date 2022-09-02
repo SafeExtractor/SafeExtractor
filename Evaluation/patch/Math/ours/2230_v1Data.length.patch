@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java b/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java
+index 4ffd794..97752d8 100644
+--- a/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java
++++ b/src/main/java/org/apache/commons/math3/linear/ArrayFieldVector.java
+@@ -331,9 +331,10 @@
+         field = v1.getField();
+         final T[] v1Data =
+                 (v1 instanceof ArrayFieldVector) ? ((ArrayFieldVector<T>) v1).data : v1.toArray();
+-        data = MathArrays.buildArray(field, v1Data.length + v2.length);
+-        System.arraycopy(v1Data, 0, data, 0, v1Data.length);
+-        System.arraycopy(v2, 0, data, v1Data.length, v2.length);
++        int var_2230 = v1Data.length;
++		data = MathArrays.buildArray(field, var_2230 + v2.length);
++        System.arraycopy(v1Data, 0, data, 0, var_2230);
++        System.arraycopy(v2, 0, data, var_2230, v2.length);
+     }
+ 
+     /**

@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/axis/ExtendedCategoryAxis.java b/source/org/jfree/chart/axis/ExtendedCategoryAxis.java
+index 5de73f6..bb410ea 100644
+--- a/source/org/jfree/chart/axis/ExtendedCategoryAxis.java
++++ b/source/org/jfree/chart/axis/ExtendedCategoryAxis.java
+@@ -173,9 +173,10 @@
+         TextBlock label = super.createLabel(category, width, edge, g2);
+         String s = (String) this.sublabels.get(category);
+         if (s != null) {
+-            if (edge == RectangleEdge.TOP || edge == RectangleEdge.BOTTOM) {
++            Paint var_740 = this.sublabelPaint;
++			if (edge == RectangleEdge.TOP || edge == RectangleEdge.BOTTOM) {
+                 TextLine line = new TextLine(s, this.sublabelFont,
+-                        this.sublabelPaint);
++                        var_740);
+                 label.addLine(line);
+             }
+             else if (edge == RectangleEdge.LEFT
+@@ -183,7 +184,7 @@
+                 TextLine line = label.getLastLine();
+                 if (line != null) {
+                     line.addFragment(new TextFragment("  " + s,
+-                            this.sublabelFont, this.sublabelPaint));
++                            this.sublabelFont, var_740));
+                 }
+             }
+         }

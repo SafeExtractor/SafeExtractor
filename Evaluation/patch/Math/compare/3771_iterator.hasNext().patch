@@ -1,0 +1,28 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/3771_iterator.hasNext().patch b/Users/safe/paper/Evaluation/patch/Math/ours/3771_iterator.hasNext().patch
+index 157e8c0..e69de29 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/3771_iterator.hasNext().patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/3771_iterator.hasNext().patch
+@@ -1,23 +0,0 @@
+-diff --git a/src/main/java/org/apache/commons/math3/stat/descriptive/AggregateSummaryStatistics.java b/src/main/java/org/apache/commons/math3/stat/descriptive/AggregateSummaryStatistics.java
+-index 9577f5a..15dcbac 100644
+---- a/src/main/java/org/apache/commons/math3/stat/descriptive/AggregateSummaryStatistics.java
+-+++ b/src/main/java/org/apache/commons/math3/stat/descriptive/AggregateSummaryStatistics.java
+-@@ -308,7 +308,8 @@
+-             return null;
+-         }
+-         Iterator<SummaryStatistics> iterator = statistics.iterator();
+--        if (!iterator.hasNext()) {
+-+        boolean var_3771 = iterator.hasNext();
+-+		if (!var_3771) {
+-             return null;
+-         }
+-         SummaryStatistics current = iterator.next();
+-@@ -318,7 +319,7 @@
+-         double max = current.getMax();
+-         double m2 = current.getSecondMoment();
+-         double mean = current.getMean();
+--        while (iterator.hasNext()) {
+-+        while (var_3771) {
+-             current = iterator.next();
+-             if (current.getMin() < min || Double.isNaN(min)) {
+-                 min = current.getMin();

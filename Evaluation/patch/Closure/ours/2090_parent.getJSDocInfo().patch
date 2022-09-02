@@ -1,0 +1,46 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..857b444 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -3053,22 +3053,25 @@
+ 
+       if (parent.isName()) {
+         return getBestJSDocInfo(parent);
+-      } else if (parent.isAssign()) {
+-        return parent.getJSDocInfo();
+-      } else if (isObjectLitKey(parent, parent.getParent())) {
+-        return parent.getJSDocInfo();
+-      } else if (parent.isFunction()) {
+-        return parent.getJSDocInfo();
+-      } else if (parent.isVar() && parent.hasOneChild()) {
+-        return parent.getJSDocInfo();
+-      } else if ((parent.isHook() && parent.getFirstChild() != n) ||
+-                 parent.isOr() ||
+-                 parent.isAnd() ||
+-                 (parent.isComma() && parent.getFirstChild() != n)) {
+-        return getBestJSDocInfo(parent);
+-      } else if (parent.isCast()) {
+-        return parent.getJSDocInfo();
+-      }
++      } else {
++		JSDocInfo var_2090 = parent.getJSDocInfo();
++		if (parent.isAssign()) {
++		    return var_2090;
++		  } else if (isObjectLitKey(parent, parent.getParent())) {
++		    return var_2090;
++		  } else if (parent.isFunction()) {
++		    return var_2090;
++		  } else if (parent.isVar() && parent.hasOneChild()) {
++		    return var_2090;
++		  } else if ((parent.isHook() && parent.getFirstChild() != n) ||
++		             parent.isOr() ||
++		             parent.isAnd() ||
++		             (parent.isComma() && parent.getFirstChild() != n)) {
++		    return getBestJSDocInfo(parent);
++		  } else if (parent.isCast()) {
++		    return var_2090;
++		  }
++	}
+     }
+     return info;
+   }

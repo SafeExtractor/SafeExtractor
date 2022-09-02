@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/data/statistics/DefaultMultiValueCategoryDataset.java b/source/org/jfree/data/statistics/DefaultMultiValueCategoryDataset.java
+index 95fee7a..644e3b6 100644
+--- a/source/org/jfree/data/statistics/DefaultMultiValueCategoryDataset.java
++++ b/source/org/jfree/data/statistics/DefaultMultiValueCategoryDataset.java
+@@ -140,10 +140,12 @@
+             // update the cached range values...
+             if (this.maximumRangeValue == null) {
+                 this.maximumRangeValue = new Double(maxval);
+-            }
+-            else if (maxval > this.maximumRangeValue.doubleValue()) {
+-                this.maximumRangeValue = new Double(maxval);
+-            }
++            } else {
++				double var_4014 = this.maximumRangeValue.doubleValue();
++				if (maxval > var_4014) {
++				    this.maximumRangeValue = new Double(maxval);
++				}
++			}
+ 
+             if (this.minimumRangeValue == null) {
+                 this.minimumRangeValue = new Double(minval);

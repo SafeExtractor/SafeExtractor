@@ -1,0 +1,43 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/ConjugateGradient.java b/src/main/java/org/apache/commons/math3/linear/ConjugateGradient.java
+index a7b80a4..fd5451b 100644
+--- a/src/main/java/org/apache/commons/math3/linear/ConjugateGradient.java
++++ b/src/main/java/org/apache/commons/math3/linear/ConjugateGradient.java
+@@ -179,8 +179,9 @@
+             z = null;
+         }
+         IterativeLinearSolverEvent evt;
+-        evt = new DefaultIterativeLinearSolverEvent(this,
+-            manager.getIterations(), xro, bro, rro, rnorm);
++        int var_2198 = manager.getIterations();
++		evt = new DefaultIterativeLinearSolverEvent(this,
++            var_2198, xro, bro, rro, rnorm);
+         manager.fireInitializationEvent(evt);
+         if (rnorm <= rmax) {
+             manager.fireTerminationEvent(evt);
+@@ -190,7 +191,7 @@
+         while (true) {
+             manager.incrementIterationCount();
+             evt = new DefaultIterativeLinearSolverEvent(this,
+-                manager.getIterations(), xro, bro, rro, rnorm);
++                var_2198, xro, bro, rro, rnorm);
+             manager.fireIterationStartedEvent(evt);
+             if (m != null) {
+                 z = m.operate(r);
+@@ -204,7 +205,7 @@
+                 context.setValue(VECTOR, r);
+                 throw e;
+             }
+-            if (manager.getIterations() == 2) {
++            if (var_2198 == 2) {
+                 p.setSubVector(0, z);
+             } else {
+                 p.combineToSelf(rhoNext / rhoPrev, 1., z);
+@@ -225,7 +226,7 @@
+             rhoPrev = rhoNext;
+             rnorm = r.getNorm();
+             evt = new DefaultIterativeLinearSolverEvent(this,
+-                manager.getIterations(), xro, bro, rro, rnorm);
++                var_2198, xro, bro, rro, rnorm);
+             manager.fireIterationPerformedEvent(evt);
+             if (rnorm <= rmax) {
+                 manager.fireTerminationEvent(evt);

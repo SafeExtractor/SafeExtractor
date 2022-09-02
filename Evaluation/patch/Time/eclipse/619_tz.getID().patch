@@ -1,0 +1,40 @@
+diff --git a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+index 4e56fef..393f837 100644
+--- a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
++++ b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+@@ -267,7 +267,8 @@
+      * @return false if error.
+      */
+     static boolean test(String id, DateTimeZone tz) {
+-        if (!id.equals(tz.getID())) {
++        String var_619 = tz.getID();
++		if (!id.equals(var_619)) {
+             return true;
+         }
+ 
+@@ -294,14 +295,14 @@
+ 
+             if (offset == nextOffset
+                 && key.equals(nextKey)) {
+-                System.out.println("*d* Error in " + tz.getID() + " "
++                System.out.println("*d* Error in " + var_619 + " "
+                                    + new DateTime(millis,
+                                                   ISOChronology.getInstanceUTC()));
+                 return false;
+             }
+ 
+             if (nextKey == null || (nextKey.length() < 3 && !"??".equals(nextKey))) {
+-                System.out.println("*s* Error in " + tz.getID() + " "
++                System.out.println("*s* Error in " + var_619 + " "
+                                    + new DateTime(millis,
+                                                   ISOChronology.getInstanceUTC())
+                                    + ", nameKey=" + nextKey);
+@@ -330,7 +331,7 @@
+             long trans = transitions.get(i).longValue();
+             
+             if (trans - 1 != millis) {
+-                System.out.println("*r* Error in " + tz.getID() + " "
++                System.out.println("*r* Error in " + var_619 + " "
+                                    + new DateTime(millis,
+                                                   ISOChronology.getInstanceUTC()) + " != "
+                                    + new DateTime(trans - 1,

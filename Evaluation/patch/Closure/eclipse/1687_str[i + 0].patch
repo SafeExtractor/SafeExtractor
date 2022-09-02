@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/GoogleJsMessageIdGenerator.java b/src/com/google/javascript/jscomp/GoogleJsMessageIdGenerator.java
+index a36adac..2c01863 100644
+--- a/src/com/google/javascript/jscomp/GoogleJsMessageIdGenerator.java
++++ b/src/com/google/javascript/jscomp/GoogleJsMessageIdGenerator.java
+@@ -110,8 +110,9 @@
+       int a = 0x9e3779b9;
+       int b = 0x9e3779b9;
+       int i;
+-      for (i = start; i + 12 <= limit; i += 12) {
+-        a += (((str[i + 0] & 0xff) << 0)
++      byte var_1687 = str[i + 0];
++	for (i = start; i + 12 <= limit; i += 12) {
++        a += (((var_1687 & 0xff) << 0)
+             | ((str[i + 1] & 0xff) << 8)
+             | ((str[i + 2] & 0xff) << 16)
+             | ((str[i + 3] & 0xff) << 24));
+@@ -177,7 +178,7 @@
+         case 2:
+           a += (str[i + 1] & 0xff) << 8;
+         case 1:
+-          a += (str[i + 0] & 0xff);
++          a += (var_1687 & 0xff);
+           // case 0 : nothing left to add
+       }
+ 

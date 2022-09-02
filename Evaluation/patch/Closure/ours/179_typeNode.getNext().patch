@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/ClosureCodingConvention.java b/src/com/google/javascript/jscomp/ClosureCodingConvention.java
+index f78afdb..b1c5036 100644
+--- a/src/com/google/javascript/jscomp/ClosureCodingConvention.java
++++ b/src/com/google/javascript/jscomp/ClosureCodingConvention.java
+@@ -340,13 +340,14 @@
+       return null;
+     }
+ 
+-    Node objectNode = typeNode.getNext();
++    Node var_179 = typeNode.getNext();
++	Node objectNode = var_179;
+     if (!objectNode.isObjectLit()) {
+       return new ObjectLiteralCast(null, null, OBJECTLIT_EXPECTED);
+     }
+ 
+     return new ObjectLiteralCast(
+-        typeNode.getQualifiedName(), typeNode.getNext(), null);
++        typeNode.getQualifiedName(), var_179, null);
+   }
+ 
+   @Override

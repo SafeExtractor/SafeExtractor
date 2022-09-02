@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..bae779c 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -1165,8 +1165,9 @@
+     // For interface
+     boolean superInterfaceHasProperty = false;
+     boolean superInterfaceHasDeclaredProperty = false;
+-    if (ctorType.isInterface()) {
+-      for (ObjectType interfaceType : ctorType.getExtendedInterfaces()) {
++    Iterable<ObjectType> var_999 = ctorType.getExtendedInterfaces();
++	if (ctorType.isInterface()) {
++      for (ObjectType interfaceType : var_999) {
+         superInterfaceHasProperty =
+             superInterfaceHasProperty ||
+             interfaceType.hasProperty(propertyName);
+@@ -1242,7 +1243,7 @@
+       }
+     } else if (superInterfaceHasDeclaredProperty) {
+       // there is an super interface property
+-      for (ObjectType interfaceType : ctorType.getExtendedInterfaces()) {
++      for (ObjectType interfaceType : var_999) {
+         if (interfaceType.hasProperty(propertyName)) {
+           JSType superPropertyType =
+               interfaceType.getPropertyType(propertyName);

@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/joda/time/MonthDay.java b/src/main/java/org/joda/time/MonthDay.java
+index c7dd59b..661d793 100644
+--- a/src/main/java/org/joda/time/MonthDay.java
++++ b/src/main/java/org/joda/time/MonthDay.java
+@@ -377,8 +377,9 @@
+      * @return the resolved object, not null
+      */
+     private Object readResolve() {
+-        if (DateTimeZone.UTC.equals(getChronology().getZone()) == false) {
+-            return new MonthDay(this, getChronology().withUTC());
++        Chronology var_125 = getChronology();
++		if (DateTimeZone.UTC.equals(var_125.getZone()) == false) {
++            return new MonthDay(this, var_125.withUTC());
+         }
+         return this;
+     }

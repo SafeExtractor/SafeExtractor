@@ -1,0 +1,118 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..57fe2e0 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -144,10 +144,11 @@
+ 
+     cc.startSourceMapping(n);
+ 
+-    switch (type) {
++    Node var_1549 = first.getNext();
++	switch (type) {
+       case Token.TRY: {
+-        Preconditions.checkState(first.getNext().isBlock() &&
+-                !first.getNext().hasMoreThanOneChild());
++        Preconditions.checkState(var_1549.isBlock() &&
++                !var_1549.hasMoreThanOneChild());
+         Preconditions.checkState(childCount >= 2 && childCount <= 3);
+ 
+         add("try");
+@@ -155,7 +156,7 @@
+ 
+         // second child contains the catch block, or nothing if there
+         // isn't a catch block
+-        Node catchblock = first.getNext().getFirstChild();
++        Node catchblock = var_1549.getFirstChild();
+         if (catchblock != null) {
+           add(catchblock);
+         }
+@@ -279,7 +280,7 @@
+         int p = NodeUtil.precedence(type);
+         addExpr(first, p + 1, context);
+         cc.addOp("?", true);
+-        addExpr(first.getNext(), 1, Context.OTHER);
++        addExpr(var_1549, 1, Context.OTHER);
+         cc.addOp(":", true);
+         addExpr(last, 1, Context.OTHER);
+         break;
+@@ -315,7 +316,7 @@
+         add("function");
+         add(first);
+ 
+-        add(first.getNext());
++        add(var_1549);
+         add(last, Context.PRESERVE_BLOCK);
+         cc.endFunction(context == Context.STATEMENT);
+ 
+@@ -418,9 +419,9 @@
+             addExpr(first, 0, Context.IN_FOR_INIT_CLAUSE);
+           }
+           add(";");
+-          add(first.getNext());
++          add(var_1549);
+           add(";");
+-          add(first.getNext().getNext());
++          add(var_1549.getNext());
+           add(")");
+           addNonEmptyStatement(
+               last, getContextForNonEmptyExpression(context), false);
+@@ -429,7 +430,7 @@
+           add("for(");
+           add(first);
+           add("in");
+-          add(first.getNext());
++          add(var_1549);
+           add(")");
+           addNonEmptyStatement(
+               last, getContextForNonEmptyExpression(context), false);
+@@ -485,7 +486,7 @@
+             "Bad GETELEM: expected 2 children but got %s", childCount);
+         addExpr(first, NodeUtil.precedence(type), context);
+         add("[");
+-        add(first.getNext());
++        add(var_1549);
+         add("]");
+         break;
+ 
+@@ -534,7 +535,7 @@
+           addExpr(first, NodeUtil.precedence(type), context);
+         }
+         add("(");
+-        addList(first.getNext());
++        addList(var_1549);
+         add(")");
+         break;
+ 
+@@ -552,12 +553,12 @@
+ 
+         if (hasElse) {
+           addNonEmptyStatement(
+-              first.getNext(), Context.BEFORE_DANGLING_ELSE, false);
++              var_1549, Context.BEFORE_DANGLING_ELSE, false);
+           add("else");
+           addNonEmptyStatement(
+               last, getContextForNonEmptyExpression(context), false);
+         } else {
+-          addNonEmptyStatement(first.getNext(), Context.OTHER, false);
++          addNonEmptyStatement(var_1549, Context.OTHER, false);
+           Preconditions.checkState(childCount == 2);
+         }
+ 
+@@ -638,7 +639,7 @@
+         addExpr(first, precedence, Context.OTHER);
+ 
+         // '()' is optional when no arguments are present
+-        Node next = first.getNext();
++        Node next = var_1549;
+         if (next != null) {
+           add("(");
+           addList(next);
+@@ -714,7 +715,7 @@
+         add(first);
+         add(")");
+         cc.beginBlock();
+-        addAllSiblings(first.getNext());
++        addAllSiblings(var_1549);
+         cc.endBlock(context == Context.STATEMENT);
+         break;
+ 

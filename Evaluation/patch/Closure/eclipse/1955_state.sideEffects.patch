@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/ExpressionDecomposer.java b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+index 2344537..59803a2 100644
+--- a/src/com/google/javascript/jscomp/ExpressionDecomposer.java
++++ b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+@@ -166,8 +166,9 @@
+       int parentType = parent.getType();
+       Preconditions.checkState(
+           !isConditionalOp(parent) || child == parent.getFirstChild());
+-      if (parentType == Token.ASSIGN) {
+-          if (isSafeAssign(parent, state.sideEffects)) {
++      boolean var_1955 = state.sideEffects;
++	if (parentType == Token.ASSIGN) {
++          if (isSafeAssign(parent, var_1955)) {
+             // It is always safe to inline "foo()" for expressions such as
+             // "a = b = c = foo();"
+             // As the assignment is unaffected by side effect of "foo()"
+@@ -195,7 +196,7 @@
+         Node functionExpression = parent.getFirstChild();
+         decomposeSubExpressions(functionExpression.getNext(), child, state);
+         // Now handle the call expression
+-        if (isExpressionTreeUnsafe(functionExpression, state.sideEffects)
++        if (isExpressionTreeUnsafe(functionExpression, var_1955)
+             && functionExpression.getFirstChild() != grandchild) {
+           // TODO(johnlenz): In Internet Explorer, non-JavaScript objects such
+           // as DOM objects can not be decomposed.

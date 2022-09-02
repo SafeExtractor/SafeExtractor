@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/TypedCodeGenerator.java b/src/com/google/javascript/jscomp/TypedCodeGenerator.java
+index 64c3d95..4d7316f 100644
+--- a/src/com/google/javascript/jscomp/TypedCodeGenerator.java
++++ b/src/com/google/javascript/jscomp/TypedCodeGenerator.java
+@@ -47,10 +47,13 @@
+           && n.getFirstChild().isAssign()) {
+         Node rhs = n.getFirstChild().getLastChild();
+         add(getTypeAnnotation(rhs));
+-      } else if (n.isVar()
+-          && n.getFirstChild().getFirstChild() != null) {
+-        add(getTypeAnnotation(n.getFirstChild().getFirstChild()));
+-      }
++      } else {
++		Node var_1827 = n.getFirstChild().getFirstChild();
++		if (n.isVar()
++		      && var_1827 != null) {
++		    add(getTypeAnnotation(var_1827));
++		  }
++	}
+     }
+ 
+     super.add(n, context);

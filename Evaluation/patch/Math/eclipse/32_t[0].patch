@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/FunctionUtils.java b/src/main/java/org/apache/commons/math3/analysis/FunctionUtils.java
+index c39fc5e..f361983 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/FunctionUtils.java
++++ b/src/main/java/org/apache/commons/math3/analysis/FunctionUtils.java
+@@ -621,8 +621,9 @@
+                 throws DimensionMismatchException, NumberIsTooLargeException {
+ 
+                 // check parameters and orders limits
+-                final int parameters = t[0].getFreeParameters();
+-                final int order      = t[0].getOrder();
++                DerivativeStructure var_32 = t[0];
++				final int parameters = var_32.getFreeParameters();
++                final int order      = var_32.getOrder();
+                 final int n          = t.length;
+                 if (order > 1) {
+                     throw new NumberIsTooLargeException(order, 1, true);

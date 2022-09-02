@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
+index aa90f2b..89ad0d1 100644
+--- a/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
+@@ -837,17 +837,18 @@
+                             return;
+                         }
+ 
+-                        if (orientation == PlotOrientation.HORIZONTAL) {
+-                            state.workingLine.setLine(transY0, transX0,
++                        Line2D var_2911 = state.workingLine;
++						if (orientation == PlotOrientation.HORIZONTAL) {
++                            var_2911.setLine(transY0, transX0,
+                                     transY1, transX1);
+                         }
+                         else if (orientation == PlotOrientation.VERTICAL) {
+-                            state.workingLine.setLine(transX0, transY0,
++                            var_2911.setLine(transX0, transY0,
+                                     transX1, transY1);
+                         }
+ 
+-                        if (state.workingLine.intersects(dataArea)) {
+-                            g2.draw(state.workingLine);
++                        if (var_2911.intersects(dataArea)) {
++                            g2.draw(var_2911);
+                         }
+                     }
+                 }

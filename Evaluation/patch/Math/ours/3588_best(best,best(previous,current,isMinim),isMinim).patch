@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java
+index 20d0980..56ab3c7 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/univariate/BrentOptimizer.java
+@@ -234,11 +234,12 @@
+                 // User-defined convergence checker.
+                 previous = current;
+                 current = new UnivariatePointValuePair(u, isMinim ? fu : -fu);
+-                best = best(best,
++                UnivariatePointValuePair var_3588 = best(best,
+                             best(previous,
+                                  current,
+                                  isMinim),
+                             isMinim);
++				best = var_3588;
+ 
+                 if (checker != null && checker.converged(iter, previous, current)) {
+                     return best;

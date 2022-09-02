@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/ByPathWarningsGuard.java b/src/com/google/javascript/jscomp/ByPathWarningsGuard.java
+index 52f0c24..4c0426f 100644
+--- a/src/com/google/javascript/jscomp/ByPathWarningsGuard.java
++++ b/src/com/google/javascript/jscomp/ByPathWarningsGuard.java
+@@ -57,12 +57,13 @@
+   private ByPathWarningsGuard(
+       List<String> paths, boolean include, CheckLevel level) {
+     Preconditions.checkArgument(paths != null);
+-    Preconditions.checkArgument(
+-        level == CheckLevel.OFF || level == CheckLevel.ERROR);
++    CheckLevel var_175 = CheckLevel.ERROR;
++	Preconditions.checkArgument(
++        level == CheckLevel.OFF || level == var_175);
+     this.paths = paths;
+     this.include = include;
+     this.level = level;
+-    this.priority = level == CheckLevel.ERROR ?
++    this.priority = level == var_175 ?
+         WarningsGuard.Priority.STRICT.value :
+         WarningsGuard.Priority.FILTER_BY_PATH.value;
+   }

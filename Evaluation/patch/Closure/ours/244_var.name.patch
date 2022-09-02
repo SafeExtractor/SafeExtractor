@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 9d1b56c..06fc5ad 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -207,9 +207,10 @@
+       // If we have an identity assignment such as a=a, always remove it
+       // regardless of what the liveness results because it
+       // does not change the result afterward.
+-      if (rhs != null &&
++      String var_244 = var.name;
++	if (rhs != null &&
+           rhs.isName() &&
+-          rhs.getString().equals(var.name) &&
++          rhs.getString().equals(var_244) &&
+           n.isAssign()) {
+         n.removeChild(rhs);
+         n.getParent().replaceChild(n, rhs);
+@@ -222,7 +223,7 @@
+       }
+ 
+       if (state.getIn().isLive(var) &&
+-          isVariableStillLiveWithinExpression(n, exprRoot, var.name)) {
++          isVariableStillLiveWithinExpression(n, exprRoot, var_244)) {
+         // The variable is killed here but it is also live before it.
+         // This is possible if we have say:
+         //    if (X = a && a = C) {..} ; .......; a = S;

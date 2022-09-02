@@ -1,0 +1,42 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+index 4652f61..74fa657 100644
+--- a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+@@ -801,10 +801,11 @@
+             double p = realEigenvalues[idx];
+             double q = imagEigenvalues[idx];
+ 
+-            if (Precision.equals(q, 0.0)) {
++            double[] var_2138 = matrixT[idx];
++			if (Precision.equals(q, 0.0)) {
+                 // Real vector
+                 int l = idx;
+-                matrixT[idx][idx] = 1.0;
++                var_2138[idx] = 1.0;
+                 for (int i = idx - 1; i >= 0; i--) {
+                     double w = matrixT[i][i] - p;
+                     r = 0.0;
+@@ -851,9 +852,9 @@
+                 int l = idx - 1;
+ 
+                 // Last vector component imaginary so matrix is triangular
+-                if (FastMath.abs(matrixT[idx][idx - 1]) > FastMath.abs(matrixT[idx - 1][idx])) {
+-                    matrixT[idx - 1][idx - 1] = q / matrixT[idx][idx - 1];
+-                    matrixT[idx - 1][idx]     = -(matrixT[idx][idx] - p) / matrixT[idx][idx - 1];
++                if (FastMath.abs(var_2138[idx - 1]) > FastMath.abs(matrixT[idx - 1][idx])) {
++                    matrixT[idx - 1][idx - 1] = q / var_2138[idx - 1];
++                    matrixT[idx - 1][idx]     = -(var_2138[idx] - p) / var_2138[idx - 1];
+                 } else {
+                     final Complex result = cdiv(0.0, -matrixT[idx - 1][idx],
+                                                 matrixT[idx - 1][idx - 1] - p, q);
+@@ -861,8 +862,8 @@
+                     matrixT[idx - 1][idx]     = result.getImaginary();
+                 }
+ 
+-                matrixT[idx][idx - 1] = 0.0;
+-                matrixT[idx][idx]     = 1.0;
++                var_2138[idx - 1] = 0.0;
++                var_2138[idx]     = 1.0;
+ 
+                 for (int i = idx - 2; i >= 0; i--) {
+                     double ra = 0.0;

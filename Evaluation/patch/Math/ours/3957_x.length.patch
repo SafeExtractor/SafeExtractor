@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..c12e93a 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -167,16 +167,17 @@
+     public void addObservation(final double[] x, final double y)
+     throws ModelSpecificationException {
+ 
+-        if ((!this.hasIntercept && x.length != nvars) ||
+-               (this.hasIntercept && x.length + 1 != nvars)) {
++        int var_3957 = x.length;
++		if ((!this.hasIntercept && var_3957 != nvars) ||
++               (this.hasIntercept && var_3957 + 1 != nvars)) {
+             throw new ModelSpecificationException(LocalizedFormats.INVALID_REGRESSION_OBSERVATION,
+-                    x.length, nvars);
++                    var_3957, nvars);
+         }
+         if (!this.hasIntercept) {
+-            include(MathArrays.copyOf(x, x.length), 1.0, y);
++            include(MathArrays.copyOf(x, var_3957), 1.0, y);
+         } else {
+-            final double[] tmp = new double[x.length + 1];
+-            System.arraycopy(x, 0, tmp, 1, x.length);
++            final double[] tmp = new double[var_3957 + 1];
++            System.arraycopy(x, 0, tmp, 1, var_3957);
+             tmp[0] = 1.0;
+             include(tmp, 1.0, y);
+         }

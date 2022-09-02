@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..24849a6 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -532,7 +532,8 @@
+ 
+       // Format is "<name>:<num-js-files>[:[<dep>,...][:]]".
+       String[] parts = spec.split(":");
+-      if (parts.length < 2 || parts.length > 4) {
++      int var_416 = parts.length;
++	if (var_416 < 2 || var_416 > 4) {
+         throw new FlagUsageException("Expected 2-4 colon-delimited parts in "
+             + "module spec: " + spec);
+       }
+@@ -570,7 +571,7 @@
+       }
+       nextJsFileIndex += numJsFiles;
+ 
+-      if (parts.length > 2) {
++      if (var_416 > 2) {
+         // Parse module dependencies.
+         String depList = parts[2];
+         if (depList.length() > 0) {

@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubPlane.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubPlane.java
+index 51e7778..0b32349 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubPlane.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubPlane.java
+@@ -123,14 +123,15 @@
+             new org.apache.commons.math3.geometry.euclidean.twod.Line(q, p).wholeHyperplane();
+ 
+         final BSPTree<Euclidean2D> splitTree = getRemainingRegion().getTree(false).split(l2DMinus);
+-        final BSPTree<Euclidean2D> plusTree  = getRemainingRegion().isEmpty(splitTree.getPlus()) ?
+-                                               new BSPTree<Euclidean2D>(Boolean.FALSE) :
+-                                               new BSPTree<Euclidean2D>(l2DPlus, new BSPTree<Euclidean2D>(Boolean.FALSE),
++        Boolean var_1476 = Boolean.FALSE;
++		final BSPTree<Euclidean2D> plusTree  = getRemainingRegion().isEmpty(splitTree.getPlus()) ?
++                                               new BSPTree<Euclidean2D>(var_1476) :
++                                               new BSPTree<Euclidean2D>(l2DPlus, new BSPTree<Euclidean2D>(var_1476),
+                                                                         splitTree.getPlus(), null);
+ 
+         final BSPTree<Euclidean2D> minusTree = getRemainingRegion().isEmpty(splitTree.getMinus()) ?
+-                                               new BSPTree<Euclidean2D>(Boolean.FALSE) :
+-                                                   new BSPTree<Euclidean2D>(l2DMinus, new BSPTree<Euclidean2D>(Boolean.FALSE),
++                                               new BSPTree<Euclidean2D>(var_1476) :
++                                                   new BSPTree<Euclidean2D>(l2DMinus, new BSPTree<Euclidean2D>(var_1476),
+                                                                             splitTree.getMinus(), null);
+ 
+         return new SplitSubHyperplane<Euclidean3D>(new SubPlane(thisPlane.copySelf(), new PolygonsSet(plusTree)),

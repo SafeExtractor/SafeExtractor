@@ -1,0 +1,38 @@
+diff --git a/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/LucenePropertyIndex.java b/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/LucenePropertyIndex.java
+index e7cec26..8278443 100644
+--- a/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/LucenePropertyIndex.java
++++ b/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/LucenePropertyIndex.java
+@@ -1346,19 +1346,20 @@
+         textsearch = textsearch.replaceAll("NOT", "not");
+         boolean escaped = false;
+         for (int i = 0; i < textsearch.length(); i++) {
+-            if (textsearch.charAt(i) == '\\') {
++            char c = textsearch.charAt(i);
++			if (c == '\\') {
+                 if (escaped) {
+                     rewritten.append("\\\\");
+                     escaped = false;
+                 } else {
+                     escaped = true;
+                 }
+-            } else if (textsearch.charAt(i) == '\'') {
++            } else if (c == '\'') {
+                 if (escaped) {
+                     escaped = false;
+                 }
+-                rewritten.append(textsearch.charAt(i));
+-            } else if (textsearch.charAt(i) == ':') {
++                rewritten.append(c);
++            } else if (c == ':') {
+                 // fields as known in lucene are not supported
+                 rewritten.append("\\:");
+             } else {
+@@ -1366,7 +1367,7 @@
+                     rewritten.append('\\');
+                     escaped = false;
+                 }
+-                rewritten.append(textsearch.charAt(i));
++                rewritten.append(c);
+             }
+         }
+         return rewritten.toString();

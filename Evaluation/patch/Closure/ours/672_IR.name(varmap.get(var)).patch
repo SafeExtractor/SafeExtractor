@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/InlineObjectLiterals.java b/src/com/google/javascript/jscomp/InlineObjectLiterals.java
+index d03988c..7cbd8f4 100644
+--- a/src/com/google/javascript/jscomp/InlineObjectLiterals.java
++++ b/src/com/google/javascript/jscomp/InlineObjectLiterals.java
+@@ -341,9 +341,10 @@
+         String var = key.getString();
+         Node value = key.removeFirstChild();
+         // TODO(user): Copy type information.
+-        nodes.add(
++        Node var_672 = IR.name(varmap.get(var));
++		nodes.add(
+             IR.assign(
+-                IR.name(varmap.get(var)),
++                var_672,
+                 value));
+         all.remove(var);
+       }

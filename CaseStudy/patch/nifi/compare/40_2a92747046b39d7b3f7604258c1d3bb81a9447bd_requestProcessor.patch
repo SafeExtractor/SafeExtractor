@@ -1,0 +1,37 @@
+diff --git a/Users/safe/paper/CaseStudy/patch/nifi/eclipse/40_2a92747046b39d7b3f7604258c1d3bb81a9447bd_requestProcessor.patch b/Users/safe/paper/CaseStudy/patch/nifi/ours/40_2a92747046b39d7b3f7604258c1d3bb81a9447bd_requestProcessor.patch
+index 5d237e9..756b07b 100644
+--- a/Users/safe/paper/CaseStudy/patch/nifi/eclipse/40_2a92747046b39d7b3f7604258c1d3bb81a9447bd_requestProcessor.patch
++++ b/Users/safe/paper/CaseStudy/patch/nifi/ours/40_2a92747046b39d7b3f7604258c1d3bb81a9447bd_requestProcessor.patch
+@@ -1,5 +1,5 @@
+ diff --git a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ProcessGroupResource.java b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ProcessGroupResource.java
+-index d9055c9..fce10a3 100644
++index d9055c9..87745ae 100644
+ --- a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ProcessGroupResource.java
+ +++ b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ProcessGroupResource.java
+ @@ -39,6 +39,7 @@
+@@ -10,22 +10,13 @@ index d9055c9..fce10a3 100644
+  import org.apache.nifi.web.api.dto.RemoteProcessGroupDTO;
+  import org.apache.nifi.web.api.dto.TemplateDTO;
+  import org.apache.nifi.web.api.dto.flow.FlowDTO;
+-@@ -577,7 +578,8 @@
+-                     required = true
+-             ) final ProcessorEntity processorEntity) {
+- 
+--        if (processorEntity == null || processorEntity.getComponent() == null) {
+-+        ProcessorDTO requestProcessor = processorEntity.getComponent();
+-+		if (processorEntity == null || requestProcessor == null) {
+-             throw new IllegalArgumentException("Processor details must be specified.");
+-         }
+- 
+-@@ -585,19 +587,19 @@
++@@ -585,19 +586,20 @@
+              throw new IllegalArgumentException("A revision of 0 must be specified when creating a new Processor.");
+          }
+  
+ -        if (processorEntity.getComponent().getId() != null) {
+-+        if (requestProcessor.getId() != null) {
+++        ProcessorDTO requestProcessor = processorEntity.getComponent();
+++		if (requestProcessor.getId() != null) {
+              throw new IllegalArgumentException("Processor ID cannot be specified.");
+          }
+  

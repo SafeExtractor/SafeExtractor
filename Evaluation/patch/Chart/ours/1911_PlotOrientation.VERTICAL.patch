@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/plot/CategoryPlot.java b/source/org/jfree/chart/plot/CategoryPlot.java
+index 24a84fd..5f80455 100644
+--- a/source/org/jfree/chart/plot/CategoryPlot.java
++++ b/source/org/jfree/chart/plot/CategoryPlot.java
+@@ -3636,11 +3636,12 @@
+         // on data)
+         crosshairState.setAnchorX(Double.NaN);
+         crosshairState.setAnchorY(Double.NaN);
+-        if (anchor != null) {
++        PlotOrientation var_1911 = PlotOrientation.VERTICAL;
++		if (anchor != null) {
+             ValueAxis rangeAxis = getRangeAxis();
+             if (rangeAxis != null) {
+                 double y;
+-                if (getOrientation() == PlotOrientation.VERTICAL) {
++                if (getOrientation() == var_1911) {
+                     y = rangeAxis.java2DToValue(anchor.getY(), dataArea,
+                             getRangeAxisEdge());
+                 }
+@@ -3813,7 +3814,7 @@
+         RectangleEdge yAxisEdge = getRangeAxisEdge();
+         if (!this.rangeCrosshairLockedOnData && anchor != null) {
+             double yy;
+-            if (getOrientation() == PlotOrientation.VERTICAL) {
++            if (getOrientation() == var_1911) {
+                 yy = yAxis.java2DToValue(anchor.getY(), dataArea, yAxisEdge);
+             }
+             else {

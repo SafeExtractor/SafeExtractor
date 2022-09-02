@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java b/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+index 2b007b2..ed51a91 100644
+--- a/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
++++ b/src/main/java/org/apache/commons/math3/util/OpenIntToDoubleHashMap.java
+@@ -354,12 +354,13 @@
+             return doRemove(index);
+         }
+ 
+-        if (states[index] == FREE) {
++        byte var_4123 = states[index];
++		if (var_4123 == FREE) {
+             return missingEntries;
+         }
+ 
+         int j = index;
+-        for (int perturb = perturb(hash); states[index] != FREE; perturb >>= PERTURB_SHIFT) {
++        for (int perturb = perturb(hash); var_4123 != FREE; perturb >>= PERTURB_SHIFT) {
+             j = probe(perturb, j);
+             index = j & mask;
+             if (containsKey(key, index)) {

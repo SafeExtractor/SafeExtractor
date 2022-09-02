@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/lang3/text/FormattableUtils.java b/src/main/java/org/apache/commons/lang3/text/FormattableUtils.java
+index abdd114..cdd4557 100644
+--- a/src/main/java/org/apache/commons/lang3/text/FormattableUtils.java
++++ b/src/main/java/org/apache/commons/lang3/text/FormattableUtils.java
+@@ -136,9 +136,10 @@
+         Validate.isTrue(ellipsis == null || precision < 0 || ellipsis.length() <= precision,
+                 "Specified ellipsis '%1$s' exceeds precision of %2$s", ellipsis, Integer.valueOf(precision));
+         final StringBuilder buf = new StringBuilder(seq);
+-        if (precision >= 0 && precision < seq.length()) {
++        int var_419 = seq.length();
++		if (precision >= 0 && precision < var_419) {
+             final CharSequence _ellipsis = ObjectUtils.defaultIfNull(ellipsis, StringUtils.EMPTY);
+-            buf.replace(precision - _ellipsis.length(), seq.length(), _ellipsis.toString());
++            buf.replace(precision - _ellipsis.length(), var_419, _ellipsis.toString());
+         }
+         final boolean leftJustify = (flags & LEFT_JUSTIFY) == LEFT_JUSTIFY;
+         for (int i = buf.length(); i < width; i++) {

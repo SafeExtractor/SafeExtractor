@@ -1,0 +1,28 @@
+diff --git a/src/org/mockito/internal/configuration/injection/SpyOnInjectedFieldsHandler.java b/src/org/mockito/internal/configuration/injection/SpyOnInjectedFieldsHandler.java
+index 963bf27..8876188 100644
+--- a/src/org/mockito/internal/configuration/injection/SpyOnInjectedFieldsHandler.java
++++ b/src/org/mockito/internal/configuration/injection/SpyOnInjectedFieldsHandler.java
+@@ -33,7 +33,8 @@
+ 
+         // TODO refoctor : code duplicated in SpyAnnotationEngine
+         if(!fieldReader.isNull() && field.isAnnotationPresent(Spy.class)) {
+-            try {
++            String var_17 = field.getName();
++			try {
+                 Object instance = fieldReader.read();
+                 if (new MockUtil().isMock(instance)) {
+                     // A. instance has been spied earlier
+@@ -44,11 +45,11 @@
+                         Mockito.mock(instance.getClass(), withSettings()
+                             .spiedInstance(instance)
+                             .defaultAnswer(Mockito.CALLS_REAL_METHODS)
+-                            .name(field.getName()))
++                            .name(var_17))
+                     );
+                 }
+             } catch (Exception e) {
+-                throw new MockitoException("Problems initiating spied field " + field.getName(), e);
++                throw new MockitoException("Problems initiating spied field " + var_17, e);
+             }
+         }
+ 

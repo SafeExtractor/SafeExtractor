@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java
+index 5371054..d659fb7 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java
+@@ -589,7 +589,8 @@
+             // the vectors are almost aligned, compute using the sine
+             FieldVector3D<T> v3 = crossProduct(v1, v2);
+             if (dot.getReal() >= 0) {
+-                return v3.getNorm().divide(normProduct).asin();
++                T var_1494 = v3.getNorm().divide(normProduct);
++				return var_1494.asin();
+             }
+             return v3.getNorm().divide(normProduct).asin().subtract(FastMath.PI).negate();
+         }

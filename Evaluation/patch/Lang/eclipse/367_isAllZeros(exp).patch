@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/lang3/math/NumberUtils.java b/src/main/java/org/apache/commons/lang3/math/NumberUtils.java
+index 70b8d64..7beb0e3 100644
+--- a/src/main/java/org/apache/commons/lang3/math/NumberUtils.java
++++ b/src/main/java/org/apache/commons/lang3/math/NumberUtils.java
+@@ -515,7 +515,8 @@
+             }
+             dec = null;
+         }
+-        if (!Character.isDigit(lastChar) && lastChar != '.') {
++        boolean var_367 = isAllZeros(exp);
++		if (!Character.isDigit(lastChar) && lastChar != '.') {
+             if (expPos > -1 && expPos < str.length() - 1) {
+                 exp = str.substring(expPos + 1, str.length() - 1);
+             } else {
+@@ -523,7 +524,7 @@
+             }
+             //Requesting a specific type..
+             final String numeric = str.substring(0, str.length() - 1);
+-            final boolean allZeros = isAllZeros(mant) && isAllZeros(exp);
++            final boolean allZeros = isAllZeros(mant) && var_367;
+             switch (lastChar) {
+                 case 'l' :
+                 case 'L' :
+@@ -597,7 +598,7 @@
+         }
+ 
+         //Must be a Float, Double, BigDecimal
+-        final boolean allZeros = isAllZeros(mant) && isAllZeros(exp);
++        final boolean allZeros = isAllZeros(mant) && var_367;
+         try {
+             if(numDecimals <= 7){// If number has 7 or fewer digits past the decimal point then make it a float
+                 final Float f = createFloat(str);

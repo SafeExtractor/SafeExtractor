@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYErrorRenderer.java b/source/org/jfree/chart/renderer/xy/XYErrorRenderer.java
+index 4af9465..109b786 100644
+--- a/source/org/jfree/chart/renderer/xy/XYErrorRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYErrorRenderer.java
+@@ -315,12 +315,13 @@
+                 && getItemVisible(series, item)) {
+             IntervalXYDataset ixyd = (IntervalXYDataset) dataset;
+             PlotOrientation orientation = plot.getOrientation();
+-            if (this.drawXError) {
++            RectangleEdge var_3244 = plot.getDomainAxisEdge();
++			if (this.drawXError) {
+                 // draw the error bar for the x-interval
+                 double x0 = ixyd.getStartXValue(series, item);
+                 double x1 = ixyd.getEndXValue(series, item);
+                 double y = ixyd.getYValue(series, item);
+-                RectangleEdge edge = plot.getDomainAxisEdge();
++                RectangleEdge edge = var_3244;
+                 double xx0 = domainAxis.valueToJava2D(x0, dataArea, edge);
+                 double xx1 = domainAxis.valueToJava2D(x1, dataArea, edge);
+                 double yy = rangeAxis.valueToJava2D(y, dataArea,
+@@ -364,7 +365,7 @@
+                 double yy0 = rangeAxis.valueToJava2D(y0, dataArea, edge);
+                 double yy1 = rangeAxis.valueToJava2D(y1, dataArea, edge);
+                 double xx = domainAxis.valueToJava2D(x, dataArea,
+-                        plot.getDomainAxisEdge());
++                        var_3244);
+                 Line2D line;
+                 Line2D cap1 = null;
+                 Line2D cap2 = null;

@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/complex/Complex.java b/src/main/java/org/apache/commons/math3/complex/Complex.java
+index ac8185b..7c7d964 100644
+--- a/src/main/java/org/apache/commons/math3/complex/Complex.java
++++ b/src/main/java/org/apache/commons/math3/complex/Complex.java
+@@ -439,15 +439,16 @@
+         if (isNaN || factor.isNaN) {
+             return NaN;
+         }
+-        if (Double.isInfinite(real) ||
++        double var_527 = factor.imaginary;
++		if (Double.isInfinite(real) ||
+             Double.isInfinite(imaginary) ||
+             Double.isInfinite(factor.real) ||
+-            Double.isInfinite(factor.imaginary)) {
++            Double.isInfinite(var_527)) {
+             // we don't use isInfinite() to avoid testing for NaN again
+             return INF;
+         }
+-        return createComplex(real * factor.real - imaginary * factor.imaginary,
+-                             real * factor.imaginary + imaginary * factor.real);
++        return createComplex(real * factor.real - imaginary * var_527,
++                             real * var_527 + imaginary * factor.real);
+     }
+ 
+     /**

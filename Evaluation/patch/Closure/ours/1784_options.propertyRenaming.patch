@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..11c4ed0 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -550,19 +550,20 @@
+     //
+     // Extracting prototype properties screws up the heuristic renaming
+     // policies, so never run it when those policies are requested.
+-    if (options.extractPrototypeMemberDeclarations &&
+-        (options.propertyRenaming != PropertyRenamingPolicy.HEURISTIC &&
+-         options.propertyRenaming !=
++    PropertyRenamingPolicy var_1784 = options.propertyRenaming;
++	if (options.extractPrototypeMemberDeclarations &&
++        (var_1784 != PropertyRenamingPolicy.HEURISTIC &&
++         var_1784 !=
+             PropertyRenamingPolicy.AGGRESSIVE_HEURISTIC)) {
+       passes.add(extractPrototypeMemberDeclarations);
+     }
+ 
+     if (options.ambiguateProperties &&
+-        (options.propertyRenaming == PropertyRenamingPolicy.ALL_UNQUOTED)) {
++        (var_1784 == PropertyRenamingPolicy.ALL_UNQUOTED)) {
+       passes.add(ambiguateProperties);
+     }
+ 
+-    if (options.propertyRenaming != PropertyRenamingPolicy.OFF) {
++    if (var_1784 != PropertyRenamingPolicy.OFF) {
+       passes.add(renameProperties);
+     }
+ 

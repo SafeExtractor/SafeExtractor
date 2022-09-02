@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessTweaks.java b/src/com/google/javascript/jscomp/ProcessTweaks.java
+index e20b902..b7c0b97 100644
+--- a/src/com/google/javascript/jscomp/ProcessTweaks.java
++++ b/src/com/google/javascript/jscomp/ProcessTweaks.java
+@@ -242,7 +242,8 @@
+       for (TweakFunctionCall functionCall : tweakInfo.functionCalls) {
+         Node callNode = functionCall.callNode;
+         Node parent = callNode.getParent();
+-        if (functionCall.tweakFunc.isGetterFunction()) {
++        TweakFunction var_1388 = functionCall.tweakFunc;
++		if (var_1388.isGetterFunction()) {
+           Node newValue;
+           if (isRegistered) {
+             newValue = tweakInfo.getDefaultValueNode().cloneNode();
+@@ -251,7 +252,7 @@
+             // already been a warning about it, so now just use a default
+             // value when stripping.
+             TweakFunction registerFunction =
+-                functionCall.tweakFunc.registerFunction;
++                var_1388.registerFunction;
+             newValue = registerFunction.createDefaultValueNode();
+           }
+           parent.replaceChild(callNode, newValue);

@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/AliasKeywords.java b/src/com/google/javascript/jscomp/AliasKeywords.java
+index 947a1bf..997a87b 100644
+--- a/src/com/google/javascript/jscomp/AliasKeywords.java
++++ b/src/com/google/javascript/jscomp/AliasKeywords.java
+@@ -215,11 +215,12 @@
+    */
+   private static Node createAliasFunctionNode(String aliasName) {
+     final String PARAM_NAME = "jscomp_throw_param";
+-    return IR.function(
++    Node var_191 = IR.name(PARAM_NAME);
++	return IR.function(
+         IR.name(aliasName),
+-        IR.paramList(IR.name(PARAM_NAME)),
++        IR.paramList(var_191),
+         IR.block(
+-            IR.throwNode(IR.name(PARAM_NAME))));
++            IR.throwNode(var_191)));
+   }
+ 
+   /** Aliases literal keywords (e.g., null) with variable names. */

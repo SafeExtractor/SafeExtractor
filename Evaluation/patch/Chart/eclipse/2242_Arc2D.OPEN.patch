@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/plot/RingPlot.java b/source/org/jfree/chart/plot/RingPlot.java
+index f540f71..9161b36 100644
+--- a/source/org/jfree/chart/plot/RingPlot.java
++++ b/source/org/jfree/chart/plot/RingPlot.java
+@@ -373,8 +373,9 @@
+             }
+             Rectangle2D arcBounds = getArcBounds(state.getPieArea(),
+                     state.getExplodedPieArea(), angle1, angle, ep);
+-            Arc2D.Double arc = new Arc2D.Double(arcBounds, angle1, angle,
+-                    Arc2D.OPEN);
++            int var_2242 = Arc2D.OPEN;
++			Arc2D.Double arc = new Arc2D.Double(arcBounds, angle1, angle,
++                    var_2242);
+ 
+             // create the bounds for the inner arc
+             double depth = this.sectionDepth / 2.0;
+@@ -386,7 +387,7 @@
+             // calculate inner arc in reverse direction, for later
+             // GeneralPath construction
+             Arc2D.Double arc2 = new Arc2D.Double(innerArcBounds, angle1
+-                    + angle, -angle, Arc2D.OPEN);
++                    + angle, -angle, var_2242);
+             GeneralPath path = new GeneralPath();
+             path.moveTo((float) arc.getStartPoint().getX(),
+                     (float) arc.getStartPoint().getY());

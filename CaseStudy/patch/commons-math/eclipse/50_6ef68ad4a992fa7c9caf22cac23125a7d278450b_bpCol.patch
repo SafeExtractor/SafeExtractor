@@ -1,0 +1,14 @@
+diff --git a/src/java/org/apache/commons/math/linear/RealMatrixImpl.java b/src/java/org/apache/commons/math/linear/RealMatrixImpl.java
+index 3a717ff..dfd4666 100644
+--- a/src/java/org/apache/commons/math/linear/RealMatrixImpl.java
++++ b/src/java/org/apache/commons/math/linear/RealMatrixImpl.java
+@@ -876,7 +876,8 @@
+                 final double[] bpI = bp[i];
+                 final double[] luI = lu[i];
+                 for (int j = 0; j < nColB; j++) {
+-                    bpI[j] -= bp[col][j] * luI[col];
++                    double[] bpCol = bp[col];
++					bpI[j] -= bpCol[j] * luI[col];
+                 }
+             }
+         }

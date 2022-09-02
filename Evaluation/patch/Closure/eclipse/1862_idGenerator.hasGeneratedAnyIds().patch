@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/CrossModuleMethodMotion.java b/src/com/google/javascript/jscomp/CrossModuleMethodMotion.java
+index 810f309..7e5018b 100644
+--- a/src/com/google/javascript/jscomp/CrossModuleMethodMotion.java
++++ b/src/com/google/javascript/jscomp/CrossModuleMethodMotion.java
+@@ -90,7 +90,8 @@
+    * Move methods deeper in the module graph when possible.
+    */
+   private void moveMethods(Collection<NameInfo> allNameInfo) {
+-    boolean hasStubDeclaration = idGenerator.hasGeneratedAnyIds();
++    boolean var_1862 = idGenerator.hasGeneratedAnyIds();
++	boolean hasStubDeclaration = var_1862;
+     for (NameInfo nameInfo : allNameInfo) {
+       if (!nameInfo.isReferenced()) {
+         // The code below can't do anything with unreferenced name
+@@ -186,7 +187,7 @@
+       }
+     }
+ 
+-    if (!hasStubDeclaration && idGenerator.hasGeneratedAnyIds()) {
++    if (!hasStubDeclaration && var_1862) {
+       // Declare stub functions in the top-most module.
+       Node declarations = compiler.parseSyntheticCode(STUB_DECLARATIONS);
+       compiler.getNodeForCodeInsertion(null).addChildrenToFront(

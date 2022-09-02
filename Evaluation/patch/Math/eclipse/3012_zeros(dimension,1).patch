@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+index c837709..5f49e83 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+@@ -618,8 +618,9 @@
+         xmean = MatrixUtils.createColumnRealMatrix(guess); // objective variables
+         diagD = insigma.scalarMultiply(1 / sigma);
+         diagC = square(diagD);
+-        pc = zeros(dimension, 1); // evolution paths for C and sigma
+-        ps = zeros(dimension, 1); // B defines the coordinate system
++        RealMatrix var_3012 = zeros(dimension, 1);
++		pc = var_3012; // evolution paths for C and sigma
++        ps = var_3012; // B defines the coordinate system
+         normps = ps.getFrobeniusNorm();
+ 
+         B = eye(dimension, dimension);

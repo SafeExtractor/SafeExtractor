@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java b/src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java
+index bfb8e9e..df4ac6f 100644
+--- a/src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java
++++ b/src/main/java/org/apache/commons/compress/archivers/tar/TarUtils.java
+@@ -47,24 +47,25 @@
+         int     end = offset + length;
+ 
+         for (int i = offset; i < end; ++i) {
+-            if (buffer[i] == 0) { // Found trailing null
++            byte currentByte = buffer[i];
++			if (currentByte == 0) { // Found trailing null
+                 break;
+             }
+ 
+             // Ignore leading spaces ('0' can be ignored anyway)
+-            if (buffer[i] == (byte) ' ' || buffer[i] == '0') {
++            if (currentByte == (byte) ' ' || currentByte == '0') {
+                 if (stillPadding) {
+                     continue;
+                 }
+ 
+-                if (buffer[i] == (byte) ' ') { // Found trailing space
++                if (currentByte == (byte) ' ') { // Found trailing space
+                     break;
+                 }
+             }
+ 
+             stillPadding = false;
+             // CheckStyle:MagicNumber OFF
+-            result = (result << 3) + (buffer[i] - '0');// TODO needs to reject invalid bytes
++            result = (result << 3) + (currentByte - '0');// TODO needs to reject invalid bytes
+             // CheckStyle:MagicNumber ON
+         }
+ 

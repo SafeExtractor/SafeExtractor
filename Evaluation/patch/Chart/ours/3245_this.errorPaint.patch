@@ -1,0 +1,36 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYErrorRenderer.java b/source/org/jfree/chart/renderer/xy/XYErrorRenderer.java
+index 4af9465..0cedf5a 100644
+--- a/source/org/jfree/chart/renderer/xy/XYErrorRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYErrorRenderer.java
+@@ -315,7 +315,8 @@
+                 && getItemVisible(series, item)) {
+             IntervalXYDataset ixyd = (IntervalXYDataset) dataset;
+             PlotOrientation orientation = plot.getOrientation();
+-            if (this.drawXError) {
++            Paint var_3245 = this.errorPaint;
++			if (this.drawXError) {
+                 // draw the error bar for the x-interval
+                 double x0 = ixyd.getStartXValue(series, item);
+                 double x1 = ixyd.getEndXValue(series, item);
+@@ -339,8 +340,8 @@
+                     cap1 = new Line2D.Double(yy - adj, xx0, yy + adj, xx0);
+                     cap2 = new Line2D.Double(yy - adj, xx1, yy + adj, xx1);
+                 }
+-                if (this.errorPaint != null) {
+-                    g2.setPaint(this.errorPaint);
++                if (var_3245 != null) {
++                    g2.setPaint(var_3245);
+                 }
+                 else {
+                     g2.setPaint(getItemPaint(series, item, selected));
+@@ -379,8 +380,8 @@
+                     cap1 = new Line2D.Double(yy0, xx - adj, yy0, xx + adj);
+                     cap2 = new Line2D.Double(yy1, xx - adj, yy1, xx + adj);
+                 }
+-                if (this.errorPaint != null) {
+-                    g2.setPaint(this.errorPaint);
++                if (var_3245 != null) {
++                    g2.setPaint(var_3245);
+                 }
+                 else {
+                     g2.setPaint(getItemPaint(series, item, selected));

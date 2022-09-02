@@ -1,0 +1,32 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/3959_x.length.patch b/Users/safe/paper/Evaluation/patch/Math/ours/3959_x.length.patch
+index 07dd628..092156f 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/3959_x.length.patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/3959_x.length.patch
+@@ -1,22 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+-index 36f8bd2..6a1549b 100644
++index 36f8bd2..14e9e52 100644
+ --- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+ +++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+-@@ -192,22 +192,23 @@
+-      * the length of {@code y} or does not contain sufficient data to estimate the model
+-      */
+-     public void addObservations(double[][] x, double[] y) throws ModelSpecificationException {
+--        if ((x == null) || (y == null) || (x.length != y.length)) {
+-+        int var_3959 = x.length;
+-+		if ((x == null) || (y == null) || (var_3959 != y.length)) {
+-             throw new ModelSpecificationException(
+-                   LocalizedFormats.DIMENSIONS_MISMATCH_SIMPLE,
+--                  (x == null) ? 0 : x.length,
+-+                  (x == null) ? 0 : var_3959,
++@@ -198,16 +198,17 @@
++                   (x == null) ? 0 : x.length,
+                    (y == null) ? 0 : y.length);
+          }
+ -        if (x.length == 0) {  // Must be no y data either
+-+        if (var_3959 == 0) {  // Must be no y data either
+++        int var_3959 = x.length;
+++		if (var_3959 == 0) {  // Must be no y data either
+              throw new ModelSpecificationException(
+                      LocalizedFormats.NO_DATA);
+          }

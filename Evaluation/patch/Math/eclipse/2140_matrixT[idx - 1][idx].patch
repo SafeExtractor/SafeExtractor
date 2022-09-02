@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+index 4652f61..7705ac7 100644
+--- a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+@@ -851,11 +851,12 @@
+                 int l = idx - 1;
+ 
+                 // Last vector component imaginary so matrix is triangular
+-                if (FastMath.abs(matrixT[idx][idx - 1]) > FastMath.abs(matrixT[idx - 1][idx])) {
++                double var_2140 = matrixT[idx - 1][idx];
++				if (FastMath.abs(matrixT[idx][idx - 1]) > FastMath.abs(var_2140)) {
+                     matrixT[idx - 1][idx - 1] = q / matrixT[idx][idx - 1];
+                     matrixT[idx - 1][idx]     = -(matrixT[idx][idx] - p) / matrixT[idx][idx - 1];
+                 } else {
+-                    final Complex result = cdiv(0.0, -matrixT[idx - 1][idx],
++                    final Complex result = cdiv(0.0, -var_2140,
+                                                 matrixT[idx - 1][idx - 1] - p, q);
+                     matrixT[idx - 1][idx - 1] = result.getReal();
+                     matrixT[idx - 1][idx]     = result.getImaginary();

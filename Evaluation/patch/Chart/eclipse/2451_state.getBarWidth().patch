@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/renderer/category/GroupedStackedBarRenderer.java b/source/org/jfree/chart/renderer/category/GroupedStackedBarRenderer.java
+index 503fc31..c4d1d65 100644
+--- a/source/org/jfree/chart/renderer/category/GroupedStackedBarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/GroupedStackedBarRenderer.java
+@@ -216,18 +216,19 @@
+                 this.seriesToGroupMap.getGroup(plot.getDataset(
+                         plot.getIndexOf(this)).getRowKey(row)));
+         int categoryCount = getColumnCount();
+-        if (groupCount > 1) {
++        double var_2451 = state.getBarWidth();
++		if (groupCount > 1) {
+             double groupGap = space * getItemMargin()
+                               / (categoryCount * (groupCount - 1));
+             double groupW = calculateSeriesWidth(space, domainAxis,
+                     categoryCount, groupCount);
+             barW0 = barW0 + groupIndex * (groupW + groupGap)
+-                          + (groupW / 2.0) - (state.getBarWidth() / 2.0);
++                          + (groupW / 2.0) - (var_2451 / 2.0);
+         }
+         else {
+             barW0 = domainAxis.getCategoryMiddle(column, getColumnCount(),
+                     dataArea, plot.getDomainAxisEdge())
+-                    - state.getBarWidth() / 2.0;
++                    - var_2451 / 2.0;
+         }
+         return barW0;
+     }

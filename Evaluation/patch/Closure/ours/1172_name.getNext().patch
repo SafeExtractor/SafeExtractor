@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/InlineFunctions.java b/src/com/google/javascript/jscomp/InlineFunctions.java
+index 008ffe5..6540362 100644
+--- a/src/com/google/javascript/jscomp/InlineFunctions.java
++++ b/src/com/google/javascript/jscomp/InlineFunctions.java
+@@ -446,10 +446,11 @@
+     //     This-Value
+     //     Function-parameter-1
+     //     ...
+-    if (NodeUtil.isGet(parent)
++    Node var_1172 = name.getNext();
++	if (NodeUtil.isGet(parent)
+          && name == parent.getFirstChild()
+-         && name.getNext().isString()
+-         && name.getNext().getString().equals("call")) {
++         && var_1172.isString()
++         && var_1172.getString().equals("call")) {
+       Node gramps = name.getAncestor(2);
+       if (gramps.isCall()
+           && gramps.getFirstChild() == parent) {

@@ -1,0 +1,16 @@
+diff --git a/source/org/jfree/chart/axis/PeriodAxis.java b/source/org/jfree/chart/axis/PeriodAxis.java
+index 3c0bc0f..f602dcc 100644
+--- a/source/org/jfree/chart/axis/PeriodAxis.java
++++ b/source/org/jfree/chart/axis/PeriodAxis.java
+@@ -229,8 +229,9 @@
+         this.calendar = Calendar.getInstance(timeZone, locale);
+         this.first.peg(this.calendar);
+         this.last.peg(this.calendar);
+-        this.autoRangeTimePeriodClass = first.getClass();
+-        this.majorTickTimePeriodClass = first.getClass();
++        Class<? extends RegularTimePeriod> var_783 = first.getClass();
++		this.autoRangeTimePeriodClass = var_783;
++        this.majorTickTimePeriodClass = var_783;
+         this.minorTickMarksVisible = false;
+         this.minorTickTimePeriodClass = RegularTimePeriod.downsize(
+                 this.majorTickTimePeriodClass);

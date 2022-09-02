@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..742d207 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -436,13 +436,14 @@
+ 
+     Node executingCase = caseNode;
+     while (executingCase != null) {
+-      Preconditions.checkState(executingCase.isDefaultCase()
++      boolean var_794 = executingCase.isDefaultCase();
++	Preconditions.checkState(var_794
+           || executingCase.isCase());
+       // We only expect a DEFAULT case if the case we are checking is the
+       // DEFAULT case.  Otherwise, we assume the DEFAULT case has already
+       // been removed.
+       Preconditions.checkState(caseNode == executingCase
+-          || !executingCase.isDefaultCase());
++          || !var_794);
+       Node block = executingCase.getLastChild();
+       Preconditions.checkState(block.isBlock());
+       if (block.hasChildren()) {

@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/util/SerialUtilities.java b/source/org/jfree/chart/util/SerialUtilities.java
+index 90edcc1..7a53489 100644
+--- a/source/org/jfree/chart/util/SerialUtilities.java
++++ b/source/org/jfree/chart/util/SerialUtilities.java
+@@ -121,17 +121,18 @@
+         Paint result = null;
+         boolean isNull = stream.readBoolean();
+         if (!isNull) {
+-            Class c = (Class) stream.readObject();
++            Object var_3633 = stream.readObject();
++			Class c = (Class) var_3633;
+             if (isSerializable(c)) {
+-                result = (Paint) stream.readObject();
++                result = (Paint) var_3633;
+             }
+             else if (c.equals(GradientPaint.class)) {
+                 float x1 = stream.readFloat();
+                 float y1 = stream.readFloat();
+-                Color c1 = (Color) stream.readObject();
++                Color c1 = (Color) var_3633;
+                 float x2 = stream.readFloat();
+                 float y2 = stream.readFloat();
+-                Color c2 = (Color) stream.readObject();
++                Color c2 = (Color) var_3633;
+                 boolean isCyclic = stream.readBoolean();
+                 result = new GradientPaint(x1, y1, c1, x2, y2, c2, isCyclic);
+             }

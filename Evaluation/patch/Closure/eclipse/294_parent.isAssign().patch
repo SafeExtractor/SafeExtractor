@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 781fc3c..d684326 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -1020,12 +1020,13 @@
+       // So we do not treat this alias as a backdoor for people to mutate the
+       // original object. We think that this heuristic will always be
+       // OK in real code.
+-      boolean isPrototypePropAssignment =
+-          parent.isAssign()
++      boolean var_294 = parent.isAssign();
++	boolean isPrototypePropAssignment =
++          var_294
+           && NodeUtil.isPrototypeProperty(parent.getFirstChild());
+ 
+       if ((parent.isName() ||
+-          parent.isAssign()) &&
++          var_294) &&
+           !isPrototypePropAssignment &&
+           referring != null &&
+           scopes.get(parent).contains(referring)) {

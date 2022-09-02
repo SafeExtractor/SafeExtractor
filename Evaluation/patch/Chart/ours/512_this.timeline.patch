@@ -1,0 +1,16 @@
+diff --git a/source/org/jfree/chart/axis/DateAxis.java b/source/org/jfree/chart/axis/DateAxis.java
+index 059bc3a..ad46a82 100644
+--- a/source/org/jfree/chart/axis/DateAxis.java
++++ b/source/org/jfree/chart/axis/DateAxis.java
+@@ -1360,8 +1360,9 @@
+             Rectangle2D dataArea, RectangleEdge edge) {
+ 
+         long shift = 0;
+-        if (this.timeline instanceof SegmentedTimeline) {
+-            shift = ((SegmentedTimeline) this.timeline).getStartTime();
++        Timeline var_512 = this.timeline;
++		if (var_512 instanceof SegmentedTimeline) {
++            shift = ((SegmentedTimeline) var_512).getStartTime();
+         }
+         double zero = valueToJava2D(shift + 0.0, dataArea, edge);
+         double tickLabelWidth = estimateMaximumTickLabelWidth(g2,

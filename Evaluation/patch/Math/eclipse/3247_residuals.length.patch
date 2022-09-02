@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/LeastSquaresConverter.java b/src/main/java/org/apache/commons/math3/optimization/LeastSquaresConverter.java
+index cb19f6c..47372ea 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/LeastSquaresConverter.java
++++ b/src/main/java/org/apache/commons/math3/optimization/LeastSquaresConverter.java
+@@ -154,17 +154,18 @@
+     public double value(final double[] point) {
+         // compute residuals
+         final double[] residuals = function.value(point);
+-        if (residuals.length != observations.length) {
+-            throw new DimensionMismatchException(residuals.length, observations.length);
++        int var_3247 = residuals.length;
++		if (var_3247 != observations.length) {
++            throw new DimensionMismatchException(var_3247, observations.length);
+         }
+-        for (int i = 0; i < residuals.length; ++i) {
++        for (int i = 0; i < var_3247; ++i) {
+             residuals[i] -= observations[i];
+         }
+ 
+         // compute sum of squares
+         double sumSquares = 0;
+         if (weights != null) {
+-            for (int i = 0; i < residuals.length; ++i) {
++            for (int i = 0; i < var_3247; ++i) {
+                 final double ri = residuals[i];
+                 sumSquares +=  weights[i] * ri * ri;
+             }

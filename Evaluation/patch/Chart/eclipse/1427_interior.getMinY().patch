@@ -1,0 +1,43 @@
+diff --git a/source/org/jfree/chart/plot/ThermometerPlot.java b/source/org/jfree/chart/plot/ThermometerPlot.java
+index d4bd7b7..a771dc3 100644
+--- a/source/org/jfree/chart/plot/ThermometerPlot.java
++++ b/source/org/jfree/chart/plot/ThermometerPlot.java
+@@ -1127,7 +1127,8 @@
+         this.padding.trim(interior);
+         int midX = (int) (interior.getX() + (interior.getWidth() / 2));
+         int midY = (int) (interior.getY() + (interior.getHeight() / 2));
+-        int stemTop = (int) (interior.getMinY() + getBulbRadius());
++        double var_1427 = interior.getMinY();
++		int stemTop = (int) (var_1427 + getBulbRadius());
+         int stemBottom = (int) (interior.getMaxY() - getBulbDiameter());
+         Rectangle2D dataArea = new Rectangle2D.Double(midX - getColumnRadius(),
+                 stemTop, getColumnRadius(), stemBottom - stemTop);
+@@ -1135,7 +1136,7 @@
+         outerBulb.setFrame(midX - getBulbRadius(), stemBottom,
+                 getBulbDiameter(), getBulbDiameter());
+ 
+-        outerStem.setRoundRect(midX - getColumnRadius(), interior.getMinY(),
++        outerStem.setRoundRect(midX - getColumnRadius(), var_1427,
+                 getColumnDiameter(), stemBottom + getBulbDiameter() - stemTop,
+                 getColumnDiameter(), getColumnDiameter());
+ 
+@@ -1148,7 +1149,7 @@
+                 - getGap() * 2);
+ 
+         innerStem.setRoundRect(midX - getColumnRadius() + getGap(),
+-                interior.getMinY() + getGap(), getColumnDiameter()
++                var_1427 + getGap(), getColumnDiameter()
+                 - getGap() * 2, stemBottom + getBulbDiameter() - getGap() * 2
+                 - stemTop, getColumnDiameter() - getGap() * 2,
+                 getColumnDiameter() - getGap() * 2);
+@@ -1166,8 +1167,8 @@
+             int j = getColumnRadius() - getGap(); // already calculated
+             int l = (i / 2);
+             int k = (int) Math.round(ds);
+-            if (k < (getGap() + interior.getMinY())) {
+-                k = (int) (getGap() + interior.getMinY());
++            if (k < (getGap() + var_1427)) {
++                k = (int) (getGap() + var_1427);
+                 l = getBulbRadius();
+             }
+ 

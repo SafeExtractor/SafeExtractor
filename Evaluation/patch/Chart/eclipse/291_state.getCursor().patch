@@ -1,0 +1,36 @@
+diff --git a/source/org/jfree/chart/axis/Axis.java b/source/org/jfree/chart/axis/Axis.java
+index cabb331..52f723f 100644
+--- a/source/org/jfree/chart/axis/Axis.java
++++ b/source/org/jfree/chart/axis/Axis.java
+@@ -1152,23 +1152,24 @@
+             return;  // no need to create entity if we can´t save it anyways...
+         }
+         Rectangle2D hotspot = null;
+-        if (edge.equals(RectangleEdge.TOP)) {
++        double var_291 = state.getCursor();
++		if (edge.equals(RectangleEdge.TOP)) {
+             hotspot = new Rectangle2D.Double(dataArea.getX(),
+-                    state.getCursor(), dataArea.getWidth(),
+-                    cursor - state.getCursor());
++                    var_291, dataArea.getWidth(),
++                    cursor - var_291);
+         }
+         else if (edge.equals(RectangleEdge.BOTTOM)) {
+             hotspot = new Rectangle2D.Double(dataArea.getX(), cursor,
+-                    dataArea.getWidth(), state.getCursor() - cursor);
++                    dataArea.getWidth(), var_291 - cursor);
+         }
+         else if (edge.equals(RectangleEdge.LEFT)) {
+-            hotspot = new Rectangle2D.Double(state.getCursor(),
+-                    dataArea.getY(), cursor - state.getCursor(),
++            hotspot = new Rectangle2D.Double(var_291,
++                    dataArea.getY(), cursor - var_291,
+                     dataArea.getHeight());
+         }
+         else if (edge.equals(RectangleEdge.RIGHT)) {
+             hotspot = new Rectangle2D.Double(cursor, dataArea.getY(),
+-                    state.getCursor() - cursor, dataArea.getHeight());
++                    var_291 - cursor, dataArea.getHeight());
+         }
+         EntityCollection e = plotState.getOwner().getEntityCollection();
+         if (e != null) {

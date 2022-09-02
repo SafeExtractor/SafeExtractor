@@ -1,0 +1,42 @@
+diff --git a/src/com/google/javascript/jscomp/RenameProperties.java b/src/com/google/javascript/jscomp/RenameProperties.java
+index 7753a36..36e6989 100644
+--- a/src/com/google/javascript/jscomp/RenameProperties.java
++++ b/src/com/google/javascript/jscomp/RenameProperties.java
+@@ -406,15 +406,16 @@
+ 
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      switch (n.getType()) {
++      Node var_1374 = n.getFirstChild();
++	switch (n.getType()) {
+         case Token.GETPROP:
+-          Node propNode = n.getFirstChild().getNext();
++          Node propNode = var_1374.getNext();
+           if (propNode.isString()) {
+             maybeMarkCandidate(propNode);
+           }
+           break;
+         case Token.OBJECTLIT:
+-          for (Node key = n.getFirstChild(); key != null; key = key.getNext()) {
++          for (Node key = var_1374; key != null; key = key.getNext()) {
+             if (!key.isQuotedString()) {
+               maybeMarkCandidate(key);
+             } else {
+@@ -436,7 +437,7 @@
+         case Token.CALL:
+           // We replace a JSCompiler_renameProperty function call with a string
+           // containing the renamed property.
+-          Node fnName = n.getFirstChild();
++          Node fnName = var_1374;
+           if (fnName.isName() &&
+               RENAME_PROPERTY_FUNCTION_NAME.equals(fnName.getString())) {
+             callNodeToParentMap.put(n, parent);
+@@ -447,7 +448,7 @@
+           // We eliminate any stub implementations of JSCompiler_renameProperty
+           // that we encounter.
+           if (NodeUtil.isFunctionDeclaration(n)) {
+-            String name = n.getFirstChild().getString();
++            String name = var_1374.getString();
+             if (RENAME_PROPERTY_FUNCTION_NAME.equals(name)) {
+               if (parent.isExprResult()) {
+                 parent.detachFromParent();

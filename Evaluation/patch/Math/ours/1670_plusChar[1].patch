@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+index d33ceab..998fa9d 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/AbstractRegion.java
+@@ -323,13 +323,14 @@
+                 }
+             }
+ 
+-            if (plusChar[1] != null && !plusChar[1].isEmpty()) {
++            SubHyperplane<S> var_1670 = plusChar[1];
++			if (var_1670 != null && !var_1670.isEmpty()) {
+                 // plusChar[1] corresponds to a subset of the cut sub-hyperplane known to have
+                 // inside cells on its plus side, we want to check if parts of this subset
+                 // do have outside cells on their minus side
+                 @SuppressWarnings("unchecked")
+                 final SubHyperplane<S>[] minusChar = (SubHyperplane<S>[]) Array.newInstance(SubHyperplane.class, 2);
+-                characterize(node.getMinus(), plusChar[1], minusChar);
++                characterize(node.getMinus(), var_1670, minusChar);
+                 if (minusChar[0] != null && !minusChar[0].isEmpty()) {
+                     // this part belongs to the boundary,
+                     // it has the inside on its plus side and the outside on its minus side

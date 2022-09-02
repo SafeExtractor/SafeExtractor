@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/OptimizeParameters.java b/src/com/google/javascript/jscomp/OptimizeParameters.java
+index 76e12a5..7dba9c6 100644
+--- a/src/com/google/javascript/jscomp/OptimizeParameters.java
++++ b/src/com/google/javascript/jscomp/OptimizeParameters.java
+@@ -382,10 +382,11 @@
+   private void optimizeFunctionDefinition(List<Parameter> parameters,
+       Node function) {
+     for (int index = parameters.size() - 1; index >= 0; index--) {
+-      if (parameters.get(index).shouldRemove()) {
++      Parameter var_1978 = parameters.get(index);
++	if (var_1978.shouldRemove()) {
+         Node paramName = eliminateFunctionParamAt(function, index);
+         addVariableToFunction(function, paramName,
+-            parameters.get(index).getArg());
++            var_1978.getArg());
+       }
+     }
+   }

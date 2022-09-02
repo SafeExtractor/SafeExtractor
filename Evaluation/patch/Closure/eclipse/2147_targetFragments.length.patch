@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/deps/PathUtil.java b/src/com/google/javascript/jscomp/deps/PathUtil.java
+index 68efd2a..800f742 100644
+--- a/src/com/google/javascript/jscomp/deps/PathUtil.java
++++ b/src/com/google/javascript/jscomp/deps/PathUtil.java
+@@ -177,7 +177,8 @@
+     int i = -1;
+     do {
+       i += 1;
+-      if (i == baseFragments.length && i == targetFragments.length) {
++      int var_2147 = targetFragments.length;
++	if (i == baseFragments.length && i == var_2147) {
+         // Eg) base: /java/com/google
+         //   target: /java/com/google
+         //   result: .  <-- . is better than "" since "" + "/path" = "/path"
+@@ -189,7 +190,7 @@
+         return Joiner.on("/").join(
+             Lists.newArrayList(
+                 Arrays.asList(targetFragments).listIterator(i)));
+-      } else if (i == targetFragments.length) {
++      } else if (i == var_2147) {
+         // Eg) base: /java/com/google/c/ui
+         //   target: /java/com/google
+         //   result: ../..

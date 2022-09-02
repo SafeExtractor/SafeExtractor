@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/IgnoreCajaProperties.java b/src/com/google/javascript/jscomp/IgnoreCajaProperties.java
+index 44e69a7..76cd80e 100644
+--- a/src/com/google/javascript/jscomp/IgnoreCajaProperties.java
++++ b/src/com/google/javascript/jscomp/IgnoreCajaProperties.java
+@@ -66,7 +66,8 @@
+         Node ifBody;
+ 
+         // Construct the body of the if statement.
+-        if (key.isVar()) {
++        Node var_339 = tmp.cloneTree();
++		if (key.isVar()) {
+           // for (var key in x) { body; }
+           // =>
+           // for (var tmp in x) {
+@@ -81,7 +82,7 @@
+               IR.exprResult(
+                   IR.assign(
+                       key.getFirstChild().cloneNode(),
+-                      tmp.cloneTree())),
++                      var_339)),
+               body);
+         } else {
+           // for (key in x) { body; }
+@@ -96,7 +97,7 @@
+               IR.exprResult(
+                   IR.assign(
+                       key,
+-                      tmp.cloneTree())),
++                      var_339)),
+               body);
+         }
+ 
+@@ -106,7 +107,7 @@
+                 IR.not(
+                     IR.call(
+                         IR.getprop(
+-                            tmp.cloneTree(),
++                            var_339,
+                             IR.string("match")),
+                         IR.regexp(
+                             IR.string("___$")))),

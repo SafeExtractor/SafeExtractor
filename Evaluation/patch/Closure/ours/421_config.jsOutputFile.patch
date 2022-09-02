@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..eb7eaa6 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -749,11 +749,12 @@
+ 
+     setRunOptions(options);
+ 
+-    boolean writeOutputToFile = !config.jsOutputFile.isEmpty();
++    String var_421 = config.jsOutputFile;
++	boolean writeOutputToFile = !var_421.isEmpty();
+     List<String> outputFileNames = Lists.newArrayList();
+     if (writeOutputToFile) {
+-      outputFileNames.add(config.jsOutputFile);
+-      jsOutput = fileNameToLegacyOutputWriter(config.jsOutputFile);
++      outputFileNames.add(var_421);
++      jsOutput = fileNameToLegacyOutputWriter(var_421);
+     } else if (jsOutput instanceof OutputStream) {
+       jsOutput = streamToLegacyOutputWriter((OutputStream) jsOutput);
+     }

@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..3759ba5 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -638,14 +638,15 @@
+ 
+   private void handleReturn(Node node) {
+     Node lastJump = null;
+-    for (Iterator<Node> iter = exceptionHandler.iterator(); iter.hasNext();) {
++    Branch var_1913 = Branch.UNCOND;
++	for (Iterator<Node> iter = exceptionHandler.iterator(); iter.hasNext();) {
+       Node curHandler = iter.next();
+       if (curHandler.isFunction()) {
+         break;
+       }
+       if (NodeUtil.hasFinally(curHandler)) {
+         if (lastJump == null) {
+-          createEdge(node, Branch.UNCOND, curHandler.getLastChild());
++          createEdge(node, var_1913, curHandler.getLastChild());
+         } else {
+           finallyMap.put(lastJump,
+               computeFallThrough(curHandler.getLastChild()));
+@@ -659,7 +660,7 @@
+     }
+ 
+     if (lastJump == null) {
+-      createEdge(node, Branch.UNCOND, null);
++      createEdge(node, var_1913, null);
+     } else {
+       finallyMap.put(lastJump, null);
+     }

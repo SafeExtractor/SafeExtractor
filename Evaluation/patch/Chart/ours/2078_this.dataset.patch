@@ -1,0 +1,43 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot.java b/source/org/jfree/chart/plot/PiePlot.java
+index 34014e9..d092cb2 100644
+--- a/source/org/jfree/chart/plot/PiePlot.java
++++ b/source/org/jfree/chart/plot/PiePlot.java
+@@ -3322,15 +3322,16 @@
+                 explodeArea.getWidth() - h1, explodeArea.getHeight() - v1);
+ 
+         // plot the data (unless the dataset is null)...
+-        if ((this.dataset != null) && (this.dataset.getKeys().size() > 0)) {
++        PieDataset var_2078 = this.dataset;
++		if ((var_2078 != null) && (var_2078.getKeys().size() > 0)) {
+ 
+ 
+-            List keys = this.dataset.getKeys();
++            List keys = var_2078.getKeys();
+             double total = DatasetUtilities.calculatePieDatasetTotal(
+-                    this.dataset);
++                    var_2078);
+             double runningTotal = 0.0;
+             for (int section = 0; section < keys.size(); section++) {
+-                Number n = this.dataset.getValue(section);
++                Number n = var_2078.getValue(section);
+                 if (n == null) {
+                     continue;
+                 }
+@@ -3341,7 +3342,7 @@
+                     double angle1 = calculateAngleForValue(runningTotal
+                             + value, total);
+                     runningTotal += value;
+-                    System.out.println(this.dataset.getValue(section));
++                    System.out.println(var_2078.getValue(section));
+                     System.out.println(angle0);
+                     System.out.println(angle1);
+                     double angle = (angle1 - angle0);
+@@ -3356,7 +3357,7 @@
+                         Arc2D.Double arc = new Arc2D.Double(arcBounds,
+                                 angle0, angle, Arc2D.PIE);
+                         if (arc.contains(x, y)) {
+-                            Comparable key = this.dataset.getKey(section);
++                            Comparable key = var_2078.getKey(section);
+                             state.setSelected(key, !state.isSelected(key));
+                             System.out.println(key + " is " + state.isSelected(key));
+                         }

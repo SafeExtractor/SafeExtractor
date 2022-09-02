@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/data/ComparableObjectSeries.java b/source/org/jfree/data/ComparableObjectSeries.java
+index 02c55ab..0513a29 100644
+--- a/source/org/jfree/data/ComparableObjectSeries.java
++++ b/source/org/jfree/data/ComparableObjectSeries.java
+@@ -217,13 +217,14 @@
+             throw new IllegalArgumentException("Null 'item' argument.");
+         }
+ 
+-        if (this.autoSort) {
++        boolean var_3835 = this.allowDuplicateXValues;
++		if (this.autoSort) {
+             int index = Collections.binarySearch(this.data, item);
+             if (index < 0) {
+                 this.data.add(-index - 1, item);
+             }
+             else {
+-                if (this.allowDuplicateXValues) {
++                if (var_3835) {
+                     // need to make sure we are adding *after* any duplicates
+                     int size = this.data.size();
+                     while (index < size
+@@ -243,7 +244,7 @@
+             }
+         }
+         else {
+-            if (!this.allowDuplicateXValues) {
++            if (!var_3835) {
+                 // can't allow duplicate values, so we need to check whether
+                 // there is an item with the given x-value already
+                 int index = indexOf(item.getComparable());

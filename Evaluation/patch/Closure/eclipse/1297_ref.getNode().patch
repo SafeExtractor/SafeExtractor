@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+index 5f0a14c..d1c9c07 100644
+--- a/src/com/google/javascript/jscomp/SymbolTable.java
++++ b/src/com/google/javascript/jscomp/SymbolTable.java
+@@ -451,11 +451,12 @@
+ 
+     int refCount = 0;
+     for (Reference ref : getReferences(symbol)) {
+-      builder.append(
++      Node var_1297 = ref.getNode();
++	builder.append(
+           String.format("  Ref %d: %s:%d\n",
+               refCount,
+-              ref.getNode().getSourceFileName(),
+-              ref.getNode().getLineno()));
++              var_1297.getSourceFileName(),
++              var_1297.getLineno()));
+       refCount++;
+     }
+   }

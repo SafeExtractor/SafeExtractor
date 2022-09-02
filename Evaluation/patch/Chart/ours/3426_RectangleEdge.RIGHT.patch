@@ -1,0 +1,65 @@
+diff --git a/source/org/jfree/chart/title/PaintScaleLegend.java b/source/org/jfree/chart/title/PaintScaleLegend.java
+index c489277..42c3133 100644
+--- a/source/org/jfree/chart/title/PaintScaleLegend.java
++++ b/source/org/jfree/chart/title/PaintScaleLegend.java
+@@ -628,32 +628,34 @@
+                 this.axis.draw(g2, target.getMaxX() - this.stripWidth
+                         - this.axisOffset, target, target, RectangleEdge.LEFT,
+                         null);
+-            }
+-            else if (axisEdge == RectangleEdge.RIGHT) {
+-                for (int i = 0; i < this.subdivisions; i++) {
+-                    double v = base + (i * increment);
+-                    Paint p = this.scale.getPaint(v);
+-                    double vv0 = this.axis.valueToJava2D(v, target,
+-                            RectangleEdge.LEFT);
+-                    double vv1 = this.axis.valueToJava2D(v + increment, target,
+-                            RectangleEdge.LEFT);
+-                    double hh = Math.abs(vv1 - vv0) + 1.0;
+-                    r.setRect(target.getMinX(), Math.min(vv0, vv1),
+-                            this.stripWidth, hh);
+-                    g2.setPaint(p);
+-                    g2.fill(r);
+-                }
+-                if (isStripOutlineVisible()) {
+-                    g2.setPaint(this.stripOutlinePaint);
+-                    g2.setStroke(this.stripOutlineStroke);
+-                    g2.draw(new Rectangle2D.Double(target.getMinX(),
+-                            target.getMinY(), this.stripWidth,
+-                            target.getHeight()));
+-                }
+-                this.axis.draw(g2, target.getMinX() + this.stripWidth
+-                        + this.axisOffset, target, target, RectangleEdge.RIGHT,
+-                        null);
+-            }
++            } else {
++				RectangleEdge var_3426 = RectangleEdge.RIGHT;
++				if (axisEdge == var_3426) {
++				    for (int i = 0; i < this.subdivisions; i++) {
++				        double v = base + (i * increment);
++				        Paint p = this.scale.getPaint(v);
++				        double vv0 = this.axis.valueToJava2D(v, target,
++				                RectangleEdge.LEFT);
++				        double vv1 = this.axis.valueToJava2D(v + increment, target,
++				                RectangleEdge.LEFT);
++				        double hh = Math.abs(vv1 - vv0) + 1.0;
++				        r.setRect(target.getMinX(), Math.min(vv0, vv1),
++				                this.stripWidth, hh);
++				        g2.setPaint(p);
++				        g2.fill(r);
++				    }
++				    if (isStripOutlineVisible()) {
++				        g2.setPaint(this.stripOutlinePaint);
++				        g2.setStroke(this.stripOutlineStroke);
++				        g2.draw(new Rectangle2D.Double(target.getMinX(),
++				                target.getMinY(), this.stripWidth,
++				                target.getHeight()));
++				    }
++				    this.axis.draw(g2, target.getMinX() + this.stripWidth
++				            + this.axisOffset, target, target, var_3426,
++				            null);
++				}
++			}
+         }
+         return null;
+     }

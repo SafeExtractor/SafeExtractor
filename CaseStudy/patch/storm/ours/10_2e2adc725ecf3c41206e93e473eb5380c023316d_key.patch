@@ -1,0 +1,19 @@
+diff --git a/external/storm-redis/src/main/java/org/apache/storm/redis/state/RedisKeyValueState.java b/external/storm-redis/src/main/java/org/apache/storm/redis/state/RedisKeyValueState.java
+index 31f0c8d..08a8daf 100644
+--- a/external/storm-redis/src/main/java/org/apache/storm/redis/state/RedisKeyValueState.java
++++ b/external/storm-redis/src/main/java/org/apache/storm/redis/state/RedisKeyValueState.java
+@@ -206,10 +206,11 @@
+                 List<String> keysToDelete = new ArrayList<>();
+                 Map<String, String> keysToAdd = new HashMap<>();
+                 for(Map.Entry<String, String> entry: pendingCommit.entrySet()) {
+-                    if (RedisEncoder.TOMBSTONE.equals(entry.getValue())) {
+-                        keysToDelete.add(entry.getKey());
++                    String key = entry.getKey();
++					if (RedisEncoder.TOMBSTONE.equals(entry.getValue())) {
++                        keysToDelete.add(key);
+                     } else {
+-                        keysToAdd.put(entry.getKey(), entry.getValue());
++                        keysToAdd.put(key, entry.getValue());
+                     }
+                 }
+                 if (!keysToAdd.isEmpty()) {

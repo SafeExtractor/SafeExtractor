@@ -1,0 +1,27 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/1255_SerialUtilities.readPaint(stream).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/1255_SerialUtilities.readPaint(stream).patch
+index bf2ce44..d957338 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/1255_SerialUtilities.readPaint(stream).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/1255_SerialUtilities.readPaint(stream).patch
+@@ -1,18 +1,14 @@
+ diff --git a/source/org/jfree/chart/needle/MeterNeedle.java b/source/org/jfree/chart/needle/MeterNeedle.java
+-index c3f2c81..67916d4 100644
++index c3f2c81..9f8692c 100644
+ --- a/source/org/jfree/chart/needle/MeterNeedle.java
+ +++ b/source/org/jfree/chart/needle/MeterNeedle.java
+-@@ -428,9 +428,10 @@
++@@ -428,7 +428,8 @@
+          throws IOException, ClassNotFoundException {
+          stream.defaultReadObject();
+          this.outlineStroke = SerialUtilities.readStroke(stream);
+ -        this.outlinePaint = SerialUtilities.readPaint(stream);
+--        this.fillPaint = SerialUtilities.readPaint(stream);
+--        this.highlightPaint = SerialUtilities.readPaint(stream);
+ +        Paint var_1255 = SerialUtilities.readPaint(stream);
+ +		this.outlinePaint = var_1255;
+-+        this.fillPaint = var_1255;
+-+        this.highlightPaint = var_1255;
++         this.fillPaint = SerialUtilities.readPaint(stream);
++         this.highlightPaint = SerialUtilities.readPaint(stream);
+      }
+- 
+- }

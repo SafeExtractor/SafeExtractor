@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..d8059ee 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -519,8 +519,9 @@
+             if ((v2.getY().getReal() < -0.9999999999) || (v2.getY().getReal() > 0.9999999999)) {
+                 throw new CardanEulerSingularityException(true);
+             }
+-            return buildArray(v1.getZ().atan2(v1.getY()),
+-                              v2.getY().asin().negate(),
++            T var_1257 = v2.getY().asin();
++			return buildArray(v1.getZ().atan2(v1.getY()),
++                              var_1257.negate(),
+                               v2.getZ().atan2(v2.getX()));
+ 
+         } else if (order == RotationOrder.YXZ) {

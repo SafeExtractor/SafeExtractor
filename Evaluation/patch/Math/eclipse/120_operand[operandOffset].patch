@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..be9582e 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -998,18 +998,19 @@
+         // [x^(1/n), (1/n)x^((1/n)-1), (1-n)/n^2x^((1/n)-2), ... ]
+         double[] function = new double[1 + order];
+         double xk;
+-        if (n == 2) {
+-            function[0] = FastMath.sqrt(operand[operandOffset]);
++        double var_120 = operand[operandOffset];
++		if (n == 2) {
++            function[0] = FastMath.sqrt(var_120);
+             xk          = 0.5 / function[0];
+         } else if (n == 3) {
+-            function[0] = FastMath.cbrt(operand[operandOffset]);
++            function[0] = FastMath.cbrt(var_120);
+             xk          = 1.0 / (3.0 * function[0] * function[0]);
+         } else {
+-            function[0] = FastMath.pow(operand[operandOffset], 1.0 / n);
++            function[0] = FastMath.pow(var_120, 1.0 / n);
+             xk          = 1.0 / (n * FastMath.pow(function[0], n - 1));
+         }
+         final double nReciprocal = 1.0 / n;
+-        final double xReciprocal = 1.0 / operand[operandOffset];
++        final double xReciprocal = 1.0 / var_120;
+         for (int i = 1; i <= order; ++i) {
+             function[i] = xk;
+             xk *= xReciprocal * (nReciprocal - i);

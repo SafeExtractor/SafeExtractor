@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/DataFlowAnalysis.java b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+index 5b39646..fc275a3 100644
+--- a/src/com/google/javascript/jscomp/DataFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+@@ -291,7 +291,8 @@
+       } else {
+         List<DiGraphNode<N, Branch>> inNodes = cfg.getDirectedPredNodes(node);
+         if (inNodes.size() == 1) {
+-          FlowState<L> inNodeState = inNodes.get(0).getAnnotation();
++          DiGraphNode<N, Branch> var_754 = inNodes.get(0);
++		FlowState<L> inNodeState = var_754.getAnnotation();
+           state.setIn(inNodeState.getOut());
+         } else if (inNodes.size() > 1) {
+           List<L> values = new ArrayList<L>(inNodes.size());

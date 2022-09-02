@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..1db80dc 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -716,7 +716,8 @@
+     }
+ 
+     // If we are just before a IF/WHILE/DO/FOR:
+-    switch (parent.getType()) {
++    Node var_1920 = node.getNext();
++	switch (parent.getType()) {
+       // The follow() of any of the path from IF would be what follows IF.
+       case Token.IF:
+         return computeFollowNode(fromNode, parent, cfa);
+@@ -756,7 +757,7 @@
+         // CATCH block.
+         } else if (NodeUtil.getCatchBlock(parent) == node){
+           if (NodeUtil.hasFinally(parent)) { // and have FINALLY block.
+-            return computeFallThrough(node.getNext());
++            return computeFallThrough(var_1920);
+           } else {
+             return computeFollowNode(fromNode, parent, cfa);
+           }
+@@ -773,7 +774,7 @@
+ 
+     // Now that we are done with the special cases follow should be its
+     // immediate sibling, unless its sibling is a function
+-    Node nextSibling = node.getNext();
++    Node nextSibling = var_1920;
+ 
+     // Skip function declarations because control doesn't get pass into it.
+     while (nextSibling != null && nextSibling.isFunction()) {

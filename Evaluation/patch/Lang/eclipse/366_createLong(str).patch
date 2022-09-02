@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/lang3/math/NumberUtils.java b/src/main/java/org/apache/commons/lang3/math/NumberUtils.java
+index 70b8d64..57bce8f 100644
+--- a/src/main/java/org/apache/commons/lang3/math/NumberUtils.java
++++ b/src/main/java/org/apache/commons/lang3/math/NumberUtils.java
+@@ -463,7 +463,8 @@
+                 break;
+             }
+         }
+-        if (pfxLen > 0) { // we have a hex number
++        Long var_366 = createLong(str);
++		if (pfxLen > 0) { // we have a hex number
+             char firstSigDigit = 0; // strip leading zeroes
+             for(int i = pfxLen; i < str.length(); i++) {
+                 firstSigDigit = str.charAt(i);
+@@ -478,7 +479,7 @@
+                 return createBigInteger(str);
+             }
+             if (hexDigits > 8 || (hexDigits == 8 && firstSigDigit > '7')) { // too many for an int
+-                return createLong(str);
++                return var_366;
+             }
+             return createInteger(str);
+         }
+@@ -589,7 +590,7 @@
+                 // ignore the bad number
+             }
+             try {
+-                return createLong(str);
++                return var_366;
+             } catch (final NumberFormatException nfe) { // NOPMD
+                 // ignore the bad number
+             }

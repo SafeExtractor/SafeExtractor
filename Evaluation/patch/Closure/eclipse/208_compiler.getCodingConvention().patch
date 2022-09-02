@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/RuntimeTypeCheck.java b/src/com/google/javascript/jscomp/RuntimeTypeCheck.java
+index 773b7ad..c786f8c 100644
+--- a/src/com/google/javascript/jscomp/RuntimeTypeCheck.java
++++ b/src/com/google/javascript/jscomp/RuntimeTypeCheck.java
+@@ -365,13 +365,14 @@
+     Node newNode = compiler.ensureLibraryInjected("runtime_type_check");
+     if (newNode != null && logFunction != null) {
+       // Inject the custom log function.
+-      Node logOverride = IR.exprResult(
++      CodingConvention var_208 = compiler.getCodingConvention();
++	Node logOverride = IR.exprResult(
+           IR.assign(
+               NodeUtil.newQualifiedNameNode(
+-                  compiler.getCodingConvention(),
++                  var_208,
+                   "$jscomp.typecheck.log"),
+               NodeUtil.newQualifiedNameNode(
+-                  compiler.getCodingConvention(),
++                  var_208,
+                   logFunction)));
+       newNode.getParent().addChildAfter(logOverride, newNode);
+       compiler.reportCodeChange();

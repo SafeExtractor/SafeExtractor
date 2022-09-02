@@ -1,0 +1,33 @@
+diff --git a/source/org/jfree/chart/annotations/XYPointerAnnotation.java b/source/org/jfree/chart/annotations/XYPointerAnnotation.java
+index 5ea9d1e..9159e4b 100644
+--- a/source/org/jfree/chart/annotations/XYPointerAnnotation.java
++++ b/source/org/jfree/chart/annotations/XYPointerAnnotation.java
+@@ -73,6 +73,7 @@
+ import org.jfree.chart.plot.PlotOrientation;
+ import org.jfree.chart.plot.PlotRenderingInfo;
+ import org.jfree.chart.plot.XYPlot;
++import org.jfree.chart.text.TextAnchor;
+ import org.jfree.chart.text.TextUtilities;
+ import org.jfree.chart.util.HashUtilities;
+ import org.jfree.chart.util.ObjectUtilities;
+@@ -430,8 +431,9 @@
+         double labelY = j2DY + Math.sin(this.angle) * (this.baseRadius
+                 + this.labelOffset);
+         g2.setFont(getFont());
+-        Shape hotspot = TextUtilities.calculateRotatedStringBounds(
+-                getText(), g2, (float) labelX, (float) labelY, getTextAnchor(),
++        TextAnchor var_247 = getTextAnchor();
++		Shape hotspot = TextUtilities.calculateRotatedStringBounds(
++                getText(), g2, (float) labelX, (float) labelY, var_247,
+                 getRotationAngle(), getRotationAnchor());
+         if (getBackgroundPaint() != null) {
+             g2.setPaint(getBackgroundPaint());
+@@ -439,7 +441,7 @@
+         }
+         g2.setPaint(getPaint());
+         TextUtilities.drawRotatedString(getText(), g2, (float) labelX,
+-                (float) labelY, getTextAnchor(), getRotationAngle(),
++                (float) labelY, var_247, getRotationAngle(),
+                 getRotationAnchor());
+         if (isOutlineVisible()) {
+             g2.setStroke(getOutlineStroke());

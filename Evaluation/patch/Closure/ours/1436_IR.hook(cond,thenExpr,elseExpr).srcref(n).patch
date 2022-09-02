@@ -1,0 +1,15 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..eea3b86 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -828,8 +828,9 @@
+         Node thenExpr = name1.removeChildren();
+         Node elseExpr = elseAssign.getLastChild().detachFromParent();
+         cond.detachFromParent();
+-        Node hookNode = IR.hook(cond, thenExpr, elseExpr)
++        Node var_1436 = IR.hook(cond, thenExpr, elseExpr)
+                             .srcref(n);
++		Node hookNode = var_1436;
+         var.detachFromParent();
+         name1.addChildrenToBack(hookNode);
+         parent.replaceChild(n, var);

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/AbstractLeastSquaresOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/AbstractLeastSquaresOptimizer.java
+index b821107..6227f5c 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/AbstractLeastSquaresOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/AbstractLeastSquaresOptimizer.java
+@@ -219,13 +219,14 @@
+      */
+     protected double[] computeResiduals(double[] objectiveValue) {
+         final double[] target = getTarget();
+-        if (objectiveValue.length != target.length) {
+-            throw new DimensionMismatchException(target.length,
++        int var_3173 = target.length;
++		if (objectiveValue.length != var_3173) {
++            throw new DimensionMismatchException(var_3173,
+                                                  objectiveValue.length);
+         }
+ 
+-        final double[] residuals = new double[target.length];
+-        for (int i = 0; i < target.length; i++) {
++        final double[] residuals = new double[var_3173];
++        for (int i = 0; i < var_3173; i++) {
+             residuals[i] = target[i] - objectiveValue[i];
+         }
+ 

@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..30c6f73 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -144,7 +144,8 @@
+ 
+     cc.startSourceMapping(n);
+ 
+-    switch (type) {
++    String var_1539 = NodeUtil.opToStrNoFail(type);
++	switch (type) {
+       case Token.TRY: {
+         Preconditions.checkState(first.getNext().isBlock() &&
+                 !first.getNext().hasMoreThanOneChild());
+@@ -253,7 +254,7 @@
+       case Token.POS: {
+         // All of these unary operators are right-associative
+         Preconditions.checkState(childCount == 1);
+-        cc.addOp(NodeUtil.opToStrNoFail(type), false);
++        cc.addOp(var_1539, false);
+         addExpr(first, NodeUtil.precedence(type), Context.OTHER);
+         break;
+       }
+@@ -267,7 +268,7 @@
+         if (n.getFirstChild().isNumber()) {
+           cc.addNumber(-n.getFirstChild().getDouble());
+         } else {
+-          cc.addOp(NodeUtil.opToStrNoFail(type), false);
++          cc.addOp(var_1539, false);
+           addExpr(first, NodeUtil.precedence(type), Context.OTHER);
+         }
+ 

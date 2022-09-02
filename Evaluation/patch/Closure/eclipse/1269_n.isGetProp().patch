@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/NameReferenceGraphConstruction.java b/src/com/google/javascript/jscomp/NameReferenceGraphConstruction.java
+index d61f9e9..65ef97b 100644
+--- a/src/com/google/javascript/jscomp/NameReferenceGraphConstruction.java
++++ b/src/com/google/javascript/jscomp/NameReferenceGraphConstruction.java
+@@ -250,7 +250,8 @@
+      * @param n node to alias
+      */
+     private void safeAlias(Node n) {
+-      if (n.isName() || n.isGetProp()) {
++      boolean var_1269 = n.isGetProp();
++	if (n.isName() || var_1269) {
+         String name = n.getQualifiedName();
+         // getQualifiedName can return null in cases like bar[0].baz
+         if (name != null) {
+@@ -259,7 +260,7 @@
+         }
+       }
+ 
+-      if (n.isGetProp()) {
++      if (var_1269) {
+         // var foo = bar[0].baz;
+         defineAndAlias(n.getLastChild().getString());
+       } else if (n.isAssign()) {

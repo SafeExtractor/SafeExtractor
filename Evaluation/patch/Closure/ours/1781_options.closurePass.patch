@@ -1,0 +1,37 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..cbe101b 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -185,7 +185,8 @@
+ 
+     checks.add(createEmptyPass("beforeStandardChecks"));
+ 
+-    if (options.closurePass) {
++    boolean var_1781 = options.closurePass;
++	if (var_1781) {
+       checks.add(closureGoogScopeAliases);
+       checks.add(closureRewriteGoogClass);
+     }
+@@ -237,11 +238,11 @@
+       checks.add(exportTestFunctions);
+     }
+ 
+-    if (options.closurePass) {
++    if (var_1781) {
+       checks.add(closurePrimitives);
+     }
+ 
+-    if (options.closurePass && options.checkMissingGetCssNameLevel.isOn()) {
++    if (var_1781 && options.checkMissingGetCssNameLevel.isOn()) {
+       checks.add(closureCheckGetCssName);
+     }
+ 
+@@ -302,7 +303,7 @@
+ 
+     // Replace 'goog.getCssName' before processing defines but after the
+     // other checks have been done.
+-    if (options.closurePass) {
++    if (var_1781) {
+       checks.add(closureReplaceGetCssName);
+     }
+ 

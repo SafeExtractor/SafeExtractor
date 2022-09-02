@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/joda/time/DateTime.java b/src/main/java/org/joda/time/DateTime.java
+index bb879a9..00b01bc 100644
+--- a/src/main/java/org/joda/time/DateTime.java
++++ b/src/main/java/org/joda/time/DateTime.java
+@@ -2263,8 +2263,9 @@
+             } catch (RuntimeException ex) {
+                 if (IllegalInstantException.isIllegalInstant(ex)) {
+                     // subtracting MILLIS_PER_DAY is not perfect, but will work in almost all situations
+-                    long afterGap = getChronology().getZone().nextTransition(getMillis() - DateTimeConstants.MILLIS_PER_DAY);
+-                    return new DateTime(afterGap, getChronology());
++                    Chronology var_131 = getChronology();
++					long afterGap = var_131.getZone().nextTransition(getMillis() - DateTimeConstants.MILLIS_PER_DAY);
++                    return new DateTime(afterGap, var_131);
+                 }
+                 throw ex;
+             }

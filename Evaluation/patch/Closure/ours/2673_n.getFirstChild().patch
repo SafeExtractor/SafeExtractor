@@ -1,0 +1,70 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+index c8fbac8..089c8c5 100644
+--- a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
++++ b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+@@ -1519,18 +1519,19 @@
+   /** @see #createFromTypeNodes(Node, String, StaticScope) */
+   private JSType createFromTypeNodesInternal(Node n, String sourceName,
+       StaticScope<JSType> scope) {
+-    switch (n.getType()) {
++    Node var_2673 = n.getFirstChild();
++	switch (n.getType()) {
+       case Token.LC: // Record type.
+         return createRecordTypeFromNodes(
+-            n.getFirstChild(), sourceName, scope);
++            var_2673, sourceName, scope);
+ 
+       case Token.BANG: // Not nullable
+         return createFromTypeNodesInternal(
+-            n.getFirstChild(), sourceName, scope)
++            var_2673, sourceName, scope)
+             .restrictByNotNullOrUndefined();
+ 
+       case Token.QMARK: // Nullable or unknown
+-        Node firstChild = n.getFirstChild();
++        Node firstChild = var_2673;
+         if (firstChild == null) {
+           return getNativeType(UNKNOWN_TYPE);
+         }
+@@ -1541,12 +1542,12 @@
+       case Token.EQUALS: // Optional
+         return createOptionalType(
+             createFromTypeNodesInternal(
+-                n.getFirstChild(), sourceName, scope));
++                var_2673, sourceName, scope));
+ 
+       case Token.ELLIPSIS: // Var args
+         return createOptionalType(
+             createFromTypeNodesInternal(
+-                n.getFirstChild(), sourceName, scope));
++                var_2673, sourceName, scope));
+ 
+       case Token.STAR: // The AllType
+         return getNativeType(ALL_TYPE);
+@@ -1557,7 +1558,7 @@
+ 
+       case Token.PIPE: // Union type
+         UnionTypeBuilder builder = new UnionTypeBuilder(this);
+-        for (Node child = n.getFirstChild(); child != null;
++        for (Node child = var_2673; child != null;
+              child = child.getNext()) {
+           builder.addAlternate(
+               createFromTypeNodesInternal(child, sourceName, scope));
+@@ -1578,7 +1579,7 @@
+         }
+         if ((namedType instanceof ObjectType) &&
+             !(nonNullableTypeNames.contains(n.getString()))) {
+-          Node typeList = n.getFirstChild();
++          Node typeList = var_2673;
+           if (typeList != null &&
+               ("Array".equals(n.getString()) ||
+                "Object".equals(n.getString()))) {
+@@ -1603,7 +1604,7 @@
+       case Token.FUNCTION:
+         ObjectType thisType = null;
+         boolean isConstructor = false;
+-        Node current = n.getFirstChild();
++        Node current = var_2673;
+         if (current.getType() == Token.THIS ||
+             current.getType() == Token.NEW) {
+           Node contextNode = current.getFirstChild();

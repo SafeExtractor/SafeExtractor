@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+index 4a54655..fe5628b 100644
+--- a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
++++ b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+@@ -1356,13 +1356,14 @@
+                                       RectangleAnchor anchor) {
+ 
+         Rectangle2D anchorRect = null;
+-        if (orientation == PlotOrientation.HORIZONTAL) {
++        LengthAdjustmentType var_2493 = LengthAdjustmentType.CONTRACT;
++		if (orientation == PlotOrientation.HORIZONTAL) {
+             anchorRect = markerOffset.createAdjustedRectangle(markerArea,
+-                    LengthAdjustmentType.CONTRACT, labelOffsetType);
++                    var_2493, labelOffsetType);
+         }
+         else if (orientation == PlotOrientation.VERTICAL) {
+             anchorRect = markerOffset.createAdjustedRectangle(markerArea,
+-                    labelOffsetType, LengthAdjustmentType.CONTRACT);
++                    labelOffsetType, var_2493);
+         }
+         return RectangleAnchor.coordinates(anchorRect, anchor);
+ 

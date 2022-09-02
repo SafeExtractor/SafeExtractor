@@ -1,0 +1,14 @@
+diff --git a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ProcessGroupResource.java b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ProcessGroupResource.java
+index 527364c..df59706 100644
+--- a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ProcessGroupResource.java
++++ b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-web/nifi-web-api/src/main/java/org/apache/nifi/web/api/ProcessGroupResource.java
+@@ -616,7 +616,8 @@
+                 requestProcessorEntity,
+                 lookup -> {
+                     final Authorizable processGroup = lookup.getProcessGroup(groupId).getAuthorizable();
+-                    processGroup.authorize(authorizer, RequestAction.WRITE, NiFiUserUtils.getNiFiUser());
++                    NiFiUser user = NiFiUserUtils.getNiFiUser();
++					processGroup.authorize(authorizer, RequestAction.WRITE, user);
+ 
+                     final ProcessorConfigDTO config = requestProcessor.getConfig();
+                     if (config != null && config.getProperties() != null) {

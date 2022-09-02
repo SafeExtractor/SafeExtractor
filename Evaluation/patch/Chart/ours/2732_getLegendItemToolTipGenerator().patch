@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/renderer/category/BarRenderer.java b/source/org/jfree/chart/renderer/category/BarRenderer.java
+index 37da044..5540ea8 100644
+--- a/source/org/jfree/chart/renderer/category/BarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/BarRenderer.java
+@@ -117,6 +117,7 @@
+ import org.jfree.chart.entity.EntityCollection;
+ import org.jfree.chart.event.RendererChangeEvent;
+ import org.jfree.chart.labels.CategoryItemLabelGenerator;
++import org.jfree.chart.labels.CategorySeriesLabelGenerator;
+ import org.jfree.chart.labels.ItemLabelAnchor;
+ import org.jfree.chart.labels.ItemLabelPosition;
+ import org.jfree.chart.plot.CategoryPlot;
+@@ -900,8 +901,9 @@
+                 series);
+         String description = label;
+         String toolTipText = null;
+-        if (getLegendItemToolTipGenerator() != null) {
+-            toolTipText = getLegendItemToolTipGenerator().generateLabel(
++        CategorySeriesLabelGenerator var_2732 = getLegendItemToolTipGenerator();
++		if (var_2732 != null) {
++            toolTipText = var_2732.generateLabel(
+                     dataset, series);
+         }
+         String urlText = null;

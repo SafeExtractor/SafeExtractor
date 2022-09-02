@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..13391a2 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -354,13 +354,14 @@
+ 
+         // this is an implementation of definition 3 in Dan Kalman's paper.
+         final int vSize = valueCompiler.multIndirection.length;
+-        final int dSize = derivativeCompiler.multIndirection.length;
++        int[][][] var_89 = derivativeCompiler.multIndirection;
++		final int dSize = var_89.length;
+         final int[][][] multIndirection = new int[vSize + dSize][][];
+ 
+         System.arraycopy(valueCompiler.multIndirection, 0, multIndirection, 0, vSize);
+ 
+         for (int i = 0; i < dSize; ++i) {
+-            final int[][] dRow = derivativeCompiler.multIndirection[i];
++            final int[][] dRow = var_89[i];
+             List<int[]> row = new ArrayList<int[]>(dRow.length * 2);
+             for (int j = 0; j < dRow.length; ++j) {
+                 row.add(new int[] { dRow[j][0], lowerIndirection[dRow[j][1]], vSize + dRow[j][2] });

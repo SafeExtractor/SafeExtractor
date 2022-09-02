@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/FieldLUDecomposition.java b/src/main/java/org/apache/commons/math3/linear/FieldLUDecomposition.java
+index 513606d..5b39a67 100644
+--- a/src/main/java/org/apache/commons/math3/linear/FieldLUDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/FieldLUDecomposition.java
+@@ -106,7 +106,8 @@
+         // Loop over columns
+         for (int col = 0; col < m; col++) {
+ 
+-            T sum = field.getZero();
++            T var_2040 = field.getZero();
++			T sum = var_2040;
+ 
+             // upper
+             for (int row = 0; row < col; row++) {
+@@ -128,7 +129,7 @@
+                 }
+                 luRow[col] = sum;
+ 
+-                if (lu[nonZero][col].equals(field.getZero())) {
++                if (lu[nonZero][col].equals(var_2040)) {
+                     // try to select a better permutation choice
+                     ++nonZero;
+                 }
+@@ -142,7 +143,7 @@
+ 
+             // Pivot if necessary
+             if (nonZero != col) {
+-                T tmp = field.getZero();
++                T tmp = var_2040;
+                 for (int i = 0; i < m; i++) {
+                     tmp = lu[nonZero][i];
+                     lu[nonZero][i] = lu[col][i];

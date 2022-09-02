@@ -1,0 +1,45 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..93bcd9f 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -3358,7 +3358,8 @@
+         // now draw annotations and render data items...
+         boolean foundData = false;
+         DatasetRenderingOrder order = getDatasetRenderingOrder();
+-        if (order == DatasetRenderingOrder.FORWARD) {
++        Layer var_1690 = Layer.FOREGROUND;
++		if (order == DatasetRenderingOrder.FORWARD) {
+ 
+             // draw background annotations
+             int rendererCount = this.renderers.size();
+@@ -3385,7 +3386,7 @@
+                     ValueAxis domainAxis = getDomainAxisForDataset(i);
+                     ValueAxis rangeAxis = getRangeAxisForDataset(i);
+                     r.drawAnnotations(g2, dataArea, domainAxis, rangeAxis,
+-                            Layer.FOREGROUND, info);
++                            var_1690, info);
+                 }
+             }
+ 
+@@ -3422,7 +3423,7 @@
+                     ValueAxis domainAxis = getDomainAxisForDataset(i);
+                     ValueAxis rangeAxis = getRangeAxisForDataset(i);
+                     r.drawAnnotations(g2, dataArea, domainAxis, rangeAxis,
+-                            Layer.FOREGROUND, info);
++                            var_1690, info);
+                 }
+             }
+ 
+@@ -3476,10 +3477,10 @@
+         }
+ 
+         for (int i = 0; i < this.renderers.size(); i++) {
+-            drawDomainMarkers(g2, dataArea, i, Layer.FOREGROUND);
++            drawDomainMarkers(g2, dataArea, i, var_1690);
+         }
+         for (int i = 0; i < this.renderers.size(); i++) {
+-            drawRangeMarkers(g2, dataArea, i, Layer.FOREGROUND);
++            drawRangeMarkers(g2, dataArea, i, var_1690);
+         }
+ 
+         drawAnnotations(g2, dataArea, info);

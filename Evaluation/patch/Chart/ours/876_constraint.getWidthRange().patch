@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/block/GridArrangement.java b/source/org/jfree/chart/block/GridArrangement.java
+index 7aa4631..8fe2691 100644
+--- a/source/org/jfree/chart/block/GridArrangement.java
++++ b/source/org/jfree/chart/block/GridArrangement.java
+@@ -50,6 +50,7 @@
+ import java.util.List;
+ 
+ import org.jfree.chart.util.Size2D;
++import org.jfree.data.Range;
+ 
+ /**
+  * Arranges blocks in a grid within their container.
+@@ -242,11 +243,12 @@
+         RectangleConstraint c1 = constraint.toUnconstrainedWidth();
+         Size2D size1 = arrange(container, g2, c1);
+ 
+-        if (constraint.getWidthRange().contains(size1.getWidth())) {
++        Range var_876 = constraint.getWidthRange();
++		if (var_876.contains(size1.getWidth())) {
+             return size1;
+         }
+         else {
+-            double w = constraint.getWidthRange().constrain(size1.getWidth());
++            double w = var_876.constrain(size1.getWidth());
+             RectangleConstraint c2 = constraint.toFixedWidth(w);
+             return arrange(container, g2, c2);
+         }

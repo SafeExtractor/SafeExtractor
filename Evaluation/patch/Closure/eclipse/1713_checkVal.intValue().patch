@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+index 63538e3..48af399 100644
+--- a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
++++ b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+@@ -257,9 +257,10 @@
+     Double checkVal;
+     if (firstArg.isNumber()) {
+       checkVal = NodeUtil.getNumberValue(firstArg);
+-      if (!(radix == 0 || radix == 10) && isParseInt) {
++      int var_1713 = checkVal.intValue();
++	if (!(radix == 0 || radix == 10) && isParseInt) {
+         //Convert a numeric first argument to a different base
+-        stringVal = String.valueOf(checkVal.intValue());
++        stringVal = String.valueOf(var_1713);
+       } else {
+         // If parseFloat is called with a numeric argument,
+         // replace it with just the number.
+@@ -267,7 +268,7 @@
+         // is 10 or omitted, just replace it with the number
+         Node numericNode;
+         if (isParseInt) {
+-          numericNode = IR.number(checkVal.intValue());
++          numericNode = IR.number(var_1713);
+         } else {
+           numericNode = IR.number(checkVal);
+         }

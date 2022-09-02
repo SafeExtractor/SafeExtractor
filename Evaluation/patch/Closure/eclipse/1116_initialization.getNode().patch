@@ -1,0 +1,39 @@
+diff --git a/src/com/google/javascript/jscomp/InlineVariables.java b/src/com/google/javascript/jscomp/InlineVariables.java
+index 5c7408d..aee6a49 100644
+--- a/src/com/google/javascript/jscomp/InlineVariables.java
++++ b/src/com/google/javascript/jscomp/InlineVariables.java
+@@ -646,19 +646,22 @@
+     private boolean isValidInitialization(Reference initialization) {
+       if (initialization == null) {
+         return false;
+-      } else if (initialization.isDeclaration()) {
+-        // The reference is a FUNCTION declaration or normal VAR declaration
+-        // with a value.
+-        if (!NodeUtil.isFunctionDeclaration(initialization.getParent())
+-            && initialization.getNode().getFirstChild() == null) {
+-          return false;
+-        }
+       } else {
+-        Node parent = initialization.getParent();
+-        Preconditions.checkState(
+-            parent.isAssign()
+-            && parent.getFirstChild() == initialization.getNode());
+-      }
++		Node var_1116 = initialization.getNode();
++		if (initialization.isDeclaration()) {
++		    // The reference is a FUNCTION declaration or normal VAR declaration
++		    // with a value.
++		    if (!NodeUtil.isFunctionDeclaration(initialization.getParent())
++		        && var_1116.getFirstChild() == null) {
++		      return false;
++		    }
++		  } else {
++		    Node parent = initialization.getParent();
++		    Preconditions.checkState(
++		        parent.isAssign()
++		        && parent.getFirstChild() == var_1116);
++		  }
++	}
+ 
+       Node n = initialization.getAssignedValue();
+       if (n.isFunction()) {

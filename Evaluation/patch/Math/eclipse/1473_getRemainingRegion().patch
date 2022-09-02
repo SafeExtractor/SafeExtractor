@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubPlane.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubPlane.java
+index 51e7778..9bc932a 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubPlane.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SubPlane.java
+@@ -122,13 +122,14 @@
+         final SubHyperplane<Euclidean2D> l2DPlus =
+             new org.apache.commons.math3.geometry.euclidean.twod.Line(q, p).wholeHyperplane();
+ 
+-        final BSPTree<Euclidean2D> splitTree = getRemainingRegion().getTree(false).split(l2DMinus);
+-        final BSPTree<Euclidean2D> plusTree  = getRemainingRegion().isEmpty(splitTree.getPlus()) ?
++        Region<Euclidean2D> var_1473 = getRemainingRegion();
++		final BSPTree<Euclidean2D> splitTree = var_1473.getTree(false).split(l2DMinus);
++        final BSPTree<Euclidean2D> plusTree  = var_1473.isEmpty(splitTree.getPlus()) ?
+                                                new BSPTree<Euclidean2D>(Boolean.FALSE) :
+                                                new BSPTree<Euclidean2D>(l2DPlus, new BSPTree<Euclidean2D>(Boolean.FALSE),
+                                                                         splitTree.getPlus(), null);
+ 
+-        final BSPTree<Euclidean2D> minusTree = getRemainingRegion().isEmpty(splitTree.getMinus()) ?
++        final BSPTree<Euclidean2D> minusTree = var_1473.isEmpty(splitTree.getMinus()) ?
+                                                new BSPTree<Euclidean2D>(Boolean.FALSE) :
+                                                    new BSPTree<Euclidean2D>(l2DMinus, new BSPTree<Euclidean2D>(Boolean.FALSE),
+                                                                             splitTree.getMinus(), null);

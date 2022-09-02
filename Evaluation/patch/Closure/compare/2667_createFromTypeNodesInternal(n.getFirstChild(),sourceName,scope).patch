@@ -1,0 +1,49 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2667_createFromTypeNodesInternal(n.getFirstChild(),sourceName,scope).patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2667_createFromTypeNodesInternal(n.getFirstChild(),sourceName,scope).patch
+index efe00d8..48981ee 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2667_createFromTypeNodesInternal(n.getFirstChild(),sourceName,scope).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2667_createFromTypeNodesInternal(n.getFirstChild(),sourceName,scope).patch
+@@ -1,39 +1,16 @@
+ diff --git a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+-index c8fbac8..68da526 100644
++index c8fbac8..f2565d8 100644
+ --- a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+ +++ b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+-@@ -1519,14 +1519,15 @@
+-   /** @see #createFromTypeNodes(Node, String, StaticScope) */
+-   private JSType createFromTypeNodesInternal(Node n, String sourceName,
+-       StaticScope<JSType> scope) {
+--    switch (n.getType()) {
+-+    JSType var_2667 = createFromTypeNodesInternal(
+-+            n.getFirstChild(), sourceName, scope);
+-+	switch (n.getType()) {
+-       case Token.LC: // Record type.
+-         return createRecordTypeFromNodes(
++@@ -1525,8 +1525,9 @@
+              n.getFirstChild(), sourceName, scope);
+  
+        case Token.BANG: // Not nullable
+ -        return createFromTypeNodesInternal(
+ -            n.getFirstChild(), sourceName, scope)
+-+        return var_2667
+++        JSType var_2667 = createFromTypeNodesInternal(
+++            n.getFirstChild(), sourceName, scope);
+++		return var_2667
+              .restrictByNotNullOrUndefined();
+  
+        case Token.QMARK: // Nullable or unknown
+-@@ -1540,13 +1541,11 @@
+- 
+-       case Token.EQUALS: // Optional
+-         return createOptionalType(
+--            createFromTypeNodesInternal(
+--                n.getFirstChild(), sourceName, scope));
+-+            var_2667);
+- 
+-       case Token.ELLIPSIS: // Var args
+-         return createOptionalType(
+--            createFromTypeNodesInternal(
+--                n.getFirstChild(), sourceName, scope));
+-+            var_2667);
+- 
+-       case Token.STAR: // The AllType
+-         return getNativeType(ALL_TYPE);

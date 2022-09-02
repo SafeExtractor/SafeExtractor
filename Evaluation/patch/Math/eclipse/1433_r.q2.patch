@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
+index fbdafa3..29cbcbc 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
+@@ -917,10 +917,11 @@
+    * of the instance
+    */
+   public Rotation applyInverseTo(Rotation r) {
+-    return new Rotation(-r.q0 * q0 - (r.q1 * q1 + r.q2 * q2 + r.q3 * q3),
+-                        -r.q1 * q0 + r.q0 * q1 + (r.q2 * q3 - r.q3 * q2),
+-                        -r.q2 * q0 + r.q0 * q2 + (r.q3 * q1 - r.q1 * q3),
+-                        -r.q3 * q0 + r.q0 * q3 + (r.q1 * q2 - r.q2 * q1),
++    double var_1433 = r.q2;
++	return new Rotation(-r.q0 * q0 - (r.q1 * q1 + var_1433 * q2 + r.q3 * q3),
++                        -r.q1 * q0 + r.q0 * q1 + (var_1433 * q3 - r.q3 * q2),
++                        -var_1433 * q0 + r.q0 * q2 + (r.q3 * q1 - r.q1 * q3),
++                        -r.q3 * q0 + r.q0 * q3 + (r.q1 * q2 - var_1433 * q1),
+                         false);
+   }
+ 

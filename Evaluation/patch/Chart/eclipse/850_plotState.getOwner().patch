@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/axis/CategoryAxis.java b/source/org/jfree/chart/axis/CategoryAxis.java
+index 9c5f5bc..53720fb 100644
+--- a/source/org/jfree/chart/axis/CategoryAxis.java
++++ b/source/org/jfree/chart/axis/CategoryAxis.java
+@@ -119,6 +119,7 @@
+ import java.util.Map;
+ import java.util.Set;
+ 
++import org.jfree.chart.ChartRenderingInfo;
+ import org.jfree.chart.entity.CategoryLabelEntity;
+ import org.jfree.chart.entity.EntityCollection;
+ import org.jfree.chart.event.AxisChangeEvent;
+@@ -1036,9 +1037,10 @@
+                         (float) anchorPoint.getX(), (float) anchorPoint.getY(),
+                         position.getLabelAnchor(), (float) anchorPoint.getX(),
+                         (float) anchorPoint.getY(), position.getAngle());
+-                if (plotState != null && plotState.getOwner() != null) {
++                ChartRenderingInfo var_850 = plotState.getOwner();
++				if (plotState != null && var_850 != null) {
+                     EntityCollection entities
+-                            = plotState.getOwner().getEntityCollection();
++                            = var_850.getEntityCollection();
+                     if (entities != null) {
+                         String tooltip = getCategoryLabelToolTip(
+                                 tick.getCategory());

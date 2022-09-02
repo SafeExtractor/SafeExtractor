@@ -1,0 +1,59 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..dbf7b93 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -482,7 +482,8 @@
+     // To be explicitly set to false if the node is not typeable.
+     boolean typeable = true;
+ 
+-    switch (n.getType()) {
++    int var_982 = n.getType();
++	switch (var_982) {
+       case Token.CAST:
+         Node expr = n.getFirstChild();
+         ensureTyped(t, n, getJSType(expr));
+@@ -602,7 +603,7 @@
+       case Token.BITNOT:
+         childType = getJSType(n.getFirstChild());
+         if (!childType.matchesInt32Context()) {
+-          report(t, n, BIT_OPERATION, NodeUtil.opToStr(n.getType()),
++          report(t, n, BIT_OPERATION, NodeUtil.opToStr(var_982),
+               childType.toString());
+         }
+         ensureTyped(t, n, NUMBER_TYPE);
+@@ -646,7 +647,7 @@
+         JSType rightTypeRestricted = rightType.restrictByNotNullOrUndefined();
+ 
+         TernaryValue result = TernaryValue.UNKNOWN;
+-        if (n.getType() == Token.EQ || n.getType() == Token.NE) {
++        if (var_982 == Token.EQ || var_982 == Token.NE) {
+           result = leftTypeRestricted.testForEquality(rightTypeRestricted);
+           if (n.isNE()) {
+             result = result.not();
+@@ -655,7 +656,7 @@
+           // SHEQ or SHNE
+           if (!leftTypeRestricted.canTestForShallowEqualityWith(
+                   rightTypeRestricted)) {
+-            result = n.getType() == Token.SHEQ ?
++            result = var_982 == Token.SHEQ ?
+                 TernaryValue.FALSE : TernaryValue.TRUE;
+           }
+         }
+@@ -752,7 +753,7 @@
+       case Token.SUB:
+       case Token.ADD:
+       case Token.MUL:
+-        visitBinaryOperator(n.getType(), t, n);
++        visitBinaryOperator(var_982, t, n);
+         break;
+ 
+       case Token.DELPROP:
+@@ -838,7 +839,7 @@
+         break;
+ 
+       default:
+-        report(t, n, UNEXPECTED_TOKEN, Token.name(n.getType()));
++        report(t, n, UNEXPECTED_TOKEN, Token.name(var_982));
+         ensureTyped(t, n);
+         break;
+     }

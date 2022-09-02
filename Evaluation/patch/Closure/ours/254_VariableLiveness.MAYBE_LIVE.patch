@@ -1,0 +1,53 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 9d1b56c..8e0acbf 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -357,8 +357,9 @@
+    */
+   private VariableLiveness isVariableReadBeforeKill(
+       Node n, String variable) {
+-    if (ControlFlowGraph.isEnteringNewCfgNode(n)) { // Not a FUNCTION
+-      return VariableLiveness.MAYBE_LIVE;
++    VariableLiveness var_254 = VariableLiveness.MAYBE_LIVE;
++	if (ControlFlowGraph.isEnteringNewCfgNode(n)) { // Not a FUNCTION
++      return var_254;
+     }
+ 
+     if (n.isName() && variable.equals(n.getString())) {
+@@ -388,17 +389,17 @@
+           n.getLastChild(), variable);
+         // With a AND/OR the first branch always runs, but the second is
+         // may not.
+-        if (v1 != VariableLiveness.MAYBE_LIVE) {
++        if (v1 != var_254) {
+           return v1;
+         } else if (v2 == VariableLiveness.READ) {
+           return VariableLiveness.READ;
+         } else {
+-          return VariableLiveness.MAYBE_LIVE;
++          return var_254;
+         }
+       case Token.HOOK:
+         VariableLiveness first = isVariableReadBeforeKill(
+             n.getFirstChild(), variable);
+-        if (first != VariableLiveness.MAYBE_LIVE) {
++        if (first != var_254) {
+           return first;
+         }
+         return checkHookBranchReadBeforeKill(
+@@ -409,13 +410,13 @@
+         for (Node child = n.getFirstChild();
+             child != null; child = child.getNext()) {
+           VariableLiveness state = isVariableReadBeforeKill(child, variable);
+-          if (state != VariableLiveness.MAYBE_LIVE) {
++          if (state != var_254) {
+             return state;
+           }
+         }
+     }
+ 
+-    return VariableLiveness.MAYBE_LIVE;
++    return var_254;
+   }
+ 
+   private VariableLiveness checkHookBranchReadBeforeKill(

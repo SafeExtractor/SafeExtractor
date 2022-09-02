@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..5da6713 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -940,7 +940,8 @@
+             for (int i = 0; i < n; i++) {
+                 final double temp = pqold * interpolationPoints.getEntry(knew, i);
+                 for (int j = 0; j <= i; j++) {
+-                    modelSecondDerivativesValues.setEntry(ih, modelSecondDerivativesValues.getEntry(ih) + temp * interpolationPoints.getEntry(knew, j));
++                    double var_3075 = modelSecondDerivativesValues.getEntry(ih);
++					modelSecondDerivativesValues.setEntry(ih, var_3075 + temp * interpolationPoints.getEntry(knew, j));
+                     ih++;
+                 }
+             }

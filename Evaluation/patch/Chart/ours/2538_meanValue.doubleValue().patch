@@ -1,0 +1,58 @@
+diff --git a/source/org/jfree/chart/renderer/category/StatisticalLineAndShapeRenderer.java b/source/org/jfree/chart/renderer/category/StatisticalLineAndShapeRenderer.java
+index c469505..7bd579b 100644
+--- a/source/org/jfree/chart/renderer/category/StatisticalLineAndShapeRenderer.java
++++ b/source/org/jfree/chart/renderer/category/StatisticalLineAndShapeRenderer.java
+@@ -263,7 +263,8 @@
+             x1 = domainAxis.getCategoryMiddle(column, getColumnCount(),
+                     dataArea, plot.getDomainAxisEdge());
+         }
+-        double y1 = rangeAxis.valueToJava2D(meanValue.doubleValue(), dataArea,
++        double var_2538 = meanValue.doubleValue();
++		double y1 = rangeAxis.valueToJava2D(var_2538, dataArea,
+                 plot.getRangeAxisEdge());
+ 
+         // draw the standard deviation lines *before* the shapes (if they're
+@@ -275,25 +276,25 @@
+             RectangleEdge yAxisLocation = plot.getRangeAxisEdge();
+             double valueDelta = sdv.doubleValue();
+             double highVal, lowVal;
+-            if ((meanValue.doubleValue() + valueDelta)
++            if ((var_2538 + valueDelta)
+                     > rangeAxis.getRange().getUpperBound()) {
+                 highVal = rangeAxis.valueToJava2D(
+                         rangeAxis.getRange().getUpperBound(), dataArea,
+                         yAxisLocation);
+             }
+             else {
+-                highVal = rangeAxis.valueToJava2D(meanValue.doubleValue()
++                highVal = rangeAxis.valueToJava2D(var_2538
+                         + valueDelta, dataArea, yAxisLocation);
+             }
+ 
+-            if ((meanValue.doubleValue() + valueDelta)
++            if ((var_2538 + valueDelta)
+                     < rangeAxis.getRange().getLowerBound()) {
+                 lowVal = rangeAxis.valueToJava2D(
+                         rangeAxis.getRange().getLowerBound(), dataArea,
+                         yAxisLocation);
+             }
+             else {
+-                lowVal = rangeAxis.valueToJava2D(meanValue.doubleValue()
++                lowVal = rangeAxis.valueToJava2D(var_2538
+                         - valueDelta, dataArea, yAxisLocation);
+             }
+ 
+@@ -363,11 +364,11 @@
+             if (isItemLabelVisible(row, column, selected)) {
+                 if (orientation == PlotOrientation.HORIZONTAL) {
+                     drawItemLabel(g2, orientation, dataset, row, column,
+-                            selected, y1, x1, (meanValue.doubleValue() < 0.0));
++                            selected, y1, x1, (var_2538 < 0.0));
+                 }
+                 else if (orientation == PlotOrientation.VERTICAL) {
+                     drawItemLabel(g2, orientation, dataset, row, column,
+-                            selected, x1, y1, (meanValue.doubleValue() < 0.0));
++                            selected, x1, y1, (var_2538 < 0.0));
+                 }
+             }
+         }

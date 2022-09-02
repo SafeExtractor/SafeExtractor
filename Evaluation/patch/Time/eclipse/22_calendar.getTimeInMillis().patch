@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/joda/time/LocalDateTime.java b/src/main/java/org/joda/time/LocalDateTime.java
+index 44d2ee9..12af2e3 100644
+--- a/src/main/java/org/joda/time/LocalDateTime.java
++++ b/src/main/java/org/joda/time/LocalDateTime.java
+@@ -841,23 +841,24 @@
+         Calendar calendar = Calendar.getInstance(timeZone);
+         calendar.setTime(date);
+         LocalDateTime check = LocalDateTime.fromCalendarFields(calendar);
+-        if (check.isBefore(this)) {
++        long var_22 = calendar.getTimeInMillis();
++		if (check.isBefore(this)) {
+             // DST gap
+             // move forward in units of one minute until equal/after
+             while (check.isBefore(this)) {
+-                calendar.setTimeInMillis(calendar.getTimeInMillis() + 60000);
++                calendar.setTimeInMillis(var_22 + 60000);
+                 check = LocalDateTime.fromCalendarFields(calendar);
+             }
+             // move back in units of one second until date wrong
+             while (check.isBefore(this) == false) {
+-                calendar.setTimeInMillis(calendar.getTimeInMillis() - 1000);
++                calendar.setTimeInMillis(var_22 - 1000);
+                 check = LocalDateTime.fromCalendarFields(calendar);
+             }
+-            calendar.setTimeInMillis(calendar.getTimeInMillis() + 1000);
++            calendar.setTimeInMillis(var_22 + 1000);
+         } else if (check.equals(this)) {
+             // check for DST overlap
+             final Calendar earlier = Calendar.getInstance(timeZone);
+-            earlier.setTimeInMillis(calendar.getTimeInMillis() - timeZone.getDSTSavings());
++            earlier.setTimeInMillis(var_22 - timeZone.getDSTSavings());
+             check = LocalDateTime.fromCalendarFields(earlier);
+             if (check.equals(this)) {
+                 calendar = earlier;

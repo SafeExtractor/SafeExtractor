@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/plot/CategoryPlot.java b/source/org/jfree/chart/plot/CategoryPlot.java
+index 24a84fd..2cc8ee5 100644
+--- a/source/org/jfree/chart/plot/CategoryPlot.java
++++ b/source/org/jfree/chart/plot/CategoryPlot.java
+@@ -2261,7 +2261,8 @@
+      */
+     public void handleClick(int x, int y, PlotRenderingInfo info) {
+ 
+-        Rectangle2D dataArea = info.getDataArea();
++        Rectangle2D var_1852 = info.getDataArea();
++		Rectangle2D dataArea = var_1852;
+         if (dataArea.contains(x, y)) {
+             // set the anchor value for the range axis...
+             double java2D = 0.0;
+@@ -2274,7 +2275,7 @@
+             RectangleEdge edge = Plot.resolveRangeAxisLocation(
+                     getRangeAxisLocation(), this.orientation);
+             double value = getRangeAxis().java2DToValue(
+-                    java2D, info.getDataArea(), edge);
++                    java2D, var_1852, edge);
+             setAnchorValue(value);
+             setRangeCrosshairValue(value);
+         }

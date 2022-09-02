@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..8d7ef08 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -1390,10 +1390,11 @@
+         for (JSModule module : modules) {
+           Writer out = fileNameToOutputWriter2(
+               expandCommandLinePath(output, module));
+-          if (isManifest) {
+-            printManifestTo(module.getInputs(), out);
++          List<CompilerInput> var_447 = module.getInputs();
++		if (isManifest) {
++            printManifestTo(var_447, out);
+           } else {
+-            printBundleTo(module.getInputs(), out);
++            printBundleTo(var_447, out);
+           }
+           out.close();
+         }

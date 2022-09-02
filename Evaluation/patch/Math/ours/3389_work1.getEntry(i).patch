@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..f0439a4 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -1484,19 +1484,20 @@
+             double gw = ZERO;
+             for (int i = 0; i < n; i++) {
+                 final double glagValue = glag.getEntry(i);
+-                if (work1.getEntry(i) == bigstp) {
++                double var_3389 = work1.getEntry(i);
++				if (var_3389 == bigstp) {
+                     work1.setEntry(i, -step * glagValue);
+                     final double min = Math.min(upperDifference.getEntry(i),
+-                                                trustRegionCenterOffset.getEntry(i) + work1.getEntry(i));
++                                                trustRegionCenterOffset.getEntry(i) + var_3389);
+                     alternativeNewPoint.setEntry(i, Math.max(lowerDifference.getEntry(i), min));
+-                } else if (work1.getEntry(i) == ZERO) {
++                } else if (var_3389 == ZERO) {
+                     alternativeNewPoint.setEntry(i, trustRegionCenterOffset.getEntry(i));
+                 } else if (glagValue > ZERO) {
+                     alternativeNewPoint.setEntry(i, lowerDifference.getEntry(i));
+                 } else {
+                     alternativeNewPoint.setEntry(i, upperDifference.getEntry(i));
+                 }
+-                gw += glagValue * work1.getEntry(i);
++                gw += glagValue * var_3389;
+             }
+ 
+             // Set CURV to the curvature of the KNEW-th Lagrange function along W.

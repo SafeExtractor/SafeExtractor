@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/integration/gauss/HermiteRuleFactory.java b/src/main/java/org/apache/commons/math3/analysis/integration/gauss/HermiteRuleFactory.java
+index ac31385..34403b2 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/integration/gauss/HermiteRuleFactory.java
++++ b/src/main/java/org/apache/commons/math3/analysis/integration/gauss/HermiteRuleFactory.java
+@@ -165,7 +165,8 @@
+             double hm = H0;
+             for (int j = 1; j < numberOfPoints; j += 2) {
+                 final double jp1 = j + 1;
+-                hm = -FastMath.sqrt(j / jp1) * hm;
++                double var_198 = FastMath.sqrt(j / jp1);
++				hm = -var_198 * hm;
+             }
+             final double d = sqrtTwoTimesNumPoints * hm;
+             final double w = 2 / (d * d);

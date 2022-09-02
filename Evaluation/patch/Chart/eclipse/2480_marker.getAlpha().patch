@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+index 4a54655..b7446c4 100644
+--- a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
++++ b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+@@ -1183,7 +1183,8 @@
+                                 Marker marker,
+                                 Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        float var_2480 = marker.getAlpha();
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = axis.getRange();
+@@ -1194,7 +1195,7 @@
+ 
+             final Composite savedComposite = g2.getComposite();
+             g2.setComposite(AlphaComposite.getInstance(
+-                    AlphaComposite.SRC_OVER, marker.getAlpha()));
++                    AlphaComposite.SRC_OVER, var_2480));
+ 
+             PlotOrientation orientation = plot.getOrientation();
+             double v = axis.valueToJava2D(value, dataArea,
+@@ -1240,7 +1241,7 @@
+ 
+             final Composite savedComposite = g2.getComposite();
+             g2.setComposite(AlphaComposite.getInstance(
+-                    AlphaComposite.SRC_OVER, marker.getAlpha()));
++                    AlphaComposite.SRC_OVER, var_2480));
+ 
+             double start2d = axis.valueToJava2D(start, dataArea,
+                     plot.getRangeAxisEdge());

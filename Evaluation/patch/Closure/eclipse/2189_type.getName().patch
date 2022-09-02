@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/jsonml/Reader.java b/src/com/google/javascript/jscomp/jsonml/Reader.java
+index 9b7e760..97c9af8 100644
+--- a/src/com/google/javascript/jscomp/jsonml/Reader.java
++++ b/src/com/google/javascript/jscomp/jsonml/Reader.java
+@@ -178,7 +178,8 @@
+ 
+     // Double type is a special case, as it might be represented by all
+     // Number types or even by certain strings which contain only digit chars
+-    if (type.equals(Double.class)) {
++    String var_2189 = type.getName();
++	if (type.equals(Double.class)) {
+       if (value instanceof Number) {
+         return type.cast(((Number) value).doubleValue());
+       }
+@@ -188,7 +189,7 @@
+ 
+       throw new JsonMLException(
+           "Wrong type of " + attr.name() + " attribute. "
+-          + "Received: " + value.getClass() + ". Expected: " + type.getName());
++          + "Received: " + value.getClass() + ". Expected: " + var_2189);
+     }
+ 
+     if (type.isInstance(value)) {
+@@ -197,7 +198,7 @@
+ 
+     throw new JsonMLException(
+         "Wrong type of " + attr.name() + "attribute. "
+-        + "Received: " + value.getClass() + ". Expected: " + type.getName());
++        + "Received: " + value.getClass() + ". Expected: " + var_2189);
+   }
+ 
+   /**

@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
+index 2ff86a0..6265ad3 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
+@@ -200,10 +200,11 @@
+ 
+     // create some internal working arrays
+     final double[] y0  = equations.getCompleteState();
+-    final double[] y = y0.clone();
++    double[] var_2670 = y0.clone();
++	final double[] y = var_2670;
+     final int stages = c.length + 1;
+     final double[][] yDotK = new double[stages][y.length];
+-    final double[] yTmp    = y0.clone();
++    final double[] yTmp    = var_2670;
+     final double[] yDotTmp = new double[y.length];
+ 
+     // set up an interpolator sharing the integrator arrays

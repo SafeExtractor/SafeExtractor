@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..40a04e7 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -689,12 +689,13 @@
+           // should match a string context.
+           String message = "left side of comparison";
+           validator.expectString(t, n, leftType, message);
+-          validator.expectNotNullOrUndefined(
+-              t, n, leftType, message, getNativeType(STRING_TYPE));
++          JSType var_981 = getNativeType(STRING_TYPE);
++		validator.expectNotNullOrUndefined(
++              t, n, leftType, message, var_981);
+           message = "right side of comparison";
+           validator.expectString(t, n, rightType, message);
+           validator.expectNotNullOrUndefined(
+-              t, n, rightType, message, getNativeType(STRING_TYPE));
++              t, n, rightType, message, var_981);
+         }
+         ensureTyped(t, n, BOOLEAN_TYPE);
+         break;

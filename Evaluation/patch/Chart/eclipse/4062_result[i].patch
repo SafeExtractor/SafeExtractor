@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/data/statistics/Regression.java b/source/org/jfree/data/statistics/Regression.java
+index 962b978..26a5ec3 100644
+--- a/source/org/jfree/data/statistics/Regression.java
++++ b/source/org/jfree/data/statistics/Regression.java
+@@ -343,14 +343,15 @@
+         if (result[0][0] == 0) {
+             boolean found = false;
+             for (int i = 0; i < result.length; i ++) {
+-                if (result[i][0] != 0) {
++                double[] var_4062 = result[i];
++				if (var_4062[0] != 0) {
+                     found = true;
+                     double[] temp = result[0];
+-                    for (int j = 0; j < result[i].length; j++) {
+-                        result[0][j] = result[i][j];
++                    for (int j = 0; j < var_4062.length; j++) {
++                        result[0][j] = var_4062[j];
+                     }
+                     for (int j = 0; j < temp.length; j++) {
+-                        result[i][j] = temp[j];
++                        var_4062[j] = temp[j];
+                     }
+                     break;
+                 }

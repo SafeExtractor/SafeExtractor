@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/ClosureCodingConvention.java b/src/com/google/javascript/jscomp/ClosureCodingConvention.java
+index f78afdb..07b158c 100644
+--- a/src/com/google/javascript/jscomp/ClosureCodingConvention.java
++++ b/src/com/google/javascript/jscomp/ClosureCodingConvention.java
+@@ -396,10 +396,11 @@
+     Node callTarget = n.getFirstChild();
+     String name = callTarget.getQualifiedName();
+     if (name != null) {
+-      if (name.equals("goog.bind")
++      Node var_180 = callTarget.getNext();
++	if (name.equals("goog.bind")
+           || name.equals("goog$bind")) {
+         // goog.bind(fn, self, args...);
+-        Node fn = callTarget.getNext();
++        Node fn = var_180;
+         if (fn == null) {
+           return null;
+         }
+@@ -410,7 +411,7 @@
+ 
+       if (name.equals("goog.partial") || name.equals("goog$partial")) {
+         // goog.partial(fn, args...);
+-        Node fn = callTarget.getNext();
++        Node fn = var_180;
+         if (fn == null) {
+           return null;
+         }

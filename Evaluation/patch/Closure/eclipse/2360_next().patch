@@ -1,0 +1,43 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..00791d0 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -1854,8 +1854,9 @@
+     Node functionType = newNode(Token.FUNCTION);
+     Node parameters = null;
+     skipEOLs();
+-    if (!match(JsDocToken.RP)) {
+-      token = next();
++    JsDocToken var_2360 = next();
++	if (!match(JsDocToken.RP)) {
++      token = var_2360;
+ 
+       boolean hasParams = true;
+       if (token == JsDocToken.STRING) {
+@@ -1868,7 +1869,7 @@
+             skipEOLs();
+             Node contextType = wrapNode(
+                 isThis ? Token.THIS : Token.NEW,
+-                parseTypeName(next()));
++                parseTypeName(var_2360));
+             if (contextType == null) {
+               return null;
+             }
+@@ -1881,7 +1882,7 @@
+           if (match(JsDocToken.COMMA)) {
+             next();
+             skipEOLs();
+-            token = next();
++            token = var_2360;
+           } else {
+             hasParams = false;
+           }
+@@ -1906,7 +1907,7 @@
+     }
+ 
+     skipEOLs();
+-    Node resultType = parseResultType(next());
++    Node resultType = parseResultType(var_2360);
+     if (resultType == null) {
+       return null;
+     } else {

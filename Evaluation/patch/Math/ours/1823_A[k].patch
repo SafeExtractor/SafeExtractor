@@ -1,0 +1,47 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java b/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
+index efbe8a2..37bc7cc 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
+@@ -111,7 +111,8 @@
+         final int nct = FastMath.min(m - 1, n);
+         final int nrt = FastMath.max(0, n - 2);
+         for (int k = 0; k < FastMath.max(nct, nrt); k++) {
+-            if (k < nct) {
++            double[] var_1823 = A[k];
++			if (k < nct) {
+                 // Compute the transformation for the k-th column and
+                 // place the k-th diagonal in s[k].
+                 // Compute 2-norm of k-th column without under/overflow.
+@@ -120,13 +121,13 @@
+                     singularValues[k] = FastMath.hypot(singularValues[k], A[i][k]);
+                 }
+                 if (singularValues[k] != 0) {
+-                    if (A[k][k] < 0) {
++                    if (var_1823[k] < 0) {
+                         singularValues[k] = -singularValues[k];
+                     }
+                     for (int i = k; i < m; i++) {
+                         A[i][k] /= singularValues[k];
+                     }
+-                    A[k][k] += 1;
++                    var_1823[k] += 1;
+                 }
+                 singularValues[k] = -singularValues[k];
+             }
+@@ -138,14 +139,14 @@
+                     for (int i = k; i < m; i++) {
+                         t += A[i][k] * A[i][j];
+                     }
+-                    t = -t / A[k][k];
++                    t = -t / var_1823[k];
+                     for (int i = k; i < m; i++) {
+                         A[i][j] += t * A[i][k];
+                     }
+                 }
+                 // Place the k-th row of A into e for the
+                 // subsequent calculation of the row transformation.
+-                e[j] = A[k][j];
++                e[j] = var_1823[j];
+             }
+             if (k < nct) {
+                 // Place the transformation in U for subsequent back

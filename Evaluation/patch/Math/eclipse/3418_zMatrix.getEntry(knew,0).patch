@@ -1,0 +1,42 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..ba4f431 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -2314,15 +2314,16 @@
+ 
+         // Apply the rotations that put zeros in the KNEW-th row of ZMAT.
+ 
+-        for (int j = 1; j < nptm; j++) {
++        double var_3418 = zMatrix.getEntry(knew, 0);
++		for (int j = 1; j < nptm; j++) {
+             final double d1 = zMatrix.getEntry(knew, j);
+             if (Math.abs(d1) > ztest) {
+                 // Computing 2nd power
+-                final double d2 = zMatrix.getEntry(knew, 0);
++                final double d2 = var_3418;
+                 // Computing 2nd power
+                 final double d3 = zMatrix.getEntry(knew, j);
+                 final double d4 = Math.sqrt(d2 * d2 + d3 * d3);
+-                final double d5 = zMatrix.getEntry(knew, 0) / d4;
++                final double d5 = var_3418 / d4;
+                 final double d6 = zMatrix.getEntry(knew, j) / d4;
+                 for (int i = 0; i < npt; i++) {
+                     final double d7 = d5 * zMatrix.getEntry(i, 0) + d6 * zMatrix.getEntry(i, j);
+@@ -2337,7 +2338,7 @@
+         // and calculate the parameters of the updating formula.
+ 
+         for (int i = 0; i < npt; i++) {
+-            work.setEntry(i, zMatrix.getEntry(knew, 0) * zMatrix.getEntry(i, 0));
++            work.setEntry(i, var_3418 * zMatrix.getEntry(i, 0));
+         }
+         final double alpha = work.getEntry(knew);
+         final double tau = lagrangeValuesAtNewPoint.getEntry(knew);
+@@ -2347,7 +2348,7 @@
+ 
+         final double sqrtDenom = Math.sqrt(denom);
+         final double d1 = tau / sqrtDenom;
+-        final double d2 = zMatrix.getEntry(knew, 0) / sqrtDenom;
++        final double d2 = var_3418 / sqrtDenom;
+         for (int i = 0; i < npt; i++) {
+             zMatrix.setEntry(i, 0,
+                           d1 * zMatrix.getEntry(i, 0) - d2 * lagrangeValuesAtNewPoint.getEntry(i));

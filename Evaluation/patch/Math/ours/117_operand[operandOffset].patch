@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..2d8a867 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -932,18 +932,19 @@
+         // [x^n, nx^(n-1), n(n-1)x^(n-2), ... ]
+         double[] function = new double[1 + order];
+ 
+-        if (n > 0) {
++        double var_117 = operand[operandOffset];
++		if (n > 0) {
+             // strictly positive power
+             final int maxOrder = FastMath.min(order, n);
+-            double xk = FastMath.pow(operand[operandOffset], n - maxOrder);
++            double xk = FastMath.pow(var_117, n - maxOrder);
+             for (int i = maxOrder; i > 0; --i) {
+                 function[i] = xk;
+-                xk *= operand[operandOffset];
++                xk *= var_117;
+             }
+             function[0] = xk;
+         } else {
+             // strictly negative power
+-            final double inv = 1.0 / operand[operandOffset];
++            final double inv = 1.0 / var_117;
+             double xk = FastMath.pow(inv, -n);
+             for (int i = 0; i <= order; ++i) {
+                 function[i] = xk;

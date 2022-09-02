@@ -1,0 +1,40 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/function/Sinc.java b/src/main/java/org/apache/commons/math3/analysis/function/Sinc.java
+index feb33a3..95c9687 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/function/Sinc.java
++++ b/src/main/java/org/apache/commons/math3/analysis/function/Sinc.java
+@@ -114,9 +114,10 @@
+ 
+         double[] f = new double[t.getOrder() + 1];
+ 
+-        if (FastMath.abs(scaledX) <= SHORTCUT) {
++        int var_175 = f.length;
++		if (FastMath.abs(scaledX) <= SHORTCUT) {
+ 
+-            for (int i = 0; i < f.length; ++i) {
++            for (int i = 0; i < var_175; ++i) {
+                 final int k = i / 2;
+                 if ((i & 0x1) == 0) {
+                     // even derivation order
+@@ -147,11 +148,11 @@
+             // S_n(x) = x S_(n-1)'(x) - n S_(n-1)(x) - x C_(n-1)(x)
+             // C_n(x) = x C_(n-1)'(x) - n C_(n-1)(x) + x S_(n-1)(x)
+             // as per polynomials parity, we can store both S_n and C_n in the same array
+-            final double[] sc = new double[f.length];
++            final double[] sc = new double[var_175];
+             sc[0] = 1;
+ 
+             double coeff = inv;
+-            for (int n = 1; n < f.length; ++n) {
++            for (int n = 1; n < var_175; ++n) {
+ 
+                 double s = 0;
+                 double c = 0;
+@@ -193,7 +194,7 @@
+ 
+         if (normalized) {
+             double scale = FastMath.PI;
+-            for (int i = 1; i < f.length; ++i) {
++            for (int i = 1; i < var_175; ++i) {
+                 f[i]  *= scale;
+                 scale *= FastMath.PI;
+             }

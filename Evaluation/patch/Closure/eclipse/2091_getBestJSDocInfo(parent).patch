@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..b10c2ef 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -3051,8 +3051,9 @@
+         return null;
+       }
+ 
+-      if (parent.isName()) {
+-        return getBestJSDocInfo(parent);
++      JSDocInfo var_2091 = getBestJSDocInfo(parent);
++	if (parent.isName()) {
++        return var_2091;
+       } else if (parent.isAssign()) {
+         return parent.getJSDocInfo();
+       } else if (isObjectLitKey(parent, parent.getParent())) {
+@@ -3065,7 +3066,7 @@
+                  parent.isOr() ||
+                  parent.isAnd() ||
+                  (parent.isComma() && parent.getFirstChild() != n)) {
+-        return getBestJSDocInfo(parent);
++        return var_2091;
+       } else if (parent.isCast()) {
+         return parent.getJSDocInfo();
+       }

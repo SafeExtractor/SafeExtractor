@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/CoalesceVariableNames.java b/src/com/google/javascript/jscomp/CoalesceVariableNames.java
+index 11bb585..2e3c241 100644
+--- a/src/com/google/javascript/jscomp/CoalesceVariableNames.java
++++ b/src/com/google/javascript/jscomp/CoalesceVariableNames.java
+@@ -261,8 +261,9 @@
+         // Go through every CFG node in the program and look at
+         // this variable pair. If they are both live at the same
+         // time, add an edge between them and continue to the next pair.
+-        NEXT_CROSS_CFG_NODE:
+-        for (DiGraphNode<Node, Branch> cfgNode : cfg.getDirectedGraphNodes()) {
++        Iterable<DiGraphNode<Node, Branch>> var_372 = cfg.getDirectedGraphNodes();
++		NEXT_CROSS_CFG_NODE:
++        for (DiGraphNode<Node, Branch> cfgNode : var_372) {
+           if (cfg.isImplicitReturn(cfgNode)) {
+             continue NEXT_CROSS_CFG_NODE;
+           }

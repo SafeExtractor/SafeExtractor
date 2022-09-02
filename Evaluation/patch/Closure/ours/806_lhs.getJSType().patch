@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/ReplaceStrings.java b/src/com/google/javascript/jscomp/ReplaceStrings.java
+index 1d4ac50..7d145a0 100644
+--- a/src/com/google/javascript/jscomp/ReplaceStrings.java
++++ b/src/com/google/javascript/jscomp/ReplaceStrings.java
+@@ -224,8 +224,9 @@
+             Collection<String> classes = methods.get(methodName);
+             if (classes != null) {
+               Node lhs = calledFn.getFirstChild();
+-              if (lhs.getJSType() != null) {
+-                JSType type = lhs.getJSType().restrictByNotNullOrUndefined();
++              JSType var_806 = lhs.getJSType();
++			if (var_806 != null) {
++                JSType type = var_806.restrictByNotNullOrUndefined();
+                 Config config = findMatchingClass(type, classes);
+                 if (config != null) {
+                   doSubstitutions(t, config, n);

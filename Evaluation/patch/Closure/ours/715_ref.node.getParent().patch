@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..44fb22e 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -337,9 +337,10 @@
+         name.getFullName());
+     Node varNode = IR.var(nameNode).copyInformationFrom(nameNode);
+ 
+-    Preconditions.checkState(
+-        ref.node.getParent().isExprResult());
+-    Node parent = ref.node.getParent();
++    Node var_715 = ref.node.getParent();
++	Preconditions.checkState(
++        var_715.isExprResult());
++    Node parent = var_715;
+     Node gramps = parent.getParent();
+     gramps.replaceChild(parent, varNode);
+     compiler.reportCodeChange();

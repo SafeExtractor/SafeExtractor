@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+index 104bdf5..db0a12d 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+@@ -707,11 +707,12 @@
+             sigmaArray[i][0] = inputSigma == null ? 0.3 : inputSigma[i];
+         }
+         final RealMatrix insigma = new Array2DRowRealMatrix(sigmaArray, false);
+-        sigma = max(insigma); // overall standard deviation
++        double var_3267 = max(insigma);
++		sigma = var_3267; // overall standard deviation
+ 
+         // initialize termination criteria
+-        stopTolUpX = 1e3 * max(insigma);
+-        stopTolX = 1e-11 * max(insigma);
++        stopTolUpX = 1e3 * var_3267;
++        stopTolX = 1e-11 * var_3267;
+         stopTolFun = 1e-12;
+         stopTolHistFun = 1e-13;
+ 

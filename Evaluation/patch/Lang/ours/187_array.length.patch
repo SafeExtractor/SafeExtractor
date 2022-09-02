@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/lang3/ArrayUtils.java b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+index a0a499a..201f78c 100644
+--- a/src/main/java/org/apache/commons/lang3/ArrayUtils.java
++++ b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+@@ -3007,9 +3007,12 @@
+     public static Byte[] toObject(final byte[] array) {
+         if (array == null) {
+             return null;
+-        } else if (array.length == 0) {
+-            return EMPTY_BYTE_OBJECT_ARRAY;
+-        }
++        } else {
++			int var_187 = array.length;
++			if (var_187 == 0) {
++			    return EMPTY_BYTE_OBJECT_ARRAY;
++			}
++		}
+         final Byte[] result = new Byte[array.length];
+         for (int i = 0; i < array.length; i++) {
+             result[i] = Byte.valueOf(array[i]);

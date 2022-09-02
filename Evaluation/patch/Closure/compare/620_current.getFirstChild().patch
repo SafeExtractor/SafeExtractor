@@ -1,0 +1,27 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/620_current.getFirstChild().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/620_current.getFirstChild().patch
+index d243c65..5d7c68c 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/620_current.getFirstChild().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/620_current.getFirstChild().patch
+@@ -1,8 +1,8 @@
+ diff --git a/src/com/google/javascript/jscomp/RemoveUnusedVars.java b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+-index 4c84735..c96d603 100644
++index 4c84735..b1de008 100644
+ --- a/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+ +++ b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+-@@ -947,14 +947,15 @@
++@@ -947,7 +947,8 @@
+        boolean isPropAssign = false;
+        Node current = assignNode.getFirstChild();
+        if (NodeUtil.isGet(current)) {
+@@ -12,11 +12,3 @@ index 4c84735..c96d603 100644
+          isPropAssign = true;
+  
+          if (current.isGetProp() &&
+-             current.getLastChild().getString().equals("prototype")) {
+-           // Prototype properties sets should be considered like normal
+-           // property sets.
+--          current = current.getFirstChild();
+-+          current = var_620;
+-         }
+-       }
+- 

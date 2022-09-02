@@ -1,0 +1,37 @@
+diff --git a/src/com/google/javascript/jscomp/CheckAccessControls.java b/src/com/google/javascript/jscomp/CheckAccessControls.java
+index df50c26..09960b4 100644
+--- a/src/com/google/javascript/jscomp/CheckAccessControls.java
++++ b/src/com/google/javascript/jscomp/CheckAccessControls.java
+@@ -465,11 +465,12 @@
+         objectType = objectType.getImplicitPrototype();
+       }
+       JSDocInfo docInfo = null;
+-      for (; objectType != null;
++      Visibility var_924 = Visibility.INHERITED;
++	for (; objectType != null;
+            objectType = objectType.getImplicitPrototype()) {
+         docInfo = objectType.getOwnPropertyJSDocInfo(propertyName);
+         if (docInfo != null &&
+-            docInfo.getVisibility() != Visibility.INHERITED) {
++            docInfo.getVisibility() != var_924) {
+           break;
+         }
+       }
+@@ -490,7 +491,7 @@
+         // on a superclass.
+         JSDocInfo overridingInfo = parent.getJSDocInfo();
+         Visibility overridingVisibility = overridingInfo == null ?
+-            Visibility.INHERITED : overridingInfo.getVisibility();
++            var_924 : overridingInfo.getVisibility();
+ 
+         // Check that (a) the property *can* be overridden, and
+         // (b) that the visibility of the override is the same as the
+@@ -499,7 +500,7 @@
+           compiler.report(
+               t.makeError(getprop, PRIVATE_OVERRIDE,
+                   objectType.toString()));
+-        } else if (overridingVisibility != Visibility.INHERITED &&
++        } else if (overridingVisibility != var_924 &&
+             overridingVisibility != visibility) {
+           compiler.report(
+               t.makeError(getprop, VISIBILITY_MISMATCH,

@@ -1,0 +1,50 @@
+diff --git a/source/org/jfree/chart/renderer/category/StatisticalLineAndShapeRenderer.java b/source/org/jfree/chart/renderer/category/StatisticalLineAndShapeRenderer.java
+index c469505..5b8a6fa 100644
+--- a/source/org/jfree/chart/renderer/category/StatisticalLineAndShapeRenderer.java
++++ b/source/org/jfree/chart/renderer/category/StatisticalLineAndShapeRenderer.java
+@@ -270,7 +270,8 @@
+         // visible) - it looks better if the shape fill colour is different to
+         // the line colour
+         Number sdv = statDataset.getStdDevValue(row, column);
+-        if (pass == 1 && sdv != null) {
++        Paint var_2525 = getItemPaint(row, column, selected);
++		if (pass == 1 && sdv != null) {
+             //standard deviation lines
+             RectangleEdge yAxisLocation = plot.getRangeAxisEdge();
+             double valueDelta = sdv.doubleValue();
+@@ -301,7 +302,7 @@
+                 g2.setPaint(this.errorIndicatorPaint);
+             }
+             else {
+-                g2.setPaint(getItemPaint(row, column, selected));
++                g2.setPaint(var_2525);
+             }
+             if (this.errorIndicatorStroke != null) {
+                 g2.setStroke(this.errorIndicatorStroke);
+@@ -345,7 +346,7 @@
+                     g2.setPaint(getItemFillPaint(row, column, selected));
+                 }
+                 else {
+-                    g2.setPaint(getItemPaint(row, column, selected));
++                    g2.setPaint(var_2525);
+                 }
+                 g2.fill(shape);
+             }
+@@ -354,7 +355,7 @@
+                     g2.setPaint(getItemOutlinePaint(row, column, selected));
+                 }
+                 else {
+-                    g2.setPaint(getItemPaint(row, column, selected));
++                    g2.setPaint(var_2525);
+                 }
+                 g2.setStroke(getItemOutlineStroke(row, column, selected));
+                 g2.draw(shape);
+@@ -403,7 +404,7 @@
+                     else if (orientation == PlotOrientation.VERTICAL) {
+                         line = new Line2D.Double(x0, y0, x1, y1);
+                     }
+-                    g2.setPaint(getItemPaint(row, column, selected));
++                    g2.setPaint(var_2525);
+                     g2.setStroke(getItemStroke(row, column, selected));
+                     g2.draw(line);
+                 }

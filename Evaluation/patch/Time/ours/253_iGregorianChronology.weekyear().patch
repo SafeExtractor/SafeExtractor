@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/joda/time/chrono/GJChronology.java b/src/main/java/org/joda/time/chrono/GJChronology.java
+index 1cc03a4..726088f 100644
+--- a/src/main/java/org/joda/time/chrono/GJChronology.java
++++ b/src/main/java/org/joda/time/chrono/GJChronology.java
+@@ -1009,9 +1009,10 @@
+                     // Only adjust if gap fully crossed.
+                     if (instant + iGapDuration < iCutover) {
+                         if (iConvertByWeekyear) {
+-                            int wyear = iGregorianChronology.weekyear().get(instant);
++                            DateTimeField var_253 = iGregorianChronology.weekyear();
++							int wyear = var_253.get(instant);
+                             if (wyear <= 0) {
+-                                instant = iGregorianChronology.weekyear().add(instant, -1);
++                                instant = var_253.add(instant, -1);
+                             }
+                         } else {
+                             int year = iGregorianChronology.year().get(instant);

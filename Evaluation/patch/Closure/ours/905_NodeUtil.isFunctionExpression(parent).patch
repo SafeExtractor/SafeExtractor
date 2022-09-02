@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/VarCheck.java b/src/com/google/javascript/jscomp/VarCheck.java
+index a497232..c747d3b 100644
+--- a/src/com/google/javascript/jscomp/VarCheck.java
++++ b/src/com/google/javascript/jscomp/VarCheck.java
+@@ -126,9 +126,10 @@
+     String varName = n.getString();
+ 
+     // Only a function can have an empty name.
+-    if (varName.isEmpty()) {
++    boolean var_905 = NodeUtil.isFunctionExpression(parent);
++	if (varName.isEmpty()) {
+       Preconditions.checkState(parent.isFunction());
+-      Preconditions.checkState(NodeUtil.isFunctionExpression(parent));
++      Preconditions.checkState(var_905);
+       return;
+     }
+ 
+@@ -146,7 +147,7 @@
+     Scope scope = t.getScope();
+     Scope.Var var = scope.getVar(varName);
+     if (var == null) {
+-      if (NodeUtil.isFunctionExpression(parent)) {
++      if (var_905) {
+         // e.g. [ function foo() {} ], it's okay if "foo" isn't defined in the
+         // current scope.
+       } else {

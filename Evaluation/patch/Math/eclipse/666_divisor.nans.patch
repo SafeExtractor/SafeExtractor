@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..19b3ee5 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1705,7 +1705,8 @@
+         Dfp result = newInstance(getZero());
+ 
+         /* handle special cases */
+-        if (nans != FINITE || divisor.nans != FINITE) {
++        byte var_666 = divisor.nans;
++		if (nans != FINITE || var_666 != FINITE) {
+             if (isNaN()) {
+                 return this;
+             }
+@@ -1714,19 +1715,19 @@
+                 return divisor;
+             }
+ 
+-            if (nans == INFINITE && divisor.nans == FINITE) {
++            if (nans == INFINITE && var_666 == FINITE) {
+                 result = newInstance(this);
+                 result.sign = (byte) (sign * divisor.sign);
+                 return result;
+             }
+ 
+-            if (divisor.nans == INFINITE && nans == FINITE) {
++            if (var_666 == INFINITE && nans == FINITE) {
+                 result = newInstance(getZero());
+                 result.sign = (byte) (sign * divisor.sign);
+                 return result;
+             }
+ 
+-            if (divisor.nans == INFINITE && nans == INFINITE) {
++            if (var_666 == INFINITE && nans == INFINITE) {
+                 field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+                 result = newInstance(getZero());
+                 result.nans = QNAN;

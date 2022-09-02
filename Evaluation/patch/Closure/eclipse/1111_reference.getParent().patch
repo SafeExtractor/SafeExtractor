@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/InlineVariables.java b/src/com/google/javascript/jscomp/InlineVariables.java
+index 5c7408d..1255be5 100644
+--- a/src/com/google/javascript/jscomp/InlineVariables.java
++++ b/src/com/google/javascript/jscomp/InlineVariables.java
+@@ -552,15 +552,16 @@
+       // is OK.
+       Node value = initialization.getAssignedValue();
+       Preconditions.checkState(value != null);
+-      if (value.isGetProp()
+-          && reference.getParent().isCall()
+-          && reference.getParent().getFirstChild() == reference.getNode()) {
++      Node var_1111 = reference.getParent();
++	if (value.isGetProp()
++          && var_1111.isCall()
++          && var_1111.getFirstChild() == reference.getNode()) {
+         return false;
+       }
+ 
+       if (value.isFunction()) {
+-        Node callNode = reference.getParent();
+-        if (reference.getParent().isCall()) {
++        Node callNode = var_1111;
++        if (var_1111.isCall()) {
+           CodingConvention convention = compiler.getCodingConvention();
+           // Bug 2388531: Don't inline subclass definitions into class defining
+           // calls as this confused class removing logic.

@@ -1,0 +1,46 @@
+diff --git a/source/org/jfree/chart/block/GridArrangement.java b/source/org/jfree/chart/block/GridArrangement.java
+index 7aa4631..ab93885 100644
+--- a/source/org/jfree/chart/block/GridArrangement.java
++++ b/source/org/jfree/chart/block/GridArrangement.java
+@@ -316,26 +316,27 @@
+ 
+         Size2D size1 = arrange(container, g2, RectangleConstraint.NONE);
+ 
+-        if (constraint.getWidthRange().contains(size1.getWidth())) {
+-            if (constraint.getHeightRange().contains(size1.getHeight())) {
++        double var_888 = size1.getHeight();
++		if (constraint.getWidthRange().contains(size1.getWidth())) {
++            if (constraint.getHeightRange().contains(var_888)) {
+                 return size1;
+             }
+             else {
+                 // width is OK, but height must be constrained
+                 double h = constraint.getHeightRange().constrain(
+-                        size1.getHeight());
++                        var_888);
+                 RectangleConstraint cc = new RectangleConstraint(
+                         size1.getWidth(), h);
+                 return arrangeFF(container, g2, cc);
+             }
+         }
+         else {
+-            if (constraint.getHeightRange().contains(size1.getHeight())) {
++            if (constraint.getHeightRange().contains(var_888)) {
+                 // height is OK, but width must be constrained
+                 double w = constraint.getWidthRange().constrain(
+                         size1.getWidth());
+                 RectangleConstraint cc = new RectangleConstraint(w,
+-                        size1.getHeight());
++                        var_888);
+                 return arrangeFF(container, g2, cc);
+ 
+             }
+@@ -343,7 +344,7 @@
+                 double w = constraint.getWidthRange().constrain(
+                         size1.getWidth());
+                 double h = constraint.getHeightRange().constrain(
+-                        size1.getHeight());
++                        var_888);
+                 RectangleConstraint cc = new RectangleConstraint(w, h);
+                 return arrangeFF(container, g2, cc);
+             }

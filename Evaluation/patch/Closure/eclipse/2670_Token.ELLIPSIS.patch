@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+index c8fbac8..6e5482a 100644
+--- a/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
++++ b/src/com/google/javascript/rhino/jstype/JSTypeRegistry.java
+@@ -1519,7 +1519,8 @@
+   /** @see #createFromTypeNodes(Node, String, StaticScope) */
+   private JSType createFromTypeNodesInternal(Node n, String sourceName,
+       StaticScope<JSType> scope) {
+-    switch (n.getType()) {
++    final int var_2670 = Token.ELLIPSIS;
++	switch (n.getType()) {
+       case Token.LC: // Record type.
+         return createRecordTypeFromNodes(
+             n.getFirstChild(), sourceName, scope);
+@@ -1543,7 +1544,7 @@
+             createFromTypeNodesInternal(
+                 n.getFirstChild(), sourceName, scope));
+ 
+-      case Token.ELLIPSIS: // Var args
++      case var_2670: // Var args
+         return createOptionalType(
+             createFromTypeNodesInternal(
+                 n.getFirstChild(), sourceName, scope));
+@@ -1632,7 +1633,7 @@
+           Node args = current.getFirstChild();
+           for (Node arg = current.getFirstChild(); arg != null;
+                arg = arg.getNext()) {
+-            if (arg.getType() == Token.ELLIPSIS) {
++            if (arg.getType() == var_2670) {
+               if (arg.getChildCount() == 0) {
+                 paramBuilder.addVarArgs(getNativeType(UNKNOWN_TYPE));
+               } else {

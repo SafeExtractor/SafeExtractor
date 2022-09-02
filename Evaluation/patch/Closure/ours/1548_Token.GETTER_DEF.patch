@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..3f16335 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -144,7 +144,8 @@
+ 
+     cc.startSourceMapping(n);
+ 
+-    switch (type) {
++    final int var_1548 = Token.GETTER_DEF;
++	switch (type) {
+       case Token.TRY: {
+         Preconditions.checkState(first.getNext().isBlock() &&
+                 !first.getNext().hasMoreThanOneChild());
+@@ -324,7 +325,7 @@
+         }
+         break;
+ 
+-      case Token.GETTER_DEF:
++      case var_1548:
+       case Token.SETTER_DEF:
+         Preconditions.checkState(n.getParent().isObjectLit());
+         Preconditions.checkState(childCount == 1);
+@@ -332,7 +333,7 @@
+ 
+         // Get methods are unnamed
+         Preconditions.checkState(first.getFirstChild().getString().isEmpty());
+-        if (type == Token.GETTER_DEF) {
++        if (type == var_1548) {
+           // Get methods have no parameters.
+           Preconditions.checkState(!first.getChildAtIndex(1).hasChildren());
+           add("get ");

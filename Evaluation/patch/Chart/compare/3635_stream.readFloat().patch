@@ -1,0 +1,33 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3635_stream.readFloat().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/3635_stream.readFloat().patch
+index 9984ac6..dc99a70 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3635_stream.readFloat().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/3635_stream.readFloat().patch
+@@ -1,21 +1,14 @@
+ diff --git a/source/org/jfree/chart/util/SerialUtilities.java b/source/org/jfree/chart/util/SerialUtilities.java
+-index 90edcc1..02ad996 100644
++index 90edcc1..62b9dde 100644
+ --- a/source/org/jfree/chart/util/SerialUtilities.java
+ +++ b/source/org/jfree/chart/util/SerialUtilities.java
+-@@ -126,11 +126,12 @@
+-                 result = (Paint) stream.readObject();
+-             }
+-             else if (c.equals(GradientPaint.class)) {
+--                float x1 = stream.readFloat();
+--                float y1 = stream.readFloat();
+-+                float var_3635 = stream.readFloat();
+-+				float x1 = var_3635;
+-+                float y1 = var_3635;
++@@ -129,7 +129,8 @@
++                 float x1 = stream.readFloat();
++                 float y1 = stream.readFloat();
+                  Color c1 = (Color) stream.readObject();
+ -                float x2 = stream.readFloat();
+--                float y2 = stream.readFloat();
+-+                float x2 = var_3635;
+-+                float y2 = var_3635;
+++                float var_3635 = stream.readFloat();
+++				float x2 = var_3635;
++                 float y2 = stream.readFloat();
+                  Color c2 = (Color) stream.readObject();
+                  boolean isCyclic = stream.readBoolean();
+-                 result = new GradientPaint(x1, y1, c1, x2, y2, c2, isCyclic);

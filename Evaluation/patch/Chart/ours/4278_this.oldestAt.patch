@@ -1,0 +1,19 @@
+diff --git a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+index 067e1df..a1fa8bd 100644
+--- a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
++++ b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+@@ -499,11 +499,12 @@
+      * @return The translated index.
+      */
+     protected int translateGet(int toFetch) {
+-        if (this.oldestAt == 0) {
++        int var_4278 = this.oldestAt;
++		if (var_4278 == 0) {
+             return toFetch;  // no translation needed
+         }
+         // else  [implicit here]
+-        int newIndex = toFetch + this.oldestAt;
++        int newIndex = toFetch + var_4278;
+         if (newIndex >= this.historyCount) {
+             newIndex -= this.historyCount;
+         }

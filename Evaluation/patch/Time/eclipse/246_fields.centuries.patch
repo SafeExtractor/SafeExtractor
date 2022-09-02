@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/joda/time/chrono/GJChronology.java b/src/main/java/org/joda/time/chrono/GJChronology.java
+index 1cc03a4..1af835f 100644
+--- a/src/main/java/org/joda/time/chrono/GJChronology.java
++++ b/src/main/java/org/joda/time/chrono/GJChronology.java
+@@ -544,8 +544,9 @@
+                 julian.centuryOfEra(), fields.centuryOfEra, iCutoverMillis);
+             fields.centuries = fields.centuryOfEra.getDurationField();
+             
+-            fields.yearOfCentury = new ImpreciseCutoverField(
+-                julian.yearOfCentury(), fields.yearOfCentury, fields.years, fields.centuries, iCutoverMillis);
++            DurationField var_246 = fields.centuries;
++			fields.yearOfCentury = new ImpreciseCutoverField(
++                julian.yearOfCentury(), fields.yearOfCentury, fields.years, var_246, iCutoverMillis);
+             
+             fields.monthOfYear = new ImpreciseCutoverField(
+                 julian.monthOfYear(), fields.monthOfYear, null, fields.years, iCutoverMillis);
+@@ -555,7 +556,7 @@
+                 julian.weekyear(), fields.weekyear, null, iCutoverMillis, true);
+             fields.weekyears = fields.weekyear.getDurationField();
+             fields.weekyearOfCentury = new ImpreciseCutoverField(
+-                julian.weekyearOfCentury(), fields.weekyearOfCentury, fields.weekyears, fields.centuries, iCutoverMillis);
++                julian.weekyearOfCentury(), fields.weekyearOfCentury, fields.weekyears, var_246, iCutoverMillis);
+         }
+ 
+         // DayOfYear and weekOfWeekyear require special handling since cutover

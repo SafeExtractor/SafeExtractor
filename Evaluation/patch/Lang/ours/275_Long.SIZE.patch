@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/lang3/EnumUtils.java b/src/main/java/org/apache/commons/lang3/EnumUtils.java
+index 7a03b59..1745c62 100644
+--- a/src/main/java/org/apache/commons/lang3/EnumUtils.java
++++ b/src/main/java/org/apache/commons/lang3/EnumUtils.java
+@@ -174,9 +174,10 @@
+             Validate.isTrue(constant != null, NULL_ELEMENTS_NOT_PERMITTED);
+             condensed.add(constant);
+         }
+-        final long[] result = new long[(enumClass.getEnumConstants().length - 1) / Long.SIZE + 1];
++        int var_275 = Long.SIZE;
++		final long[] result = new long[(enumClass.getEnumConstants().length - 1) / var_275 + 1];
+         for (final E value : condensed) {
+-            result[value.ordinal() / Long.SIZE] |= 1 << (value.ordinal() % Long.SIZE);
++            result[value.ordinal() / var_275] |= 1 << (value.ordinal() % var_275);
+         }
+         ArrayUtils.reverse(result);
+         return result;

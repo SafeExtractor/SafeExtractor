@@ -1,0 +1,35 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..b931efe 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -938,9 +938,10 @@
+     boolean leftLiteral = NodeUtil.isLiteralValue(left, true);
+     boolean rightLiteral = NodeUtil.isLiteralValue(right, true);
+ 
+-    if (!leftLiteral || !rightLiteral) {
++    int var_155 = Token.GT;
++	if (!leftLiteral || !rightLiteral) {
+       // We only handle literal operands for LT and GT.
+-      if (op != Token.GT && op != Token.LT) {
++      if (op != var_155 && op != Token.LT) {
+         return TernaryValue.UNKNOWN;
+       }
+     }
+@@ -985,7 +986,7 @@
+ 
+           case Token.GE:
+           case Token.LE:
+-          case Token.GT:
++          case var_155:
+           case Token.LT:
+             return compareAsNumbers(op, left, right);
+         }
+@@ -1074,7 +1075,7 @@
+           // If we knew the named value wouldn't be NaN, it would be nice
+           // to handle EQ,NE,LE,GE,SHEQ, and SHNE.
+           case Token.LT:
+-          case Token.GT:
++          case var_155:
+             return TernaryValue.FALSE;
+         }
+ 

@@ -1,0 +1,38 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/3617_mem[isaacJ++].patch b/Users/safe/paper/Evaluation/patch/Math/ours/3617_mem[isaacJ++].patch
+index bee0db2..bf8b67b 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/3617_mem[isaacJ++].patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/3617_mem[isaacJ++].patch
+@@ -1,29 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/random/ISAACRandom.java b/src/main/java/org/apache/commons/math3/random/ISAACRandom.java
+-index 396d56c..c2a77a6 100644
++index 396d56c..0be56f6 100644
+ --- a/src/main/java/org/apache/commons/math3/random/ISAACRandom.java
+ +++ b/src/main/java/org/apache/commons/math3/random/ISAACRandom.java
+-@@ -162,19 +162,20 @@
+-     private void isaac2() {
+-         isaacX = mem[isaacI];
+-         isaacA ^= isaacA << 13;
+--        isaacA += mem[isaacJ++];
+-+        int var_3617 = mem[isaacJ++];
+-+		isaacA += var_3617;
+-         isaac3();
+-         isaacX = mem[isaacI];
+-         isaacA ^= isaacA >>> 6;
+--        isaacA += mem[isaacJ++];
+-+        isaacA += var_3617;
++@@ -170,7 +170,8 @@
+          isaac3();
+          isaacX = mem[isaacI];
+          isaacA ^= isaacA << 2;
+ -        isaacA += mem[isaacJ++];
+-+        isaacA += var_3617;
+++        int var_3617 = mem[isaacJ++];
+++		isaacA += var_3617;
+          isaac3();
+          isaacX = mem[isaacI];
+          isaacA ^= isaacA >>> 16;
+--        isaacA += mem[isaacJ++];
+-+        isaacA += var_3617;
+-         isaac3();
+-     }
+- 

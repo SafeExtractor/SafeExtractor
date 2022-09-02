@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionTypeBuilder.java b/src/com/google/javascript/jscomp/FunctionTypeBuilder.java
+index db990fa..fea48e1 100644
+--- a/src/com/google/javascript/jscomp/FunctionTypeBuilder.java
++++ b/src/com/google/javascript/jscomp/FunctionTypeBuilder.java
+@@ -252,10 +252,11 @@
+       Iterator<Node> oldParams = oldType.getParameters().iterator();
+       boolean warnedAboutArgList = false;
+       boolean oldParamsListHitOptArgs = false;
+-      for (Node currentParam = paramsParent.getFirstChild();
++      Node var_1583 = oldParams.next();
++	for (Node currentParam = paramsParent.getFirstChild();
+            currentParam != null; currentParam = currentParam.getNext()) {
+         if (oldParams.hasNext()) {
+-          Node oldParam = oldParams.next();
++          Node oldParam = var_1583;
+           Node newParam = paramBuilder.newParameterFromNode(oldParam);
+ 
+           oldParamsListHitOptArgs = oldParamsListHitOptArgs ||
+@@ -282,7 +283,7 @@
+       // Clone any remaining params that aren't in the function literal,
+       // but make them optional.
+       while (oldParams.hasNext()) {
+-        paramBuilder.newOptionalParameterFromNode(oldParams.next());
++        paramBuilder.newOptionalParameterFromNode(var_1583);
+       }
+ 
+       parametersNode = paramBuilder.build();

@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..db57a96 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -228,7 +228,8 @@
+               // Mark the beginning of the annotation.
+               jsdocBuilder.markAnnotation(annotationName, lineno, charno);
+ 
+-              switch (annotation) {
++              JsDocToken var_2304 = JsDocToken.RC;
++			switch (annotation) {
+                 case AUTHOR:
+                   if (jsdocBuilder.shouldParseDocumentation()) {
+                     ExtractionInfo authorInfo = extractSingleLineBlock();
+@@ -461,7 +462,7 @@
+                     }
+                     token = next();
+                     if (matchingRc) {
+-                      if (token != JsDocToken.RC) {
++                      if (token != var_2304) {
+                         parser.addTypeWarning("msg.jsdoc.missing.rc",
+                             stream.getLineno(), stream.getCharno());
+                       }
+@@ -504,7 +505,7 @@
+                         stream.getLineno(), stream.getCharno());
+                   }
+ 
+-                  if (matchingRc && !match(JsDocToken.RC)) {
++                  if (matchingRc && !match(var_2304)) {
+                     parser.addTypeWarning("msg.jsdoc.missing.rc",
+                         stream.getLineno(), stream.getCharno());
+                   }

@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+index ed2ddda..d430cb9 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+@@ -810,9 +810,10 @@
+           // derivative at middle point of the step
+           final int l2 = l / 2;
+           double factor = FastMath.pow(0.5 * sequence[l2], l);
+-          int middleIndex = fk[l2].length / 2;
++          double[][] var_2768 = fk[l2];
++		int middleIndex = var_2768.length / 2;
+           for (int i = 0; i < y0.length; ++i) {
+-            yMidDots[l+1][i] = factor * fk[l2][middleIndex + l][i];
++            yMidDots[l+1][i] = factor * var_2768[middleIndex + l][i];
+           }
+           for (int j = 1; j <= k - l2; ++j) {
+             factor = FastMath.pow(0.5 * sequence[j + l2], l);

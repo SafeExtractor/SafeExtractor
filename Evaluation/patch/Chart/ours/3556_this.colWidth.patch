@@ -1,0 +1,52 @@
+diff --git a/source/org/jfree/chart/ui/LCBLayout.java b/source/org/jfree/chart/ui/LCBLayout.java
+index b63c82b..3f3dbf2 100644
+--- a/source/org/jfree/chart/ui/LCBLayout.java
++++ b/source/org/jfree/chart/ui/LCBLayout.java
+@@ -174,12 +174,13 @@
+             Insets insets = parent.getInsets();
+             int ncomponents = parent.getComponentCount();
+             int nrows = ncomponents / COLUMNS;
+-            for (int c = 0; c < COLUMNS; c++) {
++            int[] var_3556 = this.colWidth;
++			for (int c = 0; c < COLUMNS; c++) {
+                 for (int r = 0; r < nrows; r++) {
+                     Component component = parent.getComponent(r * COLUMNS + c);
+                     Dimension d = component.getPreferredSize();
+-                    if (this.colWidth[c] < d.width) {
+-                        this.colWidth[c] = d.width;
++                    if (var_3556[c] < d.width) {
++                        var_3556[c] = d.width;
+                     }
+                     if (this.rowHeight[r] < d.height) {
+                         this.rowHeight[r] = d.height;
+@@ -190,13 +191,13 @@
+             for (int r = 0; r < nrows; r++) {
+                 totalHeight = totalHeight + this.rowHeight[r];
+             }
+-            int totalWidth = this.colWidth[0] + this.colWidth[1]
+-                                                    + this.colWidth[2];
++            int totalWidth = var_3556[0] + var_3556[1]
++                                                    + var_3556[2];
+ 
+             // adjust the width of the second column to use up all of parent
+             int available = parent.getWidth() - insets.left
+                     - insets.right - this.labelGap - this.buttonGap;
+-            this.colWidth[1] = this.colWidth[1] + (available - totalWidth);
++            var_3556[1] = var_3556[1] + (available - totalWidth);
+ 
+             // *** DO THE LAYOUT ***
+             int x = insets.left;
+@@ -210,11 +211,11 @@
+                         int h = d.height;
+                         int adjust = (this.rowHeight[r] - h) / 2;
+                         parent.getComponent(i).setBounds(x, y + adjust,
+-                                this.colWidth[c], h);
++                                var_3556[c], h);
+                     }
+                     y = y + this.rowHeight[r] + this.vGap;
+                 }
+-                x = x + this.colWidth[c];
++                x = x + var_3556[c];
+                 if (c == 0) {
+                     x = x + this.labelGap;
+                 }

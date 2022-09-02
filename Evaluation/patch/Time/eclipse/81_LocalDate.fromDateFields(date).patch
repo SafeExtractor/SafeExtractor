@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/joda/time/LocalDate.java b/src/main/java/org/joda/time/LocalDate.java
+index 9806eb3..a8a2d84 100644
+--- a/src/main/java/org/joda/time/LocalDate.java
++++ b/src/main/java/org/joda/time/LocalDate.java
+@@ -1002,13 +1002,14 @@
+     public Date toDate() {
+         int dom = getDayOfMonth();
+         Date date = new Date(getYear() - 1900, getMonthOfYear() - 1, dom);
+-        LocalDate check = LocalDate.fromDateFields(date);
++        LocalDate var_81 = LocalDate.fromDateFields(date);
++		LocalDate check = var_81;
+         if (check.isBefore(this)) {
+             // DST gap (no midnight)
+             // move forward in units of one hour until date correct
+             while (check.equals(this) == false) {
+                 date.setTime(date.getTime() + 3600000);
+-                check = LocalDate.fromDateFields(date);
++                check = var_81;
+             }
+             // move back in units of one second until date wrong
+             while (date.getDate() == dom) {

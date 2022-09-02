@@ -1,0 +1,81 @@
+diff --git a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+index 171eb51..258c945 100644
+--- a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
++++ b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+@@ -207,40 +207,43 @@
+       }
+ 
+       return result;
+-    } else if (name.isOr() || name.isHook()) {
+-      Node firstVal;
+-      if (name.isHook()) {
+-        firstVal = name.getFirstChild().getNext();
+-      } else {
+-        firstVal = name.getFirstChild();
+-      }
+-
+-      Collection<Definition> defs1 = getCallableDefinitions(definitionProvider,
+-                                                            firstVal);
+-      Collection<Definition> defs2 = getCallableDefinitions(definitionProvider,
+-                                                            firstVal.getNext());
+-      if (defs1 != null && defs2 != null) {
+-        defs1.addAll(defs2);
+-        return defs1;
+-      } else {
+-        return null;
+-      }
+-    } else if (NodeUtil.isFunctionExpression(name)) {
+-      // The anonymous function reference is also the definition.
+-      // TODO(user) Change SimpleDefinitionFinder so it is possible to query for
+-      // function expressions by function node.
+-
+-      // isExtern is false in the call to the constructor for the
+-      // FunctionExpressionDefinition below because we know that
+-      // getCallableDefinitions() will only be called on the first
+-      // child of a call and thus the function expression
+-      // definition will never be an extern.
+-      return Lists.newArrayList(
+-          (Definition)
+-              new DefinitionsRemover.FunctionExpressionDefinition(name, false));
+     } else {
+-      return null;
+-    }
++		boolean var_1343 = name.isHook();
++		if (name.isOr() || var_1343) {
++		  Node firstVal;
++		  if (var_1343) {
++		    firstVal = name.getFirstChild().getNext();
++		  } else {
++		    firstVal = name.getFirstChild();
++		  }
++
++		  Collection<Definition> defs1 = getCallableDefinitions(definitionProvider,
++		                                                        firstVal);
++		  Collection<Definition> defs2 = getCallableDefinitions(definitionProvider,
++		                                                        firstVal.getNext());
++		  if (defs1 != null && defs2 != null) {
++		    defs1.addAll(defs2);
++		    return defs1;
++		  } else {
++		    return null;
++		  }
++		} else if (NodeUtil.isFunctionExpression(name)) {
++		  // The anonymous function reference is also the definition.
++		  // TODO(user) Change SimpleDefinitionFinder so it is possible to query for
++		  // function expressions by function node.
++
++		  // isExtern is false in the call to the constructor for the
++		  // FunctionExpressionDefinition below because we know that
++		  // getCallableDefinitions() will only be called on the first
++		  // child of a call and thus the function expression
++		  // definition will never be an extern.
++		  return Lists.newArrayList(
++		      (Definition)
++		          new DefinitionsRemover.FunctionExpressionDefinition(name, false));
++		} else {
++		  return null;
++		}
++	}
+   }
+ 
+   /**

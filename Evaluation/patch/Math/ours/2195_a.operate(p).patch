@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/ConjugateGradient.java b/src/main/java/org/apache/commons/math3/linear/ConjugateGradient.java
+index a7b80a4..22de10f 100644
+--- a/src/main/java/org/apache/commons/math3/linear/ConjugateGradient.java
++++ b/src/main/java/org/apache/commons/math3/linear/ConjugateGradient.java
+@@ -167,7 +167,8 @@
+         final RealVector x = x0;
+         final RealVector xro = RealVector.unmodifiableRealVector(x);
+         final RealVector p = x.copy();
+-        RealVector q = a.operate(p);
++        RealVector var_2195 = a.operate(p);
++		RealVector q = var_2195;
+ 
+         final RealVector r = b.combine(1, -1, q);
+         final RealVector rro = RealVector.unmodifiableRealVector(r);
+@@ -209,7 +210,7 @@
+             } else {
+                 p.combineToSelf(rhoNext / rhoPrev, 1., z);
+             }
+-            q = a.operate(p);
++            q = var_2195;
+             final double pq = p.dotProduct(q);
+             if (check && (pq <= 0.)) {
+                 final NonPositiveDefiniteOperatorException e;

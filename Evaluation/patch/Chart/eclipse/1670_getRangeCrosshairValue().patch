@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..f8a988a 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -3296,7 +3296,8 @@
+             }
+         }
+         crosshairState.setCrosshairX(getDomainCrosshairValue());
+-        crosshairState.setCrosshairY(getRangeCrosshairValue());
++        double var_1670 = getRangeCrosshairValue();
++		crosshairState.setCrosshairY(var_1670);
+         Shape originalClip = g2.getClip();
+         Composite originalComposite = g2.getComposite();
+ 
+@@ -3465,7 +3466,7 @@
+         }
+         setRangeCrosshairValue(crosshairState.getCrosshairY(), false);
+         if (isRangeCrosshairVisible()) {
+-            double y = getRangeCrosshairValue();
++            double y = var_1670;
+             Paint paint = getRangeCrosshairPaint();
+             Stroke stroke = getRangeCrosshairStroke();
+             drawRangeCrosshair(g2, dataArea, orient, y, yAxis, stroke, paint);

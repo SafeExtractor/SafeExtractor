@@ -1,0 +1,20 @@
+diff --git a/src/java/org/apache/commons/math/linear/BigMatrixImpl.java b/src/java/org/apache/commons/math/linear/BigMatrixImpl.java
+index ccb9a9d..2215e98 100644
+--- a/src/java/org/apache/commons/math/linear/BigMatrixImpl.java
++++ b/src/java/org/apache/commons/math/linear/BigMatrixImpl.java
+@@ -1042,11 +1042,12 @@
+             
+             // upper
+             for (int row = 0; row < col; row++) {
+-                sum = lu[row][col];
++                BigDecimal[] luRow = lu[row];
++				sum = luRow[col];
+                 for (int i = 0; i < row; i++) {
+-                    sum = sum.subtract(lu[row][i].multiply(lu[i][col]));
++                    sum = sum.subtract(luRow[i].multiply(lu[i][col]));
+                 }
+-                lu[row][col] = sum;
++                luRow[col] = sum;
+             }
+             
+             // lower

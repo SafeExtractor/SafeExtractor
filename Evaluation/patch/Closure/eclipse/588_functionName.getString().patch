@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java b/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
+index 7412a61..caded4f 100755
+--- a/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
++++ b/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
+@@ -405,10 +405,11 @@
+       return true;
+     } else if (n.isCall()) {
+       Node functionName = n.getFirstChild();
+-      return functionName.isName() &&
+-          (functionName.getString().equals(
++      String var_588 = functionName.getString();
++	return functionName.isName() &&
++          (var_588.equals(
+               CrossModuleMethodMotion.STUB_METHOD_NAME) ||
+-           functionName.getString().equals(
++           var_588.equals(
+               CrossModuleMethodMotion.UNSTUB_METHOD_NAME));
+     } else if (n.isArrayLit() || n.isObjectLit()) {
+       boolean isObjectLit = n.isObjectLit();

@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..190ef29 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -1414,7 +1414,8 @@
+       ObjectLiteralCast objectLiteralCast =
+           codingConvention.getObjectLiteralCast(n);
+       if (objectLiteralCast != null) {
+-        if (objectLiteralCast.diagnosticType == null) {
++        DiagnosticType var_1228 = objectLiteralCast.diagnosticType;
++		if (var_1228 == null) {
+           ObjectType type = ObjectType.cast(
+               typeRegistry.getType(objectLiteralCast.typeName));
+           if (type != null && type.getConstructor() != null) {
+@@ -1425,7 +1426,7 @@
+           }
+         } else {
+           compiler.report(JSError.make(t.getSourceName(), n,
+-                  objectLiteralCast.diagnosticType));
++                  var_1228));
+         }
+       }
+     }

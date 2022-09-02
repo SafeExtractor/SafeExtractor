@@ -1,0 +1,39 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1102_init.getAssignedValue().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1102_init.getAssignedValue().patch
+index bcfacb2..8e0962e 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1102_init.getAssignedValue().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1102_init.getAssignedValue().patch
+@@ -1,30 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/InlineVariables.java b/src/com/google/javascript/jscomp/InlineVariables.java
+-index 5c7408d..649307c 100644
++index 5c7408d..2b5fd67 100644
+ --- a/src/com/google/javascript/jscomp/InlineVariables.java
+ +++ b/src/com/google/javascript/jscomp/InlineVariables.java
+-@@ -259,13 +259,14 @@
+-       Reference init = referenceInfo.getInitializingReference();
+-       int firstRefAfterInit = (declaration == init) ? 2 : 3;
+- 
+--      if (refCount > 1 &&
+-+      Node var_1102 = init.getAssignedValue();
+-+	if (refCount > 1 &&
+-           isImmutableAndWellDefinedVariable(v, referenceInfo)) {
+-         // if the variable is referenced more than once, we can only
++@@ -265,7 +265,8 @@
+          // inline it if it's immutable and never defined before referenced.
+          Node value;
+          if (init != null) {
+ -          value = init.getAssignedValue();
+-+          value = var_1102;
+++          Node var_1102 = init.getAssignedValue();
+++		value = var_1102;
+          } else {
+            // Create a new node for variable that is never initialized.
+            Node srcLocation = declaration.getNode();
+-@@ -287,7 +288,7 @@
+-         if (isValidDeclaration(declaration) && isValidInitialization(init)) {
+-           // The only reference is the initialization, remove the assignment and
+-           // the variable declaration.
+--          Node value = init.getAssignedValue();
+-+          Node value = var_1102;
+-           Preconditions.checkNotNull(value);
+-           inlineWellDefinedVariable(v, value, referenceInfo.references);
+-           staleVars.add(v);

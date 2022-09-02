@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/renderer/category/BarRenderer.java b/source/org/jfree/chart/renderer/category/BarRenderer.java
+index 37da044..542afbd 100644
+--- a/source/org/jfree/chart/renderer/category/BarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/BarRenderer.java
+@@ -122,6 +122,7 @@
+ import org.jfree.chart.plot.CategoryPlot;
+ import org.jfree.chart.plot.PlotOrientation;
+ import org.jfree.chart.plot.PlotRenderingInfo;
++import org.jfree.chart.text.TextAnchor;
+ import org.jfree.chart.text.TextUtilities;
+ import org.jfree.chart.util.GradientPaintTransformer;
+ import org.jfree.chart.util.ObjectUtilities;
+@@ -1119,9 +1120,10 @@
+                 position.getItemLabelAnchor(), bar, plot.getOrientation());
+ 
+         if (isInternalAnchor(position.getItemLabelAnchor())) {
+-            Shape bounds = TextUtilities.calculateRotatedStringBounds(label,
++            TextAnchor var_2742 = position.getTextAnchor();
++			Shape bounds = TextUtilities.calculateRotatedStringBounds(label,
+                     g2, (float) anchorPoint.getX(), (float) anchorPoint.getY(),
+-                    position.getTextAnchor(), position.getAngle(),
++                    var_2742, position.getAngle(),
+                     position.getRotationAnchor());
+ 
+             if (bounds != null) {

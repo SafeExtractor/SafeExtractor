@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/integration/SimpsonIntegrator.java b/src/main/java/org/apache/commons/math3/analysis/integration/SimpsonIntegrator.java
+index fd0c647..f768256 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/integration/SimpsonIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/integration/SimpsonIntegrator.java
+@@ -102,7 +102,8 @@
+         throws TooManyEvaluationsException, MaxCountExceededException {
+ 
+         TrapezoidIntegrator qtrap = new TrapezoidIntegrator();
+-        if (getMinimalIterationCount() == 1) {
++        int var_195 = getMinimalIterationCount();
++		if (var_195 == 1) {
+             return (4 * qtrap.stage(this, 1) - qtrap.stage(this, 0)) / 3.0;
+         }
+ 
+@@ -113,7 +114,7 @@
+             final double t = qtrap.stage(this, iterations.getCount());
+             iterations.incrementCount();
+             final double s = (4 * t - oldt) / 3.0;
+-            if (iterations.getCount() >= getMinimalIterationCount()) {
++            if (iterations.getCount() >= var_195) {
+                 final double delta = FastMath.abs(s - olds);
+                 final double rLimit =
+                     getRelativeAccuracy() * (FastMath.abs(olds) + FastMath.abs(s)) * 0.5;

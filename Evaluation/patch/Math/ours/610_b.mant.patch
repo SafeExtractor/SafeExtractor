@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..0d317e2 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1320,7 +1320,8 @@
+         /* Handle special case when a or b is zero, by setting the exponent
+        of the zero number equal to the other one.  This avoids an alignment
+        which would cause catastropic loss of precision */
+-        if (b.mant[mant.length-1] == 0) {
++        int[] var_610 = b.mant;
++		if (var_610[mant.length-1] == 0) {
+             b.exp = a.exp;
+         }
+ 
+@@ -1349,7 +1350,7 @@
+         /* add the mantissas */
+         int rh = 0; /* acts as a carry */
+         for (int i = 0; i < mant.length; i++) {
+-            final int r = a.mant[i]+b.mant[i]+rh;
++            final int r = a.mant[i]+var_610[i]+rh;
+             rh = r / RADIX;
+             result.mant[i] = r - rh * RADIX;
+         }

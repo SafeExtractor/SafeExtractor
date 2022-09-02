@@ -1,0 +1,61 @@
+diff --git a/source/org/jfree/data/jdbc/JDBCXYDataset.java b/source/org/jfree/data/jdbc/JDBCXYDataset.java
+index 95cd49c..f14c1cb 100644
+--- a/source/org/jfree/data/jdbc/JDBCXYDataset.java
++++ b/source/org/jfree/data/jdbc/JDBCXYDataset.java
+@@ -296,12 +296,13 @@
+             }
+ 
+             // Might need to add, to free memory from any previous result sets
+-            if (this.rows != null) {
+-                for (int column = 0; column < this.rows.size(); column++) {
+-                    ArrayList row = (ArrayList) this.rows.get(column);
++            ArrayList var_3985 = this.rows;
++			if (var_3985 != null) {
++                for (int column = 0; column < var_3985.size(); column++) {
++                    ArrayList row = (ArrayList) var_3985.get(column);
+                     row.clear();
+                 }
+-                this.rows.clear();
++                var_3985.clear();
+             }
+ 
+             // Are we working with a time series.
+@@ -347,31 +348,31 @@
+                             break;
+                     }
+                 }
+-                this.rows.add(newRow);
++                var_3985.add(newRow);
+             }
+ 
+             /// a kludge to make everything work when no rows returned
+-            if (this.rows.size() == 0) {
++            if (var_3985.size() == 0) {
+                 ArrayList newRow = new ArrayList();
+                 for (int column = 0; column < numberOfColumns; column++) {
+                     if (columnTypes[column] != Types.NULL) {
+                         newRow.add(new Integer(0));
+                     }
+                 }
+-                this.rows.add(newRow);
++                var_3985.add(newRow);
+             }
+ 
+             /// Determine max and min values.
+-            if (this.rows.size() < 1) {
++            if (var_3985.size() < 1) {
+                 this.maxValue = 0.0;
+                 this.minValue = 0.0;
+             }
+             else {
+-                ArrayList row = (ArrayList) this.rows.get(0);
++                ArrayList row = (ArrayList) var_3985.get(0);
+                 this.maxValue = Double.NEGATIVE_INFINITY;
+                 this.minValue = Double.POSITIVE_INFINITY;
+-                for (int rowNum = 0; rowNum < this.rows.size(); ++rowNum) {
+-                    row = (ArrayList) this.rows.get(rowNum);
++                for (int rowNum = 0; rowNum < var_3985.size(); ++rowNum) {
++                    row = (ArrayList) var_3985.get(rowNum);
+                     for (int column = 1; column < numberOfColumns; column++) {
+                         Object testValue = row.get(column);
+                         if (testValue != null) {

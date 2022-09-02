@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/CommandLineRunner.java b/src/com/google/javascript/jscomp/CommandLineRunner.java
+index 2d3b139..07659c2 100644
+--- a/src/com/google/javascript/jscomp/CommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/CommandLineRunner.java
+@@ -689,7 +689,8 @@
+       err.flush();
+     }
+ 
+-    if (flags.process_common_js_modules) {
++    boolean var_639 = flags.process_common_js_modules;
++	if (var_639) {
+       flags.process_closure_primitives = true;
+       flags.manage_closure_dependencies = true;
+       if (flags.common_js_entry_module == null) {
+@@ -746,7 +747,7 @@
+           .setOutputModuleDependencies(flags.output_module_dependencies)
+           .setAcceptConstKeyword(flags.accept_const_keyword)
+           .setLanguageIn(flags.language_in)
+-          .setProcessCommonJSModules(flags.process_common_js_modules)
++          .setProcessCommonJSModules(var_639)
+           .setCommonJSModulePathPrefix(flags.common_js_path_prefix)
+           .setTransformAMDToCJSModules(flags.transform_amd_modules)
+           .setWarningsWhitelistFile(flags.warnings_whitelist_file);

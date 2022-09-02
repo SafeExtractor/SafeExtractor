@@ -1,0 +1,35 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYBarRenderer.java b/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
+index 679cc20..cc4dfe8 100644
+--- a/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
+@@ -128,6 +128,7 @@
+ import org.jfree.chart.plot.PlotRenderingInfo;
+ import org.jfree.chart.plot.XYCrosshairState;
+ import org.jfree.chart.plot.XYPlot;
++import org.jfree.chart.text.TextAnchor;
+ import org.jfree.chart.text.TextUtilities;
+ import org.jfree.chart.util.GradientPaintTransformer;
+ import org.jfree.chart.util.ObjectUtilities;
+@@ -1042,10 +1043,11 @@
+         Point2D anchorPoint = calculateLabelAnchorPoint(
+                 position.getItemLabelAnchor(), bar, plot.getOrientation());
+ 
+-        if (isInternalAnchor(position.getItemLabelAnchor())) {
++        TextAnchor var_2880 = position.getTextAnchor();
++		if (isInternalAnchor(position.getItemLabelAnchor())) {
+             Shape bounds = TextUtilities.calculateRotatedStringBounds(label,
+                     g2, (float) anchorPoint.getX(), (float) anchorPoint.getY(),
+-                    position.getTextAnchor(), position.getAngle(),
++                    var_2880, position.getAngle(),
+                     position.getRotationAnchor());
+ 
+             if (bounds != null) {
+@@ -1069,7 +1071,7 @@
+         if (position != null) {
+             TextUtilities.drawRotatedString(label, g2,
+                     (float) anchorPoint.getX(), (float) anchorPoint.getY(),
+-                    position.getTextAnchor(), position.getAngle(),
++                    var_2880, position.getAngle(),
+                     position.getRotationAnchor());
+         }
+     }

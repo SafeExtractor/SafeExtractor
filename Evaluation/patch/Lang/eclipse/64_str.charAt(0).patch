@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/lang3/StringUtils.java b/src/main/java/org/apache/commons/lang3/StringUtils.java
+index 04b53fa..6227253 100644
+--- a/src/main/java/org/apache/commons/lang3/StringUtils.java
++++ b/src/main/java/org/apache/commons/lang3/StringUtils.java
+@@ -5022,16 +5022,17 @@
+         if (repeat == 1 || inputLength == 0) {
+             return str;
+         }
+-        if (inputLength == 1 && repeat <= PAD_LIMIT) {
+-            return repeat(str.charAt(0), repeat);
++        char var_64 = str.charAt(0);
++		if (inputLength == 1 && repeat <= PAD_LIMIT) {
++            return repeat(var_64, repeat);
+         }
+ 
+         final int outputLength = inputLength * repeat;
+         switch (inputLength) {
+             case 1 :
+-                return repeat(str.charAt(0), repeat);
++                return repeat(var_64, repeat);
+             case 2 :
+-                final char ch0 = str.charAt(0);
++                final char ch0 = var_64;
+                 final char ch1 = str.charAt(1);
+                 final char[] output2 = new char[outputLength];
+                 for (int i = repeat * 2 - 2; i >= 0; i--, i--) {

@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/data/io/CSV.java b/source/org/jfree/data/io/CSV.java
+index ea66418..be88c70 100644
+--- a/source/org/jfree/data/io/CSV.java
++++ b/source/org/jfree/data/io/CSV.java
+@@ -152,7 +152,8 @@
+         Comparable rowKey = null;
+         int fieldIndex = 0;
+         int start = 0;
+-        for (int i = 0; i < line.length(); i++) {
++        Object var_3976 = columnKeys.get(fieldIndex - 1);
++		for (int i = 0; i < line.length(); i++) {
+             if (line.charAt(i) == this.fieldDelimiter) {
+                 if (fieldIndex == 0) {  // first field contains the row key
+                     String key = line.substring(start, i);
+@@ -164,7 +165,7 @@
+                     );
+                     dataset.addValue(
+                         value, rowKey,
+-                        (Comparable) columnKeys.get(fieldIndex - 1)
++                        (Comparable) var_3976
+                     );
+                 }
+                 start = i + 1;
+@@ -175,7 +176,7 @@
+             removeStringDelimiters(line.substring(start, line.length()))
+         );
+         dataset.addValue(
+-            value, rowKey, (Comparable) columnKeys.get(fieldIndex - 1)
++            value, rowKey, (Comparable) var_3976
+         );
+     }
+ 

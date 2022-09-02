@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/transform/FastCosineTransformer.java b/src/main/java/org/apache/commons/math3/transform/FastCosineTransformer.java
+index e1254a5..82cbcb1 100644
+--- a/src/main/java/org/apache/commons/math3/transform/FastCosineTransformer.java
++++ b/src/main/java/org/apache/commons/math3/transform/FastCosineTransformer.java
+@@ -158,8 +158,9 @@
+         double t1 = 0.5 * (f[0] - f[n]);
+         for (int i = 1; i < (n >> 1); i++) {
+             final double a = 0.5 * (f[i] + f[n - i]);
+-            final double b = FastMath.sin(i * FastMath.PI / n) * (f[i] - f[n - i]);
+-            final double c = FastMath.cos(i * FastMath.PI / n) * (f[i] - f[n - i]);
++            double var_4098 = FastMath.PI;
++			final double b = FastMath.sin(i * var_4098 / n) * (f[i] - f[n - i]);
++            final double c = FastMath.cos(i * var_4098 / n) * (f[i] - f[n - i]);
+             x[i] = a - b;
+             x[n - i] = a + b;
+             t1 += c;

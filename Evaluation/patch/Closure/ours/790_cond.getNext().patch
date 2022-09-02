@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..b39e988 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -290,7 +290,8 @@
+     if (defaultCase == null) {
+       Node cond = n.getFirstChild(), prev = null, next = null, cur;
+ 
+-      for (cur = cond.getNext(); cur != null; cur = next) {
++      Node var_790 = cond.getNext();
++	for (cur = var_790; cur != null; cur = next) {
+         next = cur.getNext();
+         if (!mayHaveSideEffects(cur.getFirstChild()) &&
+             isUselessCase(cur, prev)) {
+@@ -305,7 +306,7 @@
+         Node caseLabel;
+         TernaryValue caseMatches = TernaryValue.TRUE;
+         // Remove cases until you find one that may match
+-        for (cur = cond.getNext(); cur != null; cur = next) {
++        for (cur = var_790; cur != null; cur = next) {
+           next = cur.getNext();
+           caseLabel = cur.getFirstChild();
+           caseMatches = PeepholeFoldConstants.evaluateComparison(
+@@ -337,7 +338,7 @@
+             removeCase(n, cur);
+           }
+           // If there is one case left, we may be able to fold it
+-          cur = cond.getNext();
++          cur = var_790;
+           if (cur != null && cur.getNext() == null) {
+             block = cur.getLastChild();
+             if (!(NodeUtil.containsType(block, Token.BREAK,

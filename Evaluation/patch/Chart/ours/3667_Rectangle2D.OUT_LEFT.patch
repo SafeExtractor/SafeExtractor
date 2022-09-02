@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/util/ShapeUtilities.java b/source/org/jfree/chart/util/ShapeUtilities.java
+index 5c137f7..2f20496 100644
+--- a/source/org/jfree/chart/util/ShapeUtilities.java
++++ b/source/org/jfree/chart/util/ShapeUtilities.java
+@@ -647,10 +647,11 @@
+             double dy = (y2 - y1);
+             // update (x1, y1), (x2, y2) and f1 and f2 using intersections
+             // then recheck
+-            if (f1 != 0) {
++            int var_3667 = Rectangle2D.OUT_LEFT;
++			if (f1 != 0) {
+                 // first point is outside, so we update it against one of the
+                 // four sides then continue
+-                if ((f1 & Rectangle2D.OUT_LEFT) == Rectangle2D.OUT_LEFT
++                if ((f1 & var_3667) == var_3667
+                         && dx != 0.0) {
+                     y1 = y1 + (minX - x1) * dy / dx;
+                     x1 = minX;
+@@ -675,7 +676,7 @@
+             else if (f2 != 0) {
+                 // second point is outside, so we update it against one of the
+                 // four sides then continue
+-                if ((f2 & Rectangle2D.OUT_LEFT) == Rectangle2D.OUT_LEFT
++                if ((f2 & var_3667) == var_3667
+                         && dx != 0.0) {
+                     y2 = y2 + (minX - x2) * dy / dx;
+                     x2 = minX;

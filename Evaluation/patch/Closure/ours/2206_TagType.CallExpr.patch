@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/jsonml/Writer.java b/src/com/google/javascript/jscomp/jsonml/Writer.java
+index b357eb9..187e64d 100644
+--- a/src/com/google/javascript/jscomp/jsonml/Writer.java
++++ b/src/com/google/javascript/jscomp/jsonml/Writer.java
+@@ -338,7 +338,8 @@
+     JsonML element;
+     // the first child may indicate that it is invoke expression
+     // or a standard function call
+-    switch (child.getType()) {
++    TagType var_2206 = TagType.CallExpr;
++	switch (child.getType()) {
+       case Token.GETPROP:         // a.x()
+       case Token.GETELEM:         // a[x]()
+         // we have to process this node here and cannot call processNode(child)
+@@ -366,14 +367,14 @@
+           element = new JsonML(TagType.IdExpr);
+           element.setAttribute(TagAttr.NAME, child.getString());
+           // element representing function is created
+-          element = new JsonML(TagType.CallExpr, element);
++          element = new JsonML(var_2206, element);
+         }
+         currentParent.appendChild(element);
+         break;
+       default:
+        // it addresses all cases where the first argument evaluates to
+        // another expression
+-       element = new JsonML(TagType.CallExpr);
++       element = new JsonML(var_2206);
+        currentParent.appendChild(element);
+        processNode(child, element);
+        break;

@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..d8e9a96 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -968,7 +968,8 @@
+       // First, check to see if the property is implemented
+       // on a superclass.
+       JSType propType = ownerType.getPropertyType(propName);
+-      if (propType != null && propType.isFunctionType()) {
++      boolean var_1217 = propType.isFunctionType();
++	if (propType != null && var_1217) {
+         return propType.toMaybeFunctionType();
+       } else {
+         // If it's not, then check to see if it's implemented
+@@ -976,7 +977,7 @@
+         for (ObjectType iface :
+                  ownerType.getCtorImplementedInterfaces()) {
+           propType = iface.getPropertyType(propName);
+-          if (propType != null && propType.isFunctionType()) {
++          if (propType != null && var_1217) {
+             return propType.toMaybeFunctionType();
+           }
+         }

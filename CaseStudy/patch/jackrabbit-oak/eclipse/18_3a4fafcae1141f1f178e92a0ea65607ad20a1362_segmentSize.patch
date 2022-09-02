@@ -1,0 +1,45 @@
+diff --git a/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/writer/CommitMitigatingTieredMergePolicy.java b/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/writer/CommitMitigatingTieredMergePolicy.java
+index b899284..cc36a17 100644
+--- a/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/writer/CommitMitigatingTieredMergePolicy.java
++++ b/oak-lucene/src/main/java/org/apache/jackrabbit/oak/plugins/index/lucene/writer/CommitMitigatingTieredMergePolicy.java
+@@ -322,10 +322,11 @@
+ 
+     @Override
+     public MergeSpecification findMerges(MergeTrigger mergeTrigger, SegmentInfos infos) throws IOException {
+-        if (verbose()) {
+-            message("findMerges: " + infos.size() + " segments");
++        String segmentSize = infos.size();
++		if (verbose()) {
++            message("findMerges: " + segmentSize + " segments");
+         }
+-        if (infos.size() == 0) {
++        if (segmentSize == 0) {
+             return null;
+         }
+ 
+@@ -342,7 +343,7 @@
+         }
+ 
+         // set a maxSegmentsBarrier
+-        if (commitRate > maxCommitRateDocs && infos.size() < maxNoOfSegs) {
++        if (commitRate > maxCommitRateDocs && segmentSize < maxNoOfSegs) {
+             return null;
+         }
+ 
+@@ -433,14 +434,14 @@
+ 
+             double bytes = idxBytes - this.mb;
+             double mbRate = bytes / timeDelta;
+-            log.debug("committing {} MBs/sec ({} segs)", mbRate, infos.size());
++            log.debug("committing {} MBs/sec ({} segs)", mbRate, segmentSize);
+ 
+             if (verbose()) {
+                 message(mbRate + "mb/s (max: " + maxCommitRateMB + "mb/s)");
+             }
+ 
+             this.mb = idxBytes;
+-            if (mbRate > maxCommitRateMB && infos.size() < maxNoOfSegs) {
++            if (mbRate > maxCommitRateMB && segmentSize < maxNoOfSegs) {
+                 return null;
+             }
+ 

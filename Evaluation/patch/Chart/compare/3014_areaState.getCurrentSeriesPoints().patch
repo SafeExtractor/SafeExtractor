@@ -1,0 +1,39 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3014_areaState.getCurrentSeriesPoints().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/3014_areaState.getCurrentSeriesPoints().patch
+index de16ac7..bd26beb 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3014_areaState.getCurrentSeriesPoints().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/3014_areaState.getCurrentSeriesPoints().patch
+@@ -1,28 +1,16 @@
+ diff --git a/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java b/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
+-index 8332a80..e80741d 100644
++index 8332a80..efbc46c 100644
+ --- a/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
+ +++ b/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
+-@@ -426,11 +426,12 @@
+-         if (pass == 0) {
+-             //  On first pass render the areas, line and outlines
+- 
+--            if (item == 0) {
+-+            Stack var_3014 = areaState.getCurrentSeriesPoints();
+-+			if (item == 0) {
++@@ -429,8 +429,9 @@
++             if (item == 0) {
+                  // Create a new Area for the series
+                  areaState.setSeriesArea(new Polygon());
+-                 areaState.setLastSeriesPoints(
++-                areaState.setLastSeriesPoints(
+ -                        areaState.getCurrentSeriesPoints());
+++                Stack var_3014 = areaState.getCurrentSeriesPoints();
+++				areaState.setLastSeriesPoints(
+ +                        var_3014);
+                  areaState.setCurrentSeriesPoints(new Stack());
+  
+                  // start from previous height (ph1)
+-@@ -453,7 +454,7 @@
+-                 Point point = new Point((int) transX1, (int) transY1);
+-                 areaState.getSeriesArea().addPoint((int) point.getX(),
+-                         (int) point.getY());
+--                areaState.getCurrentSeriesPoints().push(point);
+-+                var_3014.push(point);
+-             }
+-             else if (orientation == PlotOrientation.HORIZONTAL) {
+-                 areaState.getSeriesArea().addPoint((int) transY1,

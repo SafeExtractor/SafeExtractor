@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYBarRenderer.java b/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
+index 679cc20..e4995f8 100644
+--- a/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
+@@ -851,13 +851,14 @@
+         if (Double.isNaN(endX)) {
+             return null;
+         }
+-        if (startX <= endX) {
+-            if (!domainAxis.getRange().intersects(startX, endX)) {
++        Range var_2871 = domainAxis.getRange();
++		if (startX <= endX) {
++            if (!var_2871.intersects(startX, endX)) {
+                 return null;
+             }
+         }
+         else {
+-            if (!domainAxis.getRange().intersects(endX, startX)) {
++            if (!var_2871.intersects(endX, startX)) {
+                 return null;
+             }
+         }

@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/InstrumentFunctions.java b/src/com/google/javascript/jscomp/InstrumentFunctions.java
+index 330e767..efee792 100644
+--- a/src/com/google/javascript/jscomp/InstrumentFunctions.java
++++ b/src/com/google/javascript/jscomp/InstrumentFunctions.java
+@@ -298,8 +298,9 @@
+         return;
+       }
+ 
+-      if (!reportFunctionName.isEmpty()) {
+-        Node body = n.getFirstChild().getNext().getNext();
++      Node var_685 = n.getFirstChild().getNext().getNext();
++	if (!reportFunctionName.isEmpty()) {
++        Node body = var_685;
+         Node call = IR.call(
+             IR.name(reportFunctionName),
+             IR.number(id));
+@@ -310,7 +311,7 @@
+       }
+ 
+       if (!reportFunctionExitName.isEmpty()) {
+-        Node body = n.getFirstChild().getNext().getNext();
++        Node body = var_685;
+         (new InstrumentReturns(id)).process(body);
+       }
+ 

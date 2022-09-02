@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/plot/MultiplePiePlot.java b/source/org/jfree/chart/plot/MultiplePiePlot.java
+index f85acab..5400939 100644
+--- a/source/org/jfree/chart/plot/MultiplePiePlot.java
++++ b/source/org/jfree/chart/plot/MultiplePiePlot.java
+@@ -563,17 +563,18 @@
+     public LegendItemCollection getLegendItems() {
+ 
+         LegendItemCollection result = new LegendItemCollection();
+-        if (this.dataset == null) {
++        CategoryDataset var_1823 = this.dataset;
++		if (var_1823 == null) {
+             return result;
+         }
+ 
+         List keys = null;
+         prefetchSectionPaints();
+         if (this.dataExtractOrder == TableOrder.BY_ROW) {
+-            keys = this.dataset.getColumnKeys();
++            keys = var_1823.getColumnKeys();
+         }
+         else if (this.dataExtractOrder == TableOrder.BY_COLUMN) {
+-            keys = this.dataset.getRowKeys();
++            keys = var_1823.getRowKeys();
+         }
+         if (keys == null) {
+             return result;

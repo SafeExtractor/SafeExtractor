@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/SimpleDefinitionFinder.java b/src/com/google/javascript/jscomp/SimpleDefinitionFinder.java
+index fb9b5c2..3e8d470 100644
+--- a/src/com/google/javascript/jscomp/SimpleDefinitionFinder.java
++++ b/src/com/google/javascript/jscomp/SimpleDefinitionFinder.java
+@@ -292,7 +292,8 @@
+    * @return Whether the use is a call or new.
+    */
+   static boolean isCallOrNewSite(UseSite use) {
+-    Node call = use.node.getParent();
++    Node var_553 = use.node;
++	Node call = var_553.getParent();
+     if (call == null) {
+       // The node has been removed from the AST.
+       return false;
+@@ -300,7 +301,7 @@
+     // We need to make sure we're dealing with a call to the function we're
+     // optimizing. If the the first child of the parent is not the site, this
+     // is a nested call and it's a call to another function.
+-    return NodeUtil.isCallOrNew(call) && call.getFirstChild() == use.node;
++    return NodeUtil.isCallOrNew(call) && call.getFirstChild() == var_553;
+   }
+ 
+   boolean canModifyDefinition(Definition definition) {

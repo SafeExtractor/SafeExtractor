@@ -1,0 +1,53 @@
+diff --git a/src/com/google/javascript/jscomp/SyntacticScopeCreator.java b/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
+index e1caa71..a27f7a6 100644
+--- a/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
++++ b/src/com/google/javascript/jscomp/SyntacticScopeCreator.java
+@@ -122,10 +122,11 @@
+    * Scans and gather variables declarations under a Node
+    */
+   private void scanVars(Node n, Node parent) {
+-    switch (n.getType()) {
++    Node var_197 = n.getFirstChild();
++	switch (n.getType()) {
+       case Token.VAR:
+         // Declare all variables. e.g. var x = 1, y, z;
+-        for (Node child = n.getFirstChild();
++        for (Node child = var_197;
+              child != null;) {
+           Node next = child.getNext();
+           declareVar(child);
+@@ -138,21 +139,21 @@
+           return;
+         }
+ 
+-        String fnName = n.getFirstChild().getString();
++        String fnName = var_197.getString();
+         if (fnName.isEmpty()) {
+           // This is invalid, but allow it so the checks can catch it.
+           return;
+         }
+-        declareVar(n.getFirstChild());
++        declareVar(var_197);
+         return;   // should not examine function's children
+ 
+       case Token.CATCH:
+         Preconditions.checkState(n.getChildCount() == 2);
+-        Preconditions.checkState(n.getFirstChild().isName());
++        Preconditions.checkState(var_197.isName());
+         // the first child is the catch var and the third child
+         // is the code block
+ 
+-        final Node var = n.getFirstChild();
++        final Node var = var_197;
+         final Node block = var.getNext();
+ 
+         declareVar(var);
+@@ -168,7 +169,7 @@
+     // Variables can only occur in statement-level nodes, so
+     // we only need to traverse children in a couple special cases.
+     if (NodeUtil.isControlStructure(n) || NodeUtil.isStatementBlock(n)) {
+-      for (Node child = n.getFirstChild();
++      for (Node child = var_197;
+            child != null;) {
+         Node next = child.getNext();
+         scanVars(child, n);

@@ -1,0 +1,55 @@
+diff --git a/source/org/jfree/chart/panel/ZoomHandler.java b/source/org/jfree/chart/panel/ZoomHandler.java
+index ab08810..afe7652 100644
+--- a/source/org/jfree/chart/panel/ZoomHandler.java
++++ b/source/org/jfree/chart/panel/ZoomHandler.java
+@@ -157,19 +157,20 @@
+             vZoom = panel.isRangeZoomable();
+         }
+ 
+-        boolean zoomTrigger1 = hZoom && Math.abs(e.getX()
+-                - this.zoomPoint.getX()) >= panel.getZoomTriggerDistance();
++        double var_1340 = this.zoomPoint.getX();
++		boolean zoomTrigger1 = hZoom && Math.abs(e.getX()
++                - var_1340) >= panel.getZoomTriggerDistance();
+         boolean zoomTrigger2 = vZoom && Math.abs(e.getY()
+                 - this.zoomPoint.getY()) >= panel.getZoomTriggerDistance();
+         if (zoomTrigger1 || zoomTrigger2) {
+-            if ((hZoom && (e.getX() < this.zoomPoint.getX()))
++            if ((hZoom && (e.getX() < var_1340))
+                     || (vZoom && (e.getY() < this.zoomPoint.getY()))) {
+                 panel.restoreAutoBounds();
+             }
+             else {
+                 double x, y, w, h;
+                 Rectangle2D screenDataArea = panel.getScreenDataArea(
+-                        (int) this.zoomPoint.getX(),
++                        (int) var_1340,
+                         (int) this.zoomPoint.getY());
+                 double maxX = screenDataArea.getMaxX();
+                 double maxY = screenDataArea.getMaxY();
+@@ -177,10 +178,10 @@
+                 // will be true, so we can just test for either being false;
+                 // otherwise both are true
+                 if (!vZoom) {
+-                    x = this.zoomPoint.getX();
++                    x = var_1340;
+                     y = screenDataArea.getMinY();
+                     w = Math.min(this.zoomRectangle.getWidth(),
+-                            maxX - this.zoomPoint.getX());
++                            maxX - var_1340);
+                     h = screenDataArea.getHeight();
+                 }
+                 else if (!hZoom) {
+@@ -191,10 +192,10 @@
+                             maxY - this.zoomPoint.getY());
+                 }
+                 else {
+-                    x = this.zoomPoint.getX();
++                    x = var_1340;
+                     y = this.zoomPoint.getY();
+                     w = Math.min(this.zoomRectangle.getWidth(),
+-                            maxX - this.zoomPoint.getX());
++                            maxX - var_1340);
+                     h = Math.min(this.zoomRectangle.getHeight(),
+                             maxY - this.zoomPoint.getY());
+                 }

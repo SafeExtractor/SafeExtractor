@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/title/PaintScaleLegend.java b/source/org/jfree/chart/title/PaintScaleLegend.java
+index c489277..a21c7c0 100644
+--- a/source/org/jfree/chart/title/PaintScaleLegend.java
++++ b/source/org/jfree/chart/title/PaintScaleLegend.java
+@@ -550,14 +550,15 @@
+         if (RectangleEdge.isTopOrBottom(getPosition())) {
+             RectangleEdge axisEdge = Plot.resolveRangeAxisLocation(
+                     this.axisLocation, PlotOrientation.HORIZONTAL);
+-            if (axisEdge == RectangleEdge.TOP) {
++            RectangleEdge var_3425 = RectangleEdge.TOP;
++			if (axisEdge == var_3425) {
+                 for (int i = 0; i < this.subdivisions; i++) {
+                     double v = base + (i * increment);
+                     Paint p = this.scale.getPaint(v);
+                     double vv0 = this.axis.valueToJava2D(v, target,
+-                            RectangleEdge.TOP);
++                            var_3425);
+                     double vv1 = this.axis.valueToJava2D(v + increment, target,
+-                            RectangleEdge.TOP);
++                            var_3425);
+                     double ww = Math.abs(vv1 - vv0) + 1.0;
+                     r.setRect(Math.min(vv0, vv1), target.getMaxY()
+                             - this.stripWidth, ww, this.stripWidth);
+@@ -572,7 +573,7 @@
+                             target.getWidth(), this.stripWidth));
+                 }
+                 this.axis.draw(g2, target.getMaxY() - this.stripWidth
+-                        - this.axisOffset, target, target, RectangleEdge.TOP,
++                        - this.axisOffset, target, target, var_3425,
+                         null);
+             }
+             else if (axisEdge == RectangleEdge.BOTTOM) {

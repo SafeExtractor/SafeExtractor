@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..d813633 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -1941,7 +1941,8 @@
+     Node paramsType = newNode(Token.PARAM_LIST);
+     boolean isVarArgs = false;
+     Node paramType = null;
+-    if (token != JsDocToken.RP) {
++    boolean var_2366 = match(JsDocToken.COMMA);
++	if (token != JsDocToken.RP) {
+       do {
+         if (paramType != null) {
+           // skip past the comma
+@@ -1991,10 +1992,10 @@
+         if (isVarArgs) {
+           break;
+         }
+-      } while (match(JsDocToken.COMMA));
++      } while (var_2366);
+     }
+ 
+-    if (isVarArgs && match(JsDocToken.COMMA)) {
++    if (isVarArgs && var_2366) {
+       return reportTypeSyntaxWarning("msg.jsdoc.function.varargs");
+     }
+ 

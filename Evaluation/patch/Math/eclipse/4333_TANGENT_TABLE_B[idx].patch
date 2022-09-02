@@ -1,0 +1,38 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/FastMath.java b/src/main/java/org/apache/commons/math3/util/FastMath.java
+index 919e39f..3ed65ef 100644
+--- a/src/main/java/org/apache/commons/math3/util/FastMath.java
++++ b/src/main/java/org/apache/commons/math3/util/FastMath.java
+@@ -2459,7 +2459,8 @@
+         }
+         double epsA = xa - TANGENT_TABLE_A[idx];
+         double epsB = -(epsA - xa + TANGENT_TABLE_A[idx]);
+-        epsB += xb - TANGENT_TABLE_B[idx];
++        double var_4333 = TANGENT_TABLE_B[idx];
++		epsB += xb - var_4333;
+ 
+         double temp = epsA + epsB;
+         epsB = -(temp - epsA - epsB);
+@@ -2476,7 +2477,7 @@
+         if (idx == 0) {
+             /* If the slope of the arctan is gentle enough (< 0.45), this approximation will suffice */
+             //double denom = 1.0 / (1.0 + xa*tangentTableA[idx] + xb*tangentTableA[idx] + xa*tangentTableB[idx] + xb*tangentTableB[idx]);
+-            final double denom = 1d / (1d + (xa + xb) * (TANGENT_TABLE_A[idx] + TANGENT_TABLE_B[idx]));
++            final double denom = 1d / (1d + (xa + xb) * (TANGENT_TABLE_A[idx] + var_4333));
+             //double denom = 1.0 / (1.0 + xa*tangentTableA[idx]);
+             ya = epsA * denom;
+             yb = epsB * denom;
+@@ -2484,12 +2485,12 @@
+             double temp2 = xa * TANGENT_TABLE_A[idx];
+             double za = 1d + temp2;
+             double zb = -(za - 1d - temp2);
+-            temp2 = xb * TANGENT_TABLE_A[idx] + xa * TANGENT_TABLE_B[idx];
++            temp2 = xb * TANGENT_TABLE_A[idx] + xa * var_4333;
+             temp = za + temp2;
+             zb += -(temp - za - temp2);
+             za = temp;
+ 
+-            zb += xb * TANGENT_TABLE_B[idx];
++            zb += xb * var_4333;
+             ya = epsA / za;
+ 
+             temp = ya * HEX_40000000;

@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java b/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+index 55d2b6a..60a6a99 100644
+--- a/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
++++ b/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+@@ -426,11 +426,12 @@
+         checkVectorDimensions(v.getDimension());
+         Iterator iter = entries.iterator();
+         double res = 0;
+-        while (iter.hasNext()) {
++        double var_1800 = iter.value();
++		while (iter.hasNext()) {
+             iter.advance();
+             int key = iter.key();
+             double delta;
+-            delta = iter.value() - v.getEntry(key);
++            delta = var_1800 - v.getEntry(key);
+             res += delta * delta;
+         }
+         iter = v.getEntries().iterator();
+@@ -438,7 +439,7 @@
+             iter.advance();
+             int key = iter.key();
+             if (!entries.containsKey(key)) {
+-                final double value = iter.value();
++                final double value = var_1800;
+                 res += value * value;
+             }
+         }

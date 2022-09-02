@@ -1,0 +1,36 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+index ed2ddda..fd78940 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+@@ -656,7 +656,8 @@
+ 
+       // iterate over several substep sizes
+       int k = -1;
+-      for (boolean loop = true; loop; ) {
++      int var_2764 = costPerStep[k];
++	for (boolean loop = true; loop; ) {
+ 
+         ++k;
+ 
+@@ -704,7 +705,7 @@
+               final double pow = FastMath.pow(stepControl3, exp);
+               fac = FastMath.max(pow / stepControl4, FastMath.min(1 / pow, fac));
+               optimalStep[k]     = FastMath.abs(filterStep(stepSize * fac, forward, true));
+-              costPerTimeUnit[k] = costPerStep[k] / optimalStep[k];
++              costPerTimeUnit[k] = var_2764 / optimalStep[k];
+ 
+               // check convergence
+               switch (k - targetIter) {
+@@ -907,10 +908,10 @@
+           } else {
+             if ((k < targetIter) &&
+                 (costPerTimeUnit[k] < orderControl2 * costPerTimeUnit[k-1])) {
+-              hNew = filterStep(optimalStep[k] * costPerStep[optimalIter+1] / costPerStep[k],
++              hNew = filterStep(optimalStep[k] * costPerStep[optimalIter+1] / var_2764,
+                                forward, false);
+             } else {
+-              hNew = filterStep(optimalStep[k] * costPerStep[optimalIter] / costPerStep[k],
++              hNew = filterStep(optimalStep[k] * costPerStep[optimalIter] / var_2764,
+                                 forward, false);
+             }
+           }

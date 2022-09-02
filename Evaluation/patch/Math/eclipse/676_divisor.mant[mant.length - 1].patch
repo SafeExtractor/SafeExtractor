@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..1417b3f 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1736,7 +1736,8 @@
+         }
+ 
+         /* Test for divide by zero */
+-        if (divisor.mant[mant.length-1] == 0) {
++        int var_676 = divisor.mant[mant.length-1];
++		if (var_676 == 0) {
+             field.setIEEEFlagsBits(DfpField.FLAG_DIV_ZERO);
+             result = newInstance(getZero());
+             result.sign = (byte) (sign * divisor.sign);
+@@ -1772,8 +1773,8 @@
+ 
+             // r =  most sig 2 digits of dividend
+             final int divMsb = dividend[mant.length]*RADIX+dividend[mant.length-1];
+-            int min = divMsb       / (divisor.mant[mant.length-1]+1);
+-            int max = (divMsb + 1) / divisor.mant[mant.length-1];
++            int min = divMsb       / (var_676+1);
++            int max = (divMsb + 1) / var_676;
+ 
+             trialgood = false;
+             while (!trialgood) {
+@@ -1806,7 +1807,7 @@
+ 
+                 /* find out how far off the remainder is telling us we are */
+                 minadj = (remainder[mant.length] * RADIX)+remainder[mant.length-1];
+-                minadj = minadj / (divisor.mant[mant.length-1]+1);
++                minadj = minadj / (var_676+1);
+ 
+                 if (minadj >= 2) {
+                     min = trial+minadj;  // update the minimum

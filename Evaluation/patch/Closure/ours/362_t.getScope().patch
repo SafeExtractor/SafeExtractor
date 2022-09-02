@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/CoalesceVariableNames.java b/src/com/google/javascript/jscomp/CoalesceVariableNames.java
+index 11bb585..17c6a61 100644
+--- a/src/com/google/javascript/jscomp/CoalesceVariableNames.java
++++ b/src/com/google/javascript/jscomp/CoalesceVariableNames.java
+@@ -151,7 +151,8 @@
+       // Don't rename named functions.
+       return;
+     }
+-    Var var = t.getScope().getVar(n.getString());
++    Scope var_362 = t.getScope();
++	Var var = var_362.getVar(n.getString());
+     GraphNode<Var, ?> vNode = colorings.peek().getGraph().getNode(var);
+     if (vNode == null) {
+       // This is not a local.
+@@ -178,7 +179,7 @@
+       // make this fast.
+       String pseudoName = null;
+       Set<String> allMergedNames = Sets.newTreeSet();
+-      for (Iterator<Var> i = t.getScope().getVars(); i.hasNext();) {
++      for (Iterator<Var> i = var_362.getVars(); i.hasNext();) {
+         Var iVar = i.next();
+ 
+         // Look for all the variables that can be merged (in the graph by now)
+@@ -196,7 +197,7 @@
+ 
+       pseudoName = Joiner.on("_").join(allMergedNames);
+ 
+-      while (t.getScope().isDeclared(pseudoName, true)) {
++      while (var_362.isDeclared(pseudoName, true)) {
+         pseudoName += "$";
+       }
+ 

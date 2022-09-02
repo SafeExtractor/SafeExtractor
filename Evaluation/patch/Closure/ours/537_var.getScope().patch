@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/ShadowVariables.java b/src/com/google/javascript/jscomp/ShadowVariables.java
+index f627aaf..1770e1a 100644
+--- a/src/com/google/javascript/jscomp/ShadowVariables.java
++++ b/src/com/google/javascript/jscomp/ShadowVariables.java
+@@ -146,20 +146,21 @@
+         return;
+       }
+ 
+-      if (var.getScope().isGlobal()) {
++      Scope var_537 = var.getScope();
++	if (var_537.isGlobal()) {
+         // We will not shadow a global variable name.
+         return;
+       }
+ 
+       // Using the definition of upward referencing, fill in the map.
+-      if (var.getScope() != t.getScope()) {
++      if (var_537 != t.getScope()) {
+         for (Scope s = t.getScope();
+-            s != var.getScope() && s.isLocal(); s = s.getParent()) {
++            s != var_537 && s.isLocal(); s = s.getParent()) {
+           scopeUpRefMap.put(s.getRootNode(), var.name);
+         }
+       }
+ 
+-      if (var.getScope() == t.getScope()) {
++      if (var_537 == t.getScope()) {
+         scopeUpRefMap.put(t.getScopeRoot(), var.name);
+       }
+ 

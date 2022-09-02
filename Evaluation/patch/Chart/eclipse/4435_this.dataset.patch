@@ -1,0 +1,20 @@
+diff --git a/source/org/jfree/data/xy/IntervalXYDelegate.java b/source/org/jfree/data/xy/IntervalXYDelegate.java
+index f5f70dd..fec58d1 100644
+--- a/source/org/jfree/data/xy/IntervalXYDelegate.java
++++ b/source/org/jfree/data/xy/IntervalXYDelegate.java
+@@ -414,11 +414,12 @@
+      */
+     private double calculateIntervalForSeries(int series) {
+         double result = Double.POSITIVE_INFINITY;
+-        int itemCount = this.dataset.getItemCount(series);
++        XYDataset var_4435 = this.dataset;
++		int itemCount = var_4435.getItemCount(series);
+         if (itemCount > 1) {
+-            double prev = this.dataset.getXValue(series, 0);
++            double prev = var_4435.getXValue(series, 0);
+             for (int item = 1; item < itemCount; item++) {
+-                double x = this.dataset.getXValue(series, item);
++                double x = var_4435.getXValue(series, item);
+                 result = Math.min(result, x - prev);
+                 prev = x;
+             }

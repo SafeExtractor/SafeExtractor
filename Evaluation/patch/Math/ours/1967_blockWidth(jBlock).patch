@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java b/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
+index a03c4f4..fba9c44 100644
+--- a/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
+@@ -166,9 +166,10 @@
+         for (int iBlock = 0; iBlock < blockRows; ++iBlock) {
+             final int iHeight = blockHeight(iBlock);
+             for (int jBlock = 0; jBlock < blockColumns; ++jBlock, ++index) {
+-                if (blockData[index].length != iHeight * blockWidth(jBlock)) {
++                int var_1967 = blockWidth(jBlock);
++				if (blockData[index].length != iHeight * var_1967) {
+                     throw new DimensionMismatchException(blockData[index].length,
+-                                                         iHeight * blockWidth(jBlock));
++                                                         iHeight * var_1967);
+                 }
+                 if (copyArray) {
+                     blocks[index] = blockData[index].clone();

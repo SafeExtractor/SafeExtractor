@@ -1,0 +1,39 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..3189f22 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -37,6 +37,7 @@
+ import com.google.javascript.rhino.jstype.StaticScope;
+ import com.google.javascript.rhino.jstype.StaticSlot;
+ 
++import java.util.ArrayList;
+ import java.util.Collection;
+ import java.util.Iterator;
+ import java.util.List;
+@@ -861,14 +862,15 @@
+     private Collection<Action> getImplicitActionsFromCall(
+         Node n, JSType recvType) {
+       Node receiver = n.getFirstChild();
+-      if (recvType.isUnionType()) {
++      ArrayList<Action> var_1059 = Lists.<Action>newArrayList();
++	if (recvType.isUnionType()) {
+         List<Action> actions = Lists.newArrayList();
+         for (JSType alt : recvType.toMaybeUnionType().getAlternates()) {
+           actions.addAll(getImplicitActionsFromCall(n, alt));
+         }
+         return actions;
+       } else if (!(recvType.isFunctionType())) {
+-        return Lists.<Action>newArrayList();
++        return var_1059;
+       }
+ 
+       ObjectType objType = ObjectType.cast(
+@@ -898,7 +900,7 @@
+         }
+         return actions;
+       }
+-      return Lists.<Action>newArrayList();
++      return var_1059;
+     }
+ 
+     private Collection<Action> getImplicitActionsFromArgument(

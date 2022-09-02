@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..7ce4909 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -994,15 +994,16 @@
+   private void checkExtendedTypes(List<ExtendedTypeInfo> extendedTypes) {
+     for (ExtendedTypeInfo typeInfo : extendedTypes) {
+       // If interface, record the multiple extended interfaces
+-      if (jsdocBuilder.isInterfaceRecorded()) {
++      int var_2310 = typeInfo.lineno;
++	if (jsdocBuilder.isInterfaceRecorded()) {
+         if (!jsdocBuilder.recordExtendedInterface(typeInfo.type)) {
+           parser.addParserWarning("msg.jsdoc.extends.duplicate",
+-              typeInfo.lineno, typeInfo.charno);
++              var_2310, typeInfo.charno);
+         }
+       } else {
+         if (!jsdocBuilder.recordBaseType(typeInfo.type)) {
+           parser.addTypeWarning("msg.jsdoc.incompat.type",
+-              typeInfo.lineno, typeInfo.charno);
++              var_2310, typeInfo.charno);
+         }
+       }
+     }

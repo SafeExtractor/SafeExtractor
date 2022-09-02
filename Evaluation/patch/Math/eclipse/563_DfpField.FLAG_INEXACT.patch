@@ -1,0 +1,33 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..4f28083 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -710,13 +710,14 @@
+             return 0;
+         }
+ 
+-        if (adiff > (mant.length + 1)) {
++        int var_563 = DfpField.FLAG_INEXACT;
++		if (adiff > (mant.length + 1)) {
+             // Special case
+             Arrays.fill(mant, 0);
+             exp = e;
+ 
+-            field.setIEEEFlagsBits(DfpField.FLAG_INEXACT);
+-            dotrap(DfpField.FLAG_INEXACT, ALIGN_TRAP, this, this);
++            field.setIEEEFlagsBits(var_563);
++            dotrap(var_563, ALIGN_TRAP, this, this);
+ 
+             return 0;
+         }
+@@ -740,8 +741,8 @@
+         }
+ 
+         if (inexact) {
+-            field.setIEEEFlagsBits(DfpField.FLAG_INEXACT);
+-            dotrap(DfpField.FLAG_INEXACT, ALIGN_TRAP, this, this);
++            field.setIEEEFlagsBits(var_563);
++            dotrap(var_563, ALIGN_TRAP, this, this);
+         }
+ 
+         return lostdigit;

@@ -1,0 +1,44 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..35671c1 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -144,7 +144,8 @@
+ 
+     cc.startSourceMapping(n);
+ 
+-    switch (type) {
++    String var_1559 = n.getString();
++	switch (type) {
+       case Token.TRY: {
+         Preconditions.checkState(first.getNext().isBlock() &&
+                 !first.getNext().hasMoreThanOneChild());
+@@ -203,16 +204,16 @@
+         break;
+ 
+       case Token.LABEL_NAME:
+-        Preconditions.checkState(!n.getString().isEmpty());
+-        addIdentifier(n.getString());
++        Preconditions.checkState(!var_1559.isEmpty());
++        addIdentifier(var_1559);
+         break;
+ 
+       case Token.NAME:
+         if (first == null || first.isEmpty()) {
+-          addIdentifier(n.getString());
++          addIdentifier(var_1559);
+         } else {
+           Preconditions.checkState(childCount == 1);
+-          addIdentifier(n.getString());
++          addIdentifier(var_1559);
+           cc.addOp("=", true);
+           if (first.isComma()) {
+             addExpr(first, NodeUtil.precedence(Token.ASSIGN), Context.OTHER);
+@@ -343,7 +344,7 @@
+         }
+ 
+         // The name is on the GET or SET node.
+-        String name = n.getString();
++        String name = var_1559;
+         Node fn = first;
+         Node parameters = fn.getChildAtIndex(1);
+         Node body = fn.getLastChild();

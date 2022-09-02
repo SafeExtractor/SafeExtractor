@@ -1,0 +1,55 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..1d87aa5 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -1428,27 +1428,30 @@
+ 
+     if (arg == null) {
+       action = FoldArrayAction.SAFE_TO_FOLD_WITHOUT_ARGS;
+-    } else if (arg.getNext() != null) {
+-      action = FoldArrayAction.SAFE_TO_FOLD_WITH_ARGS;
+     } else {
+-      switch (arg.getType()) {
+-        case Token.STRING:
+-          // "Array('a')" --> "['a']"
+-          action = FoldArrayAction.SAFE_TO_FOLD_WITH_ARGS;
+-          break;
+-        case Token.NUMBER:
+-          // "Array(0)" --> "[]"
+-          if (arg.getDouble() == 0) {
+-            action = FoldArrayAction.SAFE_TO_FOLD_WITHOUT_ARGS;
+-          }
+-          break;
+-        case Token.ARRAYLIT:
+-          // "Array([args])" --> "[[args]]"
+-          action = FoldArrayAction.SAFE_TO_FOLD_WITH_ARGS;
+-          break;
+-        default:
+-      }
+-    }
++		FoldArrayAction var_1467 = FoldArrayAction.SAFE_TO_FOLD_WITH_ARGS;
++		if (arg.getNext() != null) {
++		  action = var_1467;
++		} else {
++		  switch (arg.getType()) {
++		    case Token.STRING:
++		      // "Array('a')" --> "['a']"
++		      action = var_1467;
++		      break;
++		    case Token.NUMBER:
++		      // "Array(0)" --> "[]"
++		      if (arg.getDouble() == 0) {
++		        action = FoldArrayAction.SAFE_TO_FOLD_WITHOUT_ARGS;
++		      }
++		      break;
++		    case Token.ARRAYLIT:
++		      // "Array([args])" --> "[[args]]"
++		      action = var_1467;
++		      break;
++		    default:
++		  }
++		}
++	}
+     return action;
+   }
+ 

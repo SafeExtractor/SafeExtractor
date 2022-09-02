@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java
+index 14199eb..3d82cb9 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java
+@@ -111,10 +111,11 @@
+             T[] bottom0 = y;
+             for (int j = i; j < n; ++j) {
+                 final T[] bottom1 = bottomDiagonal.get(n - (j + 1));
+-                if (x.equals(abscissae.get(n - (j + 1)))) {
++                T var_378 = abscissae.get(n - (j + 1));
++				if (x.equals(var_378)) {
+                     throw new ZeroException(LocalizedFormats.DUPLICATED_ABSCISSA_DIVISION_BY_ZERO, x);
+                 }
+-                final T inv = x.subtract(abscissae.get(n - (j + 1))).reciprocal();
++                final T inv = x.subtract(var_378).reciprocal();
+                 for (int k = 0; k < y.length; ++k) {
+                     bottom1[k] = inv.multiply(bottom0[k].subtract(bottom1[k]));
+                 }

@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..8cab579 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -201,7 +201,8 @@
+     // variable's declaration. If the alias's parent is a NAME,
+     // then the NAME must be the child of a VAR node, and we must
+     // be in a VAR assignment.
+-    Node aliasParent = alias.node.getParent();
++    Node var_709 = alias.node;
++	Node aliasParent = var_709.getParent();
+     if (aliasParent.isName()) {
+       // Ensure that the local variable is well defined and never reassigned.
+       Scope scope = alias.scope;
+@@ -223,13 +224,13 @@
+           ReferenceCollectingCallback.Reference aliasRef =
+               aliasRefs.references.get(i);
+ 
+-          Node newNode = alias.node.cloneTree();
++          Node newNode = var_709.cloneTree();
+           aliasRef.getParent().replaceChild(aliasRef.getNode(), newNode);
+           newNodes.add(newNode);
+         }
+ 
+         // just set the original alias to null.
+-        aliasParent.replaceChild(alias.node, IR.nullNode());
++        aliasParent.replaceChild(var_709, IR.nullNode());
+         compiler.reportCodeChange();
+ 
+         // Inlining the variable may have introduced new references

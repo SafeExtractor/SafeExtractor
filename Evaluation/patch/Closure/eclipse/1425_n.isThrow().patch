@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..476b40c 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -581,9 +581,10 @@
+ 
+   boolean isExceptionPossible(Node n) {
+     // TODO(johnlenz): maybe use ControlFlowAnalysis.mayThrowException?
+-    Preconditions.checkState(n.isReturn()
+-        || n.isThrow());
+-    return n.isThrow()
++    boolean var_1425 = n.isThrow();
++	Preconditions.checkState(n.isReturn()
++        || var_1425);
++    return var_1425
+         || (n.hasChildren()
+             && !NodeUtil.isLiteralValue(n.getLastChild(), true));
+   }

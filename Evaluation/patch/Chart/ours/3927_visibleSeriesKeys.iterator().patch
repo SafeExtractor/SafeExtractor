@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/data/general/DatasetUtilities.java b/source/org/jfree/data/general/DatasetUtilities.java
+index 548d684..e5c744d 100644
+--- a/source/org/jfree/data/general/DatasetUtilities.java
++++ b/source/org/jfree/data/general/DatasetUtilities.java
+@@ -1331,10 +1331,11 @@
+         double minimum = Double.POSITIVE_INFINITY;
+         double maximum = Double.NEGATIVE_INFINITY;
+ 
+-        if (includeInterval && dataset instanceof IntervalXYDataset) {
++        Iterator var_3927 = visibleSeriesKeys.iterator();
++		if (includeInterval && dataset instanceof IntervalXYDataset) {
+             // handle special case of IntervalXYDataset
+             IntervalXYDataset ixyd = (IntervalXYDataset) dataset;
+-            Iterator iterator = visibleSeriesKeys.iterator();
++            Iterator iterator = var_3927;
+             while (iterator.hasNext()) {
+                 Comparable seriesKey = (Comparable) iterator.next();
+                 int series = dataset.indexOf(seriesKey);
+@@ -1353,7 +1354,7 @@
+         }
+         else {
+             // standard case - plain XYDataset
+-            Iterator iterator = visibleSeriesKeys.iterator();
++            Iterator iterator = var_3927;
+             while (iterator.hasNext()) {
+                 Comparable seriesKey = (Comparable) iterator.next();
+                 int series = dataset.indexOf(seriesKey);

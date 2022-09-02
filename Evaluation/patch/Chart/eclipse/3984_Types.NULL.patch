@@ -1,0 +1,61 @@
+diff --git a/source/org/jfree/data/jdbc/JDBCXYDataset.java b/source/org/jfree/data/jdbc/JDBCXYDataset.java
+index 95cd49c..6092067 100644
+--- a/source/org/jfree/data/jdbc/JDBCXYDataset.java
++++ b/source/org/jfree/data/jdbc/JDBCXYDataset.java
+@@ -266,12 +266,12 @@
+                             columnTypes[column] = type;
+                             break;
+                         default:
+-                            columnTypes[column] = Types.NULL;
++                            columnTypes[column] = var_3984;
+                             break;
+                     }
+                 }
+                 catch (SQLException e) {
+-                    columnTypes[column] = Types.NULL;
++                    columnTypes[column] = var_3984;
+                     throw e;
+                 }
+             }
+@@ -288,7 +288,7 @@
+             /// Get the column names and cache them.
+             int currentColumn = 0;
+             for (int column = 1; column < numberOfColumns; column++) {
+-                if (columnTypes[column] != Types.NULL) {
++                if (columnTypes[column] != var_3984) {
+                     this.columnNames[currentColumn]
+                         = metaData.getColumnLabel(column + 1);
+                     ++currentColumn;
+@@ -322,7 +322,8 @@
+                 ArrayList newRow = new ArrayList();
+                 for (int column = 0; column < numberOfColumns; column++) {
+                     Object xObject = resultSet.getObject(column + 1);
+-                    switch (columnTypes[column]) {
++                    final int var_3984 = Types.NULL;
++					switch (columnTypes[column]) {
+                         case Types.NUMERIC:
+                         case Types.REAL:
+                         case Types.INTEGER:
+@@ -339,11 +340,11 @@
+                         case Types.TIMESTAMP:
+                             newRow.add(new Long(((Date) xObject).getTime()));
+                             break;
+-                        case Types.NULL:
++                        case var_3984:
+                             break;
+                         default:
+                             System.err.println("Unknown data");
+-                            columnTypes[column] = Types.NULL;
++                            columnTypes[column] = var_3984;
+                             break;
+                     }
+                 }
+@@ -354,7 +355,7 @@
+             if (this.rows.size() == 0) {
+                 ArrayList newRow = new ArrayList();
+                 for (int column = 0; column < numberOfColumns; column++) {
+-                    if (columnTypes[column] != Types.NULL) {
++                    if (columnTypes[column] != var_3984) {
+                         newRow.add(new Integer(0));
+                     }
+                 }

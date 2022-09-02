@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+index 5f6b2c5..3595ae0 100644
+--- a/src/com/google/javascript/jscomp/Compiler.java
++++ b/src/com/google/javascript/jscomp/Compiler.java
+@@ -1099,8 +1099,9 @@
+    * @return Whether the new AST was attached successfully.
+    */
+   boolean replaceIncrementalSourceAst(JsAst ast) {
+-    CompilerInput oldInput = getInput(ast.getInputId());
+-    Preconditions.checkNotNull(oldInput, "No input to replace: %s", ast.getInputId().getIdName());
++    InputId var_500 = ast.getInputId();
++	CompilerInput oldInput = getInput(var_500);
++    Preconditions.checkNotNull(oldInput, "No input to replace: %s", var_500.getIdName());
+     Node newRoot = ast.getAstRoot(this);
+     if (newRoot == null) {
+       return false;
+@@ -1114,7 +1115,7 @@
+     }
+ 
+     CompilerInput newInput = new CompilerInput(ast);
+-    putCompilerInput(ast.getInputId(), newInput);
++    putCompilerInput(var_500, newInput);
+ 
+     JSModule module = oldInput.getModule();
+     if (module != null) {

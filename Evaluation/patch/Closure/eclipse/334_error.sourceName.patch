@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/LightweightMessageFormatter.java b/src/com/google/javascript/jscomp/LightweightMessageFormatter.java
+index f8750ca..1f12d60 100644
+--- a/src/com/google/javascript/jscomp/LightweightMessageFormatter.java
++++ b/src/com/google/javascript/jscomp/LightweightMessageFormatter.java
+@@ -69,14 +69,15 @@
+   private String format(JSError error, boolean warning) {
+     // extract source excerpt
+     SourceExcerptProvider source = getSource();
+-    String sourceExcerpt = source == null ? null :
++    String var_334 = error.sourceName;
++	String sourceExcerpt = source == null ? null :
+         excerpt.get(
+-            source, error.sourceName, error.lineNumber, excerptFormatter);
++            source, var_334, error.lineNumber, excerptFormatter);
+ 
+     // formatting the message
+     StringBuilder b = new StringBuilder();
+-    if (error.sourceName != null) {
+-      b.append(error.sourceName);
++    if (var_334 != null) {
++      b.append(var_334);
+       if (error.lineNumber > 0) {
+         b.append(':');
+         b.append(error.lineNumber);

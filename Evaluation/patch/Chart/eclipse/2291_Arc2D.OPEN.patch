@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/plot/dial/StandardDialScale.java b/source/org/jfree/chart/plot/dial/StandardDialScale.java
+index b40e93d..4627844 100644
+--- a/source/org/jfree/chart/plot/dial/StandardDialScale.java
++++ b/source/org/jfree/chart/plot/dial/StandardDialScale.java
+@@ -783,18 +783,19 @@
+         Line2D workingLine = new Line2D.Double();
+         for (double v = this.lowerBound; v <= this.upperBound;
+                 v += this.majorTickIncrement) {
+-            arc.setArc(arcRect, this.startAngle, valueToAngle(v)
+-                    - this.startAngle, Arc2D.OPEN);
++            int var_2291 = Arc2D.OPEN;
++			arc.setArc(arcRect, this.startAngle, valueToAngle(v)
++                    - this.startAngle, var_2291);
+             Point2D pt0 = arc.getEndPoint();
+             arc.setArc(arcRectMajor, this.startAngle, valueToAngle(v)
+-                    - this.startAngle, Arc2D.OPEN);
++                    - this.startAngle, var_2291);
+             Point2D pt1 = arc.getEndPoint();
+             g2.setPaint(this.majorTickPaint);
+             g2.setStroke(this.majorTickStroke);
+             workingLine.setLine(pt0, pt1);
+             g2.draw(workingLine);
+             arc.setArc(arcRectForLabels, this.startAngle, valueToAngle(v)
+-                    - this.startAngle, Arc2D.OPEN);
++                    - this.startAngle, var_2291);
+             Point2D pt2 = arc.getEndPoint();
+ 
+             if (this.tickLabelsVisible) {
+@@ -821,10 +822,10 @@
+                     double angle = valueToAngle(vv);
+ 
+                     arc.setArc(arcRect, this.startAngle, angle
+-                            - this.startAngle, Arc2D.OPEN);
++                            - this.startAngle, var_2291);
+                     pt0 = arc.getEndPoint();
+                     arc.setArc(arcRectMinor, this.startAngle, angle
+-                            - this.startAngle, Arc2D.OPEN);
++                            - this.startAngle, var_2291);
+                     Point2D pt3 = arc.getEndPoint();
+                     g2.setStroke(this.minorTickStroke);
+                     g2.setPaint(this.minorTickPaint);

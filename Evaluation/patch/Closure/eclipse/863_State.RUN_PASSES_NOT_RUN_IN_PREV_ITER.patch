@@ -1,0 +1,40 @@
+diff --git a/src/com/google/javascript/jscomp/PhaseOptimizer.java b/src/com/google/javascript/jscomp/PhaseOptimizer.java
+index 4278d96..97ae547 100644
+--- a/src/com/google/javascript/jscomp/PhaseOptimizer.java
++++ b/src/com/google/javascript/jscomp/PhaseOptimizer.java
+@@ -333,7 +333,8 @@
+       Set<NamedPass> madeChanges = new HashSet<NamedPass>();
+       // Contains a pass iff it was run during the last inner loop.
+       Set<NamedPass> runInPrevIter = new HashSet<NamedPass>();
+-      State s = State.RUN_PASSES_NOT_RUN_IN_PREV_ITER;
++      State var_863 = State.RUN_PASSES_NOT_RUN_IN_PREV_ITER;
++	State s = var_863;
+       boolean lastIterMadeChanges;
+       int count = 0;
+ 
+@@ -345,7 +346,7 @@
+           lastIterMadeChanges = false;
+           for (NamedPass pass : myPasses) {
+             recentChange.reset();
+-            if ((s == State.RUN_PASSES_NOT_RUN_IN_PREV_ITER &&
++            if ((s == var_863 &&
+                 !runInPrevIter.contains(pass)) ||
+                 (s == State.RUN_PASSES_THAT_CHANGED_STH_IN_PREV_ITER &&
+                     madeChanges.contains(pass))) {
+@@ -363,14 +364,14 @@
+               runInPrevIter.remove(pass);
+             }
+           }
+-          if (s == State.RUN_PASSES_NOT_RUN_IN_PREV_ITER) {
++          if (s == var_863) {
+             if (lastIterMadeChanges) {
+               s = State.RUN_PASSES_THAT_CHANGED_STH_IN_PREV_ITER;
+             } else {
+               return;
+             }
+           } else if (!lastIterMadeChanges) {
+-            s = State.RUN_PASSES_NOT_RUN_IN_PREV_ITER;
++            s = var_863;
+           }
+         }
+       } finally {

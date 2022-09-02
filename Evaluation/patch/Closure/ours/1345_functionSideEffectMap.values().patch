@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+index 171eb51..13abc61 100644
+--- a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
++++ b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+@@ -255,12 +255,13 @@
+         LinkedDirectedGraph.createWithoutAnnotations();
+ 
+     // create graph nodes
+-    for (FunctionInformation functionInfo : functionSideEffectMap.values()) {
++    Collection<FunctionInformation> var_1345 = functionSideEffectMap.values();
++	for (FunctionInformation functionInfo : var_1345) {
+       sideEffectGraph.createNode(functionInfo);
+     }
+ 
+     // add connections to called functions and side effect root.
+-    for (FunctionInformation functionInfo : functionSideEffectMap.values()) {
++    for (FunctionInformation functionInfo : var_1345) {
+       if (!functionInfo.mayHaveSideEffects()) {
+         continue;
+       }
+@@ -294,7 +295,7 @@
+         .computeFixedPoint(sideEffectGraph);
+ 
+     // Mark remaining functions "pure".
+-    for (FunctionInformation functionInfo : functionSideEffectMap.values()) {
++    for (FunctionInformation functionInfo : var_1345) {
+       if (functionInfo.mayBePure()) {
+         functionInfo.setIsPure();
+       }

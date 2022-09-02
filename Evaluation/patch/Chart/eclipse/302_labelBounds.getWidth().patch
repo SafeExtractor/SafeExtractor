@@ -1,0 +1,66 @@
+diff --git a/source/org/jfree/chart/axis/Axis.java b/source/org/jfree/chart/axis/Axis.java
+index cabb331..816a8ff 100644
+--- a/source/org/jfree/chart/axis/Axis.java
++++ b/source/org/jfree/chart/axis/Axis.java
+@@ -1304,13 +1304,14 @@
+         Rectangle2D labelBounds = TextUtilities.getTextBounds(label, g2, fm);
+         Shape hotspot = null;
+ 
+-        if (edge == RectangleEdge.TOP) {
++        double var_302 = labelBounds.getWidth();
++		if (edge == RectangleEdge.TOP) {
+             AffineTransform t = AffineTransform.getRotateInstance(
+                     getLabelAngle(), labelBounds.getCenterX(),
+                     labelBounds.getCenterY());
+             Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);
+             labelBounds = rotatedLabelBounds.getBounds2D();
+-            float w = (float) labelBounds.getWidth();
++            float w = (float) var_302;
+             float h = (float) labelBounds.getHeight();
+             float labelx = (float) dataArea.getCenterX();
+             float labely = (float) (state.getCursor() - insets.getBottom()
+@@ -1328,7 +1329,7 @@
+                     labelBounds.getCenterY());
+             Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);
+             labelBounds = rotatedLabelBounds.getBounds2D();
+-            float w = (float) labelBounds.getWidth();
++            float w = (float) var_302;
+             float h = (float) labelBounds.getHeight();
+             float labelx = (float) dataArea.getCenterX();
+             float labely = (float) (state.getCursor() + insets.getTop()
+@@ -1346,7 +1347,7 @@
+                     labelBounds.getCenterY());
+             Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);
+             labelBounds = rotatedLabelBounds.getBounds2D();
+-            float w = (float) labelBounds.getWidth();
++            float w = (float) var_302;
+             float h = (float) labelBounds.getHeight();
+             float labelx = (float) (state.getCursor() - insets.getRight()
+                     - w / 2.0);
+@@ -1356,7 +1357,7 @@
+                     TextAnchor.CENTER);
+             hotspot = new Rectangle2D.Float(labelx - w / 2.0f,
+                     labely - h / 2.0f, w, h);
+-            state.cursorLeft(insets.getLeft() + labelBounds.getWidth()
++            state.cursorLeft(insets.getLeft() + var_302
+                     + insets.getRight());
+         }
+         else if (edge == RectangleEdge.RIGHT) {
+@@ -1366,7 +1367,7 @@
+                     labelBounds.getCenterX(), labelBounds.getCenterY());
+             Shape rotatedLabelBounds = t.createTransformedShape(labelBounds);
+             labelBounds = rotatedLabelBounds.getBounds2D();
+-            float w = (float) labelBounds.getWidth();
++            float w = (float) var_302;
+             float h = (float) labelBounds.getHeight();
+             float labelx = (float) (state.getCursor()
+                             + insets.getLeft() + w / 2.0);
+@@ -1377,7 +1378,7 @@
+                     TextAnchor.CENTER);
+             hotspot = new Rectangle2D.Float(labelx - w / 2.0f,
+                     labely - h / 2.0f, w, h);
+-            state.cursorRight(insets.getLeft() + labelBounds.getWidth()
++            state.cursorRight(insets.getLeft() + var_302
+                     + insets.getRight());
+ 
+         }

@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..179bd44 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -539,7 +539,8 @@
+         }
+ 
+         // X == 0
+-        if (x.equals(zero)) {
++        Dfp var_829 = y.remainder(two);
++		if (x.equals(zero)) {
+             if (Dfp.copysign(one, x).greaterThan(zero)) {
+                 // X == +0
+                 if (y.greaterThan(zero)) {
+@@ -549,7 +550,7 @@
+                 }
+             } else {
+                 // X == -0
+-                if (y.classify() == Dfp.FINITE && y.rint().equals(y) && !y.remainder(two).equals(zero)) {
++                if (y.classify() == Dfp.FINITE && y.rint().equals(y) && !var_829.equals(zero)) {
+                     // If y is odd integer
+                     if (y.greaterThan(zero)) {
+                         return x.newInstance(zero.negate());
+@@ -598,7 +599,7 @@
+             // x = +/- inf
+             if (invert) {
+                 // negative infinity
+-                if (y.classify() == Dfp.FINITE && y.rint().equals(y) && !y.remainder(two).equals(zero)) {
++                if (y.classify() == Dfp.FINITE && y.rint().equals(y) && !var_829.equals(zero)) {
+                     // If y is odd integer
+                     if (y.greaterThan(zero)) {
+                         return x.newInstance(x.newInstance((byte)-1, Dfp.INFINITE));
+@@ -653,7 +654,7 @@
+             r = exp(log(x).multiply(y));
+         }
+ 
+-        if (invert && y.rint().equals(y) && !y.remainder(two).equals(zero)) {
++        if (invert && y.rint().equals(y) && !var_829.equals(zero)) {
+             // if y is odd integer
+             r = r.negate();
+         }

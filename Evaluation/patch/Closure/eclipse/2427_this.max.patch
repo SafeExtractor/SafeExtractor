@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/regex/RegExpTree.java b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+index c0c470a..304c858 100644
+--- a/src/com/google/javascript/jscomp/regex/RegExpTree.java
++++ b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+@@ -838,7 +838,8 @@
+       if (max == 0 && !body.hasCapturingGroup()) { return Empty.INSTANCE; }
+       if (body instanceof Empty || NEVER_MATCHES.equals(body)) { return body; }
+       int min = this.min;
+-      int max = this.max;
++      int var_2427 = this.max;
++	int max = var_2427;
+       if (body instanceof Repetition) {
+         Repetition rbody = (Repetition) body;
+         if (rbody.greedy == greedy) {
+@@ -853,7 +854,7 @@
+       }
+       if (min == 1 && max == 1) { return body; }
+       boolean greedy = this.greedy || min == max;
+-      return body.equals(this.body) && min == this.min && max == this.max
++      return body.equals(this.body) && min == this.min && max == var_2427
+           && greedy == this.greedy
+           ? this
+           : new Repetition(body, min, max, greedy).simplify(flags);

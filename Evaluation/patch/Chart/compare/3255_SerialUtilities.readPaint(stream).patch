@@ -1,0 +1,24 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3255_SerialUtilities.readPaint(stream).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/3255_SerialUtilities.readPaint(stream).patch
+index c1a1453..d2e5e46 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3255_SerialUtilities.readPaint(stream).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/3255_SerialUtilities.readPaint(stream).patch
+@@ -1,16 +1,14 @@
+ diff --git a/source/org/jfree/chart/renderer/xy/HighLowRenderer.java b/source/org/jfree/chart/renderer/xy/HighLowRenderer.java
+-index 878a686..3644d02 100644
++index 878a686..9917206 100644
+ --- a/source/org/jfree/chart/renderer/xy/HighLowRenderer.java
+ +++ b/source/org/jfree/chart/renderer/xy/HighLowRenderer.java
+-@@ -500,8 +500,9 @@
++@@ -500,7 +500,8 @@
+      private void readObject(ObjectInputStream stream)
+              throws IOException, ClassNotFoundException {
+          stream.defaultReadObject();
+ -        this.openTickPaint = SerialUtilities.readPaint(stream);
+--        this.closeTickPaint = SerialUtilities.readPaint(stream);
+ +        Paint var_3255 = SerialUtilities.readPaint(stream);
+ +		this.openTickPaint = var_3255;
+-+        this.closeTickPaint = var_3255;
++         this.closeTickPaint = SerialUtilities.readPaint(stream);
+      }
+  
+-     /**

@@ -1,0 +1,63 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/509_hasErrors().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/509_hasErrors().patch
+index 4025a2f..670dcee 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/509_hasErrors().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/509_hasErrors().patch
+@@ -1,53 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+-index 5f6b2c5..a76fdd2 100644
++index 5f6b2c5..8ecbb88 100644
+ --- a/src/com/google/javascript/jscomp/Compiler.java
+ +++ b/src/com/google/javascript/jscomp/Compiler.java
+-@@ -1310,9 +1310,10 @@
+- 
+-     try {
++@@ -1312,7 +1312,8 @@
+        // Parse externs sources.
+--      for (CompilerInput input : externs) {
+-+      boolean var_509 = hasErrors();
+-+	for (CompilerInput input : externs) {
++       for (CompilerInput input : externs) {
+          Node n = input.getAstRoot(this);
+ -        if (hasErrors()) {
+-+        if (var_509) {
+++        boolean var_509 = hasErrors();
+++		if (var_509) {
+            return null;
+          }
+          externsRoot.addChildToBack(n);
+-@@ -1346,7 +1347,7 @@
+-               JSModule.CIRCULAR_DEPENDENCY_ERROR, e.getMessage()));
+- 
+-           // If in IDE mode, we ignore the error and keep going.
+--          if (hasErrors()) {
+-+          if (var_509) {
+-             return null;
+-           }
+-         } catch (MissingProvideException e) {
+-@@ -1354,7 +1355,7 @@
+-               MISSING_ENTRY_ERROR, e.getMessage()));
+- 
+-           // If in IDE mode, we ignore the error and keep going.
+--          if (hasErrors()) {
+-+          if (var_509) {
+-             return null;
+-           }
+-         }
+-@@ -1375,7 +1376,7 @@
+- 
+-         if (devMode) {
+-           runSanityCheck();
+--          if (hasErrors()) {
+-+          if (var_509) {
+-             return null;
+-           }
+-         }
+-@@ -1394,7 +1395,7 @@
+-         jsRoot.addChildToBack(n);
+-       }
+- 
+--      if (hasErrors()) {
+-+      if (var_509) {
+-         return null;
+-       }
+-       return externAndJsRoot;

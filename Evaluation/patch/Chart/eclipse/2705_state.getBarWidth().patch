@@ -1,0 +1,40 @@
+diff --git a/source/org/jfree/chart/renderer/category/StatisticalBarRenderer.java b/source/org/jfree/chart/renderer/category/StatisticalBarRenderer.java
+index 3a5d3e0..925c789 100644
+--- a/source/org/jfree/chart/renderer/category/StatisticalBarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/StatisticalBarRenderer.java
+@@ -435,13 +435,14 @@
+         int seriesCount = state.getVisibleSeriesCount() >= 0
+                 ? state.getVisibleSeriesCount() : getRowCount();
+         int categoryCount = getColumnCount();
+-        if (seriesCount > 1) {
++        double var_2705 = state.getBarWidth();
++		if (seriesCount > 1) {
+             double seriesGap = dataArea.getWidth() * getItemMargin()
+                                / (categoryCount * (seriesCount - 1));
+-            rectX = rectX + visibleRow * (state.getBarWidth() + seriesGap);
++            rectX = rectX + visibleRow * (var_2705 + seriesGap);
+         }
+         else {
+-            rectX = rectX + visibleRow * state.getBarWidth();
++            rectX = rectX + visibleRow * var_2705;
+         }
+ 
+         // BAR Y
+@@ -490,7 +491,7 @@
+                 yAxisLocation);
+         double rectY = Math.min(transY2, transY1);
+ 
+-        double rectWidth = state.getBarWidth();
++        double rectWidth = var_2705;
+         double rectHeight = Math.abs(transY2 - transY1);
+ 
+         Rectangle2D bar = new Rectangle2D.Double(rectX, rectY, rectWidth,
+@@ -504,7 +505,7 @@
+         g2.fill(bar);
+         // draw the outline...
+         if (isDrawBarOutline()
+-                && state.getBarWidth() > BAR_OUTLINE_WIDTH_THRESHOLD) {
++                && var_2705 > BAR_OUTLINE_WIDTH_THRESHOLD) {
+             Stroke stroke = getItemOutlineStroke(row, column, selected);
+             Paint paint = getItemOutlinePaint(row, column, selected);
+             if (stroke != null && paint != null) {

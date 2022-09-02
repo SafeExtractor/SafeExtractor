@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/lang3/AnnotationUtils.java b/src/main/java/org/apache/commons/lang3/AnnotationUtils.java
+index b369269..c318ef8 100644
+--- a/src/main/java/org/apache/commons/lang3/AnnotationUtils.java
++++ b/src/main/java/org/apache/commons/lang3/AnnotationUtils.java
+@@ -135,11 +135,12 @@
+         }
+         try {
+             for (final Method m : type.getDeclaredMethods()) {
+-                if (m.getParameterTypes().length == 0
+-                        && isValidAnnotationMemberType(m.getReturnType())) {
++                Class<?> var_269 = m.getReturnType();
++				if (m.getParameterTypes().length == 0
++                        && isValidAnnotationMemberType(var_269)) {
+                     final Object v1 = m.invoke(a1);
+                     final Object v2 = m.invoke(a2);
+-                    if (!memberEquals(m.getReturnType(), v1, v2)) {
++                    if (!memberEquals(var_269, v1, v2)) {
+                         return false;
+                     }
+                 }

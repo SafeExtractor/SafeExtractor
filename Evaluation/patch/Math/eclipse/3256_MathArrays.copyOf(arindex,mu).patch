@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+index 104bdf5..3c8e36a 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+@@ -548,9 +548,10 @@
+             final int[] arindex = sortedIndices(fitness);
+             // Calculate new xmean, this is selection and recombination
+             final RealMatrix xold = xmean; // for speed up of Eq. (2) and (3)
+-            final RealMatrix bestArx = selectColumns(arx, MathArrays.copyOf(arindex, mu));
++            int[] var_3256 = MathArrays.copyOf(arindex, mu);
++			final RealMatrix bestArx = selectColumns(arx, var_3256);
+             xmean = bestArx.multiply(weights);
+-            final RealMatrix bestArz = selectColumns(arz, MathArrays.copyOf(arindex, mu));
++            final RealMatrix bestArz = selectColumns(arz, var_3256);
+             final RealMatrix zmean = bestArz.multiply(weights);
+             final boolean hsig = updateEvolutionPaths(zmean, xold);
+             if (diagonalOnly <= 0) {

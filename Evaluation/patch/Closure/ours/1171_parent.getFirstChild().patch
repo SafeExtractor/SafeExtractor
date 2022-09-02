@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/InlineFunctions.java b/src/com/google/javascript/jscomp/InlineFunctions.java
+index 008ffe5..aef2ee4 100644
+--- a/src/com/google/javascript/jscomp/InlineFunctions.java
++++ b/src/com/google/javascript/jscomp/InlineFunctions.java
+@@ -433,7 +433,8 @@
+       return true;
+     }
+ 
+-    if (parent.isCall() && parent.getFirstChild() == name) {
++    Node var_1171 = parent.getFirstChild();
++	if (parent.isCall() && var_1171 == name) {
+       // This is a normal reference to the function.
+       return true;
+     }
+@@ -447,7 +448,7 @@
+     //     Function-parameter-1
+     //     ...
+     if (NodeUtil.isGet(parent)
+-         && name == parent.getFirstChild()
++         && name == var_1171
+          && name.getNext().isString()
+          && name.getNext().getString().equals("call")) {
+       Node gramps = name.getAncestor(2);

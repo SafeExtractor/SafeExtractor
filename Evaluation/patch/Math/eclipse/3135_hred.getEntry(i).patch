@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..dac887f 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -2181,7 +2181,8 @@
+             dredg = ZERO;
+             gredsq = ZERO;
+             for (int i = 0; i < n; i++) {
+-                gnew.setEntry(i, gnew.getEntry(i) + (cth - ONE) * hred.getEntry(i) + sth * hs.getEntry(i));
++                double var_3135 = hred.getEntry(i);
++				gnew.setEntry(i, gnew.getEntry(i) + (cth - ONE) * var_3135 + sth * hs.getEntry(i));
+                 if (xbdi.getEntry(i) == ZERO) {
+                     trialStepPoint.setEntry(i, cth * trialStepPoint.getEntry(i) + sth * s.getEntry(i));
+                     dredg += trialStepPoint.getEntry(i) * gnew.getEntry(i);
+@@ -2189,7 +2190,7 @@
+                     final double d1 = gnew.getEntry(i);
+                     gredsq += d1 * d1;
+                 }
+-                hred.setEntry(i, cth * hred.getEntry(i) + sth * hs.getEntry(i));
++                hred.setEntry(i, cth * var_3135 + sth * hs.getEntry(i));
+             }
+             qred += sdec;
+             if (iact >= 0 && isav == iu) {

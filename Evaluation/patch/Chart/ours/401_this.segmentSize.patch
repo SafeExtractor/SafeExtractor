@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/chart/axis/SegmentedTimeline.java b/source/org/jfree/chart/axis/SegmentedTimeline.java
+index 3d7dbe0..62c432a 100644
+--- a/source/org/jfree/chart/axis/SegmentedTimeline.java
++++ b/source/org/jfree/chart/axis/SegmentedTimeline.java
+@@ -555,7 +555,8 @@
+ 
+         // verify that baseTimeline is compatible with us
+         if (baseTimeline != null) {
+-            if (baseTimeline.getSegmentSize() < this.segmentSize) {
++            long var_401 = this.segmentSize;
++			if (baseTimeline.getSegmentSize() < var_401) {
+                 throw new IllegalArgumentException(
+                         "baseTimeline.getSegmentSize() "
+                         + "is smaller than segmentSize");
+@@ -564,13 +565,13 @@
+                 throw new IllegalArgumentException(
+                         "baseTimeline.getStartTime() is after startTime");
+             }
+-            else if ((baseTimeline.getSegmentSize() % this.segmentSize) != 0) {
++            else if ((baseTimeline.getSegmentSize() % var_401) != 0) {
+                 throw new IllegalArgumentException(
+                         "baseTimeline.getSegmentSize() is not multiple of "
+                         + "segmentSize");
+             }
+             else if (((this.startTime
+-                    - baseTimeline.getStartTime()) % this.segmentSize) != 0) {
++                    - baseTimeline.getStartTime()) % var_401) != 0) {
+                 throw new IllegalArgumentException(
+                         "baseTimeline is not aligned");
+             }

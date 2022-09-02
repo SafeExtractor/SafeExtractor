@@ -1,0 +1,55 @@
+diff --git a/source/org/jfree/chart/block/RectangleConstraint.java b/source/org/jfree/chart/block/RectangleConstraint.java
+index 1d2baa9..1ff1e20 100644
+--- a/source/org/jfree/chart/block/RectangleConstraint.java
++++ b/source/org/jfree/chart/block/RectangleConstraint.java
+@@ -324,39 +324,40 @@
+      */
+     public Size2D calculateConstrainedSize(Size2D base) {
+         Size2D result = new Size2D();
+-        if (this.widthConstraintType == LengthConstraintType.NONE) {
++        LengthConstraintType var_1043 = this.heightConstraintType;
++		if (this.widthConstraintType == LengthConstraintType.NONE) {
+             result.width = base.width;
+-            if (this.heightConstraintType == LengthConstraintType.NONE) {
++            if (var_1043 == LengthConstraintType.NONE) {
+                result.height = base.height;
+             }
+-            else if (this.heightConstraintType == LengthConstraintType.RANGE) {
++            else if (var_1043 == LengthConstraintType.RANGE) {
+                result.height = this.heightRange.constrain(base.height);
+             }
+-            else if (this.heightConstraintType == LengthConstraintType.FIXED) {
++            else if (var_1043 == LengthConstraintType.FIXED) {
+                result.height = this.height;
+             }
+         }
+         else if (this.widthConstraintType == LengthConstraintType.RANGE) {
+             result.width = this.widthRange.constrain(base.width);
+-            if (this.heightConstraintType == LengthConstraintType.NONE) {
++            if (var_1043 == LengthConstraintType.NONE) {
+                 result.height = base.height;
+             }
+-            else if (this.heightConstraintType == LengthConstraintType.RANGE) {
++            else if (var_1043 == LengthConstraintType.RANGE) {
+                 result.height = this.heightRange.constrain(base.height);
+             }
+-            else if (this.heightConstraintType == LengthConstraintType.FIXED) {
++            else if (var_1043 == LengthConstraintType.FIXED) {
+                 result.height = this.height;
+             }
+         }
+         else if (this.widthConstraintType == LengthConstraintType.FIXED) {
+             result.width = this.width;
+-            if (this.heightConstraintType == LengthConstraintType.NONE) {
++            if (var_1043 == LengthConstraintType.NONE) {
+                 result.height = base.height;
+             }
+-            else if (this.heightConstraintType == LengthConstraintType.RANGE) {
++            else if (var_1043 == LengthConstraintType.RANGE) {
+                 result.height = this.heightRange.constrain(base.height);
+             }
+-            else if (this.heightConstraintType == LengthConstraintType.FIXED) {
++            else if (var_1043 == LengthConstraintType.FIXED) {
+                 result.height = this.height;
+             }
+         }

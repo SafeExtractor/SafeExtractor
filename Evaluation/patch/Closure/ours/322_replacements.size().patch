@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 781fc3c..d7208be 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -1701,10 +1701,11 @@
+       // subexpressions with side effects.
+       List<Node> replacements = getRhsSubexpressions(n);
+       List<Node> newReplacements = Lists.newArrayList();
+-      for (int i = 0; i < replacements.size() - 1; i++) {
++      int var_322 = replacements.size();
++	for (int i = 0; i < var_322 - 1; i++) {
+         newReplacements.addAll(getSideEffectNodes(replacements.get(i)));
+       }
+-      Node valueExpr = replacements.get(replacements.size() - 1);
++      Node valueExpr = replacements.get(var_322 - 1);
+       valueExpr.detachFromParent();
+       newReplacements.add(valueExpr);
+       changeProxy.replaceWith(

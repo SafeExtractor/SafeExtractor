@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..5f5d823 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -705,7 +705,8 @@
+   private Node performArithmeticOp(int opType, Node left, Node right) {
+     // Unlike other operations, ADD operands are not always converted
+     // to Number.
+-    if (opType == Token.ADD
++    int var_139 = Token.ADD;
++	if (opType == var_139
+         && (NodeUtil.mayBeString(left, false)
+             || NodeUtil.mayBeString(right, false))) {
+       return null;
+@@ -738,7 +739,7 @@
+       case Token.BITXOR:
+         result = ScriptRuntime.toInt32(lval) ^ ScriptRuntime.toInt32(rval);
+         break;
+-      case Token.ADD:
++      case var_139:
+         result = lval + rval;
+         break;
+       case Token.SUB:

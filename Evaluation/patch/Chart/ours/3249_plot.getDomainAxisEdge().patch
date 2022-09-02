@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/renderer/xy/HighLowRenderer.java b/source/org/jfree/chart/renderer/xy/HighLowRenderer.java
+index 878a686..201db07 100644
+--- a/source/org/jfree/chart/renderer/xy/HighLowRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/HighLowRenderer.java
+@@ -322,8 +322,9 @@
+         if (!domainAxis.getRange().contains(x)) {
+             return;    // the x value is not within the axis range
+         }
+-        double xx = domainAxis.valueToJava2D(x, dataArea,
+-                plot.getDomainAxisEdge());
++        RectangleEdge var_3249 = plot.getDomainAxisEdge();
++		double xx = domainAxis.valueToJava2D(x, dataArea,
++                var_3249);
+ 
+         // setup for collecting optional entity info...
+         Shape entityArea = null;
+@@ -423,7 +424,7 @@
+                     return;
+                 }
+                 double xx0 = domainAxis.valueToJava2D(x0, dataArea,
+-                        plot.getDomainAxisEdge());
++                        var_3249);
+                 double yy0 = rangeAxis.valueToJava2D(y0, dataArea, location);
+                 double yy = rangeAxis.valueToJava2D(y, dataArea, location);
+                 if (orientation == PlotOrientation.HORIZONTAL) {

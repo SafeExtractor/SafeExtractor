@@ -1,0 +1,34 @@
+diff --git a/src/com/google/javascript/jscomp/ReplaceIdGenerators.java b/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
+index c6e4271..74d6552 100644
+--- a/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
++++ b/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
+@@ -330,8 +330,9 @@
+     //
+     //
+ 
+-    if (serializedMap == null || serializedMap.isEmpty()) {
+-      return Collections.emptyMap();
++    Map<String, BiMap<String, String>> var_1288 = Collections.emptyMap();
++	if (serializedMap == null || serializedMap.isEmpty()) {
++      return var_1288;
+     }
+ 
+     Map<String, BiMap<String, String>> resultMap = Maps.newHashMap();
+@@ -354,7 +355,7 @@
+             resultMap.put(currentSection, currentSectionMap);
+           } else {
+             reportInvalidLine(line, lineIndex);
+-            return Collections.emptyMap();
++            return var_1288;
+           }
+         } else {
+           int split = line.indexOf(':');
+@@ -364,7 +365,7 @@
+             currentSectionMap.put(name, location);
+           } else {
+             reportInvalidLine(line, lineIndex);
+-            return Collections.emptyMap();
++            return var_1288;
+           }
+         }
+       }

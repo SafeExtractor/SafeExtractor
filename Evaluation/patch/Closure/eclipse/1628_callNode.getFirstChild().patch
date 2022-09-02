@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/InlineSimpleMethods.java b/src/com/google/javascript/jscomp/InlineSimpleMethods.java
+index 7de631f..f1fbacd 100644
+--- a/src/com/google/javascript/jscomp/InlineSimpleMethods.java
++++ b/src/com/google/javascript/jscomp/InlineSimpleMethods.java
+@@ -86,19 +86,20 @@
+         if (!argsMayHaveSideEffects(callNode)) {
+           // Verify this is a trivial return
+           Node returned = returnedExpression(firstDefinition);
+-          if (returned != null) {
++          Node var_1628 = callNode.getFirstChild();
++		if (returned != null) {
+             if (isPropertyTree(returned)) {
+               logger.fine("Inlining property accessor: " + callName);
+               inlinePropertyReturn(parent, callNode, returned);
+             } else if (NodeUtil.isLiteralValue(returned, false) &&
+               !NodeUtil.mayHaveSideEffects(
+-                  callNode.getFirstChild(), compiler)) {
++                  var_1628, compiler)) {
+               logger.fine("Inlining constant accessor: " + callName);
+               inlineConstReturn(parent, callNode, returned);
+             }
+           } else if (isEmptyMethod(firstDefinition) &&
+               !NodeUtil.mayHaveSideEffects(
+-                  callNode.getFirstChild(), compiler)) {
++                  var_1628, compiler)) {
+             logger.fine("Inlining empty method: " + callName);
+             inlineEmptyMethod(t, parent, callNode);
+           }

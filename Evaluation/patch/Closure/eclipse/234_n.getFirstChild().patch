@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/MakeDeclaredNamesUnique.java b/src/com/google/javascript/jscomp/MakeDeclaredNamesUnique.java
+index 3743287..19b092f 100644
+--- a/src/com/google/javascript/jscomp/MakeDeclaredNamesUnique.java
++++ b/src/com/google/javascript/jscomp/MakeDeclaredNamesUnique.java
+@@ -215,14 +215,15 @@
+     if (parent == null
+         || !parent.isFunction()
+         || n == parent.getFirstChild()) {
+-      if (NodeUtil.isVarDeclaration(n)) {
++      Node var_234 = n.getFirstChild();
++	if (NodeUtil.isVarDeclaration(n)) {
+         renamer.addDeclaredName(n.getString());
+       } else if (NodeUtil.isFunctionDeclaration(n)) {
+-        Node nameNode = n.getFirstChild();
++        Node nameNode = var_234;
+         renamer.addDeclaredName(nameNode.getString());
+       }
+ 
+-      for (Node c = n.getFirstChild(); c != null; c = c.getNext()) {
++      for (Node c = var_234; c != null; c = c.getNext()) {
+         findDeclaredNames(c, n, renamer);
+       }
+     }

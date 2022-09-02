@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..139a0a4 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1085,9 +1085,10 @@
+          * a with the fractional part lopped off.  */
+ 
+         Dfp result = newInstance(this);
+-        for (int i = 0; i < mant.length-result.exp; i++) {
+-            changed |= result.mant[i] != 0;
+-            result.mant[i] = 0;
++        int[] var_595 = result.mant;
++		for (int i = 0; i < mant.length-result.exp; i++) {
++            changed |= var_595[i] != 0;
++            var_595[i] = 0;
+         }
+ 
+         if (changed) {
+@@ -1118,7 +1119,7 @@
+                     }
+ 
+                     /** If exactly equal to 1/2 and odd then increment */
+-                    if (a.equals(half) && result.exp > 0 && (result.mant[mant.length-result.exp]&1) != 0) {
++                    if (a.equals(half) && result.exp > 0 && (var_595[mant.length-result.exp]&1) != 0) {
+                         a = newInstance(getOne());
+                         a.sign = sign;
+                         result = result.add(a);

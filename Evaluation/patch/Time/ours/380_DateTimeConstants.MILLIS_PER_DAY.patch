@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/chrono/BasicChronology.java b/src/main/java/org/joda/time/chrono/BasicChronology.java
+index 63f394a..ad856d0 100644
+--- a/src/main/java/org/joda/time/chrono/BasicChronology.java
++++ b/src/main/java/org/joda/time/chrono/BasicChronology.java
+@@ -347,14 +347,15 @@
+         long jan1millis = getYearMillis(year);
+         int jan1dayOfWeek = getDayOfWeek(jan1millis);
+         
+-        if (jan1dayOfWeek > (8 - iMinDaysInFirstWeek)) {
++        int var_380 = DateTimeConstants.MILLIS_PER_DAY;
++		if (jan1dayOfWeek > (8 - iMinDaysInFirstWeek)) {
+             // First week is end of previous year because it doesn't have enough days.
+             return jan1millis + (8 - jan1dayOfWeek)
+-                * (long)DateTimeConstants.MILLIS_PER_DAY;
++                * (long)var_380;
+         } else {
+             // First week is start of this year because it has enough days.
+             return jan1millis - (jan1dayOfWeek - 1)
+-                * (long)DateTimeConstants.MILLIS_PER_DAY;
++                * (long)var_380;
+         }
+     }
+ 

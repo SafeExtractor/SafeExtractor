@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 781fc3c..1ce54a1 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -1400,7 +1400,8 @@
+     String name = "";
+     Node rootNameNode = n;
+     boolean bNameWasShortened = false;
+-    while (true) {
++    String var_315 = rootNameNode.getString();
++	while (true) {
+       if (NodeUtil.isGet(rootNameNode)) {
+         Node prop = rootNameNode.getLastChild();
+         if (rootNameNode.isGetProp()) {
+@@ -1413,7 +1414,7 @@
+         rootNameNode = rootNameNode.getFirstChild();
+       } else if (NodeUtil.isObjectLitKey(
+           rootNameNode, rootNameNode.getParent())) {
+-        name = "." + rootNameNode.getString() + name;
++        name = "." + var_315 + name;
+ 
+         // Check if this is an object literal assigned to something.
+         Node objLit = rootNameNode.getParent();
+@@ -1467,7 +1468,7 @@
+             parent.isAssign() &&
+             "prototype".equals(n.getLastChild().getString())) {
+           if (createNameInformation(t, n.getFirstChild()) != null) {
+-            name = rootNameNode.getString() + name;
++            name = var_315 + name;
+             name = name.substring(0, name.length() - PROTOTYPE_SUFFIX_LEN);
+             NameInformation nameInfo = new NameInformation();
+             nameInfo.name = name;
+@@ -1477,7 +1478,7 @@
+           }
+         }
+         return createNameInformation(
+-            rootNameNode.getString() + name, t.getScope(), rootNameNode);
++            var_315 + name, t.getScope(), rootNameNode);
+       case Token.THIS:
+         if (t.inGlobalScope()) {
+           NameInformation nameInfo = new NameInformation();

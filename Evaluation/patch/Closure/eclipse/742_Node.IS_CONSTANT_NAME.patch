@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..c2e521f 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -948,9 +948,10 @@
+ 
+           // Determine if this is a constant var by checking the first
+           // reference to it. Don't check the declaration, as it might be null.
+-          if (p.getRefs().get(0).node.getLastChild().getBooleanProp(
+-                  Node.IS_CONSTANT_NAME)) {
+-            nameNode.putBooleanProp(Node.IS_CONSTANT_NAME, true);
++          int var_742 = Node.IS_CONSTANT_NAME;
++		if (p.getRefs().get(0).node.getLastChild().getBooleanProp(
++                  var_742)) {
++            nameNode.putBooleanProp(var_742, true);
+           }
+         }
+       }

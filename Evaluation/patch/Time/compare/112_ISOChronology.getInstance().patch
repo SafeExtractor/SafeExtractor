@@ -1,0 +1,31 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/112_ISOChronology.getInstance().patch b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/112_ISOChronology.getInstance().patch
+index 1d79cea..21a76ee 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/112_ISOChronology.getInstance().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/112_ISOChronology.getInstance().patch
+@@ -1,21 +1,14 @@
+ diff --git a/src/main/java/org/joda/time/DateTimeUtils.java b/src/main/java/org/joda/time/DateTimeUtils.java
+-index 391cafd..1bbf2ac 100644
++index 391cafd..5e0f0bd 100644
+ --- a/src/main/java/org/joda/time/DateTimeUtils.java
+ +++ b/src/main/java/org/joda/time/DateTimeUtils.java
+-@@ -240,12 +240,13 @@
+-      * @return the chronology, never null
++@@ -241,7 +241,8 @@
+       */
+      public static final Chronology getIntervalChronology(ReadableInterval interval) {
+--        if (interval == null) {
++         if (interval == null) {
+ -            return ISOChronology.getInstance();
+-+        ISOChronology var_112 = ISOChronology.getInstance();
+-+		if (interval == null) {
+-+            return var_112;
+++            ISOChronology var_112 = ISOChronology.getInstance();
+++			return var_112;
+          }
+          Chronology chrono = interval.getChronology();
+          if (chrono == null) {
+--            return ISOChronology.getInstance();
+-+            return var_112;
+-         }
+-         return chrono;
+-     }

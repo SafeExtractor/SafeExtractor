@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/FastDateParser.java b/src/main/java/org/apache/commons/lang3/time/FastDateParser.java
+index b9bb413..72e7f3b 100644
+--- a/src/main/java/org/apache/commons/lang3/time/FastDateParser.java
++++ b/src/main/java/org/apache/commons/lang3/time/FastDateParser.java
+@@ -118,7 +118,8 @@
+                     "Illegal pattern character '" + pattern.charAt(patternMatcher.regionStart()) + "'");
+         }
+ 
+-        currentFormatField= patternMatcher.group();
++        String var_584 = patternMatcher.group();
++		currentFormatField= var_584;
+         Strategy currentStrategy= getStrategy(currentFormatField, definingCalendar);
+         for(;;) {
+             patternMatcher.region(patternMatcher.end(), patternMatcher.regionEnd());
+@@ -126,7 +127,7 @@
+                 nextStrategy = null;
+                 break;
+             }
+-            final String nextFormatField= patternMatcher.group();
++            final String nextFormatField= var_584;
+             nextStrategy = getStrategy(nextFormatField, definingCalendar);
+             if(currentStrategy.addRegex(this, regex)) {
+                 collector.add(currentStrategy);

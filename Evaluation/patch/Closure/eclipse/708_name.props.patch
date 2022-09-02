@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..7bf89c9 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -186,12 +186,13 @@
+ 
+       // Check if {@code name} has any aliases left after the
+       // local-alias-inlining above.
+-      if ((name.type == Name.Type.OBJECTLIT ||
++      List<Name> var_708 = name.props;
++	if ((name.type == Name.Type.OBJECTLIT ||
+            name.type == Name.Type.FUNCTION) &&
+-          name.aliasingGets == 0 && name.props != null) {
++          name.aliasingGets == 0 && var_708 != null) {
+         // All of {@code name}'s children meet condition (a), so they can be
+         // added to the worklist.
+-        workList.addAll(name.props);
++        workList.addAll(var_708);
+       }
+     }
+   }

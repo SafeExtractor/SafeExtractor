@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+index a2ea88e..da4e961 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+@@ -286,13 +286,14 @@
+         // MATLAB's new ad hoc shift
+         if (iteration == 30) {
+             double s = (shift.y - shift.x) / 2.0;
+-            s = s * s + shift.w;
++            double var_2368 = shift.w;
++			s = s * s + var_2368;
+             if (s > 0.0) {
+                 s = FastMath.sqrt(s);
+                 if (shift.y < shift.x) {
+                     s = -s;
+                 }
+-                s = shift.x - shift.w / ((shift.y - shift.x) / 2.0 + s);
++                s = shift.x - var_2368 / ((shift.y - shift.x) / 2.0 + s);
+                 for (int i = 0; i <= idx; i++) {
+                     matrixT[i][i] -= s;
+                 }

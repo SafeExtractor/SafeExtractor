@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/GenerateExports.java b/src/com/google/javascript/jscomp/GenerateExports.java
+index 40b4264..667cb3e 100644
+--- a/src/com/google/javascript/jscomp/GenerateExports.java
++++ b/src/com/google/javascript/jscomp/GenerateExports.java
+@@ -129,10 +129,11 @@
+         insertionPoint = insertionPoint.getNext();
+       }
+ 
+-      if (insertionPoint == null) {
+-        context.getScriptNode().addChildToBack(expression);
++      Node var_2017 = context.getScriptNode();
++	if (insertionPoint == null) {
++        var_2017.addChildToBack(expression);
+       } else {
+-        context.getScriptNode().addChildBefore(expression, insertionPoint);
++        var_2017.addChildBefore(expression, insertionPoint);
+       }
+       compiler.reportCodeChange();
+     }

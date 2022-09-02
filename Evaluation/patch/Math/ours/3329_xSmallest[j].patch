@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/NelderMeadSimplex.java b/src/main/java/org/apache/commons/math3/optimization/direct/NelderMeadSimplex.java
+index f822fba..5121de2 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/NelderMeadSimplex.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/NelderMeadSimplex.java
+@@ -274,7 +274,8 @@
+             for (int i = 1; i <= n; i++) {
+                 final double[] x = getPoint(i).getPoint();
+                 for (int j = 0; j < n; j++) {
+-                    x[j] = xSmallest[j] + sigma * (x[j] - xSmallest[j]);
++                    double var_3329 = xSmallest[j];
++					x[j] = var_3329 + sigma * (x[j] - var_3329);
+                 }
+                 setPoint(i, new PointValuePair(x, Double.NaN, false));
+             }

@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java b/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java
+index cc7b318..613fbb3 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java
++++ b/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java
+@@ -93,16 +93,17 @@
+         this.data = new double[data.length][data[0].length];
+ 
+         for (int i = 0; i < data.length; i++) {
+-            if (data[i].length != data[0].length) {
++            int var_912 = data[i].length;
++			if (var_912 != data[0].length) {
+                 // Jagged arrays not allowed
+-                throw new DimensionMismatchException(data[i].length,
++                throw new DimensionMismatchException(var_912,
+                                                      data[0].length);
+             }
+-            if (data[i].length < 2) {
++            if (var_912 < 2) {
+                 throw new NumberIsTooSmallException(LocalizedFormats.NUMBER_TOO_SMALL,
+-                                                    data[i].length, 2, true);
++                                                    var_912, 2, true);
+             }
+-            this.data[i] = MathArrays.copyOf(data[i], data[i].length);
++            this.data[i] = MathArrays.copyOf(data[i], var_912);
+         }
+     }
+ 

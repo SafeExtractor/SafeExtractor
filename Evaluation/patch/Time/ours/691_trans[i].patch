@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+index fa5c164..c8a0490 100644
+--- a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
++++ b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+@@ -1435,7 +1435,8 @@
+                 long nextOffset = wallOffsets[i + 1];
+                 long curStdOffset = standardOffsets[i];
+                 long nextStdOffset = standardOffsets[i + 1];
+-                Period p = new Period(trans[i], trans[i + 1], PeriodType.yearMonthDay(), chrono);
++                long var_691 = trans[i];
++				Period p = new Period(var_691, trans[i + 1], PeriodType.yearMonthDay(), chrono);
+                 if (curOffset != nextOffset &&
+                         curStdOffset == nextStdOffset &&
+                         curNameKey.equals(nextNameKey) &&
+@@ -1445,7 +1446,7 @@
+                     
+                     if (ZoneInfoCompiler.verbose()) {
+                         System.out.println("Fixing duplicate name key - " + nextNameKey);
+-                        System.out.println("     - " + new DateTime(trans[i], chrono) +
++                        System.out.println("     - " + new DateTime(var_691, chrono) +
+                                            " - " + new DateTime(trans[i + 1], chrono));
+                     }
+                     if (curOffset > nextOffset) {

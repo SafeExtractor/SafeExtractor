@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+index fa5c164..cb547fa 100644
+--- a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
++++ b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+@@ -1515,14 +1515,15 @@
+                 return iNameKeys[i];
+             }
+             i = ~i;
+-            if (i < transitions.length) {
++            String var_700 = iNameKeys[i - 1];
++			if (i < transitions.length) {
+                 if (i > 0) {
+-                    return iNameKeys[i - 1];
++                    return var_700;
+                 }
+                 return "UTC";
+             }
+             if (iTailZone == null) {
+-                return iNameKeys[i - 1];
++                return var_700;
+             }
+             return iTailZone.getNameKey(instant);
+         }

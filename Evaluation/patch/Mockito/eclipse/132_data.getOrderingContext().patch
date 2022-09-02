@@ -1,0 +1,29 @@
+diff --git a/src/org/mockito/internal/verification/Times.java b/src/org/mockito/internal/verification/Times.java
+index 539ddf6..a7c61a7 100644
+--- a/src/org/mockito/internal/verification/Times.java
++++ b/src/org/mockito/internal/verification/Times.java
+@@ -9,6 +9,7 @@
+ 
+ import org.mockito.exceptions.base.MockitoException;
+ import org.mockito.internal.invocation.InvocationMatcher;
++import org.mockito.internal.verification.api.InOrderContext;
+ import org.mockito.internal.verification.api.VerificationData;
+ import org.mockito.internal.verification.api.VerificationDataInOrder;
+ import org.mockito.internal.verification.api.VerificationInOrderMode;
+@@ -43,12 +44,13 @@
+         List<Invocation> allInvocations = data.getAllInvocations();
+         InvocationMatcher wanted = data.getWanted();
+         
+-        if (wantedCount > 0) {
++        InOrderContext var_132 = data.getOrderingContext();
++		if (wantedCount > 0) {
+             MissingInvocationInOrderChecker missingInvocation = new MissingInvocationInOrderChecker();
+-            missingInvocation.check(allInvocations, wanted, this, data.getOrderingContext());
++            missingInvocation.check(allInvocations, wanted, this, var_132);
+         }
+         NumberOfInvocationsInOrderChecker numberOfCalls = new NumberOfInvocationsInOrderChecker();
+-        numberOfCalls.check(allInvocations, wanted, wantedCount, data.getOrderingContext());
++        numberOfCalls.check(allInvocations, wanted, wantedCount, var_132);
+     }    
+     
+     @Override

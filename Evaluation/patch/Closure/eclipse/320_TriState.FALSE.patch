@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 781fc3c..fb91f60 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -1652,13 +1652,14 @@
+ 
+       boolean nodeIsClass = name.prototypeNames.size() > 0;
+ 
+-      boolean classMatch = isClass == TriState.BOTH
++      TriState var_320 = TriState.FALSE;
++	boolean classMatch = isClass == TriState.BOTH
+           || (nodeIsClass && isClass == TriState.TRUE)
+-          || (!nodeIsClass && isClass == TriState.FALSE);
++          || (!nodeIsClass && isClass == var_320);
+ 
+       boolean referenceMatch = referenced == TriState.BOTH
+           || (name.referenced && referenced == TriState.TRUE)
+-          || (!name.referenced && referenced == TriState.FALSE);
++          || (!name.referenced && referenced == var_320);
+ 
+       if (classMatch && referenceMatch && !name.externallyDefined) {
+         count++;

@@ -1,0 +1,54 @@
+diff --git a/source/org/jfree/chart/title/PaintScaleLegend.java b/source/org/jfree/chart/title/PaintScaleLegend.java
+index c489277..886e620 100644
+--- a/source/org/jfree/chart/title/PaintScaleLegend.java
++++ b/source/org/jfree/chart/title/PaintScaleLegend.java
+@@ -547,7 +547,8 @@
+         double increment = this.axis.getRange().getLength() / this.subdivisions;
+         Rectangle2D r = new Rectangle2D.Double();
+ 
+-        if (RectangleEdge.isTopOrBottom(getPosition())) {
++        double var_3420 = target.getMinY();
++		if (RectangleEdge.isTopOrBottom(getPosition())) {
+             RectangleEdge axisEdge = Plot.resolveRangeAxisLocation(
+                     this.axisLocation, PlotOrientation.HORIZONTAL);
+             if (axisEdge == RectangleEdge.TOP) {
+@@ -584,7 +585,7 @@
+                     double vv1 = this.axis.valueToJava2D(v + increment, target,
+                             RectangleEdge.BOTTOM);
+                     double ww = Math.abs(vv1 - vv0) + 1.0;
+-                    r.setRect(Math.min(vv0, vv1), target.getMinY(), ww,
++                    r.setRect(Math.min(vv0, vv1), var_3420, ww,
+                             this.stripWidth);
+                     g2.setPaint(p);
+                     g2.fill(r);
+@@ -593,10 +594,10 @@
+                     g2.setPaint(this.stripOutlinePaint);
+                     g2.setStroke(this.stripOutlineStroke);
+                     g2.draw(new Rectangle2D.Double(target.getMinX(),
+-                            target.getMinY(), target.getWidth(),
++                            var_3420, target.getWidth(),
+                             this.stripWidth));
+                 }
+-                this.axis.draw(g2, target.getMinY() + this.stripWidth
++                this.axis.draw(g2, var_3420 + this.stripWidth
+                         + this.axisOffset, target, target,
+                         RectangleEdge.BOTTOM, null);
+             }
+@@ -622,7 +623,7 @@
+                     g2.setPaint(this.stripOutlinePaint);
+                     g2.setStroke(this.stripOutlineStroke);
+                     g2.draw(new Rectangle2D.Double(target.getMaxX()
+-                            - this.stripWidth, target.getMinY(),
++                            - this.stripWidth, var_3420,
+                             this.stripWidth, target.getHeight()));
+                 }
+                 this.axis.draw(g2, target.getMaxX() - this.stripWidth
+@@ -647,7 +648,7 @@
+                     g2.setPaint(this.stripOutlinePaint);
+                     g2.setStroke(this.stripOutlineStroke);
+                     g2.draw(new Rectangle2D.Double(target.getMinX(),
+-                            target.getMinY(), this.stripWidth,
++                            var_3420, this.stripWidth,
+                             target.getHeight()));
+                 }
+                 this.axis.draw(g2, target.getMinX() + this.stripWidth

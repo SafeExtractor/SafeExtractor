@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+index 3dc8ec6..d9a1fa4 100644
+--- a/src/com/google/javascript/jscomp/TypeInference.java
++++ b/src/com/google/javascript/jscomp/TypeInference.java
+@@ -1402,12 +1402,13 @@
+ 
+       // Exclude the boolean type if the literal set is empty because a boolean
+       // can never actually be returned.
+-      if (literals.booleanValues == BooleanLiteralSet.EMPTY &&
+-          getNativeType(BOOLEAN_TYPE).isSubtype(type)) {
++      JSType var_964 = getNativeType(BOOLEAN_TYPE);
++	if (literals.booleanValues == BooleanLiteralSet.EMPTY &&
++          var_964.isSubtype(type)) {
+         // Exclusion only make sense for a union type.
+         if (type.isUnionType()) {
+           type = type.toMaybeUnionType().getRestrictedUnion(
+-              getNativeType(BOOLEAN_TYPE));
++              var_964);
+         }
+       }
+     } else {

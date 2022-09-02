@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..4305197 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -2315,15 +2315,16 @@
+         // Apply the rotations that put zeros in the KNEW-th row of ZMAT.
+ 
+         for (int j = 1; j < nptm; j++) {
+-            final double d1 = zMatrix.getEntry(knew, j);
++            double var_3415 = zMatrix.getEntry(knew, j);
++			final double d1 = var_3415;
+             if (Math.abs(d1) > ztest) {
+                 // Computing 2nd power
+                 final double d2 = zMatrix.getEntry(knew, 0);
+                 // Computing 2nd power
+-                final double d3 = zMatrix.getEntry(knew, j);
++                final double d3 = var_3415;
+                 final double d4 = Math.sqrt(d2 * d2 + d3 * d3);
+                 final double d5 = zMatrix.getEntry(knew, 0) / d4;
+-                final double d6 = zMatrix.getEntry(knew, j) / d4;
++                final double d6 = var_3415 / d4;
+                 for (int i = 0; i < npt; i++) {
+                     final double d7 = d5 * zMatrix.getEntry(i, 0) + d6 * zMatrix.getEntry(i, j);
+                     zMatrix.setEntry(i, j, d5 * zMatrix.getEntry(i, j) - d6 * zMatrix.getEntry(i, 0));

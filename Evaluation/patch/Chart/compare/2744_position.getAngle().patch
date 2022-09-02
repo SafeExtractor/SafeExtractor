@@ -1,0 +1,38 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2744_position.getAngle().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/2744_position.getAngle().patch
+index 878bb43..af1a896 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2744_position.getAngle().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/2744_position.getAngle().patch
+@@ -1,27 +1,17 @@
+ diff --git a/source/org/jfree/chart/renderer/category/BarRenderer.java b/source/org/jfree/chart/renderer/category/BarRenderer.java
+-index 37da044..455f5d2 100644
++index 37da044..1c7e704 100644
+ --- a/source/org/jfree/chart/renderer/category/BarRenderer.java
+ +++ b/source/org/jfree/chart/renderer/category/BarRenderer.java
+-@@ -1118,10 +1118,11 @@
+-         Point2D anchorPoint = calculateLabelAnchorPoint(
++@@ -1119,9 +1119,10 @@
+                  position.getItemLabelAnchor(), bar, plot.getOrientation());
+  
+--        if (isInternalAnchor(position.getItemLabelAnchor())) {
+-+        double var_2744 = position.getAngle();
+-+		if (isInternalAnchor(position.getItemLabelAnchor())) {
+-             Shape bounds = TextUtilities.calculateRotatedStringBounds(label,
++         if (isInternalAnchor(position.getItemLabelAnchor())) {
++-            Shape bounds = TextUtilities.calculateRotatedStringBounds(label,
+++            double var_2744 = position.getAngle();
+++			Shape bounds = TextUtilities.calculateRotatedStringBounds(label,
+                      g2, (float) anchorPoint.getX(), (float) anchorPoint.getY(),
+ -                    position.getTextAnchor(), position.getAngle(),
+ +                    position.getTextAnchor(), var_2744,
+                      position.getRotationAnchor());
+  
+              if (bounds != null) {
+-@@ -1145,7 +1146,7 @@
+-         if (position != null) {
+-             TextUtilities.drawRotatedString(label, g2,
+-                     (float) anchorPoint.getX(), (float) anchorPoint.getY(),
+--                    position.getTextAnchor(), position.getAngle(),
+-+                    position.getTextAnchor(), var_2744,
+-                     position.getRotationAnchor());
+-         }
+-     }

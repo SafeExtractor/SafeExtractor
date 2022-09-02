@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot.java b/source/org/jfree/chart/plot/PiePlot.java
+index 34014e9..c9a2634 100644
+--- a/source/org/jfree/chart/plot/PiePlot.java
++++ b/source/org/jfree/chart/plot/PiePlot.java
+@@ -3199,7 +3199,8 @@
+     protected void drawRightLabel(Graphics2D g2, PiePlotState state,
+                                   PieLabelRecord record) {
+ 
+-        double anchorX = state.getLinkArea().getMaxX();
++        Rectangle2D var_2073 = state.getLinkArea();
++		double anchorX = var_2073.getMaxX();
+         double targetX = anchorX + record.getGap();
+         double targetY = record.getAllocatedY();
+ 
+@@ -3210,9 +3211,9 @@
+             double linkY = state.getPieCenterY() - Math.sin(theta)
+                     * state.getPieHRadius() * record.getLinkPercent();
+             double elbowX = state.getPieCenterX() + Math.cos(theta)
+-                    * state.getLinkArea().getWidth() / 2.0;
++                    * var_2073.getWidth() / 2.0;
+             double elbowY = state.getPieCenterY() - Math.sin(theta)
+-                    * state.getLinkArea().getHeight() / 2.0;
++                    * var_2073.getHeight() / 2.0;
+             double anchorY = elbowY;
+             g2.setPaint(this.labelLinkPaint);
+             g2.setStroke(this.labelLinkStroke);

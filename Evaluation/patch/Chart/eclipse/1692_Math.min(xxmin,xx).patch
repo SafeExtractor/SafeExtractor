@@ -1,0 +1,38 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..bbddfa0 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -3556,15 +3556,16 @@
+         double yymax = yAxis.valueToJava2D(ymax, area, getRangeAxisEdge());
+ 
+         Rectangle2D[] r = new Rectangle2D[] {null, null, null, null};
+-        if (this.quadrantPaint[0] != null) {
++        double var_1692 = Math.min(xxmin, xx);
++		if (this.quadrantPaint[0] != null) {
+             if (x > xmin && y < ymax) {
+                 if (this.orientation == PlotOrientation.HORIZONTAL) {
+                     r[0] = new Rectangle2D.Double(Math.min(yymax, yy),
+-                            Math.min(xxmin, xx), Math.abs(yy - yymax),
++                            var_1692, Math.abs(yy - yymax),
+                             Math.abs(xx - xxmin));
+                 }
+                 else {  // PlotOrientation.VERTICAL
+-                    r[0] = new Rectangle2D.Double(Math.min(xxmin, xx),
++                    r[0] = new Rectangle2D.Double(var_1692,
+                             Math.min(yymax, yy), Math.abs(xx - xxmin),
+                             Math.abs(yy - yymax));
+                 }
+@@ -3590,11 +3591,11 @@
+             if (x > xmin && y > ymin) {
+                 if (this.orientation == PlotOrientation.HORIZONTAL) {
+                     r[2] = new Rectangle2D.Double(Math.min(yymin, yy),
+-                            Math.min(xxmin, xx), Math.abs(yy - yymin),
++                            var_1692, Math.abs(yy - yymin),
+                             Math.abs(xx - xxmin));
+                 }
+                 else {  // PlotOrientation.VERTICAL
+-                    r[2] = new Rectangle2D.Double(Math.min(xxmin, xx),
++                    r[2] = new Rectangle2D.Double(var_1692,
+                             Math.min(yymin, yy), Math.abs(xx - xxmin),
+                             Math.abs(yy - yymin));
+                 }

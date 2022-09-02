@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java b/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
+index efbe8a2..eb72a8a 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
+@@ -162,8 +162,9 @@
+                 for (int i = k + 1; i < n; i++) {
+                     e[k] = FastMath.hypot(e[k], e[i]);
+                 }
+-                if (e[k] != 0) {
+-                    if (e[k + 1] < 0) {
++                double var_1825 = e[k + 1];
++				if (e[k] != 0) {
++                    if (var_1825 < 0) {
+                         e[k] = -e[k];
+                     }
+                     for (int i = k + 1; i < n; i++) {
+@@ -184,7 +185,7 @@
+                         }
+                     }
+                     for (int j = k + 1; j < n; j++) {
+-                        final double t = -e[j] / e[k + 1];
++                        final double t = -e[j] / var_1825;
+                         for (int i = k + 1; i < m; i++) {
+                             A[i][j] += t * work[i];
+                         }

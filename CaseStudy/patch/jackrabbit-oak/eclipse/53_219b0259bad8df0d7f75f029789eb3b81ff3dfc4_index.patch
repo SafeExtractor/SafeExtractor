@@ -1,0 +1,16 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/query/ast/SelectorImpl.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/query/ast/SelectorImpl.java
+index e11d7fc..ef62393 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/query/ast/SelectorImpl.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/query/ast/SelectorImpl.java
+@@ -300,8 +300,9 @@
+ 
+     @Override
+     public void execute(NodeState rootState) {
+-        if (plan.getIndex() != null) {
+-            cursor = plan.getIndex().query(createFilter(false), rootState);
++        QueryIndex index = plan.getIndex();
++		if (index != null) {
++            cursor = index.query(createFilter(false), rootState);
+         } else {
+             cursor = Cursors.newPathCursor(new ArrayList<String>());
+         }

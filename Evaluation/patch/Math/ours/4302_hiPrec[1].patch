@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/FastMath.java b/src/main/java/org/apache/commons/math3/util/FastMath.java
+index 919e39f..96d0979 100644
+--- a/src/main/java/org/apache/commons/math3/util/FastMath.java
++++ b/src/main/java/org/apache/commons/math3/util/FastMath.java
+@@ -984,12 +984,13 @@
+             //return exp(x) - 1.0;
+             double hiPrec[] = new double[2];
+             exp(x, 0.0, hiPrec);
+-            if (x > 0.0) {
+-                return -1.0 + hiPrec[0] + hiPrec[1];
++            double var_4302 = hiPrec[1];
++			if (x > 0.0) {
++                return -1.0 + hiPrec[0] + var_4302;
+             } else {
+                 final double ra = -1.0 + hiPrec[0];
+                 double rb = -(ra + 1.0 - hiPrec[0]);
+-                rb += hiPrec[1];
++                rb += var_4302;
+                 return ra + rb;
+             }
+         }

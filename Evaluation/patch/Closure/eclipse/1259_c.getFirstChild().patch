@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/Normalize.java b/src/com/google/javascript/jscomp/Normalize.java
+index 98b136e..84c2db9 100644
+--- a/src/com/google/javascript/jscomp/Normalize.java
++++ b/src/com/google/javascript/jscomp/Normalize.java
+@@ -626,8 +626,9 @@
+             throw new IllegalStateException("Empty VAR node.");
+           }
+ 
+-          while (c.getFirstChild() != c.getLastChild()) {
+-            Node name = c.getFirstChild();
++          Node var_1259 = c.getFirstChild();
++		while (var_1259 != c.getLastChild()) {
++            Node name = var_1259;
+             c.removeChild(name);
+             Node newVar = IR.var(name).srcref(n);
+             n.addChildBefore(newVar, c);

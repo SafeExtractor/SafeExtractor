@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+index 63538e3..94824e7 100644
+--- a/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
++++ b/src/com/google/javascript/jscomp/PeepholeReplaceKnownMethods.java
+@@ -716,7 +716,8 @@
+ 
+     // If an empty string is specified for the separator, split apart each
+     // character of the string.
+-    if (separator.length() == 0) {
++    int var_1727 = separator.length();
++	if (var_1727 == 0) {
+       for (int i = 0; i < stringValue.length() && i < limit; i++) {
+         splitStrings.add(stringValue.substring(i, i + 1));
+       }
+@@ -727,7 +728,7 @@
+           splitStrings.size() < limit) {
+         splitStrings.add(stringValue.substring(startIndex, matchIndex));
+ 
+-        startIndex = matchIndex + separator.length();
++        startIndex = matchIndex + var_1727;
+       }
+ 
+       if (splitStrings.size() < limit) {

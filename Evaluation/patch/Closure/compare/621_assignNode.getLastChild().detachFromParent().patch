@@ -1,0 +1,35 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/621_assignNode.getLastChild().detachFromParent().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/621_assignNode.getLastChild().detachFromParent().patch
+index 4800729..abfa41f 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/621_assignNode.getLastChild().detachFromParent().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/621_assignNode.getLastChild().detachFromParent().patch
+@@ -1,25 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/RemoveUnusedVars.java b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+-index 4c84735..e2ef7b0 100644
++index 4c84735..f86c12a 100644
+ --- a/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+ +++ b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+-@@ -969,8 +969,9 @@
+-      */
++@@ -970,7 +970,8 @@
+      void remove() {
+        Node parent = assignNode.getParent();
+--      if (mayHaveSecondarySideEffects) {
++       if (mayHaveSecondarySideEffects) {
+ -        Node replacement = assignNode.getLastChild().detachFromParent();
+-+      Node var_621 = assignNode.getLastChild().detachFromParent();
+-+	if (mayHaveSecondarySideEffects) {
+-+        Node replacement = var_621;
+++        Node var_621 = assignNode.getLastChild().detachFromParent();
+++		Node replacement = var_621;
+  
+          // Aggregate any expressions in GETELEMs.
+          for (Node current = assignNode.getFirstChild();
+-@@ -990,7 +991,7 @@
+-           gramps.removeChild(parent);
+-         } else {
+-           parent.replaceChild(assignNode,
+--              assignNode.getLastChild().detachFromParent());
+-+              var_621);
+-         }
+-       }
+-     }

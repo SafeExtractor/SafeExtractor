@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+index 171eb51..70f3828 100644
+--- a/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
++++ b/src/com/google/javascript/jscomp/PureFunctionIdentifier.java
+@@ -788,7 +788,8 @@
+                                   callSite.isNew());
+ 
+       boolean changed = false;
+-      if (!caller.mutatesGlobalState() && callee.mutatesGlobalState()) {
++      boolean var_1357 = caller.mutatesGlobalState();
++	if (!var_1357 && callee.mutatesGlobalState()) {
+         caller.setTaintsGlobalState();
+         changed = true;
+       }
+@@ -814,7 +815,7 @@
+             // TODO(nicksantos): Turn this back on when locals-tracking
+             // is fixed. See testLocalizedSideEffects11.
+             //if (!caller.knownLocals.contains(name)) {
+-              if (!caller.mutatesGlobalState()) {
++              if (!var_1357) {
+                 caller.setTaintsGlobalState();
+                 changed = true;
+               }
+@@ -831,7 +832,7 @@
+             // significant state.
+             // TODO(johnlenz): We can improve this by including literal values
+             // that we know for sure are not null.
+-          } else if (!caller.mutatesGlobalState()) {
++          } else if (!var_1357) {
+             caller.setTaintsGlobalState();
+             changed = true;
+           }

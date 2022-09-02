@@ -1,0 +1,36 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+index 2e75bce..d06d2e0 100644
+--- a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
++++ b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+@@ -171,10 +171,11 @@
+ 
+   @Override
+   public void visit(NodeTraversal t, Node n, Node parent) {
+-    switch (n.getType()) {
++    Node var_1511 = n.getFirstChild();
++	switch (n.getType()) {
+       case Token.CALL:
+         boolean isExpr = parent.isExprResult();
+-        Node left = n.getFirstChild();
++        Node left = var_1511;
+         if (left.isGetProp()) {
+           Node name = left.getFirstChild();
+           if (name.isName() &&
+@@ -239,7 +240,7 @@
+         // error. Hoisted functions will explode if they're provided.
+         if (t.inGlobalScope() &&
+             !NodeUtil.isFunctionExpression(n)) {
+-          String name = n.getFirstChild().getString();
++          String name = var_1511.getString();
+           ProvidedName pn = providedNames.get(name);
+           if (pn != null) {
+             compiler.report(t.makeError(n, FUNCTION_NAMESPACE_ERROR, name));
+@@ -248,7 +249,7 @@
+         break;
+ 
+       case Token.GETPROP:
+-        if (n.getFirstChild().isName() &&
++        if (var_1511.isName() &&
+             !parent.isCall() &&
+             !parent.isAssign() &&
+             "goog.base".equals(n.getQualifiedName())) {

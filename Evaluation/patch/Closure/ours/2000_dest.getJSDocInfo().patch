@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/AliasExternals.java b/src/com/google/javascript/jscomp/AliasExternals.java
+index fc43f34..0df8e69 100644
+--- a/src/com/google/javascript/jscomp/AliasExternals.java
++++ b/src/com/google/javascript/jscomp/AliasExternals.java
+@@ -604,8 +604,9 @@
+     private void getGlobalName(NodeTraversal t, Node dest, Node parent) {
+       if (dest.isName()) {
+ 
+-        JSDocInfo docInfo = dest.getJSDocInfo() == null ?
+-            parent.getJSDocInfo() : dest.getJSDocInfo();
++        JSDocInfo var_2000 = dest.getJSDocInfo();
++		JSDocInfo docInfo = var_2000 == null ?
++            parent.getJSDocInfo() : var_2000;
+         boolean aliasable = !unaliasableGlobals.contains(dest.getString()) &&
+             (docInfo == null || !docInfo.isNoAlias());
+ 

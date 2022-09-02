@@ -1,0 +1,33 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/672_setDayOfMonthPrevious(chrono,prev).patch b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/672_setDayOfMonthPrevious(chrono,prev).patch
+index 57eec15..36c0ec3 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/672_setDayOfMonthPrevious(chrono,prev).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/672_setDayOfMonthPrevious(chrono,prev).patch
+@@ -1,8 +1,8 @@
+ diff --git a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+-index fa5c164..d9e5ff2 100644
++index fa5c164..9e4cb2c 100644
+ --- a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+ +++ b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+-@@ -604,19 +604,20 @@
++@@ -604,7 +604,8 @@
+              // Be lenient with millisOfDay.
+              prev = chrono.millisOfDay().set(prev, 0);
+              prev = chrono.millisOfDay().add(prev, iMillisOfDay);
+@@ -12,17 +12,3 @@ index fa5c164..d9e5ff2 100644
+  
+              if (iDayOfWeek == 0) {
+                  if (prev >= instant) {
+-                     prev = chrono.year().add(prev, -1);
+--                    prev = setDayOfMonthPrevious(chrono, prev);
+-+                    prev = var_672;
+-                 }
+-             } else {
+-                 prev = setDayOfWeek(chrono, prev);
+-                 if (prev >= instant) {
+-                     prev = chrono.year().add(prev, -1);
+-                     prev = chrono.monthOfYear().set(prev, iMonthOfYear);
+--                    prev = setDayOfMonthPrevious(chrono, prev);
+-+                    prev = var_672;
+-                     prev = setDayOfWeek(chrono, prev);
+-                 }
+-             }

@@ -1,0 +1,42 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..8231f41 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -1003,21 +1003,22 @@
+      * regressor array does not exist
+      */
+     public RegressionResults regress(int[] variablesToInclude) throws ModelSpecificationException {
+-        if (variablesToInclude.length > this.nvars) {
++        int var_4028 = this.nvars;
++		if (variablesToInclude.length > var_4028) {
+             throw new ModelSpecificationException(
+-                    LocalizedFormats.TOO_MANY_REGRESSORS, variablesToInclude.length, this.nvars);
++                    LocalizedFormats.TOO_MANY_REGRESSORS, variablesToInclude.length, var_4028);
+         }
+-        if (this.nobs <= this.nvars) {
++        if (this.nobs <= var_4028) {
+             throw new ModelSpecificationException(
+                     LocalizedFormats.NOT_ENOUGH_DATA_FOR_NUMBER_OF_PREDICTORS,
+-                    this.nobs, this.nvars);
++                    this.nobs, var_4028);
+         }
+         Arrays.sort(variablesToInclude);
+         int iExclude = 0;
+         for (int i = 0; i < variablesToInclude.length; i++) {
+-            if (i >= this.nvars) {
++            if (i >= var_4028) {
+                 throw new ModelSpecificationException(
+-                        LocalizedFormats.INDEX_LARGER_THAN_MAX, i, this.nvars);
++                        LocalizedFormats.INDEX_LARGER_THAN_MAX, i, var_4028);
+             }
+             if (i > 0 && variablesToInclude[i] == variablesToInclude[i - 1]) {
+                 variablesToInclude[i] = -1;
+@@ -1056,7 +1057,7 @@
+         }
+ 
+         boolean needsReorder = false;
+-        for (int i = 0; i < this.nvars; i++) {
++        for (int i = 0; i < var_4028; i++) {
+             if (this.vorder[i] != series[i]) {
+                 needsReorder = true;
+                 break;

@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/graph/GraphColoring.java b/src/com/google/javascript/jscomp/graph/GraphColoring.java
+index 14900a4..2755ebd 100644
+--- a/src/com/google/javascript/jscomp/graph/GraphColoring.java
++++ b/src/com/google/javascript/jscomp/graph/GraphColoring.java
+@@ -136,10 +136,11 @@
+       Collections.sort(worklist, new Comparator<GraphNode<N, E>>() {
+         @Override
+         public int compare(GraphNode<N, E> o1, GraphNode<N, E> o2) {
+-          int result = graph.getWeight(o2.getValue())
+-              - graph.getWeight(o1.getValue());
++          N var_2184 = o1.getValue();
++		int result = graph.getWeight(o2.getValue())
++              - graph.getWeight(var_2184);
+           return result == 0 && tieBreaker != null ?
+-              tieBreaker.compare(o1.getValue(), o2.getValue()) : result;
++              tieBreaker.compare(var_2184, o2.getValue()) : result;
+         }
+       });
+ 

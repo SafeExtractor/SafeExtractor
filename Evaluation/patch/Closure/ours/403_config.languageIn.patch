@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..d40a6c1 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -325,13 +325,14 @@
+           VariableMap.load(config.propertyMapInputFile);
+     }
+ 
+-    if (config.languageIn.length() > 0) {
++    String var_403 = config.languageIn;
++	if (var_403.length() > 0) {
+       CompilerOptions.LanguageMode languageMode =
+-          CompilerOptions.LanguageMode.fromString(config.languageIn);
++          CompilerOptions.LanguageMode.fromString(var_403);
+       if (languageMode != null) {
+         options.setLanguageIn(languageMode);
+       } else {
+-        throw new FlagUsageException("Unknown language `" + config.languageIn +
++        throw new FlagUsageException("Unknown language `" + var_403 +
+                                      "' specified.");
+       }
+     }

@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..a873e24 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -1375,7 +1375,8 @@
+ 
+     stream.update();
+     int startLineno = stream.getLineno();
+-    int startCharno = stream.getCharno() + 1;
++    int var_2333 = stream.getCharno();
++	int startCharno = var_2333 + 1;
+ 
+     // Read the content from the first line.
+     String line = stream.getRemainingJSDocLine();
+@@ -1401,7 +1402,7 @@
+         case STAR:
+           if (ignoreStar) {
+             // Mark the position after the star as the new start of the line.
+-            lineStartChar = stream.getCharno() + 1;
++            lineStartChar = var_2333 + 1;
+           } else {
+             // The star is part of the comment.
+             if (builder.length() > 0) {
+@@ -1431,7 +1432,7 @@
+           boolean isEOC = token == JsDocToken.EOC;
+           if (!isEOC) {
+             if (lineStartChar != -1 && option == WhitespaceOption.PRESERVE) {
+-              int numSpaces = stream.getCharno() - lineStartChar;
++              int numSpaces = var_2333 - lineStartChar;
+               for (int i = 0; i < numSpaces; i++) {
+                 builder.append(' ');
+               }
+@@ -1455,7 +1456,7 @@
+             }
+ 
+             int endLineno = stream.getLineno();
+-            int endCharno = stream.getCharno();
++            int endCharno = var_2333;
+ 
+             if (multilineText.length() > 0) {
+               jsdocBuilder.markText(multilineText, startLineno, startCharno,

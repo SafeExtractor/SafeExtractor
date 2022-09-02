@@ -1,0 +1,27 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2341_next().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2341_next().patch
+index 5383a79..ffe8feb 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2341_next().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2341_next().patch
+@@ -1,17 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+-index 5ef8850..1ee394e 100644
++index 5ef8850..d86620a 100644
+ --- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+ +++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+-@@ -1612,9 +1612,10 @@
+-     skipEOLs();
+- 
++@@ -1614,7 +1614,8 @@
+      boolean restArg = false;
+--    token = next();
+-+    JsDocToken var_2341 = next();
+-+	token = var_2341;
++     token = next();
+      if (token == JsDocToken.ELLIPSIS) {
+ -      token = next();
+-+      token = var_2341;
+++      JsDocToken var_2341 = next();
+++	token = var_2341;
+        if (token == JsDocToken.RC) {
+          // EMPTY represents the UNKNOWN type in the Type AST.
+          return wrapNode(Token.ELLIPSIS, IR.empty());

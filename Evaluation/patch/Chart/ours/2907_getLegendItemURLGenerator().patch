@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
+index aa90f2b..f2f7f93 100644
+--- a/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
+@@ -129,6 +129,7 @@
+ import org.jfree.chart.axis.ValueAxis;
+ import org.jfree.chart.entity.EntityCollection;
+ import org.jfree.chart.event.RendererChangeEvent;
++import org.jfree.chart.labels.XYSeriesLabelGenerator;
+ import org.jfree.chart.labels.XYToolTipGenerator;
+ import org.jfree.chart.plot.Plot;
+ import org.jfree.chart.plot.PlotOrientation;
+@@ -594,8 +595,9 @@
+                             dataset, series);
+                 }
+                 String urlText = null;
+-                if (getLegendItemURLGenerator() != null) {
+-                    urlText = getLegendItemURLGenerator().generateLabel(
++                XYSeriesLabelGenerator var_2907 = getLegendItemURLGenerator();
++				if (var_2907 != null) {
++                    urlText = var_2907.generateLabel(
+                             dataset, series);
+                 }
+                 Shape shape = lookupLegendShape(series);

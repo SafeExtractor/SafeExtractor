@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/DisambiguateProperties.java b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+index c64c178..83045d1 100644
+--- a/src/com/google/javascript/jscomp/DisambiguateProperties.java
++++ b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+@@ -572,11 +572,12 @@
+ 
+     for (Property prop : properties.values()) {
+       if (prop.shouldRename()) {
+-        Map<T, String> propNames = buildPropNames(prop.getTypes(), prop.name);
++        UnionFind<T> var_879 = prop.getTypes();
++		Map<T, String> propNames = buildPropNames(var_879, prop.name);
+ 
+         ++propsRenamed;
+         prop.expandTypesToSkip();
+-        UnionFind<T> types = prop.getTypes();
++        UnionFind<T> types = var_879;
+         for (Node node : prop.renameNodes) {
+           T rootType = prop.rootTypes.get(node);
+           if (prop.shouldRename(rootType)) {

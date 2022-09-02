@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/chart/LegendRenderingOrder.java b/source/org/jfree/chart/LegendRenderingOrder.java
+index 975299a..cc1259b 100644
+--- a/source/org/jfree/chart/LegendRenderingOrder.java
++++ b/source/org/jfree/chart/LegendRenderingOrder.java
+@@ -112,10 +112,12 @@
+     private Object readResolve() throws ObjectStreamException {
+         if (this.equals(LegendRenderingOrder.STANDARD)) {
+             return LegendRenderingOrder.STANDARD;
+-        }
+-        else if (this.equals(LegendRenderingOrder.REVERSE)) {
+-            return LegendRenderingOrder.REVERSE;
+-        }
++        } else {
++			LegendRenderingOrder var_137 = LegendRenderingOrder.REVERSE;
++			if (this.equals(var_137)) {
++			    return var_137;
++			}
++		}
+         return null;
+     }
+ 

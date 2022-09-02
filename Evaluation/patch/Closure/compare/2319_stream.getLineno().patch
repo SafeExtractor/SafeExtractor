@@ -1,0 +1,54 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2319_stream.getLineno().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2319_stream.getLineno().patch
+index 8ad79e7..970dc25 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2319_stream.getLineno().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2319_stream.getLineno().patch
+@@ -1,44 +1,16 @@
+ diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+-index 5ef8850..c71e30a 100644
++index 5ef8850..0f54d1a 100644
+ --- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+ +++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+-@@ -1063,20 +1063,21 @@
+-   private JsDocToken parseModifiesTag(JsDocToken token) {
+-     if (token == JsDocToken.LC) {
+-       Set<String> modifies = new HashSet<String>();
+--      while (true) {
+-+      int var_2319 = stream.getLineno();
+-+	while (true) {
+-         if (match(JsDocToken.STRING)) {
+-           String name = stream.getString();
+-           if (!modifiesAnnotationKeywords.contains(name)
+-               && !jsdocBuilder.hasParameter(name)) {
+-               parser.addParserWarning("msg.jsdoc.modifies.unknown", name,
+--                  stream.getLineno(), stream.getCharno());
+-+                  var_2319, stream.getCharno());
+-           }
+- 
++@@ -1075,8 +1075,9 @@
+            modifies.add(stream.getString());
+            token = next();
+          } else {
+-           parser.addParserWarning("msg.jsdoc.modifies",
++-          parser.addParserWarning("msg.jsdoc.modifies",
+ -              stream.getLineno(), stream.getCharno());
+++          int var_2319 = stream.getLineno();
+++		parser.addParserWarning("msg.jsdoc.modifies",
+ +              var_2319, stream.getCharno());
+            return token;
+          }
+  
+-@@ -1089,12 +1090,12 @@
+- 
+-       if (!match(JsDocToken.RC)) {
+-         parser.addParserWarning("msg.jsdoc.modifies",
+--            stream.getLineno(), stream.getCharno());
+-+            var_2319, stream.getCharno());
+-       } else {
+-         token = next();
+-         if (!jsdocBuilder.recordModifies(modifies)) {
+-           parser.addParserWarning("msg.jsdoc.modifies.duplicate",
+--              stream.getLineno(), stream.getCharno());
+-+              var_2319, stream.getCharno());
+-         }
+-       }
+-     }

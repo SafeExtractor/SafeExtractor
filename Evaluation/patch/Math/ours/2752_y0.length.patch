@@ -1,0 +1,77 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+index ed2ddda..8e11a06 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/GraggBulirschStoerIntegrator.java
+@@ -570,7 +570,8 @@
+     }
+ 
+     final double[][][] fk  = new double[sequence.length][][];
+-    for (int k = 0; k < sequence.length; ++k) {
++    int var_2752 = y0.length;
++	for (int k = 0; k < sequence.length; ++k) {
+ 
+       fk[k]    = new double[sequence[k] + 1][];
+ 
+@@ -578,17 +579,17 @@
+       fk[k][0] = yDot0;
+ 
+       for (int l = 0; l < sequence[k]; ++l) {
+-        fk[k][l+1] = new double[y0.length];
++        fk[k][l+1] = new double[var_2752];
+       }
+ 
+     }
+ 
+     if (y != y0) {
+-      System.arraycopy(y0, 0, y, 0, y0.length);
++      System.arraycopy(y0, 0, y, 0, var_2752);
+     }
+ 
+-    final double[] yDot1 = new double[y0.length];
+-    final double[][] yMidDots = new double[1 + 2 * sequence.length][y0.length];
++    final double[] yDot1 = new double[var_2752];
++    final double[][] yMidDots = new double[1 + 2 * sequence.length][var_2752];
+ 
+     // initial scaling
+     final double[] scale = new double[mainSetDimension];
+@@ -811,25 +812,25 @@
+           final int l2 = l / 2;
+           double factor = FastMath.pow(0.5 * sequence[l2], l);
+           int middleIndex = fk[l2].length / 2;
+-          for (int i = 0; i < y0.length; ++i) {
++          for (int i = 0; i < var_2752; ++i) {
+             yMidDots[l+1][i] = factor * fk[l2][middleIndex + l][i];
+           }
+           for (int j = 1; j <= k - l2; ++j) {
+             factor = FastMath.pow(0.5 * sequence[j + l2], l);
+             middleIndex = fk[l2+j].length / 2;
+-            for (int i = 0; i < y0.length; ++i) {
++            for (int i = 0; i < var_2752; ++i) {
+               diagonal[j-1][i] = factor * fk[l2+j][middleIndex+l][i];
+             }
+             extrapolate(l2, j, diagonal, yMidDots[l+1]);
+           }
+-          for (int i = 0; i < y0.length; ++i) {
++          for (int i = 0; i < var_2752; ++i) {
+             yMidDots[l+1][i] *= stepSize;
+           }
+ 
+           // compute centered differences to evaluate next derivatives
+           for (int j = (l + 1) / 2; j <= k; ++j) {
+             for (int m = fk[j].length - 1; m >= 2 * (l + 1); --m) {
+-              for (int i = 0; i < y0.length; ++i) {
++              for (int i = 0; i < var_2752; ++i) {
+                 fk[j][m][i] -= fk[j][m-2][i];
+               }
+             }
+@@ -867,8 +868,8 @@
+ 
+         // prepare next step
+         interpolator.storeTime(stepStart);
+-        System.arraycopy(y1, 0, y, 0, y0.length);
+-        System.arraycopy(yDot1, 0, yDot0, 0, y0.length);
++        System.arraycopy(y1, 0, y, 0, var_2752);
++        System.arraycopy(yDot1, 0, yDot0, 0, var_2752);
+         firstStepAlreadyComputed = true;
+ 
+         int optimalIter;

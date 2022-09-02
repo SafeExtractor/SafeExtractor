@@ -1,0 +1,28 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1850_slotA.getType().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1850_slotA.getType().patch
+index b25e13e..e69de29 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1850_slotA.getType().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1850_slotA.getType().patch
+@@ -1,23 +0,0 @@
+-diff --git a/src/com/google/javascript/jscomp/LinkedFlowScope.java b/src/com/google/javascript/jscomp/LinkedFlowScope.java
+-index a97d855..89992f4 100644
+---- a/src/com/google/javascript/jscomp/LinkedFlowScope.java
+-+++ b/src/com/google/javascript/jscomp/LinkedFlowScope.java
+-@@ -313,7 +313,8 @@
+-    */
+-   private boolean diffSlots(StaticSlot<JSType> slotA,
+-                             StaticSlot<JSType> slotB) {
+--    boolean aIsNull = slotA == null || slotA.getType() == null;
+-+    JSType var_1850 = slotA.getType();
+-+	boolean aIsNull = slotA == null || var_1850 == null;
+-     boolean bIsNull = slotB == null || slotB.getType() == null;
+-     if (aIsNull && bIsNull) {
+-       return false;
+-@@ -322,7 +323,7 @@
+-     }
+- 
+-     // Both slots and types must be non-null.
+--    return slotA.getType().differsFrom(slotB.getType());
+-+    return var_1850.differsFrom(slotB.getType());
+-   }
+- 
+-   /**

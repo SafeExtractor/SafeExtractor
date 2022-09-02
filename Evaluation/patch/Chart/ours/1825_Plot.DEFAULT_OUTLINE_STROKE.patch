@@ -1,0 +1,39 @@
+diff --git a/source/org/jfree/chart/plot/MultiplePiePlot.java b/source/org/jfree/chart/plot/MultiplePiePlot.java
+index f85acab..f352347 100644
+--- a/source/org/jfree/chart/plot/MultiplePiePlot.java
++++ b/source/org/jfree/chart/plot/MultiplePiePlot.java
+@@ -64,6 +64,7 @@
+ import java.awt.Paint;
+ import java.awt.Rectangle;
+ import java.awt.Shape;
++import java.awt.Stroke;
+ import java.awt.geom.Ellipse2D;
+ import java.awt.geom.Point2D;
+ import java.awt.geom.Rectangle2D;
+@@ -580,14 +581,15 @@
+         }
+         int section = 0;
+         Iterator iterator = keys.iterator();
+-        while (iterator.hasNext()) {
++        Stroke var_1825 = Plot.DEFAULT_OUTLINE_STROKE;
++		while (iterator.hasNext()) {
+             Comparable key = (Comparable) iterator.next();
+             String label = key.toString();  // TODO: use a generator here
+             String description = label;
+             Paint paint = (Paint) this.sectionPaints.get(key);
+             LegendItem item = new LegendItem(label, description, null,
+                     null, getLegendItemShape(), paint,
+-                    Plot.DEFAULT_OUTLINE_STROKE, paint);
++                    var_1825, paint);
+             item.setSeriesKey(key);
+             item.setSeriesIndex(section);
+             item.setDataset(getDataset());
+@@ -598,7 +600,7 @@
+             LegendItem a = new LegendItem(this.aggregatedItemsKey.toString(),
+                     this.aggregatedItemsKey.toString(), null, null,
+                     getLegendItemShape(), this.aggregatedItemsPaint,
+-                    Plot.DEFAULT_OUTLINE_STROKE, this.aggregatedItemsPaint);
++                    var_1825, this.aggregatedItemsPaint);
+             result.add(a);
+         }
+         return result;

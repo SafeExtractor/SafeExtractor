@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java b/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
+index 423689d..661cbee 100644
+--- a/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
++++ b/src/main/java/org/apache/commons/math3/filter/KalmanFilter.java
+@@ -133,10 +133,11 @@
+         transitionMatrixT = transitionMatrix.transpose();
+ 
+         // create an empty matrix if no control matrix was given
+-        if (processModel.getControlMatrix() == null) {
++        RealMatrix var_938 = processModel.getControlMatrix();
++		if (var_938 == null) {
+             controlMatrix = new Array2DRowRealMatrix();
+         } else {
+-            controlMatrix = processModel.getControlMatrix();
++            controlMatrix = var_938;
+         }
+ 
+         measurementMatrix = measurementModel.getMeasurementMatrix();

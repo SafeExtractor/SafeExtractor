@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..8a18fe9 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -698,7 +698,8 @@
+             for (int m = 0; m < nptm; m++) {
+                 double sum = ZERO;
+                 for (int k = 0; k < npt; k++) {
+-                    sum += zMatrix.getEntry(k, m) * work3.getEntry(k);
++                    double var_3102 = work3.getEntry(k);
++					sum += zMatrix.getEntry(k, m) * var_3102;
+                 }
+                 beta -= sum * sum;
+                 for (int k = 0; k < npt; k++) {

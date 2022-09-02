@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionToBlockMutator.java b/src/com/google/javascript/jscomp/FunctionToBlockMutator.java
+index 2ffddf3..bc82223 100644
+--- a/src/com/google/javascript/jscomp/FunctionToBlockMutator.java
++++ b/src/com/google/javascript/jscomp/FunctionToBlockMutator.java
+@@ -154,8 +154,9 @@
+     }
+ 
+     // For all VARs
+-    if (n.isVar()) {
+-      Node name = n.getFirstChild();
++    Node var_260 = n.getFirstChild();
++	if (n.isVar()) {
++      Node name = var_260;
+       // It isn't initialized.
+       if (!name.hasChildren()) {
+         Node srcLocation = name;
+@@ -164,7 +165,7 @@
+       return;
+     }
+ 
+-    for (Node c = n.getFirstChild(); c != null; c = c.getNext()) {
++    for (Node c = var_260; c != null; c = c.getNext()) {
+       fixUnitializedVarDeclarations(c);
+     }
+   }

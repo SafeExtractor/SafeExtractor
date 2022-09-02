@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+index 5f0a14c..1ec7422 100644
+--- a/src/com/google/javascript/jscomp/SymbolTable.java
++++ b/src/com/google/javascript/jscomp/SymbolTable.java
+@@ -402,8 +402,9 @@
+       if (!ownerFn.isConstructor() && !ownerFn.isInterface()) {
+         return null;
+       }
+-      return linkToCtor ?
+-          getSymbolDeclaredBy(ownerFn) :
++      Symbol var_1294 = getSymbolDeclaredBy(ownerFn);
++	return linkToCtor ?
++          var_1294 :
+           getSymbolForInstancesOf(ownerFn);
+     } else if (type.isInstanceType()) {
+       FunctionType ownerFn = ((ObjectType) type).getConstructor();

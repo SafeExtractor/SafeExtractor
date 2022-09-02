@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+index 09e636b..36755a6 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java
+@@ -635,18 +635,19 @@
+         public boolean equals(final Object obj2) {
+             if (obj2 instanceof Token) {
+                 final Token tok2 = (Token) obj2;
+-                if (this.value.getClass() != tok2.value.getClass()) {
++                Object var_579 = tok2.value;
++				if (this.value.getClass() != var_579.getClass()) {
+                     return false;
+                 }
+                 if (this.count != tok2.count) {
+                     return false;
+                 }
+                 if (this.value instanceof StringBuilder) {
+-                    return this.value.toString().equals(tok2.value.toString());
++                    return this.value.toString().equals(var_579.toString());
+                 } else if (this.value instanceof Number) {
+-                    return this.value.equals(tok2.value);
++                    return this.value.equals(var_579);
+                 } else {
+-                    return this.value == tok2.value;
++                    return this.value == var_579;
+                 }
+             }
+             return false;

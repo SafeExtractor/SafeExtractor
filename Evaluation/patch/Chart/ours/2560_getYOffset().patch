@@ -1,0 +1,31 @@
+diff --git a/source/org/jfree/chart/renderer/category/LineRenderer3D.java b/source/org/jfree/chart/renderer/category/LineRenderer3D.java
+index 68c0447..eaf7be4 100644
+--- a/source/org/jfree/chart/renderer/category/LineRenderer3D.java
++++ b/source/org/jfree/chart/renderer/category/LineRenderer3D.java
+@@ -442,10 +442,11 @@
+                                 Marker marker,
+                                 Rectangle2D dataArea) {
+ 
+-        Rectangle2D adjusted = new Rectangle2D.Double(dataArea.getX(),
+-                dataArea.getY() + getYOffset(),
++        double var_2560 = getYOffset();
++		Rectangle2D adjusted = new Rectangle2D.Double(dataArea.getX(),
++                dataArea.getY() + var_2560,
+                 dataArea.getWidth() - getXOffset(),
+-                dataArea.getHeight() - getYOffset());
++                dataArea.getHeight() - var_2560);
+ 
+         if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+@@ -464,9 +465,9 @@
+                 path = new GeneralPath();
+                 path.moveTo(x, y);
+                 path.lineTo((float) (x + getXOffset()),
+-                        y - (float) getYOffset());
++                        y - (float) var_2560);
+                 path.lineTo((float) (x + getXOffset()),
+-                        (float) (adjusted.getMinY() - getYOffset()));
++                        (float) (adjusted.getMinY() - var_2560));
+                 path.lineTo(x, (float) adjusted.getMinY());
+                 path.closePath();
+             }

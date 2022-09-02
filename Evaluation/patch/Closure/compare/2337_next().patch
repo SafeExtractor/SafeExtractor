@@ -1,0 +1,48 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2337_next().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2337_next().patch
+index bb3e09d..172fa9a 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2337_next().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2337_next().patch
+@@ -1,39 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+-index 5ef8850..91cee50 100644
++index 5ef8850..f4b12dd 100644
+ --- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+ +++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+-@@ -1497,7 +1497,8 @@
+-     boolean ignoreStar = true;
+- 
+-     do {
+--      switch (token) {
+-+      JsDocToken var_2337 = next();
+-+	switch (token) {
+-         case ANNOTATION:
+-         case EOC:
+-         case EOF:
+-@@ -1512,13 +1513,13 @@
++@@ -1512,7 +1512,8 @@
+              builder.append('*');
+            }
+  
+ -          token = next();
+-+          token = var_2337;
+++          JsDocToken var_2337 = next();
+++		token = var_2337;
+            continue;
+  
+          case EOL:
+-           ignoreStar = true;
+-           builder.append('\n');
+--          token = next();
+-+          token = var_2337;
+-           continue;
+- 
+-         default:
+-@@ -1533,7 +1534,7 @@
+-           String line = stream.getRemainingJSDocLine();
+-           line = trimEnd(line);
+-           builder.append(line);
+--          token = next();
+-+          token = var_2337;
+-       }
+-     } while (true);
+-   }

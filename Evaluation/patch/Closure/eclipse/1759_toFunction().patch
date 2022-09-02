@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/ConcreteType.java b/src/com/google/javascript/jscomp/ConcreteType.java
+index 7bf7593..2e8a54e 100644
+--- a/src/com/google/javascript/jscomp/ConcreteType.java
++++ b/src/com/google/javascript/jscomp/ConcreteType.java
+@@ -226,9 +226,10 @@
+   List<StaticSlot<ConcreteType>> getParameterSlots(final int index) {
+     return getMatchingTypes(new TypeFilter<StaticSlot<ConcreteType>>(NO_SLOTS) {
+       @Override public StaticSlot<ConcreteType> filter(ConcreteType type) {
+-        return type.isFunction()
+-            && toFunction().getParameterSlot(index) != null
+-            ? toFunction().getParameterSlot(index) : null;
++        ConcreteFunctionType var_1759 = toFunction();
++		return type.isFunction()
++            && var_1759.getParameterSlot(index) != null
++            ? var_1759.getParameterSlot(index) : null;
+       }
+     });
+   }

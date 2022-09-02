@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/SanityCheck.java b/src/com/google/javascript/jscomp/SanityCheck.java
+index 3aa9784..5861cdb 100644
+--- a/src/com/google/javascript/jscomp/SanityCheck.java
++++ b/src/com/google/javascript/jscomp/SanityCheck.java
+@@ -16,6 +16,7 @@
+ 
+ package com.google.javascript.jscomp;
+ 
++import com.google.javascript.jscomp.AbstractCompiler.LifeCycleStage;
+ import com.google.javascript.rhino.Node;
+ 
+ /**
+@@ -119,7 +120,8 @@
+     // Exceptions into Errors so that it is easier to find the root cause
+     // when there are cascading issues.
+     new PrepareAst(compiler, true).process(null, root);
+-    if (compiler.getLifeCycleStage().isNormalized()) {
++    LifeCycleStage var_360 = compiler.getLifeCycleStage();
++	if (var_360.isNormalized()) {
+       (new Normalize(compiler, true)).process(externs, root);
+ 
+       if (compiler.getLifeCycleStage().isNormalizedUnobfuscated()) {

@@ -1,0 +1,24 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2348_next().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2348_next().patch
+index c26c933..343a9ab 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2348_next().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2348_next().patch
+@@ -1,16 +1,13 @@
+ diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+-index 5ef8850..8169b2f 100644
++index 5ef8850..14febad 100644
+ --- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+ +++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+-@@ -1701,9 +1701,9 @@
++@@ -1701,7 +1701,7 @@
+      Node typeList = IR.block();
+      typeList.addChildToBack(typeExpr);
+      while (match(JsDocToken.COMMA)) {
+ -      next();
+ +      JsDocToken var_2348 = next();
+        skipEOLs();
+--      typeExpr = parseTopLevelTypeExpression(next());
+-+      typeExpr = parseTopLevelTypeExpression(var_2348);
++       typeExpr = parseTopLevelTypeExpression(next());
+        if (typeExpr == null) {
+-         return null;
+-       }

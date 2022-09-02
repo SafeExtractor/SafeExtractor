@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+index 6219d26..2fca42a 100644
+--- a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
++++ b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+@@ -382,8 +382,9 @@
+           Node ancestorClone = ancestor.cloneTree();
+           // Run the peephole passes to handle cases such as
+           // obj['lit' + key] = val;
+-          peepholePasses.process(null, ancestorClone.getChildAtIndex(1));
+-          Node prop = ancestorClone.getChildAtIndex(1);
++          Node var_1144 = ancestorClone.getChildAtIndex(1);
++		peepholePasses.process(null, var_1144);
++          Node prop = var_1144;
+ 
+           if (prop.isString() &&
+             NodeUtil.isValidPropertyName(prop.getString())) {

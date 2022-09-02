@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..beeed86 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -1841,19 +1841,20 @@
+         nact = 0;
+         for (int i = 0; i < n; i++) {
+             xbdi.setEntry(i, ZERO);
+-            if (trustRegionCenterOffset.getEntry(i) <= lowerDifference.getEntry(i)) {
+-                if (gradientAtTrustRegionCenter.getEntry(i) >= ZERO) {
++            double var_3139 = gradientAtTrustRegionCenter.getEntry(i);
++			if (trustRegionCenterOffset.getEntry(i) <= lowerDifference.getEntry(i)) {
++                if (var_3139 >= ZERO) {
+                     xbdi.setEntry(i, MINUS_ONE);
+                 }
+             } else if (trustRegionCenterOffset.getEntry(i) >= upperDifference.getEntry(i) &&
+-                    gradientAtTrustRegionCenter.getEntry(i) <= ZERO) {
++                    var_3139 <= ZERO) {
+                 xbdi.setEntry(i, ONE);
+             }
+             if (xbdi.getEntry(i) != ZERO) {
+                 ++nact;
+             }
+             trialStepPoint.setEntry(i, ZERO);
+-            gnew.setEntry(i, gradientAtTrustRegionCenter.getEntry(i));
++            gnew.setEntry(i, var_3139);
+         }
+         delsq = delta * delta;
+         qred = ZERO;

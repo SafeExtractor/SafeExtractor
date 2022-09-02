@@ -1,0 +1,38 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..bc30cb1 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -78,7 +78,8 @@
+   @Override
+   @SuppressWarnings("fallthrough")
+   public Node optimizeSubtree(Node node) {
+-    switch(node.getType()) {
++    Node var_1411 = node.getFirstChild();
++	switch(node.getType()) {
+       case Token.RETURN: {
+         Node result = tryRemoveRedundantExit(node);
+         if (result != node) {
+@@ -103,19 +104,19 @@
+       // with MinimizeExitPoints.
+ 
+       case Token.NOT:
+-        tryMinimizeCondition(node.getFirstChild());
++        tryMinimizeCondition(var_1411);
+         return tryMinimizeNot(node);
+ 
+       case Token.IF:
+-        tryMinimizeCondition(node.getFirstChild());
++        tryMinimizeCondition(var_1411);
+         return tryMinimizeIf(node);
+ 
+       case Token.EXPR_RESULT:
+-        tryMinimizeCondition(node.getFirstChild());
++        tryMinimizeCondition(var_1411);
+         return node;
+ 
+       case Token.HOOK:
+-        tryMinimizeCondition(node.getFirstChild());
++        tryMinimizeCondition(var_1411);
+         return node;
+ 
+       case Token.WHILE:

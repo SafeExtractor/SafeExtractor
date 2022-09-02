@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/LookupPaintScale.java b/source/org/jfree/chart/renderer/LookupPaintScale.java
+index 02830c8..18eba09 100644
+--- a/source/org/jfree/chart/renderer/LookupPaintScale.java
++++ b/source/org/jfree/chart/renderer/LookupPaintScale.java
+@@ -283,7 +283,8 @@
+ 
+         // handle special case where value is less that item zero
+         PaintItem item = (PaintItem) this.lookupTable.get(0);
+-        if (value < item.value) {
++        double var_2377 = item.value;
++		if (value < var_2377) {
+             return this.defaultPaint;
+         }
+ 
+@@ -293,7 +294,7 @@
+         while (high - low > 1) {
+             int current = (low + high) / 2;
+             item = (PaintItem) this.lookupTable.get(current);
+-            if (value >= item.value) {
++            if (value >= var_2377) {
+                 low = current;
+             }
+             else {
+@@ -302,7 +303,7 @@
+         }
+         if (high > low) {
+             item = (PaintItem) this.lookupTable.get(high);
+-            if (value < item.value) {
++            if (value < var_2377) {
+                 item = (PaintItem) this.lookupTable.get(low);
+             }
+         }

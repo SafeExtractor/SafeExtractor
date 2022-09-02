@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/RegionFactory.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/RegionFactory.java
+index 0b94b5d..5f12012 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/RegionFactory.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/RegionFactory.java
+@@ -50,13 +50,14 @@
+ 
+         // chop off parts of the space
+         BSPTree<S> node = region.getTree(false);
+-        node.setAttribute(Boolean.TRUE);
++        Boolean var_1707 = Boolean.TRUE;
++		node.setAttribute(var_1707);
+         for (final Hyperplane<S> hyperplane : hyperplanes) {
+             if (node.insertCut(hyperplane)) {
+                 node.setAttribute(null);
+                 node.getPlus().setAttribute(Boolean.FALSE);
+                 node = node.getMinus();
+-                node.setAttribute(Boolean.TRUE);
++                node.setAttribute(var_1707);
+             }
+         }
+ 

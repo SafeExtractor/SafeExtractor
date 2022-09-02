@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/GroupVariableDeclarations.java b/src/com/google/javascript/jscomp/GroupVariableDeclarations.java
+index 19cc616..1675057 100644
+--- a/src/com/google/javascript/jscomp/GroupVariableDeclarations.java
++++ b/src/com/google/javascript/jscomp/GroupVariableDeclarations.java
+@@ -138,7 +138,8 @@
+     Node groupVarParent = groupVar.getParent();
+ 
+ 
+-    if (initializedName != null) {
++    boolean var_1378 = groupVarParent.isFor();
++	if (initializedName != null) {
+       if (NodeUtil.isForIn(groupVarParent)) {
+         // The target of the for-in expression must be an assignable expression.
+         return;
+@@ -154,7 +155,7 @@
+       // add the assignment now.
+       Node initializedVal = initializedName.removeFirstChild();
+       Node assignmentNode = IR.assign(initializedName, initializedVal);
+-      if (groupVarParent.isFor()) {
++      if (var_1378) {
+         // Handle For and For-In Loops specially. For these, we do not need
+         // to construct an EXPR_RESULT node.
+         groupVarParent.replaceChild(groupVar, assignmentNode);
+@@ -165,7 +166,7 @@
+     } else {
+       // There is no initialized var. But we need to handle FOR and
+       // FOR-IN loops specially
+-      if (groupVarParent.isFor()) {
++      if (var_1378) {
+         if (NodeUtil.isForIn(groupVarParent)) {
+           // In For-In loop, we replace the VAR node with a NAME node
+           Node nameNodeClone = groupVar.getFirstChild().cloneNode();

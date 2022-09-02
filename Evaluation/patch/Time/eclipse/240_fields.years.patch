@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/joda/time/chrono/GJChronology.java b/src/main/java/org/joda/time/chrono/GJChronology.java
+index 1cc03a4..ceb687d 100644
+--- a/src/main/java/org/joda/time/chrono/GJChronology.java
++++ b/src/main/java/org/joda/time/chrono/GJChronology.java
+@@ -533,22 +533,23 @@
+         // These fields are special because they have imprecise durations. The
+         // family of addition methods need special attention. Override affected
+         // duration fields as well.
+-        {
++        DurationField var_240 = fields.years;
++		{
+             fields.year = new ImpreciseCutoverField(
+                 julian.year(), fields.year, iCutoverMillis);
+             fields.years = fields.year.getDurationField();
+             fields.yearOfEra = new ImpreciseCutoverField(
+-                julian.yearOfEra(), fields.yearOfEra, fields.years, iCutoverMillis);
++                julian.yearOfEra(), fields.yearOfEra, var_240, iCutoverMillis);
+             
+             fields.centuryOfEra = new ImpreciseCutoverField(
+                 julian.centuryOfEra(), fields.centuryOfEra, iCutoverMillis);
+             fields.centuries = fields.centuryOfEra.getDurationField();
+             
+             fields.yearOfCentury = new ImpreciseCutoverField(
+-                julian.yearOfCentury(), fields.yearOfCentury, fields.years, fields.centuries, iCutoverMillis);
++                julian.yearOfCentury(), fields.yearOfCentury, var_240, fields.centuries, iCutoverMillis);
+             
+             fields.monthOfYear = new ImpreciseCutoverField(
+-                julian.monthOfYear(), fields.monthOfYear, null, fields.years, iCutoverMillis);
++                julian.monthOfYear(), fields.monthOfYear, null, var_240, iCutoverMillis);
+             fields.months = fields.monthOfYear.getDurationField();
+             
+             fields.weekyear = new ImpreciseCutoverField(
+@@ -566,7 +567,7 @@
+         {
+             long cutover = gregorian.year().roundCeiling(iCutoverMillis);
+             fields.dayOfYear = new CutoverField(
+-                julian.dayOfYear(), fields.dayOfYear, fields.years, cutover, false);
++                julian.dayOfYear(), fields.dayOfYear, var_240, cutover, false);
+         }
+ 
+         {

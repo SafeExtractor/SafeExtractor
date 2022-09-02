@@ -1,0 +1,16 @@
+diff --git a/oak-blob-cloud/src/main/java/org/apache/jackrabbit/oak/blob/cloud/s3/S3RequestDecorator.java b/oak-blob-cloud/src/main/java/org/apache/jackrabbit/oak/blob/cloud/s3/S3RequestDecorator.java
+index b1f4ac5..79fa0c0 100644
+--- a/oak-blob-cloud/src/main/java/org/apache/jackrabbit/oak/blob/cloud/s3/S3RequestDecorator.java
++++ b/oak-blob-cloud/src/main/java/org/apache/jackrabbit/oak/blob/cloud/s3/S3RequestDecorator.java
+@@ -31,8 +31,9 @@
+     DataEncryption dataEncryption = DataEncryption.NONE;
+ 
+     public S3RequestDecorator(Properties props) {
+-        if (props.getProperty(S3Constants.S3_ENCRYPTION) != null) {
+-            this.dataEncryption = dataEncryption.valueOf(props.getProperty(S3Constants.S3_ENCRYPTION));
++        String encryptionType = props.getProperty(S3Constants.S3_ENCRYPTION);
++		if (encryptionType != null) {
++            this.dataEncryption = dataEncryption.valueOf(encryptionType);
+         }
+     }
+ 

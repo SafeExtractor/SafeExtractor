@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/fitting/GaussianCurveFitter.java b/src/main/java/org/apache/commons/math3/fitting/GaussianCurveFitter.java
+index 44919ec..d43cf47 100644
+--- a/src/main/java/org/apache/commons/math3/fitting/GaussianCurveFitter.java
++++ b/src/main/java/org/apache/commons/math3/fitting/GaussianCurveFitter.java
+@@ -352,10 +352,11 @@
+             if (p1.getY() == y) {
+                 return p1.getX();
+             }
+-            if (p2.getY() == y) {
+-                return p2.getX();
++            double var_993 = p2.getX();
++			if (p2.getY() == y) {
++                return var_993;
+             }
+-            return p1.getX() + (((y - p1.getY()) * (p2.getX() - p1.getX())) /
++            return p1.getX() + (((y - p1.getY()) * (var_993 - p1.getX())) /
+                                 (p2.getY() - p1.getY()));
+         }
+ 

@@ -1,0 +1,19 @@
+diff --git a/src/org/mockito/internal/stubbing/answers/MethodInfo.java b/src/org/mockito/internal/stubbing/answers/MethodInfo.java
+index 39b2f51..5fe52b3 100644
+--- a/src/org/mockito/internal/stubbing/answers/MethodInfo.java
++++ b/src/org/mockito/internal/stubbing/answers/MethodInfo.java
+@@ -35,10 +35,11 @@
+     }
+ 
+     public boolean isValidReturnType(Class clazz) {
+-        if (method.getReturnType().isPrimitive() || clazz.isPrimitive()) {
+-            return Primitives.primitiveTypeOf(clazz) == Primitives.primitiveTypeOf(method.getReturnType());
++        Class<?> var_90 = method.getReturnType();
++		if (var_90.isPrimitive() || clazz.isPrimitive()) {
++            return Primitives.primitiveTypeOf(clazz) == Primitives.primitiveTypeOf(var_90);
+         } else {
+-            return method.getReturnType().isAssignableFrom(clazz);
++            return var_90.isAssignableFrom(clazz);
+         }
+     }
+ 

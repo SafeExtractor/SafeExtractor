@@ -1,0 +1,14 @@
+diff --git a/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/SegmentId.java b/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/SegmentId.java
+index 85c5f00..77d71cb 100644
+--- a/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/SegmentId.java
++++ b/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/SegmentId.java
+@@ -106,7 +106,8 @@
+                 if (segment == null) {
+                     try {
+                         log.debug("Loading segment {}", this);
+-                        this.segment = store.readSegment(this);
++                        Segment segment = this.segment;
++						this.segment = store.readSegment(this);
+                     } catch (SegmentNotFoundException snfe) {
+                         long delta = System.currentTimeMillis() - creationTime;
+                         log.error("Segment not found: {}. Creation date delta is {} ms.",

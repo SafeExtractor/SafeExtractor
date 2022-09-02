@@ -1,0 +1,63 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..584412d 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -1826,31 +1826,34 @@
+         || isSwitchCase(node)) {
+       // A statement in a block can simply be removed.
+       parent.removeChild(node);
+-    } else if (parent.isVar()) {
+-      if (parent.hasMoreThanOneChild()) {
+-        parent.removeChild(node);
+-      } else {
+-        // Remove the node from the parent, so it can be reused.
+-        parent.removeChild(node);
+-        // This would leave an empty VAR, remove the VAR itself.
+-        removeChild(parent.getParent(), parent);
+-      }
+-    } else if (parent.isLabel()
+-        && node == parent.getLastChild()) {
+-      // Remove the node from the parent, so it can be reused.
+-      parent.removeChild(node);
+-      // A LABEL without children can not be referred to, remove it.
+-      removeChild(parent.getParent(), parent);
+-    } else if (parent.isFor()
+-        && parent.getChildCount() == 4) {
+-      // Only Token.FOR can have an Token.EMPTY other control structure
+-      // need something for the condition. Others need to be replaced
+-      // or the structure removed.
+-      parent.replaceChild(node, IR.empty());
+     } else {
+-      throw new IllegalStateException("Invalid attempt to remove node: " +
+-          node.toString() + " of " + parent.toString());
+-    }
++		Node var_2073 = parent.getParent();
++		if (parent.isVar()) {
++		  if (parent.hasMoreThanOneChild()) {
++		    parent.removeChild(node);
++		  } else {
++		    // Remove the node from the parent, so it can be reused.
++		    parent.removeChild(node);
++		    // This would leave an empty VAR, remove the VAR itself.
++		    removeChild(var_2073, parent);
++		  }
++		} else if (parent.isLabel()
++		    && node == parent.getLastChild()) {
++		  // Remove the node from the parent, so it can be reused.
++		  parent.removeChild(node);
++		  // A LABEL without children can not be referred to, remove it.
++		  removeChild(var_2073, parent);
++		} else if (parent.isFor()
++		    && parent.getChildCount() == 4) {
++		  // Only Token.FOR can have an Token.EMPTY other control structure
++		  // need something for the condition. Others need to be replaced
++		  // or the structure removed.
++		  parent.replaceChild(node, IR.empty());
++		} else {
++		  throw new IllegalStateException("Invalid attempt to remove node: " +
++		      node.toString() + " of " + parent.toString());
++		}
++	}
+   }
+ 
+   /**

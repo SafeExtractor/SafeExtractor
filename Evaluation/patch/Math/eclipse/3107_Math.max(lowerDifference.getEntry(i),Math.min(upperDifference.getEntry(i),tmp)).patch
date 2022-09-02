@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..c5ba5ea 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -1515,8 +1515,9 @@
+                 final double scale = -gw / curv;
+                 for (int i = 0; i < n; i++) {
+                     final double tmp = trustRegionCenterOffset.getEntry(i) + scale * work1.getEntry(i);
+-                    alternativeNewPoint.setEntry(i, Math.max(lowerDifference.getEntry(i),
+-                                              Math.min(upperDifference.getEntry(i), tmp)));
++                    double var_3107 = Math.max(lowerDifference.getEntry(i),
++                                              Math.min(upperDifference.getEntry(i), tmp));
++					alternativeNewPoint.setEntry(i, var_3107);
+                 }
+                 // Computing 2nd power
+                 final double d1 = HALF * gw * scale;

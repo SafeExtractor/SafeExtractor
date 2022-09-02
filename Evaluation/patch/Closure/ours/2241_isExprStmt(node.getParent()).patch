@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..8ad7e09 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -290,7 +290,8 @@
+       JSDocInfo info, AstNode node, Node irNode) {
+     if (info.hasType()) {
+       boolean valid = false;
+-      switch (node.getType()) {
++      boolean var_2241 = isExprStmt(node.getParent());
++	switch (node.getType()) {
+         // Casts are valid
+         case com.google.javascript.rhino.head.Token.LP:
+           valid = node instanceof ParenthesizedExpression;
+@@ -321,7 +322,7 @@
+         // Property assignments are valid, if at the root of an expression.
+         case com.google.javascript.rhino.head.Token.ASSIGN:
+           if (node instanceof Assignment) {
+-            valid = isExprStmt(node.getParent())
++            valid = var_2241
+                 && isPropAccess(((Assignment)node).getLeft());
+           }
+           break;
+@@ -329,7 +330,7 @@
+         // Property definitions are valid, if at the root of an expression.
+         case com.google.javascript.rhino.head.Token.GETPROP:
+         case com.google.javascript.rhino.head.Token.GETELEM:
+-          valid = isExprStmt(node.getParent());
++          valid = var_2241;
+           break;
+       }
+       if (!valid) {

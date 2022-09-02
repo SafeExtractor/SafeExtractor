@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionArgumentInjector.java b/src/com/google/javascript/jscomp/FunctionArgumentInjector.java
+index a6efa7d..a5bc8dc 100644
+--- a/src/com/google/javascript/jscomp/FunctionArgumentInjector.java
++++ b/src/com/google/javascript/jscomp/FunctionArgumentInjector.java
+@@ -470,9 +470,10 @@
+    * Gather any names declared in the local scope.
+    */
+   private static void gatherLocalNames(Node n, Set<String> names) {
+-    if (n.isFunction()) {
++    Node var_825 = n.getFirstChild();
++	if (n.isFunction()) {
+       if (NodeUtil.isFunctionDeclaration(n)) {
+-        names.add(n.getFirstChild().getString());
++        names.add(var_825.getString());
+       }
+       // Don't traverse into inner function scopes;
+       return;
+@@ -484,7 +485,7 @@
+       }
+     }
+ 
+-    for (Node c = n.getFirstChild(); c != null; c = c.getNext()) {
++    for (Node c = var_825; c != null; c = c.getNext()) {
+       gatherLocalNames(c, names);
+     }
+   }

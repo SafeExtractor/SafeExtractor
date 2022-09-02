@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java b/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
+index eaf0b57..a4e2cbc 100644
+--- a/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
++++ b/source/org/jfree/chart/renderer/category/MinMaxCategoryRenderer.java
+@@ -360,7 +360,8 @@
+                 if (this.min > value.doubleValue()) {
+                     this.min = value.doubleValue();
+                 }
+-                if (this.max < value.doubleValue()) {
++                double var_2639 = this.max;
++				if (var_2639 < value.doubleValue()) {
+                     this.max = value.doubleValue();
+                 }
+ 
+@@ -370,7 +371,7 @@
+                     g2.setStroke(this.groupStroke);
+                     double minY = rangeAxis.valueToJava2D(this.min, dataArea,
+                             plot.getRangeAxisEdge());
+-                    double maxY = rangeAxis.valueToJava2D(this.max, dataArea,
++                    double maxY = rangeAxis.valueToJava2D(var_2639, dataArea,
+                             plot.getRangeAxisEdge());
+ 
+                     if (orient == PlotOrientation.VERTICAL) {

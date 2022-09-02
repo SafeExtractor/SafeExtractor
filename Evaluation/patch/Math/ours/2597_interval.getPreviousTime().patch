@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java b/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java
+index a5f5faf..0b6181a 100644
+--- a/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java
++++ b/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java
+@@ -362,8 +362,9 @@
+    * the interval direction
+    */
+   private int locatePoint(final double time, final StepInterpolator interval) {
+-    if (forward) {
+-      if (time < interval.getPreviousTime()) {
++    double var_2597 = interval.getPreviousTime();
++	if (forward) {
++      if (time < var_2597) {
+         return -1;
+       } else if (time > interval.getCurrentTime()) {
+         return +1;
+@@ -371,7 +372,7 @@
+         return 0;
+       }
+     }
+-    if (time > interval.getPreviousTime()) {
++    if (time > var_2597) {
+       return -1;
+     } else if (time < interval.getCurrentTime()) {
+       return +1;

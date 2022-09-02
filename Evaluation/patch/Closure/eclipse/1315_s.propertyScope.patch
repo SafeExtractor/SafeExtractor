@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+index 5f0a14c..195c163 100644
+--- a/src/com/google/javascript/jscomp/SymbolTable.java
++++ b/src/com/google/javascript/jscomp/SymbolTable.java
+@@ -928,7 +928,8 @@
+     // a property scope for all its implicit prototypes first. This means
+     // that sometimes we will already have built its property scope
+     // for a previous symbol.
+-    if (s.propertyScope != null) {
++    SymbolScope var_1315 = s.propertyScope;
++	if (var_1315 != null) {
+       return;
+     }
+ 
+@@ -986,7 +987,7 @@
+         continue;
+       }
+ 
+-      Symbol newSym = copySymbolTo(newProp, s.propertyScope);
++      Symbol newSym = copySymbolTo(newProp, var_1315);
+       if (oldProp != null) {
+         if (newSym.getJSDocInfo() == null) {
+           newSym.setJSDocInfo(oldProp.getJSDocInfo());

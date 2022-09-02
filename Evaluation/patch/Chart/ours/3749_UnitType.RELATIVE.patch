@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/chart/util/UnitType.java b/source/org/jfree/chart/util/UnitType.java
+index 68ac6dc..84160a3 100644
+--- a/source/org/jfree/chart/util/UnitType.java
++++ b/source/org/jfree/chart/util/UnitType.java
+@@ -120,10 +120,12 @@
+     private Object readResolve() throws ObjectStreamException {
+         if (this.equals(UnitType.ABSOLUTE)) {
+             return UnitType.ABSOLUTE;
+-        }
+-        else if (this.equals(UnitType.RELATIVE)) {
+-            return UnitType.RELATIVE;
+-        }
++        } else {
++			UnitType var_3749 = UnitType.RELATIVE;
++			if (this.equals(var_3749)) {
++			    return var_3749;
++			}
++		}
+         return null;
+     }
+ 

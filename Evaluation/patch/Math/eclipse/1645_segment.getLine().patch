@@ -1,0 +1,33 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+index 5d8a992..0816b9c 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+@@ -635,12 +635,13 @@
+                         int j = 0;
+                         for (Segment segment : loop) {
+ 
+-                            if (j == 0) {
++                            Line var_1645 = segment.getLine();
++							if (j == 0) {
+                                 // null point and first dummy point
+-                                double x = segment.getLine().toSubSpace(segment.getEnd()).getX();
++                                double x = var_1645.toSubSpace(segment.getEnd()).getX();
+                                 x -= FastMath.max(1.0, FastMath.abs(x / 2));
+                                 array[j++] = null;
+-                                array[j++] = segment.getLine().toSpace(new Vector1D(x));
++                                array[j++] = var_1645.toSpace(new Vector1D(x));
+                             }
+ 
+                             if (j < (array.length - 1)) {
+@@ -650,9 +651,9 @@
+ 
+                             if (j == (array.length - 1)) {
+                                 // last dummy point
+-                                double x = segment.getLine().toSubSpace(segment.getStart()).getX();
++                                double x = var_1645.toSubSpace(segment.getStart()).getX();
+                                 x += FastMath.max(1.0, FastMath.abs(x / 2));
+-                                array[j++] = segment.getLine().toSpace(new Vector1D(x));
++                                array[j++] = var_1645.toSpace(new Vector1D(x));
+                             }
+ 
+                         }

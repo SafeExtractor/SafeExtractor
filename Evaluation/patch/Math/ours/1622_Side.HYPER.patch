@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+index 5d8a992..4062269 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+@@ -270,10 +270,11 @@
+             if (edge != inserted) {
+                 final double startOffset = inserted.getLine().getOffset(edge.getStart().getLocation());
+                 final double endOffset   = inserted.getLine().getOffset(edge.getEnd().getLocation());
+-                Side startSide = (FastMath.abs(startOffset) <= hyperplaneThickness) ?
+-                                 Side.HYPER : ((startOffset < 0) ? Side.MINUS : Side.PLUS);
++                Side var_1622 = Side.HYPER;
++				Side startSide = (FastMath.abs(startOffset) <= hyperplaneThickness) ?
++                                 var_1622 : ((startOffset < 0) ? Side.MINUS : Side.PLUS);
+                 Side endSide   = (FastMath.abs(endOffset) <= hyperplaneThickness) ?
+-                                 Side.HYPER : ((endOffset < 0) ? Side.MINUS : Side.PLUS);
++                                 var_1622 : ((endOffset < 0) ? Side.MINUS : Side.PLUS);
+                 switch (startSide) {
+                     case PLUS:
+                         if (endSide == Side.MINUS) {

@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+index 5f6b2c5..bdbd70a 100644
+--- a/src/com/google/javascript/jscomp/Compiler.java
++++ b/src/com/google/javascript/jscomp/Compiler.java
+@@ -286,7 +286,8 @@
+     }
+ 
+     // DiagnosticGroups override the plain checkTypes option.
+-    if (options.enables(DiagnosticGroups.CHECK_TYPES)) {
++    CheckLevel var_482 = CheckLevel.OFF;
++	if (options.enables(DiagnosticGroups.CHECK_TYPES)) {
+       options.checkTypes = true;
+     } else if (options.disables(DiagnosticGroups.CHECK_TYPES)) {
+       options.checkTypes = false;
+@@ -297,7 +298,7 @@
+       options.setWarningLevel(
+           DiagnosticGroup.forType(
+               RhinoErrorReporter.TYPE_PARSE_ERROR),
+-          CheckLevel.OFF);
++          var_482);
+     }
+ 
+     if (options.checkGlobalThisLevel.isOn() &&
+@@ -330,7 +331,7 @@
+     if (!options.checkSymbols &&
+         !composedGuards.enables(DiagnosticGroups.CHECK_VARIABLES)) {
+       composedGuards.addGuard(new DiagnosticGroupWarningsGuard(
+-          DiagnosticGroups.CHECK_VARIABLES, CheckLevel.OFF));
++          DiagnosticGroups.CHECK_VARIABLES, var_482));
+     }
+ 
+     this.warningsGuard = composedGuards;

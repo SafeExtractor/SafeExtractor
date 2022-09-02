@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+index 2e75bce..c627c46 100644
+--- a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
++++ b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+@@ -524,12 +524,13 @@
+    */
+   private void processProvideFromPreviousPass(
+       NodeTraversal t, String name, Node parent) {
+-    if (!providedNames.containsKey(name)) {
++    Node var_1518 = parent.getParent();
++	if (!providedNames.containsKey(name)) {
+       // Record this provide created on a previous pass, and create a dummy
+       // EXPR node as a placeholder to simulate an explicit provide.
+       Node expr = new Node(Token.EXPR_RESULT);
+       expr.copyInformationFromForTree(parent);
+-      parent.getParent().addChildBefore(expr, parent);
++      var_1518.addChildBefore(expr, parent);
+       compiler.reportCodeChange();
+ 
+       JSModule module = t.getModule();
+@@ -542,7 +543,7 @@
+       // Remove this provide if it came from a previous pass since we have an
+       // replacement already.
+       if (isNamespacePlaceholder(parent)) {
+-        parent.getParent().removeChild(parent);
++        var_1518.removeChild(parent);
+         compiler.reportCodeChange();
+       }
+     }

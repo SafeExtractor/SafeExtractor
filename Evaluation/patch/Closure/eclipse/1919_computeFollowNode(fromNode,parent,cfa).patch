@@ -1,0 +1,62 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..92ecbe7 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -716,10 +716,11 @@
+     }
+ 
+     // If we are just before a IF/WHILE/DO/FOR:
+-    switch (parent.getType()) {
++    Node var_1919 = computeFollowNode(fromNode, parent, cfa);
++	switch (parent.getType()) {
+       // The follow() of any of the path from IF would be what follows IF.
+       case Token.IF:
+-        return computeFollowNode(fromNode, parent, cfa);
++        return var_1919;
+       case Token.CASE:
+       case Token.DEFAULT_CASE:
+         // After the body of a CASE, the control goes to the body of the next
+@@ -733,7 +734,7 @@
+             Preconditions.checkState(false, "Not reachable");
+           }
+         } else {
+-          return computeFollowNode(fromNode, parent, cfa);
++          return var_1919;
+         }
+         break;
+       case Token.FOR:
+@@ -751,14 +752,14 @@
+           if (NodeUtil.hasFinally(parent)) { // and have FINALLY block.
+             return computeFallThrough(parent.getLastChild());
+           } else { // and have no FINALLY.
+-            return computeFollowNode(fromNode, parent, cfa);
++            return var_1919;
+           }
+         // CATCH block.
+         } else if (NodeUtil.getCatchBlock(parent) == node){
+           if (NodeUtil.hasFinally(parent)) { // and have FINALLY block.
+             return computeFallThrough(node.getNext());
+           } else {
+-            return computeFollowNode(fromNode, parent, cfa);
++            return var_1919;
+           }
+         // If we are coming out of the FINALLY block...
+         } else if (parent.getLastChild() == node){
+@@ -767,7 +768,7 @@
+               cfa.createEdge(fromNode, Branch.ON_EX, finallyNode);
+             }
+           }
+-          return computeFollowNode(fromNode, parent, cfa);
++          return var_1919;
+         }
+     }
+ 
+@@ -784,7 +785,7 @@
+       return computeFallThrough(nextSibling);
+     } else {
+       // If there are no more siblings, control is transferred up the AST.
+-      return computeFollowNode(fromNode, parent, cfa);
++      return var_1919;
+     }
+   }
+ 

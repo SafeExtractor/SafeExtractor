@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYBarRenderer.java b/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
+index 679cc20..34fc290 100644
+--- a/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
+@@ -128,6 +128,7 @@
+ import org.jfree.chart.plot.PlotRenderingInfo;
+ import org.jfree.chart.plot.XYCrosshairState;
+ import org.jfree.chart.plot.XYPlot;
++import org.jfree.chart.text.TextAnchor;
+ import org.jfree.chart.text.TextUtilities;
+ import org.jfree.chart.util.GradientPaintTransformer;
+ import org.jfree.chart.util.ObjectUtilities;
+@@ -1043,9 +1044,10 @@
+                 position.getItemLabelAnchor(), bar, plot.getOrientation());
+ 
+         if (isInternalAnchor(position.getItemLabelAnchor())) {
+-            Shape bounds = TextUtilities.calculateRotatedStringBounds(label,
++            TextAnchor var_2880 = position.getTextAnchor();
++			Shape bounds = TextUtilities.calculateRotatedStringBounds(label,
+                     g2, (float) anchorPoint.getX(), (float) anchorPoint.getY(),
+-                    position.getTextAnchor(), position.getAngle(),
++                    var_2880, position.getAngle(),
+                     position.getRotationAnchor());
+ 
+             if (bounds != null) {

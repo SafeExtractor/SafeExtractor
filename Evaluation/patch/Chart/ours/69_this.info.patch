@@ -1,0 +1,38 @@
+diff --git a/source/org/jfree/chart/ChartPanel.java b/source/org/jfree/chart/ChartPanel.java
+index 001049a..7168f71 100644
+--- a/source/org/jfree/chart/ChartPanel.java
++++ b/source/org/jfree/chart/ChartPanel.java
+@@ -1650,7 +1650,8 @@
+                 drawHeight);
+ 
+         // are we using the chart buffer?
+-        if (this.useBuffer) {
++        ChartRenderingInfo var_69 = this.info;
++		if (this.useBuffer) {
+ 
+             // do we need to resize the buffer?
+             if ((this.chartBuffer == null)
+@@ -1690,12 +1691,12 @@
+                             this.scaleX, this.scaleY);
+                     bufferG2.transform(st);
+                     this.chart.draw(bufferG2, chartArea, this.anchor,
+-                            this.info);
++                            var_69);
+                     bufferG2.setTransform(saved);
+                 }
+                 else {
+                     this.chart.draw(bufferG2, bufferArea, this.anchor,
+-                            this.info);
++                            var_69);
+                 }
+ 
+             }
+@@ -1715,7 +1716,7 @@
+                         this.scaleX, this.scaleY);
+                 g2.transform(st);
+             }
+-            this.chart.draw(g2, chartArea, this.anchor, this.info);
++            this.chart.draw(g2, chartArea, this.anchor, var_69);
+             g2.setTransform(saved);
+ 
+         }

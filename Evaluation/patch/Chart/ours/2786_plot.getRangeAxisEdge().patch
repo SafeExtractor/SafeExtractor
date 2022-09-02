@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java b/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java
+index 311459c..90e6753 100644
+--- a/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java
++++ b/source/org/jfree/chart/renderer/category/StackedBarRenderer3D.java
+@@ -111,6 +111,7 @@
+ import org.jfree.chart.plot.PlotOrientation;
+ import org.jfree.chart.util.HashUtilities;
+ import org.jfree.chart.util.PublicCloneable;
++import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.data.DataUtilities;
+ import org.jfree.data.Range;
+ import org.jfree.data.category.CategoryDataset;
+@@ -672,12 +673,13 @@
+                 }
+             }
+             double v0 = ((Double) prev[1]).doubleValue();
+-            double vv0 = rangeAxis.valueToJava2D(v0, dataArea,
+-                    plot.getRangeAxisEdge());
++            RectangleEdge var_2786 = plot.getRangeAxisEdge();
++			double vv0 = rangeAxis.valueToJava2D(v0, dataArea,
++                    var_2786);
+ 
+             double v1 = ((Double) curr[1]).doubleValue();
+             double vv1 = rangeAxis.valueToJava2D(v1, dataArea,
+-                    plot.getRangeAxisEdge());
++                    var_2786);
+ 
+             Shape[] faces = createVerticalBlock(barX0, barW, vv0, vv1,
+                     inverted);

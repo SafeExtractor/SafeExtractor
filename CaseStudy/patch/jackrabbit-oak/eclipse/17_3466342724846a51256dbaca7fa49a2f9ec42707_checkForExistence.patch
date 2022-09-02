@@ -1,0 +1,23 @@
+diff --git a/oak-store-document/src/main/java/org/apache/jackrabbit/oak/plugins/document/UpdateUtils.java b/oak-store-document/src/main/java/org/apache/jackrabbit/oak/plugins/document/UpdateUtils.java
+index b9e5ee2..73ac724 100644
+--- a/oak-store-document/src/main/java/org/apache/jackrabbit/oak/plugins/document/UpdateUtils.java
++++ b/oak-store-document/src/main/java/org/apache/jackrabbit/oak/plugins/document/UpdateUtils.java
+@@ -115,14 +115,15 @@
+                 if (r == null) {
+                     throw new IllegalStateException("EXISTS must not contain null revision");
+                 }
+-                if (value == null) {
+-                    if (Boolean.TRUE.equals(c.value)) {
++                boolean checkForExistence = Boolean.TRUE.equals(c.value);
++				if (value == null) {
++                    if (checkForExistence) {
+                         return false;
+                     }
+                 } else {
+                     if (value instanceof Map) {
+                         Map<?, ?> map = (Map<?, ?>) value;
+-                        if (Boolean.TRUE.equals(c.value)) {
++                        if (checkForExistence) {
+                             if (!map.containsKey(r)) {
+                                 return false;
+                             }

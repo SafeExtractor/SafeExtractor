@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/InlineVariables.java b/src/com/google/javascript/jscomp/InlineVariables.java
+index 5c7408d..20db406 100644
+--- a/src/com/google/javascript/jscomp/InlineVariables.java
++++ b/src/com/google/javascript/jscomp/InlineVariables.java
+@@ -229,11 +229,12 @@
+         if (refs != null && !refs.references.isEmpty()) {
+           for (Reference ref : refs.references) {
+             Node refNode = ref.getNode();
+-            Node refParent = ref.getParent();
++            Node var_1099 = ref.getParent();
++			Node refParent = var_1099;
+             // Any reference that is not a read of the arguments property
+             // consider a escape of the arguments object.
+             if (!(NodeUtil.isGet(refParent)
+-                && refNode == ref.getParent().getFirstChild()
++                && refNode == var_1099.getFirstChild()
+                 && !isLValue(refParent))) {
+               return true;
+             }

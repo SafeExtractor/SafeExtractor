@@ -1,0 +1,24 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/segment/Segment.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/segment/Segment.java
+index f0e21f5..e3855d7 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/segment/Segment.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/segment/Segment.java
+@@ -109,14 +109,15 @@
+         this.uuid = checkNotNull(uuid);
+         this.data = checkNotNull(data);
+ 
+-        if (data.capacity() > 0
++        int refpos = data.position();
++		if (data.capacity() > 0
+                 && data.capacity() < Segment.MAX_SEGMENT_SIZE) {
+             // so skip the header parts of a normal non-bulk, non-empty segment
+-            int roots = data.getShort(data.position() + 1) & 0xffff;
++            int roots = data.getShort(refpos + 1) & 0xffff;
+             int headerSize = 3 + roots * 3;
+-            this.refposition = data.position() + align(headerSize);
++            this.refposition = refpos + align(headerSize);
+         } else {
+-            this.refposition = data.position();
++            this.refposition = refpos;
+         }
+     }
+ 

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/solvers/MullerSolver2.java b/src/main/java/org/apache/commons/math3/analysis/solvers/MullerSolver2.java
+index bf36125..321b608 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/solvers/MullerSolver2.java
++++ b/src/main/java/org/apache/commons/math3/analysis/solvers/MullerSolver2.java
+@@ -116,7 +116,8 @@
+         double x2 = 0.5 * (x0 + x1);
+         double y2 = computeObjectiveValue(x2);
+ 
+-        double oldx = Double.POSITIVE_INFINITY;
++        double var_519 = Double.POSITIVE_INFINITY;
++		double oldx = var_519;
+         while (true) {
+             // quadratic interpolation through x0, x1, x2
+             final double q = (x2 - x1) / (x1 - x0);
+@@ -145,7 +146,7 @@
+             } else {
+                 // extremely rare case, get a random number to skip it
+                 x = min + FastMath.random() * (max - min);
+-                oldx = Double.POSITIVE_INFINITY;
++                oldx = var_519;
+             }
+             final double y = computeObjectiveValue(x);
+ 

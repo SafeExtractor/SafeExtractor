@@ -1,0 +1,51 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2295_parseAndRecordTypeNode(token).patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2295_parseAndRecordTypeNode(token).patch
+index 358bd0e..61e6f9b 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2295_parseAndRecordTypeNode(token).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2295_parseAndRecordTypeNode(token).patch
+@@ -1,41 +1,16 @@
+ diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+-index 5ef8850..6cfcb34 100644
++index 5ef8850..e998978 100644
+ --- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+ +++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+-@@ -228,7 +228,8 @@
+-               // Mark the beginning of the annotation.
+-               jsdocBuilder.markAnnotation(annotationName, lineno, charno);
+- 
+--              switch (annotation) {
+-+              Node var_2295 = parseAndRecordTypeNode(token);
+-+			switch (annotation) {
+-                 case AUTHOR:
+-                   if (jsdocBuilder.shouldParseDocumentation()) {
+-                     ExtractionInfo authorInfo = extractSingleLineBlock();
+-@@ -379,7 +380,7 @@
++@@ -567,8 +567,9 @@
+                    type = null;
+-                   if (token != JsDocToken.EOL && token != JsDocToken.EOC) {
+-                     type = createJSTypeExpression(
+--                        parseAndRecordTypeNode(token));
+-+                        var_2295);
+-                   }
+- 
+-                   if (type == null) {
+-@@ -568,7 +569,7 @@
+  
+                    if (token == JsDocToken.LC) {
+-                     type = createJSTypeExpression(
++-                    type = createJSTypeExpression(
+ -                        parseAndRecordTypeNode(token));
+++                    Node var_2295 = parseAndRecordTypeNode(token);
+++					type = createJSTypeExpression(
+ +                        var_2295);
+  
+                      if (type == null) {
+                        // parsing error reported during recursive descent
+-@@ -834,7 +835,7 @@
+-                   if (hasType || !canSkipTypeAnnotation) {
+-                     skipEOLs();
+-                     token = next();
+--                    typeNode = parseAndRecordTypeNode(token);
+-+                    typeNode = var_2295;
+- 
+-                     if (annotation == Annotation.THIS) {
+-                       typeNode = wrapNode(Token.BANG, typeNode);

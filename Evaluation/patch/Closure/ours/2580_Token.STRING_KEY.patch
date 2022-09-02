@@ -1,0 +1,51 @@
+diff --git a/src/com/google/javascript/rhino/Node.java b/src/com/google/javascript/rhino/Node.java
+index 55aefbe..490406a 100644
+--- a/src/com/google/javascript/rhino/Node.java
++++ b/src/com/google/javascript/rhino/Node.java
+@@ -1503,25 +1503,28 @@
+       if (post1 != post2) {
+         return false;
+       }
+-    } else if (type == Token.STRING || type == Token.STRING_KEY) {
+-      if (type == Token.STRING_KEY) {
+-        int quoted1 = this.getIntProp(QUOTED_PROP);
+-        int quoted2 = node.getIntProp(QUOTED_PROP);
+-        if (quoted1 != quoted2) {
+-          return false;
+-        }
+-      }
++    } else {
++		int var_2580 = Token.STRING_KEY;
++		if (type == Token.STRING || type == var_2580) {
++		  if (type == var_2580) {
++		    int quoted1 = this.getIntProp(QUOTED_PROP);
++		    int quoted2 = node.getIntProp(QUOTED_PROP);
++		    if (quoted1 != quoted2) {
++		      return false;
++		    }
++		  }
+ 
+-      int slashV1 = this.getIntProp(SLASH_V);
+-      int slashV2 = node.getIntProp(SLASH_V);
+-      if (slashV1 != slashV2) {
+-        return false;
+-      }
+-    } else if (type == Token.CALL) {
+-      if (this.getBooleanProp(FREE_CALL) != node.getBooleanProp(FREE_CALL)) {
+-        return false;
+-      }
+-    }
++		  int slashV1 = this.getIntProp(SLASH_V);
++		  int slashV2 = node.getIntProp(SLASH_V);
++		  if (slashV1 != slashV2) {
++		    return false;
++		  }
++		} else if (type == Token.CALL) {
++		  if (this.getBooleanProp(FREE_CALL) != node.getBooleanProp(FREE_CALL)) {
++		    return false;
++		  }
++		}
++	}
+ 
+     if (recurse) {
+       Node n, n2;

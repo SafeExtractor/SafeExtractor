@@ -1,0 +1,38 @@
+diff --git a/source/org/jfree/chart/axis/DateAxis.java b/source/org/jfree/chart/axis/DateAxis.java
+index 059bc3a..69ca6a5 100644
+--- a/source/org/jfree/chart/axis/DateAxis.java
++++ b/source/org/jfree/chart/axis/DateAxis.java
+@@ -887,12 +887,13 @@
+         int value = count * (current / count);
+ 
+         DateTickUnitType t = unit.getUnitType();
+-        if (t.equals(DateTickUnitType.MILLISECOND)) {
++        int var_495 = Calendar.MINUTE;
++		if (t.equals(DateTickUnitType.MILLISECOND)) {
+             years = calendar.get(Calendar.YEAR);
+             months = calendar.get(Calendar.MONTH);
+             days = calendar.get(Calendar.DATE);
+             hours = calendar.get(Calendar.HOUR_OF_DAY);
+-            minutes = calendar.get(Calendar.MINUTE);
++            minutes = calendar.get(var_495);
+             seconds = calendar.get(Calendar.SECOND);
+             calendar.set(years, months, days, hours, minutes, seconds);
+             calendar.set(Calendar.MILLISECOND, value);
+@@ -908,7 +909,7 @@
+             months = calendar.get(Calendar.MONTH);
+             days = calendar.get(Calendar.DATE);
+             hours = calendar.get(Calendar.HOUR_OF_DAY);
+-            minutes = calendar.get(Calendar.MINUTE);
++            minutes = calendar.get(var_495);
+             if (this.tickMarkPosition == DateTickMarkPosition.START) {
+                 milliseconds = 0;
+             }
+@@ -945,7 +946,7 @@
+             calendar.set(years, months, days, hours, value, seconds);
+             Date d0 = calendar.getTime();
+             if (d0.getTime() >= date.getTime()) {
+-                calendar.set(Calendar.MINUTE, value - 1);
++                calendar.set(var_495, value - 1);
+                 d0 = calendar.getTime();
+             }
+             return d0;

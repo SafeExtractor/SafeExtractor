@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/apache/commons/lang3/StringUtils.java b/src/main/java/org/apache/commons/lang3/StringUtils.java
+index 04b53fa..1c40a68 100644
+--- a/src/main/java/org/apache/commons/lang3/StringUtils.java
++++ b/src/main/java/org/apache/commons/lang3/StringUtils.java
+@@ -4580,8 +4580,9 @@
+         // mchyzer Performance note: This creates very few new objects (one major goal)
+         // let me know if there are performance requests, we can create a harness to measure
+ 
+-        if (text == null || text.isEmpty() || searchList == null ||
+-                searchList.length == 0 || replacementList == null || replacementList.length == 0) {
++        int var_59 = searchList.length;
++		if (text == null || text.isEmpty() || searchList == null ||
++                var_59 == 0 || replacementList == null || replacementList.length == 0) {
+             return text;
+         }
+ 
+@@ -4591,7 +4592,7 @@
+                                             "output of one loop is the input of another");
+         }
+ 
+-        final int searchLength = searchList.length;
++        final int searchLength = var_59;
+         final int replacementLength = replacementList.length;
+ 
+         // make sure lengths are ok, these need to be equal
+@@ -4642,7 +4643,7 @@
+         int increase = 0;
+ 
+         // count the replacement text elements that are larger than their corresponding text being replaced
+-        for (int i = 0; i < searchList.length; i++) {
++        for (int i = 0; i < var_59; i++) {
+             if (searchList[i] == null || replacementList[i] == null) {
+                 continue;
+             }

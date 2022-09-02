@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/ArithmeticUtils.java b/src/main/java/org/apache/commons/math3/util/ArithmeticUtils.java
+index 4916f75..001d422 100644
+--- a/src/main/java/org/apache/commons/math3/util/ArithmeticUtils.java
++++ b/src/main/java/org/apache/commons/math3/util/ArithmeticUtils.java
+@@ -618,15 +618,16 @@
+      */
+     public static long subAndCheck(long a, long b) throws MathArithmeticException {
+         long ret;
+-        if (b == Long.MIN_VALUE) {
++        LocalizedFormats var_4141 = LocalizedFormats.OVERFLOW_IN_ADDITION;
++		if (b == Long.MIN_VALUE) {
+             if (a < 0) {
+                 ret = a - b;
+             } else {
+-                throw new MathArithmeticException(LocalizedFormats.OVERFLOW_IN_ADDITION, a, -b);
++                throw new MathArithmeticException(var_4141, a, -b);
+             }
+         } else {
+             // use additive inverse
+-            ret = addAndCheck(a, -b, LocalizedFormats.OVERFLOW_IN_ADDITION);
++            ret = addAndCheck(a, -b, var_4141);
+         }
+         return ret;
+     }

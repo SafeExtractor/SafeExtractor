@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+index 067e1df..312669e 100644
+--- a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
++++ b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+@@ -312,13 +312,14 @@
+      */
+     public synchronized long setTimeBase(RegularTimePeriod start) {
+ 
+-        if (this.pointsInTime[0] == null) {
++        RegularTimePeriod var_4266 = this.pointsInTime[0];
++		if (var_4266 == null) {
+             this.pointsInTime[0] = start;
+             for (int i = 1; i < this.historyCount; i++) {
+                 this.pointsInTime[i] = this.pointsInTime[i - 1].next();
+             }
+         }
+-        long oldestL = this.pointsInTime[0].getFirstMillisecond(
++        long oldestL = var_4266.getFirstMillisecond(
+             this.workingCalendar
+         );
+         long nextL = this.pointsInTime[1].getFirstMillisecond(

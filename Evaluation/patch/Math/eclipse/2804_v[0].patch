@@ -1,0 +1,62 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
+index 15450f4..d27104f 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
+@@ -317,7 +317,8 @@
+                                           final double oneMinusThetaH)
+       throws MaxCountExceededException {
+ 
+-    if (! vectorsInitialized) {
++    double[] var_2804 = v[0];
++	if (! vectorsInitialized) {
+ 
+       if (v == null) {
+         v = new double[7][];
+@@ -343,11 +344,11 @@
+           final double yDot14 = yDotKLast[0][i];
+           final double yDot15 = yDotKLast[1][i];
+           final double yDot16 = yDotKLast[2][i];
+-          v[0][i] = B_01 * yDot1  + B_06 * yDot6 + B_07 * yDot7 +
++          var_2804[i] = B_01 * yDot1  + B_06 * yDot6 + B_07 * yDot7 +
+                     B_08 * yDot8  + B_09 * yDot9 + B_10 * yDot10 +
+                     B_11 * yDot11 + B_12 * yDot12;
+-          v[1][i] = yDot1 - v[0][i];
+-          v[2][i] = v[0][i] - v[1][i] - yDotK[12][i];
++          v[1][i] = yDot1 - var_2804[i];
++          v[2][i] = var_2804[i] - v[1][i] - yDotK[12][i];
+           for (int k = 0; k < D.length; ++k) {
+               v[k+3][i] = D[k][0] * yDot1  + D[k][1]  * yDot6  + D[k][2]  * yDot7  +
+                           D[k][3] * yDot8  + D[k][4]  * yDot9  + D[k][5]  * yDot10 +
+@@ -373,28 +374,28 @@
+     if ((previousState != null) && (theta <= 0.5)) {
+         for (int i = 0; i < interpolatedState.length; ++i) {
+             interpolatedState[i] = previousState[i] +
+-                    theta * h * (v[0][i] +
++                    theta * h * (var_2804[i] +
+                             eta * (v[1][i] +
+                                     theta * (v[2][i] +
+                                             eta * (v[3][i] +
+                                                     theta * (v[4][i] +
+                                                             eta * (v[5][i] +
+                                                                     theta * (v[6][i])))))));
+-            interpolatedDerivatives[i] =  v[0][i] + dot1 * v[1][i] + dot2 * v[2][i] +
++            interpolatedDerivatives[i] =  var_2804[i] + dot1 * v[1][i] + dot2 * v[2][i] +
+                     dot3 * v[3][i] + dot4 * v[4][i] +
+                     dot5 * v[5][i] + dot6 * v[6][i];
+         }
+     } else {
+         for (int i = 0; i < interpolatedState.length; ++i) {
+             interpolatedState[i] = currentState[i] -
+-                    oneMinusThetaH * (v[0][i] -
++                    oneMinusThetaH * (var_2804[i] -
+                             theta * (v[1][i] +
+                                     theta * (v[2][i] +
+                                             eta * (v[3][i] +
+                                                     theta * (v[4][i] +
+                                                             eta * (v[5][i] +
+                                                                     theta * (v[6][i])))))));
+-            interpolatedDerivatives[i] =  v[0][i] + dot1 * v[1][i] + dot2 * v[2][i] +
++            interpolatedDerivatives[i] =  var_2804[i] + dot1 * v[1][i] + dot2 * v[2][i] +
+                     dot3 * v[3][i] + dot4 * v[4][i] +
+                     dot5 * v[5][i] + dot6 * v[6][i];
+         }

@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..f4576a9 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -762,9 +762,10 @@
+     }
+ 
+     Ref ref = n.getDeclaration();
+-    String name = ref.node.getString();
+-    Node rvalue = ref.node.getFirstChild();
+-    Node varNode = ref.node.getParent();
++    Node var_735 = ref.node;
++	String name = var_735.getString();
++    Node rvalue = var_735.getFirstChild();
++    Node varNode = var_735.getParent();
+     Node gramps = varNode.getParent();
+ 
+     boolean isObjLit = rvalue.isObjectLit();
+@@ -779,7 +780,7 @@
+     numChanges += addStubsForUndeclaredProperties(n, name, gramps, varNode);
+ 
+     if (isObjLit && n.canEliminate()) {
+-      varNode.removeChild(ref.node);
++      varNode.removeChild(var_735);
+       if (!varNode.hasChildren()) {
+         gramps.removeChild(varNode);
+       }

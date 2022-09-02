@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/editor/DefaultPlotEditor.java b/source/org/jfree/chart/editor/DefaultPlotEditor.java
+index b938aa5..e93a273 100644
+--- a/source/org/jfree/chart/editor/DefaultPlotEditor.java
++++ b/source/org/jfree/chart/editor/DefaultPlotEditor.java
+@@ -572,12 +572,13 @@
+         }
+ 
+         if (this.drawLines != null) {
+-            if (plot instanceof CategoryPlot) {
++            boolean var_1119 = this.drawLines.booleanValue();
++			if (plot instanceof CategoryPlot) {
+                 CategoryPlot p = (CategoryPlot) plot;
+                 CategoryItemRenderer r = p.getRenderer();
+                 if (r instanceof LineAndShapeRenderer) {
+                     ((LineAndShapeRenderer) r).setBaseLinesVisible(
+-                            this.drawLines.booleanValue());
++                            var_1119);
+                 }
+             }
+             else if (plot instanceof XYPlot) {
+@@ -585,7 +586,7 @@
+                 XYItemRenderer r = p.getRenderer();
+                 if (r instanceof StandardXYItemRenderer) {
+                     ((StandardXYItemRenderer) r).setPlotLines(
+-                            this.drawLines.booleanValue());
++                            var_1119);
+                 }
+             }
+         }

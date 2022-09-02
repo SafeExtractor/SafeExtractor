@@ -1,0 +1,84 @@
+diff --git a/source/org/jfree/chart/axis/CyclicNumberAxis.java b/source/org/jfree/chart/axis/CyclicNumberAxis.java
+index 114e296..ad33bca 100644
+--- a/source/org/jfree/chart/axis/CyclicNumberAxis.java
++++ b/source/org/jfree/chart/axis/CyclicNumberAxis.java
+@@ -628,13 +628,14 @@
+             TextAnchor anchor = null;
+             TextAnchor rotationAnchor = null;
+             double angle = 0.0;
+-            if (isVerticalTickLabels()) {
++            boolean var_699 = isInverted();
++			if (isVerticalTickLabels()) {
+ 
+                 if (edge == RectangleEdge.LEFT) {
+                     anchor = TextAnchor.BOTTOM_CENTER;
+                     if ((lastTick != null) && (lastY == y)
+                             && (currentTickValue != cycleBound)) {
+-                        anchor = isInverted()
++                        anchor = var_699
+                             ? TextAnchor.BOTTOM_LEFT : TextAnchor.BOTTOM_RIGHT;
+                         result.remove(result.size() - 1);
+                         result.add(new CycleBoundTick(
+@@ -643,7 +644,7 @@
+                             lastTick.getAngle())
+                         );
+                         this.internalMarkerWhenTicksOverlap = true;
+-                        anchor = isInverted()
++                        anchor = var_699
+                             ? TextAnchor.BOTTOM_RIGHT : TextAnchor.BOTTOM_LEFT;
+                     }
+                     rotationAnchor = anchor;
+@@ -653,7 +654,7 @@
+                     anchor = TextAnchor.BOTTOM_CENTER;
+                     if ((lastTick != null) && (lastY == y)
+                             && (currentTickValue != cycleBound)) {
+-                        anchor = isInverted()
++                        anchor = var_699
+                             ? TextAnchor.BOTTOM_RIGHT : TextAnchor.BOTTOM_LEFT;
+                         result.remove(result.size() - 1);
+                         result.add(new CycleBoundTick(
+@@ -662,7 +663,7 @@
+                             lastTick.getAngle())
+                         );
+                         this.internalMarkerWhenTicksOverlap = true;
+-                        anchor = isInverted()
++                        anchor = var_699
+                             ? TextAnchor.BOTTOM_LEFT : TextAnchor.BOTTOM_RIGHT;
+                     }
+                     rotationAnchor = anchor;
+@@ -674,7 +675,7 @@
+                     anchor = TextAnchor.CENTER_RIGHT;
+                     if ((lastTick != null) && (lastY == y)
+                             && (currentTickValue != cycleBound)) {
+-                        anchor = isInverted()
++                        anchor = var_699
+                             ? TextAnchor.BOTTOM_RIGHT : TextAnchor.TOP_RIGHT;
+                         result.remove(result.size() - 1);
+                         result.add(new CycleBoundTick(
+@@ -683,7 +684,7 @@
+                             lastTick.getAngle())
+                         );
+                         this.internalMarkerWhenTicksOverlap = true;
+-                        anchor = isInverted()
++                        anchor = var_699
+                             ? TextAnchor.TOP_RIGHT : TextAnchor.BOTTOM_RIGHT;
+                     }
+                     rotationAnchor = anchor;
+@@ -692,7 +693,7 @@
+                     anchor = TextAnchor.CENTER_LEFT;
+                     if ((lastTick != null) && (lastY == y)
+                             && (currentTickValue != cycleBound)) {
+-                        anchor = isInverted()
++                        anchor = var_699
+                             ? TextAnchor.BOTTOM_LEFT : TextAnchor.TOP_LEFT;
+                         result.remove(result.size() - 1);
+                         result.add(new CycleBoundTick(
+@@ -701,7 +702,7 @@
+                             lastTick.getAngle())
+                         );
+                         this.internalMarkerWhenTicksOverlap = true;
+-                        anchor = isInverted()
++                        anchor = var_699
+                             ? TextAnchor.TOP_LEFT : TextAnchor.BOTTOM_LEFT;
+                     }
+                     rotationAnchor = anchor;

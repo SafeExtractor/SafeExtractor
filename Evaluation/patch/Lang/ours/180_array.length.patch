@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/lang3/ArrayUtils.java b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+index a0a499a..9d36566 100644
+--- a/src/main/java/org/apache/commons/lang3/ArrayUtils.java
++++ b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+@@ -2849,9 +2849,12 @@
+     public static int[] toPrimitive(final Integer[] array, final int valueForNull) {
+         if (array == null) {
+             return null;
+-        } else if (array.length == 0) {
+-            return EMPTY_INT_ARRAY;
+-        }
++        } else {
++			int var_180 = array.length;
++			if (var_180 == 0) {
++			    return EMPTY_INT_ARRAY;
++			}
++		}
+         final int[] result = new int[array.length];
+         for (int i = 0; i < array.length; i++) {
+             final Integer b = array[i];

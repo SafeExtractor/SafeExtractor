@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/data/time/ohlc/OHLCSeriesCollection.java b/source/org/jfree/data/time/ohlc/OHLCSeriesCollection.java
+index 6786421..13aa0b3 100644
+--- a/source/org/jfree/data/time/ohlc/OHLCSeriesCollection.java
++++ b/source/org/jfree/data/time/ohlc/OHLCSeriesCollection.java
+@@ -421,19 +421,20 @@
+      */
+     public void removeAllSeries() {
+ 
+-        if (this.data.size() == 0) {
++        List var_4354 = this.data;
++		if (var_4354.size() == 0) {
+             return;  // nothing to do
+         }
+ 
+         // deregister the collection as a change listener to each series in the
+         // collection
+-        for (int i = 0; i < this.data.size(); i++) {
+-            OHLCSeries series = (OHLCSeries) this.data.get(i);
++        for (int i = 0; i < var_4354.size(); i++) {
++            OHLCSeries series = (OHLCSeries) var_4354.get(i);
+             series.removeChangeListener(this);
+         }
+ 
+         // remove all the series from the collection and notify listeners.
+-        this.data.clear();
++        var_4354.clear();
+         fireDatasetChanged(new DatasetChangeInfo());
+         //TODO: fill in real change info
+ 

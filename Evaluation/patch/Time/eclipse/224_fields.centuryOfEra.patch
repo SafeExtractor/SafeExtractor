@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/joda/time/chrono/GJChronology.java b/src/main/java/org/joda/time/chrono/GJChronology.java
+index 1cc03a4..e917f20 100644
+--- a/src/main/java/org/joda/time/chrono/GJChronology.java
++++ b/src/main/java/org/joda/time/chrono/GJChronology.java
+@@ -540,9 +540,10 @@
+             fields.yearOfEra = new ImpreciseCutoverField(
+                 julian.yearOfEra(), fields.yearOfEra, fields.years, iCutoverMillis);
+             
+-            fields.centuryOfEra = new ImpreciseCutoverField(
+-                julian.centuryOfEra(), fields.centuryOfEra, iCutoverMillis);
+-            fields.centuries = fields.centuryOfEra.getDurationField();
++            DateTimeField var_224 = fields.centuryOfEra;
++			fields.centuryOfEra = new ImpreciseCutoverField(
++                julian.centuryOfEra(), var_224, iCutoverMillis);
++            fields.centuries = var_224.getDurationField();
+             
+             fields.yearOfCentury = new ImpreciseCutoverField(
+                 julian.yearOfCentury(), fields.yearOfCentury, fields.years, fields.centuries, iCutoverMillis);

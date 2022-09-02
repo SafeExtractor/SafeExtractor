@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/annotations/XYTextAnnotation.java b/source/org/jfree/chart/annotations/XYTextAnnotation.java
+index 8e9f942..bd950e8 100644
+--- a/source/org/jfree/chart/annotations/XYTextAnnotation.java
++++ b/source/org/jfree/chart/annotations/XYTextAnnotation.java
+@@ -548,16 +548,17 @@
+         }
+ 
+         g2.setFont(getFont());
+-        Shape hotspot = TextUtilities.calculateRotatedStringBounds(
++        TextAnchor var_259 = getRotationAnchor();
++		Shape hotspot = TextUtilities.calculateRotatedStringBounds(
+                 getText(), g2, anchorX, anchorY, getTextAnchor(),
+-                getRotationAngle(), getRotationAnchor());
++                getRotationAngle(), var_259);
+         if (this.backgroundPaint != null) {
+             g2.setPaint(this.backgroundPaint);
+             g2.fill(hotspot);
+         }
+         g2.setPaint(getPaint());
+         TextUtilities.drawRotatedString(getText(), g2, anchorX, anchorY,
+-                getTextAnchor(), getRotationAngle(), getRotationAnchor());
++                getTextAnchor(), getRotationAngle(), var_259);
+         if (this.outlineVisible) {
+             g2.setStroke(this.outlineStroke);
+             g2.setPaint(this.outlinePaint);

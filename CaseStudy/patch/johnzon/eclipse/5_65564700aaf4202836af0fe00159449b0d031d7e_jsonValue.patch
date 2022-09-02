@@ -1,0 +1,14 @@
+diff --git a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java
+index 0bc1a26..bf11846 100644
+--- a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java
++++ b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/Mapper.java
+@@ -634,7 +634,8 @@
+                         }
+ 
+                         for (final Map.Entry<String, JsonValue> value : object.entrySet()) {
+-                            map.put(convertTo(keyType, value.getKey()), toObject(value.getValue(), fieldArgTypes[1], null));
++                            org.apache.johnzon.mapper.JsonValue jsonValue = value.getValue();
++							map.put(convertTo(keyType, value.getKey()), toObject(jsonValue, fieldArgTypes[1], null));
+                         }
+                         return map;
+                     }

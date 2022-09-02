@@ -1,0 +1,28 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/2190_getNorm().patch b/Users/safe/paper/Evaluation/patch/Math/ours/2190_getNorm().patch
+index c0166fe..33ca0d8 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/2190_getNorm().patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/2190_getNorm().patch
+@@ -1,19 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/linear/RealVector.java b/src/main/java/org/apache/commons/math3/linear/RealVector.java
+-index d8e5017..55e88fe 100644
++index d8e5017..5bae0c9 100644
+ --- a/src/main/java/org/apache/commons/math3/linear/RealVector.java
+ +++ b/src/main/java/org/apache/commons/math3/linear/RealVector.java
+-@@ -736,11 +736,12 @@
+-      * @throws MathArithmeticException if the norm is zero.
+-      */
+-     public void unitize() throws MathArithmeticException {
+--        final double norm = getNorm();
+-+        double var_2190 = getNorm();
+-+		final double norm = var_2190;
++@@ -740,7 +740,8 @@
+          if (norm == 0) {
+              throw new MathArithmeticException(LocalizedFormats.ZERO_NORM);
+          }
+ -        mapDivideToSelf(getNorm());
+-+        mapDivideToSelf(var_2190);
+++        double var_2190 = getNorm();
+++		mapDivideToSelf(var_2190);
+      }
+  
+      /**

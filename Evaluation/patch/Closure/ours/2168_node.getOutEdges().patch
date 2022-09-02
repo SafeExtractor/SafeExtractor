@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/graph/GraphPruner.java b/src/com/google/javascript/jscomp/graph/GraphPruner.java
+index 9e88230..0cb899e 100644
+--- a/src/com/google/javascript/jscomp/graph/GraphPruner.java
++++ b/src/com/google/javascript/jscomp/graph/GraphPruner.java
+@@ -16,6 +16,8 @@
+ 
+ package com.google.javascript.jscomp.graph;
+ 
++import java.util.List;
++
+ import com.google.common.base.Predicate;
+ import com.google.javascript.jscomp.graph.DiGraph.DiGraphEdge;
+ import com.google.javascript.jscomp.graph.DiGraph.DiGraphNode;
+@@ -47,7 +49,8 @@
+     // an edge.
+     for (DiGraphNode<N, E> node : workGraph.getDirectedGraphNodes()) {
+       for (DiGraphEdge<N, E> inEdge : node.getInEdges()) {
+-        for (DiGraphEdge<N, E> outEdge : node.getOutEdges()) {
++        List<DiGraphEdge<N, E>> var_2168 = node.getOutEdges();
++		for (DiGraphEdge<N, E> outEdge : var_2168) {
+           N source = inEdge.getSource().getValue();
+           N dest = outEdge.getDestination().getValue();
+           if (!workGraph.isConnectedInDirection(source, dest)) {

@@ -1,0 +1,34 @@
+diff --git a/source/org/jfree/chart/renderer/category/LineRenderer3D.java b/source/org/jfree/chart/renderer/category/LineRenderer3D.java
+index 68c0447..717427a 100644
+--- a/source/org/jfree/chart/renderer/category/LineRenderer3D.java
++++ b/source/org/jfree/chart/renderer/category/LineRenderer3D.java
+@@ -79,6 +79,7 @@
+ import org.jfree.chart.plot.PlotOrientation;
+ import org.jfree.chart.plot.ValueMarker;
+ import org.jfree.chart.util.PaintUtilities;
++import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.chart.util.SerialUtilities;
+ import org.jfree.chart.util.ShapeUtilities;
+ import org.jfree.data.Range;
+@@ -400,9 +401,10 @@
+         Line2D line1 = null;
+         Line2D line2 = null;
+         PlotOrientation orientation = plot.getOrientation();
+-        if (orientation == PlotOrientation.HORIZONTAL) {
++        RectangleEdge var_2555 = plot.getRangeAxisEdge();
++		if (orientation == PlotOrientation.HORIZONTAL) {
+             double x0 = axis.valueToJava2D(value, adjusted,
+-                    plot.getRangeAxisEdge());
++                    var_2555);
+             double x1 = x0 + getXOffset();
+             double y0 = dataArea.getMaxY();
+             double y1 = y0 - getYOffset();
+@@ -412,7 +414,7 @@
+         }
+         else if (orientation == PlotOrientation.VERTICAL) {
+             double y0 = axis.valueToJava2D(value, adjusted,
+-                    plot.getRangeAxisEdge());
++                    var_2555);
+             double y1 = y0 - getYOffset();
+             double x0 = dataArea.getMinX();
+             double x1 = x0 + getXOffset();

@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/regex/CharRanges.java b/src/com/google/javascript/jscomp/regex/CharRanges.java
+index 0736d68..84a550b 100644
+--- a/src/com/google/javascript/jscomp/regex/CharRanges.java
++++ b/src/com/google/javascript/jscomp/regex/CharRanges.java
+@@ -298,7 +298,8 @@
+ 
+     int pos = minuend[0];
+     while (mIdx < mn) {
+-      if (pos >= minuend[mIdx + 1]) {
++      int var_2397 = minuend[mIdx + 1];
++	if (pos >= var_2397) {
+         mIdx += 2;
+       } else if (pos < minuend[mIdx]) {
+         // Skip gaps in the minuend.
+@@ -311,7 +312,7 @@
+         // Now we know that pos is between [minuend[i], minuend[i + 1])
+         // and outside [subtrahend[j], subtrahend[j + 1]).
+         int end = sIdx < sn
+-            ? Math.min(minuend[mIdx + 1], subtrahend[sIdx]) : minuend[mIdx + 1];
++            ? Math.min(var_2397, subtrahend[sIdx]) : var_2397;
+         if (dIdx != 0 && difference[dIdx - 1] == pos) {
+           difference[dIdx - 1] = pos;
+         } else {

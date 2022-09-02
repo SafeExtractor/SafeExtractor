@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/chart/renderer/category/LevelRenderer.java b/source/org/jfree/chart/renderer/category/LevelRenderer.java
+index 10de937..2c0b66c 100644
+--- a/source/org/jfree/chart/renderer/category/LevelRenderer.java
++++ b/source/org/jfree/chart/renderer/category/LevelRenderer.java
+@@ -267,13 +267,14 @@
+         else {
+             space = dataArea.getWidth();
+         }
+-        double barW0 = domainAxis.getCategoryStart(column, getColumnCount(),
++        int var_2441 = getColumnCount();
++		double barW0 = domainAxis.getCategoryStart(column, var_2441,
+                 dataArea, plot.getDomainAxisEdge());
+         int seriesCount = state.getVisibleSeriesCount();
+         if (seriesCount < 0) {
+             seriesCount = getRowCount();
+         }
+-        int categoryCount = getColumnCount();
++        int categoryCount = var_2441;
+         if (seriesCount > 1) {
+             double seriesGap = space * getItemMargin()
+                     / (categoryCount * (seriesCount - 1));
+@@ -283,7 +284,7 @@
+                           + (seriesW / 2.0) - (state.getBarWidth() / 2.0);
+         }
+         else {
+-            barW0 = domainAxis.getCategoryMiddle(column, getColumnCount(),
++            barW0 = domainAxis.getCategoryMiddle(column, var_2441,
+                     dataArea, plot.getDomainAxisEdge()) - state.getBarWidth()
+                     / 2.0;
+         }

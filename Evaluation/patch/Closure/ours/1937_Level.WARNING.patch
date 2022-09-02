@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/Tracer.java b/src/com/google/javascript/jscomp/Tracer.java
+index 5298e98..142dffb 100644
+--- a/src/com/google/javascript/jscomp/Tracer.java
++++ b/src/com/google/javascript/jscomp/Tracer.java
+@@ -499,8 +499,9 @@
+     // prevents spurious Third Eye messages when an application uses a class in
+     // a different package that happens to call Tracer without knowledge of the
+     // application authors.
+-    if (!trace.isInitialized()) {
+-      logger.log(Level.WARNING,
++    Level var_1937 = Level.WARNING;
++	if (!trace.isInitialized()) {
++      logger.log(var_1937,
+                  "Tracer log requested for this thread but was not "
+                  + "initialized using Tracer.initCurrentThreadTrace().",
+                  new Throwable());
+@@ -508,7 +509,7 @@
+     }
+ 
+     if (!trace.isEmpty()) {
+-      logger.log(Level.WARNING, "timers:\n{0}", getCurrentThreadTraceReport());
++      logger.log(var_1937, "timers:\n{0}", getCurrentThreadTraceReport());
+     }
+   }
+ 

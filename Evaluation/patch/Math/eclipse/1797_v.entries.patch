@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java b/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+index 55d2b6a..a66a10a 100644
+--- a/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
++++ b/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+@@ -250,10 +250,11 @@
+     public OpenMapRealVector add(OpenMapRealVector v)
+         throws DimensionMismatchException {
+         checkVectorDimensions(v.getDimension());
+-        boolean copyThis = entries.size() > v.entries.size();
++        OpenIntToDoubleHashMap var_1797 = v.entries;
++		boolean copyThis = entries.size() > var_1797.size();
+         OpenMapRealVector res = copyThis ? this.copy() : v.copy();
+-        Iterator iter = copyThis ? v.entries.iterator() : entries.iterator();
+-        OpenIntToDoubleHashMap randomAccess = copyThis ? entries : v.entries;
++        Iterator iter = copyThis ? var_1797.iterator() : entries.iterator();
++        OpenIntToDoubleHashMap randomAccess = copyThis ? entries : var_1797;
+         while (iter.hasNext()) {
+             iter.advance();
+             int key = iter.key();

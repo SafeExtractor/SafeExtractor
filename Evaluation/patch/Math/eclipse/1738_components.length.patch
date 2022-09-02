@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/OrderedTuple.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/OrderedTuple.java
+index f802943..58df8d4 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/OrderedTuple.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/OrderedTuple.java
+@@ -193,14 +193,15 @@
+         // 63 bits per element because there is no unsigned long in Java)
+         final int neededBits  = offset + 1 - lsb;
+         final int neededLongs = (neededBits + 62) / 63;
+-        encoding = new long[components.length * neededLongs];
++        int var_1738 = components.length;
++		encoding = new long[var_1738 * neededLongs];
+ 
+         // mix the bits from all components
+         int  eIndex = 0;
+         int  shift  = 62;
+         long word   = 0x0L;
+         for (int k = offset; eIndex < encoding.length; --k) {
+-            for (int vIndex = 0; vIndex < components.length; ++vIndex) {
++            for (int vIndex = 0; vIndex < var_1738; ++vIndex) {
+                 if (getBit(vIndex, k) != 0) {
+                     word |= 0x1L << shift;
+                 }

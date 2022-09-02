@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+index 4a54655..e618a25 100644
+--- a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
++++ b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+@@ -1110,13 +1110,14 @@
+ 
+         PlotOrientation orientation = plot.getOrientation();
+         Rectangle2D bounds = null;
+-        if (marker.getDrawAsLine()) {
++        double var_2462 = dataArea.getMinX();
++		if (marker.getDrawAsLine()) {
+             double v = axis.getCategoryMiddle(columnIndex,
+                     dataset.getColumnCount(), dataArea,
+                     plot.getDomainAxisEdge());
+             Line2D line = null;
+             if (orientation == PlotOrientation.HORIZONTAL) {
+-                line = new Line2D.Double(dataArea.getMinX(), v,
++                line = new Line2D.Double(var_2462, v,
+                         dataArea.getMaxX(), v);
+             }
+             else if (orientation == PlotOrientation.VERTICAL) {
+@@ -1137,7 +1138,7 @@
+                     plot.getDomainAxisEdge());
+             Rectangle2D area = null;
+             if (orientation == PlotOrientation.HORIZONTAL) {
+-                area = new Rectangle2D.Double(dataArea.getMinX(), v0,
++                area = new Rectangle2D.Double(var_2462, v0,
+                         dataArea.getWidth(), (v1 - v0));
+             }
+             else if (orientation == PlotOrientation.VERTICAL) {

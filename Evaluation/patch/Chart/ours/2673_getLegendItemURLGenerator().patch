@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java b/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java
+index 882b0f1..d9acacc 100644
+--- a/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java
++++ b/source/org/jfree/chart/renderer/category/LineAndShapeRenderer.java
+@@ -110,6 +110,7 @@
+ import org.jfree.chart.axis.ValueAxis;
+ import org.jfree.chart.entity.EntityCollection;
+ import org.jfree.chart.event.RendererChangeEvent;
++import org.jfree.chart.labels.CategorySeriesLabelGenerator;
+ import org.jfree.chart.plot.CategoryPlot;
+ import org.jfree.chart.plot.PlotOrientation;
+ import org.jfree.chart.util.BooleanList;
+@@ -658,8 +659,9 @@
+                         dataset, series);
+             }
+             String urlText = null;
+-            if (getLegendItemURLGenerator() != null) {
+-                urlText = getLegendItemURLGenerator().generateLabel(
++            CategorySeriesLabelGenerator var_2673 = getLegendItemURLGenerator();
++			if (var_2673 != null) {
++                urlText = var_2673.generateLabel(
+                         dataset, series);
+             }
+             Shape shape = lookupLegendShape(series);

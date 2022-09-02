@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/ant/CompileTask.java b/src/com/google/javascript/jscomp/ant/CompileTask.java
+index 1adfb25..fd523b0 100644
+--- a/src/com/google/javascript/jscomp/ant/CompileTask.java
++++ b/src/com/google/javascript/jscomp/ant/CompileTask.java
+@@ -464,9 +464,10 @@
+    */
+   private List<SourceFile> findJavaScriptFiles(FileList fileList) {
+     List<SourceFile> files = Lists.newLinkedList();
+-    File baseDir = fileList.getDir(getProject());
++    Project var_2124 = getProject();
++	File baseDir = fileList.getDir(var_2124);
+ 
+-    for (String included : fileList.getFiles(getProject())) {
++    for (String included : fileList.getFiles(var_2124)) {
+       files.add(SourceFile.fromFile(new File(baseDir, included),
+           Charset.forName(encoding)));
+     }

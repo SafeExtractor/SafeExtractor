@@ -1,0 +1,23 @@
+diff --git a/src/org/mockito/internal/matchers/apachecommons/EqualsBuilder.java b/src/org/mockito/internal/matchers/apachecommons/EqualsBuilder.java
+index 76704f9..3d875ed 100644
+--- a/src/org/mockito/internal/matchers/apachecommons/EqualsBuilder.java
++++ b/src/org/mockito/internal/matchers/apachecommons/EqualsBuilder.java
+@@ -340,7 +340,8 @@
+             this.setEquals(false);
+             return this;
+         }
+-        Class lhsClass = lhs.getClass();
++        Class<? extends Object> var_70 = lhs.getClass();
++		Class lhsClass = var_70;
+         if (!lhsClass.isArray()) {
+             if (lhs instanceof java.math.BigDecimal && rhs instanceof java.math.BigDecimal) {
+                 isEquals = (((java.math.BigDecimal) lhs).compareTo((java.math.BigDecimal) rhs) == 0);
+@@ -348,7 +349,7 @@
+                 // The simple case, not an array, just test the element
+                 isEquals = lhs.equals(rhs);
+             }
+-        } else if (lhs.getClass() != rhs.getClass()) {
++        } else if (var_70 != rhs.getClass()) {
+             // Here when we compare different dimensions, for example: a boolean[][] to a boolean[] 
+             this.setEquals(false);
+         

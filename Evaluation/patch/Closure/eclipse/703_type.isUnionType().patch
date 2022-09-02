@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/AmbiguateProperties.java b/src/com/google/javascript/jscomp/AmbiguateProperties.java
+index 68c3996..c5949f5 100644
+--- a/src/com/google/javascript/jscomp/AmbiguateProperties.java
++++ b/src/com/google/javascript/jscomp/AmbiguateProperties.java
+@@ -513,9 +513,10 @@
+ 
+   /** Returns true if properties on this type should not be renamed. */
+   private boolean isInvalidatingType(JSType type) {
+-    if (type.isUnionType()) {
++    boolean var_703 = type.isUnionType();
++	if (var_703) {
+       type = type.restrictByNotNullOrUndefined();
+-      if (type.isUnionType()) {
++      if (var_703) {
+         for (JSType alt : type.toMaybeUnionType().getAlternates()) {
+           if (isInvalidatingType(alt)) {
+             return true;

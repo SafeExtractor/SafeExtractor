@@ -1,0 +1,47 @@
+diff --git a/source/org/jfree/chart/plot/Plot.java b/source/org/jfree/chart/plot/Plot.java
+index 4656dc7..a2e7df9 100644
+--- a/source/org/jfree/chart/plot/Plot.java
++++ b/source/org/jfree/chart/plot/Plot.java
+@@ -1461,23 +1461,25 @@
+             else if (orientation == PlotOrientation.VERTICAL) {
+                 result = RectangleEdge.TOP;
+             }
+-        }
+-        else if (location == AxisLocation.BOTTOM_OR_RIGHT) {
+-            if (orientation == PlotOrientation.HORIZONTAL) {
+-                result = RectangleEdge.RIGHT;
+-            }
+-            else if (orientation == PlotOrientation.VERTICAL) {
+-                result = RectangleEdge.BOTTOM;
+-            }
+-        }
+-        else if (location == AxisLocation.BOTTOM_OR_LEFT) {
+-            if (orientation == PlotOrientation.HORIZONTAL) {
+-                result = RectangleEdge.LEFT;
+-            }
+-            else if (orientation == PlotOrientation.VERTICAL) {
+-                result = RectangleEdge.BOTTOM;
+-            }
+-        }
++        } else {
++			RectangleEdge var_2120 = RectangleEdge.BOTTOM;
++			if (location == AxisLocation.BOTTOM_OR_RIGHT) {
++			    if (orientation == PlotOrientation.HORIZONTAL) {
++			        result = RectangleEdge.RIGHT;
++			    }
++			    else if (orientation == PlotOrientation.VERTICAL) {
++			        result = var_2120;
++			    }
++			}
++			else if (location == AxisLocation.BOTTOM_OR_LEFT) {
++			    if (orientation == PlotOrientation.HORIZONTAL) {
++			        result = RectangleEdge.LEFT;
++			    }
++			    else if (orientation == PlotOrientation.VERTICAL) {
++			        result = var_2120;
++			    }
++			}
++		}
+         // the above should cover all the options...
+         if (result == null) {
+             throw new IllegalStateException("resolveDomainAxisLocation()");

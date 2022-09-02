@@ -1,0 +1,37 @@
+diff --git a/src/com/google/javascript/jscomp/ExpressionDecomposer.java b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+index 2344537..edbf9bb 100644
+--- a/src/com/google/javascript/jscomp/ExpressionDecomposer.java
++++ b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+@@ -351,26 +351,25 @@
+     Node cond = null;
+     Node trueExpr = IR.block().srcref(expr);
+     Node falseExpr = IR.block().srcref(expr);
+-    switch (expr.getType()) {
++    Node var_1962 = NodeUtil.newExpr(
++	    buildResultExpression(last, needResult, tempName));
++	switch (expr.getType()) {
+       case Token.HOOK:
+         // a = x?y:z --> if (x) {a=y} else {a=z}
+         cond = first;
+         trueExpr.addChildToFront(NodeUtil.newExpr(
+             buildResultExpression(second, needResult, tempName)));
+-        falseExpr.addChildToFront(NodeUtil.newExpr(
+-            buildResultExpression(last, needResult, tempName)));
++        falseExpr.addChildToFront(var_1962);
+         break;
+       case Token.AND:
+         // a = x&&y --> if (a=x) {a=y} else {}
+         cond = buildResultExpression(first, needResult, tempName);
+-        trueExpr.addChildToFront(NodeUtil.newExpr(
+-            buildResultExpression(last, needResult, tempName)));
++        trueExpr.addChildToFront(var_1962);
+         break;
+       case Token.OR:
+         // a = x||y --> if (a=x) {} else {a=y}
+         cond = buildResultExpression(first, needResult, tempName);
+-        falseExpr.addChildToFront(NodeUtil.newExpr(
+-            buildResultExpression(last, needResult, tempName)));
++        falseExpr.addChildToFront(var_1962);
+         break;
+       default:
+         // With a valid tree we should never get here.

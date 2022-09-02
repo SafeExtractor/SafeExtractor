@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/random/BitsStreamGenerator.java b/src/main/java/org/apache/commons/math3/random/BitsStreamGenerator.java
+index 83ddf1d..6a0b21c 100644
+--- a/src/main/java/org/apache/commons/math3/random/BitsStreamGenerator.java
++++ b/src/main/java/org/apache/commons/math3/random/BitsStreamGenerator.java
+@@ -69,7 +69,8 @@
+     /** {@inheritDoc} */
+     public void nextBytes(byte[] bytes) {
+         int i = 0;
+-        final int iEnd = bytes.length - 3;
++        int var_3648 = bytes.length;
++		final int iEnd = var_3648 - 3;
+         while (i < iEnd) {
+             final int random = next(32);
+             bytes[i]     = (byte) (random & 0xff);
+@@ -79,7 +80,7 @@
+             i += 4;
+         }
+         int random = next(32);
+-        while (i < bytes.length) {
++        while (i < var_3648) {
+             bytes[i++] = (byte) (random & 0xff);
+             random     = random >> 8;
+         }

@@ -1,0 +1,35 @@
+diff --git a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+index 067e1df..9469e5c 100644
+--- a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
++++ b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+@@ -390,12 +390,13 @@
+             throw new IllegalArgumentException("TimeSeriesDataset.addSeries(): "
+                 + "cannot add null array of values.");
+         }
+-        if (seriesNumber >= this.valueHistory.length) {
++        ValueSequence[] var_4273 = this.valueHistory;
++		if (seriesNumber >= var_4273.length) {
+             throw new IllegalArgumentException("TimeSeriesDataset.addSeries(): "
+                 + "cannot add more series than specified in c'tor");
+         }
+-        if (this.valueHistory[seriesNumber] == null) {
+-            this.valueHistory[seriesNumber]
++        if (var_4273[seriesNumber] == null) {
++            var_4273[seriesNumber]
+                 = new ValueSequence(this.historyCount);
+             this.seriesCount++;
+         }
+@@ -412,11 +413,11 @@
+         //{
+         for (i = 0; i < copyLength; i++) { // deep copy from values[], caller
+                                            // can safely discard that array
+-            this.valueHistory[seriesNumber].enterData(i, values[i]);
++            var_4273[seriesNumber].enterData(i, values[i]);
+         }
+         if (fillNeeded) {
+             for (i = copyLength; i < this.historyCount; i++) {
+-                this.valueHistory[seriesNumber].enterData(i, 0.0f);
++                var_4273[seriesNumber].enterData(i, 0.0f);
+             }
+         }
+       //}

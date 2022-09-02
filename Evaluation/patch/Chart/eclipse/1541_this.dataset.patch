@@ -1,0 +1,20 @@
+diff --git a/source/org/jfree/chart/plot/SpiderWebPlot.java b/source/org/jfree/chart/plot/SpiderWebPlot.java
+index 06e0bc2..eb077ad 100644
+--- a/source/org/jfree/chart/plot/SpiderWebPlot.java
++++ b/source/org/jfree/chart/plot/SpiderWebPlot.java
+@@ -1403,11 +1403,12 @@
+      */
+     protected Number getPlotValue(int series, int cat) {
+         Number value = null;
+-        if (this.dataExtractOrder == TableOrder.BY_ROW) {
+-            value = this.dataset.getValue(series, cat);
++        CategoryDataset var_1541 = this.dataset;
++		if (this.dataExtractOrder == TableOrder.BY_ROW) {
++            value = var_1541.getValue(series, cat);
+         }
+         else if (this.dataExtractOrder == TableOrder.BY_COLUMN) {
+-            value = this.dataset.getValue(cat, series);
++            value = var_1541.getValue(cat, series);
+         }
+         return value;
+     }

@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/AbstractSimplex.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/AbstractSimplex.java
+index 0417f26..458b4bd 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/AbstractSimplex.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/AbstractSimplex.java
+@@ -130,11 +130,12 @@
+      * @throws IllegalArgumentException if one of its vertices is duplicated.
+      */
+     protected AbstractSimplex(final double[][] referenceSimplex) {
+-        if (referenceSimplex.length <= 0) {
++        int var_3155 = referenceSimplex.length;
++		if (var_3155 <= 0) {
+             throw new NotStrictlyPositiveException(LocalizedFormats.SIMPLEX_NEED_ONE_POINT,
+-                                                   referenceSimplex.length);
++                                                   var_3155);
+         }
+-        dimension = referenceSimplex.length - 1;
++        dimension = var_3155 - 1;
+ 
+         // Only the relative position of the n final vertices with respect
+         // to the first one are stored.
+@@ -142,7 +143,7 @@
+         final double[] ref0 = referenceSimplex[0];
+ 
+         // Loop over vertices.
+-        for (int i = 0; i < referenceSimplex.length; i++) {
++        for (int i = 0; i < var_3155; i++) {
+             final double[] refI = referenceSimplex[i];
+ 
+             // Safety checks.

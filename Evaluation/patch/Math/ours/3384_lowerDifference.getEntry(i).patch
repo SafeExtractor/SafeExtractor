@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..a81e7a9 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -1459,8 +1459,9 @@
+                 for (int i = 0; i < n; i++) {
+                     if (work1.getEntry(i) == bigstp) {
+                         final double tmp2 = trustRegionCenterOffset.getEntry(i) - step * glag.getEntry(i);
+-                        if (tmp2 <= lowerDifference.getEntry(i)) {
+-                            work1.setEntry(i, lowerDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i));
++                        double var_3384 = lowerDifference.getEntry(i);
++						if (tmp2 <= var_3384) {
++                            work1.setEntry(i, var_3384 - trustRegionCenterOffset.getEntry(i));
+                             // Computing 2nd power
+                             final double d1 = work1.getEntry(i);
+                             wfixsq += d1 * d1;

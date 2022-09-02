@@ -1,0 +1,26 @@
+diff --git a/src/org/mockito/internal/verification/AtLeast.java b/src/org/mockito/internal/verification/AtLeast.java
+index db2cbda..1098bf5 100644
+--- a/src/org/mockito/internal/verification/AtLeast.java
++++ b/src/org/mockito/internal/verification/AtLeast.java
+@@ -9,6 +9,7 @@
+ 
+ import org.mockito.exceptions.base.MockitoException;
+ import org.mockito.internal.invocation.InvocationMatcher;
++import org.mockito.internal.verification.api.InOrderContext;
+ import org.mockito.internal.verification.api.VerificationData;
+ import org.mockito.internal.verification.api.VerificationDataInOrder;
+ import org.mockito.internal.verification.api.VerificationInOrderMode;
+@@ -45,10 +46,11 @@
+         InvocationMatcher wanted = data.getWanted();
+         
+         MissingInvocationInOrderChecker missingInvocation = new MissingInvocationInOrderChecker();
+-        AtLeastXNumberOfInvocationsInOrderChecker numberOfCalls = new AtLeastXNumberOfInvocationsInOrderChecker(data.getOrderingContext());
++        InOrderContext var_129 = data.getOrderingContext();
++		AtLeastXNumberOfInvocationsInOrderChecker numberOfCalls = new AtLeastXNumberOfInvocationsInOrderChecker(var_129);
+         
+         if (wantedCount == 1) {
+-            missingInvocation.check(allInvocations, wanted, this, data.getOrderingContext());
++            missingInvocation.check(allInvocations, wanted, this, var_129);
+         }
+         
+         numberOfCalls.check(allInvocations, wanted, wantedCount);

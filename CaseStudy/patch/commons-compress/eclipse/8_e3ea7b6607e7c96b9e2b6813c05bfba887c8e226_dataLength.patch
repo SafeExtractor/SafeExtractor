@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java b/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java
+index dd22f03..21e2b25 100644
+--- a/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java
++++ b/src/main/java/org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java
+@@ -268,10 +268,11 @@
+      * @return an array of bytes
+      */
+     public static byte[] mergeCentralDirectoryData(final ZipExtraField[] data) {
+-        final boolean lastIsUnparseableHolder = data.length > 0
+-            && data[data.length - 1] instanceof UnparseableExtraFieldData;
++        int dataLength = data.length;
++		final boolean lastIsUnparseableHolder = dataLength > 0
++            && data[dataLength - 1] instanceof UnparseableExtraFieldData;
+         final int regularExtraFieldCount =
+-            lastIsUnparseableHolder ? data.length - 1 : data.length;
++            lastIsUnparseableHolder ? dataLength - 1 : dataLength;
+ 
+         int sum = WORD * regularExtraFieldCount;
+         for (final ZipExtraField element : data) {
+@@ -292,7 +293,7 @@
+             }
+         }
+         if (lastIsUnparseableHolder) {
+-            final byte[] central = data[data.length - 1].getCentralDirectoryData();
++            final byte[] central = data[dataLength - 1].getCentralDirectoryData();
+             if (central != null) {
+                 System.arraycopy(central, 0, result, start, central.length);
+             }

@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/CheckMissingReturn.java b/src/com/google/javascript/jscomp/CheckMissingReturn.java
+index 8210f98..118ee30 100644
+--- a/src/com/google/javascript/jscomp/CheckMissingReturn.java
++++ b/src/com/google/javascript/jscomp/CheckMissingReturn.java
+@@ -90,7 +90,8 @@
+ 
+   @Override
+   public void enterScope(NodeTraversal t) {
+-    JSType returnType = explicitReturnExpected(t.getScopeRoot());
++    Node var_2106 = t.getScopeRoot();
++	JSType returnType = explicitReturnExpected(var_2106);
+     if (returnType == null) {
+       return;
+     }
+@@ -108,7 +109,7 @@
+ 
+     if (!test.allPathsSatisfyPredicate()) {
+       compiler.report(
+-          t.makeError(t.getScopeRoot(), level,
++          t.makeError(var_2106, level,
+               MISSING_RETURN_STATEMENT, returnType.toString()));
+     }
+   }

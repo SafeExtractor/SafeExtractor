@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/AliasExternals.java b/src/com/google/javascript/jscomp/AliasExternals.java
+index fc43f34..ee357b3 100644
+--- a/src/com/google/javascript/jscomp/AliasExternals.java
++++ b/src/com/google/javascript/jscomp/AliasExternals.java
+@@ -518,10 +518,11 @@
+      */
+     private boolean canReplaceWithGetProp(Node propNameNode, Node getPropNode,
+           Node parent) {
+-      boolean isCallTarget = (parent.isCall())
+-          && (parent.getFirstChild() == getPropNode);
++      Node var_1993 = parent.getFirstChild();
++	boolean isCallTarget = (parent.isCall())
++          && (var_1993 == getPropNode);
+       boolean isAssignTarget = NodeUtil.isAssignmentOp(parent)
+-          && (parent.getFirstChild() == getPropNode);
++          && (var_1993 == getPropNode);
+       boolean isIncOrDec = (parent.isInc()) ||
+           (parent.isDec());
+       return (propNameNode.isString()) && !isAssignTarget

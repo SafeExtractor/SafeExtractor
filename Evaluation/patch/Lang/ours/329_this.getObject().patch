@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/lang3/builder/ReflectionToStringBuilder.java b/src/main/java/org/apache/commons/lang3/builder/ReflectionToStringBuilder.java
+index 807fb88..48a983a 100644
+--- a/src/main/java/org/apache/commons/lang3/builder/ReflectionToStringBuilder.java
++++ b/src/main/java/org/apache/commons/lang3/builder/ReflectionToStringBuilder.java
+@@ -676,10 +676,11 @@
+      */
+     @Override
+     public String toString() {
+-        if (this.getObject() == null) {
++        Object var_329 = this.getObject();
++		if (var_329 == null) {
+             return this.getStyle().getNullText();
+         }
+-        Class<?> clazz = this.getObject().getClass();
++        Class<?> clazz = var_329.getClass();
+         this.appendFieldsIn(clazz);
+         while (clazz.getSuperclass() != null && clazz != this.getUpToClass()) {
+             clazz = clazz.getSuperclass();

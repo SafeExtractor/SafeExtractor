@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..85249a6 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -863,13 +863,14 @@
+ 
+       String propAlias = appendPropForAlias(alias, propName);
+       Node refNode = null;
+-      if (discardKeys) {
++      boolean var_737 = key.getBooleanProp(Node.IS_CONSTANT_NAME);
++	if (discardKeys) {
+         objlit.removeChild(key);
+         value.detachFromParent();
+       } else {
+         // Substitute a reference for the value.
+         refNode = IR.name(propAlias);
+-        if (key.getBooleanProp(Node.IS_CONSTANT_NAME)) {
++        if (var_737) {
+           refNode.putBooleanProp(Node.IS_CONSTANT_NAME, true);
+         }
+ 
+@@ -879,7 +880,7 @@
+       // Declare the collapsed name as a variable with the original value.
+       Node nameNode = IR.name(propAlias);
+       nameNode.addChildToFront(value);
+-      if (key.getBooleanProp(Node.IS_CONSTANT_NAME)) {
++      if (var_737) {
+         nameNode.putBooleanProp(Node.IS_CONSTANT_NAME, true);
+       }
+       Node newVar = IR.var(nameNode)

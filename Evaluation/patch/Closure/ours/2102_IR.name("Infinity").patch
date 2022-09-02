@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..baa91f2 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -3254,13 +3254,16 @@
+     Node result;
+     if (Double.isNaN(value)) {
+       result = IR.name("NaN");
+-    } else if (value == Double.POSITIVE_INFINITY) {
+-      result = IR.name("Infinity");
+-    } else if (value == Double.NEGATIVE_INFINITY) {
+-      result = IR.neg(IR.name("Infinity"));
+     } else {
+-      result = IR.number(value);
+-    }
++		Node var_2102 = IR.name("Infinity");
++		if (value == Double.POSITIVE_INFINITY) {
++		  result = var_2102;
++		} else if (value == Double.NEGATIVE_INFINITY) {
++		  result = IR.neg(var_2102);
++		} else {
++		  result = IR.number(value);
++		}
++	}
+     if (srcref != null) {
+       result.srcrefTree(srcref);
+     }

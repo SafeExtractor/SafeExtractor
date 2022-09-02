@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java b/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
+index efbe8a2..b2a53f8 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
+@@ -159,21 +159,22 @@
+                 // k-th super-diagonal in e[k].
+                 // Compute 2-norm without under/overflow.
+                 e[k] = 0;
+-                for (int i = k + 1; i < n; i++) {
+-                    e[k] = FastMath.hypot(e[k], e[i]);
++                double var_1838 = e[k];
++				for (int i = k + 1; i < n; i++) {
++                    e[k] = FastMath.hypot(var_1838, e[i]);
+                 }
+-                if (e[k] != 0) {
++                if (var_1838 != 0) {
+                     if (e[k + 1] < 0) {
+-                        e[k] = -e[k];
++                        e[k] = -var_1838;
+                     }
+                     for (int i = k + 1; i < n; i++) {
+-                        e[i] /= e[k];
++                        e[i] /= var_1838;
+                     }
+                     e[k + 1] += 1;
+                 }
+-                e[k] = -e[k];
++                e[k] = -var_1838;
+                 if (k + 1 < m &&
+-                    e[k] != 0) {
++                    var_1838 != 0) {
+                     // Apply the transformation.
+                     for (int i = k + 1; i < m; i++) {
+                         work[i] = 0;

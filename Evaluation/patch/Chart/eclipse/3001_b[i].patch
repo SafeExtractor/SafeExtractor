@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java b/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java
+index 6841362..74a2d9c 100644
+--- a/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java
+@@ -290,14 +290,15 @@
+         NOTE: 1...n is used in all arrays, 0 is unused */
+         int i;
+ /*                  factorization and forward substitution */
+-        for (i = 2; i <= n; i++) {
++        float var_3001 = b[i];
++		for (i = 2; i <= n; i++) {
+             sub[i] = sub[i] / diag[i - 1];
+             diag[i] = diag[i] - sub[i] * sup[i - 1];
+-            b[i] = b[i] - sub[i] * b[i - 1];
++            b[i] = var_3001 - sub[i] * b[i - 1];
+         }
+         b[n] = b[n] / diag[n];
+         for (i = n - 1; i >= 1; i--) {
+-            b[i] = (b[i] - sup[i] * b[i + 1]) / diag[i];
++            b[i] = (var_3001 - sup[i] * b[i + 1]) / diag[i];
+         }
+     }
+ 

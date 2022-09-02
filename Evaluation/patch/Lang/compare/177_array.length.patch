@@ -1,0 +1,32 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/177_array.length.patch b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/177_array.length.patch
+index ec3eb78..9c0f91a 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/177_array.length.patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/177_array.length.patch
+@@ -1,22 +1,15 @@
+ diff --git a/src/main/java/org/apache/commons/lang3/ArrayUtils.java b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+-index a0a499a..ae884cb 100644
++index a0a499a..e7e7ae3 100644
+ --- a/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+ +++ b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+-@@ -2779,13 +2779,14 @@
+-      * @return a {@code long} array, {@code null} if null array input
+-      */
+-     public static long[] toPrimitive(final Long[] array, final long valueForNull) {
+--        if (array == null) {
+-+        int var_177 = array.length;
+-+		if (array == null) {
+-             return null;
+--        } else if (array.length == 0) {
+-+        } else if (var_177 == 0) {
++@@ -2784,8 +2784,9 @@
++         } else if (array.length == 0) {
+              return EMPTY_LONG_ARRAY;
+          }
+ -        final long[] result = new long[array.length];
+ -        for (int i = 0; i < array.length; i++) {
+-+        final long[] result = new long[var_177];
+++        int var_177 = array.length;
+++		final long[] result = new long[var_177];
+ +        for (int i = 0; i < var_177; i++) {
+              final Long b = array[i];
+              result[i] = (b == null ? valueForNull : b.longValue());

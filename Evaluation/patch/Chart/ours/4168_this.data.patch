@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/data/time/TimeSeries.java b/source/org/jfree/data/time/TimeSeries.java
+index 72bb2ea..ef31903 100644
+--- a/source/org/jfree/data/time/TimeSeries.java
++++ b/source/org/jfree/data/time/TimeSeries.java
+@@ -902,7 +902,8 @@
+      *                sent to registered listeners IF any items are removed.
+      */
+     public void removeAgedItems(long latest, boolean notify) {
+-        if (this.data.isEmpty()) {
++        List var_4168 = this.data;
++		if (var_4168.isEmpty()) {
+             return;  // nothing to do
+         }
+         // find the serial index of the period specified by 'latest'
+@@ -931,7 +932,7 @@
+         boolean removed = false;
+         while (getItemCount() > 0 && (index
+                 - getTimePeriod(0).getSerialIndex()) > this.maximumItemAge) {
+-            this.data.remove(0);
++            var_4168.remove(0);
+             removed = true;
+         }
+         if (removed) {

@@ -1,0 +1,31 @@
+diff --git a/source/org/jfree/data/general/DatasetUtilities.java b/source/org/jfree/data/general/DatasetUtilities.java
+index 548d684..628e5ec 100644
+--- a/source/org/jfree/data/general/DatasetUtilities.java
++++ b/source/org/jfree/data/general/DatasetUtilities.java
+@@ -990,21 +990,22 @@
+                 for (int column = 0; column < columnCount; column++) {
+                     value = icd.getValue(row, column);
+                     double v;
+-                    if ((value != null)
++                    double var_3896 = Math.min(v, minimum);
++					if ((value != null)
+                             && !Double.isNaN(v = value.doubleValue())) {
+-                        minimum = Math.min(v, minimum);
++                        minimum = var_3896;
+                         maximum = Math.max(v, maximum);
+                     }
+                     lvalue = icd.getStartValue(row, column);
+                     if (lvalue != null
+                             && !Double.isNaN(v = lvalue.doubleValue())) {
+-                        minimum = Math.min(v, minimum);
++                        minimum = var_3896;
+                         maximum = Math.max(v, maximum);
+                     }
+                     uvalue = icd.getEndValue(row, column);
+                     if (uvalue != null 
+                             && !Double.isNaN(v = uvalue.doubleValue())) {
+-                        minimum = Math.min(v, minimum);
++                        minimum = var_3896;
+                         maximum = Math.max(v, maximum);
+                     }
+                 }

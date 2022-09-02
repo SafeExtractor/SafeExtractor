@@ -1,0 +1,37 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1423_nextNode.getFirstChild().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1423_nextNode.getFirstChild().patch
+index 3ca00f3..1f4d862 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1423_nextNode.getFirstChild().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1423_nextNode.getFirstChild().patch
+@@ -1,27 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+-index ae568e8..4b0a96c 100644
++index ae568e8..c62d1d7 100644
+ --- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+ +++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+-@@ -313,10 +313,11 @@
+-         Node elseBranch = thenBranch.getNext();
+-         Node nextNode = child.getNext();
+- 
+--        if (nextNode != null && elseBranch == null
+-+        Node var_1423 = nextNode.getFirstChild();
+-+		if (nextNode != null && elseBranch == null
++@@ -316,7 +316,8 @@
++         if (nextNode != null && elseBranch == null
+              && isReturnBlock(thenBranch)
+              && nextNode.isIf()) {
+ -          Node nextCond = nextNode.getFirstChild();
+-+          Node nextCond = var_1423;
+++          Node var_1423 = nextNode.getFirstChild();
+++		Node nextCond = var_1423;
+            Node nextThen = nextCond.getNext();
+            Node nextElse = nextThen.getNext();
+            if (thenBranch.isEquivalentToTyped(nextThen)) {
+-@@ -355,7 +356,7 @@
+-             thenExpr = NodeUtil.newUndefinedNode(child);
+-           }
+- 
+--          Node elseExpr = nextNode.getFirstChild();
+-+          Node elseExpr = var_1423;
+- 
+-           cond.detachFromParent();
+-           elseExpr.detachFromParent();

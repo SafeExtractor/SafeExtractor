@@ -1,0 +1,33 @@
+diff --git a/nifi-nar-bundles/nifi-hbase-bundle/nifi-hbase-processors/src/main/java/org/apache/nifi/hbase/PutHBaseRecord.java b/nifi-nar-bundles/nifi-hbase-bundle/nifi-hbase-processors/src/main/java/org/apache/nifi/hbase/PutHBaseRecord.java
+index 66f95e0..f932b2b 100755
+--- a/nifi-nar-bundles/nifi-hbase-bundle/nifi-hbase-processors/src/main/java/org/apache/nifi/hbase/PutHBaseRecord.java
++++ b/nifi-nar-bundles/nifi-hbase-bundle/nifi-hbase-processors/src/main/java/org/apache/nifi/hbase/PutHBaseRecord.java
+@@ -241,15 +241,16 @@
+ 
+         byte[] retVal;
+ 
+-        if (asString) {
+-            retVal = clientService.toBytes(record.getAsString(field));
++        String value = record.getAsString(field);
++		if (asString) {
++            retVal = clientService.toBytes(value);
+         } else {
+             switch (fieldType) {
+                 case BOOLEAN:
+                     retVal = clientService.toBytes(record.getAsBoolean(field));
+                     break;
+                 case CHAR:
+-                    retVal = clientService.toBytes(record.getAsString(field));
++                    retVal = clientService.toBytes(value);
+                     break;
+                 case DOUBLE:
+                     retVal = clientService.toBytes(record.getAsDouble(field));
+@@ -273,7 +274,7 @@
+                             getLogger().warn("Complex value found for {}; skipping", new Object[]{field});
+                             break;
+                         case TEXT_VALUE:
+-                            retVal = clientService.toBytes(record.getAsString(field));
++                            retVal = clientService.toBytes(value);
+                             break;
+                         case IGNORE_VALUE:
+                             // silently skip

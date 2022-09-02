@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/lang3/ArrayUtils.java b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+index a0a499a..5d3df92 100644
+--- a/src/main/java/org/apache/commons/lang3/ArrayUtils.java
++++ b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+@@ -2759,9 +2759,12 @@
+     public static long[] toPrimitive(final Long[] array) {
+         if (array == null) {
+             return null;
+-        } else if (array.length == 0) {
+-            return EMPTY_LONG_ARRAY;
+-        }
++        } else {
++			int var_176 = array.length;
++			if (var_176 == 0) {
++			    return EMPTY_LONG_ARRAY;
++			}
++		}
+         final long[] result = new long[array.length];
+         for (int i = 0; i < array.length; i++) {
+             result[i] = array[i].longValue();

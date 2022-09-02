@@ -1,0 +1,24 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/944_objectType.hasProperty(propName).patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/944_objectType.hasProperty(propName).patch
+index 50dc8a7..a613627 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/944_objectType.hasProperty(propName).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/944_objectType.hasProperty(propName).patch
+@@ -1,5 +1,5 @@
+ diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+-index 3dc8ec6..ab7cb4f 100644
++index 3dc8ec6..ac16ae8 100644
+ --- a/src/com/google/javascript/jscomp/TypeInference.java
+ +++ b/src/com/google/javascript/jscomp/TypeInference.java
+ @@ -587,7 +587,8 @@
+@@ -12,12 +12,3 @@ index 3dc8ec6..ab7cb4f 100644
+          if (!(obj.isThis() &&
+                getJSType(syntacticScope.getRootNode()).isConstructor())) {
+            return;
+-@@ -611,7 +612,7 @@
+-         // 4) If this is a stub, define it.
+-         // 5) Otherwise, do not define the type, but declare it in the registry
+-         //    so that we can use it for missing property checks.
+--        if (objectType.hasProperty(propName) || !objectType.isInstanceType()) {
+-+        if (var_944 || !objectType.isInstanceType()) {
+-           if ("prototype".equals(propName)) {
+-             objectType.defineDeclaredProperty(propName, rightType, getprop);
+-           } else {

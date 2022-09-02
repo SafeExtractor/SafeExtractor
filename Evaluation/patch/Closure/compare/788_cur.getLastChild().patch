@@ -1,0 +1,35 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/788_cur.getLastChild().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/788_cur.getLastChild().patch
+index 4b43b33..f30b926 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/788_cur.getLastChild().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/788_cur.getLastChild().patch
+@@ -1,25 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+-index 1e1571d..dc9a749 100644
++index 1e1571d..17df3c9 100644
+ --- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+ +++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+-@@ -321,8 +321,9 @@
+-         if (caseMatches != TernaryValue.UNKNOWN) {
++@@ -322,7 +322,8 @@
+            Node block, lastStm;
+            // Skip cases until you find one whose last stm is a break
+--          while (cur != null) {
++           while (cur != null) {
+ -            block = cur.getLastChild();
+-+          Node var_788 = cur.getLastChild();
+-+		while (cur != null) {
+-+            block = var_788;
+++            Node var_788 = cur.getLastChild();
+++			block = var_788;
+              lastStm = block.getLastChild();
+              cur = cur.getNext();
+              if (lastStm != null && lastStm.isBreak()) {
+-@@ -339,7 +340,7 @@
+-           // If there is one case left, we may be able to fold it
+-           cur = cond.getNext();
+-           if (cur != null && cur.getNext() == null) {
+--            block = cur.getLastChild();
+-+            block = var_788;
+-             if (!(NodeUtil.containsType(block, Token.BREAK,
+-                 NodeUtil.MATCH_NOT_FUNCTION))) {
+-               cur.removeChild(block);

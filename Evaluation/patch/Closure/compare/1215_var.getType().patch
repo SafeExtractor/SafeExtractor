@@ -1,0 +1,23 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1215_var.getType().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1215_var.getType().patch
+index f423612..e69de29 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1215_var.getType().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1215_var.getType().patch
+@@ -1,18 +0,0 @@
+-diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+-index 461cddc..596cc5b 100644
+---- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
+-+++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+-@@ -861,9 +861,10 @@
+-       // Global ctor aliases should be registered with the type registry.
+-       if (rValue != null && rValue.isQualifiedName() && scope.isGlobal()) {
+-         Var var = scope.getVar(rValue.getQualifiedName());
+--        if (var != null && var.getType() != null &&
+--            var.getType().isFunctionType()) {
+--          FunctionType aliasedType  = var.getType().toMaybeFunctionType();
+-+        JSType var_1215 = var.getType();
+-+		if (var != null && var_1215 != null &&
+-+            var_1215.isFunctionType()) {
+-+          FunctionType aliasedType  = var_1215.toMaybeFunctionType();
+-           if ((aliasedType.isConstructor() || aliasedType.isInterface()) &&
+-               !aliasedType.isNativeObjectType()) {
+-             functionType = aliasedType;

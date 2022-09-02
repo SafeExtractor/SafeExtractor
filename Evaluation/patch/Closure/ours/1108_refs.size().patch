@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/InlineVariables.java b/src/com/google/javascript/jscomp/InlineVariables.java
+index 5c7408d..03e7654 100644
+--- a/src/com/google/javascript/jscomp/InlineVariables.java
++++ b/src/com/google/javascript/jscomp/InlineVariables.java
+@@ -495,14 +495,15 @@
+         // The 4 bytes per reference is just a heuristic:
+         // 2 bytes per var name plus maybe 2 bytes if we don't inline, e.g.
+         // in the case of "foo " + CONST + " bar"
+-        int noInlineBytes = "var xx=;".length() + len +
+-                            4 * (refs.size() - 1);
++        int var_1108 = refs.size();
++		int noInlineBytes = "var xx=;".length() + len +
++                            4 * (var_1108 - 1);
+ 
+         // if inlined:
+         // I'm going to assume that half of the quotes will be eliminated
+         // thanks to constant folding, therefore I subtract 1 (2/2=1) from
+         // the string length.
+-        int inlineBytes = (len - 1) * (refs.size() - 1);
++        int inlineBytes = (len - 1) * (var_1108 - 1);
+ 
+         // Not inlining if doing so uses more bytes, or this constant is being
+         // defined.

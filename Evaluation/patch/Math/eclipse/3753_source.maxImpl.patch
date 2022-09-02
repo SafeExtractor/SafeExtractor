@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java b/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
+index 3e7fff7..6c2f917 100644
+--- a/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
++++ b/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
+@@ -672,7 +672,8 @@
+         throws NullArgumentException {
+         MathUtils.checkNotNull(source);
+         MathUtils.checkNotNull(dest);
+-        dest.maxImpl = source.maxImpl.copy();
++        StorelessUnivariateStatistic var_3753 = source.maxImpl;
++		dest.maxImpl = var_3753.copy();
+         dest.minImpl = source.minImpl.copy();
+         dest.sumImpl = source.sumImpl.copy();
+         dest.sumLogImpl = source.sumLogImpl.copy();
+@@ -704,7 +705,7 @@
+         } else {
+             GeometricMean.copy(source.geoMean, dest.geoMean);
+         }
+-        if (source.max == source.maxImpl) {
++        if (source.max == var_3753) {
+             dest.max = (Max) dest.maxImpl;
+         } else {
+             Max.copy(source.max, dest.max);

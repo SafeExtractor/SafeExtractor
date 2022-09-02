@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+index 8d6a50b..9174748 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+@@ -748,7 +748,8 @@
+ 
+             // prepare the row of d to be eliminated, locating the
+             // diagonal element using p from the Q.R. factorization
+-            int pj = permutation[j];
++            int var_3210 = permutation[j];
++			int pj = var_3210;
+             double dpj = diag[pj];
+             if (dpj != 0) {
+                 Arrays.fill(lmDiag, j + 1, lmDiag.length, 0);
+@@ -798,8 +799,8 @@
+ 
+             // store the diagonal element of s and restore
+             // the corresponding diagonal element of R
+-            lmDiag[j] = weightedJacobian[j][permutation[j]];
+-            weightedJacobian[j][permutation[j]] = lmDir[j];
++            lmDiag[j] = weightedJacobian[j][var_3210];
++            weightedJacobian[j][var_3210] = lmDir[j];
+         }
+ 
+         // solve the triangular system for z, if the system is

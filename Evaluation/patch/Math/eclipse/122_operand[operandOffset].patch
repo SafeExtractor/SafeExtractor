@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..7472204 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -1053,8 +1053,9 @@
+ 
+         // create the function value and derivatives
+         double[] function = new double[1 + order];
+-        function[0] = FastMath.expm1(operand[operandOffset]);
+-        Arrays.fill(function, 1, 1 + order, FastMath.exp(operand[operandOffset]));
++        double var_122 = operand[operandOffset];
++		function[0] = FastMath.expm1(var_122);
++        Arrays.fill(function, 1, 1 + order, FastMath.exp(var_122));
+ 
+         // apply function composition
+         compose(operand, operandOffset, function, result, resultOffset);

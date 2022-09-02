@@ -1,0 +1,33 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot.java b/source/org/jfree/chart/plot/PiePlot.java
+index 34014e9..636e94a 100644
+--- a/source/org/jfree/chart/plot/PiePlot.java
++++ b/source/org/jfree/chart/plot/PiePlot.java
+@@ -2649,7 +2649,8 @@
+     protected void drawItem(Graphics2D g2, int section, boolean selected, 
+             Rectangle2D dataArea, PiePlotState state, int currentPass) {
+ 
+-        Number n = this.dataset.getValue(section);
++        PieDataset var_2040 = this.dataset;
++		Number n = var_2040.getValue(section);
+         if (n == null) {
+             return;
+         }
+@@ -2716,15 +2717,15 @@
+                         String tip = null;
+                         if (this.toolTipGenerator != null) {
+                             tip = this.toolTipGenerator.generateToolTip(
+-                                    this.dataset, key);
++                                    var_2040, key);
+                         }
+                         String url = null;
+                         if (this.urlGenerator != null) {
+-                            url = this.urlGenerator.generateURL(this.dataset,
++                            url = this.urlGenerator.generateURL(var_2040,
+                                     key, this.pieIndex);
+                         }
+                         PieSectionEntity entity = new PieSectionEntity(
+-                                arc, this.dataset, this.pieIndex, section, key,
++                                arc, var_2040, this.pieIndex, section, key,
+                                 tip, url);
+                         entities.add(entity);
+                     }

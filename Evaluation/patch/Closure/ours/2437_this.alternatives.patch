@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/regex/RegExpTree.java b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+index c0c470a..51b78d0 100644
+--- a/src/com/google/javascript/jscomp/regex/RegExpTree.java
++++ b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+@@ -1015,7 +1015,8 @@
+     @Override
+     public RegExpTree simplify(String flags) {
+       List<RegExpTree> alternatives = Lists.newArrayList();
+-      for (RegExpTree alternative : this.alternatives) {
++      ImmutableList<RegExpTree> var_2437 = this.alternatives;
++	for (RegExpTree alternative : var_2437) {
+         alternative = alternative.simplify(flags);
+         if (alternative instanceof Alternation) {
+           alternatives.addAll(((Alternation) alternative).alternatives);
+@@ -1091,7 +1092,7 @@
+           break;
+       }
+       // TODO: maybe pull out common prefix or suffix
+-      return alternatives.equals(this.alternatives)
++      return alternatives.equals(var_2437)
+           ? this : new Alternation(alternatives);
+     }
+ 

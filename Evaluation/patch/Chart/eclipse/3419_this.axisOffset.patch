@@ -1,0 +1,50 @@
+diff --git a/source/org/jfree/chart/title/PaintScaleLegend.java b/source/org/jfree/chart/title/PaintScaleLegend.java
+index c489277..029d958 100644
+--- a/source/org/jfree/chart/title/PaintScaleLegend.java
++++ b/source/org/jfree/chart/title/PaintScaleLegend.java
+@@ -547,7 +547,8 @@
+         double increment = this.axis.getRange().getLength() / this.subdivisions;
+         Rectangle2D r = new Rectangle2D.Double();
+ 
+-        if (RectangleEdge.isTopOrBottom(getPosition())) {
++        double var_3419 = this.axisOffset;
++		if (RectangleEdge.isTopOrBottom(getPosition())) {
+             RectangleEdge axisEdge = Plot.resolveRangeAxisLocation(
+                     this.axisLocation, PlotOrientation.HORIZONTAL);
+             if (axisEdge == RectangleEdge.TOP) {
+@@ -572,7 +573,7 @@
+                             target.getWidth(), this.stripWidth));
+                 }
+                 this.axis.draw(g2, target.getMaxY() - this.stripWidth
+-                        - this.axisOffset, target, target, RectangleEdge.TOP,
++                        - var_3419, target, target, RectangleEdge.TOP,
+                         null);
+             }
+             else if (axisEdge == RectangleEdge.BOTTOM) {
+@@ -597,7 +598,7 @@
+                             this.stripWidth));
+                 }
+                 this.axis.draw(g2, target.getMinY() + this.stripWidth
+-                        + this.axisOffset, target, target,
++                        + var_3419, target, target,
+                         RectangleEdge.BOTTOM, null);
+             }
+         }
+@@ -626,7 +627,7 @@
+                             this.stripWidth, target.getHeight()));
+                 }
+                 this.axis.draw(g2, target.getMaxX() - this.stripWidth
+-                        - this.axisOffset, target, target, RectangleEdge.LEFT,
++                        - var_3419, target, target, RectangleEdge.LEFT,
+                         null);
+             }
+             else if (axisEdge == RectangleEdge.RIGHT) {
+@@ -651,7 +652,7 @@
+                             target.getHeight()));
+                 }
+                 this.axis.draw(g2, target.getMinX() + this.stripWidth
+-                        + this.axisOffset, target, target, RectangleEdge.RIGHT,
++                        + var_3419, target, target, RectangleEdge.RIGHT,
+                         null);
+             }
+         }

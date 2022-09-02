@@ -1,0 +1,94 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/FastMath.java b/src/main/java/org/apache/commons/math3/util/FastMath.java
+index 919e39f..babb9dd 100644
+--- a/src/main/java/org/apache/commons/math3/util/FastMath.java
++++ b/src/main/java/org/apache/commons/math3/util/FastMath.java
+@@ -2582,7 +2582,8 @@
+             return Double.NaN;
+         }
+ 
+-        if (y == 0) {
++        double var_4336 = Math.PI;
++		if (y == 0) {
+             final double result = x * y;
+             final double invx = 1d / x;
+             final double invy = 1d / y;
+@@ -2591,15 +2592,15 @@
+                 if (x > 0) {
+                     return y; // return +/- 0.0
+                 } else {
+-                    return copySign(Math.PI, y);
++                    return copySign(var_4336, y);
+                 }
+             }
+ 
+             if (x < 0 || invx < 0) {
+                 if (y < 0 || invy < 0) {
+-                    return -Math.PI;
++                    return -var_4336;
+                 } else {
+-                    return Math.PI;
++                    return var_4336;
+                 }
+             } else {
+                 return result;
+@@ -2610,26 +2611,26 @@
+ 
+         if (y == Double.POSITIVE_INFINITY) {
+             if (x == Double.POSITIVE_INFINITY) {
+-                return Math.PI * F_1_4;
++                return var_4336 * F_1_4;
+             }
+ 
+             if (x == Double.NEGATIVE_INFINITY) {
+-                return Math.PI * F_3_4;
++                return var_4336 * F_3_4;
+             }
+ 
+-            return Math.PI * F_1_2;
++            return var_4336 * F_1_2;
+         }
+ 
+         if (y == Double.NEGATIVE_INFINITY) {
+             if (x == Double.POSITIVE_INFINITY) {
+-                return -Math.PI * F_1_4;
++                return -var_4336 * F_1_4;
+             }
+ 
+             if (x == Double.NEGATIVE_INFINITY) {
+-                return -Math.PI * F_3_4;
++                return -var_4336 * F_3_4;
+             }
+ 
+-            return -Math.PI * F_1_2;
++            return -var_4336 * F_1_2;
+         }
+ 
+         if (x == Double.POSITIVE_INFINITY) {
+@@ -2645,11 +2646,11 @@
+         if (x == Double.NEGATIVE_INFINITY)
+         {
+             if (y > 0.0 || 1 / y > 0.0) {
+-                return Math.PI;
++                return var_4336;
+             }
+ 
+             if (y < 0 || 1 / y < 0) {
+-                return -Math.PI;
++                return -var_4336;
+             }
+         }
+ 
+@@ -2657,11 +2658,11 @@
+ 
+         if (x == 0) {
+             if (y > 0 || 1 / y > 0) {
+-                return Math.PI * F_1_2;
++                return var_4336 * F_1_2;
+             }
+ 
+             if (y < 0 || 1 / y < 0) {
+-                return -Math.PI * F_1_2;
++                return -var_4336 * F_1_2;
+             }
+         }
+ 

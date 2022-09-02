@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Line.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Line.java
+index 7c9a28f..0bab4ec 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Line.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Line.java
+@@ -174,13 +174,14 @@
+ 
+         final Vector3D normal = Vector3D.crossProduct(direction, line.direction);
+         final double n = normal.getNorm();
+-        if (n < Precision.SAFE_MIN) {
++        Vector3D var_1455 = line.zero;
++		if (n < Precision.SAFE_MIN) {
+             // lines are parallel
+-            return distance(line.zero);
++            return distance(var_1455);
+         }
+ 
+         // signed separation of the two parallel planes that contains the lines
+-        final double offset = line.zero.subtract(zero).dotProduct(normal) / n;
++        final double offset = var_1455.subtract(zero).dotProduct(normal) / n;
+ 
+         return FastMath.abs(offset);
+ 

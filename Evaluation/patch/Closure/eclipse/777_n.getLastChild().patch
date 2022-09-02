@@ -1,0 +1,36 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..f66fefa 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -171,10 +171,11 @@
+     Node result = n;
+ 
+     // Simplify the results of conditional expressions
+-    switch (n.getType()) {
++    Node var_777 = n.getLastChild();
++	switch (n.getType()) {
+       case Token.HOOK:
+         Node trueNode = trySimplifyUnusedResult(n.getFirstChild().getNext());
+-        Node falseNode = trySimplifyUnusedResult(n.getLastChild());
++        Node falseNode = trySimplifyUnusedResult(var_777);
+         // If one or more of the conditional children were removed,
+         // transform the HOOK to an equivalent operation:
+         //    x() ? foo() : 1 --> x() && foo()
+@@ -200,7 +201,7 @@
+         //    x() || f --> x()
+         //    x() && f --> x()
+         Node conditionalResultNode = trySimplifyUnusedResult(
+-            n.getLastChild());
++            var_777);
+         if (conditionalResultNode == null) {
+           Preconditions.checkState(n.hasOneChild());
+           // The conditionally executed code was removed, so
+@@ -219,7 +220,7 @@
+         // we special case COMMA (we don't want to rewrite COMMAs as new COMMAs
+         // nodes.
+         Node left = trySimplifyUnusedResult(n.getFirstChild());
+-        Node right = trySimplifyUnusedResult(n.getLastChild());
++        Node right = trySimplifyUnusedResult(var_777);
+         if (left == null && right == null) {
+           result = null;
+         } else if (left == null) {

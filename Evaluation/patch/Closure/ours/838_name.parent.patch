@@ -1,0 +1,38 @@
+diff --git a/src/com/google/javascript/jscomp/CheckGlobalNames.java b/src/com/google/javascript/jscomp/CheckGlobalNames.java
+index d035d9d..825c257 100644
+--- a/src/com/google/javascript/jscomp/CheckGlobalNames.java
++++ b/src/com/google/javascript/jscomp/CheckGlobalNames.java
+@@ -241,13 +241,14 @@
+     // We assume that for global object literals and types (constructors and
+     // interfaces), we can find all the properties inherited from the prototype
+     // chain of functions and objects.
+-    if (name.parent == null) {
++    Name var_838 = name.parent;
++	if (var_838 == null) {
+       return false;
+     }
+ 
+     boolean parentIsAliased = false;
+-    if (name.parent.aliasingGets > 0) {
+-      for (Ref ref : name.parent.getRefs()) {
++    if (var_838.aliasingGets > 0) {
++      for (Ref ref : var_838.getRefs()) {
+         if (ref.type == Ref.Type.ALIASING_GET) {
+           Node aliaser = ref.getNode().getParent();
+ 
+@@ -273,12 +274,12 @@
+       return false;
+     }
+ 
+-    if (name.parent.type == Name.Type.OBJECTLIT) {
++    if (var_838.type == Name.Type.OBJECTLIT) {
+       return true;
+     }
+ 
+-    if (name.parent.type == Name.Type.FUNCTION &&
+-        name.parent.isDeclaredType() &&
++    if (var_838.type == Name.Type.FUNCTION &&
++        var_838.isDeclaredType() &&
+         !functionPrototypeProps.contains(name.getBaseName())) {
+       return true;
+     }

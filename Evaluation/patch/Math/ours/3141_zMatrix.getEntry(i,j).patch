@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..51e8b05 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -2320,8 +2320,9 @@
+                 final double d5 = zMatrix.getEntry(knew, 0) / d4;
+                 final double d6 = zMatrix.getEntry(knew, j) / d4;
+                 for (int i = 0; i < npt; i++) {
+-                    final double d7 = d5 * zMatrix.getEntry(i, 0) + d6 * zMatrix.getEntry(i, j);
+-                    zMatrix.setEntry(i, j, d5 * zMatrix.getEntry(i, j) - d6 * zMatrix.getEntry(i, 0));
++                    double var_3141 = zMatrix.getEntry(i, j);
++					final double d7 = d5 * zMatrix.getEntry(i, 0) + d6 * var_3141;
++                    zMatrix.setEntry(i, j, d5 * var_3141 - d6 * zMatrix.getEntry(i, 0));
+                     zMatrix.setEntry(i, 0, d7);
+                 }
+             }

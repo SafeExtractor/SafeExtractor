@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..1f6702e 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -265,13 +265,14 @@
+     public FieldRotation(final FieldVector3D<T> u, final FieldVector3D<T> v) throws MathArithmeticException {
+ 
+         final T normProduct = u.getNorm().multiply(v.getNorm());
+-        if (normProduct.getReal() == 0) {
++        double var_1194 = normProduct.getReal();
++		if (var_1194 == 0) {
+             throw new MathArithmeticException(LocalizedFormats.ZERO_NORM_FOR_ROTATION_DEFINING_VECTOR);
+         }
+ 
+         final T dot = FieldVector3D.dotProduct(u, v);
+ 
+-        if (dot.getReal() < ((2.0e-15 - 1.0) * normProduct.getReal())) {
++        if (dot.getReal() < ((2.0e-15 - 1.0) * var_1194)) {
+             // special case u = -v: we select a PI angle rotation around
+             // an arbitrary vector orthogonal to u
+             final FieldVector3D<T> w = u.orthogonal();

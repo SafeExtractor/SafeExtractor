@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/lang3/Validate.java b/src/main/java/org/apache/commons/lang3/Validate.java
+index eb477d1..98fd699 100644
+--- a/src/main/java/org/apache/commons/lang3/Validate.java
++++ b/src/main/java/org/apache/commons/lang3/Validate.java
+@@ -342,11 +342,12 @@
+      * @see #notEmpty(Object[])
+      */
+     public static <T extends Map<?, ?>> T notEmpty(final T map, final String message, final Object... values) {
+-        if (map == null) {
+-            throw new NullPointerException(String.format(message, values));
++        String var_95 = String.format(message, values);
++		if (map == null) {
++            throw new NullPointerException(var_95);
+         }
+         if (map.isEmpty()) {
+-            throw new IllegalArgumentException(String.format(message, values));
++            throw new IllegalArgumentException(var_95);
+         }
+         return map;
+     }

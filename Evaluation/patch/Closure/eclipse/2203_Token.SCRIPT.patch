@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/jsonml/Writer.java b/src/com/google/javascript/jscomp/jsonml/Writer.java
+index b357eb9..f776bcc 100644
+--- a/src/com/google/javascript/jscomp/jsonml/Writer.java
++++ b/src/com/google/javascript/jscomp/jsonml/Writer.java
+@@ -37,11 +37,12 @@
+    */
+   public JsonML processAst(Node root) {
+     Preconditions.checkNotNull(root);
+-    Preconditions.checkArgument(
+-      root.getType() == Token.BLOCK || root.getType() == Token.SCRIPT);
++    int var_2203 = Token.SCRIPT;
++	Preconditions.checkArgument(
++      root.getType() == Token.BLOCK || root.getType() == var_2203);
+ 
+     JsonML rootElement = new JsonML(TagType.BlockStmt);
+-    if (root.getType() == Token.SCRIPT) {
++    if (root.getType() == var_2203) {
+       processNode(root, rootElement);
+       return rootElement.getChild(0);
+     } else {

@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/chart/axis/LogarithmicAxis.java b/source/org/jfree/chart/axis/LogarithmicAxis.java
+index 1f440bd..fcdf88d 100644
+--- a/source/org/jfree/chart/axis/LogarithmicAxis.java
++++ b/source/org/jfree/chart/axis/LogarithmicAxis.java
+@@ -410,13 +410,14 @@
+     protected double computeLogFloor(double lower) {
+ 
+         double logFloor;
+-        if (this.allowNegativesFlag) {
++        double var_437 = Math.pow(10, logFloor);
++		if (this.allowNegativesFlag) {
+             //negative values are allowed
+             if (lower > 10.0) {   //parameter value is > 10
+                 // The Math.log() function is based on e not 10.
+                 logFloor = Math.log(lower) / LOG10_VALUE;
+                 logFloor = Math.floor(logFloor);
+-                logFloor = Math.pow(10, logFloor);
++                logFloor = var_437;
+             }
+             else if (lower < -10.0) {   //parameter value is < -10
+                 //calculate log using positive value:
+@@ -437,7 +438,7 @@
+                 // The Math.log() function is based on e not 10.
+                 logFloor = Math.log(lower) / LOG10_VALUE;
+                 logFloor = Math.floor(logFloor);
+-                logFloor = Math.pow(10, logFloor);
++                logFloor = var_437;
+             }
+             else {
+                 //parameter value is <= 0

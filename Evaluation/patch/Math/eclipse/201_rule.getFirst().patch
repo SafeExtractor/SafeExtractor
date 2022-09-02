@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/integration/gauss/BaseRuleFactory.java b/src/main/java/org/apache/commons/math3/analysis/integration/gauss/BaseRuleFactory.java
+index 37a3b5e..082348c 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/integration/gauss/BaseRuleFactory.java
++++ b/src/main/java/org/apache/commons/math3/analysis/integration/gauss/BaseRuleFactory.java
+@@ -109,12 +109,13 @@
+      * have the same length.
+      */
+     protected void addRule(Pair<T[], T[]> rule) throws DimensionMismatchException {
+-        if (rule.getFirst().length != rule.getSecond().length) {
+-            throw new DimensionMismatchException(rule.getFirst().length,
++        T[] var_201 = rule.getFirst();
++		if (var_201.length != rule.getSecond().length) {
++            throw new DimensionMismatchException(var_201.length,
+                                                  rule.getSecond().length);
+         }
+ 
+-        pointsAndWeights.put(rule.getFirst().length, rule);
++        pointsAndWeights.put(var_201.length, rule);
+     }
+ 
+     /**

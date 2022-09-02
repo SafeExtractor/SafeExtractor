@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalsSet.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalsSet.java
+index 674fb0a..cde53e0 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalsSet.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/oned/IntervalsSet.java
+@@ -232,10 +232,11 @@
+             double              x   = loc.getX();
+ 
+             // make sure we explore the tree in increasing order
+-            final BSPTree<Euclidean1D> low  =
+-                op.isDirect() ? node.getMinus() : node.getPlus();
++            BSPTree<Euclidean1D> var_1153 = node.getPlus();
++			final BSPTree<Euclidean1D> low  =
++                op.isDirect() ? node.getMinus() : var_1153;
+             final BSPTree<Euclidean1D> high =
+-                op.isDirect() ? node.getPlus()  : node.getMinus();
++                op.isDirect() ? var_1153  : node.getMinus();
+ 
+             recurseList(low, list, lower, x);
+             if ((checkPoint(low,  loc) == Location.INSIDE) &&

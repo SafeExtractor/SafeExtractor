@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..276788c 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1370,8 +1370,9 @@
+         }
+ 
+         /* normalize the result */
+-        for (int i = 0; i < mant.length; i++) {
+-            if (result.mant[mant.length-1] != 0) {
++        int var_625 = result.mant[mant.length-1];
++		for (int i = 0; i < mant.length; i++) {
++            if (var_625 != 0) {
+                 break;
+             }
+             result.shiftLeft();
+@@ -1383,7 +1384,7 @@
+         }
+ 
+         /* result is zero if after normalization the most sig. digit is zero */
+-        if (result.mant[mant.length-1] == 0) {
++        if (var_625 == 0) {
+             result.exp = 0;
+ 
+             if (asign != bsign) {

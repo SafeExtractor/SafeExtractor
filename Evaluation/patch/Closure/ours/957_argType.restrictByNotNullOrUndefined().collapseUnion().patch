@@ -1,0 +1,88 @@
+diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+index 3dc8ec6..98d87bd 100644
+--- a/src/com/google/javascript/jscomp/TypeInference.java
++++ b/src/com/google/javascript/jscomp/TypeInference.java
+@@ -1067,44 +1067,45 @@
+       for (JSType alernative : unionType.getAlternates()) {
+         maybeResolveTemplatedType(alernative, argType, resolvedTypes);
+       }
+-    } else if (paramType.isFunctionType()) {
+-      FunctionType paramFunctionType = paramType.toMaybeFunctionType();
+-      FunctionType argFunctionType = argType
+-          .restrictByNotNullOrUndefined()
+-          .collapseUnion()
+-          .toMaybeFunctionType();
+-      if (argFunctionType != null && argFunctionType.isSubtype(paramType)) {
+-        // infer from return type of the function type
+-        maybeResolveTemplatedType(
+-            paramFunctionType.getTypeOfThis(),
+-            argFunctionType.getTypeOfThis(), resolvedTypes);
+-        // infer from return type of the function type
+-        maybeResolveTemplatedType(
+-            paramFunctionType.getReturnType(),
+-            argFunctionType.getReturnType(), resolvedTypes);
+-        // infer from parameter types of the function type
+-        maybeResolveTemplateTypeFromNodes(
+-            paramFunctionType.getParameters(),
+-            argFunctionType.getParameters(), resolvedTypes);
+-      }
+-    } else if (paramType.isParameterizedType()) {
+-      ParameterizedType paramObjectType = paramType.toMaybeParameterizedType();
+-      JSType typeParameter = paramObjectType.getParameterType();
+-      Preconditions.checkNotNull(typeParameter);
+-      if (typeParameter != null) {
+-        // @param {Array.<T>}
+-        ObjectType argObjectType = argType
+-            .restrictByNotNullOrUndefined()
+-            .collapseUnion()
+-            .toMaybeParameterizedType();
+-        if (argObjectType != null && argObjectType.isSubtype(paramType)) {
+-          JSType argTypeParameter = argObjectType.getParameterType();
+-          Preconditions.checkNotNull(argTypeParameter);
+-          maybeResolveTemplatedType(
+-              typeParameter, argTypeParameter, resolvedTypes);
+-        }
+-      }
+-    }
++    } else {
++		JSType var_957 = argType
++		      .restrictByNotNullOrUndefined()
++		      .collapseUnion();
++		if (paramType.isFunctionType()) {
++		  FunctionType paramFunctionType = paramType.toMaybeFunctionType();
++		  FunctionType argFunctionType = var_957
++		      .toMaybeFunctionType();
++		  if (argFunctionType != null && argFunctionType.isSubtype(paramType)) {
++		    // infer from return type of the function type
++		    maybeResolveTemplatedType(
++		        paramFunctionType.getTypeOfThis(),
++		        argFunctionType.getTypeOfThis(), resolvedTypes);
++		    // infer from return type of the function type
++		    maybeResolveTemplatedType(
++		        paramFunctionType.getReturnType(),
++		        argFunctionType.getReturnType(), resolvedTypes);
++		    // infer from parameter types of the function type
++		    maybeResolveTemplateTypeFromNodes(
++		        paramFunctionType.getParameters(),
++		        argFunctionType.getParameters(), resolvedTypes);
++		  }
++		} else if (paramType.isParameterizedType()) {
++		  ParameterizedType paramObjectType = paramType.toMaybeParameterizedType();
++		  JSType typeParameter = paramObjectType.getParameterType();
++		  Preconditions.checkNotNull(typeParameter);
++		  if (typeParameter != null) {
++		    // @param {Array.<T>}
++		    ObjectType argObjectType = var_957
++		        .toMaybeParameterizedType();
++		    if (argObjectType != null && argObjectType.isSubtype(paramType)) {
++		      JSType argTypeParameter = argObjectType.getParameterType();
++		      Preconditions.checkNotNull(argTypeParameter);
++		      maybeResolveTemplatedType(
++		          typeParameter, argTypeParameter, resolvedTypes);
++		    }
++		  }
++		}
++	}
+   }
+ 
+   private void maybeResolveTemplateTypeFromNodes(

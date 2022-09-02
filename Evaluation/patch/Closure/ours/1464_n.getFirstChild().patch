@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..5ae4f4d 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -1347,8 +1347,9 @@
+     // new Object() does in fact refer to what we think it is
+     // and not some custom-defined Object().
+     if (isASTNormalized()) {
+-      if (n.getFirstChild().isName()) {
+-        String className = n.getFirstChild().getString();
++      Node var_1464 = n.getFirstChild();
++	if (var_1464.isName()) {
++        String className = var_1464.getString();
+         if (STANDARD_OBJECT_CONSTRUCTORS.contains(className)) {
+           n.setType(Token.CALL);
+           n.putBooleanProp(Node.FREE_CALL, true);

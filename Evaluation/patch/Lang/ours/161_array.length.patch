@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/lang3/ArrayUtils.java b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+index a0a499a..fcd72bf 100644
+--- a/src/main/java/org/apache/commons/lang3/ArrayUtils.java
++++ b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+@@ -1690,9 +1690,12 @@
+         }
+         if (startIndex < 0) {
+             return INDEX_NOT_FOUND;
+-        } else if (startIndex >= array.length) {
+-            startIndex = array.length - 1;
+-        }
++        } else {
++			int var_161 = array.length;
++			if (startIndex >= var_161) {
++			    startIndex = var_161 - 1;
++			}
++		}
+         if (objectToFind == null) {
+             for (int i = startIndex; i >= 0; i--) {
+                 if (array[i] == null) {

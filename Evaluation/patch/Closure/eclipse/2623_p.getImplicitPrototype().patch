@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/rhino/jstype/ObjectType.java b/src/com/google/javascript/rhino/jstype/ObjectType.java
+index 21e8aba..ecb0dd3 100644
+--- a/src/com/google/javascript/rhino/jstype/ObjectType.java
++++ b/src/com/google/javascript/rhino/jstype/ObjectType.java
+@@ -171,20 +171,21 @@
+     // detecting cycle
+     this.visited = true;
+     ObjectType p = getImplicitPrototype();
+-    while (p != null) {
++    ObjectType var_2623 = p.getImplicitPrototype();
++	while (p != null) {
+       if (p.visited) {
+         return true;
+       } else {
+         p.visited = true;
+       }
+-      p = p.getImplicitPrototype();
++      p = var_2623;
+     }
+ 
+     // clean up
+     p = this;
+     do {
+       p.visited = false;
+-      p = p.getImplicitPrototype();
++      p = var_2623;
+     } while (p != null);
+     return false;
+   }

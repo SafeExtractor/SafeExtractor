@@ -1,0 +1,17 @@
+diff --git a/source/org/jfree/data/statistics/Regression.java b/source/org/jfree/data/statistics/Regression.java
+index 962b978..0c57b9b 100644
+--- a/source/org/jfree/data/statistics/Regression.java
++++ b/source/org/jfree/data/statistics/Regression.java
+@@ -362,9 +362,10 @@
+         }
+         double[][] subMatrix = calculateSubMatrix(result);
+         for (int eq = 1; eq < equations -  1; eq++) {
+-            result[eq][0] = 0;
++            double[] var_4063 = result[eq];
++			var_4063[0] = 0;
+             for (int coe = 1; coe < coefficients - 1; coe++) {
+-                result[eq][coe] = subMatrix[eq - 1][coe - 1];
++                var_4063[coe] = subMatrix[eq - 1][coe - 1];
+             }
+         }
+         return result;

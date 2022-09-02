@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..3eb5e7b 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -144,7 +144,8 @@
+ 
+     cc.startSourceMapping(n);
+ 
+-    switch (type) {
++    boolean var_1555 = last.isString();
++	switch (type) {
+       case Token.TRY: {
+         Preconditions.checkState(first.getNext().isBlock() &&
+                 !first.getNext().hasMoreThanOneChild());
+@@ -287,7 +288,7 @@
+ 
+       case Token.REGEXP:
+         if (!first.isString() ||
+-            !last.isString()) {
++            !var_1555) {
+           throw new Error("Expected children to be strings");
+         }
+ 
+@@ -464,7 +465,7 @@
+             childCount == 2,
+             "Bad GETPROP: expected 2 children, but got %s", childCount);
+         Preconditions.checkState(
+-            last.isString(),
++            var_1555,
+             "Bad GETPROP: RHS should be STRING");
+         boolean needsParens = (first.isNumber());
+         if (needsParens) {

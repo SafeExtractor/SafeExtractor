@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/lang3/concurrent/TimedSemaphore.java b/src/main/java/org/apache/commons/lang3/concurrent/TimedSemaphore.java
+index a3e4570..c8b23df 100644
+--- a/src/main/java/org/apache/commons/lang3/concurrent/TimedSemaphore.java
++++ b/src/main/java/org/apache/commons/lang3/concurrent/TimedSemaphore.java
+@@ -399,12 +399,13 @@
+      * @return a future object representing the task scheduled
+      */
+     protected ScheduledFuture<?> startTimer() {
+-        return getExecutorService().scheduleAtFixedRate(new Runnable() {
++        long var_349 = getPeriod();
++		return getExecutorService().scheduleAtFixedRate(new Runnable() {
+             @Override
+             public void run() {
+                 endOfPeriod();
+             }
+-        }, getPeriod(), getPeriod(), getUnit());
++        }, var_349, var_349, getUnit());
+     }
+ 
+     /**

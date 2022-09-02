@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/genetics/RandomKey.java b/src/main/java/org/apache/commons/math3/genetics/RandomKey.java
+index 75ae2be..d9f402e 100644
+--- a/src/main/java/org/apache/commons/math3/genetics/RandomKey.java
++++ b/src/main/java/org/apache/commons/math3/genetics/RandomKey.java
+@@ -73,12 +73,13 @@
+     public RandomKey(final List<Double> representation) throws InvalidRepresentationException {
+         super(representation);
+         // store the sorted representation
+-        List<Double> sortedRepr = new ArrayList<Double> (getRepresentation());
++        List<Double> var_1091 = getRepresentation();
++		List<Double> sortedRepr = new ArrayList<Double> (var_1091);
+         Collections.sort(sortedRepr);
+         sortedRepresentation = Collections.unmodifiableList(sortedRepr);
+         // store the permutation of [0,1,...,n-1] list for toString() and isSame() methods
+         baseSeqPermutation = Collections.unmodifiableList(
+-            decodeGeneric(baseSequence(getLength()), getRepresentation(), sortedRepresentation)
++            decodeGeneric(baseSequence(getLength()), var_1091, sortedRepresentation)
+         );
+     }
+ 

@@ -1,0 +1,36 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/679_newInstance(getZero()).patch b/Users/safe/paper/Evaluation/patch/Math/ours/679_newInstance(getZero()).patch
+index 6c57ed3..9d371d0 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/679_newInstance(getZero()).patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/679_newInstance(getZero()).patch
+@@ -1,26 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+-index e6de61f..e0cf144 100644
++index e6de61f..c98d4c7 100644
+ --- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+ +++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+-@@ -1911,9 +1911,10 @@
+-         }
+- 
++@@ -1913,7 +1913,8 @@
+          // Test for divide by zero
+--        if (divisor == 0) {
+-+        Dfp var_679 = newInstance(getZero());
+-+		if (divisor == 0) {
++         if (divisor == 0) {
+              field.setIEEEFlagsBits(DfpField.FLAG_DIV_ZERO);
+ -            Dfp result = newInstance(getZero());
+-+            Dfp result = var_679;
+++            Dfp var_679 = newInstance(getZero());
+++			Dfp result = var_679;
+              result.sign = sign;
+              result.nans = INFINITE;
+              result = dotrap(DfpField.FLAG_DIV_ZERO, DIVIDE_TRAP, getZero(), result);
+-@@ -1923,7 +1924,7 @@
+-         // range check divisor
+-         if (divisor < 0 || divisor >= RADIX) {
+-             field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+--            Dfp result = newInstance(getZero());
+-+            Dfp result = var_679;
+-             result.nans = QNAN;
+-             result = dotrap(DfpField.FLAG_INVALID, DIVIDE_TRAP, result, result);
+-             return result;

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+index 4e56fef..850238e 100644
+--- a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
++++ b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+@@ -170,7 +170,8 @@
+         short count = 0;
+         for (Entry<String, DateTimeZone> entry : zimap.entrySet()) {
+             String id = (String)entry.getKey();
+-            if (!idToIndex.containsKey(id)) {
++            boolean var_609 = idToIndex.containsKey(id);
++			if (!var_609) {
+                 Short index = Short.valueOf(count);
+                 idToIndex.put(id, index);
+                 indexToId.put(index, id);
+@@ -179,7 +180,7 @@
+                 }
+             }
+             id = ((DateTimeZone)entry.getValue()).getID();
+-            if (!idToIndex.containsKey(id)) {
++            if (!var_609) {
+                 Short index = Short.valueOf(count);
+                 idToIndex.put(id, index);
+                 indexToId.put(index, id);

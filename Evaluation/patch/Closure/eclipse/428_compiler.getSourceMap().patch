@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..8ca1971 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -938,14 +938,15 @@
+       Writer writer =
+           fileNameToLegacyOutputWriter(getModuleOutputFileName(m));
+ 
+-      if (options.sourceMapOutputPath != null) {
+-        compiler.getSourceMap().reset();
++      SourceMap var_428 = compiler.getSourceMap();
++	if (options.sourceMapOutputPath != null) {
++        var_428.reset();
+       }
+ 
+       writeModuleOutput(writer, m);
+ 
+       if (options.sourceMapOutputPath != null) {
+-        compiler.getSourceMap().appendTo(mapOut, m.getName());
++        var_428.appendTo(mapOut, m.getName());
+       }
+ 
+       writer.close();

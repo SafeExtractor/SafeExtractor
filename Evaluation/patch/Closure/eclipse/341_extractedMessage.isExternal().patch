@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/JsMessageVisitor.java b/src/com/google/javascript/jscomp/JsMessageVisitor.java
+index becd724..392b005 100644
+--- a/src/com/google/javascript/jscomp/JsMessageVisitor.java
++++ b/src/com/google/javascript/jscomp/JsMessageVisitor.java
+@@ -268,9 +268,10 @@
+     JsMessage extractedMessage = builder.build(idGenerator);
+ 
+     // If asked to check named internal messages.
+-    if (needToCheckDuplications
++    boolean var_341 = extractedMessage.isExternal();
++	if (needToCheckDuplications
+         && !isUnnamedMsg
+-        && !extractedMessage.isExternal()) {
++        && !var_341) {
+       checkIfMessageDuplicated(messageKey, msgNode);
+     }
+     trackMessage(traversal, extractedMessage,
+@@ -289,7 +290,7 @@
+     String desc = extractedMessage.getDesc();
+     if (isNewStyleMessage
+         && (desc == null || desc.trim().isEmpty())
+-        && !extractedMessage.isExternal()) {
++        && !var_341) {
+       compiler.report(traversal.makeError(node, MESSAGE_HAS_NO_DESCRIPTION,
+           messageKey));
+     }

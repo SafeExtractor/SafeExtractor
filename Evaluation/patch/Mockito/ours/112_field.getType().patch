@@ -1,0 +1,28 @@
+diff --git a/src/org/mockito/internal/util/reflection/FieldInitializer.java b/src/org/mockito/internal/util/reflection/FieldInitializer.java
+index 0f89b1b..ada8f4d 100644
+--- a/src/org/mockito/internal/util/reflection/FieldInitializer.java
++++ b/src/org/mockito/internal/util/reflection/FieldInitializer.java
+@@ -174,8 +174,9 @@
+         public FieldInitializationReport instantiate() {
+             final AccessibilityChanger changer = new AccessibilityChanger();
+             Constructor<?> constructor = null;
+-            try {
+-                constructor = field.getType().getDeclaredConstructor();
++            Class<?> var_112 = field.getType();
++			try {
++                constructor = var_112.getDeclaredConstructor();
+                 changer.enableAccess(constructor);
+ 
+                 final Object[] noArg = new Object[0];
+@@ -184,9 +185,9 @@
+ 
+                 return new FieldInitializationReport(field.get(testClass), true, false);
+             } catch (NoSuchMethodException e) {
+-                throw new MockitoException("the type '" + field.getType().getSimpleName() + "' has no default constructor", e);
++                throw new MockitoException("the type '" + var_112.getSimpleName() + "' has no default constructor", e);
+             } catch (InvocationTargetException e) {
+-                throw new MockitoException("the default constructor of type '" + field.getType().getSimpleName() + "' has raised an exception (see the stack trace for cause): " + e.getTargetException().toString(), e);
++                throw new MockitoException("the default constructor of type '" + var_112.getSimpleName() + "' has raised an exception (see the stack trace for cause): " + e.getTargetException().toString(), e);
+             } catch (InstantiationException e) {
+                 throw new MockitoException("InstantiationException (see the stack trace for cause): " + e.toString(), e);
+             } catch (IllegalAccessException e) {

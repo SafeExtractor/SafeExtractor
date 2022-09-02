@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/jsonml/Writer.java b/src/com/google/javascript/jscomp/jsonml/Writer.java
+index b357eb9..f38b425 100644
+--- a/src/com/google/javascript/jscomp/jsonml/Writer.java
++++ b/src/com/google/javascript/jscomp/jsonml/Writer.java
+@@ -359,12 +359,13 @@
+         break;
+       case Token.NAME:
+         // Caja treats calls to eval in a special way
+-        if (child.getString().equals("eval")) {
++        String var_2205 = child.getString();
++		if (var_2205.equals("eval")) {
+           element = new JsonML(TagType.EvalExpr);
+         } else {
+           // element representing function name is created
+           element = new JsonML(TagType.IdExpr);
+-          element.setAttribute(TagAttr.NAME, child.getString());
++          element.setAttribute(TagAttr.NAME, var_2205);
+           // element representing function is created
+           element = new JsonML(TagType.CallExpr, element);
+         }

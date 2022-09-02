@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..13a151e 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -434,18 +434,19 @@
+   private void handleSwitch(Node node) {
+     // Transfer to the first non-DEFAULT CASE. if there are none, transfer
+     // to the DEFAULT or the EMPTY node.
+-    Node next = getNextSiblingOfType(
+-        node.getFirstChild().getNext(), Token.CASE, Token.EMPTY);
++    Node var_1898 = node.getFirstChild();
++	Node next = getNextSiblingOfType(
++        var_1898.getNext(), Token.CASE, Token.EMPTY);
+     if (next != null) { // Has at least one CASE or EMPTY
+       createEdge(node, Branch.UNCOND, next);
+     } else { // Has no CASE but possibly a DEFAULT
+-      if (node.getFirstChild().getNext() != null) {
+-        createEdge(node, Branch.UNCOND, node.getFirstChild().getNext());
++      if (var_1898.getNext() != null) {
++        createEdge(node, Branch.UNCOND, var_1898.getNext());
+       } else { // No CASE, no DEFAULT
+         createEdge(node, Branch.UNCOND, computeFollowNode(node, this));
+       }
+     }
+-    connectToPossibleExceptionHandler(node, node.getFirstChild());
++    connectToPossibleExceptionHandler(node, var_1898);
+   }
+ 
+   private void handleCase(Node node) {

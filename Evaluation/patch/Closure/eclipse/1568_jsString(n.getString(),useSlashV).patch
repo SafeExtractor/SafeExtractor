@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..9297b23 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -975,12 +975,13 @@
+   private void addJsString(Node n) {
+     String s = n.getString();
+     boolean useSlashV = n.getBooleanProp(Node.SLASH_V);
+-    if (useSlashV) {
+-      add(jsString(n.getString(), useSlashV));
++    String var_1568 = jsString(n.getString(), useSlashV);
++	if (useSlashV) {
++      add(var_1568);
+     } else {
+       String cached = ESCAPED_JS_STRINGS.get(s);
+       if (cached == null) {
+-        cached = jsString(n.getString(), useSlashV);
++        cached = var_1568;
+         ESCAPED_JS_STRINGS.put(s, cached);
+       }
+       add(cached);

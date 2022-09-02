@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java b/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java
+index 522fe94..fc6d1e8 100644
+--- a/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java
++++ b/src/com/google/javascript/jscomp/FlowSensitiveInlineVariables.java
+@@ -422,8 +422,9 @@
+     private void inlineVariable() {
+       Node defParent = def.getParent();
+       Node useParent = use.getParent();
+-      if (def.isAssign()) {
+-        Node rhs = def.getLastChild();
++      Node var_1503 = def.getLastChild();
++	if (def.isAssign()) {
++        Node rhs = var_1503;
+         rhs.detachFromParent();
+         // Oh yes! I have grandparent to remove this.
+         Preconditions.checkState(defParent.isExprResult());
+@@ -433,7 +434,7 @@
+         defParent.detachFromParent();
+         useParent.replaceChild(use, rhs);
+       } else if (defParent.isVar()) {
+-        Node rhs = def.getLastChild();
++        Node rhs = var_1503;
+         def.removeChild(rhs);
+         useParent.replaceChild(use, rhs);
+       } else {

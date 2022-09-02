@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/DataFlowAnalysis.java b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+index 5b39646..67d5637 100644
+--- a/src/com/google/javascript/jscomp/DataFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+@@ -392,15 +392,16 @@
+     @Override
+     protected void initialize() {
+       orderedWorkSet.clear();
+-      for (DiGraphNode<N, Branch> node : getCfg().getDirectedGraphNodes()) {
+-        int outEdgeCount = getCfg().getOutEdges(node.getValue()).size();
++      ControlFlowGraph<N> var_757 = getCfg();
++	for (DiGraphNode<N, Branch> node : var_757.getDirectedGraphNodes()) {
++        int outEdgeCount = var_757.getOutEdges(node.getValue()).size();
+         List<L> outLattices = Lists.newArrayList();
+         for (int i = 0; i < outEdgeCount; i++) {
+           outLattices.add(createInitialEstimateLattice());
+         }
+         node.setAnnotation(new BranchedFlowState<L>(
+             createInitialEstimateLattice(), outLattices));
+-        if (node != getCfg().getImplicitReturn()) {
++        if (node != var_757.getImplicitReturn()) {
+           orderedWorkSet.add(node);
+         }
+       }

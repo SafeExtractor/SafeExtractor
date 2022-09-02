@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/descriptive/DescriptiveStatistics.java b/src/main/java/org/apache/commons/math3/stat/descriptive/DescriptiveStatistics.java
+index b08deba..bf21ac7 100644
+--- a/src/main/java/org/apache/commons/math3/stat/descriptive/DescriptiveStatistics.java
++++ b/src/main/java/org/apache/commons/math3/stat/descriptive/DescriptiveStatistics.java
+@@ -427,18 +427,19 @@
+         if (percentileImpl instanceof Percentile) {
+             ((Percentile) percentileImpl).setQuantile(p);
+         } else {
+-            try {
+-                percentileImpl.getClass().getMethod(SET_QUANTILE_METHOD_NAME,
++            Class<? extends UnivariateStatistic> var_3779 = percentileImpl.getClass();
++			try {
++                var_3779.getMethod(SET_QUANTILE_METHOD_NAME,
+                         new Class[] {Double.TYPE}).invoke(percentileImpl,
+                                 new Object[] {Double.valueOf(p)});
+             } catch (NoSuchMethodException e1) { // Setter guard should prevent
+                 throw new MathIllegalStateException(
+                       LocalizedFormats.PERCENTILE_IMPLEMENTATION_UNSUPPORTED_METHOD,
+-                      percentileImpl.getClass().getName(), SET_QUANTILE_METHOD_NAME);
++                      var_3779.getName(), SET_QUANTILE_METHOD_NAME);
+             } catch (IllegalAccessException e2) {
+                 throw new MathIllegalStateException(
+                       LocalizedFormats.PERCENTILE_IMPLEMENTATION_CANNOT_ACCESS_METHOD,
+-                      SET_QUANTILE_METHOD_NAME, percentileImpl.getClass().getName());
++                      SET_QUANTILE_METHOD_NAME, var_3779.getName());
+             } catch (InvocationTargetException e3) {
+                 throw new IllegalStateException(e3.getCause());
+             }

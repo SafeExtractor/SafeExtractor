@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..fcc9075 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -433,7 +433,8 @@
+ 
+     assertAllOneTimePasses(passes);
+ 
+-    if (options.smartNameRemoval || options.reportPath != null) {
++    boolean var_1788 = options.smartNameRemoval;
++	if (var_1788 || options.reportPath != null) {
+       passes.addAll(getCodeRemovingPasses());
+       passes.add(smartNamePass);
+     }
+@@ -523,7 +524,7 @@
+ 
+     // Running this pass again is required to have goog.events compile down to
+     // nothing when compiled on its own.
+-    if (options.smartNameRemoval) {
++    if (var_1788) {
+       passes.add(smartNamePass2);
+     }
+ 

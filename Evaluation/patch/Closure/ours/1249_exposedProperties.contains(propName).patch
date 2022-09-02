@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/Normalize.java b/src/com/google/javascript/jscomp/Normalize.java
+index 98b136e..012bfbe 100644
+--- a/src/com/google/javascript/jscomp/Normalize.java
++++ b/src/com/google/javascript/jscomp/Normalize.java
+@@ -196,7 +196,8 @@
+     @Override public void visit(NodeTraversal t, Node n, Node parent) {
+       if (n.isGetProp()) {
+         String propName = n.getLastChild().getString();
+-        if (exposedProperties.contains(propName)) {
++        boolean var_1249 = exposedProperties.contains(propName);
++		if (var_1249) {
+           Node obj = n.removeFirstChild();
+           Node prop = n.removeFirstChild();
+           n.getParent().replaceChild(n, IR.getelem(obj, prop));

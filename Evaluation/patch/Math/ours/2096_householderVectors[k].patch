@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/BiDiagonalTransformer.java b/src/main/java/org/apache/commons/math3/linear/BiDiagonalTransformer.java
+index c2c5002..05dbfc2 100644
+--- a/src/main/java/org/apache/commons/math3/linear/BiDiagonalTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/BiDiagonalTransformer.java
+@@ -325,7 +325,8 @@
+         for (int k = 0; k < m; k++) {
+ 
+             //zero-out a row
+-            final double[] hK = householderVectors[k];
++            double[] var_2096 = householderVectors[k];
++			final double[] hK = var_2096;
+             double xNormSqr = 0;
+             for (int j = k; j < n; ++j) {
+                 final double c = hK[j];
+@@ -341,7 +342,7 @@
+                     for (int j = k; j < n; ++j) {
+                         alpha -= hI[j] * hK[j];
+                     }
+-                    alpha /= a * householderVectors[k][k];
++                    alpha /= a * var_2096[k];
+                     for (int j = k; j < n; ++j) {
+                         hI[j] -= alpha * hK[j];
+                     }

@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java b/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java
+index 326271f..239cecf 100644
+--- a/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java
++++ b/source/org/jfree/chart/renderer/category/CategoryStepRenderer.java
+@@ -291,7 +291,8 @@
+         double x1 = domainAxis.getCategoryMiddle(column, getColumnCount(),
+                 dataArea, plot.getDomainAxisEdge());
+         double x1e = 2 * x1 - x1s; // or: x1s + 2*(x1-x1s)
+-        double y1 = rangeAxis.valueToJava2D(value.doubleValue(), dataArea,
++        double var_2522 = value.doubleValue();
++		double y1 = rangeAxis.valueToJava2D(var_2522, dataArea,
+                 plot.getRangeAxisEdge());
+         g2.setPaint(getItemPaint(row, column, selected));
+         g2.setStroke(getItemStroke(row, column, selected));
+@@ -328,7 +329,7 @@
+        // draw the item labels if there are any...
+        if (isItemLabelVisible(row, column, selected)) {
+             drawItemLabel(g2, orientation, dataset, row, column, 
+-                    selected, x1, y1, (value.doubleValue() < 0.0));
++                    selected, x1, y1, (var_2522 < 0.0));
+        }
+ 
+        // add an item entity, if this information is being collected

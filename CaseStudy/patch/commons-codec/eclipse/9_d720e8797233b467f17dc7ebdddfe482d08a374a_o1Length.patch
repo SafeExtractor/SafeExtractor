@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/codec/language/bm/Rule.java b/src/main/java/org/apache/commons/codec/language/bm/Rule.java
+index 644614a..a7a89e9 100644
+--- a/src/main/java/org/apache/commons/codec/language/bm/Rule.java
++++ b/src/main/java/org/apache/commons/codec/language/bm/Rule.java
+@@ -84,7 +84,8 @@
+         public static final Comparator<Phoneme> COMPARATOR = new Comparator<Phoneme>() {
+             @Override
+             public int compare(final Phoneme o1, final Phoneme o2) {
+-                for (int i = 0; i < o1.phonemeText.length(); i++) {
++                int o1Length = o1.phonemeText.length();
++				for (int i = 0; i < o1Length; i++) {
+                     if (i >= o2.phonemeText.length()) {
+                         return +1;
+                     }
+@@ -94,7 +95,7 @@
+                     }
+                 }
+ 
+-                if (o1.phonemeText.length() < o2.phonemeText.length()) {
++                if (o1Length < o2.phonemeText.length()) {
+                     return -1;
+                 }
+ 

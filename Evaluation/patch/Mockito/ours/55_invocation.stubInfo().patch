@@ -1,0 +1,22 @@
+diff --git a/src/org/mockito/internal/listeners/NotifiedMethodInvocationReport.java b/src/org/mockito/internal/listeners/NotifiedMethodInvocationReport.java
+index 732bc5c..b555007 100644
+--- a/src/org/mockito/internal/listeners/NotifiedMethodInvocationReport.java
++++ b/src/org/mockito/internal/listeners/NotifiedMethodInvocationReport.java
+@@ -6,6 +6,7 @@
+ 
+ import org.mockito.invocation.DescribedInvocation;
+ import org.mockito.invocation.Invocation;
++import org.mockito.invocation.StubInfo;
+ import org.mockito.listeners.MethodInvocationReport;
+ 
+ import static org.mockito.internal.matchers.Equality.areEqual;
+@@ -62,7 +63,8 @@
+     }
+ 
+     public String getLocationOfStubbing() {
+-        return (invocation.stubInfo() == null) ? null : invocation.stubInfo().stubbedAt().toString();
++        StubInfo var_55 = invocation.stubInfo();
++		return (var_55 == null) ? null : var_55.stubbedAt().toString();
+     }
+ 
+ 

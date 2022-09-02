@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..6598430 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -1339,7 +1339,8 @@
+                                  Marker marker,
+                                  Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        double var_3117 = dataArea.getMaxX();
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = domainAxis.getRange();
+@@ -1354,7 +1355,7 @@
+             Line2D line = null;
+             if (orientation == PlotOrientation.HORIZONTAL) {
+                 line = new Line2D.Double(dataArea.getMinX(), v,
+-                        dataArea.getMaxX(), v);
++                        var_3117, v);
+             }
+             else if (orientation == PlotOrientation.VERTICAL) {
+                 line = new Line2D.Double(v, dataArea.getMinY(), v,
+@@ -1413,7 +1414,7 @@
+             else if (orientation == PlotOrientation.VERTICAL) {
+                 // clip left and right bounds to data area
+                 low = Math.max(low, dataArea.getMinX());
+-                high = Math.min(high, dataArea.getMaxX());
++                high = Math.min(high, var_3117);
+                 rect = new Rectangle2D.Double(low,
+                         dataArea.getMinY(), high - low,
+                         dataArea.getHeight());
+@@ -1456,7 +1457,7 @@
+                 else { // PlotOrientation.HORIZONTAL
+                     Line2D line = new Line2D.Double();
+                     double x0 = dataArea.getMinX();
+-                    double x1 = dataArea.getMaxX();
++                    double x1 = var_3117;
+                     g2.setPaint(im.getOutlinePaint());
+                     g2.setStroke(im.getOutlineStroke());
+                     if (range.contains(start)) {

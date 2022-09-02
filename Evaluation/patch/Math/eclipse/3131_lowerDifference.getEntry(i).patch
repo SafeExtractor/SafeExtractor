@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..64538a1 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -2213,9 +2213,10 @@
+                 // Computing MIN
+                 final double min = Math.min(trustRegionCenterOffset.getEntry(i) + trialStepPoint.getEntry(i),
+                                             upperDifference.getEntry(i));
+-                newPoint.setEntry(i, Math.max(min, lowerDifference.getEntry(i)));
++                double var_3131 = lowerDifference.getEntry(i);
++				newPoint.setEntry(i, Math.max(min, var_3131));
+                 if (xbdi.getEntry(i) == MINUS_ONE) {
+-                    newPoint.setEntry(i, lowerDifference.getEntry(i));
++                    newPoint.setEntry(i, var_3131);
+                 }
+                 if (xbdi.getEntry(i) == ONE) {
+                     newPoint.setEntry(i, upperDifference.getEntry(i));

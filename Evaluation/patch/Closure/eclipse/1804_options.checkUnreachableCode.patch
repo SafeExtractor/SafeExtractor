@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..8866805 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -1214,9 +1214,10 @@
+     @Override
+     protected HotSwapCompilerPass create(AbstractCompiler compiler) {
+       List<Callback> callbacks = Lists.newArrayList();
+-      if (options.checkUnreachableCode.isOn()) {
++      CheckLevel var_1804 = options.checkUnreachableCode;
++	if (var_1804.isOn()) {
+         callbacks.add(
+-            new CheckUnreachableCode(compiler, options.checkUnreachableCode));
++            new CheckUnreachableCode(compiler, var_1804));
+       }
+       if (options.checkMissingReturn.isOn() && options.checkTypes) {
+         callbacks.add(

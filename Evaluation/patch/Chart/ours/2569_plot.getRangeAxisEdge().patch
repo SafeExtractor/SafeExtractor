@@ -1,0 +1,33 @@
+diff --git a/source/org/jfree/chart/renderer/category/LineRenderer3D.java b/source/org/jfree/chart/renderer/category/LineRenderer3D.java
+index 68c0447..e3b27b3 100644
+--- a/source/org/jfree/chart/renderer/category/LineRenderer3D.java
++++ b/source/org/jfree/chart/renderer/category/LineRenderer3D.java
+@@ -79,6 +79,7 @@
+ import org.jfree.chart.plot.PlotOrientation;
+ import org.jfree.chart.plot.ValueMarker;
+ import org.jfree.chart.util.PaintUtilities;
++import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.chart.util.SerialUtilities;
+ import org.jfree.chart.util.ShapeUtilities;
+ import org.jfree.data.Range;
+@@ -536,8 +537,9 @@
+         double x1 = domainAxis.getCategoryMiddle(column, getColumnCount(),
+                 adjusted, plot.getDomainAxisEdge());
+         double value = v.doubleValue();
+-        double y1 = rangeAxis.valueToJava2D(value, adjusted,
+-                plot.getRangeAxisEdge());
++        RectangleEdge var_2569 = plot.getRangeAxisEdge();
++		double y1 = rangeAxis.valueToJava2D(value, adjusted,
++                var_2569);
+ 
+         Shape shape = getItemShape(row, column, selected);
+         if (orientation == PlotOrientation.HORIZONTAL) {
+@@ -559,7 +561,7 @@
+                             getColumnCount(), adjusted,
+                             plot.getDomainAxisEdge());
+                     double y0 = rangeAxis.valueToJava2D(previous, adjusted,
+-                            plot.getRangeAxisEdge());
++                            var_2569);
+ 
+                     double x2 = x0 + getXOffset();
+                     double y2 = y0 - getYOffset();

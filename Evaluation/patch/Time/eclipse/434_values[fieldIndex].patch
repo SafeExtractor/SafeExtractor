@@ -1,0 +1,64 @@
+diff --git a/src/main/java/org/joda/time/field/BaseDateTimeField.java b/src/main/java/org/joda/time/field/BaseDateTimeField.java
+index c86bf1c..80916fb 100644
+--- a/src/main/java/org/joda/time/field/BaseDateTimeField.java
++++ b/src/main/java/org/joda/time/field/BaseDateTimeField.java
+@@ -384,16 +384,17 @@
+         // adding/removing one from the larger field at a time
+         DateTimeField nextField = null;
+         
+-        while (valueToAdd > 0) {
++        int var_434 = values[fieldIndex];
++		while (valueToAdd > 0) {
+             int max = getMaximumValue(instant, values);
+-            long proposed = values[fieldIndex] + valueToAdd;
++            long proposed = var_434 + valueToAdd;
+             if (proposed <= max) {
+                 values[fieldIndex] = (int) proposed;
+                 break;
+             }
+             if (nextField == null) {
+                 if (fieldIndex == 0) {
+-                    valueToAdd -= (max + 1) - values[fieldIndex];
++                    valueToAdd -= (max + 1) - var_434;
+                     values[fieldIndex] = getMinimumValue(instant, values);
+                     continue;
+                 }
+@@ -403,20 +404,20 @@
+                     throw new IllegalArgumentException("Fields invalid for add");
+                 }
+             }
+-            valueToAdd -= (max + 1) - values[fieldIndex];  // reduce the amount to add
++            valueToAdd -= (max + 1) - var_434;  // reduce the amount to add
+             values = nextField.addWrapPartial(instant, fieldIndex - 1, values, 1);  // add 1 to next bigger field
+             values[fieldIndex] = getMinimumValue(instant, values);  // reset this field to zero
+         }
+         while (valueToAdd < 0) {
+             int min = getMinimumValue(instant, values);
+-            long proposed = values[fieldIndex] + valueToAdd;
++            long proposed = var_434 + valueToAdd;
+             if (proposed >= min) {
+                 values[fieldIndex] = (int) proposed;
+                 break;
+             }
+             if (nextField == null) {
+                 if (fieldIndex == 0) {
+-                    valueToAdd -= (min - 1) - values[fieldIndex];
++                    valueToAdd -= (min - 1) - var_434;
+                     values[fieldIndex] = getMaximumValue(instant, values);
+                     continue;
+                 }
+@@ -425,12 +426,12 @@
+                     throw new IllegalArgumentException("Fields invalid for add");
+                 }
+             }
+-            valueToAdd -= (min - 1) - values[fieldIndex];  // reduce the amount to add
++            valueToAdd -= (min - 1) - var_434;  // reduce the amount to add
+             values = nextField.addWrapPartial(instant, fieldIndex - 1, values, -1);  // subtract 1 from next bigger field
+             values[fieldIndex] = getMaximumValue(instant, values);  // reset this field to max value
+         }
+         
+-        return set(instant, fieldIndex, values, values[fieldIndex]);  // adjusts smaller fields
++        return set(instant, fieldIndex, values, var_434);  // adjusts smaller fields
+     }
+ 
+     /**

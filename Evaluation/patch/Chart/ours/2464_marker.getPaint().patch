@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+index 4a54655..977d5a6 100644
+--- a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
++++ b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+@@ -1110,7 +1110,8 @@
+ 
+         PlotOrientation orientation = plot.getOrientation();
+         Rectangle2D bounds = null;
+-        if (marker.getDrawAsLine()) {
++        Paint var_2464 = marker.getPaint();
++		if (marker.getDrawAsLine()) {
+             double v = axis.getCategoryMiddle(columnIndex,
+                     dataset.getColumnCount(), dataArea,
+                     plot.getDomainAxisEdge());
+@@ -1123,7 +1124,7 @@
+                 line = new Line2D.Double(v, dataArea.getMinY(), v,
+                         dataArea.getMaxY());
+             }
+-            g2.setPaint(marker.getPaint());
++            g2.setPaint(var_2464);
+             g2.setStroke(marker.getStroke());
+             g2.draw(line);
+             bounds = line.getBounds2D();
+@@ -1144,7 +1145,7 @@
+                 area = new Rectangle2D.Double(v0, dataArea.getMinY(),
+                         (v1 - v0), dataArea.getHeight());
+             }
+-            g2.setPaint(marker.getPaint());
++            g2.setPaint(var_2464);
+             g2.fill(area);
+             bounds = area;
+         }

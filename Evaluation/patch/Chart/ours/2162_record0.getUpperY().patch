@@ -1,0 +1,18 @@
+diff --git a/source/org/jfree/chart/plot/PieLabelDistributor.java b/source/org/jfree/chart/plot/PieLabelDistributor.java
+index 01d2d44..aa30160 100644
+--- a/source/org/jfree/chart/plot/PieLabelDistributor.java
++++ b/source/org/jfree/chart/plot/PieLabelDistributor.java
+@@ -145,10 +145,11 @@
+         for (int i = 0; i < this.labels.size() - 1; i++) {
+             PieLabelRecord record0 = getPieLabelRecord(i);
+             PieLabelRecord record1 = getPieLabelRecord(i + 1);
+-            if (record1.getLowerY() < record0.getUpperY()) {
++            double var_2162 = record0.getUpperY();
++			if (record1.getLowerY() < var_2162) {
+                 record1.setAllocatedY(Math.min(minY + height
+                         - record1.getLabelHeight() / 2.0,
+-                        record0.getUpperY() + this.minGap
++                        var_2162 + this.minGap
+                         + record1.getLabelHeight() / 2.0));
+             }
+         }

@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java b/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java
+index a5f5faf..2955725 100644
+--- a/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java
++++ b/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java
+@@ -134,7 +134,8 @@
+       return;
+     }
+ 
+-    if (steps.size() == 0) {
++    StepInterpolator var_2586 = steps.get(index);
++	if (steps.size() == 0) {
+       initialTime = model.initialTime;
+       forward     = model.forward;
+     } else {
+@@ -148,7 +149,7 @@
+           throw new MathIllegalArgumentException(LocalizedFormats.PROPAGATION_DIRECTION_MISMATCH);
+       }
+ 
+-      final StepInterpolator lastInterpolator = steps.get(index);
++      final StepInterpolator lastInterpolator = var_2586;
+       final double current  = lastInterpolator.getCurrentTime();
+       final double previous = lastInterpolator.getPreviousTime();
+       final double step = current - previous;
+@@ -165,7 +166,7 @@
+     }
+ 
+     index = steps.size() - 1;
+-    finalTime = (steps.get(index)).getCurrentTime();
++    finalTime = var_2586.getCurrentTime();
+ 
+   }
+ 

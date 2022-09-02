@@ -1,0 +1,19 @@
+diff --git a/src/org/mockito/exceptions/Reporter.java b/src/org/mockito/exceptions/Reporter.java
+index 6e0b3bd..2bc96ea 100644
+--- a/src/org/mockito/exceptions/Reporter.java
++++ b/src/org/mockito/exceptions/Reporter.java
+@@ -745,10 +745,11 @@
+         for (int i = 0, parameterTypesLength = parameterTypes.length; i < parameterTypesLength; i++) {
+             stringBuilder.append("    [").append(i);
+ 
+-            if (invocation.getMethod().isVarArgs() && i == parameterTypesLength - 1) {
+-                stringBuilder.append("+] ").append(parameterTypes[i].getComponentType().getSimpleName()).append("  <- Vararg").append("\n");
++            Class<?> var_5 = parameterTypes[i];
++			if (invocation.getMethod().isVarArgs() && i == parameterTypesLength - 1) {
++                stringBuilder.append("+] ").append(var_5.getComponentType().getSimpleName()).append("  <- Vararg").append("\n");
+             } else {
+-                stringBuilder.append("] ").append(parameterTypes[i].getSimpleName()).append("\n");
++                stringBuilder.append("] ").append(var_5.getSimpleName()).append("\n");
+             }
+         }
+         return stringBuilder;

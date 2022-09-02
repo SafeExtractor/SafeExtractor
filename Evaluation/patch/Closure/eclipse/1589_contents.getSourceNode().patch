@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionTypeBuilder.java b/src/com/google/javascript/jscomp/FunctionTypeBuilder.java
+index db990fa..a49f797 100644
+--- a/src/com/google/javascript/jscomp/FunctionTypeBuilder.java
++++ b/src/com/google/javascript/jscomp/FunctionTypeBuilder.java
+@@ -663,8 +663,9 @@
+    * separate JSType objects for one type.
+    */
+   private FunctionType getOrCreateConstructor() {
+-    FunctionType fnType = typeRegistry.createConstructorType(
+-        fnName, contents.getSourceNode(), parametersNode, returnType, null);
++    Node var_1589 = contents.getSourceNode();
++	FunctionType fnType = typeRegistry.createConstructorType(
++        fnName, var_1589, parametersNode, returnType, null);
+     JSType existingType = typeRegistry.getType(fnName);
+ 
+     if (makesStructs) {
+@@ -681,7 +682,7 @@
+             typeRegistry.getNativeFunctionType(FUNCTION_FUNCTION_TYPE);
+ 
+         if (existingFn.getSource() == null) {
+-          existingFn.setSource(contents.getSourceNode());
++          existingFn.setSource(var_1589);
+         }
+ 
+         if (!existingFn.hasEqualCallType(fnType)) {

@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..76edbee 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -2234,11 +2234,12 @@
+       CompilerOptions options) {
+     Map<String, Node> additionalReplacements = Maps.newHashMap();
+ 
+-    if (options.markAsCompiled || options.closurePass) {
++    boolean var_1810 = options.closurePass;
++	if (options.markAsCompiled || var_1810) {
+       additionalReplacements.put(COMPILED_CONSTANT_NAME, IR.trueNode());
+     }
+ 
+-    if (options.closurePass && options.locale != null) {
++    if (var_1810 && options.locale != null) {
+       additionalReplacements.put(CLOSURE_LOCALE_CONSTANT_NAME,
+           IR.string(options.locale));
+     }

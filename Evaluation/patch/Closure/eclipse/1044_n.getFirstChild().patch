@@ -1,0 +1,68 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..be680a8 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -596,11 +596,12 @@
+     // TODO(user): handle object literals like { a: new Foo };
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      switch (n.getType()) {
++      Node var_1044 = n.getFirstChild();
++	switch (n.getType()) {
+         case Token.VAR:
+           // Variable declaration, e.g. var a = b;
+           Node name;
+-          for (name = n.getFirstChild(); name != null; name = name.getNext()) {
++          for (name = var_1044; name != null; name = name.getNext()) {
+             if (inExterns) {
+               // In externs, we have to trust the type information because there
+               // are not necessarily assignments to the variables, calls to the
+@@ -625,7 +626,7 @@
+             if (type.isNone()) {
+               ConcreteScope scope =
+                   (ConcreteScope) inferConcreteType(getTopScope(),
+-                      n.getFirstChild()).getScope();
++                      var_1044).getScope();
+               if (scope != null) {
+                 type = createType(n.getJSType());
+                 if (type.isNone() || type.isAll()) {
+@@ -644,7 +645,7 @@
+           if (NodeUtil.isFunctionDeclaration(n)) {
+             if (!n.getJSType().isNoObjectType()) {
+               ConcreteFunctionType type = createConcreteFunction(n, scope);
+-              scope.declareSlot(n.getFirstChild().getString(), n, type);
++              scope.declareSlot(var_1044.getString(), n, type);
+ 
+               if (inExterns && type.getInstanceType() != null) {
+                 // We must assume all extern types are instantiated since they
+@@ -657,7 +658,7 @@
+ 
+         case Token.ASSIGN:
+           // Variable assignment, e.g. a = b;
+-          Node lhs = n.getFirstChild();
++          Node lhs = var_1044;
+           if (inExterns) {
+             // Again, we have to trust the externs.
+             ConcreteScope scope;
+@@ -701,7 +702,7 @@
+ 
+         case Token.NEW:
+         case Token.CALL:
+-          Node receiver = n.getFirstChild();
++          Node receiver = var_1044;
+           if (receiver.isGetProp()) {
+             Node first = receiver.getFirstChild();
+             // Special case the call() function.
+@@ -745,10 +746,10 @@
+           break;
+ 
+         case Token.RETURN:
+-          if (n.getFirstChild() != null) {
++          if (var_1044 != null) {
+             addAction(new VariableAssignAction(
+                 (ConcreteSlot) scope.getOwnSlot(
+-                    ConcreteFunctionType.RETURN_SLOT_NAME), n.getFirstChild()));
++                    ConcreteFunctionType.RETURN_SLOT_NAME), var_1044));
+           }
+           break;
+       }

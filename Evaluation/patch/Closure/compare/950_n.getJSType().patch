@@ -1,0 +1,25 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/950_n.getJSType().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/950_n.getJSType().patch
+index 078e1e2..e780810 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/950_n.getJSType().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/950_n.getJSType().patch
+@@ -1,8 +1,8 @@
+ diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+-index 3dc8ec6..4f7a88c 100644
++index 3dc8ec6..1954498 100644
+ --- a/src/com/google/javascript/jscomp/TypeInference.java
+ +++ b/src/com/google/javascript/jscomp/TypeInference.java
+-@@ -670,10 +670,11 @@
++@@ -670,7 +670,8 @@
+    private FlowScope traverseName(Node n, FlowScope scope) {
+      String varName = n.getString();
+      Node value = n.getFirstChild();
+@@ -11,8 +11,4 @@ index 3dc8ec6..4f7a88c 100644
+ +	JSType type = var_950;
+      if (value != null) {
+        scope = traverse(value, scope);
+--      updateScopeForTypeChange(scope, n, n.getJSType() /* could be null */,
+-+      updateScopeForTypeChange(scope, n, var_950 /* could be null */,
+-           getJSType(value));
+-       return scope;
+-     } else {
++       updateScopeForTypeChange(scope, n, n.getJSType() /* could be null */,

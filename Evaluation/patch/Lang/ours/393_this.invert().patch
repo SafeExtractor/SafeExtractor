@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/lang3/math/Fraction.java b/src/main/java/org/apache/commons/lang3/math/Fraction.java
+index a722ffe..b479396 100644
+--- a/src/main/java/org/apache/commons/lang3/math/Fraction.java
++++ b/src/main/java/org/apache/commons/lang3/math/Fraction.java
+@@ -549,10 +549,11 @@
+         } else if (power == 0) {
+             return ONE;
+         } else if (power < 0) {
+-            if (power==Integer.MIN_VALUE) { // MIN_VALUE can't be negated.
+-                return this.invert().pow(2).pow(-(power/2));
++            Fraction var_393 = this.invert();
++			if (power==Integer.MIN_VALUE) { // MIN_VALUE can't be negated.
++                return var_393.pow(2).pow(-(power/2));
+             }
+-            return this.invert().pow(-power);
++            return var_393.pow(-power);
+         } else {
+             final Fraction f = this.multiplyBy(this);
+             if (power % 2 == 0) { // if even...

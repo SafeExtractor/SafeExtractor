@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/deps/JsFileLineParser.java b/src/com/google/javascript/jscomp/deps/JsFileLineParser.java
+index fcdcce0..0d8bdd9 100644
+--- a/src/com/google/javascript/jscomp/deps/JsFileLineParser.java
++++ b/src/com/google/javascript/jscomp/deps/JsFileLineParser.java
+@@ -127,7 +127,8 @@
+     lineNum = 0;
+     boolean inMultilineComment = false;
+ 
+-    try {
++    CheckLevel var_2139 = CheckLevel.ERROR;
++	try {
+       while (null != (line = lineBuffer.readLine())) {
+         ++lineNum;
+         try {
+@@ -180,7 +181,7 @@
+         } catch (ParseException e) {
+           // Inform the error handler of the exception.
+           errorManager.report(
+-              e.isFatal() ? CheckLevel.ERROR : CheckLevel.WARNING,
++              e.isFatal() ? var_2139 : CheckLevel.WARNING,
+               JSError.make(filePath, lineNum, 0 /* char offset */,
+                   e.isFatal() ? PARSE_ERROR : PARSE_WARNING,
+                   e.getMessage(), line));
+@@ -188,7 +189,7 @@
+         }
+       }
+     } catch (IOException e) {
+-      errorManager.report(CheckLevel.ERROR,
++      errorManager.report(var_2139,
+           JSError.make(filePath, 0, 0 /* char offset */,
+               PARSE_ERROR, "Error reading file: " + filePath));
+       parseSucceeded = false;

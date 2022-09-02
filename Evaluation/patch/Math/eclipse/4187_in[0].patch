@@ -1,0 +1,33 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/FastMathCalc.java b/src/main/java/org/apache/commons/math3/util/FastMathCalc.java
+index 07c0bdc..38e9be4 100644
+--- a/src/main/java/org/apache/commons/math3/util/FastMathCalc.java
++++ b/src/main/java/org/apache/commons/math3/util/FastMathCalc.java
+@@ -404,13 +404,14 @@
+         final double b = 1.0/4194304.0;
+         final double a = 1.0 - b;
+ 
+-        if (in[0] == 0.0) {
++        double var_4187 = in[0];
++		if (var_4187 == 0.0) {
+             in[0] = in[1];
+             in[1] = 0.0;
+         }
+ 
+-        result[0] = a / in[0];
+-        result[1] = (b*in[0]-a*in[1]) / (in[0]*in[0] + in[0]*in[1]);
++        result[0] = a / var_4187;
++        result[1] = (b*var_4187-a*in[1]) / (var_4187*var_4187 + var_4187*in[1]);
+ 
+         if (result[1] != result[1]) { // can happen if result[1] is NAN
+             result[1] = 0.0;
+@@ -421,8 +422,8 @@
+ 
+         for (int i = 0; i < 2; i++) {
+             /* this may be overkill, probably once is enough */
+-            double err = 1.0 - result[0] * in[0] - result[0] * in[1] -
+-            result[1] * in[0] - result[1] * in[1];
++            double err = 1.0 - result[0] * var_4187 - result[0] * in[1] -
++            result[1] * var_4187 - result[1] * in[1];
+             /*err = 1.0 - err; */
+             err = err * (result[0] + result[1]);
+             /*printf("err = %16e\n", err); */

@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SphericalCoordinates.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SphericalCoordinates.java
+index de58d7b..fbbcb8f 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SphericalCoordinates.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/SphericalCoordinates.java
+@@ -330,15 +330,16 @@
+             phiHessian = new double[3][3];
+             phiHessian[0][0] = z * (rho2r2 - x2 * r2P2rho2) / rho3r4;
+             phiHessian[1][0] = -x * y * z * r2P2rho2 / rho3r4;
+-            phiHessian[2][0] = x * (rho2 - z2) / rhor4;
++            double[] var_1591 = phiHessian[2];
++			var_1591[0] = x * (rho2 - z2) / rhor4;
+             phiHessian[1][1] = z * (rho2r2 - y2 * r2P2rho2) / rho3r4;
+-            phiHessian[2][1] = y * (rho2 - z2) / rhor4;
+-            phiHessian[2][2] = 2 * rho * zOr3 / r;
++            var_1591[1] = y * (rho2 - z2) / rhor4;
++            var_1591[2] = 2 * rho * zOr3 / r;
+ 
+             // upper-right part is symmetric
+             phiHessian[0][1] = phiHessian[1][0];
+-            phiHessian[0][2] = phiHessian[2][0];
+-            phiHessian[1][2] = phiHessian[2][1];
++            phiHessian[0][2] = var_1591[0];
++            phiHessian[1][2] = var_1591[1];
+ 
+         }
+ 

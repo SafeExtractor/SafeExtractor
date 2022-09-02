@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/ClosureRewriteClass.java b/src/com/google/javascript/jscomp/ClosureRewriteClass.java
+index 4c1fcea..91a238b 100644
+--- a/src/com/google/javascript/jscomp/ClosureRewriteClass.java
++++ b/src/com/google/javascript/jscomp/ClosureRewriteClass.java
+@@ -334,7 +334,8 @@
+                   cls.superClass.cloneTree()).srcref(cls.superClass))));
+     }
+ 
+-    for (MemberDefinition def : cls.staticProps) {
++    Node var_848 = block.getLastChild();
++	for (MemberDefinition def : cls.staticProps) {
+       // example: ctr.prop = value
+       block.addChildToBack(
+           fixupSrcref(IR.exprResult(
+@@ -344,7 +345,7 @@
+                   .srcref(def.name),
+               def.value)).setJSDocInfo(def.info))));
+       // Handle inner class definitions.
+-      maybeRewriteClassDefinition(block.getLastChild());
++      maybeRewriteClassDefinition(var_848);
+     }
+ 
+     for (MemberDefinition def : cls.props) {
+@@ -359,7 +360,7 @@
+                   .srcref(def.name),
+               def.value)).setJSDocInfo(def.info))));
+       // Handle inner class definitions.
+-      maybeRewriteClassDefinition(block.getLastChild());
++      maybeRewriteClassDefinition(var_848);
+     }
+ 
+     if (cls.classModifier != null) {

@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/rhino/Node.java b/src/com/google/javascript/rhino/Node.java
+index 55aefbe..7e21fde 100644
+--- a/src/com/google/javascript/rhino/Node.java
++++ b/src/com/google/javascript/rhino/Node.java
+@@ -469,11 +469,12 @@
+   public Node(int nodeType, Node[] children) {
+     this.type = nodeType;
+     parent = null;
+-    if (children.length != 0) {
++    int var_2555 = children.length;
++	if (var_2555 != 0) {
+       this.first = children[0];
+-      this.last = children[children.length - 1];
++      this.last = children[var_2555 - 1];
+ 
+-      for (int i = 1; i < children.length; i++) {
++      for (int i = 1; i < var_2555; i++) {
+         if (null != children[i - 1].next) {
+           // fail early on loops. implies same node in array twice
+           throw new IllegalArgumentException("duplicate child");
+@@ -482,8 +483,8 @@
+         Preconditions.checkArgument(children[i - 1].parent == null);
+         children[i - 1].parent = this;
+       }
+-      Preconditions.checkArgument(children[children.length - 1].parent == null);
+-      children[children.length - 1].parent = this;
++      Preconditions.checkArgument(children[var_2555 - 1].parent == null);
++      children[var_2555 - 1].parent = this;
+ 
+       if (null != this.last.next) {
+         // fail early on loops. implies same node in array twice

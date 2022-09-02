@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionToBlockMutator.java b/src/com/google/javascript/jscomp/FunctionToBlockMutator.java
+index 2ffddf3..facfed1 100644
+--- a/src/com/google/javascript/jscomp/FunctionToBlockMutator.java
++++ b/src/com/google/javascript/jscomp/FunctionToBlockMutator.java
+@@ -119,10 +119,11 @@
+    * @param n The node to inspect
+    */
+   private void rewriteFunctionDeclarations(Node n) {
+-    if (n.isFunction()) {
++    Node var_259 = n.getFirstChild();
++	if (n.isFunction()) {
+       if (NodeUtil.isFunctionDeclaration(n)) {
+         // Rewrite: function f() {} ==> var f = function() {}
+-        Node fnNameNode = n.getFirstChild();
++        Node fnNameNode = var_259;
+ 
+         Node name = IR.name(fnNameNode.getString()).srcref(fnNameNode);
+         Node var = IR.var(name).srcref(n);
+@@ -136,7 +137,7 @@
+       return;
+     }
+ 
+-    for (Node c = n.getFirstChild(), next; c != null; c = next) {
++    for (Node c = var_259, next; c != null; c = next) {
+       next = c.getNext(); // We may rewrite "c"
+       rewriteFunctionDeclarations(c);
+     }

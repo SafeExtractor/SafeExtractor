@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/rhino/jstype/JSType.java b/src/com/google/javascript/rhino/jstype/JSType.java
+index 11875e9..c75207c 100644
+--- a/src/com/google/javascript/rhino/jstype/JSType.java
++++ b/src/com/google/javascript/rhino/jstype/JSType.java
+@@ -943,8 +943,9 @@
+       }
+     }
+ 
+-    if (aType.isFunctionType() || bType.isFunctionType()) {
+-      JSType otherType = aType.isFunctionType() ? bType : aType;
++    boolean var_2651 = aType.isFunctionType();
++	if (var_2651 || bType.isFunctionType()) {
++      JSType otherType = var_2651 ? bType : aType;
+       // In theory, functions are comparable to anything except
+       // null/undefined. For example, on FF3:
+       // function() {} == 'function () {\n}'

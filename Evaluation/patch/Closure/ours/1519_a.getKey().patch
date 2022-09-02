@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+index 2e75bce..72fe9b0 100644
+--- a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
++++ b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+@@ -612,11 +612,12 @@
+         for (Map.Entry<String, String> b : cssNames.entrySet()) {
+           if (b.getKey().length() > 10) continue;
+           for (Map.Entry<String, String> a : cssNames.entrySet()) {
+-            String combined = cssNames.get(a.getKey() + "-" + b.getKey());
++            String var_1519 = a.getKey();
++			String combined = cssNames.get(var_1519 + "-" + b.getKey());
+             if (combined != null &&
+                 !combined.equals(a.getValue() + "-" + b.getValue())) {
+-              errors.add("map(" + a.getKey() + "-" + b.getKey() +") != map(" +
+-                         a.getKey() + ")-map(" + b.getKey() +")");
++              errors.add("map(" + var_1519 + "-" + b.getKey() +") != map(" +
++                         var_1519 + ")-map(" + b.getKey() +")");
+             }
+           }
+         }

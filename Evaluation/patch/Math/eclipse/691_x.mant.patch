@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..1a95401 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -2013,18 +2013,19 @@
+         }
+ 
+         /* Coarsely estimate the mantissa */
+-        switch (x.mant[mant.length-1] / 2000) {
++        int[] var_691 = x.mant;
++		switch (var_691[mant.length-1] / 2000) {
+             case 0:
+-                x.mant[mant.length-1] = x.mant[mant.length-1]/2+1;
++                var_691[mant.length-1] = var_691[mant.length-1]/2+1;
+                 break;
+             case 2:
+-                x.mant[mant.length-1] = 1500;
++                var_691[mant.length-1] = 1500;
+                 break;
+             case 3:
+-                x.mant[mant.length-1] = 2200;
++                var_691[mant.length-1] = 2200;
+                 break;
+             default:
+-                x.mant[mant.length-1] = 3000;
++                var_691[mant.length-1] = 3000;
+         }
+ 
+         Dfp dx = newInstance(x);

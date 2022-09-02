@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java b/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java
+index 07f397b..1aa0cdb 100644
+--- a/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java
++++ b/src/main/java/org/apache/commons/math3/optim/linear/SimplexTableau.java
+@@ -422,7 +422,8 @@
+     protected PointValuePair getSolution() {
+         int negativeVarColumn = columnLabels.indexOf(NEGATIVE_VAR_COLUMN_LABEL);
+         Integer negativeVarBasicRow = negativeVarColumn > 0 ? getBasicRow(negativeVarColumn) : null;
+-        double mostNegative = negativeVarBasicRow == null ? 0 : getEntry(negativeVarBasicRow, getRhsOffset());
++        int var_2947 = getRhsOffset();
++		double mostNegative = negativeVarBasicRow == null ? 0 : getEntry(negativeVarBasicRow, var_2947);
+ 
+         Set<Integer> basicRows = new HashSet<Integer>();
+         double[] coefficients = new double[getOriginalNumDecisionVariables()];
+@@ -445,7 +446,7 @@
+             } else {
+                 basicRows.add(basicRow);
+                 coefficients[i] =
+-                    (basicRow == null ? 0 : getEntry(basicRow, getRhsOffset())) -
++                    (basicRow == null ? 0 : getEntry(basicRow, var_2947)) -
+                     (restrictToNonNegative ? 0 : mostNegative);
+             }
+         }

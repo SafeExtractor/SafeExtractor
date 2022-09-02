@@ -1,0 +1,51 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..1d6a66c 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -290,7 +290,8 @@
+       JSDocInfo info, AstNode node, Node irNode) {
+     if (info.hasType()) {
+       boolean valid = false;
+-      switch (node.getType()) {
++      AstNode var_2240 = node.getParent();
++	switch (node.getType()) {
+         // Casts are valid
+         case com.google.javascript.rhino.head.Token.LP:
+           valid = node instanceof ParenthesizedExpression;
+@@ -306,22 +307,22 @@
+           break;
+         // Object literal properties and catch declarations are valid.
+         case com.google.javascript.rhino.head.Token.NAME:
+-          valid = node.getParent() instanceof ObjectProperty
+-              || node.getParent() instanceof CatchClause
+-              || node.getParent() instanceof FunctionNode;
++          valid = var_2240 instanceof ObjectProperty
++              || var_2240 instanceof CatchClause
++              || var_2240 instanceof FunctionNode;
+           break;
+         // Object literal properties are valid
+         case com.google.javascript.rhino.head.Token.GET:
+         case com.google.javascript.rhino.head.Token.SET:
+         case com.google.javascript.rhino.head.Token.NUMBER:
+         case com.google.javascript.rhino.head.Token.STRING:
+-          valid = node.getParent() instanceof ObjectProperty;
++          valid = var_2240 instanceof ObjectProperty;
+           break;
+ 
+         // Property assignments are valid, if at the root of an expression.
+         case com.google.javascript.rhino.head.Token.ASSIGN:
+           if (node instanceof Assignment) {
+-            valid = isExprStmt(node.getParent())
++            valid = isExprStmt(var_2240)
+                 && isPropAccess(((Assignment)node).getLeft());
+           }
+           break;
+@@ -329,7 +330,7 @@
+         // Property definitions are valid, if at the root of an expression.
+         case com.google.javascript.rhino.head.Token.GETPROP:
+         case com.google.javascript.rhino.head.Token.GETELEM:
+-          valid = isExprStmt(node.getParent());
++          valid = isExprStmt(var_2240);
+           break;
+       }
+       if (!valid) {

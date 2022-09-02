@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/ReplaceStrings.java b/src/com/google/javascript/jscomp/ReplaceStrings.java
+index 1d4ac50..9c275a1 100644
+--- a/src/com/google/javascript/jscomp/ReplaceStrings.java
++++ b/src/com/google/javascript/jscomp/ReplaceStrings.java
+@@ -306,9 +306,10 @@
+     Node replacement;
+     String key = null;
+     String replacementString;
+-    switch (expr.getType()) {
++    String var_810 = expr.getString();
++	switch (expr.getType()) {
+       case Token.STRING:
+-        key = expr.getString();
++        key = var_810;
+         replacementString = getReplacement(key);
+         replacement = IR.string(replacementString);
+         break;
+@@ -322,7 +323,7 @@
+         break;
+       case Token.NAME:
+         // If the referenced variable is a constant, use its value.
+-        Scope.Var var = t.getScope().getVar(expr.getString());
++        Scope.Var var = t.getScope().getVar(var_810);
+         if (var != null && var.isConst()) {
+           Node value = var.getInitialValue();
+           if (value != null && value.isString()) {

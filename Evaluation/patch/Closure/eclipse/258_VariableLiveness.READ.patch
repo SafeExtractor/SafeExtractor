@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 9d1b56c..9db1e27 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -427,8 +427,9 @@
+     // With a hook it is unknown which branch will run, so
+     // we must be conservative.  A read by either is a READ, and
+     // a KILL is only considered if both KILL.
+-    if (v1 == VariableLiveness.READ || v2 == VariableLiveness.READ) {
+-      return VariableLiveness.READ;
++    VariableLiveness var_258 = VariableLiveness.READ;
++	if (v1 == var_258 || v2 == var_258) {
++      return var_258;
+     } else if (v1 == VariableLiveness.KILL && v2 == VariableLiveness.KILL) {
+       return VariableLiveness.KILL;
+     } else {

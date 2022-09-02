@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..32ca536 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -609,13 +609,14 @@
+ 
+     // Similar to handBreak's logic with a few minor variation.
+     Node parent = node.getParent();
+-    for (cur = node, lastJump = node;
++    Branch var_1910 = Branch.UNCOND;
++	for (cur = node, lastJump = node;
+         !isContinueTarget(cur, parent, label);
+         cur = parent, parent = parent.getParent()) {
+       if (cur.isTry() && NodeUtil.hasFinally(cur)
+           && cur.getLastChild() != previous) {
+         if (lastJump == node) {
+-          createEdge(lastJump, Branch.UNCOND, cur.getLastChild());
++          createEdge(lastJump, var_1910, cur.getLastChild());
+         } else {
+           finallyMap.put(lastJump, computeFallThrough(cur.getLastChild()));
+         }
+@@ -630,7 +631,7 @@
+     }
+ 
+     if (lastJump == node) {
+-      createEdge(node, Branch.UNCOND, iter);
++      createEdge(node, var_1910, iter);
+     } else {
+       finallyMap.put(lastJump, iter);
+     }

@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+index 4c20a64..690070a 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpDec.java
+@@ -213,7 +213,8 @@
+         mant[lsd] = lsb / lsbthreshold * lsbthreshold;
+ 
+         final boolean inc;
+-        switch (getField().getRoundingMode()) {
++        DfpField var_750 = getField();
++		switch (var_750.getRoundingMode()) {
+             case ROUND_DOWN:
+                 inc = false;
+                 break;
+@@ -270,19 +271,19 @@
+         // Check for exceptional cases and raise signals if necessary
+         if (exp < MIN_EXP) {
+             // Gradual Underflow
+-            getField().setIEEEFlagsBits(DfpField.FLAG_UNDERFLOW);
++            var_750.setIEEEFlagsBits(DfpField.FLAG_UNDERFLOW);
+             return DfpField.FLAG_UNDERFLOW;
+         }
+ 
+         if (exp > MAX_EXP) {
+             // Overflow
+-            getField().setIEEEFlagsBits(DfpField.FLAG_OVERFLOW);
++            var_750.setIEEEFlagsBits(DfpField.FLAG_OVERFLOW);
+             return DfpField.FLAG_OVERFLOW;
+         }
+ 
+         if (n != 0 || discarded != 0) {
+             // Inexact
+-            getField().setIEEEFlagsBits(DfpField.FLAG_INEXACT);
++            var_750.setIEEEFlagsBits(DfpField.FLAG_INEXACT);
+             return DfpField.FLAG_INEXACT;
+         }
+         return 0;

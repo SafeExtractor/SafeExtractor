@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/compress/changes/ChangeSetPerformer.java b/src/main/java/org/apache/commons/compress/changes/ChangeSetPerformer.java
+index 1b7d43a..b1a725e 100644
+--- a/src/main/java/org/apache/commons/compress/changes/ChangeSetPerformer.java
++++ b/src/main/java/org/apache/commons/compress/changes/ChangeSetPerformer.java
+@@ -80,16 +80,17 @@
+             for (Iterator it = workingSet.iterator(); it.hasNext();) {
+                 Change change = (Change) it.next();
+ 
+-                if (change.type() == Change.TYPE_DELETE && 
+-                    entry.getName() != null) {
+-                    if (entry.getName().equals(change.targetFile())) {
++                String name = entry.getName();
++				if (change.type() == Change.TYPE_DELETE && 
++                    name != null) {
++                    if (name.equals(change.targetFile())) {
+                         copy = false;
+                         it.remove();
+                         break;
+                     }
+                 } else if(change.type() == Change.TYPE_DELETE_DIR && 
+-                          entry.getName() != null) {
+-                    if (entry.getName().matches(
++                          name != null) {
++                    if (name.matches(
+                             change.targetFile() + "/.*")) {
+                         copy = false;
+                         break;

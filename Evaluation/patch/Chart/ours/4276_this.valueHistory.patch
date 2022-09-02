@@ -1,0 +1,31 @@
+diff --git a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+index 067e1df..eaac60e 100644
+--- a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
++++ b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+@@ -447,21 +447,22 @@
+     public void addValue(int seriesNumber, int index, float value) {
+ 
+         invalidateRangeInfo();
+-        if (seriesNumber >= this.valueHistory.length) {
++        ValueSequence[] var_4276 = this.valueHistory;
++		if (seriesNumber >= var_4276.length) {
+             throw new IllegalArgumentException(
+                 "TimeSeriesDataset.addValue(): series #"
+                 + seriesNumber + "unspecified in c'tor"
+             );
+         }
+-        if (this.valueHistory[seriesNumber] == null) {
+-            this.valueHistory[seriesNumber]
++        if (var_4276[seriesNumber] == null) {
++            var_4276[seriesNumber]
+                 = new ValueSequence(this.historyCount);
+             this.seriesCount++;
+         }
+         // But if that series array already exists, just overwrite its contents
+         //synchronized(this)
+         //{
+-            this.valueHistory[seriesNumber].enterData(index, value);
++            var_4276[seriesNumber].enterData(index, value);
+         //}
+         fireSeriesChanged();
+     }

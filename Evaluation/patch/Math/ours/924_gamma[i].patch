@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java b/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java
+index cc7b318..8b7176b 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java
++++ b/src/main/java/org/apache/commons/math3/distribution/fitting/MultivariateNormalMixtureExpectationMaximization.java
+@@ -200,11 +200,12 @@
+                 sumLogLikelihood += Math.log(rowDensity);
+ 
+                 for (int j = 0; j < k; j++) {
+-                    gamma[i][j] = weights[j] * mvns[j].density(data[i]) / rowDensity;
+-                    gammaSums[j] += gamma[i][j];
++                    double[] var_924 = gamma[i];
++					var_924[j] = weights[j] * mvns[j].density(data[i]) / rowDensity;
++                    gammaSums[j] += var_924[j];
+ 
+                     for (int col = 0; col < numCols; col++) {
+-                        gammaDataProdSums[j][col] += gamma[i][j] * data[i][col];
++                        gammaDataProdSums[j][col] += var_924[j] * data[i][col];
+                     }
+                 }
+             }

@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/random/ISAACRandom.java b/src/main/java/org/apache/commons/math3/random/ISAACRandom.java
+index 396d56c..01f2c97 100644
+--- a/src/main/java/org/apache/commons/math3/random/ISAACRandom.java
++++ b/src/main/java/org/apache/commons/math3/random/ISAACRandom.java
+@@ -229,11 +229,12 @@
+ 
+     /** Shuffle array. */
+     private void shuffle() {
+-        arr[0] ^= arr[1] << 11;
++        int var_3635 = arr[1];
++		arr[0] ^= var_3635 << 11;
+         arr[3] += arr[0];
+         arr[1] += arr[2];
+         arr[1] ^= arr[2] >>> 2;
+-        arr[4] += arr[1];
++        arr[4] += var_3635;
+         arr[2] += arr[3];
+         arr[2] ^= arr[3] << 8;
+         arr[5] += arr[2];
+@@ -252,7 +253,7 @@
+         arr[7] += arr[0];
+         arr[7] ^= arr[0] >>> 9;
+         arr[2] += arr[7];
+-        arr[0] += arr[1];
++        arr[0] += var_3635;
+     }
+ 
+     /** Set the state by copying the internal arrays.

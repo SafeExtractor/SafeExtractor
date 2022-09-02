@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/data/xy/DefaultXYZDataset.java b/source/org/jfree/data/xy/DefaultXYZDataset.java
+index 4d5e497..c24e694 100644
+--- a/source/org/jfree/data/xy/DefaultXYZDataset.java
++++ b/source/org/jfree/data/xy/DefaultXYZDataset.java
+@@ -311,13 +311,14 @@
+                     + "three arrays all having the same length.");
+         }
+         int seriesIndex = indexOf(seriesKey);
+-        if (seriesIndex == -1) {  // add a new series
++        List var_4417 = this.seriesList;
++		if (seriesIndex == -1) {  // add a new series
+             this.seriesKeys.add(seriesKey);
+-            this.seriesList.add(data);
++            var_4417.add(data);
+         }
+         else {  // replace an existing series
+-            this.seriesList.remove(seriesIndex);
+-            this.seriesList.add(seriesIndex, data);
++            var_4417.remove(seriesIndex);
++            var_4417.add(seriesIndex, data);
+         }
+         fireDatasetChanged(new DatasetChangeInfo());
+         //TODO: fill in real change info

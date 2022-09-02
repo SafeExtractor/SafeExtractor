@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java b/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java
+index b3412e0..fa4471e 100644
+--- a/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java
+@@ -236,11 +236,12 @@
+              * applying the Householder transformations Q_(m-1),Q_(m-2),...,Q1 in
+              * succession to the result
+              */
+-            for (int minor = m - 1; minor >= FastMath.min(m, n); minor--) {
++            int var_2174 = FastMath.min(m, n);
++			for (int minor = m - 1; minor >= var_2174; minor--) {
+                 qta[minor][minor] = 1.0d;
+             }
+ 
+-            for (int minor = FastMath.min(m, n)-1; minor >= 0; minor--){
++            for (int minor = var_2174-1; minor >= 0; minor--){
+                 final double[] qrtMinor = qrt[minor];
+                 qta[minor][minor] = 1.0d;
+                 if (qrtMinor[minor] != 0.0) {

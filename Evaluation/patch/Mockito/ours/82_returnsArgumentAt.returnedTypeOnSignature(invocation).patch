@@ -1,0 +1,17 @@
+diff --git a/src/org/mockito/internal/stubbing/answers/AnswersValidator.java b/src/org/mockito/internal/stubbing/answers/AnswersValidator.java
+index ea12b44..bce8445 100644
+--- a/src/org/mockito/internal/stubbing/answers/AnswersValidator.java
++++ b/src/org/mockito/internal/stubbing/answers/AnswersValidator.java
+@@ -40,9 +40,10 @@
+         returnsArgumentAt.validateIndexWithinInvocationRange(invocation);
+ 
+         MethodInfo methodInfo = new MethodInfo(invocation);
+-        if (!methodInfo.isValidReturnType(returnsArgumentAt.returnedTypeOnSignature(invocation))) {
++        Class var_82 = returnsArgumentAt.returnedTypeOnSignature(invocation);
++		if (!methodInfo.isValidReturnType(var_82)) {
+             new Reporter().wrongTypeOfArgumentToReturn(invocation, methodInfo.printMethodReturnType(),
+-                    returnsArgumentAt.returnedTypeOnSignature(invocation),
++                    var_82,
+                     returnsArgumentAt.wantedArgumentPosition());
+         }
+ 

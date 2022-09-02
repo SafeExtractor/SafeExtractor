@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/DisambiguateProperties.java b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+index c64c178..2da78d3 100644
+--- a/src/com/google/javascript/jscomp/DisambiguateProperties.java
++++ b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+@@ -897,9 +897,10 @@
+     @Override public JSType getInstanceFromPrototype(JSType type) {
+       if (type.isFunctionPrototypeType()) {
+         ObjectType prototype = (ObjectType) type;
+-        FunctionType owner = prototype.getOwnerFunction();
++        FunctionType var_888 = prototype.getOwnerFunction();
++		FunctionType owner = var_888;
+         if (owner.isConstructor() || owner.isInterface()) {
+-          return prototype.getOwnerFunction().getInstanceType();
++          return var_888.getInstanceType();
+         }
+       }
+       return null;

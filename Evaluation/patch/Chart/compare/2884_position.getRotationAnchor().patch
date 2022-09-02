@@ -1,0 +1,44 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2884_position.getRotationAnchor().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/2884_position.getRotationAnchor().patch
+index 6b0db73..3eadac7 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2884_position.getRotationAnchor().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/2884_position.getRotationAnchor().patch
+@@ -1,5 +1,5 @@
+ diff --git a/source/org/jfree/chart/renderer/xy/XYBarRenderer.java b/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
+-index 679cc20..47fbdf7 100644
++index 679cc20..33566d1 100644
+ --- a/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
+ +++ b/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
+ @@ -128,6 +128,7 @@
+@@ -10,14 +10,13 @@ index 679cc20..47fbdf7 100644
+  import org.jfree.chart.text.TextUtilities;
+  import org.jfree.chart.util.GradientPaintTransformer;
+  import org.jfree.chart.util.ObjectUtilities;
+-@@ -1042,11 +1043,12 @@
+-         Point2D anchorPoint = calculateLabelAnchorPoint(
++@@ -1043,10 +1044,11 @@
+                  position.getItemLabelAnchor(), bar, plot.getOrientation());
+  
+--        if (isInternalAnchor(position.getItemLabelAnchor())) {
+-+        TextAnchor var_2884 = position.getRotationAnchor();
+-+		if (isInternalAnchor(position.getItemLabelAnchor())) {
+-             Shape bounds = TextUtilities.calculateRotatedStringBounds(label,
++         if (isInternalAnchor(position.getItemLabelAnchor())) {
++-            Shape bounds = TextUtilities.calculateRotatedStringBounds(label,
+++            TextAnchor var_2884 = position.getRotationAnchor();
+++			Shape bounds = TextUtilities.calculateRotatedStringBounds(label,
+                      g2, (float) anchorPoint.getX(), (float) anchorPoint.getY(),
+                      position.getTextAnchor(), position.getAngle(),
+ -                    position.getRotationAnchor());
+@@ -25,12 +24,3 @@ index 679cc20..47fbdf7 100644
+  
+              if (bounds != null) {
+                  if (!bar.contains(bounds.getBounds2D())) {
+-@@ -1070,7 +1072,7 @@
+-             TextUtilities.drawRotatedString(label, g2,
+-                     (float) anchorPoint.getX(), (float) anchorPoint.getY(),
+-                     position.getTextAnchor(), position.getAngle(),
+--                    position.getRotationAnchor());
+-+                    var_2884);
+-         }
+-     }
+- 

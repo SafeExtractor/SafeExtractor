@@ -1,0 +1,52 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/1793_SerialUtilities.readStroke(stream).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/1793_SerialUtilities.readStroke(stream).patch
+index 72eea26..a0dc44b 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/1793_SerialUtilities.readStroke(stream).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/1793_SerialUtilities.readStroke(stream).patch
+@@ -1,41 +1,14 @@
+ diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+-index cc18077..1e3a7c3 100644
++index cc18077..b742524 100644
+ --- a/source/org/jfree/chart/plot/XYPlot.java
+ +++ b/source/org/jfree/chart/plot/XYPlot.java
+-@@ -5768,19 +5768,20 @@
+-         throws IOException, ClassNotFoundException {
+- 
++@@ -5770,7 +5770,8 @@
+          stream.defaultReadObject();
+--        this.domainGridlineStroke = SerialUtilities.readStroke(stream);
+-+        Stroke var_1793 = SerialUtilities.readStroke(stream);
+-+		this.domainGridlineStroke = var_1793;
++         this.domainGridlineStroke = SerialUtilities.readStroke(stream);
+          this.domainGridlinePaint = SerialUtilities.readPaint(stream);
+ -        this.rangeGridlineStroke = SerialUtilities.readStroke(stream);
+-+        this.rangeGridlineStroke = var_1793;
+++        Stroke var_1793 = SerialUtilities.readStroke(stream);
+++		this.rangeGridlineStroke = var_1793;
+          this.rangeGridlinePaint = SerialUtilities.readPaint(stream);
+--        this.domainMinorGridlineStroke = SerialUtilities.readStroke(stream);
+-+        this.domainMinorGridlineStroke = var_1793;
++         this.domainMinorGridlineStroke = SerialUtilities.readStroke(stream);
+          this.domainMinorGridlinePaint = SerialUtilities.readPaint(stream);
+--        this.rangeMinorGridlineStroke = SerialUtilities.readStroke(stream);
+-+        this.rangeMinorGridlineStroke = var_1793;
+-         this.rangeMinorGridlinePaint = SerialUtilities.readPaint(stream);
+--        this.rangeZeroBaselineStroke = SerialUtilities.readStroke(stream);
+-+        this.rangeZeroBaselineStroke = var_1793;
+-         this.rangeZeroBaselinePaint = SerialUtilities.readPaint(stream);
+--        this.domainCrosshairStroke = SerialUtilities.readStroke(stream);
+-+        this.domainCrosshairStroke = var_1793;
+-         this.domainCrosshairPaint = SerialUtilities.readPaint(stream);
+--        this.rangeCrosshairStroke = SerialUtilities.readStroke(stream);
+-+        this.rangeCrosshairStroke = var_1793;
+-         this.rangeCrosshairPaint = SerialUtilities.readPaint(stream);
+-         this.domainTickBandPaint = SerialUtilities.readPaint(stream);
+-         this.rangeTickBandPaint = SerialUtilities.readPaint(stream);
+-@@ -5790,7 +5791,7 @@
+-             this.quadrantPaint[i] = SerialUtilities.readPaint(stream);
+-         }
+- 
+--        this.domainZeroBaselineStroke = SerialUtilities.readStroke(stream);
+-+        this.domainZeroBaselineStroke = var_1793;
+-         this.domainZeroBaselinePaint = SerialUtilities.readPaint(stream);
+- 
+-         // register the plot as a listener with its axes, datasets, and

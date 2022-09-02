@@ -1,0 +1,36 @@
+diff --git a/src/main/java/org/apache/commons/math3/transform/FastFourierTransformer.java b/src/main/java/org/apache/commons/math3/transform/FastFourierTransformer.java
+index 22d8a3d..3da7ff8 100644
+--- a/src/main/java/org/apache/commons/math3/transform/FastFourierTransformer.java
++++ b/src/main/java/org/apache/commons/math3/transform/FastFourierTransformer.java
+@@ -461,7 +461,8 @@
+ 
+         int[] dimensionSize = mdcm.getDimensionSizes();
+         //if done
+-        if (subVector.length == dimensionSize.length) {
++        int var_4070 = subVector.length;
++		if (var_4070 == dimensionSize.length) {
+             Complex[] temp = new Complex[dimensionSize[d]];
+             for (int i = 0; i < dimensionSize[d]; i++) {
+                 //fft along dimension d
+@@ -476,16 +477,16 @@
+                 mdcm.set(temp[i], subVector);
+             }
+         } else {
+-            int[] vector = new int[subVector.length + 1];
+-            System.arraycopy(subVector, 0, vector, 0, subVector.length);
+-            if (subVector.length == d) {
++            int[] vector = new int[var_4070 + 1];
++            System.arraycopy(subVector, 0, vector, 0, var_4070);
++            if (var_4070 == d) {
+                 //value is not important once the recursion is done.
+                 //then an fft will be applied along the dimension d.
+                 vector[d] = 0;
+                 mdfft(mdcm, type, d, vector);
+             } else {
+-                for (int i = 0; i < dimensionSize[subVector.length]; i++) {
+-                    vector[subVector.length] = i;
++                for (int i = 0; i < dimensionSize[var_4070]; i++) {
++                    vector[var_4070] = i;
+                     //further split along the next dimension
+                     mdfft(mdcm, type, d, vector);
+                 }

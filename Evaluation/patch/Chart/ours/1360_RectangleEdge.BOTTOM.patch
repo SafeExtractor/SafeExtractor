@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/plot/FastScatterPlot.java b/source/org/jfree/chart/plot/FastScatterPlot.java
+index c5a3b1d..5950f3e 100644
+--- a/source/org/jfree/chart/plot/FastScatterPlot.java
++++ b/source/org/jfree/chart/plot/FastScatterPlot.java
+@@ -546,8 +546,9 @@
+         insets.trim(area);
+ 
+         AxisSpace space = new AxisSpace();
+-        space = this.domainAxis.reserveSpace(g2, this, area,
+-                RectangleEdge.BOTTOM, space);
++        RectangleEdge var_1360 = RectangleEdge.BOTTOM;
++		space = this.domainAxis.reserveSpace(g2, this, area,
++                var_1360, space);
+         space = this.rangeAxis.reserveSpace(g2, this, area, RectangleEdge.LEFT,
+                 space);
+         Rectangle2D dataArea = space.shrink(area, null);
+@@ -560,7 +561,7 @@
+         drawBackground(g2, dataArea);
+ 
+         AxisState domainAxisState = this.domainAxis.draw(g2,
+-                dataArea.getMaxY(), area, dataArea, RectangleEdge.BOTTOM, info);
++                dataArea.getMaxY(), area, dataArea, var_1360, info);
+         AxisState rangeAxisState = this.rangeAxis.draw(g2, dataArea.getMinX(),
+                 area, dataArea, RectangleEdge.LEFT, info);
+         drawDomainGridlines(g2, dataArea, domainAxisState.getTicks());

@@ -1,0 +1,27 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/408_object.getClass().patch b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/408_object.getClass().patch
+index bc37677..e69de29 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/408_object.getClass().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/408_object.getClass().patch
+@@ -1,22 +0,0 @@
+-diff --git a/src/main/java/org/joda/time/convert/ConverterManager.java b/src/main/java/org/joda/time/convert/ConverterManager.java
+-index 0b029aa..fa3eaa1 100644
+---- a/src/main/java/org/joda/time/convert/ConverterManager.java
+-+++ b/src/main/java/org/joda/time/convert/ConverterManager.java
+-@@ -157,13 +157,14 @@
+-      * equally well
+-      */
+-     public InstantConverter getInstantConverter(Object object) {
+--        InstantConverter converter =
+--            (InstantConverter)iInstantConverters.select(object == null ? null : object.getClass());
+-+        Class<? extends Object> var_408 = object.getClass();
+-+		InstantConverter converter =
+-+            (InstantConverter)iInstantConverters.select(object == null ? null : var_408);
+-         if (converter != null) {
+-             return converter;
+-         }
+-         throw new IllegalArgumentException("No instant converter found for type: " +
+--            (object == null ? "null" : object.getClass().getName()));
+-+            (object == null ? "null" : var_408.getName()));
+-     }
+-     
+-     //-----------------------------------------------------------------------

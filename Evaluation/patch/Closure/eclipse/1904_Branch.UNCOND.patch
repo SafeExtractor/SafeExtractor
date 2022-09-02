@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..96f7273 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -500,10 +500,11 @@
+       child = child.getNext();
+     }
+ 
+-    if (child != null) {
+-      createEdge(node, Branch.UNCOND, computeFallThrough(child));
++    Branch var_1904 = Branch.UNCOND;
++	if (child != null) {
++      createEdge(node, var_1904, computeFallThrough(child));
+     } else {
+-      createEdge(node, Branch.UNCOND, computeFollowNode(node, this));
++      createEdge(node, var_1904, computeFollowNode(node, this));
+     }
+ 
+     // Synthetic blocks

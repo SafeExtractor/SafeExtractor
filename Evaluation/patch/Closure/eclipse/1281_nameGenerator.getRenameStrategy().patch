@@ -1,0 +1,34 @@
+diff --git a/src/com/google/javascript/jscomp/ReplaceIdGenerators.java b/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
+index c6e4271..23669b5 100644
+--- a/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
++++ b/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
+@@ -246,14 +246,15 @@
+         return;
+       }
+ 
+-      if (!t.inGlobalScope() &&
+-          nameGenerator.getRenameStrategy() == RenameStrategy.INCONSISTENT) {
++      RenameStrategy var_1281 = nameGenerator.getRenameStrategy();
++	if (!t.inGlobalScope() &&
++          var_1281 == RenameStrategy.INCONSISTENT) {
+         // Warn about calls not in the global scope.
+         compiler.report(t.makeError(n, NON_GLOBAL_ID_GENERATOR_CALL));
+         return;
+       }
+ 
+-      if (nameGenerator.getRenameStrategy() == RenameStrategy.INCONSISTENT) {
++      if (var_1281 == RenameStrategy.INCONSISTENT) {
+         for (Node ancestor : n.getAncestors()) {
+           if (NodeUtil.isControlStructure(ancestor)) {
+             // Warn about conditional calls.
+@@ -275,8 +276,8 @@
+ 
+       String name = id.getString();
+       String instanceId = getIdForGeneratorNode(
+-          nameGenerator.getRenameStrategy() == RenameStrategy.CONSISTENT, id);
+-      if (nameGenerator.getRenameStrategy() == RenameStrategy.CONSISTENT) {
++          var_1281 == RenameStrategy.CONSISTENT, id);
++      if (var_1281 == RenameStrategy.CONSISTENT) {
+         Map<String, String> entry = consistNameMap.get(callName);
+         rename = entry.get(instanceId);
+         if (rename == null) {

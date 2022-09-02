@@ -1,0 +1,20 @@
+diff --git a/src/org/mockito/internal/stubbing/defaultanswers/ForwardsInvocations.java b/src/org/mockito/internal/stubbing/defaultanswers/ForwardsInvocations.java
+index df86442..ad95879 100644
+--- a/src/org/mockito/internal/stubbing/defaultanswers/ForwardsInvocations.java
++++ b/src/org/mockito/internal/stubbing/defaultanswers/ForwardsInvocations.java
+@@ -53,12 +53,13 @@
+     }
+ 
+     private Method getDelegateMethod(Method mockMethod) throws NoSuchMethodException {
+-        if (mockMethod.getDeclaringClass().isAssignableFrom(delegatedObject.getClass())) {
++        Class<? extends Object> var_97 = delegatedObject.getClass();
++		if (mockMethod.getDeclaringClass().isAssignableFrom(var_97)) {
+             // Compatible class. Return original method.
+             return mockMethod;
+         } else {
+             // Return method of delegate object with the same signature as mockMethod.
+-            return delegatedObject.getClass().getMethod(mockMethod.getName(), mockMethod.getParameterTypes());
++            return var_97.getMethod(mockMethod.getName(), mockMethod.getParameterTypes());
+         }
+     }
+ 

@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/lang3/math/Fraction.java b/src/main/java/org/apache/commons/lang3/math/Fraction.java
+index a722ffe..8b3858e 100644
+--- a/src/main/java/org/apache/commons/lang3/math/Fraction.java
++++ b/src/main/java/org/apache/commons/lang3/math/Fraction.java
+@@ -802,11 +802,12 @@
+         }
+         // knuth 4.5.1
+         // make sure we don't overflow unless the result *must* overflow.
+-        final int d1 = greatestCommonDivisor(numerator, fraction.denominator);
++        int var_400 = fraction.denominator;
++		final int d1 = greatestCommonDivisor(numerator, var_400);
+         final int d2 = greatestCommonDivisor(fraction.numerator, denominator);
+         return getReducedFraction
+             (mulAndCheck(numerator/d1, fraction.numerator/d2),
+-             mulPosAndCheck(denominator/d2, fraction.denominator/d1));
++             mulPosAndCheck(denominator/d2, var_400/d1));
+     }
+ 
+     /**

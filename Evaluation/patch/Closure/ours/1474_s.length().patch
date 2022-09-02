@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..eacb4b5 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -1644,7 +1644,8 @@
+     StringBuilder sb = null;
+     int pos = 0;
+     boolean isEscaped = false, inCharset = false;
+-    for (int i = 0; i < s.length(); ++i) {
++    int var_1474 = s.length();
++	for (int i = 0; i < var_1474; ++i) {
+       char ch = s.charAt(i);
+       switch (ch) {
+         case '\\':
+@@ -1658,7 +1659,7 @@
+           //     new RegExp('\\/') -> /\//
+           //     new RegExp('[/]') -> /[/]/
+           if (!isEscaped && !inCharset) {
+-            if (null == sb) { sb = new StringBuilder(s.length() + 16); }
++            if (null == sb) { sb = new StringBuilder(var_1474 + 16); }
+             sb.append(s, pos, i).append('\\');
+             pos = i;
+           }
+@@ -1681,7 +1682,7 @@
+           //     new RegExp('\n')
+           // reaches here, the quoting has been removed.
+           // Requote just these code-points.
+-          if (null == sb) { sb = new StringBuilder(s.length() + 16); }
++          if (null == sb) { sb = new StringBuilder(var_1474 + 16); }
+           if (isEscaped) {
+             sb.append(s, pos, i - 1);
+           } else {
+@@ -1701,7 +1702,7 @@
+ 
+     if (null == sb) { return n.cloneTree(); }
+ 
+-    sb.append(s, pos, s.length());
++    sb.append(s, pos, var_1474);
+     return IR.string(sb.toString()).srcref(n);
+   }
+ 

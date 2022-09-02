@@ -1,0 +1,50 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..e305a4f 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -1132,7 +1132,8 @@
+     switch (n.getType()) {
+       case Token.NOT:
+         Node first = n.getFirstChild();
+-        switch (first.getType()) {
++        final int var_1462 = Token.AND;
++		switch (first.getType()) {
+           case Token.NOT: {
+               Node newRoot = first.removeFirstChild();
+               parent.replaceChild(n, newRoot);
+@@ -1141,7 +1142,7 @@
+               // NOT children are handled below.
+               return newRoot;
+             }
+-          case Token.AND:
++          case var_1462:
+           case Token.OR: {
+               // !(!x && !y) --> x || y
+               // !(!x || !y) --> x && y
+@@ -1185,7 +1186,7 @@
+                 right = IR.not(rightParent).srcref(rightParent);
+               }
+ 
+-              int newOp = (first.isAnd()) ? Token.OR : Token.AND;
++              int newOp = (first.isAnd()) ? Token.OR : var_1462;
+               Node newRoot = new Node(newOp, left, right);
+               parent.replaceChild(n, newRoot);
+               reportCodeChange();
+@@ -1207,7 +1208,7 @@
+         return n;
+ 
+       case Token.OR:
+-      case Token.AND: {
++      case var_1462: {
+         Node left = n.getFirstChild();
+         Node right = n.getLastChild();
+ 
+@@ -1231,7 +1232,7 @@
+           // (x || FALSE) => x
+           // (x && TRUE) => x
+           if (type == Token.OR && !rval ||
+-              type == Token.AND && rval) {
++              type == var_1462 && rval) {
+             replacement = left;
+           } else if (!mayHaveSideEffects(left)) {
+             replacement = right;

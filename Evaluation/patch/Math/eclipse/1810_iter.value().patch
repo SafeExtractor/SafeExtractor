@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java b/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+index 55d2b6a..32c339c 100644
+--- a/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
++++ b/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+@@ -641,10 +641,11 @@
+         while (iter.hasNext()) {
+             iter.advance();
+             int key = iter.key();
+-            if (entries.containsKey(key)) {
+-                res.setEntry(key, entries.get(key) - iter.value());
++            double var_1810 = iter.value();
++			if (entries.containsKey(key)) {
++                res.setEntry(key, entries.get(key) - var_1810);
+             } else {
+-                res.setEntry(key, -iter.value());
++                res.setEntry(key, -var_1810);
+             }
+         }
+         return res;

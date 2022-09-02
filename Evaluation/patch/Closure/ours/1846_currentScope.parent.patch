@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/LinkedFlowScope.java b/src/com/google/javascript/jscomp/LinkedFlowScope.java
+index a97d855..8c09a68 100644
+--- a/src/com/google/javascript/jscomp/LinkedFlowScope.java
++++ b/src/com/google/javascript/jscomp/LinkedFlowScope.java
+@@ -183,10 +183,11 @@
+     for (LinkedFlowScope currentScope = this;
+          currentScope != blindScope;
+          currentScope = currentScope.parent) {
+-      for (LinkedFlowSlot currentSlot = currentScope.lastSlot;
++      LinkedFlowScope var_1846 = currentScope.parent;
++	for (LinkedFlowSlot currentSlot = currentScope.lastSlot;
+            currentSlot != null &&
+-           (currentScope.parent == null ||
+-            currentScope.parent.lastSlot != currentSlot);
++           (var_1846 == null ||
++            var_1846.lastSlot != currentSlot);
+            currentSlot = currentSlot.parent) {
+         if (result == null) {
+           result = currentSlot;

@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/axis/LogarithmicAxis.java b/source/org/jfree/chart/axis/LogarithmicAxis.java
+index 1f440bd..7f7125c 100644
+--- a/source/org/jfree/chart/axis/LogarithmicAxis.java
++++ b/source/org/jfree/chart/axis/LogarithmicAxis.java
+@@ -889,7 +889,8 @@
+         double lowerBoundVal = getRange().getLowerBound();
+         //if small log values and lower bound value too small
+         // then set to a small value (don't allow <= 0):
+-        if (this.smallLogFlag && lowerBoundVal < SMALL_LOG_VALUE) {
++        boolean var_460 = this.smallLogFlag;
++		if (var_460 && lowerBoundVal < SMALL_LOG_VALUE) {
+             lowerBoundVal = SMALL_LOG_VALUE;
+         }
+         //get upper bound value
+@@ -919,7 +920,7 @@
+ 
+             for (int j = 0; j < jEndCount; j++) {
+                 //for each tick to be displayed
+-                if (this.smallLogFlag) {
++                if (var_460) {
+                     //small log values in use
+                     tickVal = Math.pow(10, i) + (Math.pow(10, i) * j);
+                     if (j == 0) {

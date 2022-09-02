@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..5692a88 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -169,8 +169,9 @@
+         continue;
+       }
+ 
+-      if (name.globalSets == 1 && name.localSets == 0 &&
+-          name.aliasingGets > 0) {
++      int var_707 = name.aliasingGets;
++	if (name.globalSets == 1 && name.localSets == 0 &&
++          var_707 > 0) {
+         // {@code name} meets condition (b). Find all of its local aliases
+         // and try to inline them.
+         List<Ref> refs = Lists.newArrayList(name.getRefs());
+@@ -188,7 +189,7 @@
+       // local-alias-inlining above.
+       if ((name.type == Name.Type.OBJECTLIT ||
+            name.type == Name.Type.FUNCTION) &&
+-          name.aliasingGets == 0 && name.props != null) {
++          var_707 == 0 && name.props != null) {
+         // All of {@code name}'s children meet condition (a), so they can be
+         // added to the worklist.
+         workList.addAll(name.props);

@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+index c837709..c805de4 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+@@ -420,9 +420,10 @@
+             final int[] arindex = sortedIndices(fitness);
+             // Calculate new xmean, this is selection and recombination
+             final RealMatrix xold = xmean; // for speed up of Eq. (2) and (3)
+-            final RealMatrix bestArx = selectColumns(arx, MathArrays.copyOf(arindex, mu));
++            int[] var_3003 = MathArrays.copyOf(arindex, mu);
++			final RealMatrix bestArx = selectColumns(arx, var_3003);
+             xmean = bestArx.multiply(weights);
+-            final RealMatrix bestArz = selectColumns(arz, MathArrays.copyOf(arindex, mu));
++            final RealMatrix bestArz = selectColumns(arz, var_3003);
+             final RealMatrix zmean = bestArz.multiply(weights);
+             final boolean hsig = updateEvolutionPaths(zmean, xold);
+             if (diagonalOnly <= 0) {

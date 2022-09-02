@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+index 6219d26..171bff9 100644
+--- a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
++++ b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+@@ -514,12 +514,13 @@
+       Node callbackParams = NodeUtil.getFunctionParameters(functionRoot);
+       Node param = callbackParams.getFirstChild();
+       if (param != null) {
+-        Preconditions.checkState(param.isName());
++        boolean var_1157 = param.isName();
++		Preconditions.checkState(var_1157);
+         keyString = param.getString();
+ 
+         param = param.getNext();
+         if (param != null) {
+-          Preconditions.checkState(param.isName());
++          Preconditions.checkState(var_1157);
+           valueString = param.getString();
+         }
+       }

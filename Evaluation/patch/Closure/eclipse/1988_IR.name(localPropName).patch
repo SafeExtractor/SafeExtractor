@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/AliasExternals.java b/src/com/google/javascript/jscomp/AliasExternals.java
+index fc43f34..897cd8a 100644
+--- a/src/com/google/javascript/jscomp/AliasExternals.java
++++ b/src/com/google/javascript/jscomp/AliasExternals.java
+@@ -418,13 +418,14 @@
+     String localPropName = getMutatorFor(propName) + "$a";
+     String localValueName = getMutatorFor(propName) + "$b";
+     // Create the function and append to front of output tree
+-    Node fnNode = IR.function(
++    Node var_1988 = IR.name(localPropName);
++	Node fnNode = IR.function(
+         IR.name(functionName),
+-        IR.paramList(IR.name(localPropName), IR.name(localValueName)),
++        IR.paramList(var_1988, IR.name(localValueName)),
+         IR.block(
+             IR.returnNode(
+                 IR.assign(
+-                    IR.getprop(IR.name(localPropName), IR.string(propName)),
++                    IR.getprop(var_1988, IR.string(propName)),
+                     IR.name(localValueName)))));
+     root.addChildToFront(fnNode);
+ 

@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..1379af6 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -523,8 +523,9 @@
+             return x.newInstance(one);
+         }
+ 
+-        if (y.equals(one)) {
+-            if (x.isNaN()) {
++        boolean var_808 = x.isNaN();
++		if (y.equals(one)) {
++            if (var_808) {
+                 // Test for NaNs
+                 x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+                 return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x);
+@@ -532,7 +533,7 @@
+             return x;
+         }
+ 
+-        if (x.isNaN() || y.isNaN()) {
++        if (var_808 || y.isNaN()) {
+             // Test for NaNs
+             x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+             return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x.newInstance((byte)1, Dfp.QNAN));

@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/AbstractFieldMatrix.java b/src/main/java/org/apache/commons/math3/linear/AbstractFieldMatrix.java
+index 581b69d..c3e0abc 100644
+--- a/src/main/java/org/apache/commons/math3/linear/AbstractFieldMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/AbstractFieldMatrix.java
+@@ -281,8 +281,9 @@
+             return MatrixUtils.createFieldIdentityMatrix(this.getField(), this.getRowDimension());
+         }
+ 
+-        if (p == 1) {
+-            return this.copy();
++        FieldMatrix<T> var_2472 = this.copy();
++		if (p == 1) {
++            return var_2472;
+         }
+ 
+         final int power = p - 1;
+@@ -308,7 +309,7 @@
+         ArrayList<FieldMatrix<T>> results = new ArrayList<FieldMatrix<T>>(
+                 binaryRepresentation.length);
+ 
+-        results.add(0, this.copy());
++        results.add(0, var_2472);
+ 
+         for (int i = 1; i < binaryRepresentation.length; ++i) {
+             final FieldMatrix<T> s = results.get(i - 1);
+@@ -316,7 +317,7 @@
+             results.add(i, r);
+         }
+ 
+-        FieldMatrix<T> result = this.copy();
++        FieldMatrix<T> result = var_2472;
+ 
+         for (Integer i : nonZeroPositions) {
+             result = result.multiply(results.get(i));

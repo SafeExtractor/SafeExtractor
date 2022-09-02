@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/joda/time/LocalDate.java b/src/main/java/org/joda/time/LocalDate.java
+index 9806eb3..d31ded7 100644
+--- a/src/main/java/org/joda/time/LocalDate.java
++++ b/src/main/java/org/joda/time/LocalDate.java
+@@ -1003,10 +1003,11 @@
+         int dom = getDayOfMonth();
+         Date date = new Date(getYear() - 1900, getMonthOfYear() - 1, dom);
+         LocalDate check = LocalDate.fromDateFields(date);
+-        if (check.isBefore(this)) {
++        boolean var_79 = check.equals(this);
++		if (check.isBefore(this)) {
+             // DST gap (no midnight)
+             // move forward in units of one hour until date correct
+-            while (check.equals(this) == false) {
++            while (var_79 == false) {
+                 date.setTime(date.getTime() + 3600000);
+                 check = LocalDate.fromDateFields(date);
+             }
+@@ -1016,7 +1017,7 @@
+             }
+             // fix result
+             date.setTime(date.getTime() + 1000);
+-        } else if (check.equals(this)) {
++        } else if (var_79) {
+             // check for DST overlap (two midnights)
+             Date earlier = new Date(date.getTime() - TimeZone.getDefault().getDSTSavings());
+             if (earlier.getDate() == dom) {

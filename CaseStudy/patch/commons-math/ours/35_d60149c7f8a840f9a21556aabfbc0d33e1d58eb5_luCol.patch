@@ -1,0 +1,30 @@
+diff --git a/src/java/org/apache/commons/math/linear/decomposition/LUDecompositionImpl.java b/src/java/org/apache/commons/math/linear/decomposition/LUDecompositionImpl.java
+index c55a0fc..a75a897 100644
+--- a/src/java/org/apache/commons/math/linear/decomposition/LUDecompositionImpl.java
++++ b/src/java/org/apache/commons/math/linear/decomposition/LUDecompositionImpl.java
+@@ -144,12 +144,13 @@
+             }
+ 
+             // Pivot if necessary
+-            if (max != col) {
++            double[] luCol = lu[col];
++			if (max != col) {
+                 double tmp = 0;
+                 for (int i = 0; i < m; i++) {
+                     tmp = lu[max][i];
+-                    lu[max][i] = lu[col][i];
+-                    lu[col][i] = tmp;
++                    lu[max][i] = luCol[i];
++                    luCol[i] = tmp;
+                 }
+                 int temp = pivot[max];
+                 pivot[max] = pivot[col];
+@@ -158,7 +159,7 @@
+             }
+ 
+             // Divide the lower elements by the "winning" diagonal elt.
+-            final double luDiag = lu[col][col];
++            final double luDiag = luCol[col];
+             for (int row = col + 1; row < m; row++) {
+                 lu[row][col] /= luDiag;
+             }

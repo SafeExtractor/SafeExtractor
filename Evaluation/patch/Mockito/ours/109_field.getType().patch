@@ -1,0 +1,16 @@
+diff --git a/src/org/mockito/internal/util/reflection/FieldInitializer.java b/src/org/mockito/internal/util/reflection/FieldInitializer.java
+index 0f89b1b..9cc47bd 100644
+--- a/src/org/mockito/internal/util/reflection/FieldInitializer.java
++++ b/src/org/mockito/internal/util/reflection/FieldInitializer.java
+@@ -98,8 +98,9 @@
+     }
+ 
+     private void checkNotInner(Field field) {
+-        if(field.getType().isMemberClass() && !Modifier.isStatic(field.getType().getModifiers())) {
+-            throw new MockitoException("the type '" + field.getType().getSimpleName() + "' is an inner class.");
++        Class<?> var_109 = field.getType();
++		if(var_109.isMemberClass() && !Modifier.isStatic(var_109.getModifiers())) {
++            throw new MockitoException("the type '" + var_109.getSimpleName() + "' is an inner class.");
+         }
+     }
+ 

@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/chart/axis/ModuloAxis.java b/source/org/jfree/chart/axis/ModuloAxis.java
+index cf1e3c9..023ec88 100644
+--- a/source/org/jfree/chart/axis/ModuloAxis.java
++++ b/source/org/jfree/chart/axis/ModuloAxis.java
+@@ -112,12 +112,13 @@
+     public void setDisplayRange(double start, double end) {
+         this.displayStart = mapValueToFixedRange(start);
+         this.displayEnd = mapValueToFixedRange(end);
+-        if (this.displayStart < this.displayEnd) {
+-            setRange(this.displayStart, this.displayEnd);
++        double var_757 = this.displayEnd;
++		if (this.displayStart < var_757) {
++            setRange(this.displayStart, var_757);
+         }
+         else {
+             setRange(this.displayStart, this.fixedRange.getUpperBound()
+-                  + (this.displayEnd - this.fixedRange.getLowerBound()));
++                  + (var_757 - this.fixedRange.getLowerBound()));
+         }
+         notifyListeners(new AxisChangeEvent(this));
+     }

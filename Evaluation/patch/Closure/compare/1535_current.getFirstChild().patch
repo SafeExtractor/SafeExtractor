@@ -1,0 +1,25 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1535_current.getFirstChild().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1535_current.getFirstChild().patch
+index f7c075b..e69de29 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1535_current.getFirstChild().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1535_current.getFirstChild().patch
+@@ -1,20 +0,0 @@
+-diff --git a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+-index 2e75bce..ad62745 100644
+---- a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+-+++ b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+-@@ -1075,11 +1075,12 @@
+-     final int FOR_DOT = 1;
+- 
+-     Node current = null;
+--    for (current = syntheticRef;
+-+    Node var_1535 = current.getFirstChild();
+-+	for (current = syntheticRef;
+-          current.isGetProp();
+--         current = current.getFirstChild()) {
+-+         current = var_1535) {
+-       int fullLen = current.getQualifiedName().length();
+--      int namespaceLen = current.getFirstChild().getQualifiedName().length();
+-+      int namespaceLen = var_1535.getQualifiedName().length();
+- 
+-       current.setSourceEncodedPosition(n.getSourcePosition() + FOR_QUOTE);
+-       current.setLength(fullLen);

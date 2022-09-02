@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/OrderedTuple.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/OrderedTuple.java
+index f802943..86a0391 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/OrderedTuple.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/OrderedTuple.java
+@@ -184,7 +184,8 @@
+         offset  = minOffset + 31;
+         offset -= offset % 32;
+ 
+-        if ((encoding != null) && (encoding.length == 1) && (encoding[0] == 0x0L)) {
++        int var_1737 = encoding.length;
++		if ((encoding != null) && (var_1737 == 1) && (encoding[0] == 0x0L)) {
+             // the components are all zeroes
+             return;
+         }
+@@ -199,7 +200,7 @@
+         int  eIndex = 0;
+         int  shift  = 62;
+         long word   = 0x0L;
+-        for (int k = offset; eIndex < encoding.length; --k) {
++        for (int k = offset; eIndex < var_1737; --k) {
+             for (int vIndex = 0; vIndex < components.length; ++vIndex) {
+                 if (getBit(vIndex, k) != 0) {
+                     word |= 0x1L << shift;

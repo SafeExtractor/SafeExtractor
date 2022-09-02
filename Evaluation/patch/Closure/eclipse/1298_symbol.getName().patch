@@ -1,0 +1,33 @@
+diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+index 5f0a14c..24f1a6c 100644
+--- a/src/com/google/javascript/jscomp/SymbolTable.java
++++ b/src/com/google/javascript/jscomp/SymbolTable.java
+@@ -431,22 +431,23 @@
+ 
+   private void toDebugString(StringBuilder builder, Symbol symbol) {
+     SymbolScope scope = symbol.scope;
+-    if (scope.isGlobalScope()) {
++    String var_1298 = symbol.getName();
++	if (scope.isGlobalScope()) {
+       builder.append(
+-          String.format("'%s' : in global scope:\n", symbol.getName()));
++          String.format("'%s' : in global scope:\n", var_1298));
+     } else if (scope.getRootNode() != null) {
+       builder.append(
+           String.format("'%s' : in scope %s:%d\n",
+-              symbol.getName(),
++              var_1298,
+               scope.getRootNode().getSourceFileName(),
+               scope.getRootNode().getLineno()));
+     } else if (scope.getSymbolForScope() != null) {
+       builder.append(
+-          String.format("'%s' : in scope %s\n", symbol.getName(),
++          String.format("'%s' : in scope %s\n", var_1298,
+               scope.getSymbolForScope().getName()));
+     } else {
+       builder.append(
+-          String.format("'%s' : in unknown scope\n", symbol.getName()));
++          String.format("'%s' : in unknown scope\n", var_1298));
+     }
+ 
+     int refCount = 0;

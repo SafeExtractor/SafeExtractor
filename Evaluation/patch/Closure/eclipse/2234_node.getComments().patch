@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/IRFactory.java b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+index ff3284d..edf5316 100644
+--- a/src/com/google/javascript/jscomp/parsing/IRFactory.java
++++ b/src/com/google/javascript/jscomp/parsing/IRFactory.java
+@@ -73,6 +73,7 @@
+ import com.google.javascript.rhino.jstype.StaticSourceFile;
+ 
+ import java.util.Set;
++import java.util.SortedSet;
+ 
+ /**
+  * IRFactory transforms the new AST to the old AST.
+@@ -185,8 +186,9 @@
+         config, errorReporter);
+     Node irNode = irFactory.transform(node);
+ 
+-    if (node.getComments() != null) {
+-      for (Comment comment : node.getComments()) {
++    SortedSet<Comment> var_2234 = node.getComments();
++	if (var_2234 != null) {
++      for (Comment comment : var_2234) {
+         if (comment.getCommentType() == CommentType.JSDOC &&
+             !irFactory.parsedComments.contains(comment)) {
+           irFactory.handlePossibleFileOverviewJsDoc(comment, irNode);

@@ -1,0 +1,63 @@
+diff --git a/source/org/jfree/chart/plot/Plot.java b/source/org/jfree/chart/plot/Plot.java
+index 4656dc7..13fef30 100644
+--- a/source/org/jfree/chart/plot/Plot.java
++++ b/source/org/jfree/chart/plot/Plot.java
+@@ -1453,31 +1453,33 @@
+             else if (orientation == PlotOrientation.VERTICAL) {
+                 result = RectangleEdge.TOP;
+             }
+-        }
+-        else if (location == AxisLocation.TOP_OR_LEFT) {
+-            if (orientation == PlotOrientation.HORIZONTAL) {
+-                result = RectangleEdge.LEFT;
+-            }
+-            else if (orientation == PlotOrientation.VERTICAL) {
+-                result = RectangleEdge.TOP;
+-            }
+-        }
+-        else if (location == AxisLocation.BOTTOM_OR_RIGHT) {
+-            if (orientation == PlotOrientation.HORIZONTAL) {
+-                result = RectangleEdge.RIGHT;
+-            }
+-            else if (orientation == PlotOrientation.VERTICAL) {
+-                result = RectangleEdge.BOTTOM;
+-            }
+-        }
+-        else if (location == AxisLocation.BOTTOM_OR_LEFT) {
+-            if (orientation == PlotOrientation.HORIZONTAL) {
+-                result = RectangleEdge.LEFT;
+-            }
+-            else if (orientation == PlotOrientation.VERTICAL) {
+-                result = RectangleEdge.BOTTOM;
+-            }
+-        }
++        } else {
++			RectangleEdge var_2122 = RectangleEdge.LEFT;
++			if (location == AxisLocation.TOP_OR_LEFT) {
++			    if (orientation == PlotOrientation.HORIZONTAL) {
++			        result = var_2122;
++			    }
++			    else if (orientation == PlotOrientation.VERTICAL) {
++			        result = RectangleEdge.TOP;
++			    }
++			}
++			else if (location == AxisLocation.BOTTOM_OR_RIGHT) {
++			    if (orientation == PlotOrientation.HORIZONTAL) {
++			        result = RectangleEdge.RIGHT;
++			    }
++			    else if (orientation == PlotOrientation.VERTICAL) {
++			        result = RectangleEdge.BOTTOM;
++			    }
++			}
++			else if (location == AxisLocation.BOTTOM_OR_LEFT) {
++			    if (orientation == PlotOrientation.HORIZONTAL) {
++			        result = var_2122;
++			    }
++			    else if (orientation == PlotOrientation.VERTICAL) {
++			        result = RectangleEdge.BOTTOM;
++			    }
++			}
++		}
+         // the above should cover all the options...
+         if (result == null) {
+             throw new IllegalStateException("resolveDomainAxisLocation()");

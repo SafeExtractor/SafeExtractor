@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+index a558724..0b9aea3 100644
+--- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+@@ -1637,7 +1637,8 @@
+ 
+             // now draw the outlines, if visible...
+             if (im.getOutlinePaint() != null && im.getOutlineStroke() != null) {
+-                if (orientation == PlotOrientation.VERTICAL) {
++                boolean var_3155 = range.contains(end);
++				if (orientation == PlotOrientation.VERTICAL) {
+                     Line2D line = new Line2D.Double();
+                     double x0 = dataArea.getMinX();
+                     double x1 = dataArea.getMaxX();
+@@ -1647,7 +1648,7 @@
+                         line.setLine(x0, start2d, x1, start2d);
+                         g2.draw(line);
+                     }
+-                    if (range.contains(end)) {
++                    if (var_3155) {
+                         line.setLine(x0, end2d, x1, end2d);
+                         g2.draw(line);
+                     }
+@@ -1662,7 +1663,7 @@
+                         line.setLine(start2d, y0, start2d, y1);
+                         g2.draw(line);
+                     }
+-                    if (range.contains(end)) {
++                    if (var_3155) {
+                         line.setLine(end2d, y0, end2d, y1);
+                         g2.draw(line);
+                     }

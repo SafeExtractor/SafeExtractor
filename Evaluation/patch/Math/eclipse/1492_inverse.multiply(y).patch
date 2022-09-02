@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java
+index 5371054..9fe636d 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldVector3D.java
+@@ -558,7 +558,8 @@
+             return new FieldVector3D<T>(inverse.multiply(z).negate(), inverse.getField().getZero(), inverse.multiply(x));
+         } else {
+             final T inverse  = x.multiply(x).add(y.multiply(y)).sqrt().reciprocal();
+-            return new FieldVector3D<T>(inverse.multiply(y), inverse.multiply(x).negate(), inverse.getField().getZero());
++            T var_1492 = inverse.multiply(y);
++			return new FieldVector3D<T>(var_1492, inverse.multiply(x).negate(), inverse.getField().getZero());
+         }
+ 
+     }

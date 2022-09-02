@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/AbstractFieldMatrix.java b/src/main/java/org/apache/commons/math3/linear/AbstractFieldMatrix.java
+index 581b69d..b223402 100644
+--- a/src/main/java/org/apache/commons/math3/linear/AbstractFieldMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/AbstractFieldMatrix.java
+@@ -392,9 +392,10 @@
+         checkSubMatrixIndex(startRow, endRow, startColumn, endColumn);
+         final int rowsCount    = endRow + 1 - startRow;
+         final int columnsCount = endColumn + 1 - startColumn;
+-        if ((destination.length < rowsCount) || (destination[0].length < columnsCount)) {
++        T[] var_2474 = destination[0];
++		if ((destination.length < rowsCount) || (var_2474.length < columnsCount)) {
+             throw new MatrixDimensionMismatchException(destination.length,
+-                                                       destination[0].length,
++                                                       var_2474.length,
+                                                        rowsCount,
+                                                        columnsCount);
+         }

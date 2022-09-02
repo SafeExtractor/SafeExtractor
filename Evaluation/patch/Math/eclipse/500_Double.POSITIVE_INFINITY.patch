@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/solvers/LaguerreSolver.java b/src/main/java/org/apache/commons/math3/analysis/solvers/LaguerreSolver.java
+index 326a68b..ccbde15 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/solvers/LaguerreSolver.java
++++ b/src/main/java/org/apache/commons/math3/analysis/solvers/LaguerreSolver.java
+@@ -339,8 +339,9 @@
+             final Complex n1C = new Complex(n - 1, 0);
+ 
+             Complex z = initial;
+-            Complex oldz = new Complex(Double.POSITIVE_INFINITY,
+-                                       Double.POSITIVE_INFINITY);
++            double var_500 = Double.POSITIVE_INFINITY;
++			Complex oldz = new Complex(var_500,
++                                       var_500);
+             while (true) {
+                 // Compute pv (polynomial value), dv (derivative value), and
+                 // d2v (second derivative value) simultaneously.
+@@ -378,8 +379,8 @@
+                 // p(x) = x^3 + 1, z = 0.
+                 if (denominator.equals(new Complex(0.0, 0.0))) {
+                     z = z.add(new Complex(absoluteAccuracy, absoluteAccuracy));
+-                    oldz = new Complex(Double.POSITIVE_INFINITY,
+-                                       Double.POSITIVE_INFINITY);
++                    oldz = new Complex(var_500,
++                                       var_500);
+                 } else {
+                     oldz = z;
+                     z = z.subtract(nC.divide(denominator));

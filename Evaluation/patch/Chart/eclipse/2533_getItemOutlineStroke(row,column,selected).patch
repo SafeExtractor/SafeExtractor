@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/category/StatisticalLineAndShapeRenderer.java b/source/org/jfree/chart/renderer/category/StatisticalLineAndShapeRenderer.java
+index c469505..06764c4 100644
+--- a/source/org/jfree/chart/renderer/category/StatisticalLineAndShapeRenderer.java
++++ b/source/org/jfree/chart/renderer/category/StatisticalLineAndShapeRenderer.java
+@@ -270,7 +270,8 @@
+         // visible) - it looks better if the shape fill colour is different to
+         // the line colour
+         Number sdv = statDataset.getStdDevValue(row, column);
+-        if (pass == 1 && sdv != null) {
++        Stroke var_2533 = getItemOutlineStroke(row, column, selected);
++		if (pass == 1 && sdv != null) {
+             //standard deviation lines
+             RectangleEdge yAxisLocation = plot.getRangeAxisEdge();
+             double valueDelta = sdv.doubleValue();
+@@ -307,7 +308,7 @@
+                 g2.setStroke(this.errorIndicatorStroke);
+             }
+             else {
+-                g2.setStroke(getItemOutlineStroke(row, column, selected));
++                g2.setStroke(var_2533);
+             }
+             Line2D line = new Line2D.Double();
+             if (orientation == PlotOrientation.HORIZONTAL) {
+@@ -356,7 +357,7 @@
+                 else {
+                     g2.setPaint(getItemPaint(row, column, selected));
+                 }
+-                g2.setStroke(getItemOutlineStroke(row, column, selected));
++                g2.setStroke(var_2533);
+                 g2.draw(shape);
+             }
+             // draw the item label if there is one...

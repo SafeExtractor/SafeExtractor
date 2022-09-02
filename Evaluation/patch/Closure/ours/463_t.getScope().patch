@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java b/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java
+index e0466ea..00e0b2e 100644
+--- a/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java
++++ b/src/com/google/javascript/jscomp/CollapseVariableDeclarations.java
+@@ -140,7 +140,8 @@
+       }
+ 
+       // Only care about var nodes
+-      if (!n.isVar() && !canBeRedeclared(n, t.getScope())) return;
++      Scope var_463 = t.getScope();
++	if (!n.isVar() && !canBeRedeclared(n, var_463)) return;
+ 
+       // If we've already looked at this node, skip it
+       if (nodesToCollapse.contains(n)) return;
+@@ -159,7 +160,7 @@
+       boolean hasNodesToCollapse = false;
+ 
+       while (n != null &&
+-          (n.isVar() || canBeRedeclared(n, t.getScope()))) {
++          (n.isVar() || canBeRedeclared(n, var_463))) {
+ 
+         if (n.isVar()) {
+           blacklistStubVars(t, n);

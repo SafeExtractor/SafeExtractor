@@ -1,0 +1,17 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/p2/Property2IndexHook.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/p2/Property2IndexHook.java
+index c1dacab..4474027 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/p2/Property2IndexHook.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/index/p2/Property2IndexHook.java
+@@ -199,9 +199,10 @@
+                 }
+             }
+             if (!exists) {
+-                list.add(new Property2IndexHookUpdate(getPath(), node.child(
++                Property2IndexHookUpdate update = new Property2IndexHookUpdate(getPath(), node.child(
+                         INDEX_DEFINITIONS_NAME).child(indexName), store,
+-                        typeNames));
++                        typeNames);
++				list.add(update);
+             }
+         }
+     }

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java
+index 56f7bb3..e4ce6d7 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java
+@@ -136,7 +136,8 @@
+         // iteration initialization
+         final PolynomialFunction zero = polynomial(0);
+         PolynomialFunction[] polynomials = new PolynomialFunction[topDiagonal.get(0).length];
+-        for (int i = 0; i < polynomials.length; ++i) {
++        int var_294 = polynomials.length;
++		for (int i = 0; i < var_294; ++i) {
+             polynomials[i] = zero;
+         }
+         PolynomialFunction coeff = polynomial(1);
+@@ -144,7 +145,7 @@
+         // build the polynomials by iterating on the top diagonal of the divided differences array
+         for (int i = 0; i < topDiagonal.size(); ++i) {
+             double[] tdi = topDiagonal.get(i);
+-            for (int k = 0; k < polynomials.length; ++k) {
++            for (int k = 0; k < var_294; ++k) {
+                 polynomials[k] = polynomials[k].add(coeff.multiply(polynomial(tdi[k])));
+             }
+             coeff = coeff.multiply(polynomial(-abscissae.get(i), 1.0));

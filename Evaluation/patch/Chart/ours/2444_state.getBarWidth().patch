@@ -1,0 +1,36 @@
+diff --git a/source/org/jfree/chart/renderer/category/LayeredBarRenderer.java b/source/org/jfree/chart/renderer/category/LayeredBarRenderer.java
+index e49577c..d4d8dac 100644
+--- a/source/org/jfree/chart/renderer/category/LayeredBarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/LayeredBarRenderer.java
+@@ -270,8 +270,9 @@
+         double rectWidth = Math.abs(transX2 - transX1);
+ 
+         // Y
+-        double rectY = domainAxis.getCategoryMiddle(column, getColumnCount(),
+-                dataArea, plot.getDomainAxisEdge()) - state.getBarWidth() / 2.0;
++        double var_2444 = state.getBarWidth();
++		double rectY = domainAxis.getCategoryMiddle(column, getColumnCount(),
++                dataArea, plot.getDomainAxisEdge()) - var_2444 / 2.0;
+ 
+         int seriesCount = getRowCount();
+ 
+@@ -283,8 +284,8 @@
+         if (!Double.isNaN(seriesBarWidth)) {
+             widthFactor = seriesBarWidth;
+         }
+-        rectHeight = widthFactor * state.getBarWidth();
+-        rectY = rectY + (1 - widthFactor) * state.getBarWidth() / 2.0;
++        rectHeight = widthFactor * var_2444;
++        rectY = rectY + (1 - widthFactor) * var_2444 / 2.0;
+         if (seriesCount > 1) {
+             shift = rectHeight * 0.20 / (seriesCount - 1);
+         }
+@@ -303,7 +304,7 @@
+ 
+         // draw the outline...
+         if (isDrawBarOutline()
+-                && state.getBarWidth() > BAR_OUTLINE_WIDTH_THRESHOLD) {
++                && var_2444 > BAR_OUTLINE_WIDTH_THRESHOLD) {
+             Stroke stroke = getItemOutlineStroke(row, column, selected);
+             Paint paint = getItemOutlinePaint(row, column, selected);
+             if (stroke != null && paint != null) {

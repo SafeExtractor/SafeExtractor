@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..d705f31 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -393,9 +393,10 @@
+   }
+ 
+   private void handleFor(Node forNode) {
+-    if (forNode.getChildCount() == 4) {
++    Node var_1895 = forNode.getFirstChild();
++	if (forNode.getChildCount() == 4) {
+       // We have for (init; cond; iter) { body }
+-      Node init = forNode.getFirstChild();
++      Node init = var_1895;
+       Node cond = init.getNext();
+       Node iter = cond.getNext();
+       Node body = iter.getNext();
+@@ -417,7 +418,7 @@
+       connectToPossibleExceptionHandler(iter, iter);
+     } else {
+       // We have for (item in collection) { body }
+-      Node item = forNode.getFirstChild();
++      Node item = var_1895;
+       Node collection = item.getNext();
+       Node body = collection.getNext();
+       // The collection behaves like init.

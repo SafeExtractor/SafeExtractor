@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/transform/FastCosineTransformer.java b/src/main/java/org/apache/commons/math3/transform/FastCosineTransformer.java
+index e1254a5..eb9c7ea 100644
+--- a/src/main/java/org/apache/commons/math3/transform/FastCosineTransformer.java
++++ b/src/main/java/org/apache/commons/math3/transform/FastCosineTransformer.java
+@@ -144,18 +144,19 @@
+                 LocalizedFormats.NOT_POWER_OF_TWO_PLUS_ONE,
+                 Integer.valueOf(f.length));
+         }
+-        if (n == 1) {       // trivial case
+-            transformed[0] = 0.5 * (f[0] + f[1]);
+-            transformed[1] = 0.5 * (f[0] - f[1]);
++        double var_4092 = f[0];
++		if (n == 1) {       // trivial case
++            transformed[0] = 0.5 * (var_4092 + f[1]);
++            transformed[1] = 0.5 * (var_4092 - f[1]);
+             return transformed;
+         }
+ 
+         // construct a new array and perform FFT on it
+         final double[] x = new double[n];
+-        x[0] = 0.5 * (f[0] + f[n]);
++        x[0] = 0.5 * (var_4092 + f[n]);
+         x[n >> 1] = f[n >> 1];
+         // temporary variable for transformed[1]
+-        double t1 = 0.5 * (f[0] - f[n]);
++        double t1 = 0.5 * (var_4092 - f[n]);
+         for (int i = 1; i < (n >> 1); i++) {
+             final double a = 0.5 * (f[i] + f[n - i]);
+             final double b = FastMath.sin(i * FastMath.PI / n) * (f[i] - f[n - i]);

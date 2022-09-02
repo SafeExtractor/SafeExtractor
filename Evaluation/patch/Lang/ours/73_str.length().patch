@@ -1,0 +1,38 @@
+diff --git a/src/main/java/org/apache/commons/lang3/StringUtils.java b/src/main/java/org/apache/commons/lang3/StringUtils.java
+index 04b53fa..453de32 100644
+--- a/src/main/java/org/apache/commons/lang3/StringUtils.java
++++ b/src/main/java/org/apache/commons/lang3/StringUtils.java
+@@ -6290,14 +6290,15 @@
+         if (maxWidth < 4) {
+             throw new IllegalArgumentException("Minimum abbreviation width is 4");
+         }
+-        if (str.length() <= maxWidth) {
++        int var_73 = str.length();
++		if (var_73 <= maxWidth) {
+             return str;
+         }
+-        if (offset > str.length()) {
+-            offset = str.length();
++        if (offset > var_73) {
++            offset = var_73;
+         }
+-        if (str.length() - offset < maxWidth - 3) {
+-            offset = str.length() - (maxWidth - 3);
++        if (var_73 - offset < maxWidth - 3) {
++            offset = var_73 - (maxWidth - 3);
+         }
+         final String abrevMarker = "...";
+         if (offset <= 4) {
+@@ -6306,10 +6307,10 @@
+         if (maxWidth < 7) {
+             throw new IllegalArgumentException("Minimum abbreviation width with offset is 7");
+         }
+-        if (offset + maxWidth - 3 < str.length()) {
++        if (offset + maxWidth - 3 < var_73) {
+             return abrevMarker + abbreviate(str.substring(offset), maxWidth - 3);
+         }
+-        return abrevMarker + str.substring(str.length() - (maxWidth - 3));
++        return abrevMarker + str.substring(var_73 - (maxWidth - 3));
+     }
+ 
+     /**

@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/block/ColumnArrangement.java b/source/org/jfree/chart/block/ColumnArrangement.java
+index ad240d9..15e7c72 100644
+--- a/source/org/jfree/chart/block/ColumnArrangement.java
++++ b/source/org/jfree/chart/block/ColumnArrangement.java
+@@ -125,22 +125,23 @@
+ 
+         LengthConstraintType w = constraint.getWidthConstraintType();
+         LengthConstraintType h = constraint.getHeightConstraintType();
+-        if (w == LengthConstraintType.NONE) {
++        LengthConstraintType var_906 = LengthConstraintType.FIXED;
++		if (w == LengthConstraintType.NONE) {
+             if (h == LengthConstraintType.NONE) {
+                 return arrangeNN(container, g2);
+             }
+-            else if (h == LengthConstraintType.FIXED) {
++            else if (h == var_906) {
+                 throw new RuntimeException("Not implemented.");
+             }
+             else if (h == LengthConstraintType.RANGE) {
+                 throw new RuntimeException("Not implemented.");
+             }
+         }
+-        else if (w == LengthConstraintType.FIXED) {
++        else if (w == var_906) {
+             if (h == LengthConstraintType.NONE) {
+                 throw new RuntimeException("Not implemented.");
+             }
+-            else if (h == LengthConstraintType.FIXED) {
++            else if (h == var_906) {
+                 return arrangeFF(container, g2, constraint);
+             }
+             else if (h == LengthConstraintType.RANGE) {
+@@ -151,7 +152,7 @@
+             if (h == LengthConstraintType.NONE) {
+                 throw new RuntimeException("Not implemented.");
+             }
+-            else if (h == LengthConstraintType.FIXED) {
++            else if (h == var_906) {
+                 return arrangeRF(container, g2, constraint);
+             }
+             else if (h == LengthConstraintType.RANGE) {

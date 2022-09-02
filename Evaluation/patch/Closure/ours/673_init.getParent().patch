@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/InlineObjectLiterals.java b/src/com/google/javascript/jscomp/InlineObjectLiterals.java
+index d03988c..47ce57f 100644
+--- a/src/com/google/javascript/jscomp/InlineObjectLiterals.java
++++ b/src/com/google/javascript/jscomp/InlineObjectLiterals.java
+@@ -408,10 +408,11 @@
+       // ASSIGN, then there's an EXPR_STATEMENT above it, if it's a
+       // VAR then it should be directly replaced.
+       Node vnode;
+-      boolean defined = referenceInfo.isWellDefined() &&
+-          init.getParent().isVar();
++      Node var_673 = init.getParent();
++	boolean defined = referenceInfo.isWellDefined() &&
++          var_673.isVar();
+       if (defined) {
+-        vnode = init.getParent();
++        vnode = var_673;
+         fillInitialValues(init, initvals);
+       } else {
+         // TODO(user): More test / rewrite this part.

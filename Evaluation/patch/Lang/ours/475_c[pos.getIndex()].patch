@@ -1,0 +1,39 @@
+diff --git a/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java b/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
+index 722d3b5..902559d 100644
+--- a/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
++++ b/src/main/java/org/apache/commons/lang3/text/ExtendedMessageFormat.java
+@@ -156,7 +156,8 @@
+         final char[] c = pattern.toCharArray();
+         int fmtCount = 0;
+         while (pos.getIndex() < pattern.length()) {
+-            switch (c[pos.getIndex()]) {
++            char var_475 = c[pos.getIndex()];
++			switch (var_475) {
+             case QUOTE:
+                 appendQuotedString(pattern, pos, stripCustom, true);
+                 break;
+@@ -169,7 +170,7 @@
+                 seekNonWs(pattern, pos);
+                 Format format = null;
+                 String formatDescription = null;
+-                if (c[pos.getIndex()] == START_FMT) {
++                if (var_475 == START_FMT) {
+                     formatDescription = parseFormatDescription(pattern,
+                             next(pos));
+                     format = getFormat(formatDescription);
+@@ -181,13 +182,13 @@
+                 foundDescriptions.add(format == null ? null : formatDescription);
+                 Validate.isTrue(foundFormats.size() == fmtCount);
+                 Validate.isTrue(foundDescriptions.size() == fmtCount);
+-                if (c[pos.getIndex()] != END_FE) {
++                if (var_475 != END_FE) {
+                     throw new IllegalArgumentException(
+                             "Unreadable format element at position " + start);
+                 }
+                 //$FALL-THROUGH$
+             default:
+-                stripCustom.append(c[pos.getIndex()]);
++                stripCustom.append(var_475);
+                 next(pos);
+             }
+         }

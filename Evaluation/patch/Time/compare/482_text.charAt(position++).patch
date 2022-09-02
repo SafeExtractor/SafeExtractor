@@ -1,0 +1,28 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/482_text.charAt(position++).patch b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/482_text.charAt(position++).patch
+index da520a0..64112a8 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Time/eclipse/482_text.charAt(position++).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Time/ours/482_text.charAt(position++).patch
+@@ -1,8 +1,8 @@
+ diff --git a/src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java b/src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java
+-index 8f76f06..cc31a06 100644
++index 8f76f06..6e3eba5 100644
+ --- a/src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java
+ +++ b/src/main/java/org/joda/time/format/DateTimeFormatterBuilder.java
+-@@ -2432,11 +2432,12 @@
++@@ -2432,7 +2432,8 @@
+                      return ~position;
+                  }
+  
+@@ -10,11 +10,5 @@ index 8f76f06..cc31a06 100644
+ +                char var_482 = text.charAt(position++);
+ +				offset += (var_482 - '0') * 100;
+                  if (count > 1) {
+--                    offset += (text.charAt(position++) - '0') * 10;
+-+                    offset += (var_482 - '0') * 10;
++                     offset += (text.charAt(position++) - '0') * 10;
+                      if (count > 2) {
+--                        offset += text.charAt(position++) - '0';
+-+                        offset += var_482 - '0';
+-                     }
+-                 }
+-             }

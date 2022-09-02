@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/jsonml/Reader.java b/src/com/google/javascript/jscomp/jsonml/Reader.java
+index 9b7e760..7adf439 100644
+--- a/src/com/google/javascript/jscomp/jsonml/Reader.java
++++ b/src/com/google/javascript/jscomp/jsonml/Reader.java
+@@ -921,8 +921,9 @@
+ 
+     // the third child represents else part and is not required by AST
+     child = element.getChild(2);
+-    if (child.getType() != TagType.EmptyStmt &&
+-        child.getType() != TagType.Empty) {
++    TagType var_2198 = child.getType();
++	if (var_2198 != TagType.EmptyStmt &&
++        var_2198 != TagType.Empty) {
+       transformPotentiallyUnwrappedBlock(child, node);
+     } else {
+       nodeIndex++;

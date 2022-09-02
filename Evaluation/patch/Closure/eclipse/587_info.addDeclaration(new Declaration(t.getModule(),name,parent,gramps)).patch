@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java b/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
+index 7412a61..c157969 100755
+--- a/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
++++ b/src/com/google/javascript/jscomp/CrossModuleCodeMotion.java
+@@ -331,18 +331,18 @@
+   private boolean maybeProcessDeclaration(NodeTraversal t, Node name,
+       Node parent, NamedInfo info) {
+     Node gramps = parent.getParent();
+-    switch (parent.getType()) {
++    boolean var_587 = info.addDeclaration(
++	      new Declaration(t.getModule(), name, parent, gramps));
++	switch (parent.getType()) {
+       case Token.VAR:
+         if (canMoveValue(name.getFirstChild())) {
+-          return info.addDeclaration(
+-              new Declaration(t.getModule(), name, parent, gramps));
++          return var_587;
+         }
+         return false;
+ 
+       case Token.FUNCTION:
+         if (NodeUtil.isFunctionDeclaration(parent)) {
+-          return info.addDeclaration(
+-              new Declaration(t.getModule(), name, parent, gramps));
++          return var_587;
+         }
+         return false;
+ 

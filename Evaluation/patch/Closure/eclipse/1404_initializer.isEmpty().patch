@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/ExternExportsPass.java b/src/com/google/javascript/jscomp/ExternExportsPass.java
+index 5c455d3..ea7e179 100644
+--- a/src/com/google/javascript/jscomp/ExternExportsPass.java
++++ b/src/com/google/javascript/jscomp/ExternExportsPass.java
+@@ -181,8 +181,9 @@
+     private void appendPathDefinition(String path, Node initializer) {
+       Node pathDefinition;
+ 
+-      if (!path.contains(".")) {
+-        if (initializer.isEmpty()) {
++      boolean var_1404 = initializer.isEmpty();
++	if (!path.contains(".")) {
++        if (var_1404) {
+           pathDefinition = IR.var(IR.name(path));
+         } else {
+           pathDefinition = NodeUtil.newVarNode(path, initializer);
+@@ -190,7 +191,7 @@
+       } else {
+         Node qualifiedPath = NodeUtil.newQualifiedNameNode(
+             compiler.getCodingConvention(), path);
+-        if (initializer.isEmpty()) {
++        if (var_1404) {
+           pathDefinition = NodeUtil.newExpr(qualifiedPath);
+         } else {
+           pathDefinition = NodeUtil.newExpr(

@@ -1,0 +1,18 @@
+diff --git a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/state/providers/zookeeper/ZooKeeperStateProvider.java b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/state/providers/zookeeper/ZooKeeperStateProvider.java
+index 5c8b4c4..b2831d9 100644
+--- a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/state/providers/zookeeper/ZooKeeperStateProvider.java
++++ b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/state/providers/zookeeper/ZooKeeperStateProvider.java
+@@ -244,10 +244,11 @@
+             ZKUtil.deleteRecursive(getZooKeeper(), getComponentPath(componentId));
+         } catch (final KeeperException ke) {
+             // Node doesn't exist so just ignore
+-            if (Code.NONODE == ke.code()) {
++            Object exceptionCode = ke.code();
++			if (Code.NONODE == exceptionCode) {
+                 return;
+             }
+-            if (Code.SESSIONEXPIRED == ke.code()) {
++            if (Code.SESSIONEXPIRED == exceptionCode) {
+                 invalidateClient();
+                 onComponentRemoved(componentId);
+                 return;

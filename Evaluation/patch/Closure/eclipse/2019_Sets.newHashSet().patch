@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/SimpleFunctionAliasAnalysis.java b/src/com/google/javascript/jscomp/SimpleFunctionAliasAnalysis.java
+index f1d6f7e..c9ec8cc 100644
+--- a/src/com/google/javascript/jscomp/SimpleFunctionAliasAnalysis.java
++++ b/src/com/google/javascript/jscomp/SimpleFunctionAliasAnalysis.java
+@@ -21,6 +21,7 @@
+ import com.google.javascript.rhino.Node;
+ import com.google.javascript.rhino.Token;
+ 
++import java.util.HashSet;
+ import java.util.Set;
+ 
+ /**
+@@ -67,8 +68,9 @@
+   public void analyze(SimpleDefinitionFinder finder) {
+     Preconditions.checkState(aliasedFunctions == null);
+ 
+-    aliasedFunctions = Sets.newHashSet();
+-    functionsExposedToCallOrApply = Sets.newHashSet();
++    HashSet<Node> var_2019 = Sets.newHashSet();
++	aliasedFunctions = var_2019;
++    functionsExposedToCallOrApply = var_2019;
+ 
+     for (DefinitionSite definitionSite : finder.getDefinitionSites()) {
+       Definition definition = definitionSite.definition;

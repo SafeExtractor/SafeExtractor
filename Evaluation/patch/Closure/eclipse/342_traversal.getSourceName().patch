@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/JsMessageVisitor.java b/src/com/google/javascript/jscomp/JsMessageVisitor.java
+index becd724..7833ac2 100644
+--- a/src/com/google/javascript/jscomp/JsMessageVisitor.java
++++ b/src/com/google/javascript/jscomp/JsMessageVisitor.java
+@@ -184,7 +184,8 @@
+     boolean isVar;
+     Node msgNode, msgNodeParent;
+ 
+-    switch (node.getType()) {
++    String var_342 = traversal.getSourceName();
++	switch (node.getType()) {
+       case Token.NAME:
+         // var MSG_HELLO = 'Message'
+         if ((parent != null) && (parent.isVar())) {
+@@ -216,7 +217,7 @@
+         // goog.getMsg()
+         String fnName = node.getFirstChild().getQualifiedName();
+         if (MSG_FUNCTION_NAME.equals(fnName)) {
+-          googMsgNodes.put(node, traversal.getSourceName());
++          googMsgNodes.put(node, var_342);
+         } else if (MSG_FALLBACK_FUNCTION_NAME.equals(fnName)) {
+           visitFallbackFunctionCall(traversal, node);
+         }
+@@ -251,7 +252,7 @@
+ 
+     Builder builder = new Builder(
+         isUnnamedMsg ? null : messageKey);
+-    builder.setSourceName(traversal.getSourceName());
++    builder.setSourceName(var_342);
+ 
+     try {
+       if (isVar) {

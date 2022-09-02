@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/graph/GraphPruner.java b/src/com/google/javascript/jscomp/graph/GraphPruner.java
+index 9e88230..37f5b70 100644
+--- a/src/com/google/javascript/jscomp/graph/GraphPruner.java
++++ b/src/com/google/javascript/jscomp/graph/GraphPruner.java
+@@ -86,12 +86,13 @@
+       DiGraph<N, E> graph) {
+     LinkedDirectedGraph<N, E> newGraph = LinkedDirectedGraph.create();
+     for (DiGraphNode<N, E> node : graph.getDirectedGraphNodes()) {
+-      newGraph.createNode(node.getValue());
++      N var_2174 = node.getValue();
++	newGraph.createNode(var_2174);
+ 
+       for (DiGraphEdge<N, E> outEdge : node.getOutEdges()) {
+         N dest = outEdge.getDestination().getValue();
+         newGraph.createNode(dest);
+-        newGraph.connect(node.getValue(), outEdge.getValue(), dest);
++        newGraph.connect(var_2174, outEdge.getValue(), dest);
+       }
+     }
+ 

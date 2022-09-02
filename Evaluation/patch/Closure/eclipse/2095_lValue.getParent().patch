@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..af5cf43 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -3113,11 +3113,12 @@
+ 
+   /** Get the owner of the given l-value node. */
+   static Node getBestLValueOwner(@Nullable Node lValue) {
+-    if (lValue == null || lValue.getParent() == null) {
++    Node var_2095 = lValue.getParent();
++	if (lValue == null || var_2095 == null) {
+       return null;
+     }
+-    if (isObjectLitKey(lValue, lValue.getParent())) {
+-      return getBestLValue(lValue.getParent());
++    if (isObjectLitKey(lValue, var_2095)) {
++      return getBestLValue(var_2095);
+     } else if (isGet(lValue)) {
+       return lValue.getFirstChild();
+     }

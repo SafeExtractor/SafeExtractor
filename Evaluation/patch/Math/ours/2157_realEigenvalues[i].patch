@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+index 4652f61..8ffc525 100644
+--- a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+@@ -887,9 +887,10 @@
+                             // Solve complex equations
+                             double x = matrixT[i][i + 1];
+                             double y = matrixT[i + 1][i];
+-                            double vr = (realEigenvalues[i] - p) * (realEigenvalues[i] - p) +
++                            double var_2157 = realEigenvalues[i];
++							double vr = (var_2157 - p) * (var_2157 - p) +
+                                         imagEigenvalues[i] * imagEigenvalues[i] - q * q;
+-                            final double vi = (realEigenvalues[i] - p) * 2.0 * q;
++                            final double vi = (var_2157 - p) * 2.0 * q;
+                             if (Precision.equals(vr, 0.0) && Precision.equals(vi, 0.0)) {
+                                 vr = Precision.EPSILON * norm *
+                                      (FastMath.abs(w) + FastMath.abs(q) + FastMath.abs(x) +

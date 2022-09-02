@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/plot/CategoryPlot.java b/source/org/jfree/chart/plot/CategoryPlot.java
+index 24a84fd..a13cc05 100644
+--- a/source/org/jfree/chart/plot/CategoryPlot.java
++++ b/source/org/jfree/chart/plot/CategoryPlot.java
+@@ -2292,14 +2292,15 @@
+      */
+     public void zoom(double percent) {
+ 
+-        if (percent > 0.0) {
+-            double range = getRangeAxis().getRange().getLength();
++        ValueAxis var_1855 = getRangeAxis();
++		if (percent > 0.0) {
++            double range = var_1855.getRange().getLength();
+             double scaledRange = range * percent;
+-            getRangeAxis().setRange(this.anchorValue - scaledRange / 2.0,
++            var_1855.setRange(this.anchorValue - scaledRange / 2.0,
+                     this.anchorValue + scaledRange / 2.0);
+         }
+         else {
+-            getRangeAxis().setAutoRange(true);
++            var_1855.setAutoRange(true);
+         }
+ 
+     }

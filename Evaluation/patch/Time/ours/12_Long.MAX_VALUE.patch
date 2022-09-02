@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/joda/time/DateTimeZone.java b/src/main/java/org/joda/time/DateTimeZone.java
+index 19fbc86..ee8dd8d 100644
+--- a/src/main/java/org/joda/time/DateTimeZone.java
++++ b/src/main/java/org/joda/time/DateTimeZone.java
+@@ -1007,12 +1007,13 @@
+             if (strict || offsetLocal < 0) {
+                 // determine if we are in the DST gap
+                 long nextLocal = nextTransition(instantLocal - offsetLocal);
+-                if (nextLocal == (instantLocal - offsetLocal)) {
+-                    nextLocal = Long.MAX_VALUE;
++                long var_12 = Long.MAX_VALUE;
++				if (nextLocal == (instantLocal - offsetLocal)) {
++                    nextLocal = var_12;
+                 }
+                 long nextAdjusted = nextTransition(instantLocal - offset);
+                 if (nextAdjusted == (instantLocal - offset)) {
+-                    nextAdjusted = Long.MAX_VALUE;
++                    nextAdjusted = var_12;
+                 }
+                 if (nextLocal != nextAdjusted) {
+                     // yes we are in the DST gap

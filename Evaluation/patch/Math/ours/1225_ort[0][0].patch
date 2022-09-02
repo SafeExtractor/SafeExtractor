@@ -1,0 +1,50 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..af0bf20 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -329,7 +329,8 @@
+      */
+     private T[] mat2quat(final T[][] ort) {
+ 
+-        final T[] quat = MathArrays.buildArray(ort[0][0].getField(), 4);
++        T var_1225 = ort[0][0];
++		final T[] quat = MathArrays.buildArray(var_1225.getField(), 4);
+ 
+         // There are different ways to compute the quaternions elements
+         // from the matrix. They all involve computing one element from
+@@ -342,7 +343,7 @@
+         // numerical inaccuracy. Checking the elements in turn and using
+         // the first one greater than 0.45 is safe (this leads to a simple
+         // test since qi = 0.45 implies 4 qi^2 - 1 = -0.19)
+-        T s = ort[0][0].add(ort[1][1]).add(ort[2][2]);
++        T s = var_1225.add(ort[1][1]).add(ort[2][2]);
+         if (s.getReal() > -0.19) {
+             // compute q0 and deduce q1, q2 and q3
+             quat[0] = s.add(1.0).sqrt().multiply(0.5);
+@@ -351,7 +352,7 @@
+             quat[2] = inv.multiply(ort[2][0].subtract(ort[0][2]));
+             quat[3] = inv.multiply(ort[0][1].subtract(ort[1][0]));
+         } else {
+-            s = ort[0][0].subtract(ort[1][1]).subtract(ort[2][2]);
++            s = var_1225.subtract(ort[1][1]).subtract(ort[2][2]);
+             if (s.getReal() > -0.19) {
+                 // compute q1 and deduce q0, q2 and q3
+                 quat[1] = s.add(1.0).sqrt().multiply(0.5);
+@@ -360,7 +361,7 @@
+                 quat[2] = inv.multiply(ort[0][1].add(ort[1][0]));
+                 quat[3] = inv.multiply(ort[0][2].add(ort[2][0]));
+             } else {
+-                s = ort[1][1].subtract(ort[0][0]).subtract(ort[2][2]);
++                s = ort[1][1].subtract(var_1225).subtract(ort[2][2]);
+                 if (s.getReal() > -0.19) {
+                     // compute q2 and deduce q0, q1 and q3
+                     quat[2] = s.add(1.0).sqrt().multiply(0.5);
+@@ -370,7 +371,7 @@
+                     quat[3] = inv.multiply(ort[2][1].add(ort[1][2]));
+                 } else {
+                     // compute q3 and deduce q0, q1 and q2
+-                    s = ort[2][2].subtract(ort[0][0]).subtract(ort[1][1]);
++                    s = ort[2][2].subtract(var_1225).subtract(ort[1][1]);
+                     quat[3] = s.add(1.0).sqrt().multiply(0.5);
+                     T inv = quat[3].reciprocal().multiply(0.25);
+                     quat[0] = inv.multiply(ort[0][1].subtract(ort[1][0]));

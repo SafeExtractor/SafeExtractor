@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+index 4e56fef..f1a589d 100644
+--- a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
++++ b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+@@ -802,19 +802,20 @@
+             for (; zone != null; zone = zone.iNext) {
+                 builder.setStandardOffset(zone.iOffsetMillis);
+ 
+-                if (zone.iRules == null) {
++                String var_649 = zone.iRules;
++				if (var_649 == null) {
+                     builder.setFixedSavings(zone.iFormat, 0);
+                 } else {
+                     try {
+                         // Check if iRules actually just refers to a savings.
+-                        int saveMillis = parseTime(zone.iRules);
++                        int saveMillis = parseTime(var_649);
+                         builder.setFixedSavings(zone.iFormat, saveMillis);
+                     }
+                     catch (Exception e) {
+-                        RuleSet rs = ruleSets.get(zone.iRules);
++                        RuleSet rs = ruleSets.get(var_649);
+                         if (rs == null) {
+                             throw new IllegalArgumentException
+-                                ("Rules not found: " + zone.iRules);
++                                ("Rules not found: " + var_649);
+                         }
+                         rs.addRecurring(builder, zone.iFormat);
+                     }

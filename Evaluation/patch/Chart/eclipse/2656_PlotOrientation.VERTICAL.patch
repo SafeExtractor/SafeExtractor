@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/renderer/category/GanttRenderer.java b/source/org/jfree/chart/renderer/category/GanttRenderer.java
+index fc9e2ef..c3331e0 100644
+--- a/source/org/jfree/chart/renderer/category/GanttRenderer.java
++++ b/source/org/jfree/chart/renderer/category/GanttRenderer.java
+@@ -319,12 +319,13 @@
+             // DRAW THE BARS...
+             Rectangle2D bar = null;
+             RectangleEdge barBase = null;
+-            if (plot.getOrientation() == PlotOrientation.HORIZONTAL) {
++            PlotOrientation var_2656 = PlotOrientation.VERTICAL;
++			if (plot.getOrientation() == PlotOrientation.HORIZONTAL) {
+                 bar = new Rectangle2D.Double(translatedValue0, rectStart,
+                         rectLength, rectBreadth);
+                 barBase = RectangleEdge.LEFT;
+             }
+-            else if (plot.getOrientation() == PlotOrientation.VERTICAL) {
++            else if (plot.getOrientation() == var_2656) {
+                 bar = new Rectangle2D.Double(rectStart, translatedValue0,
+                         rectBreadth, rectLength);
+                 barBase = RectangleEdge.BOTTOM;
+@@ -346,7 +347,7 @@
+                             + rectLength * p, rectStart + start * rectBreadth,
+                             rectLength * (1 - p), rectBreadth * (end - start));
+                 }
+-                else if (orientation == PlotOrientation.VERTICAL) {
++                else if (orientation == var_2656) {
+                     completeBar = new Rectangle2D.Double(rectStart + start
+                             * rectBreadth, translatedValue0 + rectLength
+                             * (1 - p), rectBreadth * (end - start),

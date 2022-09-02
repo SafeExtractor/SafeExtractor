@@ -1,0 +1,18 @@
+diff --git a/source/org/jfree/data/time/Hour.java b/source/org/jfree/data/time/Hour.java
+index 5f669f1..bcf07b9 100644
+--- a/source/org/jfree/data/time/Hour.java
++++ b/source/org/jfree/data/time/Hour.java
+@@ -338,9 +338,10 @@
+      *     <code>null</code>.
+      */
+     public long getLastMillisecond(Calendar calendar) {
+-        int year = this.day.getYear();
+-        int month = this.day.getMonth() - 1;
+-        int dom = this.day.getDayOfMonth();
++        Day var_4260 = this.day;
++		int year = var_4260.getYear();
++        int month = var_4260.getMonth() - 1;
++        int dom = var_4260.getDayOfMonth();
+         calendar.set(year, month, dom, this.hour, 59, 59);
+         calendar.set(Calendar.MILLISECOND, 999);
+         //return calendar.getTimeInMillis();  // this won't work for JDK 1.3

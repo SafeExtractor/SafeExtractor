@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java
+index 0fce857..d13b57e 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java
+@@ -39,7 +39,8 @@
+                                                            final double[][][] fval)
+         throws NoDataException, NumberIsTooSmallException,
+                DimensionMismatchException, NonMonotonicSequenceException {
+-        if (xval.length == 0 || yval.length == 0 || zval.length == 0 || fval.length == 0) {
++        int var_320 = yval.length;
++		if (xval.length == 0 || var_320 == 0 || zval.length == 0 || fval.length == 0) {
+             throw new NoDataException();
+         }
+         if (xval.length != fval.length) {
+@@ -51,7 +52,7 @@
+         MathArrays.checkOrder(zval);
+ 
+         final int xLen = xval.length;
+-        final int yLen = yval.length;
++        final int yLen = var_320;
+         final int zLen = zval.length;
+ 
+         // Samples, re-ordered as (z, x, y) and (y, z, x) tuplets

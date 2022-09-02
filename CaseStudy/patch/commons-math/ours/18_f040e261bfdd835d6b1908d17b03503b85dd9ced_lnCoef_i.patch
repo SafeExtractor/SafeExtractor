@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/FastMath.java b/src/main/java/org/apache/commons/math3/util/FastMath.java
+index ce9f029..6020ce3 100644
+--- a/src/main/java/org/apache/commons/math3/util/FastMath.java
++++ b/src/main/java/org/apache/commons/math3/util/FastMath.java
+@@ -1181,8 +1181,9 @@
+                     yb = aa - ya + ab;
+ 
+                     /* Add  a = y + lnQuickCoef */
+-                    aa = ya + LN_QUICK_COEF[i][0];
+-                    ab = yb + LN_QUICK_COEF[i][1];
++                    double[] lnCoef_i = LN_QUICK_COEF[i];
++					aa = ya + lnCoef_i[0];
++                    ab = yb + lnCoef_i[1];
+                     /* Split y = a */
+                     tmp = aa * HEX_40000000;
+                     ya = aa + tmp - tmp;

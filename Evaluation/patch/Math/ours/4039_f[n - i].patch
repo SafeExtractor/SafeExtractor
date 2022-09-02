@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/transform/FastSineTransformer.java b/src/main/java/org/apache/commons/math3/transform/FastSineTransformer.java
+index 2eb36b9..a435ce4 100644
+--- a/src/main/java/org/apache/commons/math3/transform/FastSineTransformer.java
++++ b/src/main/java/org/apache/commons/math3/transform/FastSineTransformer.java
+@@ -159,8 +159,9 @@
+         x[0] = 0.0;
+         x[n >> 1] = 2.0 * f[n >> 1];
+         for (int i = 1; i < (n >> 1); i++) {
+-            final double a = FastMath.sin(i * FastMath.PI / n) * (f[i] + f[n - i]);
+-            final double b = 0.5 * (f[i] - f[n - i]);
++            double var_4039 = f[n - i];
++			final double a = FastMath.sin(i * FastMath.PI / n) * (f[i] + var_4039);
++            final double b = 0.5 * (f[i] - var_4039);
+             x[i]     = a + b;
+             x[n - i] = a - b;
+         }

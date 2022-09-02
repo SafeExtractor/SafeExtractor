@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/CallGraph.java b/src/com/google/javascript/jscomp/CallGraph.java
+index 81d8dd3..6288545 100644
+--- a/src/com/google/javascript/jscomp/CallGraph.java
++++ b/src/com/google/javascript/jscomp/CallGraph.java
+@@ -504,13 +504,14 @@
+         LinkedDirectedGraph.createWithoutAnnotations();
+ 
+     // Create nodes in call graph
+-    for (Function function : getAllFunctions()) {
++    Collection<Function> var_358 = getAllFunctions();
++	for (Function function : var_358) {
+       digraph.createNode(function);
+     }
+ 
+     if (computeForwardGraph) {
+       // The CallGraph is a forward graph, so go from callers to callees
+-      for (Function caller : getAllFunctions()) {
++      for (Function caller : var_358) {
+         for (Callsite callsite : caller.getCallsitesInFunction()) {
+           for (Function callee : callsite.getPossibleTargets()) {
+             digraphConnect(digraph, caller, callsite, callee,
+@@ -520,7 +521,7 @@
+       }
+     } else {
+       // The CallGraph is a backward graph, so go from callees to callers
+-      for (Function callee : getAllFunctions()) {
++      for (Function callee : var_358) {
+         for (Callsite callsite :
+             callee.getCallsitesPossiblyTargetingFunction()) {
+ 

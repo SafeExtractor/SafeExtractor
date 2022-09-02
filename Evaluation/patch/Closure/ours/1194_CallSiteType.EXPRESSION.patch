@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionInjector.java b/src/com/google/javascript/jscomp/FunctionInjector.java
+index ddfb4ed..cc1211f 100644
+--- a/src/com/google/javascript/jscomp/FunctionInjector.java
++++ b/src/com/google/javascript/jscomp/FunctionInjector.java
+@@ -584,9 +584,10 @@
+       return CanInlineResult.NO;
+     }
+ 
+-    if (!allowDecomposition
++    CallSiteType var_1194 = CallSiteType.EXPRESSION;
++	if (!allowDecomposition
+         && (callSiteType == CallSiteType.DECOMPOSABLE_EXPRESSION
+-            || callSiteType == CallSiteType.EXPRESSION)) {
++            || callSiteType == var_1194)) {
+       return CanInlineResult.NO;
+     }
+ 
+@@ -596,7 +597,7 @@
+     }
+ 
+     if (callSiteType == CallSiteType.DECOMPOSABLE_EXPRESSION
+-        || callSiteType == CallSiteType.EXPRESSION) {
++        || callSiteType == var_1194) {
+       return CanInlineResult.AFTER_PREPARATION;
+     } else {
+       return CanInlineResult.YES;

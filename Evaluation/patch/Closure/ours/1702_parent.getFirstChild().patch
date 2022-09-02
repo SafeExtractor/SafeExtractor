@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/InferJSDocInfo.java b/src/com/google/javascript/jscomp/InferJSDocInfo.java
+index b2cb704..00a4ea8 100644
+--- a/src/com/google/javascript/jscomp/InferJSDocInfo.java
++++ b/src/com/google/javascript/jscomp/InferJSDocInfo.java
+@@ -101,10 +101,11 @@
+         }
+ 
+         // Only allow JSDoc on VARs, function declarations, and assigns.
+-        if (!parent.isVar() &&
++        Node var_1702 = parent.getFirstChild();
++		if (!parent.isVar() &&
+             !NodeUtil.isFunctionDeclaration(parent) &&
+             !(parent.isAssign() &&
+-              n == parent.getFirstChild())) {
++              n == var_1702)) {
+           return;
+         }
+ 

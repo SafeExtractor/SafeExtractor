@@ -1,0 +1,40 @@
+diff --git a/source/org/jfree/chart/renderer/category/GradientBarPainter.java b/source/org/jfree/chart/renderer/category/GradientBarPainter.java
+index 96a84cd..6b19355 100644
+--- a/source/org/jfree/chart/renderer/category/GradientBarPainter.java
++++ b/source/org/jfree/chart/renderer/category/GradientBarPainter.java
+@@ -130,16 +130,17 @@
+             return;
+         }
+ 
+-        if (base == RectangleEdge.TOP || base == RectangleEdge.BOTTOM) {
++        Color var_2813 = Color.white;
++		if (base == RectangleEdge.TOP || base == RectangleEdge.BOTTOM) {
+             Rectangle2D[] regions = splitVerticalBar(bar, this.g1, this.g2,
+                     this.g3);
+             GradientPaint gp = new GradientPaint((float) regions[0].getMinX(),
+-                    0.0f, c0, (float) regions[0].getMaxX(), 0.0f, Color.white);
++                    0.0f, c0, (float) regions[0].getMaxX(), 0.0f, var_2813);
+             g2.setPaint(gp);
+             g2.fill(regions[0]);
+ 
+             gp = new GradientPaint((float) regions[1].getMinX(), 0.0f,
+-                    Color.white, (float) regions[1].getMaxX(), 0.0f, c0);
++                    var_2813, (float) regions[1].getMaxX(), 0.0f, c0);
+             g2.setPaint(gp);
+             g2.fill(regions[1]);
+ 
+@@ -158,12 +159,12 @@
+                     this.g3);
+             GradientPaint gp = new GradientPaint(0.0f,
+                     (float) regions[0].getMinY(), c0, 0.0f,
+-                    (float) regions[0].getMaxX(), Color.white);
++                    (float) regions[0].getMaxX(), var_2813);
+             g2.setPaint(gp);
+             g2.fill(regions[0]);
+ 
+             gp = new GradientPaint(0.0f, (float) regions[1].getMinY(),
+-                    Color.white, 0.0f, (float) regions[1].getMaxY(), c0);
++                    var_2813, 0.0f, (float) regions[1].getMaxY(), c0);
+             g2.setPaint(gp);
+             g2.fill(regions[1]);
+ 

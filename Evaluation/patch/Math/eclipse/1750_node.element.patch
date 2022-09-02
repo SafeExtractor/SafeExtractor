@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/AVLTree.java b/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/AVLTree.java
+index 7070060..7d9d6b2 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/AVLTree.java
++++ b/src/main/java/org/apache/commons/math3/geometry/partitioning/utilities/AVLTree.java
+@@ -83,10 +83,11 @@
+             for (Node node = getNotSmaller(element); node != null; node = node.getNext()) {
+                 // loop over all elements neither smaller nor larger
+                 // than the specified one
+-                if (node.element == element) {
++                T var_1750 = node.element;
++				if (var_1750 == element) {
+                     node.delete();
+                     return true;
+-                } else if (node.element.compareTo(element) > 0) {
++                } else if (var_1750.compareTo(element) > 0) {
+                     // all the remaining elements are known to be larger,
+                     // the element is not in the tree
+                     return false;

@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/PhaseOptimizer.java b/src/com/google/javascript/jscomp/PhaseOptimizer.java
+index 4278d96..b43bf5f 100644
+--- a/src/com/google/javascript/jscomp/PhaseOptimizer.java
++++ b/src/com/google/javascript/jscomp/PhaseOptimizer.java
+@@ -343,11 +343,12 @@
+             compiler.throwInternalError(OPTIMIZE_LOOP_ERROR, null);
+           }
+           lastIterMadeChanges = false;
+-          for (NamedPass pass : myPasses) {
++          State var_862 = State.RUN_PASSES_THAT_CHANGED_STH_IN_PREV_ITER;
++		for (NamedPass pass : myPasses) {
+             recentChange.reset();
+             if ((s == State.RUN_PASSES_NOT_RUN_IN_PREV_ITER &&
+                 !runInPrevIter.contains(pass)) ||
+-                (s == State.RUN_PASSES_THAT_CHANGED_STH_IN_PREV_ITER &&
++                (s == var_862 &&
+                     madeChanges.contains(pass))) {
+               pass.process(externs, root);
+               runInPrevIter.add(pass);
+@@ -365,7 +366,7 @@
+           }
+           if (s == State.RUN_PASSES_NOT_RUN_IN_PREV_ITER) {
+             if (lastIterMadeChanges) {
+-              s = State.RUN_PASSES_THAT_CHANGED_STH_IN_PREV_ITER;
++              s = var_862;
+             } else {
+               return;
+             }

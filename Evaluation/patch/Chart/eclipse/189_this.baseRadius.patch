@@ -1,0 +1,28 @@
+diff --git a/source/org/jfree/chart/annotations/CategoryPointerAnnotation.java b/source/org/jfree/chart/annotations/CategoryPointerAnnotation.java
+index 3e836fe..1762ad8 100644
+--- a/source/org/jfree/chart/annotations/CategoryPointerAnnotation.java
++++ b/source/org/jfree/chart/annotations/CategoryPointerAnnotation.java
+@@ -384,8 +384,9 @@
+             j2DX = j2DY;
+             j2DY = temp;
+         }
+-        double startX = j2DX + Math.cos(this.angle) * this.baseRadius;
+-        double startY = j2DY + Math.sin(this.angle) * this.baseRadius;
++        double var_189 = this.baseRadius;
++		double startX = j2DX + Math.cos(this.angle) * var_189;
++        double startY = j2DY + Math.sin(this.angle) * var_189;
+ 
+         double endX = j2DX + Math.cos(this.angle) * this.tipRadius;
+         double endY = j2DY + Math.sin(this.angle) * this.tipRadius;
+@@ -419,9 +420,9 @@
+         g2.setFont(getFont());
+         g2.setPaint(getPaint());
+         double labelX = j2DX
+-            + Math.cos(this.angle) * (this.baseRadius + this.labelOffset);
++            + Math.cos(this.angle) * (var_189 + this.labelOffset);
+         double labelY = j2DY
+-            + Math.sin(this.angle) * (this.baseRadius + this.labelOffset);
++            + Math.sin(this.angle) * (var_189 + this.labelOffset);
+         /* Rectangle2D hotspot = */ TextUtilities.drawAlignedString(getText(),
+                 g2, (float) labelX, (float) labelY, getTextAnchor());
+         // TODO: implement the entity for the annotation

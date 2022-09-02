@@ -1,0 +1,52 @@
+diff --git a/src/main/java/org/apache/commons/lang3/BooleanUtils.java b/src/main/java/org/apache/commons/lang3/BooleanUtils.java
+index 4bbeb62..435cff2 100644
+--- a/src/main/java/org/apache/commons/lang3/BooleanUtils.java
++++ b/src/main/java/org/apache/commons/lang3/BooleanUtils.java
+@@ -549,8 +549,9 @@
+         // Optimisation provides same performance as before for interned 'true'.
+         // Similar performance for null, 'false', and other strings not length 2/3/4.
+         // 'true'/'TRUE' match 4 times slower, 'tRUE'/'True' 7 times slower.
+-        if (str == "true") {
+-            return Boolean.TRUE;
++        Boolean var_104 = Boolean.TRUE;
++		if (str == "true") {
++            return var_104;
+         }
+         if (str == null) {
+             return null;
+@@ -560,7 +561,7 @@
+                 final char ch0 = str.charAt(0);
+                 if (ch0 == 'y' || ch0 == 'Y' ||
+                     ch0 == 't' || ch0 == 'T') {
+-                    return Boolean.TRUE;
++                    return var_104;
+                 }
+                 if (ch0 == 'n' || ch0 == 'N' ||
+                     ch0 == 'f' || ch0 == 'F') {
+@@ -573,7 +574,7 @@
+                 final char ch1 = str.charAt(1);
+                 if ((ch0 == 'o' || ch0 == 'O') &&
+                     (ch1 == 'n' || ch1 == 'N') ) {
+-                    return Boolean.TRUE;
++                    return var_104;
+                 }
+                 if ((ch0 == 'n' || ch0 == 'N') &&
+                     (ch1 == 'o' || ch1 == 'O') ) {
+@@ -588,7 +589,7 @@
+                 if ((ch0 == 'y' || ch0 == 'Y') &&
+                     (ch1 == 'e' || ch1 == 'E') &&
+                     (ch2 == 's' || ch2 == 'S') ) {
+-                    return Boolean.TRUE;
++                    return var_104;
+                 }
+                 if ((ch0 == 'o' || ch0 == 'O') &&
+                     (ch1 == 'f' || ch1 == 'F') &&
+@@ -606,7 +607,7 @@
+                     (ch1 == 'r' || ch1 == 'R') &&
+                     (ch2 == 'u' || ch2 == 'U') &&
+                     (ch3 == 'e' || ch3 == 'E') ) {
+-                    return Boolean.TRUE;
++                    return var_104;
+                 }
+                 break;
+             }

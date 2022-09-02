@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/DataFlowAnalysis.java b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+index 5b39646..d7d2aab 100644
+--- a/src/com/google/javascript/jscomp/DataFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+@@ -266,14 +266,15 @@
+    */
+   protected boolean flow(DiGraphNode<N, Branch> node) {
+     FlowState<L> state = node.getAnnotation();
+-    if (isForward()) {
++    L var_749 = state.in;
++	if (isForward()) {
+       L outBefore = state.out;
+-      state.out = flowThrough(node.getValue(), state.in);
++      state.out = flowThrough(node.getValue(), var_749);
+       return !outBefore.equals(state.out);
+     } else {
+-      L inBefore = state.in;
++      L inBefore = var_749;
+       state.in = flowThrough(node.getValue(), state.out);
+-      return !inBefore.equals(state.in);
++      return !inBefore.equals(var_749);
+     }
+   }
+ 

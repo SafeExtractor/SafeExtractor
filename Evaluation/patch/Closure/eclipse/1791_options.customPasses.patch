@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..593f336 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -21,6 +21,7 @@
+ import com.google.common.base.Preconditions;
+ import com.google.common.collect.Lists;
+ import com.google.common.collect.Maps;
++import com.google.common.collect.Multimap;
+ import com.google.common.collect.Sets;
+ import com.google.common.io.Files;
+ import com.google.javascript.jscomp.AbstractCompiler.LifeCycleStage;
+@@ -465,7 +466,8 @@
+       passes.add(devirtualizePrototypeMethods);
+     }
+ 
+-    if (options.customPasses != null) {
++    Multimap<CustomPassExecutionTime, CompilerPass> var_1791 = options.customPasses;
++	if (var_1791 != null) {
+       passes.add(getCustomPasses(
+           CustomPassExecutionTime.BEFORE_OPTIMIZATION_LOOP));
+     }
+@@ -506,7 +508,7 @@
+ 
+     // Some optimizations belong outside the loop because running them more
+     // than once would either have no benefit or be incorrect.
+-    if (options.customPasses != null) {
++    if (var_1791 != null) {
+       passes.add(getCustomPasses(
+           CustomPassExecutionTime.AFTER_OPTIMIZATION_LOOP));
+     }

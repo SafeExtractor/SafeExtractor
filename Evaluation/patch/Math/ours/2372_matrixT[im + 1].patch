@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+index a2ea88e..e6af41f 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+@@ -318,8 +318,9 @@
+             final double z = matrixT[im][im];
+             final double r = shift.x - z;
+             double s = shift.y - z;
+-            hVec[0] = (r * s - shift.w) / matrixT[im + 1][im] + matrixT[im][im + 1];
+-            hVec[1] = matrixT[im + 1][im + 1] - z - r - s;
++            double[] var_2372 = matrixT[im + 1];
++			hVec[0] = (r * s - shift.w) / var_2372[im] + matrixT[im][im + 1];
++            hVec[1] = var_2372[im + 1] - z - r - s;
+             hVec[2] = matrixT[im + 2][im + 1];
+ 
+             if (im == il) {
+@@ -329,7 +330,7 @@
+             final double lhs = FastMath.abs(matrixT[im][im - 1]) * (FastMath.abs(hVec[1]) + FastMath.abs(hVec[2]));
+             final double rhs = FastMath.abs(hVec[0]) * (FastMath.abs(matrixT[im - 1][im - 1]) +
+                                                         FastMath.abs(z) +
+-                                                        FastMath.abs(matrixT[im + 1][im + 1]));
++                                                        FastMath.abs(var_2372[im + 1]));
+ 
+             if (lhs < epsilon * rhs) {
+                 break;

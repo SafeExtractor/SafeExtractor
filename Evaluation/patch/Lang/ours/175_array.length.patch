@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/lang3/ArrayUtils.java b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+index a0a499a..22d0479 100644
+--- a/src/main/java/org/apache/commons/lang3/ArrayUtils.java
++++ b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+@@ -2735,9 +2735,12 @@
+     public static Character[] toObject(final char[] array) {
+         if (array == null) {
+             return null;
+-        } else if (array.length == 0) {
+-            return EMPTY_CHARACTER_OBJECT_ARRAY;
+-        }
++        } else {
++			int var_175 = array.length;
++			if (var_175 == 0) {
++			    return EMPTY_CHARACTER_OBJECT_ARRAY;
++			}
++		}
+         final Character[] result = new Character[array.length];
+         for (int i = 0; i < array.length; i++) {
+             result[i] = Character.valueOf(array[i]);

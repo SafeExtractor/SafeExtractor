@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/needle/PlumNeedle.java b/source/org/jfree/chart/needle/PlumNeedle.java
+index 61c3562..26af59b 100644
+--- a/source/org/jfree/chart/needle/PlumNeedle.java
++++ b/source/org/jfree/chart/needle/PlumNeedle.java
+@@ -46,6 +46,7 @@
+ package org.jfree.chart.needle;
+ 
+ import java.awt.Graphics2D;
++import java.awt.geom.AffineTransform;
+ import java.awt.geom.Arc2D;
+ import java.awt.geom.Area;
+ import java.awt.geom.Point2D;
+@@ -88,8 +89,9 @@
+ 
+         if ((rotate != null) && (angle != 0)) {
+             /// we have rotation houston, please spin me
+-            getTransform().setToRotation(angle, rotate.getX(), rotate.getY());
+-            s.transform(getTransform());
++            AffineTransform var_1242 = getTransform();
++			var_1242.setToRotation(angle, rotate.getX(), rotate.getY());
++            s.transform(var_1242);
+         }
+ 
+         defaultDisplay(g2, s);

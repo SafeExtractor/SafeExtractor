@@ -1,0 +1,50 @@
+diff --git a/src/com/google/javascript/jscomp/RemoveUnusedVars.java b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+index 4c84735..0c79b09 100644
+--- a/src/com/google/javascript/jscomp/RemoveUnusedVars.java
++++ b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+@@ -192,7 +192,8 @@
+   private void traverseNode(Node n, Node parent, Scope scope) {
+     int type = n.getType();
+     Var var = null;
+-    switch (type) {
++    boolean var_610 = isRemovableVar(var);
++	switch (type) {
+       case Token.FUNCTION:
+         // If this function is a removable var, then create a continuation
+         // for it instead of traversing immediately.
+@@ -200,7 +201,7 @@
+           var = scope.getVar(n.getFirstChild().getString());
+         }
+ 
+-        if (var != null && isRemovableVar(var)) {
++        if (var != null && var_610) {
+           continuations.put(var, new Continuation(n, scope));
+         } else {
+           traverseFunction(n, scope);
+@@ -217,7 +218,7 @@
+             assignsByVar.put(var, maybeAssign);
+             assignsByNode.put(maybeAssign.nameNode, maybeAssign);
+ 
+-            if (isRemovableVar(var) &&
++            if (var_610 &&
+                 !maybeAssign.mayHaveSecondarySideEffects) {
+               // If the var is unreferenced and performing this assign has
+               // no secondary side effects, then we can create a continuation
+@@ -262,7 +263,7 @@
+         var = scope.getVar(n.getString());
+         if (parent.isVar()) {
+           Node value = n.getFirstChild();
+-          if (value != null && var != null && isRemovableVar(var) &&
++          if (value != null && var != null && var_610 &&
+               !NodeUtil.mayHaveSideEffects(value, compiler)) {
+             // If the var is unreferenced and creating its value has no side
+             // effects, then we can create a continuation for it instead
+@@ -287,7 +288,7 @@
+             // If that var hasn't already been marked referenced, then
+             // start tracking it.  If this is an assign, do nothing
+             // for now.
+-            if (isRemovableVar(var)) {
++            if (var_610) {
+               if (!assignsByNode.containsKey(n)) {
+                 markReferencedVar(var);
+               }

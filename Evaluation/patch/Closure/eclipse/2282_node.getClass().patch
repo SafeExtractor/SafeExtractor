@@ -1,0 +1,50 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/TypeSafeDispatcher.java b/src/com/google/javascript/jscomp/parsing/TypeSafeDispatcher.java
+index 95aaacd..48c8c0b 100644
+--- a/src/com/google/javascript/jscomp/parsing/TypeSafeDispatcher.java
++++ b/src/com/google/javascript/jscomp/parsing/TypeSafeDispatcher.java
+@@ -118,7 +118,8 @@
+   abstract T processIllegalToken(AstNode node);
+ 
+   public T process(AstNode node) {
+-    switch (node.getType()) {
++    Class<? extends AstNode> var_2282 = node.getClass();
++	switch (node.getType()) {
+       case Token.ADD:
+       case Token.AND:
+       case Token.BITAND:
+@@ -176,7 +177,7 @@
+           return processScope((Scope) node);
+         } else {
+           throw new IllegalStateException("Unexpected node type.  class: " +
+-                                          node.getClass() +
++                                          var_2282 +
+                                           " type: " +
+                                           Token.typeToName(node.getType()));
+         }
+@@ -207,7 +208,7 @@
+           return processLabeledStatement((LabeledStatement) node);
+         } else {
+           throw new IllegalStateException("Unexpected node type.  class: " +
+-                                          node.getClass() +
++                                          var_2282 +
+                                           " type: " +
+                                           Token.typeToName(node.getType()));
+         }
+@@ -224,7 +225,7 @@
+           return processForLoop((ForLoop) node);
+         } else {
+           throw new IllegalStateException("Unexpected node type.  class: " +
+-                                          node.getClass() +
++                                          var_2282 +
+                                           " type: " +
+                                           Token.typeToName(node.getType()));
+         }
+@@ -272,7 +273,7 @@
+           return processVariableInitializer((VariableInitializer) node);
+         } else {
+           throw new IllegalStateException("Unexpected node type.  class: " +
+-                                          node.getClass() +
++                                          var_2282 +
+                                           " type: " +
+                                           Token.typeToName(node.getType()));
+         }

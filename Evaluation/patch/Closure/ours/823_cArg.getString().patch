@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/FunctionArgumentInjector.java b/src/com/google/javascript/jscomp/FunctionArgumentInjector.java
+index a6efa7d..e1459ed 100644
+--- a/src/com/google/javascript/jscomp/FunctionArgumentInjector.java
++++ b/src/com/google/javascript/jscomp/FunctionArgumentInjector.java
+@@ -290,16 +290,17 @@
+         safe = false;
+       } else if (references > 1) {
+         // Safe is a misnomer, this is a check for "large".
+-        switch (cArg.getType()) {
++        String var_823 = cArg.getString();
++		switch (cArg.getType()) {
+           case Token.NAME:
+-            String name = cArg.getString();
++            String name = var_823;
+             safe = !(convention.isExported(name));
+             break;
+           case Token.THIS:
+             safe = true;
+             break;
+           case Token.STRING:
+-            safe = (cArg.getString().length() < 2);
++            safe = (var_823.length() < 2);
+             break;
+           default:
+             safe = NodeUtil.isImmutableValue(cArg);

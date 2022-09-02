@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/JacobianMatrices.java b/src/main/java/org/apache/commons/math3/ode/JacobianMatrices.java
+index 3a5d11b..ff14305 100644
+--- a/src/main/java/org/apache/commons/math3/ode/JacobianMatrices.java
++++ b/src/main/java/org/apache/commons/math3/ode/JacobianMatrices.java
+@@ -463,10 +463,11 @@
+ 
+             for (int j = 0; j < n; ++j) {
+                 final double savedYj = y[j];
+-                y[j] += hY[j];
++                double var_2566 = hY[j];
++				y[j] += var_2566;
+                 ode.computeDerivatives(t, y, tmpDot);
+                 for (int i = 0; i < n; ++i) {
+-                    dFdY[i][j] = (tmpDot[i] - yDot[i]) / hY[j];
++                    dFdY[i][j] = (tmpDot[i] - yDot[i]) / var_2566;
+                 }
+                 y[j] = savedYj;
+             }

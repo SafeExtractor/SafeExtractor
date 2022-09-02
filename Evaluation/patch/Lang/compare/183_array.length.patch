@@ -1,0 +1,32 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/183_array.length.patch b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/183_array.length.patch
+index 3622523..30a04ab 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/183_array.length.patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/183_array.length.patch
+@@ -1,22 +1,15 @@
+ diff --git a/src/main/java/org/apache/commons/lang3/ArrayUtils.java b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+-index a0a499a..2ff2f8d 100644
++index a0a499a..b3745df 100644
+ --- a/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+ +++ b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+-@@ -2915,13 +2915,14 @@
+-      * @return a {@code byte} array, {@code null} if null array input
+-      */
+-     public static short[] toPrimitive(final Short[] array, final short valueForNull) {
+--        if (array == null) {
+-+        int var_183 = array.length;
+-+		if (array == null) {
+-             return null;
+--        } else if (array.length == 0) {
+-+        } else if (var_183 == 0) {
++@@ -2920,8 +2920,9 @@
++         } else if (array.length == 0) {
+              return EMPTY_SHORT_ARRAY;
+          }
+ -        final short[] result = new short[array.length];
+ -        for (int i = 0; i < array.length; i++) {
+-+        final short[] result = new short[var_183];
+++        int var_183 = array.length;
+++		final short[] result = new short[var_183];
+ +        for (int i = 0; i < var_183; i++) {
+              final Short b = array[i];
+              result[i] = (b == null ? valueForNull : b.shortValue());

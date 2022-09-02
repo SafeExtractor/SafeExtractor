@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..7eb6213 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -374,7 +374,8 @@
+                     quat[3] = s.add(1.0).sqrt().multiply(0.5);
+                     T inv = quat[3].reciprocal().multiply(0.25);
+                     quat[0] = inv.multiply(ort[0][1].subtract(ort[1][0]));
+-                    quat[1] = inv.multiply(ort[0][2].add(ort[2][0]));
++                    T var_1199 = ort[0][2].add(ort[2][0]);
++					quat[1] = inv.multiply(var_1199);
+                     quat[2] = inv.multiply(ort[2][1].add(ort[1][2]));
+                 }
+             }

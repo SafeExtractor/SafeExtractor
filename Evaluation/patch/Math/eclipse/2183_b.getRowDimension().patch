@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java b/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java
+index b3412e0..eccdfa5 100644
+--- a/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/QRDecomposition.java
+@@ -383,8 +383,9 @@
+         public RealMatrix solve(RealMatrix b) {
+             final int n = qrt.length;
+             final int m = qrt[0].length;
+-            if (b.getRowDimension() != m) {
+-                throw new DimensionMismatchException(b.getRowDimension(), m);
++            int var_2183 = b.getRowDimension();
++			if (var_2183 != m) {
++                throw new DimensionMismatchException(var_2183, m);
+             }
+             if (!isNonSingular()) {
+                 throw new SingularMatrixException();
+@@ -394,7 +395,7 @@
+             final int blockSize      = BlockRealMatrix.BLOCK_SIZE;
+             final int cBlocks        = (columns + blockSize - 1) / blockSize;
+             final double[][] xBlocks = BlockRealMatrix.createBlocksLayout(n, columns);
+-            final double[][] y       = new double[b.getRowDimension()][blockSize];
++            final double[][] y       = new double[var_2183][blockSize];
+             final double[]   alpha   = new double[blockSize];
+ 
+             for (int kBlock = 0; kBlock < cBlocks; ++kBlock) {

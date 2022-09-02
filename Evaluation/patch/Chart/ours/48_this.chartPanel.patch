@@ -1,0 +1,17 @@
+diff --git a/source/org/jfree/chart/MouseWheelHandler.java b/source/org/jfree/chart/MouseWheelHandler.java
+index 458a892..842ddb8 100644
+--- a/source/org/jfree/chart/MouseWheelHandler.java
++++ b/source/org/jfree/chart/MouseWheelHandler.java
+@@ -131,9 +131,10 @@
+      */
+     private void handleZoomable(Zoomable zoomable, MouseWheelEvent e) {
+         // don't zoom unless the mouse pointer is in the plot's data area
+-        ChartRenderingInfo info = this.chartPanel.getChartRenderingInfo();
++        ChartPanel var_48 = this.chartPanel;
++		ChartRenderingInfo info = var_48.getChartRenderingInfo();
+         PlotRenderingInfo pinfo = info.getPlotInfo();
+-        Point2D p = this.chartPanel.translateScreenToJava2D(e.getPoint());
++        Point2D p = var_48.translateScreenToJava2D(e.getPoint());
+         if (!pinfo.getDataArea().contains(p)) {
+             return;
+         }

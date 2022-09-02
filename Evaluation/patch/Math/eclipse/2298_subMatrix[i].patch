@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/Array2DRowRealMatrix.java b/src/main/java/org/apache/commons/math3/linear/Array2DRowRealMatrix.java
+index 5f6f2be..549ecd6 100644
+--- a/src/main/java/org/apache/commons/math3/linear/Array2DRowRealMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/Array2DRowRealMatrix.java
+@@ -288,10 +288,11 @@
+             }
+             data = new double[subMatrix.length][nCols];
+             for (int i = 0; i < data.length; ++i) {
+-                if (subMatrix[i].length != nCols) {
+-                    throw new DimensionMismatchException(subMatrix[i].length, nCols);
++                double[] var_2298 = subMatrix[i];
++				if (var_2298.length != nCols) {
++                    throw new DimensionMismatchException(var_2298.length, nCols);
+                 }
+-                System.arraycopy(subMatrix[i], 0, data[i + row], column, nCols);
++                System.arraycopy(var_2298, 0, data[i + row], column, nCols);
+             }
+         } else {
+             super.setSubMatrix(subMatrix, row, column);

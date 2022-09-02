@@ -1,0 +1,18 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..33143cf 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -5684,9 +5684,10 @@
+         clone.datasetToRangeAxesMap = new TreeMap();
+         clone.datasetToRangeAxesMap.putAll(this.datasetToRangeAxesMap);
+ 
+-        clone.renderers = (ObjectList) ObjectUtilities.clone(this.renderers);
+-        for (int i = 0; i < this.renderers.size(); i++) {
+-            XYItemRenderer renderer2 = (XYItemRenderer) this.renderers.get(i);
++        ObjectList var_1790 = this.renderers;
++		clone.renderers = (ObjectList) ObjectUtilities.clone(var_1790);
++        for (int i = 0; i < var_1790.size(); i++) {
++            XYItemRenderer renderer2 = (XYItemRenderer) var_1790.get(i);
+             if (renderer2 instanceof PublicCloneable) {
+                 PublicCloneable pc = (PublicCloneable) renderer2;
+                 XYItemRenderer rc = (XYItemRenderer) pc.clone();

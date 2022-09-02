@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
+index c3dd8cc..cf1e389 100644
+--- a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
++++ b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
+@@ -1251,7 +1251,8 @@
+             while (length < limit) {
+                 char c = text.charAt(position + length);
+                 // leading sign
+-                if (length == 0 && (c == '-' || c == '+') && !iRejectSignedValues) {
++                int var_544 = Math.min(limit + 1, text.length() - position);
++				if (length == 0 && (c == '-' || c == '+') && !iRejectSignedValues) {
+                     boolean negative = c == '-';
+ 
+                     // Next character must be a digit.
+@@ -1268,7 +1269,7 @@
+                         position++;
+                     }
+                     // Expand the limit to disregard the sign character.
+-                    limit = Math.min(limit + 1, text.length() - position);
++                    limit = var_544;
+                     continue;
+                 }
+                 // main number
+@@ -1283,7 +1284,7 @@
+                         }
+                         fractPos = position + length + 1;
+                         // Expand the limit to disregard the decimal point.
+-                        limit = Math.min(limit + 1, text.length() - position);
++                        limit = var_544;
+                     } else {
+                         break;
+                     }

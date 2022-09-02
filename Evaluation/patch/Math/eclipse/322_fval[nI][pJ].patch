@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java
+index 0fce857..287063b 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java
+@@ -158,9 +158,10 @@
+                     final int pK = previousIndex(k);
+ 
+                     // XXX Not sure about this formula
+-                    d3FdXdYdZ[i][j][k] = (fval[nI][nJ][nK] - fval[nI][pJ][nK] -
++                    double[] var_322 = fval[nI][pJ];
++					d3FdXdYdZ[i][j][k] = (fval[nI][nJ][nK] - var_322[nK] -
+                                           fval[pI][nJ][nK] + fval[pI][pJ][nK] -
+-                                          fval[nI][nJ][pK] + fval[nI][pJ][pK] +
++                                          fval[nI][nJ][pK] + var_322[pK] +
+                                           fval[pI][nJ][pK] - fval[pI][pJ][pK]) /
+                         ((xval[nI] - xval[pI]) * (yval[nJ] - yval[pJ]) * (zval[nK] - zval[pK])) ;
+                 }

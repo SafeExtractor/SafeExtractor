@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..e682a09 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -926,12 +926,13 @@
+     // a single source map.
+     Writer mapOut = null;
+ 
+-    if (!shouldGenerateMapPerModule(options)) {
++    boolean var_429 = shouldGenerateMapPerModule(options);
++	if (!var_429) {
+       mapOut = fileNameToOutputWriter2(expandSourceMapPath(options, null));
+     }
+ 
+     for (JSModule m : modules) {
+-      if (shouldGenerateMapPerModule(options)) {
++      if (var_429) {
+         mapOut = fileNameToOutputWriter2(expandSourceMapPath(options, m));
+       }
+ 
+@@ -950,7 +951,7 @@
+ 
+       writer.close();
+ 
+-      if (shouldGenerateMapPerModule(options) && mapOut != null) {
++      if (var_429 && mapOut != null) {
+         mapOut.close();
+         mapOut = null;
+       }

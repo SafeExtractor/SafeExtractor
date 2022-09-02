@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..aad8c73 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -175,13 +175,14 @@
+    */
+   static String getStringValue(Node n) {
+     // TODO(user): regex literals as well.
+-    switch (n.getType()) {
++    String var_2036 = n.getString();
++	switch (n.getType()) {
+       case Token.STRING:
+       case Token.STRING_KEY:
+-        return n.getString();
++        return var_2036;
+ 
+       case Token.NAME:
+-        String name = n.getString();
++        String name = var_2036;
+         if ("undefined".equals(name)
+             || "Infinity".equals(name)
+             || "NaN".equals(name)) {

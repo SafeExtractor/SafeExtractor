@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..b3577b9 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -393,7 +393,8 @@
+   }
+ 
+   private void handleFor(Node forNode) {
+-    if (forNode.getChildCount() == 4) {
++    Branch var_1894 = Branch.UNCOND;
++	if (forNode.getChildCount() == 4) {
+       // We have for (init; cond; iter) { body }
+       Node init = forNode.getFirstChild();
+       Node cond = init.getNext();
+@@ -401,7 +402,7 @@
+       Node body = iter.getNext();
+       // After initialization, we transfer to the FOR which is in charge of
+       // checking the condition (for the first time).
+-      createEdge(init, Branch.UNCOND, forNode);
++      createEdge(init, var_1894, forNode);
+       // The edge that transfer control to the beginning of the loop body.
+       createEdge(forNode, Branch.ON_TRUE, computeFallThrough(body));
+       // The edge to end of the loop.
+@@ -411,7 +412,7 @@
+       // (handled by calling computeFollowNode of the last instruction of the
+       // body. Our iter will jump to the forNode again to another condition
+       // check.
+-      createEdge(iter, Branch.UNCOND, forNode);
++      createEdge(iter, var_1894, forNode);
+       connectToPossibleExceptionHandler(init, init);
+       connectToPossibleExceptionHandler(forNode, cond);
+       connectToPossibleExceptionHandler(iter, iter);
+@@ -421,7 +422,7 @@
+       Node collection = item.getNext();
+       Node body = collection.getNext();
+       // The collection behaves like init.
+-      createEdge(collection, Branch.UNCOND, forNode);
++      createEdge(collection, var_1894, forNode);
+       // The edge that transfer control to the beginning of the loop body.
+       createEdge(forNode, Branch.ON_TRUE, computeFallThrough(body));
+       // The edge to end of the loop.

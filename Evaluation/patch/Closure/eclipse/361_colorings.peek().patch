@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/CoalesceVariableNames.java b/src/com/google/javascript/jscomp/CoalesceVariableNames.java
+index 11bb585..45cc03e 100644
+--- a/src/com/google/javascript/jscomp/CoalesceVariableNames.java
++++ b/src/com/google/javascript/jscomp/CoalesceVariableNames.java
+@@ -152,12 +152,13 @@
+       return;
+     }
+     Var var = t.getScope().getVar(n.getString());
+-    GraphNode<Var, ?> vNode = colorings.peek().getGraph().getNode(var);
++    GraphColoring<Var, Void> var_361 = colorings.peek();
++	GraphNode<Var, ?> vNode = var_361.getGraph().getNode(var);
+     if (vNode == null) {
+       // This is not a local.
+       return;
+     }
+-    Var coalescedVar = colorings.peek().getPartitionSuperNode(var);
++    Var coalescedVar = var_361.getPartitionSuperNode(var);
+ 
+     if (!usePseudoNames) {
+       if (vNode.getValue().equals(coalescedVar)) {
+@@ -183,8 +184,8 @@
+ 
+         // Look for all the variables that can be merged (in the graph by now)
+         // and it is merged with the current coalescedVar.
+-        if (colorings.peek().getGraph().getNode(iVar) != null &&
+-            coalescedVar.equals(colorings.peek().getPartitionSuperNode(iVar))) {
++        if (var_361.getGraph().getNode(iVar) != null &&
++            coalescedVar.equals(var_361.getPartitionSuperNode(iVar))) {
+           allMergedNames.add(iVar.name);
+         }
+       }

@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/annotations/XYShapeAnnotation.java b/source/org/jfree/chart/annotations/XYShapeAnnotation.java
+index 2fae007..b198fe3 100644
+--- a/source/org/jfree/chart/annotations/XYShapeAnnotation.java
++++ b/source/org/jfree/chart/annotations/XYShapeAnnotation.java
+@@ -171,7 +171,8 @@
+ 
+         // compute transform matrix elements via sample points. Assume no
+         // rotation or shear.
+-        Rectangle2D bounds = this.shape.getBounds2D();
++        Shape var_221 = this.shape;
++		Rectangle2D bounds = var_221.getBounds2D();
+         double x0 = bounds.getMinX();
+         double x1 = bounds.getMaxX();
+         double xx0 = domainAxis.valueToJava2D(x0, dataArea, domainEdge);
+@@ -193,12 +194,12 @@
+                     0.0f, 0.0f);
+             AffineTransform t2 = new AffineTransform(m11, 0.0f, 0.0f, m00,
+                     m12, m02);
+-            s = t1.createTransformedShape(this.shape);
++            s = t1.createTransformedShape(var_221);
+             s = t2.createTransformedShape(s);
+         }
+         else if (orientation == PlotOrientation.VERTICAL) {
+             AffineTransform t = new AffineTransform(m00, 0, 0, m11, m02, m12);
+-            s = t.createTransformedShape(this.shape);
++            s = t.createTransformedShape(var_221);
+         }
+ 
+         if (this.fillPaint != null) {

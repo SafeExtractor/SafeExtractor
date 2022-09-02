@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+index 6219d26..48381d3 100644
+--- a/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
++++ b/src/com/google/javascript/jscomp/ExpandJqueryAliases.java
+@@ -153,11 +153,12 @@
+     // If so, leave it intact.
+     if(NodeUtil.isLValue(n)) {
+       Node maybeAssign = n.getParent();
+-      while (!NodeUtil.isStatement(maybeAssign) && !maybeAssign.isAssign()) {
++      boolean var_1135 = maybeAssign.isAssign();
++	while (!NodeUtil.isStatement(maybeAssign) && !var_1135) {
+         maybeAssign = maybeAssign.getParent();
+       }
+ 
+-      if (maybeAssign.isAssign()) {
++      if (var_1135) {
+         maybeAssign = maybeAssign.getParent();
+         if (maybeAssign.isBlock() || maybeAssign.isScript() ||
+             NodeUtil.isStatement(maybeAssign)) {

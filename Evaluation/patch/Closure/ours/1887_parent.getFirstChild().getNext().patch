@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..974ec8b 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -248,7 +248,8 @@
+      * change the control flow and need not to be considered.
+      */
+     if (parent != null) {
+-      switch (parent.getType()) {
++      Node var_1887 = parent.getFirstChild().getNext();
++	switch (parent.getType()) {
+         case Token.FOR:
+           // Only traverse the body of the for loop.
+           return n == parent.getLastChild();
+@@ -259,7 +260,7 @@
+         case Token.WITH:
+           return n != parent.getFirstChild();
+         case Token.DO:
+-          return n != parent.getFirstChild().getNext();
++          return n != var_1887;
+         // Only traverse the body of the cases
+         case Token.SWITCH:
+         case Token.CASE:
+@@ -267,7 +268,7 @@
+         case Token.LABEL:
+           return n != parent.getFirstChild();
+         case Token.FUNCTION:
+-          return n == parent.getFirstChild().getNext().getNext();
++          return n == var_1887.getNext();
+         case Token.CONTINUE:
+         case Token.BREAK:
+         case Token.EXPR_RESULT:
+@@ -282,7 +283,7 @@
+            * block has been finished, no more exceptions can be caught by the
+            * handler at this TRY block and should be taken out of the stack.
+            */
+-          if (n == parent.getFirstChild().getNext()) {
++          if (n == var_1887) {
+             Preconditions.checkState(exceptionHandler.peek() == parent);
+             exceptionHandler.pop();
+           }

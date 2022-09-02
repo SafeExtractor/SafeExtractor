@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/chart/axis/PeriodAxis.java b/source/org/jfree/chart/axis/PeriodAxis.java
+index 3c0bc0f..a855b95 100644
+--- a/source/org/jfree/chart/axis/PeriodAxis.java
++++ b/source/org/jfree/chart/axis/PeriodAxis.java
+@@ -882,11 +882,12 @@
+             String label = df.format(new Date(p.getMiddleMillisecond()));
+             long first = p.getFirstMillisecond();
+             long last = p.getLastMillisecond();
+-            if (last > axisMax) {
++            Rectangle2D var_829 = TextUtilities.getTextBounds(label, g2,
++			        g2.getFontMetrics());
++			if (last > axisMax) {
+                 // this is the last period, but it is only partially visible
+                 // so check that the label will fit before displaying it...
+-                Rectangle2D bb = TextUtilities.getTextBounds(label, g2,
+-                        g2.getFontMetrics());
++                Rectangle2D bb = var_829;
+                 if ((x + bb.getWidth() / 2) > dataArea.getMaxX()) {
+                     float xstart = (float) valueToJava2D(Math.max(first,
+                             axisMin), dataArea, edge);
+@@ -901,8 +902,7 @@
+             if (first < axisMin) {
+                 // this is the first period, but it is only partially visible
+                 // so check that the label will fit before displaying it...
+-                Rectangle2D bb = TextUtilities.getTextBounds(label, g2,
+-                        g2.getFontMetrics());
++                Rectangle2D bb = var_829;
+                 if ((x - bb.getWidth() / 2) < dataArea.getX()) {
+                     float xlast = (float) valueToJava2D(Math.min(last,
+                             axisMax), dataArea, edge);

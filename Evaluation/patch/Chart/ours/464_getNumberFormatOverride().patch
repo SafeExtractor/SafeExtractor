@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/axis/LogarithmicAxis.java b/source/org/jfree/chart/axis/LogarithmicAxis.java
+index 1f440bd..251b8a1 100644
+--- a/source/org/jfree/chart/axis/LogarithmicAxis.java
++++ b/source/org/jfree/chart/axis/LogarithmicAxis.java
+@@ -919,7 +919,8 @@
+ 
+             for (int j = 0; j < jEndCount; j++) {
+                 //for each tick to be displayed
+-                if (this.smallLogFlag) {
++                NumberFormat var_464 = getNumberFormatOverride();
++				if (this.smallLogFlag) {
+                     //small log values in use
+                     tickVal = Math.pow(10, i) + (Math.pow(10, i) * j);
+                     if (j == 0) {
+@@ -937,7 +938,7 @@
+                                 if (i >= 0) {   // if positive exponent then
+                                                 // make integer
+                                     NumberFormat format
+-                                        = getNumberFormatOverride();
++                                        = var_464;
+                                     if (format != null) {
+                                         tickLabel = format.format(tickVal);
+                                     }
+@@ -996,7 +997,7 @@
+                                     }
+                                     else {
+                                         NumberFormat format
+-                                            = getNumberFormatOverride();
++                                            = var_464;
+                                         if (format != null) {
+                                             tickLabel = format.format(tickVal);
+                                         }

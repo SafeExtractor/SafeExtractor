@@ -1,0 +1,35 @@
+diff --git a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+index 4e56fef..371f5bc 100644
+--- a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
++++ b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+@@ -102,15 +102,16 @@
+         boolean verbose = false;
+ 
+         int i;
+-        for (i=0; i<args.length; i++) {
++        String var_604 = args[i];
++		for (i=0; i<args.length; i++) {
+             try {
+-                if ("-src".equals(args[i])) {
++                if ("-src".equals(var_604)) {
+                     inputDir = new File(args[++i]);
+-                } else if ("-dst".equals(args[i])) {
++                } else if ("-dst".equals(var_604)) {
+                     outputDir = new File(args[++i]);
+-                } else if ("-verbose".equals(args[i])) {
++                } else if ("-verbose".equals(var_604)) {
+                     verbose = true;
+-                } else if ("-?".equals(args[i])) {
++                } else if ("-?".equals(var_604)) {
+                     printUsage();
+                     return;
+                 } else {
+@@ -129,7 +130,7 @@
+ 
+         File[] sources = new File[args.length - i];
+         for (int j=0; i<args.length; i++,j++) {
+-            sources[j] = inputDir == null ? new File(args[i]) : new File(inputDir, args[i]);
++            sources[j] = inputDir == null ? new File(var_604) : new File(inputDir, var_604);
+         }
+ 
+         cVerbose.set(verbose);

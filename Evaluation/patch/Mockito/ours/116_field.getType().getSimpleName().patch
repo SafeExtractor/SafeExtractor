@@ -1,0 +1,14 @@
+diff --git a/src/org/mockito/internal/util/reflection/FieldInitializer.java b/src/org/mockito/internal/util/reflection/FieldInitializer.java
+index 0f89b1b..066c941 100644
+--- a/src/org/mockito/internal/util/reflection/FieldInitializer.java
++++ b/src/org/mockito/internal/util/reflection/FieldInitializer.java
+@@ -259,7 +259,8 @@
+ 
+                 return new FieldInitializationReport(field.get(testClass), false, true);
+             } catch (IllegalArgumentException e) {
+-                throw new MockitoException("internal error : argResolver provided incorrect types for constructor " + constructor + " of type " + field.getType().getSimpleName(), e);
++                String var_116 = field.getType().getSimpleName();
++				throw new MockitoException("internal error : argResolver provided incorrect types for constructor " + constructor + " of type " + var_116, e);
+             } catch (InvocationTargetException e) {
+                 throw new MockitoException("the constructor of type '" + field.getType().getSimpleName() + "' has raised an exception (see the stack trace for cause): " + e.getTargetException().toString(), e);
+             } catch (InstantiationException e) {

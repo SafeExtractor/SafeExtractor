@@ -1,0 +1,41 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..407fbed 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -1129,7 +1129,8 @@
+   private Node tryMinimizeCondition(Node n) {
+     Node parent = n.getParent();
+ 
+-    switch (n.getType()) {
++    TernaryValue var_1450 = TernaryValue.UNKNOWN;
++	switch (n.getType()) {
+       case Token.NOT:
+         Node first = n.getFirstChild();
+         switch (first.getType()) {
+@@ -1196,7 +1197,7 @@
+ 
+            default:
+              TernaryValue nVal = NodeUtil.getPureBooleanValue(first);
+-             if (nVal != TernaryValue.UNKNOWN) {
++             if (nVal != var_1450) {
+                boolean result = nVal.not().toBoolean(true);
+                int equivalentResult = result ? 1 : 0;
+                return maybeReplaceChildWithNumber(n, parent, equivalentResult);
+@@ -1223,7 +1224,7 @@
+         //   x && true --> x
+         //   x && false  --> false
+         TernaryValue rightVal = NodeUtil.getPureBooleanValue(right);
+-        if (NodeUtil.getPureBooleanValue(right) != TernaryValue.UNKNOWN) {
++        if (NodeUtil.getPureBooleanValue(right) != var_1450) {
+           int type = n.getType();
+           Node replacement = null;
+           boolean rval = rightVal.toBoolean(true);
+@@ -1298,7 +1299,7 @@
+       default:
+         // while(true) --> while(1)
+         TernaryValue nVal = NodeUtil.getPureBooleanValue(n);
+-        if (nVal != TernaryValue.UNKNOWN) {
++        if (nVal != var_1450) {
+           boolean result = nVal.toBoolean(true);
+           int equivalentResult = result ? 1 : 0;
+           return maybeReplaceChildWithNumber(n, parent, equivalentResult);

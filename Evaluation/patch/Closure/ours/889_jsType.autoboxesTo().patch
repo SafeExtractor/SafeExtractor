@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/DisambiguateProperties.java b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+index c64c178..1a109b6 100644
+--- a/src/com/google/javascript/jscomp/DisambiguateProperties.java
++++ b/src/com/google/javascript/jscomp/DisambiguateProperties.java
+@@ -1024,8 +1024,9 @@
+             cType, jsType.toMaybeEnumElementType().getPrimitiveType(), prop);
+       }
+ 
+-      if (jsType.autoboxesTo() != null) {
+-        JSType autoboxed = jsType.autoboxesTo();
++      JSType var_889 = jsType.autoboxesTo();
++	if (var_889 != null) {
++        JSType autoboxed = var_889;
+         return cType.unionWith(tt.getConcreteInstance((ObjectType) autoboxed));
+       } else if (jsType.unboxesTo() != null) {
+         return cType.unionWith(tt.getConcreteInstance((ObjectType) jsType));

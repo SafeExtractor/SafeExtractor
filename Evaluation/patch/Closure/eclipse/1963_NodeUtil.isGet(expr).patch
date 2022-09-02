@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ExpressionDecomposer.java b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+index 2344537..48d5166 100644
+--- a/src/com/google/javascript/jscomp/ExpressionDecomposer.java
++++ b/src/com/google/javascript/jscomp/ExpressionDecomposer.java
+@@ -453,7 +453,8 @@
+     // becomes:
+     //    var t1 = next();
+     //    t1.foo = t1.foo + 2;
+-    if (isLhsOfAssignOp && NodeUtil.isGet(expr)) {
++    boolean var_1963 = NodeUtil.isGet(expr);
++	if (isLhsOfAssignOp && var_1963) {
+       for (Node n : expr.children()) {
+         if (!n.isString() && !isConstantName(n, knownConstants)) {
+           Node extractedNode = extractExpression(n, injectionPoint);
+@@ -473,7 +474,7 @@
+     // If it is ASSIGN_XXX, keep the assignment in place and extract the
+     // original value of the LHS operand.
+     if (isLhsOfAssignOp) {
+-      Preconditions.checkState(expr.isName() || NodeUtil.isGet(expr));
++      Preconditions.checkState(expr.isName() || var_1963);
+       // Transform "x += 2" into "x = temp + 2"
+       Node opNode = new Node(NodeUtil.getOpFromAssignmentOp(parent))
+           .copyInformationFrom(parent);

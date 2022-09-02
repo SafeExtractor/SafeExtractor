@@ -1,0 +1,45 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Mockito/eclipse/10_settings.useConstructor().patch b/home/safe/SafeExtractor/Evaluation/patch/Mockito/ours/10_settings.useConstructor().patch
+index 98e67e5..162a8f2 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Mockito/eclipse/10_settings.useConstructor().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Mockito/ours/10_settings.useConstructor().patch
+@@ -1,35 +1,14 @@
+ diff --git a/src/org/mockito/internal/configuration/SpyAnnotationEngine.java b/src/org/mockito/internal/configuration/SpyAnnotationEngine.java
+-index aef8ceb..74c34d3 100644
++index aef8ceb..d3056f0 100644
+ --- a/src/org/mockito/internal/configuration/SpyAnnotationEngine.java
+ +++ b/src/org/mockito/internal/configuration/SpyAnnotationEngine.java
+-@@ -86,8 +86,9 @@
+-                 .defaultAnswer(Mockito.CALLS_REAL_METHODS)
++@@ -87,7 +87,8 @@
+                  .name(field.getName());
+          Class<?> type = field.getType();
+--        if (type.isInterface()) {
++         if (type.isInterface()) {
+ -            return Mockito.mock(type, settings.useConstructor());
+-+        MockSettings var_10 = settings.useConstructor();
+-+		if (type.isInterface()) {
+-+            return Mockito.mock(type, var_10);
+++            MockSettings var_10 = settings.useConstructor();
+++			return Mockito.mock(type, var_10);
+          }
+          if (!Modifier.isStatic(type.getModifiers())) {
+              Class<?> enclosing = type.getEnclosingClass();
+-@@ -97,8 +98,7 @@
+-                             + "Inner class: '" + type.getSimpleName() + "', "
+-                             + "outer class: '" + enclosing.getSimpleName() + "'.");
+-                 }
+--                return Mockito.mock(type, settings
+--                        .useConstructor()
+-+                return Mockito.mock(type, var_10
+-                         .outerInstance(testInstance));
+-             }
+-         }
+-@@ -114,7 +114,7 @@
+-             return Mockito.mock(type, settings
+-                     .spiedInstance(constructor.newInstance()));
+-         } else {
+--            return Mockito.mock(type, settings.useConstructor());
+-+            return Mockito.mock(type, var_10);
+-         }
+-     }
+- 

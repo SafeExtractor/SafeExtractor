@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/events/FilterType.java b/src/main/java/org/apache/commons/math3/ode/events/FilterType.java
+index 438df05..4a54862 100644
+--- a/src/main/java/org/apache/commons/math3/ode/events/FilterType.java
++++ b/src/main/java/org/apache/commons/math3/ode/events/FilterType.java
+@@ -268,7 +268,8 @@
+         @Override
+         protected  Transformer selectTransformer(final Transformer previous,
+                                                  final double g, final boolean forward) {
+-            if (forward) {
++            Transformer var_2620 = Transformer.UNINITIALIZED;
++			if (forward) {
+                 switch (previous) {
+                     case UNINITIALIZED :
+                         // we are initializing the first point
+@@ -281,7 +282,7 @@
+                         } else {
+                             // we are exactly at a root, we don't know if it is an increasing
+                             // or a decreasing event, we remain in uninitialized state
+-                            return Transformer.UNINITIALIZED;
++                            return var_2620;
+                         }
+                     case PLUS  :
+                         if (g <= 0) {
+@@ -336,7 +337,7 @@
+                         } else {
+                             // we are exactly at a root, we don't know if it is an increasing
+                             // or a decreasing event, we remain in uninitialized state
+-                            return Transformer.UNINITIALIZED;
++                            return var_2620;
+                         }
+                     case PLUS  :
+                         if (g >= 0) {

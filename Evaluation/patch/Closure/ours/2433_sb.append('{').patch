@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/regex/RegExpTree.java b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+index c0c470a..abbf1e4 100644
+--- a/src/com/google/javascript/jscomp/regex/RegExpTree.java
++++ b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+@@ -962,21 +962,22 @@
+         }
+       }
+ 
+-      if (max == Integer.MAX_VALUE) {
++      StringBuilder var_2433 = sb.append('{');
++	if (max == Integer.MAX_VALUE) {
+         switch (min) {
+           case 0: sb.append('*'); break;
+           case 1: sb.append('+'); break;
+           default:
+-            sb.append('{').append(min).append(",}");
++            var_2433.append(min).append(",}");
+         }
+       } else if (min == 0 && max == 1) {
+         sb.append('?');
+       } else if (min == max) {
+         if (min != 1) {
+-          sb.append('{').append(min).append('}');
++          var_2433.append(min).append('}');
+         }
+       } else {
+-        sb.append('{').append(min).append(',').append(max).append('}');
++        var_2433.append(min).append(',').append(max).append('}');
+       }
+       if (!greedy) {
+         sb.append('?');

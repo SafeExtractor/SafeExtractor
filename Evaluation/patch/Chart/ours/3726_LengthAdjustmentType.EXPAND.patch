@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/util/LengthAdjustmentType.java b/source/org/jfree/chart/util/LengthAdjustmentType.java
+index 713c496..7f724fc 100644
+--- a/source/org/jfree/chart/util/LengthAdjustmentType.java
++++ b/source/org/jfree/chart/util/LengthAdjustmentType.java
+@@ -127,13 +127,15 @@
+     private Object readResolve() throws ObjectStreamException {
+         if (this.equals(LengthAdjustmentType.NO_CHANGE)) {
+             return LengthAdjustmentType.NO_CHANGE;
+-        }
+-        else if (this.equals(LengthAdjustmentType.EXPAND)) {
+-            return LengthAdjustmentType.EXPAND;
+-        }
+-        else if (this.equals(LengthAdjustmentType.CONTRACT)) {
+-            return LengthAdjustmentType.CONTRACT;
+-        }
++        } else {
++			LengthAdjustmentType var_3726 = LengthAdjustmentType.EXPAND;
++			if (this.equals(var_3726)) {
++			    return var_3726;
++			}
++			else if (this.equals(LengthAdjustmentType.CONTRACT)) {
++			    return LengthAdjustmentType.CONTRACT;
++			}
++		}
+         return null;
+     }
+ 

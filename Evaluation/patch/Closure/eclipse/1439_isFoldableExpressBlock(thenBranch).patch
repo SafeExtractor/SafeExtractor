@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+index ae568e8..5395486 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
++++ b/src/com/google/javascript/jscomp/PeepholeSubstituteAlternateSyntax.java
+@@ -649,8 +649,9 @@
+     Node thenBranch = cond.getNext();
+     Node elseBranch = thenBranch.getNext();
+ 
+-    if (elseBranch == null) {
+-      if (isFoldableExpressBlock(thenBranch)) {
++    boolean var_1439 = isFoldableExpressBlock(thenBranch);
++	if (elseBranch == null) {
++      if (var_1439) {
+         Node expr = getBlockExpression(thenBranch);
+         if (!late && isPropertyAssignmentInExpression(expr)) {
+           // Keep opportunities for CollapseProperties such as
+@@ -764,7 +765,7 @@
+       return returnNode;
+     }
+ 
+-    boolean thenBranchIsExpressionBlock = isFoldableExpressBlock(thenBranch);
++    boolean thenBranchIsExpressionBlock = var_1439;
+     boolean elseBranchIsExpressionBlock = isFoldableExpressBlock(elseBranch);
+ 
+     if (thenBranchIsExpressionBlock && elseBranchIsExpressionBlock) {

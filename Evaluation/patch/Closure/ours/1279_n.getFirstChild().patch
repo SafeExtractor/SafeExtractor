@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/ReplaceIdGenerators.java b/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
+index c6e4271..ee786bd 100644
+--- a/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
++++ b/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
+@@ -199,12 +199,13 @@
+       }
+ 
+       String name = null;
+-      if (n.isAssign()) {
+-        name = n.getFirstChild().getQualifiedName();
++      Node var_1279 = n.getFirstChild();
++	if (n.isAssign()) {
++        name = var_1279.getQualifiedName();
+       } else if (n.isVar()) {
+-        name = n.getFirstChild().getString();
++        name = var_1279.getString();
+       } else if (n.isFunction()){
+-        name = n.getFirstChild().getString();
++        name = var_1279.getString();
+         if (name.isEmpty()) {
+           return;
+         }

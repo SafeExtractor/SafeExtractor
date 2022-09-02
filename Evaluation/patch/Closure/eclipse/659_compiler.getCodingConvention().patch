@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ObjectPropertyStringPreprocess.java b/src/com/google/javascript/jscomp/ObjectPropertyStringPreprocess.java
+index 4196e66..f990c1a 100644
+--- a/src/com/google/javascript/jscomp/ObjectPropertyStringPreprocess.java
++++ b/src/com/google/javascript/jscomp/ObjectPropertyStringPreprocess.java
+@@ -129,13 +129,14 @@
+         return;
+       }
+ 
+-      Node newFirstArgument = NodeUtil.newQualifiedNameNode(
+-          compiler.getCodingConvention(),
+-          compiler.getCodingConvention().getGlobalObject())
++      CodingConvention var_659 = compiler.getCodingConvention();
++	Node newFirstArgument = NodeUtil.newQualifiedNameNode(
++          var_659,
++          var_659.getGlobalObject())
+               .srcrefTree(firstArgument);
+ 
+       Node newSecondArgument = NodeUtil.newQualifiedNameNode(
+-          compiler.getCodingConvention(),
++          var_659,
+           firstArgument.getQualifiedName() + "." +
+           firstArgument.getNext().getString())
+               .srcrefTree(secondArgument);

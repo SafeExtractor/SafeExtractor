@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/FieldLUDecomposition.java b/src/main/java/org/apache/commons/math3/linear/FieldLUDecomposition.java
+index 513606d..b9f029a 100644
+--- a/src/main/java/org/apache/commons/math3/linear/FieldLUDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/FieldLUDecomposition.java
+@@ -237,11 +237,12 @@
+      * @return determinant of the matrix
+      */
+     public T getDeterminant() {
+-        if (singular) {
+-            return field.getZero();
++        T var_2047 = field.getZero();
++		if (singular) {
++            return var_2047;
+         } else {
+             final int m = pivot.length;
+-            T determinant = even ? field.getOne() : field.getZero().subtract(field.getOne());
++            T determinant = even ? field.getOne() : var_2047.subtract(field.getOne());
+             for (int i = 0; i < m; i++) {
+                 determinant = determinant.multiply(lu[i][i]);
+             }

@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 9d1b56c..b258313 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -175,7 +175,8 @@
+   private void tryRemoveAssignment(NodeTraversal t, Node n, Node exprRoot,
+       FlowState<LiveVariableLattice> state) {
+ 
+-    Node parent = n.getParent();
++    Node var_245 = n.getParent();
++	Node parent = var_245;
+ 
+     if (NodeUtil.isAssignmentOp(n) ||
+         n.isInc() || n.isDec()) {
+@@ -212,7 +213,7 @@
+           rhs.getString().equals(var.name) &&
+           n.isAssign()) {
+         n.removeChild(rhs);
+-        n.getParent().replaceChild(n, rhs);
++        var_245.replaceChild(n, rhs);
+         compiler.reportCodeChange();
+         return;
+       }
+@@ -238,7 +239,7 @@
+ 
+       if (n.isAssign()) {
+         n.removeChild(rhs);
+-        n.getParent().replaceChild(n, rhs);
++        var_245.replaceChild(n, rhs);
+       } else if (NodeUtil.isAssignmentOp(n)) {
+         n.removeChild(rhs);
+         n.removeChild(lhs);

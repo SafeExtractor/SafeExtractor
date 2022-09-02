@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..928cf43 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -1022,14 +1022,15 @@
+           return TernaryValue.UNKNOWN;  // Only eval if they are the same type
+         }
+ 
+-        switch (op) {
++        TernaryValue var_156 = areStringsEqual(left.getString(), right.getString());
++		switch (op) {
+           case Token.SHEQ:
+           case Token.EQ:
+-            return areStringsEqual(left.getString(), right.getString());
++            return var_156;
+ 
+           case Token.SHNE:
+           case Token.NE:
+-            return areStringsEqual(left.getString(), right.getString()).not();
++            return var_156.not();
+         }
+ 
+         return TernaryValue.UNKNOWN;

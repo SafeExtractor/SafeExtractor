@@ -1,0 +1,31 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/ThreeEighthesStepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/ThreeEighthesStepInterpolator.java
+index 70ec216..6bbdf18 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/ThreeEighthesStepInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/ThreeEighthesStepInterpolator.java
+@@ -101,14 +101,15 @@
+       final double coeffDot2  = coeffDot3 * (5 - 6 * theta);
+       final double coeffDot4  = coeffDot3 * (2 * theta - 1);
+ 
+-      if ((previousState != null) && (theta <= 0.5)) {
++      int var_2689 = interpolatedState.length;
++	if ((previousState != null) && (theta <= 0.5)) {
+           final double s          = theta * h / 8.0;
+           final double fourTheta2 = 4 * theta * theta;
+           final double coeff1     = s * (8 - 15 * theta + 2 * fourTheta2);
+           final double coeff2     = 3 * s * (5 * theta - fourTheta2);
+           final double coeff3     = 3 * s * theta;
+           final double coeff4     = s * (-3 * theta + fourTheta2);
+-          for (int i = 0; i < interpolatedState.length; ++i) {
++          for (int i = 0; i < var_2689; ++i) {
+               final double yDot1 = yDotK[0][i];
+               final double yDot2 = yDotK[1][i];
+               final double yDot3 = yDotK[2][i];
+@@ -126,7 +127,7 @@
+           final double coeff2     = 3 * s * (1 + theta - fourTheta2);
+           final double coeff3     = 3 * s * (1 + theta);
+           final double coeff4     = s * (1 + theta + fourTheta2);
+-          for (int i = 0; i < interpolatedState.length; ++i) {
++          for (int i = 0; i < var_2689; ++i) {
+               final double yDot1 = yDotK[0][i];
+               final double yDot2 = yDotK[1][i];
+               final double yDot3 = yDotK[2][i];

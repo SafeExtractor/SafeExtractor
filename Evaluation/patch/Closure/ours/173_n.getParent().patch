@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..5aa7f4d 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -1266,13 +1266,14 @@
+ 
+   /** Returns whether this node must be coerced to a string. */
+   private boolean inForcedStringContext(Node n) {
+-    if (n.getParent().isGetElem() &&
+-        n.getParent().getLastChild() == n) {
++    Node var_173 = n.getParent();
++	if (var_173.isGetElem() &&
++        var_173.getLastChild() == n) {
+       return true;
+     }
+ 
+     // we can fold in the case "" + new String("")
+-    if (n.getParent().isAdd()) {
++    if (var_173.isAdd()) {
+       return true;
+     }
+     return false;

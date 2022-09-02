@@ -1,0 +1,49 @@
+diff --git a/source/org/jfree/data/jdbc/JDBCPieDataset.java b/source/org/jfree/data/jdbc/JDBCPieDataset.java
+index 268fec1..dba10c0 100644
+--- a/source/org/jfree/data/jdbc/JDBCPieDataset.java
++++ b/source/org/jfree/data/jdbc/JDBCPieDataset.java
+@@ -57,6 +57,7 @@
+ 
+ package org.jfree.data.jdbc;
+ 
++import java.io.PrintStream;
+ import java.sql.Connection;
+ import java.sql.DriverManager;
+ import java.sql.ResultSet;
+@@ -169,7 +170,8 @@
+         Statement statement = null;
+         ResultSet resultSet = null;
+ 
+-        try {
++        PrintStream var_3981 = System.err;
++		try {
+             statement = con.createStatement();
+             resultSet = statement.executeQuery(query);
+             ResultSetMetaData metaData = resultSet.getMetaData();
+@@ -206,7 +208,7 @@
+                         break;
+ 
+                     default:
+-                        System.err.println(
++                        var_3981.println(
+                             "JDBCPieDataset - unknown data type"
+                         );
+                         break;
+@@ -223,7 +225,7 @@
+                     resultSet.close();
+                 }
+                 catch (Exception e) {
+-                    System.err.println("JDBCPieDataset: swallowing exception.");
++                    var_3981.println("JDBCPieDataset: swallowing exception.");
+                 }
+             }
+             if (statement != null) {
+@@ -231,7 +233,7 @@
+                     statement.close();
+                 }
+                 catch (Exception e) {
+-                    System.err.println("JDBCPieDataset: swallowing exception.");
++                    var_3981.println("JDBCPieDataset: swallowing exception.");
+                 }
+             }
+         }

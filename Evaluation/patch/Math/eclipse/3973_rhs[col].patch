@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..5fa8c38 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -433,20 +433,21 @@
+             lindep[col] = false;
+             if (work_sing[col] < temp) {
+                 lindep[col] = true;
+-                if (col < nvars - 1) {
++                double var_3973 = rhs[col];
++				if (col < nvars - 1) {
+                     Arrays.fill(x_sing, 0.0);
+                     int _pi = col * (nvars + nvars - col - 1) / 2;
+                     for (int _xi = col + 1; _xi < nvars; _xi++, _pi++) {
+                         x_sing[_xi] = r[_pi];
+                         r[_pi] = 0.0;
+                     }
+-                    final double y = rhs[col];
++                    final double y = var_3973;
+                     final double weight = d[col];
+                     d[col] = 0.0;
+                     rhs[col] = 0.0;
+                     this.include(x_sing, weight, y);
+                 } else {
+-                    sserr += d[col] * rhs[col] * rhs[col];
++                    sserr += d[col] * var_3973 * var_3973;
+                 }
+             }
+         }

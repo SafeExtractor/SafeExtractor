@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/CoalesceVariableNames.java b/src/com/google/javascript/jscomp/CoalesceVariableNames.java
+index 11bb585..4fd7a4c 100644
+--- a/src/com/google/javascript/jscomp/CoalesceVariableNames.java
++++ b/src/com/google/javascript/jscomp/CoalesceVariableNames.java
+@@ -415,7 +415,8 @@
+     }
+ 
+     private static boolean isAssignTo(Var var, Node n, Node parent) {
+-      if (n.isName() && var.getName().equals(n.getString()) &&
++      String var_376 = var.getName();
++	if (n.isName() && var_376.equals(n.getString()) &&
+           parent != null) {
+         if (parent.isParamList()) {
+           // In a function declaration, the formal parameters are assigned.
+@@ -430,7 +431,7 @@
+         // Lastly, any assignmentOP is also an assign.
+         Node name = n.getFirstChild();
+         return name != null && name.isName() &&
+-          var.getName().equals(name.getString()) &&
++          var_376.equals(name.getString()) &&
+           NodeUtil.isAssignmentOp(n);
+       }
+     }

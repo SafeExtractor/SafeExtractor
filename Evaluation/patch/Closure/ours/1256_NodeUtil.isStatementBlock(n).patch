@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/Normalize.java b/src/com/google/javascript/jscomp/Normalize.java
+index 98b136e..bede43e 100644
+--- a/src/com/google/javascript/jscomp/Normalize.java
++++ b/src/com/google/javascript/jscomp/Normalize.java
+@@ -507,13 +507,14 @@
+ 
+       // Only inspect the children of SCRIPTs, BLOCKs and LABELs, as all these
+       // are the only legal place for VARs and FOR statements.
+-      if (NodeUtil.isStatementBlock(n) || n.isLabel()) {
++      boolean var_1256 = NodeUtil.isStatementBlock(n);
++	if (var_1256 || n.isLabel()) {
+         extractForInitializer(n, null, null);
+       }
+ 
+       // Only inspect the children of SCRIPTs, BLOCKs, as all these
+       // are the only legal place for VARs.
+-      if (NodeUtil.isStatementBlock(n)) {
++      if (var_1256) {
+         splitVarDeclarations(n);
+       }
+ 

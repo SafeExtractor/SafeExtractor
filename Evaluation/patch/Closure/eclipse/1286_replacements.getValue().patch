@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/ReplaceIdGenerators.java b/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
+index c6e4271..981672f 100644
+--- a/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
++++ b/src/com/google/javascript/jscomp/ReplaceIdGenerators.java
+@@ -302,12 +302,13 @@
+     StringBuilder sb = new StringBuilder();
+     for (Map.Entry<String, Map<String, String>> replacements :
+         idGeneratorMaps.entrySet()) {
+-      if (!replacements.getValue().isEmpty()) {
++      Map<String, String> var_1286 = replacements.getValue();
++	if (!var_1286.isEmpty()) {
+         sb.append("[");
+         sb.append(replacements.getKey());
+         sb.append("]\n\n");
+         for (Map.Entry<String, String> replacement :
+-            replacements.getValue().entrySet()) {
++            var_1286.entrySet()) {
+           sb.append(replacement.getKey());
+           sb.append(':');
+           sb.append(replacement.getValue());

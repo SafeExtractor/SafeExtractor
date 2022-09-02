@@ -1,0 +1,43 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+index a2ea88e..a5bc895 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/SchurTransformer.java
+@@ -359,8 +359,9 @@
+ 
+         for (int k = im; k <= iu - 1; k++) {
+             boolean notlast = k != (iu - 1);
+-            if (k != im) {
+-                p = matrixT[k][k - 1];
++            double[] var_2386 = matrixT[k];
++			if (k != im) {
++                p = var_2386[k - 1];
+                 q = matrixT[k + 1][k - 1];
+                 r = notlast ? matrixT[k + 2][k - 1] : 0.0;
+                 shift.x = FastMath.abs(p) + FastMath.abs(q) + FastMath.abs(r);
+@@ -379,9 +380,9 @@
+             }
+             if (s != 0.0) {
+                 if (k != im) {
+-                    matrixT[k][k - 1] = -s * shift.x;
++                    var_2386[k - 1] = -s * shift.x;
+                 } else if (il != im) {
+-                    matrixT[k][k - 1] = -matrixT[k][k - 1];
++                    var_2386[k - 1] = -var_2386[k - 1];
+                 }
+                 p = p + s;
+                 shift.x = p / s;
+@@ -392,12 +393,12 @@
+ 
+                 // Row modification
+                 for (int j = k; j < n; j++) {
+-                    p = matrixT[k][j] + q * matrixT[k + 1][j];
++                    p = var_2386[j] + q * matrixT[k + 1][j];
+                     if (notlast) {
+                         p = p + r * matrixT[k + 2][j];
+                         matrixT[k + 2][j] = matrixT[k + 2][j] - p * z;
+                     }
+-                    matrixT[k][j] = matrixT[k][j] - p * shift.x;
++                    var_2386[j] = var_2386[j] - p * shift.x;
+                     matrixT[k + 1][j] = matrixT[k + 1][j] - p * shift.y;
+                 }
+ 

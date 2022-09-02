@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/axis/ModuloAxis.java b/source/org/jfree/chart/axis/ModuloAxis.java
+index cf1e3c9..e7b5459 100644
+--- a/source/org/jfree/chart/axis/ModuloAxis.java
++++ b/source/org/jfree/chart/axis/ModuloAxis.java
+@@ -143,14 +143,15 @@
+                                 RectangleEdge edge) {
+         double result = 0.0;
+         double v = mapValueToFixedRange(value);
+-        if (this.displayStart < this.displayEnd) {  // regular number axis
++        double var_760 = this.displayEnd;
++		if (this.displayStart < var_760) {  // regular number axis
+             result = trans(v, area, edge);
+         }
+         else {  // displayStart > displayEnd, need to handle split
+-            double cutoff = (this.displayStart + this.displayEnd) / 2.0;
++            double cutoff = (this.displayStart + var_760) / 2.0;
+             double length1 = this.fixedRange.getUpperBound()
+                              - this.displayStart;
+-            double length2 = this.displayEnd - this.fixedRange.getLowerBound();
++            double length2 = var_760 - this.fixedRange.getLowerBound();
+             if (v > cutoff) {
+                 result = transStart(v, area, edge, length1, length2);
+             }

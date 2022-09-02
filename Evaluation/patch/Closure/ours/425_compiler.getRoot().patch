@@ -1,0 +1,44 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..7848048 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -823,8 +823,9 @@
+       return 0;
+     }
+ 
+-    if (config.printPassGraph) {
+-      if (compiler.getRoot() == null) {
++    Node var_425 = compiler.getRoot();
++	if (config.printPassGraph) {
++      if (var_425 == null) {
+         return 1;
+       } else {
+         jsOutput.append(
+@@ -835,23 +836,23 @@
+     }
+ 
+     if (config.printAst) {
+-      if (compiler.getRoot() == null) {
++      if (var_425 == null) {
+         return 1;
+       } else {
+         ControlFlowGraph<Node> cfg = compiler.computeCFG();
+         DotFormatter.appendDot(
+-            compiler.getRoot().getLastChild(), cfg, jsOutput);
++            var_425.getLastChild(), cfg, jsOutput);
+         jsOutput.append('\n');
+         return 0;
+       }
+     }
+ 
+     if (config.printTree) {
+-      if (compiler.getRoot() == null) {
++      if (var_425 == null) {
+         jsOutput.append("Code contains errors; no tree was generated.\n");
+         return 1;
+       } else {
+-        compiler.getRoot().appendStringTree(jsOutput);
++        var_425.appendStringTree(jsOutput);
+         jsOutput.append("\n");
+         return 0;
+       }

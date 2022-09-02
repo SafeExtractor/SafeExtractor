@@ -1,0 +1,40 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..2a744da 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -2245,7 +2245,8 @@
+     public Dfp dotrap(int type, String what, Dfp oper, Dfp result) {
+         Dfp def = result;
+ 
+-        switch (type) {
++        int var_707 = mant.length;
++		switch (type) {
+             case DfpField.FLAG_INVALID:
+                 def = newInstance(getZero());
+                 def.sign = result.sign;
+@@ -2253,14 +2254,14 @@
+                 break;
+ 
+             case DfpField.FLAG_DIV_ZERO:
+-                if (nans == FINITE && mant[mant.length-1] != 0) {
++                if (nans == FINITE && mant[var_707-1] != 0) {
+                     // normal case, we are finite, non-zero
+                     def = newInstance(getZero());
+                     def.sign = (byte)(sign*oper.sign);
+                     def.nans = INFINITE;
+                 }
+ 
+-                if (nans == FINITE && mant[mant.length-1] == 0) {
++                if (nans == FINITE && mant[var_707-1] == 0) {
+                     //  0/0
+                     def = newInstance(getZero());
+                     def.nans = QNAN;
+@@ -2278,7 +2279,7 @@
+                 break;
+ 
+             case DfpField.FLAG_UNDERFLOW:
+-                if ( (result.exp+mant.length) < MIN_EXP) {
++                if ( (result.exp+var_707) < MIN_EXP) {
+                     def = newInstance(getZero());
+                     def.sign = result.sign;
+                 } else {

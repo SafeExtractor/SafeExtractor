@@ -1,0 +1,20 @@
+diff --git a/src/org/mockito/internal/verification/argumentmatching/ArgumentMatchingTool.java b/src/org/mockito/internal/verification/argumentmatching/ArgumentMatchingTool.java
+index c96c18e..b5aaf73 100644
+--- a/src/org/mockito/internal/verification/argumentmatching/ArgumentMatchingTool.java
++++ b/src/org/mockito/internal/verification/argumentmatching/ArgumentMatchingTool.java
+@@ -25,10 +25,11 @@
+         List<Integer> suspicious = new LinkedList<Integer>();
+         int i = 0;
+         for (Matcher m : matchers) {
+-            if (m instanceof ContainsExtraTypeInformation 
+-                    && !safelyMatches(m, arguments[i]) 
+-                    && toStringEquals(m, arguments[i])
+-                    && !((ContainsExtraTypeInformation) m).typeMatches(arguments[i])) {
++            Object var_136 = arguments[i];
++			if (m instanceof ContainsExtraTypeInformation 
++                    && !safelyMatches(m, var_136) 
++                    && toStringEquals(m, var_136)
++                    && !((ContainsExtraTypeInformation) m).typeMatches(var_136)) {
+                 suspicious.add(i);
+             }
+             i++;

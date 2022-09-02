@@ -1,0 +1,29 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/events/EventState.java b/src/main/java/org/apache/commons/math3/ode/events/EventState.java
+index 5d67795..8f0f02f 100644
+--- a/src/main/java/org/apache/commons/math3/ode/events/EventState.java
++++ b/src/main/java/org/apache/commons/math3/ode/events/EventState.java
+@@ -265,12 +265,13 @@
+ 
+                     // find the event time making sure we select a solution just at or past the exact root
+                     final double root;
+-                    if (solver instanceof BracketedUnivariateSolver<?>) {
++                    AllowedSolution var_2613 = AllowedSolution.RIGHT_SIDE;
++					if (solver instanceof BracketedUnivariateSolver<?>) {
+                         @SuppressWarnings("unchecked")
+                         BracketedUnivariateSolver<UnivariateFunction> bracketing =
+                                 (BracketedUnivariateSolver<UnivariateFunction>) solver;
+                         root = forward ?
+-                               bracketing.solve(maxIterationCount, f, ta, tb, AllowedSolution.RIGHT_SIDE) :
++                               bracketing.solve(maxIterationCount, f, ta, tb, var_2613) :
+                                bracketing.solve(maxIterationCount, f, tb, ta, AllowedSolution.LEFT_SIDE);
+                     } else {
+                         final double baseRoot = forward ?
+@@ -281,7 +282,7 @@
+                                 new PegasusSolver(solver.getRelativeAccuracy(), solver.getAbsoluteAccuracy());
+                         root = forward ?
+                                UnivariateSolverUtils.forceSide(remainingEval, f, bracketing,
+-                                                                   baseRoot, ta, tb, AllowedSolution.RIGHT_SIDE) :
++                                                                   baseRoot, ta, tb, var_2613) :
+                                UnivariateSolverUtils.forceSide(remainingEval, f, bracketing,
+                                                                    baseRoot, tb, ta, AllowedSolution.LEFT_SIDE);
+                     }

@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..6243d87 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -1943,11 +1943,12 @@
+     Node paramType = null;
+     if (token != JsDocToken.RP) {
+       do {
+-        if (paramType != null) {
++        JsDocToken var_2363 = next();
++		if (paramType != null) {
+           // skip past the comma
+           next();
+           skipEOLs();
+-          token = next();
++          token = var_2363;
+         }
+ 
+         if (token == JsDocToken.ELLIPSIS) {
+@@ -1965,7 +1966,7 @@
+ 
+             next();
+             skipEOLs();
+-            paramType = wrapNode(Token.ELLIPSIS, parseTypeExpression(next()));
++            paramType = wrapNode(Token.ELLIPSIS, parseTypeExpression(var_2363));
+             skipEOLs();
+             if (!match(JsDocToken.RB)) {
+               return reportTypeSyntaxWarning("msg.jsdoc.missing.rb");

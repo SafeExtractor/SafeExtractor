@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
+index c3dd8cc..27808b7 100644
+--- a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
++++ b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
+@@ -1359,7 +1359,8 @@
+             if (length <= 0) {
+                 return 0;
+             }
+-            int value = text.charAt(position++);
++            char var_547 = text.charAt(position++);
++			int value = var_547;
+             length--;
+             boolean negative;
+             if (value == '-') {
+@@ -1367,13 +1368,13 @@
+                     return 0;
+                 }
+                 negative = true;
+-                value = text.charAt(position++);
++                value = var_547;
+             } else {
+                 negative = false;
+             }
+             value -= '0';
+             while (length-- > 0) {
+-                value = ((value << 3) + (value << 1)) + text.charAt(position++) - '0';
++                value = ((value << 3) + (value << 1)) + var_547 - '0';
+             }
+             return negative ? -value : value;
+         }

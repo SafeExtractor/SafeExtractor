@@ -1,0 +1,20 @@
+diff --git a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/state/providers/zookeeper/ZooKeeperStateProvider.java b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/state/providers/zookeeper/ZooKeeperStateProvider.java
+index 5c8b4c4..59fabed 100644
+--- a/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/state/providers/zookeeper/ZooKeeperStateProvider.java
++++ b/nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core/src/main/java/org/apache/nifi/controller/state/providers/zookeeper/ZooKeeperStateProvider.java
+@@ -342,12 +342,13 @@
+             Thread.currentThread().interrupt();
+             throw new IOException("Failed to set cluster-wide state in ZooKeeper for component with ID " + componentId + " due to interruption", e);
+         } catch (final KeeperException ke) {
+-            if (Code.SESSIONEXPIRED == ke.code()) {
++            Object exceptionCode = ke.code();
++			if (Code.SESSIONEXPIRED == exceptionCode) {
+                 invalidateClient();
+                 setState(stateValues, version, componentId);
+                 return;
+             }
+-            if (Code.NODEEXISTS == ke.code()) {
++            if (Code.NODEEXISTS == exceptionCode) {
+                 setState(stateValues, version, componentId);
+                 return;
+             }

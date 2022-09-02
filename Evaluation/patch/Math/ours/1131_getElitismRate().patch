@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/genetics/ElitisticListPopulation.java b/src/main/java/org/apache/commons/math3/genetics/ElitisticListPopulation.java
+index bc8ab10..8b7bb84 100644
+--- a/src/main/java/org/apache/commons/math3/genetics/ElitisticListPopulation.java
++++ b/src/main/java/org/apache/commons/math3/genetics/ElitisticListPopulation.java
+@@ -82,14 +82,15 @@
+      */
+     public Population nextGeneration() {
+         // initialize a new generation with the same parameters
+-        ElitisticListPopulation nextGeneration =
+-                new ElitisticListPopulation(getPopulationLimit(), getElitismRate());
++        double var_1131 = getElitismRate();
++		ElitisticListPopulation nextGeneration =
++                new ElitisticListPopulation(getPopulationLimit(), var_1131);
+ 
+         final List<Chromosome> oldChromosomes = getChromosomeList();
+         Collections.sort(oldChromosomes);
+ 
+         // index of the last "not good enough" chromosome
+-        int boundIndex = (int) FastMath.ceil((1.0 - getElitismRate()) * oldChromosomes.size());
++        int boundIndex = (int) FastMath.ceil((1.0 - var_1131) * oldChromosomes.size());
+         for (int i = boundIndex; i < oldChromosomes.size(); i++) {
+             nextGeneration.addChromosome(oldChromosomes.get(i));
+         }

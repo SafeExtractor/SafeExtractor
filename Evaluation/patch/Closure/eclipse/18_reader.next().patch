@@ -1,0 +1,40 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapLineDecoder.java b/src/com/google/debugging/sourcemap/SourceMapLineDecoder.java
+index 7805b12..65b2822 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapLineDecoder.java
++++ b/src/com/google/debugging/sourcemap/SourceMapLineDecoder.java
+@@ -53,21 +53,22 @@
+ 
+     int idDigits = 0;
+     int reps = 0;
+-    if (repDigits == 0) {
++    char var_18 = reader.next();
++	if (repDigits == 0) {
+       // No repetition digit escapes, so the next character represents the
+       // number of digits in the id (bottom 2 bits) and the number of
+       // repetitions (top 4 digits).
+-      char digit = reader.next();
++      char digit = var_18;
+       int value = addBase64Digit(digit, 0);
+       reps = (value >> 2);
+       idDigits = (value & 3);
+     } else {
+-      char digit = reader.next();
++      char digit = var_18;
+       idDigits = addBase64Digit(digit, 0);
+ 
+       int value = 0;
+       for (int i = 0; i < repDigits; i++) {
+-        digit = reader.next();
++        digit = var_18;
+         value = addBase64Digit(digit, value);
+       }
+       reps = value;
+@@ -80,7 +81,7 @@
+     // Decode the id token.
+     int value = 0;
+     for (int i = 0; i < idDigits; i++) {
+-      char digit = reader.next();
++      char digit = var_18;
+       value = addBase64Digit(digit, value);
+     }
+     int mappingId = getIdFromRelativeId(value, idDigits, lastId);

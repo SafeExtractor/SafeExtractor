@@ -1,0 +1,35 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/1977_mBlock[n].patch b/Users/safe/paper/Evaluation/patch/Math/ours/1977_mBlock[n].patch
+index 5721614..b0e1d29 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/1977_mBlock[n].patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/1977_mBlock[n].patch
+@@ -1,25 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java b/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
+-index a03c4f4..0517a32 100644
++index a03c4f4..552d88a 100644
+ --- a/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
+ +++ b/src/main/java/org/apache/commons/math3/linear/BlockRealMatrix.java
+-@@ -567,8 +567,9 @@
+-                             double sum = 0;
++@@ -568,7 +568,8 @@
+                              int l = lStart;
+                              int n = nStart;
+--                            while (l < lEnd - 3) {
++                             while (l < lEnd - 3) {
+ -                                sum += tBlock[l] * mBlock[n] +
+-+                            double var_1977 = mBlock[n];
+-+							while (l < lEnd - 3) {
+-+                                sum += tBlock[l] * var_1977 +
+++                                double var_1977 = mBlock[n];
+++								sum += tBlock[l] * var_1977 +
+                                         tBlock[l + 1] * mBlock[n + jWidth] +
+                                         tBlock[l + 2] * mBlock[n + jWidth2] +
+                                         tBlock[l + 3] * mBlock[n + jWidth3];
+-@@ -576,7 +577,7 @@
+-                                 n += jWidth4;
+-                             }
+-                             while (l < lEnd) {
+--                                sum += tBlock[l++] * mBlock[n];
+-+                                sum += tBlock[l++] * var_1977;
+-                                 n += jWidth;
+-                             }
+-                             outBlock[k] += sum;

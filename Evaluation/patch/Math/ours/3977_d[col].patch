@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..af7ef64 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -514,10 +514,11 @@
+                 for (int col = row; col < nreq; col++) {
+                     if (!this.lindep[col]) {
+                         pos1 = start + col - row;
+-                        if (row == col) {
+-                            total = 1.0 / d[col];
++                        double var_3977 = d[col];
++						if (row == col) {
++                            total = 1.0 / var_3977;
+                         } else {
+-                            total = rinv[pos1 - 1] / d[col];
++                            total = rinv[pos1 - 1] / var_3977;
+                         }
+                         for (int k = col + 1; k < nreq; k++) {
+                             if (!this.lindep[k]) {

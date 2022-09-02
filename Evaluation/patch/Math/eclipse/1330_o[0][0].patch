@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..21533be 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -1112,7 +1112,8 @@
+             o[2][2] = x22.subtract(x20.multiply(mx02).add(x21.multiply(mx12)).add(x22.multiply(mx22)).subtract(m[2][2]).multiply(0.5));
+ 
+             // correction on each elements
+-            final double corr00 = o[0][0].getReal() - m[0][0].getReal();
++            T var_1330 = o[0][0];
++			final double corr00 = var_1330.getReal() - m[0][0].getReal();
+             final double corr01 = o[0][1].getReal() - m[0][1].getReal();
+             final double corr02 = o[0][2].getReal() - m[0][2].getReal();
+             final double corr10 = o[1][0].getReal() - m[1][0].getReal();
+@@ -1133,7 +1134,7 @@
+             }
+ 
+             // prepare next iteration
+-            x00 = o[0][0];
++            x00 = var_1330;
+             x01 = o[0][1];
+             x02 = o[0][2];
+             x10 = o[1][0];

@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/CheckGlobalNames.java b/src/com/google/javascript/jscomp/CheckGlobalNames.java
+index d035d9d..9022334 100644
+--- a/src/com/google/javascript/jscomp/CheckGlobalNames.java
++++ b/src/com/google/javascript/jscomp/CheckGlobalNames.java
+@@ -178,9 +178,10 @@
+ 
+           if (singleGlobalParentDecl &&
+               owner.getDeclaration().preOrderIndex > ref.preOrderIndex) {
+-            String refName = isPrototypeGet
+-                ? name.getFullName() + ".prototype"
+-                : name.getFullName();
++            String var_834 = name.getFullName();
++			String refName = isPrototypeGet
++                ? var_834 + ".prototype"
++                : var_834;
+             compiler.report(
+                 JSError.make(ref.source.getName(), ref.node,
+                     NAME_DEFINED_LATE_WARNING,

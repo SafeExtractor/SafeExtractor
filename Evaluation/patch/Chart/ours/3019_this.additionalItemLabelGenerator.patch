@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/renderer/xy/YIntervalRenderer.java b/source/org/jfree/chart/renderer/xy/YIntervalRenderer.java
+index f2ed931..5a5b048 100644
+--- a/source/org/jfree/chart/renderer/xy/YIntervalRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/YIntervalRenderer.java
+@@ -261,7 +261,8 @@
+             PlotOrientation orientation, XYDataset dataset, int series,
+             int item, double x, double y) {
+ 
+-        if (this.additionalItemLabelGenerator == null) {
++        XYItemLabelGenerator var_3019 = this.additionalItemLabelGenerator;
++		if (var_3019 == null) {
+             return;
+         }
+ 
+@@ -269,7 +270,7 @@
+         Paint paint = getItemLabelPaint(series, item, false);
+         g2.setFont(labelFont);
+         g2.setPaint(paint);
+-        String label = this.additionalItemLabelGenerator.generateLabel(dataset,
++        String label = var_3019.generateLabel(dataset,
+                 series, item);
+ 
+         ItemLabelPosition position = getNegativeItemLabelPosition(series, item,

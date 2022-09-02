@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/plot/CategoryPlot.java b/source/org/jfree/chart/plot/CategoryPlot.java
+index 24a84fd..1b5205c 100644
+--- a/source/org/jfree/chart/plot/CategoryPlot.java
++++ b/source/org/jfree/chart/plot/CategoryPlot.java
+@@ -4097,7 +4097,8 @@
+     protected void drawRangeGridlines(Graphics2D g2, Rectangle2D dataArea,
+                                       List ticks) {
+         // draw the range grid lines, if any...
+-        if (!isRangeGridlinesVisible() && !isRangeMinorGridlinesVisible()) {
++        boolean var_1931 = isRangeGridlinesVisible();
++		if (!var_1931 && !isRangeMinorGridlinesVisible()) {
+             return;
+         }
+         // no axis, no gridlines...
+@@ -4125,7 +4126,7 @@
+                 paintLine = true;
+             }
+             else if ((tick.getTickType() == TickType.MAJOR)
+-                    && isRangeGridlinesVisible()) {
++                    && var_1931) {
+                 gridStroke = getRangeGridlineStroke();
+                 gridPaint = getRangeGridlinePaint();
+                 paintLine = true;

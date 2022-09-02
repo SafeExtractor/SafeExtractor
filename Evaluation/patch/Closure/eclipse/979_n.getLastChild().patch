@@ -1,0 +1,59 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..4af9f27 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -482,7 +482,8 @@
+     // To be explicitly set to false if the node is not typeable.
+     boolean typeable = true;
+ 
+-    switch (n.getType()) {
++    Node var_979 = n.getLastChild();
++	switch (n.getType()) {
+       case Token.CAST:
+         Node expr = n.getFirstChild();
+         ensureTyped(t, n, getJSType(expr));
+@@ -505,7 +506,7 @@
+         break;
+ 
+       case Token.COMMA:
+-        ensureTyped(t, n, getJSType(n.getLastChild()));
++        ensureTyped(t, n, getJSType(var_979));
+         break;
+ 
+       case Token.TRUE:
+@@ -620,7 +621,7 @@
+       case Token.SHEQ:
+       case Token.SHNE: {
+         left = n.getFirstChild();
+-        right = n.getLastChild();
++        right = var_979;
+ 
+         if (left.isTypeOf()) {
+           if (right.isString()) {
+@@ -673,7 +674,7 @@
+       case Token.GT:
+       case Token.GE:
+         leftType = getJSType(n.getFirstChild());
+-        rightType = getJSType(n.getLastChild());
++        rightType = getJSType(var_979);
+         if (rightType.isNumber()) {
+           validator.expectNumber(
+               t, n, leftType, "left side of numeric comparison");
+@@ -701,7 +702,7 @@
+ 
+       case Token.IN:
+         left = n.getFirstChild();
+-        right = n.getLastChild();
++        right = var_979;
+         rightType = getJSType(right);
+         validator.expectString(t, left, getJSType(left), "left side of 'in'");
+         validator.expectObject(t, n, rightType, "'in' requires an object");
+@@ -713,7 +714,7 @@
+ 
+       case Token.INSTANCEOF:
+         left = n.getFirstChild();
+-        right = n.getLastChild();
++        right = var_979;
+         rightType = getJSType(right).restrictByNotNullOrUndefined();
+         validator.expectAnyObject(
+             t, left, getJSType(left), "deterministic instanceof yields false");

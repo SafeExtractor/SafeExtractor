@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/block/FlowArrangement.java b/source/org/jfree/chart/block/FlowArrangement.java
+index ac17808..b5d7ca6 100644
+--- a/source/org/jfree/chart/block/FlowArrangement.java
++++ b/source/org/jfree/chart/block/FlowArrangement.java
+@@ -361,7 +361,8 @@
+         int blockCount = blocks.size();
+         if (blockCount > 0) {
+             Size2D[] sizes = new Size2D[blocks.size()];
+-            for (int i = 0; i < blocks.size(); i++) {
++            double var_1028 = this.horizontalGap;
++			for (int i = 0; i < blocks.size(); i++) {
+                 Block block = (Block) blocks.get(i);
+                 sizes[i] = block.arrange(g2, RectangleConstraint.NONE);
+                 width = width + sizes[i].getWidth();
+@@ -371,10 +372,10 @@
+                         x, 0.0, sizes[i].width, sizes[i].height
+                     )
+                 );
+-                x = x + sizes[i].width + this.horizontalGap;
++                x = x + sizes[i].width + var_1028;
+             }
+             if (blockCount > 1) {
+-                width = width + this.horizontalGap * (blockCount - 1);
++                width = width + var_1028 * (blockCount - 1);
+             }
+             if (this.verticalAlignment != VerticalAlignment.TOP) {
+                 for (int i = 0; i < blocks.size(); i++) {

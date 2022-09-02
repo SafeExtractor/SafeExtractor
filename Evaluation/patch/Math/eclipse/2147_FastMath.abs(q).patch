@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+index 4652f61..f3d3d79 100644
+--- a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+@@ -890,9 +890,10 @@
+                             double vr = (realEigenvalues[i] - p) * (realEigenvalues[i] - p) +
+                                         imagEigenvalues[i] * imagEigenvalues[i] - q * q;
+                             final double vi = (realEigenvalues[i] - p) * 2.0 * q;
+-                            if (Precision.equals(vr, 0.0) && Precision.equals(vi, 0.0)) {
++                            double var_2147 = FastMath.abs(q);
++							if (Precision.equals(vr, 0.0) && Precision.equals(vi, 0.0)) {
+                                 vr = Precision.EPSILON * norm *
+-                                     (FastMath.abs(w) + FastMath.abs(q) + FastMath.abs(x) +
++                                     (FastMath.abs(w) + var_2147 + FastMath.abs(x) +
+                                       FastMath.abs(y) + FastMath.abs(z));
+                             }
+                             final Complex c     = cdiv(x * r - z * ra + q * sa,
+@@ -900,7 +901,7 @@
+                             matrixT[i][idx - 1] = c.getReal();
+                             matrixT[i][idx]     = c.getImaginary();
+ 
+-                            if (FastMath.abs(x) > (FastMath.abs(z) + FastMath.abs(q))) {
++                            if (FastMath.abs(x) > (FastMath.abs(z) + var_2147)) {
+                                 matrixT[i + 1][idx - 1] = (-ra - w * matrixT[i][idx - 1] +
+                                                            q * matrixT[i][idx]) / x;
+                                 matrixT[i + 1][idx]     = (-sa - w * matrixT[i][idx] -

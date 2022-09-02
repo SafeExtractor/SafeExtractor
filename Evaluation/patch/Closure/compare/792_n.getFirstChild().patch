@@ -1,0 +1,34 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/792_n.getFirstChild().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/792_n.getFirstChild().patch
+index 5d1c56a..814f2e2 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/792_n.getFirstChild().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/792_n.getFirstChild().patch
+@@ -1,8 +1,8 @@
+ diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+-index 1e1571d..90670a7 100644
++index 1e1571d..548858e 100644
+ --- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+ +++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+-@@ -371,10 +371,11 @@
++@@ -371,7 +371,8 @@
+    private Node tryOptimizeDefaultCase(Node n) {
+      Preconditions.checkState(n.isSwitch());
+  
+@@ -11,17 +11,4 @@ index 1e1571d..90670a7 100644
+ +	Node lastNonRemovable = var_792;  // The switch condition
+  
+      // The first child is the switch conditions skip it when looking for cases.
+--    for (Node c = n.getFirstChild().getNext(); c != null; c = c.getNext()) {
+-+    for (Node c = var_792.getNext(); c != null; c = c.getNext()) {
+-       if (c.isDefaultCase()) {
+-         // Remove cases that fall-through to the default case
+-         Node caseToRemove = lastNonRemovable.getNext();
+-@@ -384,7 +385,7 @@
+-         }
+- 
+-         // Don't use the switch condition as the previous case.
+--        Node prevCase = (lastNonRemovable == n.getFirstChild())
+-+        Node prevCase = (lastNonRemovable == var_792)
+-             ? null : lastNonRemovable;
+- 
+-         // Remove the default case if we can
++     for (Node c = n.getFirstChild().getNext(); c != null; c = c.getNext()) {

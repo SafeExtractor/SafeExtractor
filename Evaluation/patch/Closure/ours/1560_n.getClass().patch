@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..2a169e8 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -144,7 +144,8 @@
+ 
+     cc.startSourceMapping(n);
+ 
+-    switch (type) {
++    Class<? extends Node> var_1560 = n.getClass();
++	switch (type) {
+       case Token.TRY: {
+         Preconditions.checkState(first.getNext().isBlock() &&
+                 !first.getNext().hasMoreThanOneChild());
+@@ -303,7 +304,7 @@
+         break;
+ 
+       case Token.FUNCTION:
+-        if (n.getClass() != Node.class) {
++        if (var_1560 != Node.class) {
+           throw new Error("Unexpected Node subclass.");
+         }
+         Preconditions.checkState(childCount == 3);
+@@ -371,7 +372,7 @@
+ 
+       case Token.SCRIPT:
+       case Token.BLOCK: {
+-        if (n.getClass() != Node.class) {
++        if (var_1560 != Node.class) {
+           throw new Error("Unexpected Node subclass.");
+         }
+         boolean preserveBlock = context == Context.PRESERVE_BLOCK;

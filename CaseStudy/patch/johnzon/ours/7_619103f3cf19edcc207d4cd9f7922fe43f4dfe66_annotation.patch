@@ -1,0 +1,17 @@
+diff --git a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/reflection/Mappings.java b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/reflection/Mappings.java
+index 77a433a..7f483fb 100644
+--- a/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/reflection/Mappings.java
++++ b/johnzon-mapper/src/main/java/org/apache/johnzon/mapper/reflection/Mappings.java
+@@ -415,9 +415,10 @@
+ 
+     private static Converter findConverter(final AccessMode.DecoratedType method) {
+         Converter converter = null;
+-        if (method.getAnnotation(JohnzonConverter.class) != null) {
++        JohnzonConverter annotation = method.getAnnotation(JohnzonConverter.class);
++		if (annotation != null) {
+             try {
+-                converter = method.getAnnotation(JohnzonConverter.class).value().newInstance();
++                converter = annotation.value().newInstance();
+             } catch (final Exception e) {
+                 throw new IllegalArgumentException(e);
+             }

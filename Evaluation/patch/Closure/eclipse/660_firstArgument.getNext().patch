@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/ObjectPropertyStringPreprocess.java b/src/com/google/javascript/jscomp/ObjectPropertyStringPreprocess.java
+index 4196e66..9d0a83a 100644
+--- a/src/com/google/javascript/jscomp/ObjectPropertyStringPreprocess.java
++++ b/src/com/google/javascript/jscomp/ObjectPropertyStringPreprocess.java
+@@ -121,7 +121,8 @@
+         return;
+       }
+ 
+-      Node secondArgument = firstArgument.getNext();
++      Node var_660 = firstArgument.getNext();
++	Node secondArgument = var_660;
+       if (!secondArgument.isString()) {
+         compiler.report(t.makeError(secondArgument,
+             STRING_LITERAL_EXPECTED_ERROR,
+@@ -137,7 +138,7 @@
+       Node newSecondArgument = NodeUtil.newQualifiedNameNode(
+           compiler.getCodingConvention(),
+           firstArgument.getQualifiedName() + "." +
+-          firstArgument.getNext().getString())
++          var_660.getString())
+               .srcrefTree(secondArgument);
+ 
+       n.replaceChild(firstArgument, newFirstArgument);

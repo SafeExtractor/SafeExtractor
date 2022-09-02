@@ -1,0 +1,32 @@
+diff --git a/storm-core/src/jvm/backtype/storm/messaging/netty/MessageDecoder.java b/storm-core/src/jvm/backtype/storm/messaging/netty/MessageDecoder.java
+index 3365e58..828d75a 100644
+--- a/storm-core/src/jvm/backtype/storm/messaging/netty/MessageDecoder.java
++++ b/storm-core/src/jvm/backtype/storm/messaging/netty/MessageDecoder.java
+@@ -34,7 +34,8 @@
+      */
+     protected Object decode(ChannelHandlerContext ctx, Channel channel, ChannelBuffer buf) throws Exception {
+         // Make sure that we have received at least a short 
+-        if (buf.readableBytes() < 2) {
++        int available = buf.readableBytes();
++		if (available < 2) {
+             //need more data
+             return null;
+         }
+@@ -56,7 +57,7 @@
+         short task = code;
+         
+         // Make sure that we have received at least an integer (length) 
+-        if (buf.readableBytes() < 4) {
++        if (available < 4) {
+             //need more data
+             buf.resetReaderIndex();
+             return null;
+@@ -69,7 +70,7 @@
+         }
+         
+         // Make sure if there's enough bytes in the buffer.
+-        if (buf.readableBytes() < length) {
++        if (available < length) {
+             // The whole bytes were not received yet - return null.
+             buf.resetReaderIndex();
+             return null;

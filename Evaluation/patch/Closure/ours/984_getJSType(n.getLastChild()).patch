@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..3bead50 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -482,7 +482,8 @@
+     // To be explicitly set to false if the node is not typeable.
+     boolean typeable = true;
+ 
+-    switch (n.getType()) {
++    JSType var_984 = getJSType(n.getLastChild());
++	switch (n.getType()) {
+       case Token.CAST:
+         Node expr = n.getFirstChild();
+         ensureTyped(t, n, getJSType(expr));
+@@ -505,7 +506,7 @@
+         break;
+ 
+       case Token.COMMA:
+-        ensureTyped(t, n, getJSType(n.getLastChild()));
++        ensureTyped(t, n, var_984);
+         break;
+ 
+       case Token.TRUE:
+@@ -673,7 +674,7 @@
+       case Token.GT:
+       case Token.GE:
+         leftType = getJSType(n.getFirstChild());
+-        rightType = getJSType(n.getLastChild());
++        rightType = var_984;
+         if (rightType.isNumber()) {
+           validator.expectNumber(
+               t, n, leftType, "left side of numeric comparison");

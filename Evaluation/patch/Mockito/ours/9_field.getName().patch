@@ -1,0 +1,29 @@
+diff --git a/src/org/mockito/internal/configuration/SpyAnnotationEngine.java b/src/org/mockito/internal/configuration/SpyAnnotationEngine.java
+index aef8ceb..28865c3 100644
+--- a/src/org/mockito/internal/configuration/SpyAnnotationEngine.java
++++ b/src/org/mockito/internal/configuration/SpyAnnotationEngine.java
+@@ -51,7 +51,8 @@
+                 assertNoIncompatibleAnnotations(Spy.class, field, Mock.class, org.mockito.MockitoAnnotations.Mock.class, Captor.class);
+                 field.setAccessible(true);
+                 Object instance;
+-                try {
++                String var_9 = field.getName();
++				try {
+                     instance = field.get(testInstance);
+                     assertNotInterface(instance, field.getType());
+                     if (new MockUtil().isMock(instance)) {
+@@ -62,12 +63,12 @@
+                         field.set(testInstance, Mockito.mock(instance.getClass(), withSettings()
+                                 .spiedInstance(instance)
+                                 .defaultAnswer(Mockito.CALLS_REAL_METHODS)
+-                                .name(field.getName())));
++                                .name(var_9)));
+                     } else {
+                         field.set(testInstance, newSpyInstance(testInstance, field));
+                     }
+                 } catch (Exception e) {
+-                    throw new MockitoException("Unable to initialize @Spy annotated field '" + field.getName() + "'.\n" + e.getMessage(), e);
++                    throw new MockitoException("Unable to initialize @Spy annotated field '" + var_9 + "'.\n" + e.getMessage(), e);
+                 }
+             }
+         }

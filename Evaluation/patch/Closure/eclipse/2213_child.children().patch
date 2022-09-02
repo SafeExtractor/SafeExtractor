@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/jsonml/Writer.java b/src/com/google/javascript/jscomp/jsonml/Writer.java
+index b357eb9..70676ae 100644
+--- a/src/com/google/javascript/jscomp/jsonml/Writer.java
++++ b/src/com/google/javascript/jscomp/jsonml/Writer.java
+@@ -469,7 +469,8 @@
+     child = child.getNext();
+     JsonML params = new JsonML(TagType.ParamDecl);
+     element.appendChild(params);
+-    Iterator<Node> it = child.children().iterator();
++    Iterable<Node> var_2213 = child.children();
++	Iterator<Node> it = var_2213.iterator();
+     while (it.hasNext()) {
+       JsonML param = new JsonML(TagType.IdPatt);
+       Node nameNode = it.next();
+@@ -483,7 +484,7 @@
+     // it can contain some directives
+     processDirectives(child, element);
+ 
+-    it = child.children().iterator();
++    it = var_2213.iterator();
+     while (it.hasNext()) {
+       processNode(it.next(), element);
+     }

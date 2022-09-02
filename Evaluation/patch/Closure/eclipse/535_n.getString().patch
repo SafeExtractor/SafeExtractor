@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/ScopedAliases.java b/src/com/google/javascript/jscomp/ScopedAliases.java
+index e2f0538..f053584 100644
+--- a/src/com/google/javascript/jscomp/ScopedAliases.java
++++ b/src/com/google/javascript/jscomp/ScopedAliases.java
+@@ -404,9 +404,10 @@
+ 
+       int type = n.getType();
+       Var aliasVar = null;
+-      if (type == Token.NAME) {
+-        String name = n.getString();
+-        Var lexicalVar = t.getScope().getVar(n.getString());
++      String var_535 = n.getString();
++	if (type == Token.NAME) {
++        String name = var_535;
++        Var lexicalVar = t.getScope().getVar(var_535);
+         if (lexicalVar != null && lexicalVar == aliases.get(name)) {
+           aliasVar = lexicalVar;
+         }
+@@ -422,7 +423,7 @@
+             // twice.
+             return;
+           } else {
+-            report(t, n, GOOG_SCOPE_ALIAS_REDEFINED, n.getString());
++            report(t, n, GOOG_SCOPE_ALIAS_REDEFINED, var_535);
+           }
+         }
+ 

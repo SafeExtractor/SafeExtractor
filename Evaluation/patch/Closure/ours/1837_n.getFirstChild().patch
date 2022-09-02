@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/ReplaceCssNames.java b/src/com/google/javascript/jscomp/ReplaceCssNames.java
+index caaaf08..cf01fc0 100644
+--- a/src/com/google/javascript/jscomp/ReplaceCssNames.java
++++ b/src/com/google/javascript/jscomp/ReplaceCssNames.java
+@@ -144,10 +144,11 @@
+ 
+     @Override
+     public void visit(NodeTraversal t, Node n, Node parent) {
+-      if (n.isCall() &&
+-          GET_CSS_NAME_FUNCTION.equals(n.getFirstChild().getQualifiedName())) {
++      Node var_1837 = n.getFirstChild();
++	if (n.isCall() &&
++          GET_CSS_NAME_FUNCTION.equals(var_1837.getQualifiedName())) {
+         int count = n.getChildCount();
+-        Node first = n.getFirstChild().getNext();
++        Node first = var_1837.getNext();
+         switch (count) {
+           case 2:
+             // Replace the function call with the processed argument.

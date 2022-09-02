@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..2d17953 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -856,10 +856,11 @@
+     @Override
+     protected CompilerPass create(AbstractCompiler compiler) {
+       CodingConvention convention = compiler.getCodingConvention();
+-      if (convention.getExportSymbolFunction() != null &&
++      String var_1798 = convention.getExportSymbolFunction();
++	if (var_1798 != null &&
+           convention.getExportPropertyFunction() != null) {
+         return new GenerateExports(compiler,
+-            convention.getExportSymbolFunction(),
++            var_1798,
+             convention.getExportPropertyFunction());
+       } else {
+         return new ErrorPass(compiler, GENERATE_EXPORTS_ERROR);

@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/util/XYCoordinateType.java b/source/org/jfree/chart/util/XYCoordinateType.java
+index 337cd36..8e71db0 100644
+--- a/source/org/jfree/chart/util/XYCoordinateType.java
++++ b/source/org/jfree/chart/util/XYCoordinateType.java
+@@ -119,13 +119,15 @@
+     private Object readResolve() throws ObjectStreamException {
+         if (this.equals(XYCoordinateType.DATA)) {
+             return XYCoordinateType.DATA;
+-        }
+-        else if (this.equals(XYCoordinateType.RELATIVE)) {
+-            return XYCoordinateType.RELATIVE;
+-        }
+-        else if (this.equals(XYCoordinateType.INDEX)) {
+-            return XYCoordinateType.INDEX;
+-        }
++        } else {
++			XYCoordinateType var_3711 = XYCoordinateType.RELATIVE;
++			if (this.equals(var_3711)) {
++			    return var_3711;
++			}
++			else if (this.equals(XYCoordinateType.INDEX)) {
++			    return XYCoordinateType.INDEX;
++			}
++		}
+         return null;
+     }
+ 

@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..8d1edbd 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -1955,8 +1955,9 @@
+           // on variable arguments. We support the old syntax for backwards
+           // compatibility, but we should gradually tear it out.
+           skipEOLs();
+-          if (match(JsDocToken.RP)) {
+-            paramType = newNode(Token.ELLIPSIS);
++          int var_2365 = Token.ELLIPSIS;
++		if (match(JsDocToken.RP)) {
++            paramType = newNode(var_2365);
+           } else {
+             skipEOLs();
+             if (!match(JsDocToken.LB)) {
+@@ -1965,7 +1966,7 @@
+ 
+             next();
+             skipEOLs();
+-            paramType = wrapNode(Token.ELLIPSIS, parseTypeExpression(next()));
++            paramType = wrapNode(var_2365, parseTypeExpression(next()));
+             skipEOLs();
+             if (!match(JsDocToken.RB)) {
+               return reportTypeSyntaxWarning("msg.jsdoc.missing.rb");

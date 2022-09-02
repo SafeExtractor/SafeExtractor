@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..b296ac2 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -875,14 +875,15 @@
+           getJSType(receiver.getFirstChild())
+           .restrictByNotNullOrUndefined());
+       String prop = receiver.getLastChild().getString();
+-      if (objType != null &&
++      Iterable<Node> var_1060 = (recvType.toMaybeFunctionType()).getParameters();
++	if (objType != null &&
+           (objType.isPropertyInExterns(prop)) &&
+-          (recvType.toMaybeFunctionType()).getParameters() != null) {
++          var_1060 != null) {
+         List<Action> actions = Lists.newArrayList();
+ 
+         // Look for a function type in the argument list.
+         Iterator<Node> paramIter =
+-            (recvType.toMaybeFunctionType()).getParameters().iterator();
++            var_1060.iterator();
+         Iterator<Node> argumentIter = n.children().iterator();
+         argumentIter.next(); // Skip the function name.
+         while (paramIter.hasNext() && argumentIter.hasNext()) {

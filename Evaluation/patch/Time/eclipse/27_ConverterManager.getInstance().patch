@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/joda/time/DateTimeComparator.java b/src/main/java/org/joda/time/DateTimeComparator.java
+index 646918f..4d75f66 100644
+--- a/src/main/java/org/joda/time/DateTimeComparator.java
++++ b/src/main/java/org/joda/time/DateTimeComparator.java
+@@ -189,11 +189,12 @@
+      * @throws IllegalArgumentException if either argument is not supported
+      */
+     public int compare(Object lhsObj, Object rhsObj) {
+-        InstantConverter conv = ConverterManager.getInstance().getInstantConverter(lhsObj);
++        ConverterManager var_27 = ConverterManager.getInstance();
++		InstantConverter conv = var_27.getInstantConverter(lhsObj);
+         Chronology lhsChrono = conv.getChronology(lhsObj, (Chronology) null);
+         long lhsMillis = conv.getInstantMillis(lhsObj, lhsChrono);
+         
+-        conv = ConverterManager.getInstance().getInstantConverter(rhsObj);
++        conv = var_27.getInstantConverter(rhsObj);
+         Chronology rhsChrono = conv.getChronology(rhsObj, (Chronology) null);
+         long rhsMillis = conv.getInstantMillis(rhsObj, rhsChrono);
+ 

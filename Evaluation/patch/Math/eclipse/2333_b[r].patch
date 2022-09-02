@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/RectangularCholeskyDecomposition.java b/src/main/java/org/apache/commons/math3/linear/RectangularCholeskyDecomposition.java
+index 56d0110..9a3993f 100644
+--- a/src/main/java/org/apache/commons/math3/linear/RectangularCholeskyDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/RectangularCholeskyDecomposition.java
+@@ -106,11 +106,12 @@
+ 
+ 
+             // swap elements
+-            if (swapR != r) {
++            double[] var_2333 = b[r];
++			if (swapR != r) {
+                 final int tmpIndex    = index[r];
+                 index[r]              = index[swapR];
+                 index[swapR]          = tmpIndex;
+-                final double[] tmpRow = b[r];
++                final double[] tmpRow = var_2333;
+                 b[r]                  = b[swapR];
+                 b[swapR]              = tmpRow;
+             }
+@@ -140,7 +141,7 @@
+ 
+                 // transform the matrix
+                 final double sqrt = FastMath.sqrt(c[ir][ir]);
+-                b[r][r] = sqrt;
++                var_2333[r] = sqrt;
+                 final double inverse  = 1 / sqrt;
+                 final double inverse2 = 1 / c[ir][ir];
+                 for (int i = r + 1; i < order; ++i) {

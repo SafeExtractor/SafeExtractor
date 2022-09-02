@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..3ba46da 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -1634,12 +1634,13 @@
+                 } else if (nfm > n) {
+                     stepa = interpolationPoints.getEntry(nfx, nfxm);
+                     stepb = -initialTrustRegionRadius;
+-                    if (lowerDifference.getEntry(nfxm) == ZERO) {
++                    double var_3120 = lowerDifference.getEntry(nfxm);
++					if (var_3120 == ZERO) {
+                         stepb = Math.min(TWO * initialTrustRegionRadius, upperDifference.getEntry(nfxm));
+                         // throw new PathIsExploredException(); // XXX
+                     }
+                     if (upperDifference.getEntry(nfxm) == ZERO) {
+-                        stepb = Math.max(-TWO * initialTrustRegionRadius, lowerDifference.getEntry(nfxm));
++                        stepb = Math.max(-TWO * initialTrustRegionRadius, var_3120);
+                         // throw new PathIsExploredException(); // XXX
+                     }
+                     interpolationPoints.setEntry(nfm, nfxm, stepb);

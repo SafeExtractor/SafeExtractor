@@ -1,0 +1,39 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1197_cArg.getNext().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1197_cArg.getNext().patch
+index dc4cd94..dca0560 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1197_cArg.getNext().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1197_cArg.getNext().patch
+@@ -1,30 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/FunctionInjector.java b/src/com/google/javascript/jscomp/FunctionInjector.java
+-index ddfb4ed..9b6972b 100644
++index ddfb4ed..9ac9841 100644
+ --- a/src/com/google/javascript/jscomp/FunctionInjector.java
+ +++ b/src/com/google/javascript/jscomp/FunctionInjector.java
+-@@ -701,13 +701,14 @@
+-     // Functions called via 'call' and 'apply' have a this-object as
+-     // the first parameter, but this is not part of the called function's
+-     // parameter list.
+--    if (!callNode.getFirstChild().isName()) {
+-+    Node var_1197 = cArg.getNext();
+-+	if (!callNode.getFirstChild().isName()) {
+-       if (NodeUtil.isFunctionObjectCall(callNode)) {
+-         // TODO(johnlenz): Support replace this with a value.
++@@ -707,7 +707,8 @@
+          if (cArg == null || !cArg.isThis()) {
+            return CanInlineResult.NO;
+          }
+ -        cArg = cArg.getNext();
+-+        cArg = var_1197;
+++        Node var_1197 = cArg.getNext();
+++		cArg = var_1197;
+        } else {
+          // ".apply" call should be filtered before this.
+          Preconditions.checkState(!NodeUtil.isFunctionObjectApply(callNode));
+-@@ -740,7 +741,7 @@
+-         if (NodeUtil.mayHaveSideEffects(cArg, compiler)) {
+-           return CanInlineResult.NO;
+-         }
+--        cArg = cArg.getNext();
+-+        cArg = var_1197;
+-       }
+-     }
+- 

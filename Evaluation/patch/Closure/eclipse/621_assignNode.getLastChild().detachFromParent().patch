@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/RemoveUnusedVars.java b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+index 4c84735..e2ef7b0 100644
+--- a/src/com/google/javascript/jscomp/RemoveUnusedVars.java
++++ b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+@@ -969,8 +969,9 @@
+      */
+     void remove() {
+       Node parent = assignNode.getParent();
+-      if (mayHaveSecondarySideEffects) {
+-        Node replacement = assignNode.getLastChild().detachFromParent();
++      Node var_621 = assignNode.getLastChild().detachFromParent();
++	if (mayHaveSecondarySideEffects) {
++        Node replacement = var_621;
+ 
+         // Aggregate any expressions in GETELEMs.
+         for (Node current = assignNode.getFirstChild();
+@@ -990,7 +991,7 @@
+           gramps.removeChild(parent);
+         } else {
+           parent.replaceChild(assignNode,
+-              assignNode.getLastChild().detachFromParent());
++              var_621);
+         }
+       }
+     }

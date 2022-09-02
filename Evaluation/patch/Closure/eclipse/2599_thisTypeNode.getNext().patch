@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/rhino/jstype/FunctionType.java b/src/com/google/javascript/rhino/jstype/FunctionType.java
+index 7388448..2b13abb 100644
+--- a/src/com/google/javascript/rhino/jstype/FunctionType.java
++++ b/src/com/google/javascript/rhino/jstype/FunctionType.java
+@@ -662,17 +662,18 @@
+           registry.createOptionalNullableType(getTypeOfThis()));
+       params.addChildToFront(thisTypeNode);
+ 
+-      if (isBind) {
++      Node var_2599 = thisTypeNode.getNext();
++	if (isBind) {
+         // The arguments of bind() are unique in that they are all
+         // optional but not undefinable.
+-        for (Node current = thisTypeNode.getNext();
++        for (Node current = var_2599;
+              current != null; current = current.getNext()) {
+           current.setOptionalArg(true);
+         }
+       } else if (isCall) {
+         // The first argument of call() is optional iff all the arguments
+         // are optional. It's sufficient to check the first argument.
+-        Node firstArg = thisTypeNode.getNext();
++        Node firstArg = var_2599;
+         if (firstArg == null
+             || firstArg.isOptionalArg()
+             || firstArg.isVarArgs()) {

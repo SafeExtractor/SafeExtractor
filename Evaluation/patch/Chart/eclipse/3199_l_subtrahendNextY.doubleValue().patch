@@ -1,0 +1,37 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java b/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
+index cd91775..dcb6a1a 100644
+--- a/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
+@@ -492,7 +492,8 @@
+ 
+         // fast-forward through leading tails
+         boolean b_fastForwardDone = false;
+-        while (!b_fastForwardDone) {
++        double var_3199 = l_subtrahendNextY.doubleValue();
++		while (!b_fastForwardDone) {
+             // get the x and y coordinates
+             l_x1 = x_dataset.getXValue(0, l_minuendItem);
+             l_y1 = x_dataset.getYValue(0, l_minuendItem);
+@@ -508,7 +509,7 @@
+                 l_x3 = l_subtrahendCurX.doubleValue();
+                 l_y3 = l_subtrahendCurY.doubleValue();
+                 l_x4 = l_subtrahendNextX.doubleValue();
+-                l_y4 = l_subtrahendNextY.doubleValue();
++                l_y4 = var_3199;
+             }
+             else {
+                 l_x3 = x_dataset.getXValue(1, l_subtrahendItem);
+@@ -796,11 +797,11 @@
+         l_minuendMaxY    = Math.max(l_minuendMaxY,
+                 l_minuendNextY.doubleValue());
+         l_subtrahendMaxY = Math.max(l_subtrahendMaxY,
+-                l_subtrahendNextY.doubleValue());
++                var_3199);
+         l_minuendMinY    = Math.min(l_minuendMinY,
+                 l_minuendNextY.doubleValue());
+         l_subtrahendMinY = Math.min(l_subtrahendMinY,
+-                l_subtrahendNextY.doubleValue());
++                var_3199);
+ 
+         // add the last point of the minuned and subtrahend
+         l_minuendXs.add(l_minuendNextX);

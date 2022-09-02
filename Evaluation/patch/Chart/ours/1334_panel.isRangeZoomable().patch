@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/chart/panel/ZoomHandler.java b/source/org/jfree/chart/panel/ZoomHandler.java
+index ab08810..75f0daa 100644
+--- a/source/org/jfree/chart/panel/ZoomHandler.java
++++ b/source/org/jfree/chart/panel/ZoomHandler.java
+@@ -148,13 +148,14 @@
+         ChartPanel panel = (ChartPanel) e.getSource();
+         boolean hZoom = false;
+         boolean vZoom = false;
+-        if (panel.getOrientation() == PlotOrientation.HORIZONTAL) {
+-            hZoom = panel.isRangeZoomable();
++        boolean var_1334 = panel.isRangeZoomable();
++		if (panel.getOrientation() == PlotOrientation.HORIZONTAL) {
++            hZoom = var_1334;
+             vZoom = panel.isDomainZoomable();
+         }
+         else {
+             hZoom = panel.isDomainZoomable();
+-            vZoom = panel.isRangeZoomable();
++            vZoom = var_1334;
+         }
+ 
+         boolean zoomTrigger1 = hZoom && Math.abs(e.getX()

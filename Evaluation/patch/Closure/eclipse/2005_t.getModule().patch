@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/AliasExternals.java b/src/com/google/javascript/jscomp/AliasExternals.java
+index fc43f34..1a15656 100644
+--- a/src/com/google/javascript/jscomp/AliasExternals.java
++++ b/src/com/google/javascript/jscomp/AliasExternals.java
+@@ -771,10 +771,11 @@
+     void recordMutator(NodeTraversal t) {
+       mutatorCount++;
+       if (moduleGraph != null) {
+-        deepestModuleMutate = (deepestModuleMutate == null) ?
+-            t.getModule() :
++        JSModule var_2005 = t.getModule();
++		deepestModuleMutate = (deepestModuleMutate == null) ?
++            var_2005 :
+             moduleGraph.getDeepestCommonDependencyInclusive(
+-                t.getModule(), deepestModuleMutate);
++                var_2005, deepestModuleMutate);
+       }
+     }
+   }

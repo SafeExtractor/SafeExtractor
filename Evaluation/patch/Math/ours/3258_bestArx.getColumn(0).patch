@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+index 104bdf5..38c6fab 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+@@ -562,10 +562,11 @@
+             sigma *= Math.exp(Math.min(1, (normps/chiN - 1) * cs / damps));
+             final double bestFitness = fitness[arindex[0]];
+             final double worstFitness = fitness[arindex[arindex.length - 1]];
+-            if (bestValue > bestFitness) {
++            double[] var_3258 = bestArx.getColumn(0);
++			if (bestValue > bestFitness) {
+                 bestValue = bestFitness;
+                 lastResult = optimum;
+-                optimum = new PointValuePair(fitfun.repair(bestArx.getColumn(0)),
++                optimum = new PointValuePair(fitfun.repair(var_3258),
+                                              isMinimize ? bestFitness : -bestFitness);
+                 if (getConvergenceChecker() != null && lastResult != null &&
+                     getConvergenceChecker().converged(iterations, optimum, lastResult)) {
+@@ -610,7 +611,7 @@
+             // user defined termination
+             if (getConvergenceChecker() != null) {
+                 final PointValuePair current
+-                    = new PointValuePair(bestArx.getColumn(0),
++                    = new PointValuePair(var_3258,
+                                          isMinimize ? bestFitness : -bestFitness);
+                 if (lastResult != null &&
+                     getConvergenceChecker().converged(iterations, current, lastResult)) {

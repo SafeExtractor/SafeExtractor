@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/ml/clustering/KMeansPlusPlusClusterer.java b/src/main/java/org/apache/commons/math3/ml/clustering/KMeansPlusPlusClusterer.java
+index ef19a7e..fb8ae7d 100644
+--- a/src/main/java/org/apache/commons/math3/ml/clustering/KMeansPlusPlusClusterer.java
++++ b/src/main/java/org/apache/commons/math3/ml/clustering/KMeansPlusPlusClusterer.java
+@@ -220,7 +220,8 @@
+             List<CentroidCluster<T>> newClusters = new ArrayList<CentroidCluster<T>>();
+             for (final CentroidCluster<T> cluster : clusters) {
+                 final Clusterable newCenter;
+-                if (cluster.getPoints().isEmpty()) {
++                List<T> var_2516 = cluster.getPoints();
++				if (var_2516.isEmpty()) {
+                     switch (emptyStrategy) {
+                         case LARGEST_VARIANCE :
+                             newCenter = getPointFromLargestVarianceCluster(clusters);
+@@ -236,7 +237,7 @@
+                     }
+                     emptyCluster = true;
+                 } else {
+-                    newCenter = centroidOf(cluster.getPoints(), cluster.getCenter().getPoint().length);
++                    newCenter = centroidOf(var_2516, cluster.getCenter().getPoint().length);
+                 }
+                 newClusters.add(new CentroidCluster<T>(newCenter));
+             }

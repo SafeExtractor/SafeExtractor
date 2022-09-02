@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/Scope.java b/src/com/google/javascript/jscomp/Scope.java
+index 7ed2b6f..81f20df 100644
+--- a/src/com/google/javascript/jscomp/Scope.java
++++ b/src/com/google/javascript/jscomp/Scope.java
+@@ -66,9 +66,10 @@
+   private static final Predicate<Var> DECLARATIVELY_UNBOUND_VARS_WITHOUT_TYPES =
+       new Predicate<Var>() {
+     @Override public boolean apply(Var var) {
+-      return var.getParentNode() != null &&
++      Node var_1398 = var.getParentNode();
++	return var_1398 != null &&
+           var.getType() == null && // no declared type
+-          var.getParentNode().isVar() &&
++          var_1398.isVar() &&
+           !var.isExtern();
+     }
+   };

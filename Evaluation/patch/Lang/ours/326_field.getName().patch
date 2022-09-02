@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/lang3/builder/ReflectionToStringBuilder.java b/src/main/java/org/apache/commons/lang3/builder/ReflectionToStringBuilder.java
+index 807fb88..d17de5c 100644
+--- a/src/main/java/org/apache/commons/lang3/builder/ReflectionToStringBuilder.java
++++ b/src/main/java/org/apache/commons/lang3/builder/ReflectionToStringBuilder.java
+@@ -472,7 +472,8 @@
+      * @return Whether or not to append the given <code>Field</code>.
+      */
+     protected boolean accept(final Field field) {
+-        if (field.getName().indexOf(ClassUtils.INNER_CLASS_SEPARATOR_CHAR) != -1) {
++        String var_326 = field.getName();
++		if (var_326.indexOf(ClassUtils.INNER_CLASS_SEPARATOR_CHAR) != -1) {
+             // Reject field from inner class.
+             return false;
+         }
+@@ -485,7 +486,7 @@
+             return false;
+         }
+         if (this.excludeFieldNames != null
+-            && Arrays.binarySearch(this.excludeFieldNames, field.getName()) >= 0) {
++            && Arrays.binarySearch(this.excludeFieldNames, var_326) >= 0) {
+             // Reject fields from the getExcludeFieldNames list.
+             return false;
+         }

@@ -1,0 +1,186 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot3D.java b/source/org/jfree/chart/plot/PiePlot3D.java
+index a7aab14..21ed4e0 100644
+--- a/source/org/jfree/chart/plot/PiePlot3D.java
++++ b/source/org/jfree/chart/plot/PiePlot3D.java
+@@ -633,7 +633,8 @@
+         g2.setStroke(outlineStroke);
+ 
+         // for CLOCKWISE charts, the extent will be negative...
+-        if (extent < 0.0) {
++        double var_1506 = plotArea.getHeight();
++		if (extent < 0.0) {
+ 
+             if (isAngleAtFront(start)) {  // start at front
+ 
+@@ -646,7 +647,7 @@
+                                     arc.getEndPoint().getX(), plotArea.getY(),
+                                     arc.getStartPoint().getX()
+                                     - arc.getEndPoint().getX(),
+-                                    plotArea.getHeight()));
++                                    var_1506));
+                             side.intersect(front);
+                             g2.setPaint(paint);
+                             g2.fill(side);
+@@ -660,13 +661,13 @@
+                         Area side1 = new Area(new Rectangle2D.Double(
+                                 plotArea.getX(), plotArea.getY(),
+                                 arc.getStartPoint().getX() - plotArea.getX(),
+-                                plotArea.getHeight()));
++                                var_1506));
+                         side1.intersect(front);
+ 
+                         Area side2 = new Area(new Rectangle2D.Double(
+                                 arc.getEndPoint().getX(), plotArea.getY(),
+                                 plotArea.getMaxX() - arc.getEndPoint().getX(),
+-                                plotArea.getHeight()));
++                                var_1506));
+ 
+                         side2.intersect(front);
+                         g2.setPaint(paint);
+@@ -698,7 +699,7 @@
+                         Area side2 = new Area(new Rectangle2D.Double(
+                                 plotArea.getX(), plotArea.getY(),
+                                 arc.getEndPoint().getX() - plotArea.getX(),
+-                                plotArea.getHeight()));
++                                var_1506));
+                         side2.intersect(back);
+                         g2.setPaint(paint);
+                         g2.fill(side2);
+@@ -710,7 +711,7 @@
+                         Area side1 = new Area(new Rectangle2D.Double(
+                                 plotArea.getX(), plotArea.getY(),
+                                 arc.getStartPoint().getX() - plotArea.getX(),
+-                                plotArea.getHeight()));
++                                var_1506));
+                         side1.intersect(front);
+                         g2.setPaint(paint);
+                         g2.fill(side1);
+@@ -729,7 +730,7 @@
+                                     arc.getStartPoint().getX(), plotArea.getY(),
+                                     arc.getEndPoint().getX()
+                                     - arc.getStartPoint().getX(),
+-                                    plotArea.getHeight()));
++                                    var_1506));
+                             side.intersect(back);
+                             g2.setPaint(paint);
+                             g2.fill(side);
+@@ -742,13 +743,13 @@
+                         Area side1 = new Area(new Rectangle2D.Double(
+                                 arc.getStartPoint().getX(), plotArea.getY(),
+                                 plotArea.getMaxX() - arc.getStartPoint().getX(),
+-                                plotArea.getHeight()));
++                                var_1506));
+                         side1.intersect(back);
+ 
+                         Area side2 = new Area(new Rectangle2D.Double(
+                                 plotArea.getX(), plotArea.getY(),
+                                 arc.getEndPoint().getX() - plotArea.getX(),
+-                                plotArea.getHeight()));
++                                var_1506));
+ 
+                         side2.intersect(back);
+ 
+@@ -780,7 +781,7 @@
+                         Area side1 = new Area(new Rectangle2D.Double(
+                                 arc.getStartPoint().getX(), plotArea.getY(),
+                                 plotArea.getMaxX() - arc.getStartPoint().getX(),
+-                                plotArea.getHeight()));
++                                var_1506));
+                         side1.intersect(back);
+                         g2.setPaint(paint);
+                         g2.fill(side1);
+@@ -792,7 +793,7 @@
+                         Area side2 = new Area(new Rectangle2D.Double(
+                                 arc.getEndPoint().getX(), plotArea.getY(),
+                                 plotArea.getMaxX() - arc.getEndPoint().getX(),
+-                                plotArea.getHeight()));
++                                var_1506));
+                         side2.intersect(front);
+                         g2.setPaint(paint);
+                         g2.fill(side2);
+@@ -815,7 +816,7 @@
+                                     arc.getStartPoint().getX(), plotArea.getY(),
+                                     arc.getEndPoint().getX()
+                                     - arc.getStartPoint().getX(),
+-                                    plotArea.getHeight()));
++                                    var_1506));
+                             side.intersect(front);
+                             g2.setPaint(paint);
+                             g2.fill(side);
+@@ -827,13 +828,13 @@
+                         Area side1 = new Area(new Rectangle2D.Double(
+                                 arc.getStartPoint().getX(), plotArea.getY(),
+                                 plotArea.getMaxX() - arc.getStartPoint().getX(),
+-                                plotArea.getHeight()));
++                                var_1506));
+                         side1.intersect(front);
+ 
+                         Area side2 = new Area(new Rectangle2D.Double(
+                                 plotArea.getX(), plotArea.getY(),
+                                 arc.getEndPoint().getX() - plotArea.getX(),
+-                                plotArea.getHeight()));
++                                var_1506));
+                         side2.intersect(front);
+ 
+                         g2.setPaint(paint);
+@@ -863,7 +864,7 @@
+                         Area side2 = new Area(new Rectangle2D.Double(
+                                 arc.getEndPoint().getX(), plotArea.getY(),
+                                 plotArea.getMaxX() - arc.getEndPoint().getX(),
+-                                plotArea.getHeight()));
++                                var_1506));
+                         side2.intersect(back);
+                         g2.setPaint(paint);
+                         g2.fill(side2);
+@@ -875,7 +876,7 @@
+                         Area side1 = new Area(new Rectangle2D.Double(
+                                 arc.getStartPoint().getX(), plotArea.getY(),
+                                 plotArea.getMaxX() - arc.getStartPoint().getX(),
+-                                plotArea.getHeight()));
++                                var_1506));
+                         side1.intersect(front);
+                         g2.setPaint(paint);
+                         g2.fill(side1);
+@@ -893,7 +894,7 @@
+                                     arc.getEndPoint().getX(), plotArea.getY(),
+                                     arc.getStartPoint().getX()
+                                     - arc.getEndPoint().getX(),
+-                                    plotArea.getHeight()));
++                                    var_1506));
+                             side.intersect(back);
+                             g2.setPaint(paint);
+                             g2.fill(side);
+@@ -906,13 +907,13 @@
+                         Area side1 = new Area(new Rectangle2D.Double(
+                                 arc.getStartPoint().getX(), plotArea.getY(),
+                                 plotArea.getX() - arc.getStartPoint().getX(),
+-                                plotArea.getHeight()));
++                                var_1506));
+                         side1.intersect(back);
+ 
+                         Area side2 = new Area(new Rectangle2D.Double(
+                                 arc.getEndPoint().getX(), plotArea.getY(),
+                                 plotArea.getMaxX() - arc.getEndPoint().getX(),
+-                                plotArea.getHeight()));
++                                var_1506));
+                         side2.intersect(back);
+ 
+                         g2.setPaint(paint);
+@@ -943,7 +944,7 @@
+                         Area side1 = new Area(new Rectangle2D.Double(
+                                 plotArea.getX(), plotArea.getY(),
+                                 arc.getStartPoint().getX() - plotArea.getX(),
+-                                plotArea.getHeight()));
++                                var_1506));
+                         side1.intersect(back);
+                         g2.setPaint(paint);
+                         g2.fill(side1);
+@@ -955,7 +956,7 @@
+                         Area side2 = new Area(new Rectangle2D.Double(
+                                 plotArea.getX(), plotArea.getY(),
+                                 arc.getEndPoint().getX() - plotArea.getX(),
+-                                plotArea.getHeight()));
++                                var_1506));
+                         side2.intersect(front);
+                         g2.setPaint(paint);
+                         g2.fill(side2);

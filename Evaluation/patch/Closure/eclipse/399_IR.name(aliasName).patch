@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/TransformAMDToCJSModule.java b/src/com/google/javascript/jscomp/TransformAMDToCJSModule.java
+index 709e6f1..26b0538 100644
+--- a/src/com/google/javascript/jscomp/TransformAMDToCJSModule.java
++++ b/src/com/google/javascript/jscomp/TransformAMDToCJSModule.java
+@@ -193,11 +193,12 @@
+       }
+ 
+       Node requireNode;
+-      if (moduleName != null) {
++      Node var_399 = IR.name(aliasName);
++	if (moduleName != null) {
+         Node call = IR.call(IR.name("require"), IR.string(moduleName));
+         call.putBooleanProp(Node.FREE_CALL, true);
+         if (aliasName != null) {
+-          requireNode = IR.var(IR.name(aliasName), call)
++          requireNode = IR.var(var_399, call)
+               .copyInformationFromForTree(aliasNode);
+         } else {
+           requireNode = IR.exprResult(call).
+@@ -209,7 +210,7 @@
+         if (isVirtualModuleName(aliasName)) {
+           return;
+         }
+-        requireNode = IR.var(IR.name(aliasName), IR.nullNode())
++        requireNode = IR.var(var_399, IR.nullNode())
+             .copyInformationFromForTree(aliasNode);
+       }
+ 

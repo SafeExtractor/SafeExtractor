@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/CommandLineRunner.java b/src/com/google/javascript/jscomp/CommandLineRunner.java
+index 2d3b139..1978efb 100644
+--- a/src/com/google/javascript/jscomp/CommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/CommandLineRunner.java
+@@ -665,7 +665,8 @@
+     List<String> processedArgs = processArgs(args);
+ 
+     CmdLineParser parser = new CmdLineParser(flags);
+-    Flags.warningGuardSpec.clear();
++    WarningGuardSpec var_642 = Flags.warningGuardSpec;
++	var_642.clear();
+     isConfigValid = true;
+     try {
+       parser.parseArgument(processedArgs.toArray(new String[] {}));
+@@ -736,7 +737,7 @@
+           .setModuleOutputPathPrefix(flags.module_output_path_prefix)
+           .setCreateSourceMap(flags.create_source_map)
+           .setSourceMapFormat(flags.source_map_format)
+-          .setWarningGuardSpec(Flags.warningGuardSpec)
++          .setWarningGuardSpec(var_642)
+           .setDefine(flags.define)
+           .setCharset(flags.charset)
+           .setManageClosureDependencies(flags.manage_closure_dependencies)

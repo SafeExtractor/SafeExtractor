@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/AnalyzeNameReferences.java b/src/com/google/javascript/jscomp/AnalyzeNameReferences.java
+index eb9cd11..9bddc45 100644
+--- a/src/com/google/javascript/jscomp/AnalyzeNameReferences.java
++++ b/src/com/google/javascript/jscomp/AnalyzeNameReferences.java
+@@ -58,8 +58,9 @@
+     graph = gc.getNameReferenceGraph();
+     FixedPointGraphTraversal<Name, Reference> t =
+         FixedPointGraphTraversal.newTraversal(new PropagateReferences());
+-    getInfo(graph.MAIN).markReference(null);
+-    t.computeFixedPoint(graph, Sets.newHashSet(graph.MAIN));
++    Name var_689 = graph.MAIN;
++	getInfo(var_689).markReference(null);
++    t.computeFixedPoint(graph, Sets.newHashSet(var_689));
+   }
+ 
+   public NameReferenceGraph getGraph() {

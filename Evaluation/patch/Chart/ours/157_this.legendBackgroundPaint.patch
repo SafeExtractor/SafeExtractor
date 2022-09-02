@@ -1,0 +1,77 @@
+diff --git a/source/org/jfree/chart/StandardChartTheme.java b/source/org/jfree/chart/StandardChartTheme.java
+index 55fcb4f..ba4013b 100644
+--- a/source/org/jfree/chart/StandardChartTheme.java
++++ b/source/org/jfree/chart/StandardChartTheme.java
+@@ -1164,38 +1164,40 @@
+             TextTitle tt = (TextTitle) title;
+             tt.setFont(this.largeFont);
+             tt.setPaint(this.subtitlePaint);
+-        }
+-        else if (title instanceof LegendTitle) {
+-            LegendTitle lt = (LegendTitle) title;
+-            if (lt.getBackgroundPaint() != null) {
+-                lt.setBackgroundPaint(this.legendBackgroundPaint);
+-            }
+-            lt.setItemFont(this.regularFont);
+-            lt.setItemPaint(this.legendItemPaint);
+-            if (lt.getWrapper() != null) {
+-                applyToBlockContainer(lt.getWrapper());
+-            }
+-        }
+-        else if (title instanceof PaintScaleLegend) {
+-            PaintScaleLegend psl = (PaintScaleLegend) title;
+-            psl.setBackgroundPaint(this.legendBackgroundPaint);
+-            ValueAxis axis = psl.getAxis();
+-            if (axis != null) {
+-                applyToValueAxis(axis);
+-            }
+-        }
+-        else if (title instanceof CompositeTitle) {
+-            CompositeTitle ct = (CompositeTitle) title;
+-            BlockContainer bc = ct.getContainer();
+-            List blocks = bc.getBlocks();
+-            Iterator iterator = blocks.iterator();
+-            while (iterator.hasNext()) {
+-                Block b = (Block) iterator.next();
+-                if (b instanceof Title) {
+-                    applyToTitle((Title) b);
+-                }
+-            }
+-        }
++        } else {
++			Paint var_157 = this.legendBackgroundPaint;
++			if (title instanceof LegendTitle) {
++			    LegendTitle lt = (LegendTitle) title;
++			    if (lt.getBackgroundPaint() != null) {
++			        lt.setBackgroundPaint(var_157);
++			    }
++			    lt.setItemFont(this.regularFont);
++			    lt.setItemPaint(this.legendItemPaint);
++			    if (lt.getWrapper() != null) {
++			        applyToBlockContainer(lt.getWrapper());
++			    }
++			}
++			else if (title instanceof PaintScaleLegend) {
++			    PaintScaleLegend psl = (PaintScaleLegend) title;
++			    psl.setBackgroundPaint(var_157);
++			    ValueAxis axis = psl.getAxis();
++			    if (axis != null) {
++			        applyToValueAxis(axis);
++			    }
++			}
++			else if (title instanceof CompositeTitle) {
++			    CompositeTitle ct = (CompositeTitle) title;
++			    BlockContainer bc = ct.getContainer();
++			    List blocks = bc.getBlocks();
++			    Iterator iterator = blocks.iterator();
++			    while (iterator.hasNext()) {
++			        Block b = (Block) iterator.next();
++			        if (b instanceof Title) {
++			            applyToTitle((Title) b);
++			        }
++			    }
++			}
++		}
+     }
+ 
+     /**

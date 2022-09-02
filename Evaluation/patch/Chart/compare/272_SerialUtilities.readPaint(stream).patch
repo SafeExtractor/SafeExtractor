@@ -1,0 +1,24 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/272_SerialUtilities.readPaint(stream).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/272_SerialUtilities.readPaint(stream).patch
+index dfd45f0..bdd5df0 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/272_SerialUtilities.readPaint(stream).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/272_SerialUtilities.readPaint(stream).patch
+@@ -1,16 +1,14 @@
+ diff --git a/source/org/jfree/chart/annotations/XYPolygonAnnotation.java b/source/org/jfree/chart/annotations/XYPolygonAnnotation.java
+-index e6fbbd8..77bb895 100644
++index e6fbbd8..65806ba 100644
+ --- a/source/org/jfree/chart/annotations/XYPolygonAnnotation.java
+ +++ b/source/org/jfree/chart/annotations/XYPolygonAnnotation.java
+-@@ -354,8 +354,9 @@
++@@ -354,7 +354,8 @@
+              throws IOException, ClassNotFoundException {
+          stream.defaultReadObject();
+          this.stroke = SerialUtilities.readStroke(stream);
+ -        this.outlinePaint = SerialUtilities.readPaint(stream);
+--        this.fillPaint = SerialUtilities.readPaint(stream);
+ +        Paint var_272 = SerialUtilities.readPaint(stream);
+ +		this.outlinePaint = var_272;
+-+        this.fillPaint = var_272;
++         this.fillPaint = SerialUtilities.readPaint(stream);
+      }
+  
+- }

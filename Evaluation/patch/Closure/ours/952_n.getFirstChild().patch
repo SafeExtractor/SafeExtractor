@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+index 3dc8ec6..63297e3 100644
+--- a/src/com/google/javascript/jscomp/TypeInference.java
++++ b/src/com/google/javascript/jscomp/TypeInference.java
+@@ -733,7 +733,8 @@
+     JSType type = n.getJSType();
+     Preconditions.checkNotNull(type);
+ 
+-    for (Node name = n.getFirstChild(); name != null; name = name.getNext()) {
++    Node var_952 = n.getFirstChild();
++	for (Node name = var_952; name != null; name = name.getNext()) {
+       scope = traverse(name.getFirstChild(), scope);
+     }
+ 
+@@ -756,7 +757,7 @@
+ 
+     String qObjName = NodeUtil.getBestLValueName(
+         NodeUtil.getBestLValue(n));
+-    for (Node name = n.getFirstChild(); name != null;
++    for (Node name = var_952; name != null;
+          name = name.getNext()) {
+       Node value = name.getFirstChild();
+       String memberName = NodeUtil.getObjectLitKeyName(name);

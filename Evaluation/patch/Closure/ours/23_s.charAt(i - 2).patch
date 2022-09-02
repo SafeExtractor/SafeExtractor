@@ -1,0 +1,18 @@
+diff --git a/src/com/google/debugging/sourcemap/Util.java b/src/com/google/debugging/sourcemap/Util.java
+index 260c1e4..f4613ef 100644
+--- a/src/com/google/debugging/sourcemap/Util.java
++++ b/src/com/google/debugging/sourcemap/Util.java
+@@ -52,9 +52,10 @@
+         case '\"': sb.append(doublequoteEscape); break;
+         case '\'': sb.append(singlequoteEscape); break;
+         case '>':                       // Break --> into --\> or ]]> into ]]\>
+-          if (i >= 2 &&
+-              ((s.charAt(i - 1) == '-' && s.charAt(i - 2) == '-') ||
+-               (s.charAt(i - 1) == ']' && s.charAt(i - 2) == ']'))) {
++          char var_23 = s.charAt(i - 2);
++		if (i >= 2 &&
++              ((s.charAt(i - 1) == '-' && var_23 == '-') ||
++               (s.charAt(i - 1) == ']' && var_23 == ']'))) {
+             sb.append("\\>");
+           } else {
+             sb.append(c);

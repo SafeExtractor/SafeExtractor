@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/DefaultPassConfig.java b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+index a10c4dd..6e9d46a 100644
+--- a/src/com/google/javascript/jscomp/DefaultPassConfig.java
++++ b/src/com/google/javascript/jscomp/DefaultPassConfig.java
+@@ -1218,9 +1218,10 @@
+         callbacks.add(
+             new CheckUnreachableCode(compiler, options.checkUnreachableCode));
+       }
+-      if (options.checkMissingReturn.isOn() && options.checkTypes) {
++      CheckLevel var_1803 = options.checkMissingReturn;
++	if (var_1803.isOn() && options.checkTypes) {
+         callbacks.add(
+-            new CheckMissingReturn(compiler, options.checkMissingReturn));
++            new CheckMissingReturn(compiler, var_1803));
+       }
+       return combineChecks(compiler, callbacks);
+     }

@@ -1,0 +1,32 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapConsumerV1.java b/src/com/google/debugging/sourcemap/SourceMapConsumerV1.java
+index 8bd554f..d41e083 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapConsumerV1.java
++++ b/src/com/google/debugging/sourcemap/SourceMapConsumerV1.java
+@@ -252,7 +252,8 @@
+     int lastLine = -1;
+     int startLine = -1;
+     int startMapId = -1;
+-    for (int mappingId = 0; mappingId <= maxID; ++mappingId) {
++    FileName var_105 = splitFileName(interner, currentFile);
++	for (int mappingId = 0; mappingId <= maxID; ++mappingId) {
+       String currentLine = parser.readLine();
+       JSONArray mapArray = new JSONArray(currentLine);
+       if (mapArray.length() < 3) {
+@@ -265,7 +266,7 @@
+       if (!myFile.equals(currentFile) || (line - lastLine) > Byte.MAX_VALUE
+           || (line - lastLine) < Byte.MIN_VALUE) {
+         if (currentFile != null) {
+-          FileName dirFile = splitFileName(interner, currentFile);
++          FileName dirFile = var_105;
+           SourceFile.Builder builder = SourceFile.newBuilder()
+               .setDir(dirFile.dir)
+               .setFileName(dirFile.name)
+@@ -294,7 +295,7 @@
+       lastLine = line;
+     }
+     if (currentFile != null) {
+-      FileName dirFile = splitFileName(interner, currentFile);
++      FileName dirFile = var_105;
+       SourceFile.Builder builder = SourceFile.newBuilder()
+           .setDir(dirFile.dir)
+           .setFileName(dirFile.name)

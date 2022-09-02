@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/renderer/category/WaterfallBarRenderer.java b/source/org/jfree/chart/renderer/category/WaterfallBarRenderer.java
+index 4a14898..e267259 100644
+--- a/source/org/jfree/chart/renderer/category/WaterfallBarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/WaterfallBarRenderer.java
+@@ -374,9 +374,10 @@
+ 
+         Comparable seriesKey = dataset.getRowKey(row);
+         Comparable categoryKey = dataset.getColumnKey(column);
+-        if (orientation == PlotOrientation.HORIZONTAL) {
++        double var_2652 = getItemMargin();
++		if (orientation == PlotOrientation.HORIZONTAL) {
+             rectY = domainAxis.getCategorySeriesMiddle(categoryKey, seriesKey,
+-                    dataset, getItemMargin(), dataArea, RectangleEdge.LEFT);
++                    dataset, var_2652, dataArea, RectangleEdge.LEFT);
+ 
+             rectX = j2dy0;
+             rectHeight = state.getBarWidth();
+@@ -387,7 +388,7 @@
+         }
+         else if (orientation == PlotOrientation.VERTICAL) {
+             rectX = domainAxis.getCategorySeriesMiddle(categoryKey, seriesKey,
+-                    dataset, getItemMargin(), dataArea, RectangleEdge.TOP);
++                    dataset, var_2652, dataArea, RectangleEdge.TOP);
+             rectX = rectX - rectWidth / 2.0;
+             rectY = j2dy0;
+         }

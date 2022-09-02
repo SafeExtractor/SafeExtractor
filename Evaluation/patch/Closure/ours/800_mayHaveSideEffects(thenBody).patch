@@ -1,0 +1,14 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..e064bfc 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -686,7 +686,8 @@
+     }
+ 
+     // if (x) { } else { ... } --> if (!x) { ... }
+-    if (!mayHaveSideEffects(thenBody) && elseBody != null) {
++    boolean var_800 = mayHaveSideEffects(thenBody);
++	if (!var_800 && elseBody != null) {
+       n.removeChild(elseBody);
+       n.replaceChild(thenBody, elseBody);
+       Node notCond = new Node(Token.NOT);

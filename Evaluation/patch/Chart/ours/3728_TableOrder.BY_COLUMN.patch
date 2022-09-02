@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/chart/util/TableOrder.java b/source/org/jfree/chart/util/TableOrder.java
+index c2278e8..9fda916 100644
+--- a/source/org/jfree/chart/util/TableOrder.java
++++ b/source/org/jfree/chart/util/TableOrder.java
+@@ -120,10 +120,12 @@
+     private Object readResolve() throws ObjectStreamException {
+         if (this.equals(TableOrder.BY_ROW)) {
+             return TableOrder.BY_ROW;
+-        }
+-        else if (this.equals(TableOrder.BY_COLUMN)) {
+-            return TableOrder.BY_COLUMN;
+-        }
++        } else {
++			TableOrder var_3728 = TableOrder.BY_COLUMN;
++			if (this.equals(var_3728)) {
++			    return var_3728;
++			}
++		}
+         return null;
+     }
+ 

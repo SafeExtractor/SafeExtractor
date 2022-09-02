@@ -1,0 +1,18 @@
+diff --git a/source/org/jfree/chart/plot/DefaultDrawingSupplier.java b/source/org/jfree/chart/plot/DefaultDrawingSupplier.java
+index ce9cc64..49ed195 100644
+--- a/source/org/jfree/chart/plot/DefaultDrawingSupplier.java
++++ b/source/org/jfree/chart/plot/DefaultDrawingSupplier.java
+@@ -427,10 +427,11 @@
+     private void writeObject(ObjectOutputStream stream) throws IOException {
+         stream.defaultWriteObject();
+ 
+-        int paintCount = this.paintSequence.length;
++        Paint[] var_2260 = this.paintSequence;
++		int paintCount = var_2260.length;
+         stream.writeInt(paintCount);
+         for (int i = 0; i < paintCount; i++) {
+-            SerialUtilities.writePaint(this.paintSequence[i], stream);
++            SerialUtilities.writePaint(var_2260[i], stream);
+         }
+ 
+         int outlinePaintCount = this.outlinePaintSequence.length;

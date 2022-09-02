@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/lang3/text/StrTokenizer.java b/src/main/java/org/apache/commons/lang3/text/StrTokenizer.java
+index 7430b1c..1615e20 100644
+--- a/src/main/java/org/apache/commons/lang3/text/StrTokenizer.java
++++ b/src/main/java/org/apache/commons/lang3/text/StrTokenizer.java
+@@ -741,7 +741,8 @@
+         boolean quoting = quoteLen > 0;
+         int trimStart = 0;
+         
+-        while (pos < len) {
++        String var_467 = workArea.substring(0, trimStart);
++		while (pos < len) {
+             // quoting mode can occur several times throughout a string
+             // we must switch between quoting and non-quoting until we
+             // encounter a non-quoted delimiter, or end of string
+@@ -778,7 +779,7 @@
+                 final int delimLen = getDelimiterMatcher().isMatch(chars, pos, start, len);
+                 if (delimLen > 0) {
+                     // return condition when end of token found
+-                    addToken(tokens, workArea.substring(0, trimStart));
++                    addToken(tokens, var_467);
+                     return pos + delimLen;
+                 }
+                 
+@@ -813,7 +814,7 @@
+         }
+         
+         // return condition when end of string found
+-        addToken(tokens, workArea.substring(0, trimStart));
++        addToken(tokens, var_467);
+         return -1;
+     }
+ 

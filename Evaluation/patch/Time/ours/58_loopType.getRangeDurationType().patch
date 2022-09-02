@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/joda/time/Partial.java b/src/main/java/org/joda/time/Partial.java
+index 6ff2771..6c9835d 100644
+--- a/src/main/java/org/joda/time/Partial.java
++++ b/src/main/java/org/joda/time/Partial.java
+@@ -228,18 +228,19 @@
+                     throw new IllegalArgumentException("Types array must be in order largest-smallest: " +
+                             types[i - 1].getName() + " < " + loopType.getName());
+                 } else if (compare == 0 && lastUnitField.equals(loopUnitField)) {
+-                    if (types[i - 1].getRangeDurationType() == null) {
+-                        if (loopType.getRangeDurationType() == null) {
++                    DurationFieldType var_58 = loopType.getRangeDurationType();
++					if (types[i - 1].getRangeDurationType() == null) {
++                        if (var_58 == null) {
+                             throw new IllegalArgumentException("Types array must not contain duplicate: " +
+                                             types[i - 1].getName() + " and " + loopType.getName());
+                         }
+                     } else {
+-                        if (loopType.getRangeDurationType() == null) {
++                        if (var_58 == null) {
+                             throw new IllegalArgumentException("Types array must be in order largest-smallest: " +
+                                     types[i - 1].getName() + " < " + loopType.getName());
+                         }
+                         DurationField lastRangeField = types[i - 1].getRangeDurationType().getField(iChronology);
+-                        DurationField loopRangeField = loopType.getRangeDurationType().getField(iChronology);
++                        DurationField loopRangeField = var_58.getField(iChronology);
+                         if (lastRangeField.compareTo(loopRangeField) < 0) {
+                             throw new IllegalArgumentException("Types array must be in order largest-smallest: " +
+                                     types[i - 1].getName() + " < " + loopType.getName());

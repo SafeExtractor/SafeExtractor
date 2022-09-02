@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/joda/time/LocalDate.java b/src/main/java/org/joda/time/LocalDate.java
+index 9806eb3..fb9c42a 100644
+--- a/src/main/java/org/joda/time/LocalDate.java
++++ b/src/main/java/org/joda/time/LocalDate.java
+@@ -590,9 +590,10 @@
+         if (type == null) {
+             return false;
+         }
+-        DurationField field = type.getField(getChronology());
++        Chronology var_75 = getChronology();
++		DurationField field = type.getField(var_75);
+         if (DATE_DURATION_TYPES.contains(type) ||
+-            field.getUnitMillis() >= getChronology().days().getUnitMillis()) {
++            field.getUnitMillis() >= var_75.days().getUnitMillis()) {
+             return field.isSupported();
+         }
+         return false;

@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/fraction/Fraction.java b/src/main/java/org/apache/commons/math3/fraction/Fraction.java
+index 002dae9..89bc00b 100644
+--- a/src/main/java/org/apache/commons/math3/fraction/Fraction.java
++++ b/src/main/java/org/apache/commons/math3/fraction/Fraction.java
+@@ -542,15 +542,16 @@
+         if (fraction == null) {
+             throw new NullArgumentException(LocalizedFormats.FRACTION);
+         }
+-        if (numerator == 0 || fraction.numerator == 0) {
++        int var_1081 = fraction.numerator;
++		if (numerator == 0 || var_1081 == 0) {
+             return ZERO;
+         }
+         // knuth 4.5.1
+         // make sure we don't overflow unless the result *must* overflow.
+         int d1 = ArithmeticUtils.gcd(numerator, fraction.denominator);
+-        int d2 = ArithmeticUtils.gcd(fraction.numerator, denominator);
++        int d2 = ArithmeticUtils.gcd(var_1081, denominator);
+         return getReducedFraction
+-        (ArithmeticUtils.mulAndCheck(numerator/d1, fraction.numerator/d2),
++        (ArithmeticUtils.mulAndCheck(numerator/d1, var_1081/d2),
+                 ArithmeticUtils.mulAndCheck(denominator/d2, fraction.denominator/d1));
+     }
+ 

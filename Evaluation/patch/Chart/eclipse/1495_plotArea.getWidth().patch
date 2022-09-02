@@ -1,0 +1,55 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot3D.java b/source/org/jfree/chart/plot/PiePlot3D.java
+index a7aab14..194b7e4 100644
+--- a/source/org/jfree/chart/plot/PiePlot3D.java
++++ b/source/org/jfree/chart/plot/PiePlot3D.java
+@@ -249,12 +249,13 @@
+         if (getLabelGenerator() != null) {
+             labelPercent = getLabelGap() + getMaximumLabelWidth();
+         }
+-        double gapHorizontal = plotArea.getWidth() * (gapPercent
++        double var_1495 = plotArea.getWidth();
++		double gapHorizontal = var_1495 * (gapPercent
+                 + labelPercent) * 2.0;
+         double gapVertical = plotArea.getHeight() * gapPercent * 2.0;
+ 
+         if (DEBUG_DRAW_INTERIOR) {
+-            double hGap = plotArea.getWidth() * getInteriorGap();
++            double hGap = var_1495 * getInteriorGap();
+             double vGap = plotArea.getHeight() * getInteriorGap();
+             double igx1 = plotArea.getX() + hGap;
+             double igx2 = plotArea.getMaxX() - hGap;
+@@ -267,7 +268,7 @@
+ 
+         double linkX = plotArea.getX() + gapHorizontal / 2;
+         double linkY = plotArea.getY() + gapVertical / 2;
+-        double linkW = plotArea.getWidth() - gapHorizontal;
++        double linkW = var_1495 - gapHorizontal;
+         double linkH = plotArea.getHeight() - gapVertical;
+ 
+         // make the link area a square if the pie chart is to be circular...
+@@ -340,14 +341,14 @@
+         }
+ 
+         // if too any elements
+-        if (dataset.getKeys().size() > plotArea.getWidth()) {
++        if (dataset.getKeys().size() > var_1495) {
+             String text = "Too many elements";
+             Font sfont = new Font("Tahoma", Font.BOLD, 10);
+             g2.setFont(sfont);
+             FontMetrics fm = g2.getFontMetrics(sfont);
+             int stringWidth = fm.stringWidth(text);
+ 
+-            g2.drawString(text, (int) (plotArea.getX() + (plotArea.getWidth()
++            g2.drawString(text, (int) (plotArea.getX() + (var_1495
+                     - stringWidth) / 2), (int) (plotArea.getY()
+                     + (plotArea.getHeight() / 2)));
+             return;
+@@ -356,7 +357,7 @@
+         // coordinates of the drawing area for the arcs to arrive at this
+         // effect.
+         if (isCircular()) {
+-            double min = Math.min(plotArea.getWidth(),
++            double min = Math.min(var_1495,
+                     plotArea.getHeight()) / 2;
+             plotArea = new Rectangle2D.Double(plotArea.getCenterX() - min,
+                     plotArea.getCenterY() - min, 2 * min, 2 * min);

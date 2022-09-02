@@ -1,0 +1,31 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/JacobianFunction.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/JacobianFunction.java
+index 18e9252..cf64d58 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/JacobianFunction.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/JacobianFunction.java
+@@ -44,19 +44,20 @@
+     public double[][] value(double[] point) {
+ 
+         // set up parameters
+-        final DerivativeStructure[] dsX = new DerivativeStructure[point.length];
+-        for (int i = 0; i < point.length; ++i) {
+-            dsX[i] = new DerivativeStructure(point.length, 1, i, point[i]);
++        int var_163 = point.length;
++		final DerivativeStructure[] dsX = new DerivativeStructure[var_163];
++        for (int i = 0; i < var_163; ++i) {
++            dsX[i] = new DerivativeStructure(var_163, 1, i, point[i]);
+         }
+ 
+         // compute the derivatives
+         final DerivativeStructure[] dsY = f.value(dsX);
+ 
+         // extract the Jacobian
+-        final double[][] y = new double[dsY.length][point.length];
+-        final int[] orders = new int[point.length];
++        final double[][] y = new double[dsY.length][var_163];
++        final int[] orders = new int[var_163];
+         for (int i = 0; i < dsY.length; ++i) {
+-            for (int j = 0; j < point.length; ++j) {
++            for (int j = 0; j < var_163; ++j) {
+                 orders[j] = 1;
+                 y[i][j] = dsY[i].getPartialDerivative(orders);
+                 orders[j] = 0;

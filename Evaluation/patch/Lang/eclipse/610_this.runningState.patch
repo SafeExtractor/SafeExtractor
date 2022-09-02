@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/StopWatch.java b/src/main/java/org/apache/commons/lang3/time/StopWatch.java
+index 1b6f870..ebe4cc3 100644
+--- a/src/main/java/org/apache/commons/lang3/time/StopWatch.java
++++ b/src/main/java/org/apache/commons/lang3/time/StopWatch.java
+@@ -122,10 +122,11 @@
+      *             if the StopWatch is already running.
+      */
+     public void start() {
+-        if (this.runningState == STATE_STOPPED) {
++        int var_610 = this.runningState;
++		if (var_610 == STATE_STOPPED) {
+             throw new IllegalStateException("Stopwatch must be reset before being restarted. ");
+         }
+-        if (this.runningState != STATE_UNSTARTED) {
++        if (var_610 != STATE_UNSTARTED) {
+             throw new IllegalStateException("Stopwatch already started. ");
+         }
+         this.startTime = System.nanoTime();

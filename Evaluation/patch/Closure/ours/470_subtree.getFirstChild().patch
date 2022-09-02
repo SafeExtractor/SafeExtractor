@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeSimplifyRegExp.java b/src/com/google/javascript/jscomp/PeepholeSimplifyRegExp.java
+index 8812cce..b8c1006 100644
+--- a/src/com/google/javascript/jscomp/PeepholeSimplifyRegExp.java
++++ b/src/com/google/javascript/jscomp/PeepholeSimplifyRegExp.java
+@@ -30,7 +30,8 @@
+   Node optimizeSubtree(Node subtree) {
+     if (subtree.isRegExp()) {
+       // Split regexp into pattern and flags.
+-      String pattern = subtree.getFirstChild().getString();
++      Node var_470 = subtree.getFirstChild();
++	String pattern = var_470.getString();
+       String flags = subtree.getChildCount() == 2
+           ? subtree.getLastChild().getString() : "";
+       // Parse to an AST and optimize.
+@@ -64,7 +65,7 @@
+           + (flags.contains("m") && regexTree.containsAnchor() ? "m" : ""));
+       // Update the original if something was done.
+       if (!(newPattern.equals(pattern) && newFlags.equals(flags))) {
+-        subtree.getFirstChild().setString(newPattern);
++        var_470.setString(newPattern);
+         if (!"".equals(newFlags)) {
+           subtree.getLastChild().setString(newFlags);
+         } else if (subtree.getChildCount() == 2) {

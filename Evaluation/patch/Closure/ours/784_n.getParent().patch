@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+index 1e1571d..a56a5a0 100644
+--- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
++++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+@@ -257,7 +257,8 @@
+ 
+     // Fix up the AST, replace or remove the an unused node (if requested).
+     if (n != result) {
+-      Node parent = n.getParent();
++      Node var_784 = n.getParent();
++	Node parent = var_784;
+       if (result == null) {
+         if (removeUnused) {
+           parent.removeChild(n);
+@@ -270,7 +271,7 @@
+         if (result.getParent() != null) {
+           result.detachFromParent();
+         }
+-        n.getParent().replaceChild(n, result);
++        var_784.replaceChild(n, result);
+       }
+       reportCodeChange();
+     }

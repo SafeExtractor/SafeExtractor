@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/plot/PolarPlot.java b/source/org/jfree/chart/plot/PolarPlot.java
+index bc0de0a..70de1cd 100644
+--- a/source/org/jfree/chart/plot/PolarPlot.java
++++ b/source/org/jfree/chart/plot/PolarPlot.java
+@@ -859,7 +859,8 @@
+                                  List angularTicks, List radialTicks) {
+ 
+         // no renderer, no gridlines...
+-        if (this.renderer == null) {
++        PolarItemRenderer var_2222 = this.renderer;
++		if (var_2222 == null) {
+             return;
+         }
+ 
+@@ -868,7 +869,7 @@
+             Stroke gridStroke = getAngleGridlineStroke();
+             Paint gridPaint = getAngleGridlinePaint();
+             if ((gridStroke != null) && (gridPaint != null)) {
+-                this.renderer.drawAngularGridLines(g2, this, angularTicks,
++                var_2222.drawAngularGridLines(g2, this, angularTicks,
+                         dataArea);
+             }
+         }
+@@ -878,7 +879,7 @@
+             Stroke gridStroke = getRadiusGridlineStroke();
+             Paint gridPaint = getRadiusGridlinePaint();
+             if ((gridStroke != null) && (gridPaint != null)) {
+-                this.renderer.drawRadialGridLines(g2, this, this.axis,
++                var_2222.drawRadialGridLines(g2, this, this.axis,
+                         radialTicks, dataArea);
+             }
+         }

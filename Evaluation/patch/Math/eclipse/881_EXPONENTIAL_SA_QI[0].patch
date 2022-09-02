@@ -1,0 +1,34 @@
+diff --git a/src/main/java/org/apache/commons/math3/distribution/ExponentialDistribution.java b/src/main/java/org/apache/commons/math3/distribution/ExponentialDistribution.java
+index 22b32e1..6a66625 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/ExponentialDistribution.java
++++ b/src/main/java/org/apache/commons/math3/distribution/ExponentialDistribution.java
+@@ -210,8 +210,9 @@
+         double u = random.nextDouble();
+ 
+         // Step 2 and 3:
+-        while (u < 0.5) {
+-            a += EXPONENTIAL_SA_QI[0];
++        double var_881 = EXPONENTIAL_SA_QI[0];
++		while (u < 0.5) {
++            a += var_881;
+             u *= 2;
+         }
+ 
+@@ -219,7 +220,7 @@
+         u += u - 1;
+ 
+         // Step 5:
+-        if (u <= EXPONENTIAL_SA_QI[0]) {
++        if (u <= var_881) {
+             return mean * (a + u);
+         }
+ 
+@@ -240,7 +241,7 @@
+             // Step 8:
+         } while (u > EXPONENTIAL_SA_QI[i]); // Ensured to exit since EXPONENTIAL_SA_QI[MAX] = 1
+ 
+-        return mean * (a + umin * EXPONENTIAL_SA_QI[0]);
++        return mean * (a + umin * var_881);
+     }
+ 
+     /** {@inheritDoc} */

@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/lang3/Validate.java b/src/main/java/org/apache/commons/lang3/Validate.java
+index eb477d1..fbad401 100644
+--- a/src/main/java/org/apache/commons/lang3/Validate.java
++++ b/src/main/java/org/apache/commons/lang3/Validate.java
+@@ -444,11 +444,12 @@
+      * @since 3.0
+      */
+     public static <T extends CharSequence> T notBlank(final T chars, final String message, final Object... values) {
+-        if (chars == null) {
+-            throw new NullPointerException(String.format(message, values));
++        String var_97 = String.format(message, values);
++		if (chars == null) {
++            throw new NullPointerException(var_97);
+         }
+         if (StringUtils.isBlank(chars)) {
+-            throw new IllegalArgumentException(String.format(message, values));
++            throw new IllegalArgumentException(var_97);
+         }
+         return chars;
+     }

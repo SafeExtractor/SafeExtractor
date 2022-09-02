@@ -1,0 +1,50 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java b/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java
+index 6117418..10efa10 100644
+--- a/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYStepAreaRenderer.java
+@@ -365,7 +365,8 @@
+         double x1 = dataset.getXValue(series, item);
+         double y1 = dataset.getYValue(series, item);
+         double x = x1;
+-        double y = Double.isNaN(y1) ? getRangeBase() : y1;
++        double var_2930 = getRangeBase();
++		double y = Double.isNaN(y1) ? var_2930 : y1;
+         double transX1 = domainAxis.valueToJava2D(x, dataArea,
+                 plot.getDomainAxisEdge());
+         double transY1 = rangeAxis.valueToJava2D(y, dataArea,
+@@ -380,7 +381,7 @@
+             this.pArea = new Polygon();
+ 
+             // start from Y = rangeBase
+-            double transY2 = rangeAxis.valueToJava2D(getRangeBase(), dataArea,
++            double transY2 = rangeAxis.valueToJava2D(var_2930, dataArea,
+                     plot.getRangeAxisEdge());
+ 
+             // avoid possible sun.dc.pr.PRException: endPath: bad path
+@@ -396,7 +397,7 @@
+         }
+ 
+         double transX0 = 0;
+-        double transY0 = restrictValueToDataArea(getRangeBase(), plot,
++        double transY0 = restrictValueToDataArea(var_2930, plot,
+                 dataArea);
+ 
+         double x0;
+@@ -407,7 +408,7 @@
+             y0 = Double.isNaN(y1) ? y1 : dataset.getYValue(series, item - 1);
+ 
+             x = x0;
+-            y = Double.isNaN(y0) ? getRangeBase() : y0;
++            y = Double.isNaN(y0) ? var_2930 : y0;
+             transX0 = domainAxis.valueToJava2D(x, dataArea,
+                     plot.getDomainAxisEdge());
+             transY0 = rangeAxis.valueToJava2D(y, dataArea,
+@@ -478,7 +479,7 @@
+         if (getPlotArea() && item > 0 && this.pArea != null
+                           && (item == (itemCount - 1) || Double.isNaN(y1))) {
+ 
+-            double transY2 = rangeAxis.valueToJava2D(getRangeBase(), dataArea,
++            double transY2 = rangeAxis.valueToJava2D(var_2930, dataArea,
+                     plot.getRangeAxisEdge());
+ 
+             // avoid possible sun.dc.pr.PRException: endPath: bad path

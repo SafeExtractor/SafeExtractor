@@ -1,0 +1,35 @@
+diff --git a/source/org/jfree/chart/axis/ValueAxis.java b/source/org/jfree/chart/axis/ValueAxis.java
+index 5972cdd..e40fa4b 100644
+--- a/source/org/jfree/chart/axis/ValueAxis.java
++++ b/source/org/jfree/chart/axis/ValueAxis.java
+@@ -840,7 +840,8 @@
+         RectangleInsets insets = getTickLabelInsets();
+         Font font = getTickLabelFont();
+         double maxHeight = 0.0;
+-        if (vertical) {
++        double var_588 = insets.getBottom();
++		if (vertical) {
+             FontMetrics fm = g2.getFontMetrics(font);
+             Iterator iterator = ticks.iterator();
+             while (iterator.hasNext()) {
+@@ -848,9 +849,9 @@
+                 Rectangle2D labelBounds = TextUtilities.getTextBounds(
+                         tick.getText(), g2, fm);
+                 if (labelBounds.getWidth() + insets.getTop()
+-                        + insets.getBottom() > maxHeight) {
++                        + var_588 > maxHeight) {
+                     maxHeight = labelBounds.getWidth()
+-                                + insets.getTop() + insets.getBottom();
++                                + insets.getTop() + var_588;
+                 }
+             }
+         }
+@@ -858,7 +859,7 @@
+             LineMetrics metrics = font.getLineMetrics("ABCxyz",
+                     g2.getFontRenderContext());
+             maxHeight = metrics.getHeight()
+-                        + insets.getTop() + insets.getBottom();
++                        + insets.getTop() + var_588;
+         }
+         return maxHeight;
+ 

@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/MinimizeExitPoints.java b/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+index 317947b..a97ca48 100644
+--- a/src/com/google/javascript/jscomp/MinimizeExitPoints.java
++++ b/src/com/google/javascript/jscomp/MinimizeExitPoints.java
+@@ -50,10 +50,11 @@
+ 
+   @Override
+   public void visit(NodeTraversal t, Node n, Node parent) {
+-    switch (n.getType()) {
++    Node var_568 = n.getFirstChild();
++	switch (n.getType()) {
+       case Token.LABEL:
+         tryMinimizeExits(
+-            n.getLastChild(), Token.BREAK, n.getFirstChild().getString());
++            n.getLastChild(), Token.BREAK, var_568.getString());
+         break;
+ 
+       case Token.FOR:
+@@ -72,7 +73,7 @@
+           // but as we know the condition will always false, we can treat them
+           // as we would a CONTINUE.
+           tryMinimizeExits(
+-              n.getFirstChild(), Token.BREAK, null);
++              var_568, Token.BREAK, null);
+         }
+         break;
+ 

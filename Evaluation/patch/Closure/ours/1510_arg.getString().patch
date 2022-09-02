@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+index 2e75bce..31c874c 100644
+--- a/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
++++ b/src/com/google/javascript/jscomp/ProcessClosurePrimitives.java
+@@ -195,11 +195,12 @@
+             } else if ("exportSymbol".equals(methodName)) {
+               Node arg = left.getNext();
+               if (arg.isString()) {
+-                int dot = arg.getString().indexOf('.');
++                String var_1510 = arg.getString();
++				int dot = var_1510.indexOf('.');
+                 if (dot == -1) {
+-                  exportedVariables.add(arg.getString());
++                  exportedVariables.add(var_1510);
+                 } else {
+-                  exportedVariables.add(arg.getString().substring(0, dot));
++                  exportedVariables.add(var_1510.substring(0, dot));
+                 }
+               }
+             } else if ("addDependency".equals(methodName)) {

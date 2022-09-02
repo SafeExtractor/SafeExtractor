@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+index 5f0a14c..1c6d8ab 100644
+--- a/src/com/google/javascript/jscomp/SymbolTable.java
++++ b/src/com/google/javascript/jscomp/SymbolTable.java
+@@ -193,12 +193,13 @@
+    */
+   public SymbolScope getEnclosingScope(Node n) {
+     Node current = n.getParent();
+-    if (n.isName() &&
++    Node var_1290 = current.getParent();
++	if (n.isName() &&
+         n.getParent().isFunction()) {
+-      current = current.getParent();
++      current = var_1290;
+     }
+ 
+-    for (; current != null; current = current.getParent()) {
++    for (; current != null; current = var_1290) {
+       if (scopes.containsKey(current)) {
+         return scopes.get(current);
+       }

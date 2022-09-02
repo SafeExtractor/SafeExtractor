@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..4ccf903 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -377,8 +377,9 @@
+     // Flatten all occurrences of a name as a prefix of its subnames. For
+     // example, if {@code n} corresponds to the name "a.b", then "a.b" will be
+     // replaced with "a$b" in all occurrences of "a.b.c", "a.b.c.d", etc.
+-    if (n.props != null) {
+-      for (Name p : n.props) {
++    List<Name> var_718 = n.props;
++	if (var_718 != null) {
++      for (Name p : var_718) {
+         flattenPrefixes(alias, p, 1);
+       }
+     }

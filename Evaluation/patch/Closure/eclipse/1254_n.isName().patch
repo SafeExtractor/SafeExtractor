@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/Normalize.java b/src/com/google/javascript/jscomp/Normalize.java
+index 98b136e..a588437 100644
+--- a/src/com/google/javascript/jscomp/Normalize.java
++++ b/src/com/google/javascript/jscomp/Normalize.java
+@@ -416,8 +416,9 @@
+      * Mark names and properties that are constants by convention.
+      */
+     private void annotateConstantsByConvention(Node n, Node parent) {
+-      Preconditions.checkState(
+-          n.isName()
++      boolean var_1254 = n.isName();
++	Preconditions.checkState(
++          var_1254
+           || n.isString()
+           || n.isStringKey()
+           || n.isGetterDef()
+@@ -430,7 +431,7 @@
+       boolean isProperty = isObjLitKey ||
+           (parent.isGetProp() &&
+            parent.getLastChild() == n);
+-      if (n.isName() || isProperty) {
++      if (var_1254 || isProperty) {
+         boolean isMarkedConstant = n.getBooleanProp(Node.IS_CONSTANT_NAME);
+         if (!isMarkedConstant &&
+             NodeUtil.isConstantByConvention(

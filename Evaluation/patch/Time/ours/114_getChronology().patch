@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/joda/time/LocalTime.java b/src/main/java/org/joda/time/LocalTime.java
+index 6c3c577..548528d 100644
+--- a/src/main/java/org/joda/time/LocalTime.java
++++ b/src/main/java/org/joda/time/LocalTime.java
+@@ -571,15 +571,16 @@
+      * @throws IndexOutOfBoundsException if the index is invalid
+      */
+     public int getValue(int index) {
+-        switch (index) {
++        Chronology var_114 = getChronology();
++		switch (index) {
+             case HOUR_OF_DAY:
+-                return getChronology().hourOfDay().get(getLocalMillis());
++                return var_114.hourOfDay().get(getLocalMillis());
+             case MINUTE_OF_HOUR:
+-                return getChronology().minuteOfHour().get(getLocalMillis());
++                return var_114.minuteOfHour().get(getLocalMillis());
+             case SECOND_OF_MINUTE:
+-                return getChronology().secondOfMinute().get(getLocalMillis());
++                return var_114.secondOfMinute().get(getLocalMillis());
+             case MILLIS_OF_SECOND:
+-                return getChronology().millisOfSecond().get(getLocalMillis());
++                return var_114.millisOfSecond().get(getLocalMillis());
+             default:
+                 throw new IndexOutOfBoundsException("Invalid index: " + index);
+         }

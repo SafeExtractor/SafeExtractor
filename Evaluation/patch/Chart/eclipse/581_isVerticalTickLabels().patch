@@ -1,0 +1,35 @@
+diff --git a/source/org/jfree/chart/axis/ValueAxis.java b/source/org/jfree/chart/axis/ValueAxis.java
+index 5972cdd..600841c 100644
+--- a/source/org/jfree/chart/axis/ValueAxis.java
++++ b/source/org/jfree/chart/axis/ValueAxis.java
+@@ -731,24 +731,25 @@
+         // so we can update the cursor...
+         double used = 0.0;
+         if (isTickLabelsVisible()) {
+-            if (edge == RectangleEdge.LEFT) {
++            boolean var_581 = isVerticalTickLabels();
++			if (edge == RectangleEdge.LEFT) {
+                 used += findMaximumTickLabelWidth(ticks, g2, plotArea,
+-                        isVerticalTickLabels());
++                        var_581);
+                 state.cursorLeft(used);
+             }
+             else if (edge == RectangleEdge.RIGHT) {
+                 used = findMaximumTickLabelWidth(ticks, g2, plotArea,
+-                        isVerticalTickLabels());
++                        var_581);
+                 state.cursorRight(used);
+             }
+             else if (edge == RectangleEdge.TOP) {
+                 used = findMaximumTickLabelHeight(ticks, g2, plotArea,
+-                        isVerticalTickLabels());
++                        var_581);
+                 state.cursorUp(used);
+             }
+             else if (edge == RectangleEdge.BOTTOM) {
+                 used = findMaximumTickLabelHeight(ticks, g2, plotArea,
+-                        isVerticalTickLabels());
++                        var_581);
+                 state.cursorDown(used);
+             }
+         }

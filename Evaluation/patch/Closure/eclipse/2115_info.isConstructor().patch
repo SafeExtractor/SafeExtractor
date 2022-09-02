@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/CheckProvides.java b/src/com/google/javascript/jscomp/CheckProvides.java
+index 0b42310..3baf93c 100644
+--- a/src/com/google/javascript/jscomp/CheckProvides.java
++++ b/src/com/google/javascript/jscomp/CheckProvides.java
+@@ -86,12 +86,13 @@
+     private void visitFunctionNode(Node n, Node parent) {
+       Node name = null;
+       JSDocInfo info = parent.getJSDocInfo();
+-      if (info != null && info.isConstructor()) {
++      boolean var_2115 = info.isConstructor();
++	if (info != null && var_2115) {
+         name = parent.getFirstChild();
+       } else {
+         // look to the child, maybe it's a named function
+         info = n.getJSDocInfo();
+-        if (info != null && info.isConstructor()) {
++        if (info != null && var_2115) {
+           name = n.getFirstChild();
+         }
+       }

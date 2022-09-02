@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/axis/LogarithmicAxis.java b/source/org/jfree/chart/axis/LogarithmicAxis.java
+index 1f440bd..c793a6f 100644
+--- a/source/org/jfree/chart/axis/LogarithmicAxis.java
++++ b/source/org/jfree/chart/axis/LogarithmicAxis.java
+@@ -767,7 +767,8 @@
+             //for each power of 10 value; create ten ticks
+             for (int j = 0; j < 10; ++j) {
+                 //for each tick to be displayed
+-                if (this.smallLogFlag) {
++                String var_457 = makeTickLabel(currentTickValue);
++				if (this.smallLogFlag) {
+                     //small log values in use; create numeric value for tick
+                     currentTickValue = Math.pow(10, i) + (Math.pow(10, i) * j);
+                     if (this.expTickLabelsFlag
+@@ -796,7 +797,7 @@
+                                // fewer as the values get larger:
+                         tickLabel = (j < 1 || (i < 1 && j < 5) || (j < 4 - i)
+                                          || currentTickValue >= upperBoundVal)
+-                                         ? makeTickLabel(currentTickValue) : "";
++                                         ? var_457 : "";
+                     }
+                 }
+                 else { //not small log values in use; allow for values <= 0
+@@ -825,7 +826,7 @@
+                                 || j < 1
+                                 || (i < 1 && j < 5) || (j < 4 - i)
+                                 || currentTickValue >= upperBoundVal)
+-                                   ? makeTickLabel(currentTickValue) : "";
++                                   ? var_457 : "";
+                 }
+ 
+                 if (currentTickValue > upperBoundVal) {

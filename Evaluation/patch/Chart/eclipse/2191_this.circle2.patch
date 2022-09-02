@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/chart/plot/CompassPlot.java b/source/org/jfree/chart/plot/CompassPlot.java
+index 2963422..6ccd654 100644
+--- a/source/org/jfree/chart/plot/CompassPlot.java
++++ b/source/org/jfree/chart/plot/CompassPlot.java
+@@ -602,13 +602,14 @@
+         midY += (int) area.getMinY();
+ 
+         this.circle1.setFrame(midX - radius, midY - radius, diameter, diameter);
+-        this.circle2.setFrame(
++        Ellipse2D var_2191 = this.circle2;
++		var_2191.setFrame(
+             midX - radius + 15, midY - radius + 15,
+             diameter - 30, diameter - 30
+         );
+         g2.setPaint(this.rosePaint);
+         this.a1 = new Area(this.circle1);
+-        this.a2 = new Area(this.circle2);
++        this.a2 = new Area(var_2191);
+         this.a1.subtract(this.a2);
+         g2.fill(this.a1);
+ 

@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java b/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
+index 372c699..9d20e90 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
++++ b/src/main/java/org/apache/commons/math3/dfp/BracketingNthOrderBrentSolverDFP.java
+@@ -427,7 +427,8 @@
+         // evaluate Q(targetY)
+         Dfp x0 = targetY.getZero();
+         for (int j = end - 1; j >= start; --j) {
+-            x0 = x[j].add(x0.multiply(targetY.subtract(y[j])));
++            Dfp var_552 = x[j];
++			x0 = var_552.add(x0.multiply(targetY.subtract(y[j])));
+         }
+ 
+         return x0;

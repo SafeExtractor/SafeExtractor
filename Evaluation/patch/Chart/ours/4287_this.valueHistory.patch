@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+index 067e1df..f5aae1b 100644
+--- a/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
++++ b/source/org/jfree/data/time/DynamicTimeSeriesCollection.java
+@@ -571,8 +571,9 @@
+         if (this.maxValue != null) {
+             oldMax = this.maxValue.floatValue();
+         }
+-        for (int s = 0; s < getSeriesCount(); s++) {
+-            if (this.valueHistory[s].getData(this.oldestAt) == oldMax) {
++        ValueSequence[] var_4287 = this.valueHistory;
++		for (int s = 0; s < getSeriesCount(); s++) {
++            if (var_4287[s].getData(this.oldestAt) == oldMax) {
+                 extremaChanged = true;
+             }
+             if (extremaChanged) {
+@@ -585,7 +586,7 @@
+         //  wipe the next (about to be used) set of data slots
+         float wiper = (float) 0.0;
+         for (int s = 0; s < getSeriesCount(); s++) {
+-            this.valueHistory[s].enterData(this.newestAt, wiper);
++            var_4287[s].enterData(this.newestAt, wiper);
+         }
+         // Update the array of TimePeriods:
+         this.pointsInTime[this.newestAt] = nextInstant;

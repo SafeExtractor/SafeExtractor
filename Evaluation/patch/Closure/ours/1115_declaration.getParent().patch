@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/jscomp/InlineVariables.java b/src/com/google/javascript/jscomp/InlineVariables.java
+index 5c7408d..452e566 100644
+--- a/src/com/google/javascript/jscomp/InlineVariables.java
++++ b/src/com/google/javascript/jscomp/InlineVariables.java
+@@ -635,9 +635,10 @@
+      * @return true if the reference is a normal VAR or FUNCTION declaration.
+      */
+     private boolean isValidDeclaration(Reference declaration) {
+-      return (declaration.getParent().isVar()
++      Node var_1115 = declaration.getParent();
++	return (var_1115.isVar()
+           && !declaration.getGrandparent().isFor())
+-          || NodeUtil.isFunctionDeclaration(declaration.getParent());
++          || NodeUtil.isFunctionDeclaration(var_1115);
+     }
+ 
+     /**

@@ -1,0 +1,28 @@
+diff --git a/src/org/mockito/internal/util/reflection/FieldInitializer.java b/src/org/mockito/internal/util/reflection/FieldInitializer.java
+index 0f89b1b..40473ee 100644
+--- a/src/org/mockito/internal/util/reflection/FieldInitializer.java
++++ b/src/org/mockito/internal/util/reflection/FieldInitializer.java
+@@ -249,8 +249,9 @@
+         public FieldInitializationReport instantiate() {
+             final AccessibilityChanger changer = new AccessibilityChanger();
+             Constructor<?> constructor = null;
+-            try {
+-                constructor = biggestConstructor(field.getType());
++            Class<?> var_115 = field.getType();
++			try {
++                constructor = biggestConstructor(var_115);
+                 changer.enableAccess(constructor);
+ 
+                 final Object[] args = argResolver.resolveTypeInstances(constructor.getParameterTypes());
+@@ -259,9 +260,9 @@
+ 
+                 return new FieldInitializationReport(field.get(testClass), false, true);
+             } catch (IllegalArgumentException e) {
+-                throw new MockitoException("internal error : argResolver provided incorrect types for constructor " + constructor + " of type " + field.getType().getSimpleName(), e);
++                throw new MockitoException("internal error : argResolver provided incorrect types for constructor " + constructor + " of type " + var_115.getSimpleName(), e);
+             } catch (InvocationTargetException e) {
+-                throw new MockitoException("the constructor of type '" + field.getType().getSimpleName() + "' has raised an exception (see the stack trace for cause): " + e.getTargetException().toString(), e);
++                throw new MockitoException("the constructor of type '" + var_115.getSimpleName() + "' has raised an exception (see the stack trace for cause): " + e.getTargetException().toString(), e);
+             } catch (InstantiationException e) {
+                 throw new MockitoException("InstantiationException (see the stack trace for cause): " + e.toString(), e);
+             } catch (IllegalAccessException e) {

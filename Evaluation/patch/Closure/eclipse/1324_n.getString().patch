@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+index 5f0a14c..3f9309e 100644
+--- a/src/com/google/javascript/jscomp/SymbolTable.java
++++ b/src/com/google/javascript/jscomp/SymbolTable.java
+@@ -1533,11 +1533,12 @@
+ 
+     public void visitTypeNode(SymbolScope scope, Node n) {
+       if (n.isString()) {
+-        Symbol symbol = scope.getSlot(n.getString());
++        String var_1324 = n.getString();
++		Symbol symbol = scope.getSlot(var_1324);
+         if (symbol == null) {
+           // If we can't find this type, it might be a reference to a
+           // primitive type (like {string}). Autobox it to check.
+-          JSType type = typeRegistry.getType(n.getString());
++          JSType type = typeRegistry.getType(var_1324);
+           JSType autobox = type == null ? null : type.autoboxesTo();
+           symbol = autobox == null
+               ? null : getSymbolForTypeHelper(autobox, true);

@@ -1,0 +1,18 @@
+diff --git a/source/org/jfree/chart/axis/PeriodAxis.java b/source/org/jfree/chart/axis/PeriodAxis.java
+index 3c0bc0f..202a6e5 100644
+--- a/source/org/jfree/chart/axis/PeriodAxis.java
++++ b/source/org/jfree/chart/axis/PeriodAxis.java
+@@ -903,10 +903,11 @@
+                 // so check that the label will fit before displaying it...
+                 Rectangle2D bb = TextUtilities.getTextBounds(label, g2,
+                         g2.getFontMetrics());
+-                if ((x - bb.getWidth() / 2) < dataArea.getX()) {
++                double var_810 = bb.getWidth();
++				if ((x - var_810 / 2) < dataArea.getX()) {
+                     float xlast = (float) valueToJava2D(Math.min(last,
+                             axisMax), dataArea, edge);
+-                    if (bb.getWidth() < (xlast - dataArea.getX())) {
++                    if (var_810 < (xlast - dataArea.getX())) {
+                         x = (xlast + (float) dataArea.getX()) / 2.0f;
+                     }
+                     else {

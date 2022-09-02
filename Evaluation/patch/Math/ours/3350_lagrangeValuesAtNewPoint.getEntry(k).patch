@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..90d188e 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -1044,8 +1044,9 @@
+                 for (int i = 0; i < n; i++) {
+                     double sum = ZERO;
+                     for (int k = 0; k < npt; k++) {
+-                        sum += bMatrix.getEntry(k, i) *
+-                            lagrangeValuesAtNewPoint.getEntry(k) + interpolationPoints.getEntry(k, i) * work3.getEntry(k);
++                        double var_3350 = lagrangeValuesAtNewPoint.getEntry(k);
++						sum += bMatrix.getEntry(k, i) *
++                            var_3350 + interpolationPoints.getEntry(k, i) * work3.getEntry(k);
+                     }
+                     if (trustRegionCenterOffset.getEntry(i) == lowerDifference.getEntry(i)) {
+                         // Computing MIN

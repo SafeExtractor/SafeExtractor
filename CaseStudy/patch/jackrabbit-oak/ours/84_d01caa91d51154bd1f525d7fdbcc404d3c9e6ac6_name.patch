@@ -1,0 +1,19 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/memory/MemoryNodeStateBuilder.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/memory/MemoryNodeStateBuilder.java
+index d721e9a..6eaebcd 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/memory/MemoryNodeStateBuilder.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/memory/MemoryNodeStateBuilder.java
+@@ -347,10 +347,11 @@
+             for (Map.Entry<String, MemoryNodeStateBuilder> entry
+                     : builders.entrySet()) {
+                 NodeStateBuilder builder = entry.getValue();
+-                if (builder != null) {
+-                    nodes.put(entry.getKey(), builder.getNodeState());
++                String name = entry.getKey();
++				if (builder != null) {
++                    nodes.put(name, builder.getNodeState());
+                 } else {
+-                    nodes.put(entry.getKey(), null);
++                    nodes.put(name, null);
+                 }
+             }
+             return new ModifiedNodeState(base, props, nodes);

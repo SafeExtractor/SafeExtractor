@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 9d1b56c..72da9b6 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -378,14 +378,15 @@
+       }
+     }
+ 
+-    switch (n.getType()) {
++    Node var_252 = n.getLastChild();
++	switch (n.getType()) {
+       // Conditionals
+       case Token.OR:
+       case Token.AND:
+         VariableLiveness v1 = isVariableReadBeforeKill(
+           n.getFirstChild(), variable);
+         VariableLiveness v2 = isVariableReadBeforeKill(
+-          n.getLastChild(), variable);
++          var_252, variable);
+         // With a AND/OR the first branch always runs, but the second is
+         // may not.
+         if (v1 != VariableLiveness.MAYBE_LIVE) {
+@@ -402,7 +403,7 @@
+           return first;
+         }
+         return checkHookBranchReadBeforeKill(
+-            n.getFirstChild().getNext(), n.getLastChild(), variable);
++            n.getFirstChild().getNext(), var_252, variable);
+ 
+       default:
+         // Expressions are evaluated left-right, depth first.

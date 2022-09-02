@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
+index edf07d5..e78d3be 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/general/LevenbergMarquardtOptimizer.java
+@@ -896,14 +896,15 @@
+             permutation[k]          = pk;
+ 
+             // choose alpha such that Hk.u = alpha ek
+-            double akk   = weightedJacobian[k][pk];
++            double[] var_3540 = weightedJacobian[k];
++			double akk   = var_3540[pk];
+             double alpha = (akk > 0) ? -FastMath.sqrt(ak2) : FastMath.sqrt(ak2);
+             double betak = 1.0 / (ak2 - akk * alpha);
+             beta[pk]     = betak;
+ 
+             // transform the current column
+             diagR[pk]        = alpha;
+-            weightedJacobian[k][pk] -= alpha;
++            var_3540[pk] -= alpha;
+ 
+             // transform the remaining columns
+             for (int dk = nC - 1 - k; dk > 0; --dk) {

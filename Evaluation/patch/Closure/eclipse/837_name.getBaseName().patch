@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/CheckGlobalNames.java b/src/com/google/javascript/jscomp/CheckGlobalNames.java
+index d035d9d..8abb07e 100644
+--- a/src/com/google/javascript/jscomp/CheckGlobalNames.java
++++ b/src/com/google/javascript/jscomp/CheckGlobalNames.java
+@@ -269,7 +269,8 @@
+       return false;
+     }
+ 
+-    if (objectPrototypeProps.contains(name.getBaseName())) {
++    String var_837 = name.getBaseName();
++	if (objectPrototypeProps.contains(var_837)) {
+       return false;
+     }
+ 
+@@ -279,7 +280,7 @@
+ 
+     if (name.parent.type == Name.Type.FUNCTION &&
+         name.parent.isDeclaredType() &&
+-        !functionPrototypeProps.contains(name.getBaseName())) {
++        !functionPrototypeProps.contains(var_837)) {
+       return true;
+     }
+ 

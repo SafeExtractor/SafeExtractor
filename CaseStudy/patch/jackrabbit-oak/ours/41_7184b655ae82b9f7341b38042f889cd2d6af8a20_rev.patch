@@ -1,0 +1,25 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/rdb/RDBDocumentSerializer.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/rdb/RDBDocumentSerializer.java
+index 80fe942..8bf498b 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/rdb/RDBDocumentSerializer.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/rdb/RDBDocumentSerializer.java
+@@ -98,7 +98,8 @@
+             Key key = change.getKey();
+ 
+             // exclude properties that are serialized into special columns
+-            if (columnProperties.contains(key.getName()) && null == key.getRevision())
++            Revision rev = key.getRevision();
++			if (columnProperties.contains(key.getName()) && null == rev)
+                 continue;
+ 
+             // already checked
+@@ -122,8 +123,8 @@
+             }
+             appendString(sb, key.getName());
+             sb.append(",");
+-            if (key.getRevision() != null) {
+-                appendString(sb, key.getRevision().toString());
++            if (rev != null) {
++                appendString(sb, rev.toString());
+                 sb.append(",");
+             }
+             appendValue(sb, op.value);

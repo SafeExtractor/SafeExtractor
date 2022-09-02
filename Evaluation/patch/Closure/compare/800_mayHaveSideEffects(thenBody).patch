@@ -1,0 +1,24 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/800_mayHaveSideEffects(thenBody).patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/800_mayHaveSideEffects(thenBody).patch
+index 15b93c7..752b2b1 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/800_mayHaveSideEffects(thenBody).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/800_mayHaveSideEffects(thenBody).patch
+@@ -1,5 +1,5 @@
+ diff --git a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+-index 1e1571d..9d20374 100644
++index 1e1571d..e064bfc 100644
+ --- a/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+ +++ b/src/com/google/javascript/jscomp/PeepholeRemoveDeadCode.java
+ @@ -686,7 +686,8 @@
+@@ -12,12 +12,3 @@ index 1e1571d..9d20374 100644
+        n.removeChild(elseBody);
+        n.replaceChild(thenBody, elseBody);
+        Node notCond = new Node(Token.NOT);
+-@@ -699,7 +700,7 @@
+-     }
+- 
+-     // if (x()) { }
+--    if (!mayHaveSideEffects(thenBody) && elseBody == null) {
+-+    if (!var_800 && elseBody == null) {
+-       if (mayHaveSideEffects(cond)) {
+-         // x() has side effects, just leave the condition on its own.
+-         n.removeChild(cond);

@@ -1,0 +1,39 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..0e2ab0d 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -187,7 +187,8 @@
+     // JSTypes are represented as Rhino AST nodes, and then resolved later.
+     JSTypeExpression type;
+ 
+-    state = State.SEARCHING_ANNOTATION;
++    State var_2291 = State.SEARCHING_ANNOTATION;
++	state = var_2291;
+     skipEOLs();
+ 
+     JsDocToken token = next();
+@@ -214,7 +215,7 @@
+     retry: for (;;) {
+       switch (token) {
+         case ANNOTATION:
+-          if (state == State.SEARCHING_ANNOTATION) {
++          if (state == var_2291) {
+             state = State.SEARCHING_NEWLINE;
+             lineno = stream.getLineno();
+             charno = stream.getCharno();
+@@ -970,13 +971,13 @@
+ 
+         case EOL:
+           if (state == State.SEARCHING_NEWLINE) {
+-            state = State.SEARCHING_ANNOTATION;
++            state = var_2291;
+           }
+           token = next();
+           continue retry;
+ 
+         default:
+-          if (token == JsDocToken.STAR && state == State.SEARCHING_ANNOTATION) {
++          if (token == JsDocToken.STAR && state == var_2291) {
+             token = next();
+             continue retry;
+           } else {

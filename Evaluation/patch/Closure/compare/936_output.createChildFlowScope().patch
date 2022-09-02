@@ -1,0 +1,60 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/936_output.createChildFlowScope().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/936_output.createChildFlowScope().patch
+index e91d15b..9ce1ed2 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/936_output.createChildFlowScope().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/936_output.createChildFlowScope().patch
+@@ -1,51 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+-index 3dc8ec6..9fc2789 100644
++index 3dc8ec6..df2d0d4 100644
+ --- a/src/com/google/javascript/jscomp/TypeInference.java
+ +++ b/src/com/google/javascript/jscomp/TypeInference.java
+-@@ -205,14 +205,15 @@
+-       Branch branch = branchEdge.getValue();
+-       FlowScope newScope = output;
+- 
+--      switch (branch) {
+-+      FlowScope var_936 = output.createChildFlowScope();
+-+	switch (branch) {
+-         case ON_TRUE:
+-           if (NodeUtil.isForIn(source)) {
+-             // item is assigned a property name, so its type should be string.
++@@ -212,7 +212,8 @@
+              Node item = source.getFirstChild();
+              Node obj = item.getNext();
+  
+ -            FlowScope informed = traverse(obj, output.createChildFlowScope());
+-+            FlowScope informed = traverse(obj, var_936);
+++            FlowScope var_936 = output.createChildFlowScope();
+++			FlowScope informed = traverse(obj, var_936);
+  
+              if (item.isVar()) {
+                item = item.getFirstChild();
+-@@ -247,7 +248,7 @@
+-               // of the loop.
+-               if (conditionFlowScope == null) {
+-                 conditionFlowScope = traverse(
+--                    condition.getFirstChild(), output.createChildFlowScope());
+-+                    condition.getFirstChild(), var_936);
+-               }
+-             }
+-           }
+-@@ -271,8 +272,8 @@
+-               // of the loop.
+-               if (conditionOutcomes == null) {
+-                 conditionOutcomes = condition.isAnd() ?
+--                    traverseAnd(condition, output.createChildFlowScope()) :
+--                    traverseOr(condition, output.createChildFlowScope());
+-+                    traverseAnd(condition, var_936) :
+-+                    traverseOr(condition, var_936);
+-               }
+-               newScope =
+-                   reverseInterpreter.getPreciserScopeKnowingConditionOutcome(
+-@@ -285,7 +286,7 @@
+-               // of the loop.
+-               if (conditionFlowScope == null) {
+-                 conditionFlowScope =
+--                    traverse(condition, output.createChildFlowScope());
+-+                    traverse(condition, var_936);
+-               }
+-               newScope =
+-                   reverseInterpreter.getPreciserScopeKnowingConditionOutcome(

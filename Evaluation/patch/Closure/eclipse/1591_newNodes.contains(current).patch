@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/GlobalNamespace.java b/src/com/google/javascript/jscomp/GlobalNamespace.java
+index 1cd29f0..a9ecde7 100644
+--- a/src/com/google/javascript/jscomp/GlobalNamespace.java
++++ b/src/com/google/javascript/jscomp/GlobalNamespace.java
+@@ -200,15 +200,16 @@
+       }
+ 
+       Node current;
+-      for (current = n;
++      boolean var_1591 = newNodes.contains(current);
++	for (current = n;
+            current.isGetProp();
+            current = current.getFirstChild()) {
+-        if (newNodes.contains(current)) {
++        if (var_1591) {
+           return true;
+         }
+       }
+ 
+-      return current.isName() && newNodes.contains(current);
++      return current.isName() && var_1591;
+     }
+   }
+ 

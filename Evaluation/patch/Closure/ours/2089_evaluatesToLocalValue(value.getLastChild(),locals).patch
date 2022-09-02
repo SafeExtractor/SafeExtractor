@@ -1,0 +1,35 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..e72021b 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -2922,7 +2922,8 @@
+    *     outside the expression scope.
+    */
+   static boolean evaluatesToLocalValue(Node value, Predicate<Node> locals) {
+-    switch (value.getType()) {
++    boolean var_2089 = evaluatesToLocalValue(value.getLastChild(), locals);
++	switch (value.getType()) {
+       case Token.CAST:
+         return evaluatesToLocalValue(value.getFirstChild(), locals);
+       case Token.ASSIGN:
+@@ -2931,16 +2932,16 @@
+         // value is immutable.
+         return NodeUtil.isImmutableValue(value.getLastChild())
+             || (locals.apply(value)
+-                && evaluatesToLocalValue(value.getLastChild(), locals));
++                && var_2089);
+       case Token.COMMA:
+-        return evaluatesToLocalValue(value.getLastChild(), locals);
++        return var_2089;
+       case Token.AND:
+       case Token.OR:
+         return evaluatesToLocalValue(value.getFirstChild(), locals)
+-           && evaluatesToLocalValue(value.getLastChild(), locals);
++           && var_2089;
+       case Token.HOOK:
+         return evaluatesToLocalValue(value.getFirstChild().getNext(), locals)
+-           && evaluatesToLocalValue(value.getLastChild(), locals);
++           && var_2089;
+       case Token.INC:
+       case Token.DEC:
+         if (value.getBooleanProp(Node.INCRDECR_PROP)) {

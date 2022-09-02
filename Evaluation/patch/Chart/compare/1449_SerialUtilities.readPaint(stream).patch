@@ -1,0 +1,33 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/1449_SerialUtilities.readPaint(stream).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/1449_SerialUtilities.readPaint(stream).patch
+index 8fd20e1..3bb6aca 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/1449_SerialUtilities.readPaint(stream).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/1449_SerialUtilities.readPaint(stream).patch
+@@ -1,24 +1,14 @@
+ diff --git a/source/org/jfree/chart/plot/ThermometerPlot.java b/source/org/jfree/chart/plot/ThermometerPlot.java
+-index d4bd7b7..6ed7371 100644
++index d4bd7b7..312f6da 100644
+ --- a/source/org/jfree/chart/plot/ThermometerPlot.java
+ +++ b/source/org/jfree/chart/plot/ThermometerPlot.java
+-@@ -1610,14 +1610,15 @@
++@@ -1610,7 +1610,8 @@
+              ClassNotFoundException {
+          stream.defaultReadObject();
+          this.thermometerStroke = SerialUtilities.readStroke(stream);
+ -        this.thermometerPaint = SerialUtilities.readPaint(stream);
+--        this.valuePaint = SerialUtilities.readPaint(stream);
+--        this.mercuryPaint = SerialUtilities.readPaint(stream);
+ +        Paint var_1449 = SerialUtilities.readPaint(stream);
+ +		this.thermometerPaint = var_1449;
+-+        this.valuePaint = var_1449;
+-+        this.mercuryPaint = var_1449;
++         this.valuePaint = SerialUtilities.readPaint(stream);
++         this.mercuryPaint = SerialUtilities.readPaint(stream);
+          this.subrangeIndicatorStroke = SerialUtilities.readStroke(stream);
+-         this.rangeIndicatorStroke = SerialUtilities.readStroke(stream);
+-         this.subrangePaint = new Paint[3];
+-         for (int i = 0; i < 3; i++) {
+--            this.subrangePaint[i] = SerialUtilities.readPaint(stream);
+-+            this.subrangePaint[i] = var_1449;
+-         }
+-         if (this.rangeAxis != null) {
+-             this.rangeAxis.addChangeListener(this);

@@ -1,0 +1,51 @@
+diff --git a/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/file/FileStore.java b/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/file/FileStore.java
+index 15e4469..18383b6 100644
+--- a/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/file/FileStore.java
++++ b/oak-segment-tar/src/main/java/org/apache/jackrabbit/oak/segment/file/FileStore.java
+@@ -53,6 +53,7 @@
+ import org.apache.jackrabbit.oak.segment.spi.persistence.RepositoryLock;
+ import org.apache.jackrabbit.oak.segment.spi.persistence.SegmentNodeStorePersistence;
+ import org.apache.jackrabbit.oak.spi.state.NodeBuilder;
++import org.apache.jackrabbit.oak.stats.StatisticsProvider;
+ import org.apache.jackrabbit.oak.stats.TimerStats;
+ import org.apache.jackrabbit.oak.stats.TimerStats.Context;
+ import org.jetbrains.annotations.NotNull;
+@@ -126,16 +127,17 @@
+         SegmentNodeStorePersistence persistence = builder.getPersistence();
+         repositoryLock = persistence.lockRepository();
+ 
+-        this.segmentWriter = defaultSegmentWriterBuilder("sys")
++        StatisticsProvider statsProvider = builder.getStatsProvider();
++		this.segmentWriter = defaultSegmentWriterBuilder("sys")
+                 .withGeneration(() -> getGcGeneration().nonGC())
+                 .withWriterPool()
+                 .with(builder.getCacheManager()
+-                        .withAccessTracking("WRITE", builder.getStatsProvider()))
++                        .withAccessTracking("WRITE", statsProvider))
+                 .build(this);
+ 
+         newManifestChecker(persistence, builder.getStrictVersionCheck()).checkAndUpdateManifest();
+ 
+-        this.stats = new FileStoreStats(builder.getStatsProvider(), this, 0);
++        this.stats = new FileStoreStats(statsProvider, this, 0);
+ 
+         TarFiles.Builder tarFilesBuilder = TarFiles.builder()
+                 .withDirectory(directory)
+@@ -173,7 +175,7 @@
+             this::flush,
+             generation ->
+                 defaultSegmentWriterBuilder("c")
+-                    .with(builder.getCacheManager().withAccessTracking("COMPACT", builder.getStatsProvider()))
++                    .with(builder.getCacheManager().withAccessTracking("COMPACT", statsProvider))
+                     .withGeneration(generation)
+                     .withoutWriterPool()
+                     .build(this)
+@@ -181,7 +183,7 @@
+ 
+         this.snfeListener = builder.getSnfeListener();
+ 
+-        TimerStats flushTimer = builder.getStatsProvider().getTimer("oak.segment.flush", METRICS_ONLY);
++        TimerStats flushTimer = statsProvider.getTimer("oak.segment.flush", METRICS_ONLY);
+         fileStoreScheduler.scheduleWithFixedDelay(format("TarMK flush [%s]", directory), 5, SECONDS, () -> {
+             Context timer = flushTimer.time();
+             try {

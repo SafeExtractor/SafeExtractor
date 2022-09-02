@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYBarRenderer.java b/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
+index 679cc20..1d359e6 100644
+--- a/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYBarRenderer.java
+@@ -932,12 +932,13 @@
+         }
+ 
+         boolean positive = true;
+-        if (this.useYInterval) {
+-            positive = dataset.getYValue(series, item) >= 0.0;
++        double var_2874 = dataset.getYValue(series, item);
++		if (this.useYInterval) {
++            positive = var_2874 >= 0.0;
+             // FIXME:  the above line should look at the endYValue
+         }
+         else {
+-            positive = dataset.getYValue(series, item) >= 0.0;
++            positive = var_2874 >= 0.0;
+         }
+         boolean inverted = rangeAxis.isInverted();
+         RectangleEdge barBase;
+@@ -973,7 +974,7 @@
+ 
+         // update the crosshair point
+         double x1 = dataset.getXValue(series, item);
+-        double y1 = dataset.getYValue(series, item);
++        double y1 = var_2874;
+         double transX1 = domainAxis.valueToJava2D(x1, dataArea, 
+                 plot.getDomainAxisEdge());
+         double transY1 = rangeAxis.valueToJava2D(y1, dataArea,

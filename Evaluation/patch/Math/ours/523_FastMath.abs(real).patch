@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/complex/Complex.java b/src/main/java/org/apache/commons/math3/complex/Complex.java
+index ac8185b..a17a117 100644
+--- a/src/main/java/org/apache/commons/math3/complex/Complex.java
++++ b/src/main/java/org/apache/commons/math3/complex/Complex.java
+@@ -119,9 +119,10 @@
+         if (isInfinite()) {
+             return Double.POSITIVE_INFINITY;
+         }
+-        if (FastMath.abs(real) < FastMath.abs(imaginary)) {
++        double var_523 = FastMath.abs(real);
++		if (var_523 < FastMath.abs(imaginary)) {
+             if (imaginary == 0.0) {
+-                return FastMath.abs(real);
++                return var_523;
+             }
+             double q = real / imaginary;
+             return FastMath.abs(imaginary) * FastMath.sqrt(1 + q * q);
+@@ -130,7 +131,7 @@
+                 return FastMath.abs(imaginary);
+             }
+             double q = imaginary / real;
+-            return FastMath.abs(real) * FastMath.sqrt(1 + q * q);
++            return var_523 * FastMath.sqrt(1 + q * q);
+         }
+     }
+ 

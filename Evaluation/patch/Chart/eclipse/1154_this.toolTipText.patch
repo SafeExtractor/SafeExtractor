@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/entity/ChartEntity.java b/source/org/jfree/chart/entity/ChartEntity.java
+index 2d463c7..e89c379 100644
+--- a/source/org/jfree/chart/entity/ChartEntity.java
++++ b/source/org/jfree/chart/entity/ChartEntity.java
+@@ -319,14 +319,15 @@
+         StringBuffer tag = new StringBuffer();
+         boolean hasURL = (this.urlText == null ? false
+                 : !this.urlText.equals(""));
+-        boolean hasToolTip = (this.toolTipText == null ? false
+-                : !this.toolTipText.equals(""));
++        String var_1154 = this.toolTipText;
++		boolean hasToolTip = (var_1154 == null ? false
++                : !var_1154.equals(""));
+         if (hasURL || hasToolTip) {
+             tag.append("<area shape=\"" + getShapeType() + "\"" + " coords=\""
+                     + getShapeCoords() + "\"");
+             if (hasToolTip) {
+                 tag.append(toolTipTagFragmentGenerator.generateToolTipFragment(
+-                        this.toolTipText));
++                        var_1154));
+             }
+             if (hasURL) {
+                 tag.append(urlTagFragmentGenerator.generateURLFragment(

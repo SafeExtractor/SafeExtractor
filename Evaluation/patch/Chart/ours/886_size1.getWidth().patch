@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/block/GridArrangement.java b/source/org/jfree/chart/block/GridArrangement.java
+index 7aa4631..8ab1450 100644
+--- a/source/org/jfree/chart/block/GridArrangement.java
++++ b/source/org/jfree/chart/block/GridArrangement.java
+@@ -316,7 +316,8 @@
+ 
+         Size2D size1 = arrange(container, g2, RectangleConstraint.NONE);
+ 
+-        if (constraint.getWidthRange().contains(size1.getWidth())) {
++        double var_886 = size1.getWidth();
++		if (constraint.getWidthRange().contains(var_886)) {
+             if (constraint.getHeightRange().contains(size1.getHeight())) {
+                 return size1;
+             }
+@@ -325,7 +326,7 @@
+                 double h = constraint.getHeightRange().constrain(
+                         size1.getHeight());
+                 RectangleConstraint cc = new RectangleConstraint(
+-                        size1.getWidth(), h);
++                        var_886, h);
+                 return arrangeFF(container, g2, cc);
+             }
+         }
+@@ -333,7 +334,7 @@
+             if (constraint.getHeightRange().contains(size1.getHeight())) {
+                 // height is OK, but width must be constrained
+                 double w = constraint.getWidthRange().constrain(
+-                        size1.getWidth());
++                        var_886);
+                 RectangleConstraint cc = new RectangleConstraint(w,
+                         size1.getHeight());
+                 return arrangeFF(container, g2, cc);
+@@ -341,7 +342,7 @@
+             }
+             else {
+                 double w = constraint.getWidthRange().constrain(
+-                        size1.getWidth());
++                        var_886);
+                 double h = constraint.getHeightRange().constrain(
+                         size1.getHeight());
+                 RectangleConstraint cc = new RectangleConstraint(w, h);

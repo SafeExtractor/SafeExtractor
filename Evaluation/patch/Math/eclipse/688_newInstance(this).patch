@@ -1,0 +1,53 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..797e532 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1969,26 +1969,27 @@
+     public Dfp sqrt() {
+ 
+         // check for unusual cases
+-        if (nans == FINITE && mant[mant.length-1] == 0) {
++        Dfp var_688 = newInstance(this);
++		if (nans == FINITE && mant[mant.length-1] == 0) {
+             // if zero
+-            return newInstance(this);
++            return var_688;
+         }
+ 
+         if (nans != FINITE) {
+             if (nans == INFINITE && sign == 1) {
+                 // if positive infinity
+-                return newInstance(this);
++                return var_688;
+             }
+ 
+             if (nans == QNAN) {
+-                return newInstance(this);
++                return var_688;
+             }
+ 
+             if (nans == SNAN) {
+                 Dfp result;
+ 
+                 field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-                result = newInstance(this);
++                result = var_688;
+                 result = dotrap(DfpField.FLAG_INVALID, SQRT_TRAP, null, result);
+                 return result;
+             }
+@@ -1999,13 +2000,13 @@
+             Dfp result;
+ 
+             field.setIEEEFlagsBits(DfpField.FLAG_INVALID);
+-            result = newInstance(this);
++            result = var_688;
+             result.nans = QNAN;
+             result = dotrap(DfpField.FLAG_INVALID, SQRT_TRAP, null, result);
+             return result;
+         }
+ 
+-        Dfp x = newInstance(this);
++        Dfp x = var_688;
+ 
+         /* Lets make a reasonable guess as to the size of the square root */
+         if (x.exp < -1 || x.exp > 1) {

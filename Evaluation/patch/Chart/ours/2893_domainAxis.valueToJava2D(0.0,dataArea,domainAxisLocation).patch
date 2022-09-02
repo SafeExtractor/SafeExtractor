@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYBubbleRenderer.java b/source/org/jfree/chart/renderer/xy/XYBubbleRenderer.java
+index f233759..a2abcd4 100644
+--- a/source/org/jfree/chart/renderer/xy/XYBubbleRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYBubbleRenderer.java
+@@ -199,10 +199,11 @@
+             double transRange = 0.0;
+             double zero;
+ 
+-            switch(getScaleType()) {
++            double var_2893 = domainAxis.valueToJava2D(0.0, dataArea,
++			        domainAxisLocation);
++			switch(getScaleType()) {
+                 case SCALE_ON_DOMAIN_AXIS:
+-                    zero = domainAxis.valueToJava2D(0.0, dataArea,
+-                            domainAxisLocation);
++                    zero = var_2893;
+                     transDomain = domainAxis.valueToJava2D(z, dataArea,
+                             domainAxisLocation) - zero;
+                     transRange = transDomain;
+@@ -215,8 +216,7 @@
+                     transDomain = transRange;
+                     break;
+                 default:
+-                    double zero1 = domainAxis.valueToJava2D(0.0, dataArea,
+-                            domainAxisLocation);
++                    double zero1 = var_2893;
+                     double zero2 = rangeAxis.valueToJava2D(0.0, dataArea,
+                             rangeAxisLocation);
+                     transDomain = domainAxis.valueToJava2D(z, dataArea,

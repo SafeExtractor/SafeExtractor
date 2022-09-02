@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunction.java b/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunction.java
+index f00799d..3b04462 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunction.java
++++ b/src/main/java/org/apache/commons/math3/analysis/polynomials/PolynomialFunction.java
+@@ -193,17 +193,18 @@
+      */
+     public PolynomialFunction subtract(final PolynomialFunction p) {
+         // identify the lowest degree polynomial
+-        int lowLength  = FastMath.min(coefficients.length, p.coefficients.length);
+-        int highLength = FastMath.max(coefficients.length, p.coefficients.length);
++        double[] var_435 = p.coefficients;
++		int lowLength  = FastMath.min(coefficients.length, var_435.length);
++        int highLength = FastMath.max(coefficients.length, var_435.length);
+ 
+         // build the coefficients array
+         double[] newCoefficients = new double[highLength];
+         for (int i = 0; i < lowLength; ++i) {
+-            newCoefficients[i] = coefficients[i] - p.coefficients[i];
++            newCoefficients[i] = coefficients[i] - var_435[i];
+         }
+-        if (coefficients.length < p.coefficients.length) {
++        if (coefficients.length < var_435.length) {
+             for (int i = lowLength; i < highLength; ++i) {
+-                newCoefficients[i] = -p.coefficients[i];
++                newCoefficients[i] = -var_435[i];
+             }
+         } else {
+             System.arraycopy(coefficients, lowLength, newCoefficients, lowLength,

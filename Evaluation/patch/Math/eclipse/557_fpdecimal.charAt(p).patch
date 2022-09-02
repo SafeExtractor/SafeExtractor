@@ -1,0 +1,49 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..0666bcb 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -410,16 +410,17 @@
+ 
+         // Move p to first significant digit
+         int decimalPos = 0;
+-        for (;;) {
+-            if (fpdecimal.charAt(p) >= '1' && fpdecimal.charAt(p) <= '9') {
++        char var_557 = fpdecimal.charAt(p);
++		for (;;) {
++            if (var_557 >= '1' && var_557 <= '9') {
+                 break;
+             }
+ 
+-            if (decimalFound && fpdecimal.charAt(p) == '0') {
++            if (decimalFound && var_557 == '0') {
+                 decimalPos--;
+             }
+ 
+-            if (fpdecimal.charAt(p) == '.') {
++            if (var_557 == '.') {
+                 decimalFound = true;
+             }
+ 
+@@ -447,19 +448,19 @@
+                 break;
+             }
+ 
+-            if (fpdecimal.charAt(p) == '.') {
++            if (var_557 == '.') {
+                 decimalFound = true;
+                 decimalPos = significantDigits;
+                 p++;
+                 continue;
+             }
+ 
+-            if (fpdecimal.charAt(p) < '0' || fpdecimal.charAt(p) > '9') {
++            if (var_557 < '0' || var_557 > '9') {
+                 p++;
+                 continue;
+             }
+ 
+-            striped[q] = fpdecimal.charAt(p);
++            striped[q] = var_557;
+             q++;
+             p++;
+             significantDigits++;

@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/plot/dial/DialPlot.java b/source/org/jfree/chart/plot/dial/DialPlot.java
+index acb9f7c..6f02852 100644
+--- a/source/org/jfree/chart/plot/dial/DialPlot.java
++++ b/source/org/jfree/chart/plot/dial/DialPlot.java
+@@ -541,15 +541,16 @@
+         Rectangle2D frame = viewToFrame(area);
+ 
+         // draw the background if there is one...
+-        if (this.background != null && this.background.isVisible()) {
+-            if (this.background.isClippedToWindow()) {
++        DialLayer var_2315 = this.background;
++		if (var_2315 != null && var_2315.isVisible()) {
++            if (var_2315.isClippedToWindow()) {
+                 Shape savedClip = g2.getClip();
+                 g2.clip(this.dialFrame.getWindow(frame));
+-                this.background.draw(g2, this, frame, area);
++                var_2315.draw(g2, this, frame, area);
+                 g2.setClip(savedClip);
+             }
+             else {
+-                this.background.draw(g2, this, frame, area);
++                var_2315.draw(g2, this, frame, area);
+             }
+         }
+ 

@@ -1,0 +1,37 @@
+diff --git a/Users/safe/paper/CaseStudy/patch/jackrabbit-oak/eclipse/31_e454c2276616af914df61a7787f9f13901d6a54d_value.patch b/Users/safe/paper/CaseStudy/patch/jackrabbit-oak/ours/31_e454c2276616af914df61a7787f9f13901d6a54d_value.patch
+index 85b8c92..b8467c6 100644
+--- a/Users/safe/paper/CaseStudy/patch/jackrabbit-oak/eclipse/31_e454c2276616af914df61a7787f9f13901d6a54d_value.patch
++++ b/Users/safe/paper/CaseStudy/patch/jackrabbit-oak/ours/31_e454c2276616af914df61a7787f9f13901d6a54d_value.patch
+@@ -1,27 +1,14 @@
+ diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/Checkpoints.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/Checkpoints.java
+-index 8a6a98c..5faad9b 100644
++index 8a6a98c..fc140d2 100644
+ --- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/Checkpoints.java
+ +++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/Checkpoints.java
+-@@ -202,17 +202,18 @@
+-                 map = Maps.newHashMap();
+-                 JsopReader reader = new JsopTokenizer(info);
+-                 reader.read('{');
+--                String key = reader.readString();
+-+                String value = reader.readString();
+-+				String key = value;
+-                 if (!EXPIRES.equals(key)) {
+-                     throw new IllegalArgumentException("First entry in the " +
+-                             "checkpoint info must be the expires date: " + info);
+-                 }
+-                 reader.read(':');
+--                expiryTime = Long.parseLong(reader.readString());
+-+                expiryTime = Long.parseLong(value);
++@@ -212,7 +212,8 @@
+                  while (reader.matches(',')) {
+--                    key = reader.readString();
+-+                    key = value;
++                     key = reader.readString();
+                      reader.read(':');
+ -                    map.put(key, reader.readString());
+-+                    map.put(key, value);
+++                    String value = reader.readString();
+++					map.put(key, value);
+                  }
+                  reader.read('}');
+                  reader.read(JsopReader.END);

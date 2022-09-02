@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+index 4a54655..f6bd37c 100644
+--- a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
++++ b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+@@ -1283,13 +1283,14 @@
+ 
+             // now draw the outlines, if visible...
+             if (im.getOutlinePaint() != null && im.getOutlineStroke() != null) {
+-                if (orientation == PlotOrientation.VERTICAL) {
++                boolean var_2466 = range.contains(start);
++				if (orientation == PlotOrientation.VERTICAL) {
+                     Line2D line = new Line2D.Double();
+                     double x0 = dataArea.getMinX();
+                     double x1 = dataArea.getMaxX();
+                     g2.setPaint(im.getOutlinePaint());
+                     g2.setStroke(im.getOutlineStroke());
+-                    if (range.contains(start)) {
++                    if (var_2466) {
+                         line.setLine(x0, start2d, x1, start2d);
+                         g2.draw(line);
+                     }
+@@ -1304,7 +1305,7 @@
+                     double y1 = dataArea.getMaxY();
+                     g2.setPaint(im.getOutlinePaint());
+                     g2.setStroke(im.getOutlineStroke());
+-                    if (range.contains(start)) {
++                    if (var_2466) {
+                         line.setLine(start2d, y0, start2d, y1);
+                         g2.draw(line);
+                     }

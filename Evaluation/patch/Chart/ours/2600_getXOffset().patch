@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/renderer/category/BarRenderer3D.java b/source/org/jfree/chart/renderer/category/BarRenderer3D.java
+index 6cf5928..fc01e2a 100644
+--- a/source/org/jfree/chart/renderer/category/BarRenderer3D.java
++++ b/source/org/jfree/chart/renderer/category/BarRenderer3D.java
+@@ -418,18 +418,19 @@
+         Line2D line1 = null;
+         Line2D line2 = null;
+         PlotOrientation orientation = plot.getOrientation();
+-        if (orientation == PlotOrientation.HORIZONTAL) {
++        double var_2600 = getXOffset();
++		if (orientation == PlotOrientation.HORIZONTAL) {
+             double y0 = value;
+             double y1 = value - getYOffset();
+             double x0 = dataArea.getMinX();
+-            double x1 = x0 + getXOffset();
++            double x1 = x0 + var_2600;
+             double x2 = dataArea.getMaxX();
+             line1 = new Line2D.Double(x0, y0, x1, y1);
+             line2 = new Line2D.Double(x1, y1, x2, y1);
+         }
+         else if (orientation == PlotOrientation.VERTICAL) {
+             double x0 = value;
+-            double x1 = value + getXOffset();
++            double x1 = value + var_2600;
+             double y0 = dataArea.getMaxY();
+             double y1 = y0 - getYOffset();
+             double y2 = dataArea.getMinY();

@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java b/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
+index 3e7fff7..84dc265 100644
+--- a/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
++++ b/src/main/java/org/apache/commons/math3/stat/descriptive/SummaryStatistics.java
+@@ -699,10 +699,11 @@
+ 
+         // Make sure that if stat == statImpl in source, same
+         // holds in dest; otherwise copy stat
+-        if (source.geoMean == source.geoMeanImpl) {
++        GeometricMean var_3754 = source.geoMean;
++		if (var_3754 == source.geoMeanImpl) {
+             dest.geoMean = (GeometricMean) dest.geoMeanImpl;
+         } else {
+-            GeometricMean.copy(source.geoMean, dest.geoMean);
++            GeometricMean.copy(var_3754, dest.geoMean);
+         }
+         if (source.max == source.maxImpl) {
+             dest.max = (Max) dest.maxImpl;

@@ -1,0 +1,87 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..2d642d7 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -539,13 +539,14 @@
+         }
+ 
+         // X == 0
+-        if (x.equals(zero)) {
++        byte var_816 = Dfp.INFINITE;
++		if (x.equals(zero)) {
+             if (Dfp.copysign(one, x).greaterThan(zero)) {
+                 // X == +0
+                 if (y.greaterThan(zero)) {
+                     return x.newInstance(zero);
+                 } else {
+-                    return x.newInstance(x.newInstance((byte)1, Dfp.INFINITE));
++                    return x.newInstance(x.newInstance((byte)1, var_816));
+                 }
+             } else {
+                 // X == -0
+@@ -554,14 +555,14 @@
+                     if (y.greaterThan(zero)) {
+                         return x.newInstance(zero.negate());
+                     } else {
+-                        return x.newInstance(x.newInstance((byte)-1, Dfp.INFINITE));
++                        return x.newInstance(x.newInstance((byte)-1, var_816));
+                     }
+                 } else {
+                     // Y is not odd integer
+                     if (y.greaterThan(zero)) {
+                         return x.newInstance(zero);
+                     } else {
+-                        return x.newInstance(x.newInstance((byte)1, Dfp.INFINITE));
++                        return x.newInstance(x.newInstance((byte)1, var_816));
+                     }
+                 }
+             }
+@@ -573,7 +574,7 @@
+             invert = true;
+         }
+ 
+-        if (x.greaterThan(one) && y.classify() == Dfp.INFINITE) {
++        if (x.greaterThan(one) && y.classify() == var_816) {
+             if (y.greaterThan(zero)) {
+                 return y;
+             } else {
+@@ -581,7 +582,7 @@
+             }
+         }
+ 
+-        if (x.lessThan(one) && y.classify() == Dfp.INFINITE) {
++        if (x.lessThan(one) && y.classify() == var_816) {
+             if (y.greaterThan(zero)) {
+                 return x.newInstance(zero);
+             } else {
+@@ -589,26 +590,26 @@
+             }
+         }
+ 
+-        if (x.equals(one) && y.classify() == Dfp.INFINITE) {
++        if (x.equals(one) && y.classify() == var_816) {
+             x.getField().setIEEEFlagsBits(DfpField.FLAG_INVALID);
+             return x.dotrap(DfpField.FLAG_INVALID, POW_TRAP, x, x.newInstance((byte)1, Dfp.QNAN));
+         }
+ 
+-        if (x.classify() == Dfp.INFINITE) {
++        if (x.classify() == var_816) {
+             // x = +/- inf
+             if (invert) {
+                 // negative infinity
+                 if (y.classify() == Dfp.FINITE && y.rint().equals(y) && !y.remainder(two).equals(zero)) {
+                     // If y is odd integer
+                     if (y.greaterThan(zero)) {
+-                        return x.newInstance(x.newInstance((byte)-1, Dfp.INFINITE));
++                        return x.newInstance(x.newInstance((byte)-1, var_816));
+                     } else {
+                         return x.newInstance(zero.negate());
+                     }
+                 } else {
+                     // Y is not odd integer
+                     if (y.greaterThan(zero)) {
+-                        return x.newInstance(x.newInstance((byte)1, Dfp.INFINITE));
++                        return x.newInstance(x.newInstance((byte)1, var_816));
+                     } else {
+                         return x.newInstance(zero);
+                     }

@@ -1,0 +1,31 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/335_getRegistry().patch b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/335_getRegistry().patch
+index 2ed01da..da6c3f8 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Lang/eclipse/335_getRegistry().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Lang/ours/335_getRegistry().patch
+@@ -1,21 +1,14 @@
+ diff --git a/src/main/java/org/apache/commons/lang3/builder/HashCodeBuilder.java b/src/main/java/org/apache/commons/lang3/builder/HashCodeBuilder.java
+-index 8b2415a..58852e4 100644
++index 8b2415a..bf5807e 100644
+ --- a/src/main/java/org/apache/commons/lang3/builder/HashCodeBuilder.java
+ +++ b/src/main/java/org/apache/commons/lang3/builder/HashCodeBuilder.java
+-@@ -464,12 +464,13 @@
+-      *            The object to register.
++@@ -465,7 +465,8 @@
+       */
+      static void register(final Object value) {
+--        synchronized (HashCodeBuilder.class) {
++         synchronized (HashCodeBuilder.class) {
+ -            if (getRegistry() == null) {
+-+        Set<IDKey> var_335 = getRegistry();
+-+		synchronized (HashCodeBuilder.class) {
+-+            if (var_335 == null) {
+++            Set<IDKey> var_335 = getRegistry();
+++			if (var_335 == null) {
+                  REGISTRY.set(new HashSet<IDKey>());
+              }
+          }
+--        getRegistry().add(new IDKey(value));
+-+        var_335.add(new IDKey(value));
+-     }
+- 
+-     /**

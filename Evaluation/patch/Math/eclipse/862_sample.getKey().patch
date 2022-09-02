@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/distribution/EnumeratedIntegerDistribution.java b/src/main/java/org/apache/commons/math3/distribution/EnumeratedIntegerDistribution.java
+index 4f6384b..7adf351 100644
+--- a/src/main/java/org/apache/commons/math3/distribution/EnumeratedIntegerDistribution.java
++++ b/src/main/java/org/apache/commons/math3/distribution/EnumeratedIntegerDistribution.java
+@@ -147,8 +147,9 @@
+         double meanOfSquares = 0;
+ 
+         for (final Pair<Integer, Double> sample : innerDistribution.getPmf()) {
+-            mean += sample.getValue() * sample.getKey();
+-            meanOfSquares += sample.getValue() * sample.getKey() * sample.getKey();
++            Integer var_862 = sample.getKey();
++			mean += sample.getValue() * var_862;
++            meanOfSquares += sample.getValue() * var_862 * var_862;
+         }
+ 
+         return meanOfSquares - mean * mean;

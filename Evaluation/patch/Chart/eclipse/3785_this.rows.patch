@@ -1,0 +1,29 @@
+diff --git a/source/org/jfree/data/DefaultKeyedValues2D.java b/source/org/jfree/data/DefaultKeyedValues2D.java
+index 5f5b69c..fc27124 100644
+--- a/source/org/jfree/data/DefaultKeyedValues2D.java
++++ b/source/org/jfree/data/DefaultKeyedValues2D.java
+@@ -320,19 +320,20 @@
+         DefaultKeyedValues row;
+         int rowIndex = getRowIndex(rowKey);
+ 
+-        if (rowIndex >= 0) {
+-            row = (DefaultKeyedValues) this.rows.get(rowIndex);
++        List var_3785 = this.rows;
++		if (rowIndex >= 0) {
++            row = (DefaultKeyedValues) var_3785.get(rowIndex);
+         }
+         else {
+             row = new DefaultKeyedValues();
+             if (this.sortRowKeys) {
+                 rowIndex = -rowIndex - 1;
+                 this.rowKeys.add(rowIndex, rowKey);
+-                this.rows.add(rowIndex, row);
++                var_3785.add(rowIndex, row);
+             }
+             else {
+                 this.rowKeys.add(rowKey);
+-                this.rows.add(row);
++                var_3785.add(row);
+             }
+         }
+         row.setValue(columnKey, value);

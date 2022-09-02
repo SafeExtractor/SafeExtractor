@@ -1,0 +1,19 @@
+diff --git a/src/com/google/javascript/jscomp/InlineFunctions.java b/src/com/google/javascript/jscomp/InlineFunctions.java
+index 008ffe5..7ffbe67 100644
+--- a/src/com/google/javascript/jscomp/InlineFunctions.java
++++ b/src/com/google/javascript/jscomp/InlineFunctions.java
+@@ -215,10 +215,11 @@
+         //   (function(){})();
+         case Token.CALL:
+           Node fnNode = null;
+-          if (n.getFirstChild().isFunction()) {
+-            fnNode = n.getFirstChild();
++          Node var_1167 = n.getFirstChild();
++		if (var_1167.isFunction()) {
++            fnNode = var_1167;
+           } else if (NodeUtil.isFunctionObjectCall(n)) {
+-            Node fnIdentifingNode = n.getFirstChild().getFirstChild();
++            Node fnIdentifingNode = var_1167.getFirstChild();
+             if (fnIdentifingNode.isFunction()) {
+               fnNode = fnIdentifingNode;
+             }

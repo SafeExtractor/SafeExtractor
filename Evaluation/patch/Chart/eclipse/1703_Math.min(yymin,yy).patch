@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/plot/XYPlot.java b/source/org/jfree/chart/plot/XYPlot.java
+index cc18077..2b9b4e1 100644
+--- a/source/org/jfree/chart/plot/XYPlot.java
++++ b/source/org/jfree/chart/plot/XYPlot.java
+@@ -3586,16 +3586,17 @@
+                 somethingToDraw = true;
+             }
+         }
+-        if (this.quadrantPaint[2] != null) {
++        double var_1703 = Math.min(yymin, yy);
++		if (this.quadrantPaint[2] != null) {
+             if (x > xmin && y > ymin) {
+                 if (this.orientation == PlotOrientation.HORIZONTAL) {
+-                    r[2] = new Rectangle2D.Double(Math.min(yymin, yy),
++                    r[2] = new Rectangle2D.Double(var_1703,
+                             Math.min(xxmin, xx), Math.abs(yy - yymin),
+                             Math.abs(xx - xxmin));
+                 }
+                 else {  // PlotOrientation.VERTICAL
+                     r[2] = new Rectangle2D.Double(Math.min(xxmin, xx),
+-                            Math.min(yymin, yy), Math.abs(xx - xxmin),
++                            var_1703, Math.abs(xx - xxmin),
+                             Math.abs(yy - yymin));
+                 }
+                 somethingToDraw = true;
+@@ -3604,13 +3605,13 @@
+         if (this.quadrantPaint[3] != null) {
+             if (x < xmax && y > ymin) {
+                 if (this.orientation == PlotOrientation.HORIZONTAL) {
+-                    r[3] = new Rectangle2D.Double(Math.min(yymin, yy),
++                    r[3] = new Rectangle2D.Double(var_1703,
+                             Math.min(xxmax, xx), Math.abs(yy - yymin),
+                             Math.abs(xx - xxmax));
+                 }
+                 else {  // PlotOrientation.VERTICAL
+                     r[3] = new Rectangle2D.Double(Math.min(xx, xxmax),
+-                            Math.min(yymin, yy), Math.abs(xx - xxmax),
++                            var_1703, Math.abs(xx - xxmax),
+                             Math.abs(yy - yymin));
+                 }
+                 somethingToDraw = true;

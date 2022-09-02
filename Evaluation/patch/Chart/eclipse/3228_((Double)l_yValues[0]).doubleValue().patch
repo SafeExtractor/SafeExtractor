@@ -1,0 +1,35 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java b/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
+index cd91775..82e7606 100644
+--- a/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYDifferenceRenderer.java
+@@ -1027,7 +1027,9 @@
+ 
+         GeneralPath l_path = new GeneralPath();
+ 
+-        if (PlotOrientation.VERTICAL == l_orientation) {
++        double var_3228 = (
++		        (Double) l_yValues[0]).doubleValue();
++		if (PlotOrientation.VERTICAL == l_orientation) {
+             double l_x = x_domainAxis.valueToJava2D((
+                     (Double) l_xValues[0]).doubleValue(), x_dataArea,
+                     l_domainAxisLocation);
+@@ -1035,8 +1037,7 @@
+                 l_x = Math.rint(l_x);
+             }
+ 
+-            double l_y = x_rangeAxis.valueToJava2D((
+-                    (Double) l_yValues[0]).doubleValue(), x_dataArea,
++            double l_y = x_rangeAxis.valueToJava2D(var_3228, x_dataArea,
+                     l_rangeAxisLocation);
+ 
+             l_path.moveTo((float) l_x, (float) l_y);
+@@ -1063,8 +1064,7 @@
+                 l_x = Math.rint(l_x);
+             }
+ 
+-            double l_y = x_rangeAxis.valueToJava2D((
+-                    (Double) l_yValues[0]).doubleValue(), x_dataArea,
++            double l_y = x_rangeAxis.valueToJava2D(var_3228, x_dataArea,
+                     l_rangeAxisLocation);
+ 
+             l_path.moveTo((float) l_y, (float) l_x);

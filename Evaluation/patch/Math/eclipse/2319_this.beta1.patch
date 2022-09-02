@@ -1,0 +1,63 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+index 7b1dcc7..6b55d79 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
++++ b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+@@ -554,22 +554,23 @@
+             }
+ 
+             this.beta1 = this.r1.dotProduct(this.y);
+-            if (this.beta1 < 0.) {
++            double var_2319 = this.beta1;
++			if (var_2319 < 0.) {
+                 throwNPDLOException(this.m, this.y);
+             }
+-            if (this.beta1 == 0.) {
++            if (var_2319 == 0.) {
+                 /* If b = 0 exactly, stop with x = 0. */
+                 this.bIsNull = true;
+                 return;
+             }
+             this.bIsNull = false;
+-            this.beta1 = FastMath.sqrt(this.beta1);
++            this.beta1 = FastMath.sqrt(var_2319);
+             /* At this point
+              *   r1 = b,
+              *   y = M * b,
+              *   beta1 = beta[1].
+              */
+-            final RealVector v = this.y.mapMultiply(1. / this.beta1);
++            final RealVector v = this.y.mapMultiply(1. / var_2319);
+             this.y = this.a.operate(v);
+             if (this.check) {
+                 checkSymmetry(this.a, v, this.y, this.a.operate(this.y));
+@@ -580,7 +581,7 @@
+              */
+             daxpy(-this.shift, v, this.y);
+             final double alpha = v.dotProduct(this.y);
+-            daxpy(-alpha / this.beta1, this.r1, this.y);
++            daxpy(-alpha / var_2319, this.r1, this.y);
+             /*
+              * At this point
+              *   alpha = alpha[1]
+@@ -594,7 +595,7 @@
+             if (this.m != null) {
+                 this.y = this.m.operate(this.r2);
+             }
+-            this.oldb = this.beta1;
++            this.oldb = var_2319;
+             this.beta = this.r2.dotProduct(this.y);
+             if (this.beta < 0.) {
+                 throwNPDLOException(this.m, this.y);
+@@ -607,10 +608,10 @@
+              *   y  = beta[2] * P' * v[2]
+              *   r2 = beta[2] * M^(-1) * P' * v[2]
+              */
+-            this.cgnorm = this.beta1;
++            this.cgnorm = var_2319;
+             this.gbar = alpha;
+             this.dbar = this.beta;
+-            this.gammaZeta = this.beta1;
++            this.gammaZeta = var_2319;
+             this.minusEpsZeta = 0.;
+             this.bstep = 0.;
+             this.snprod = 1.;

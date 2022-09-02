@@ -1,0 +1,16 @@
+diff --git a/nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors/src/main/java/org/apache/nifi/processors/standard/HandleHttpRequest.java b/nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors/src/main/java/org/apache/nifi/processors/standard/HandleHttpRequest.java
+index c1acc85..4876632 100644
+--- a/nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors/src/main/java/org/apache/nifi/processors/standard/HandleHttpRequest.java
++++ b/nifi-nar-bundles/nifi-standard-bundle/nifi-standard-processors/src/main/java/org/apache/nifi/processors/standard/HandleHttpRequest.java
+@@ -523,8 +523,9 @@
+             putAttribute(attributes, "http.auth.type", request.getAuthType());
+ 
+             putAttribute(attributes, "http.requested.session.id", request.getRequestedSessionId());
+-            if (request.getDispatcherType() != null) {
+-                putAttribute(attributes, "http.dispatcher.type", request.getDispatcherType().name());
++            Object dispatcherType = request.getDispatcherType();
++			if (dispatcherType != null) {
++                putAttribute(attributes, "http.dispatcher.type", dispatcherType.name());
+             }
+             putAttribute(attributes, "http.character.encoding", request.getCharacterEncoding());
+             putAttribute(attributes, "http.locale", request.getLocale());

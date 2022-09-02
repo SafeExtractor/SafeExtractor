@@ -1,0 +1,48 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..3f93bb5 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1705,7 +1705,8 @@
+         Dfp result = newInstance(getZero());
+ 
+         /* handle special cases */
+-        if (nans != FINITE || divisor.nans != FINITE) {
++        byte var_664 = divisor.sign;
++		if (nans != FINITE || divisor.nans != FINITE) {
+             if (isNaN()) {
+                 return this;
+             }
+@@ -1716,13 +1717,13 @@
+ 
+             if (nans == INFINITE && divisor.nans == FINITE) {
+                 result = newInstance(this);
+-                result.sign = (byte) (sign * divisor.sign);
++                result.sign = (byte) (sign * var_664);
+                 return result;
+             }
+ 
+             if (divisor.nans == INFINITE && nans == FINITE) {
+                 result = newInstance(getZero());
+-                result.sign = (byte) (sign * divisor.sign);
++                result.sign = (byte) (sign * var_664);
+                 return result;
+             }
+ 
+@@ -1739,7 +1740,7 @@
+         if (divisor.mant[mant.length-1] == 0) {
+             field.setIEEEFlagsBits(DfpField.FLAG_DIV_ZERO);
+             result = newInstance(getZero());
+-            result.sign = (byte) (sign * divisor.sign);
++            result.sign = (byte) (sign * var_664);
+             result.nans = INFINITE;
+             result = dotrap(DfpField.FLAG_DIV_ZERO, DIVIDE_TRAP, divisor, result);
+             return result;
+@@ -1873,7 +1874,7 @@
+ 
+         /* Fixup the exponent. */
+         result.exp = exp - divisor.exp + md - mant.length;
+-        result.sign = (byte) ((sign == divisor.sign) ? 1 : -1);
++        result.sign = (byte) ((sign == var_664) ? 1 : -1);
+ 
+         if (result.mant[mant.length-1] == 0) { // if result is zero, set exp to zero
+             result.exp = 0;

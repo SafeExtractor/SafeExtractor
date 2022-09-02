@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..8e1cbd9 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -979,7 +979,8 @@
+     Preconditions.checkNotNull(name);
+     Preconditions.checkArgument(name.isName());
+ 
+-    if (name.getJSType() == null) {
++    JSType var_1066 = name.getJSType();
++	if (var_1066 == null) {
+       return ConcreteType.ALL;
+     }
+ 
+@@ -988,7 +989,7 @@
+       return createConcreteFunction(name.getFirstChild(), scope);
+     }
+ 
+-    return createType(name.getJSType());
++    return createType(var_1066);
+   }
+ 
+   /** Returns a concrete type from the given JSType. */

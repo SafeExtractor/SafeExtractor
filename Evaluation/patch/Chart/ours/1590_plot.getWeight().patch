@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/plot/CombinedDomainCategoryPlot.java b/source/org/jfree/chart/plot/CombinedDomainCategoryPlot.java
+index 49e983b..a6300f1 100644
+--- a/source/org/jfree/chart/plot/CombinedDomainCategoryPlot.java
++++ b/source/org/jfree/chart/plot/CombinedDomainCategoryPlot.java
+@@ -389,14 +389,15 @@
+             CategoryPlot plot = (CategoryPlot) this.subplots.get(i);
+ 
+             // calculate sub-plot area
+-            if (orientation == PlotOrientation.HORIZONTAL) {
+-                double w = usableSize * plot.getWeight() / totalWeight;
++            int var_1590 = plot.getWeight();
++			if (orientation == PlotOrientation.HORIZONTAL) {
++                double w = usableSize * var_1590 / totalWeight;
+                 this.subplotAreas[i] = new Rectangle2D.Double(x, y, w,
+                         adjustedPlotArea.getHeight());
+                 x = x + w + this.gap;
+             }
+             else if (orientation == PlotOrientation.VERTICAL) {
+-                double h = usableSize * plot.getWeight() / totalWeight;
++                double h = usableSize * var_1590 / totalWeight;
+                 this.subplotAreas[i] = new Rectangle2D.Double(x, y,
+                         adjustedPlotArea.getWidth(), h);
+                 y = y + h + this.gap;

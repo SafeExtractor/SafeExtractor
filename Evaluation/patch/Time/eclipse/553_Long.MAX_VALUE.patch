@@ -1,0 +1,58 @@
+diff --git a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
+index c3dd8cc..1ae9101 100644
+--- a/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
++++ b/src/main/java/org/joda/time/format/PeriodFormatterBuilder.java
+@@ -1388,15 +1388,16 @@
+             } else {
+                 type = period.getPeriodType();
+             }
+-            if (type != null && isSupported(type, iFieldType) == false) {
+-                return Long.MAX_VALUE;
++            long var_553 = Long.MAX_VALUE;
++			if (type != null && isSupported(type, iFieldType) == false) {
++                return var_553;
+             }
+ 
+             long value;
+ 
+             switch (iFieldType) {
+             default:
+-                return Long.MAX_VALUE;
++                return var_553;
+             case YEARS:
+                 value = period.get(DurationFieldType.years());
+                 break;
+@@ -1433,16 +1434,16 @@
+             if (value == 0) {
+                 switch (iPrintZeroSetting) {
+                 case PRINT_ZERO_NEVER:
+-                    return Long.MAX_VALUE;
++                    return var_553;
+                 case PRINT_ZERO_RARELY_LAST:
+                     if (isZero(period) && iFieldFormatters[iFieldType] == this) {
+                         for (int i = iFieldType + 1; i <= MAX_FIELD; i++) {
+                             if (isSupported(type, i) && iFieldFormatters[i] != null) {
+-                                return Long.MAX_VALUE;
++                                return var_553;
+                             }
+                         }
+                     } else {
+-                        return Long.MAX_VALUE;
++                        return var_553;
+                     }
+                     break;
+                 case PRINT_ZERO_RARELY_FIRST:
+@@ -1451,11 +1452,11 @@
+                         i--;                              // see bug 1660490
+                         for (; i >= 0 && i <= MAX_FIELD; i--) {
+                             if (isSupported(type, i) && iFieldFormatters[i] != null) {
+-                                return Long.MAX_VALUE;
++                                return var_553;
+                             }
+                         }
+                     } else {
+-                        return Long.MAX_VALUE;
++                        return var_553;
+                     }
+                     break;
+                 }

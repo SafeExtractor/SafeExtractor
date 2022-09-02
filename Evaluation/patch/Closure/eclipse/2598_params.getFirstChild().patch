@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/rhino/jstype/FunctionType.java b/src/com/google/javascript/rhino/jstype/FunctionType.java
+index 7388448..3565fb2 100644
+--- a/src/com/google/javascript/rhino/jstype/FunctionType.java
++++ b/src/com/google/javascript/rhino/jstype/FunctionType.java
+@@ -630,8 +630,9 @@
+       Node origParams = getParametersNode();
+       if (origParams != null) {
+         Node params = origParams.cloneTree();
+-        for (int i = 1; i < argsToBind && params.getFirstChild() != null; i++) {
+-          if (params.getFirstChild().isVarArgs()) {
++        Node var_2598 = params.getFirstChild();
++		for (int i = 1; i < argsToBind && var_2598 != null; i++) {
++          if (var_2598.isVarArgs()) {
+             break;
+           }
+           params.removeFirstChild();

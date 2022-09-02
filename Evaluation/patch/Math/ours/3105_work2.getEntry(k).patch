@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..3bf9ec4 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -584,7 +584,8 @@
+                     double sumw = ZERO;
+                     for (int k = 0; k < npt; k++) {
+                         sumz += zMatrix.getEntry(k, m);
+-                        lagrangeValuesAtNewPoint.setEntry(k, work2.getEntry(k) * zMatrix.getEntry(k, m));
++                        double var_3105 = work2.getEntry(k);
++						lagrangeValuesAtNewPoint.setEntry(k, var_3105 * zMatrix.getEntry(k, m));
+                         sumw += lagrangeValuesAtNewPoint.getEntry(k);
+                     }
+                     for (int j = 0; j < n; j++) {

@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+index a8877eb..a6099a0 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+@@ -215,7 +215,8 @@
+         for (int diag = 0; diag <= parameters + order; ++diag) {
+             for (int o = FastMath.max(0, diag - parameters); o <= FastMath.min(order, diag); ++o) {
+                 final int p = diag - o;
+-                if (newCache[p][o] == null) {
++                DSCompiler var_71 = newCache[p][o];
++				if (var_71 == null) {
+                     final DSCompiler valueCompiler      = (p == 0) ? null : newCache[p - 1][o];
+                     final DSCompiler derivativeCompiler = (o == 0) ? null : newCache[p][o - 1];
+                     newCache[p][o] = new DSCompiler(p, o, valueCompiler, derivativeCompiler);

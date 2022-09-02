@@ -1,0 +1,27 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Mockito/eclipse/122_method.getGenericReturnType().patch b/home/safe/SafeExtractor/Evaluation/patch/Mockito/ours/122_method.getGenericReturnType().patch
+index 9ef095d..c889ebf 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Mockito/eclipse/122_method.getGenericReturnType().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Mockito/ours/122_method.getGenericReturnType().patch
+@@ -1,8 +1,8 @@
+ diff --git a/src/org/mockito/internal/util/reflection/GenericMetadataSupport.java b/src/org/mockito/internal/util/reflection/GenericMetadataSupport.java
+-index a96dac4..28762d7 100644
++index a96dac4..9864ebe 100644
+ --- a/src/org/mockito/internal/util/reflection/GenericMetadataSupport.java
+ +++ b/src/org/mockito/internal/util/reflection/GenericMetadataSupport.java
+-@@ -197,14 +197,15 @@
++@@ -197,7 +197,8 @@
+       * @return {@link GenericMetadataSupport} representing this generic return type.
+       */
+      public GenericMetadataSupport resolveGenericReturnType(Method method) {
+@@ -12,11 +12,3 @@ index a96dac4..28762d7 100644
+          // logger.log("Method '" + method.toGenericString() + "' has return type : " + genericReturnType.getClass().getInterfaces()[0].getSimpleName() + " : " + genericReturnType);
+  
+          if (genericReturnType instanceof Class) {
+-             return new NotGenericReturnTypeSupport(genericReturnType);
+-         }
+-         if (genericReturnType instanceof ParameterizedType) {
+--            return new ParameterizedReturnType(this, method.getTypeParameters(), (ParameterizedType) method.getGenericReturnType());
+-+            return new ParameterizedReturnType(this, method.getTypeParameters(), (ParameterizedType) var_122);
+-         }
+-         if (genericReturnType instanceof TypeVariable) {
+-             return new TypeVariableReturnType(this, method.getTypeParameters(), (TypeVariable) genericReturnType);

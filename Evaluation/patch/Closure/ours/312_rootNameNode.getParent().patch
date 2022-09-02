@@ -1,0 +1,57 @@
+diff --git a/src/com/google/javascript/jscomp/NameAnalyzer.java b/src/com/google/javascript/jscomp/NameAnalyzer.java
+index 781fc3c..340eaf6 100644
+--- a/src/com/google/javascript/jscomp/NameAnalyzer.java
++++ b/src/com/google/javascript/jscomp/NameAnalyzer.java
+@@ -1411,28 +1411,31 @@
+           name = "";
+         }
+         rootNameNode = rootNameNode.getFirstChild();
+-      } else if (NodeUtil.isObjectLitKey(
+-          rootNameNode, rootNameNode.getParent())) {
+-        name = "." + rootNameNode.getString() + name;
+-
+-        // Check if this is an object literal assigned to something.
+-        Node objLit = rootNameNode.getParent();
+-        Node objLitParent = objLit.getParent();
+-        if (objLitParent.isAssign()) {
+-          // This must be the right side of the assign.
+-          rootNameNode = objLitParent.getFirstChild();
+-        } else if (objLitParent.isName()) {
+-          // This must be a VAR initialization.
+-          rootNameNode = objLitParent;
+-        } else if (objLitParent.isStringKey()) {
+-          // This must be a object literal key initialization.
+-          rootNameNode = objLitParent;
+-        } else {
+-          return null;
+-        }
+       } else {
+-        break;
+-      }
++		Node var_312 = rootNameNode.getParent();
++		if (NodeUtil.isObjectLitKey(
++		      rootNameNode, var_312)) {
++		    name = "." + rootNameNode.getString() + name;
++
++		    // Check if this is an object literal assigned to something.
++		    Node objLit = var_312;
++		    Node objLitParent = objLit.getParent();
++		    if (objLitParent.isAssign()) {
++		      // This must be the right side of the assign.
++		      rootNameNode = objLitParent.getFirstChild();
++		    } else if (objLitParent.isName()) {
++		      // This must be a VAR initialization.
++		      rootNameNode = objLitParent;
++		    } else if (objLitParent.isStringKey()) {
++		      // This must be a object literal key initialization.
++		      rootNameNode = objLitParent;
++		    } else {
++		      return null;
++		    }
++		  } else {
++		    break;
++		  }
++	}
+     }
+ 
+     // Check whether this is a class-defining call. Classes may only be defined

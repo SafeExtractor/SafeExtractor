@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java b/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java
+index 6016825..d576354 100644
+--- a/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java
+@@ -202,13 +202,14 @@
+                 final double c = hK[j];
+                 xNormSqr += c * c;
+             }
+-            final double a = (hK[k + 1] > 0) ? -FastMath.sqrt(xNormSqr) : FastMath.sqrt(xNormSqr);
++            double var_1869 = hK[k + 1];
++			final double a = (var_1869 > 0) ? -FastMath.sqrt(xNormSqr) : FastMath.sqrt(xNormSqr);
+             secondary[k] = a;
+             if (a != 0.0) {
+                 // apply Householder transform from left and right simultaneously
+ 
+                 hK[k + 1] -= a;
+-                final double beta = -1 / (a * hK[k + 1]);
++                final double beta = -1 / (a * var_1869);
+ 
+                 // compute a = beta A v, where v is the Householder vector
+                 // this loop is written in such a way

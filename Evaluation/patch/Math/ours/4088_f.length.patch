@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/transform/FastCosineTransformer.java b/src/main/java/org/apache/commons/math3/transform/FastCosineTransformer.java
+index e1254a5..b3d083d 100644
+--- a/src/main/java/org/apache/commons/math3/transform/FastCosineTransformer.java
++++ b/src/main/java/org/apache/commons/math3/transform/FastCosineTransformer.java
+@@ -90,14 +90,15 @@
+      */
+     public double[] transform(final double[] f, final TransformType type)
+       throws MathIllegalArgumentException {
+-        if (type == TransformType.FORWARD) {
++        int var_4088 = f.length;
++		if (type == TransformType.FORWARD) {
+             if (normalization == DctNormalization.ORTHOGONAL_DCT_I) {
+-                final double s = FastMath.sqrt(2.0 / (f.length - 1));
++                final double s = FastMath.sqrt(2.0 / (var_4088 - 1));
+                 return TransformUtils.scaleArray(fct(f), s);
+             }
+             return fct(f);
+         }
+-        final double s2 = 2.0 / (f.length - 1);
++        final double s2 = 2.0 / (var_4088 - 1);
+         final double s1;
+         if (normalization == DctNormalization.ORTHOGONAL_DCT_I) {
+             s1 = FastMath.sqrt(s2);

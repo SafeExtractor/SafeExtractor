@@ -1,0 +1,39 @@
+diff --git a/source/org/jfree/chart/panel/PanHandler.java b/source/org/jfree/chart/panel/PanHandler.java
+index 49ce1fe..8fb8893 100644
+--- a/source/org/jfree/chart/panel/PanHandler.java
++++ b/source/org/jfree/chart/panel/PanHandler.java
+@@ -109,13 +109,14 @@
+      */
+     public void mouseDragged(MouseEvent e) {
+         // handle panning if we have a start point
+-        if (this.panLast == null) {
++        Point var_1316 = this.panLast;
++		if (var_1316 == null) {
+             return;
+         }
+         ChartPanel panel = (ChartPanel) e.getSource();
+         JFreeChart chart = panel.getChart();
+-        double dx = e.getX() - this.panLast.getX();
+-        double dy = e.getY() - this.panLast.getY();
++        double dx = e.getX() - var_1316.getX();
++        double dy = e.getY() - var_1316.getY();
+         if (dx == 0.0 && dy == 0.0) {
+             return;
+         }
+@@ -126,12 +127,12 @@
+         Pannable p = (Pannable) chart.getPlot();
+         PlotRenderingInfo info = panel.getChartRenderingInfo().getPlotInfo();
+         if (p.getOrientation() == PlotOrientation.VERTICAL) {
+-            p.panDomainAxes(wPercent, info, this.panLast);
+-            p.panRangeAxes(hPercent, info, this.panLast);
++            p.panDomainAxes(wPercent, info, var_1316);
++            p.panRangeAxes(hPercent, info, var_1316);
+         }
+         else {
+-            p.panDomainAxes(hPercent, info, this.panLast);
+-            p.panRangeAxes(wPercent, info, this.panLast);
++            p.panDomainAxes(hPercent, info, var_1316);
++            p.panRangeAxes(wPercent, info, var_1316);
+         }
+         this.panLast = e.getPoint();
+         chart.getPlot().setNotify(old);

@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/util/SerialUtilities.java b/source/org/jfree/chart/util/SerialUtilities.java
+index 90edcc1..083dc97 100644
+--- a/source/org/jfree/chart/util/SerialUtilities.java
++++ b/source/org/jfree/chart/util/SerialUtilities.java
+@@ -275,7 +275,8 @@
+         Shape result = null;
+         boolean isNull = stream.readBoolean();
+         if (!isNull) {
+-            Class c = (Class) stream.readObject();
++            Object var_3646 = stream.readObject();
++			Class c = (Class) var_3646;
+             if (c.equals(Line2D.class)) {
+                 double x1 = stream.readDouble();
+                 double y1 = stream.readDouble();
+@@ -343,7 +344,7 @@
+                 result = gp;
+             }
+             else {
+-                result = (Shape) stream.readObject();
++                result = (Shape) var_3646;
+             }
+         }
+         return result;

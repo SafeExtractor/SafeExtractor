@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+index 4a54655..aa0d324 100644
+--- a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
++++ b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+@@ -1183,7 +1183,8 @@
+                                 Marker marker,
+                                 Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        RectangleAnchor var_2470 = marker.getLabelAnchor();
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = axis.getRange();
+@@ -1214,7 +1215,7 @@
+             g2.draw(line);
+ 
+             String label = marker.getLabel();
+-            RectangleAnchor anchor = marker.getLabelAnchor();
++            RectangleAnchor anchor = var_2470;
+             if (label != null) {
+                 Font labelFont = marker.getLabelFont();
+                 g2.setFont(labelFont);
+@@ -1316,7 +1317,7 @@
+             }
+ 
+             String label = marker.getLabel();
+-            RectangleAnchor anchor = marker.getLabelAnchor();
++            RectangleAnchor anchor = var_2470;
+             if (label != null) {
+                 Font labelFont = marker.getLabelFont();
+                 g2.setFont(labelFont);

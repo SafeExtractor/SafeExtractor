@@ -1,0 +1,92 @@
+diff --git a/src/com/google/javascript/jscomp/CodeGenerator.java b/src/com/google/javascript/jscomp/CodeGenerator.java
+index 2270c17..5bcd9d7 100644
+--- a/src/com/google/javascript/jscomp/CodeGenerator.java
++++ b/src/com/google/javascript/jscomp/CodeGenerator.java
+@@ -112,12 +112,13 @@
+     Node last = n.getLastChild();
+ 
+     // Handle all binary operators
+-    if (opstr != null && first != last) {
++    int var_1540 = NodeUtil.precedence(type);
++	if (opstr != null && first != last) {
+       Preconditions.checkState(
+           childCount == 2,
+           "Bad binary operator \"%s\": expected 2 arguments but got %s",
+           opstr, childCount);
+-      int p = NodeUtil.precedence(type);
++      int p = var_1540;
+ 
+       // For right-hand-side of operations, only pass context if it's
+       // the IN_FOR_INIT_CLAUSE one.
+@@ -254,7 +255,7 @@
+         // All of these unary operators are right-associative
+         Preconditions.checkState(childCount == 1);
+         cc.addOp(NodeUtil.opToStrNoFail(type), false);
+-        addExpr(first, NodeUtil.precedence(type), Context.OTHER);
++        addExpr(first, var_1540, Context.OTHER);
+         break;
+       }
+ 
+@@ -268,7 +269,7 @@
+           cc.addNumber(-n.getFirstChild().getDouble());
+         } else {
+           cc.addOp(NodeUtil.opToStrNoFail(type), false);
+-          addExpr(first, NodeUtil.precedence(type), Context.OTHER);
++          addExpr(first, var_1540, Context.OTHER);
+         }
+ 
+         break;
+@@ -276,7 +277,7 @@
+ 
+       case Token.HOOK: {
+         Preconditions.checkState(childCount == 3);
+-        int p = NodeUtil.precedence(type);
++        int p = var_1540;
+         addExpr(first, p + 1, context);
+         cc.addOp("?", true);
+         addExpr(first.getNext(), 1, Context.OTHER);
+@@ -470,7 +471,7 @@
+         if (needsParens) {
+           add("(");
+         }
+-        addExpr(first, NodeUtil.precedence(type), context);
++        addExpr(first, var_1540, context);
+         if (needsParens) {
+           add(")");
+         }
+@@ -483,7 +484,7 @@
+         Preconditions.checkState(
+             childCount == 2,
+             "Bad GETELEM: expected 2 children but got %s", childCount);
+-        addExpr(first, NodeUtil.precedence(type), context);
++        addExpr(first, var_1540, context);
+         add("[");
+         add(first.getNext());
+         add("]");
+@@ -506,7 +507,7 @@
+         // A non-zero post-prop value indicates a post inc/dec, default of zero
+         // is a pre-inc/dec.
+         if (postProp != 0) {
+-          addExpr(first, NodeUtil.precedence(type), context);
++          addExpr(first, var_1540, context);
+           cc.addOp(o, false);
+         } else {
+           cc.addOp(o, false);
+@@ -531,7 +532,7 @@
+           addExpr(first, NodeUtil.precedence(Token.COMMA), Context.OTHER);
+           add(")");
+         } else {
+-          addExpr(first, NodeUtil.precedence(type), context);
++          addExpr(first, var_1540, context);
+         }
+         add("(");
+         addList(first.getNext());
+@@ -626,7 +627,7 @@
+ 
+       case Token.NEW:
+         add("new ");
+-        int precedence = NodeUtil.precedence(type);
++        int precedence = var_1540;
+ 
+         // If the first child contains a CALL, then claim higher precedence
+         // to force parentheses. Otherwise, when parsed, NEW will bind to the

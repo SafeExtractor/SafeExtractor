@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/ClosureRewriteClass.java b/src/com/google/javascript/jscomp/ClosureRewriteClass.java
+index 4c1fcea..8a642c7 100644
+--- a/src/com/google/javascript/jscomp/ClosureRewriteClass.java
++++ b/src/com/google/javascript/jscomp/ClosureRewriteClass.java
+@@ -306,18 +306,19 @@
+     // For simplicity add everything into a block, before adding it to the AST.
+     Node block = IR.block();
+ 
+-    if (exprRoot.isVar()) {
++    Node var_859 = cls.constructor.value;
++	if (exprRoot.isVar()) {
+       // example: var ctr = function(){}
+       block.addChildToBack(
+           IR.var(
+-          cls.name.cloneTree(), cls.constructor.value)
++          cls.name.cloneTree(), var_859)
+           .srcref(exprRoot).setJSDocInfo(cls.constructor.info));
+     } else {
+       // example: ns.ctr = function(){}
+       block.addChildToBack(
+           fixupSrcref(IR.exprResult(
+           IR.assign(
+-          cls.name.cloneTree(), cls.constructor.value)
++          cls.name.cloneTree(), var_859)
+           .srcref(exprRoot).setJSDocInfo(cls.constructor.info)
+           .srcref(exprRoot))).setJSDocInfo(cls.constructor.info));
+     }

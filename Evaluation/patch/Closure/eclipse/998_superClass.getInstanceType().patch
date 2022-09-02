@@ -1,0 +1,28 @@
+diff --git a/src/com/google/javascript/jscomp/TypeCheck.java b/src/com/google/javascript/jscomp/TypeCheck.java
+index 96f256d..359709a 100644
+--- a/src/com/google/javascript/jscomp/TypeCheck.java
++++ b/src/com/google/javascript/jscomp/TypeCheck.java
+@@ -1157,10 +1157,11 @@
+     }
+ 
+     FunctionType superClass = ctorType.getSuperClassConstructor();
+-    boolean superClassHasProperty = superClass != null &&
+-        superClass.getInstanceType().hasProperty(propertyName);
++    ObjectType var_998 = superClass.getInstanceType();
++	boolean superClassHasProperty = superClass != null &&
++        var_998.hasProperty(propertyName);
+     boolean superClassHasDeclaredProperty = superClass != null &&
+-        superClass.getInstanceType().isPropertyTypeDeclared(propertyName);
++        var_998.isPropertyTypeDeclared(propertyName);
+ 
+     // For interface
+     boolean superInterfaceHasProperty = false;
+@@ -1233,7 +1234,7 @@
+     if (superClassHasDeclaredProperty) {
+       // there is a superclass implementation
+       JSType superClassPropType =
+-          superClass.getInstanceType().getPropertyType(propertyName);
++          var_998.getPropertyType(propertyName);
+       if (!propertyType.isSubtype(superClassPropType)) {
+         compiler.report(
+             t.makeError(n, HIDDEN_SUPERCLASS_PROPERTY_MISMATCH,

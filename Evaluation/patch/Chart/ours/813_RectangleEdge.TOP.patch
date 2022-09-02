@@ -1,0 +1,37 @@
+diff --git a/source/org/jfree/chart/axis/PeriodAxis.java b/source/org/jfree/chart/axis/PeriodAxis.java
+index 3c0bc0f..37e4c21 100644
+--- a/source/org/jfree/chart/axis/PeriodAxis.java
++++ b/source/org/jfree/chart/axis/PeriodAxis.java
+@@ -824,11 +824,12 @@
+         // work out the initial gap
+         double delta1 = 0.0;
+         FontMetrics fm = g2.getFontMetrics(this.labelInfo[band].getLabelFont());
+-        if (edge == RectangleEdge.BOTTOM) {
++        RectangleEdge var_813 = RectangleEdge.TOP;
++		if (edge == RectangleEdge.BOTTOM) {
+             delta1 = this.labelInfo[band].getPadding().calculateTopOutset(
+                     fm.getHeight());
+         }
+-        else if (edge == RectangleEdge.TOP) {
++        else if (edge == var_813) {
+             delta1 = this.labelInfo[band].getPadding().calculateBottomOutset(
+                     fm.getHeight());
+         }
+@@ -871,7 +872,7 @@
+         float y = (float) (state.getCursor());
+         TextAnchor anchor = TextAnchor.TOP_CENTER;
+         float yDelta = (float) b1.getHeight();
+-        if (edge == RectangleEdge.TOP) {
++        if (edge == var_813) {
+             anchor = TextAnchor.BOTTOM_CENTER;
+             yDelta = -yDelta;
+         }
+@@ -943,7 +944,7 @@
+                 used += this.labelInfo[band].getPadding().calculateBottomOutset(
+                         fm.getHeight());
+             }
+-            else if (edge == RectangleEdge.TOP) {
++            else if (edge == var_813) {
+                 used += this.labelInfo[band].getPadding().calculateTopOutset(
+                         fm.getHeight());
+             }

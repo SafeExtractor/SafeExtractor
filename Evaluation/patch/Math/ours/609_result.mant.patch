@@ -1,0 +1,30 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..d02796f 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -1370,20 +1370,21 @@
+         }
+ 
+         /* normalize the result */
+-        for (int i = 0; i < mant.length; i++) {
+-            if (result.mant[mant.length-1] != 0) {
++        int[] var_609 = result.mant;
++		for (int i = 0; i < mant.length; i++) {
++            if (var_609[mant.length-1] != 0) {
+                 break;
+             }
+             result.shiftLeft();
+             if (i == 0) {
+-                result.mant[0] = aextradigit+bextradigit;
++                var_609[0] = aextradigit+bextradigit;
+                 aextradigit = 0;
+                 bextradigit = 0;
+             }
+         }
+ 
+         /* result is zero if after normalization the most sig. digit is zero */
+-        if (result.mant[mant.length-1] == 0) {
++        if (var_609[mant.length-1] == 0) {
+             result.exp = 0;
+ 
+             if (asign != bsign) {

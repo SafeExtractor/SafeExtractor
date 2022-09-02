@@ -1,0 +1,24 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3269_SerialUtilities.readPaint(stream).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/3269_SerialUtilities.readPaint(stream).patch
+index f73c779..3005234 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3269_SerialUtilities.readPaint(stream).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/3269_SerialUtilities.readPaint(stream).patch
+@@ -1,16 +1,14 @@
+ diff --git a/source/org/jfree/chart/renderer/xy/XYBoxAndWhiskerRenderer.java b/source/org/jfree/chart/renderer/xy/XYBoxAndWhiskerRenderer.java
+-index e7013ab..57a5278 100644
++index e7013ab..ea7ce45 100644
+ --- a/source/org/jfree/chart/renderer/xy/XYBoxAndWhiskerRenderer.java
+ +++ b/source/org/jfree/chart/renderer/xy/XYBoxAndWhiskerRenderer.java
+-@@ -828,8 +828,9 @@
++@@ -828,7 +828,8 @@
+          throws IOException, ClassNotFoundException {
+  
+          stream.defaultReadObject();
+ -        this.boxPaint = SerialUtilities.readPaint(stream);
+--        this.artifactPaint = SerialUtilities.readPaint(stream);
+ +        Paint var_3269 = SerialUtilities.readPaint(stream);
+ +		this.boxPaint = var_3269;
+-+        this.artifactPaint = var_3269;
++         this.artifactPaint = SerialUtilities.readPaint(stream);
+      }
+  
+-     /**

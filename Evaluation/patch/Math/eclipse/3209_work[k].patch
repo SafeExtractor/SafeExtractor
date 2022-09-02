@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+index 8d6a50b..c37b401 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/vector/jacobian/LevenbergMarquardtOptimizer.java
+@@ -782,8 +782,9 @@
+                     // compute the modified diagonal element of R and
+                     // the modified element of (Qty,0)
+                     weightedJacobian[k][pk] = cos * rkk + sin * lmDiag[k];
+-                    final double temp = cos * work[k] + sin * qtbpj;
+-                    qtbpj = -sin * work[k] + cos * qtbpj;
++                    double var_3209 = work[k];
++					final double temp = cos * var_3209 + sin * qtbpj;
++                    qtbpj = -sin * var_3209 + cos * qtbpj;
+                     work[k] = temp;
+ 
+                     // accumulate the tranformation in the row of s

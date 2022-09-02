@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/RenameProperties.java b/src/com/google/javascript/jscomp/RenameProperties.java
+index 7753a36..87d3284 100644
+--- a/src/com/google/javascript/jscomp/RenameProperties.java
++++ b/src/com/google/javascript/jscomp/RenameProperties.java
+@@ -115,9 +115,12 @@
+          *
+          * see #computeAffinityScores() for how the score is computed.
+          */
+-        } else if (p1.affinityScore != p2.affinityScore) {
+-          return p2.affinityScore - p1.affinityScore;
+-        }
++        } else {
++			int var_1359 = p1.affinityScore;
++			if (var_1359 != p2.affinityScore) {
++			  return p2.affinityScore - var_1359;
++			}
++		}
+ 
+         /**
+          * Finally, for determinism, we compare them based on the old name.

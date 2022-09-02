@@ -1,0 +1,26 @@
+diff --git a/src/com/google/javascript/jscomp/TypeValidator.java b/src/com/google/javascript/jscomp/TypeValidator.java
+index 5feecd0..3a79363 100644
+--- a/src/com/google/javascript/jscomp/TypeValidator.java
++++ b/src/com/google/javascript/jscomp/TypeValidator.java
+@@ -743,17 +743,18 @@
+     }
+ 
+     String qualifiedName = n.getQualifiedName();
+-    if (type.isFunctionPrototypeType() ||
++    String var_1482 = type.toString();
++	if (type.isFunctionPrototypeType() ||
+         (type.toObjectType() != null &&
+          type.toObjectType().getConstructor() != null)) {
+-      return type.toString();
++      return var_1482;
+     } else if (qualifiedName != null) {
+       return qualifiedName;
+     } else if (type.isFunctionType()) {
+       // Don't show complex function names.
+       return "function";
+     } else {
+-      return type.toString();
++      return var_1482;
+     }
+   }
+ 

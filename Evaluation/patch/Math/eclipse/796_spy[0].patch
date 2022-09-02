@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+index af670fc..e9862cf 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
++++ b/src/main/java/org/apache/commons/math3/dfp/DfpMath.java
+@@ -346,11 +346,12 @@
+         Dfp[] spx = split(x);
+         Dfp[] spy = new Dfp[2];
+         spy[0] = pow(a.getTwo(), p2);          // use spy[0] temporarily as a divisor
+-        spx[0] = spx[0].divide(spy[0]);
+-        spx[1] = spx[1].divide(spy[0]);
++        Dfp var_796 = spy[0];
++		spx[0] = spx[0].divide(var_796);
++        spx[1] = spx[1].divide(var_796);
+ 
+         spy[0] = a.newInstance("1.33333");    // Use spy[0] for comparison
+-        while (spx[0].add(spx[1]).greaterThan(spy[0])) {
++        while (spx[0].add(spx[1]).greaterThan(var_796)) {
+             spx[0] = spx[0].divide(2);
+             spx[1] = spx[1].divide(2);
+             p2++;
+@@ -363,14 +364,14 @@
+         spx[1] = a.getZero();
+         spy = splitMult(a.getField().getLn2Split(), spx);
+ 
+-        spz[0] = spz[0].add(spy[0]);
++        spz[0] = spz[0].add(var_796);
+         spz[1] = spz[1].add(spy[1]);
+ 
+         spx[0] = a.newInstance(new StringBuilder().append(4*lr).toString());
+         spx[1] = a.getZero();
+         spy = splitMult(a.getField().getLn5Split(), spx);
+ 
+-        spz[0] = spz[0].add(spy[0]);
++        spz[0] = spz[0].add(var_796);
+         spz[1] = spz[1].add(spy[1]);
+ 
+         return a.newInstance(spz[0].add(spz[1]));

@@ -1,0 +1,27 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+index 36f8bd2..2427731 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/MillerUpdatingRegression.java
+@@ -955,10 +955,11 @@
+                     beta, new double[][]{cov}, true, this.nobs, rnk,
+                     this.sumy, this.sumsqy, this.sserr, this.hasIntercept, false);
+         } else {
+-            double[] betaNew = new double[beta.length];
++            int var_4009 = beta.length;
++			double[] betaNew = new double[var_4009];
+             double[] covNew = new double[cov.length];
+ 
+-            int[] newIndices = new int[beta.length];
++            int[] newIndices = new int[var_4009];
+             for (int i = 0; i < nvars; i++) {
+                 for (int j = 0; j < numberOfRegressors; j++) {
+                     if (this.vorder[j] == i) {
+@@ -972,7 +973,7 @@
+             int idx2;
+             int _i;
+             int _j;
+-            for (int i = 0; i < beta.length; i++) {
++            for (int i = 0; i < var_4009; i++) {
+                 _i = newIndices[i];
+                 for (int j = 0; j <= i; j++, idx1++) {
+                     _j = newIndices[j];

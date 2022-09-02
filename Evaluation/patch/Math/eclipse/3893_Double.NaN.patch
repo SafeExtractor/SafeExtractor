@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java b/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java
+index 8b9d8e0..30d4faf 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/RegressionResults.java
+@@ -185,8 +185,9 @@
+      * {@code [0, number of parameters)}.
+      */
+     public double getStdErrorOfEstimate(int index) throws OutOfRangeException {
+-        if (parameters == null) {
+-            return Double.NaN;
++        double var_3893 = Double.NaN;
++		if (parameters == null) {
++            return var_3893;
+         }
+         if (index < 0 || index >= this.parameters.length) {
+             throw new OutOfRangeException(index, 0, this.parameters.length - 1);
+@@ -195,7 +196,7 @@
+         if (!Double.isNaN(var) && var > Double.MIN_VALUE) {
+             return FastMath.sqrt(var);
+         }
+-        return Double.NaN;
++        return var_3893;
+     }
+ 
+     /**

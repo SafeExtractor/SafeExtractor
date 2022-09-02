@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/type/ClosureReverseAbstractInterpreter.java b/src/com/google/javascript/jscomp/type/ClosureReverseAbstractInterpreter.java
+index 8e69edf..64fd2dd 100644
+--- a/src/com/google/javascript/jscomp/type/ClosureReverseAbstractInterpreter.java
++++ b/src/com/google/javascript/jscomp/type/ClosureReverseAbstractInterpreter.java
+@@ -144,11 +144,12 @@
+       .put("isNull", new Function<TypeRestriction, JSType>() {
+         @Override
+         public JSType apply(TypeRestriction p) {
+-          if (p.outcome) {
+-            return p.type != null ?
+-                getNativeType(NULL_TYPE).getGreatestSubtype(p.type) : null;
++          JSType var_2487 = p.type;
++		if (p.outcome) {
++            return var_2487 != null ?
++                getNativeType(NULL_TYPE).getGreatestSubtype(var_2487) : null;
+           } else {
+-            return getRestrictedWithoutNull(p.type);
++            return getRestrictedWithoutNull(var_2487);
+           }
+         }
+       })

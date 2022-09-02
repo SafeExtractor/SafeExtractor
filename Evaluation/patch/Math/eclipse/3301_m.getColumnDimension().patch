@@ -1,0 +1,17 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+index 104bdf5..286af5d 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/CMAESOptimizer.java
+@@ -1195,9 +1195,10 @@
+      * @return Upper triangular part of matrix.
+      */
+     private static RealMatrix triu(final RealMatrix m, int k) {
+-        final double[][] d = new double[m.getRowDimension()][m.getColumnDimension()];
++        int var_3301 = m.getColumnDimension();
++		final double[][] d = new double[m.getRowDimension()][var_3301];
+         for (int r = 0; r < m.getRowDimension(); r++) {
+-            for (int c = 0; c < m.getColumnDimension(); c++) {
++            for (int c = 0; c < var_3301; c++) {
+                 d[r][c] = r <= c - k ? m.getEntry(r, c) : 0;
+             }
+         }

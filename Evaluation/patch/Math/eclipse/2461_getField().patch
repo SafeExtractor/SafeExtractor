@@ -1,0 +1,18 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java b/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java
+index 786e707..a41a0b4 100644
+--- a/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java
++++ b/src/main/java/org/apache/commons/math3/linear/Array2DRowFieldMatrix.java
+@@ -419,10 +419,11 @@
+         if (v.length != nCols) {
+             throw new DimensionMismatchException(v.length, nCols);
+         }
+-        final T[] out = MathArrays.buildArray(getField(), nRows);
++        Field<T> var_2461 = getField();
++		final T[] out = MathArrays.buildArray(var_2461, nRows);
+         for (int row = 0; row < nRows; row++) {
+             final T[] dataRow = data[row];
+-            T sum = getField().getZero();
++            T sum = var_2461.getZero();
+             for (int i = 0; i < nCols; i++) {
+                 sum = sum.add(dataRow[i].multiply(v[i]));
+             }

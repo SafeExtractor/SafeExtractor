@@ -1,0 +1,24 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYDotRenderer.java b/source/org/jfree/chart/renderer/xy/XYDotRenderer.java
+index c5f9b39..e178715 100644
+--- a/source/org/jfree/chart/renderer/xy/XYDotRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYDotRenderer.java
+@@ -65,6 +65,7 @@
+ import org.jfree.chart.LegendItem;
+ import org.jfree.chart.axis.ValueAxis;
+ import org.jfree.chart.event.RendererChangeEvent;
++import org.jfree.chart.labels.XYSeriesLabelGenerator;
+ import org.jfree.chart.plot.PlotOrientation;
+ import org.jfree.chart.plot.XYCrosshairState;
+ import org.jfree.chart.plot.XYPlot;
+@@ -296,8 +297,9 @@
+                         dataset, series);
+             }
+             String urlText = null;
+-            if (getLegendItemURLGenerator() != null) {
+-                urlText = getLegendItemURLGenerator().generateLabel(
++            XYSeriesLabelGenerator var_3053 = getLegendItemURLGenerator();
++			if (var_3053 != null) {
++                urlText = var_3053.generateLabel(
+                         dataset, series);
+             }
+             Paint fillPaint = lookupSeriesPaint(series);

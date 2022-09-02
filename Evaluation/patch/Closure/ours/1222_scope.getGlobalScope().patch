@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..c9b190c 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -1119,12 +1119,13 @@
+       Scope scopeToDeclareIn = scope;
+       if (n.isGetProp() && !scope.isGlobal() &&
+           isQnameRootedInGlobalScope(n)) {
+-        Scope globalScope = scope.getGlobalScope();
++        Scope var_1222 = scope.getGlobalScope();
++		Scope globalScope = var_1222;
+ 
+         // don't try to declare in the global scope if there's
+         // already a symbol there with this name.
+         if (!globalScope.isDeclared(variableName, false)) {
+-          scopeToDeclareIn = scope.getGlobalScope();
++          scopeToDeclareIn = var_1222;
+         }
+       }
+ 

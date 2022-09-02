@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/data/Range.java b/source/org/jfree/data/Range.java
+index c36fd86..793a4ae 100644
+--- a/source/org/jfree/data/Range.java
++++ b/source/org/jfree/data/Range.java
+@@ -308,13 +308,14 @@
+         if (base == null) {
+             throw new IllegalArgumentException("Null 'base' argument.");
+         }
+-        if (allowZeroCrossing) {
++        double var_3798 = base.getUpperBound();
++		if (allowZeroCrossing) {
+             return new Range(base.getLowerBound() + delta,
+-                    base.getUpperBound() + delta);
++                    var_3798 + delta);
+         }
+         else {
+             return new Range(shiftWithNoZeroCrossing(base.getLowerBound(),
+-                    delta), shiftWithNoZeroCrossing(base.getUpperBound(),
++                    delta), shiftWithNoZeroCrossing(var_3798,
+                     delta));
+         }
+     }

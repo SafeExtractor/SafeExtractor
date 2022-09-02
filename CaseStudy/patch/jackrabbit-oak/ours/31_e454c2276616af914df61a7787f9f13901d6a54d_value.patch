@@ -1,0 +1,14 @@
+diff --git a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/Checkpoints.java b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/Checkpoints.java
+index 8a6a98c..fc140d2 100644
+--- a/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/Checkpoints.java
++++ b/oak-core/src/main/java/org/apache/jackrabbit/oak/plugins/document/Checkpoints.java
+@@ -212,7 +212,8 @@
+                 while (reader.matches(',')) {
+                     key = reader.readString();
+                     reader.read(':');
+-                    map.put(key, reader.readString());
++                    String value = reader.readString();
++					map.put(key, value);
+                 }
+                 reader.read('}');
+                 reader.read(JsopReader.END);

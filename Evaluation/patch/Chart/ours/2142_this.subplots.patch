@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/plot/CombinedRangeCategoryPlot.java b/source/org/jfree/chart/plot/CombinedRangeCategoryPlot.java
+index 439eb47..db4ce51 100644
+--- a/source/org/jfree/chart/plot/CombinedRangeCategoryPlot.java
++++ b/source/org/jfree/chart/plot/CombinedRangeCategoryPlot.java
+@@ -275,10 +275,11 @@
+ 
+         Rectangle2D adjustedPlotArea = space.shrink(plotArea, null);
+         // work out the maximum height or width of the non-shared axes...
+-        int n = this.subplots.size();
++        List var_2142 = this.subplots;
++		int n = var_2142.size();
+         int totalWeight = 0;
+         for (int i = 0; i < n; i++) {
+-            CategoryPlot sub = (CategoryPlot) this.subplots.get(i);
++            CategoryPlot sub = (CategoryPlot) var_2142.get(i);
+             totalWeight += sub.getWeight();
+         }
+         // calculate plotAreas of all sub-plots, maximum vertical/horizontal
+@@ -295,7 +296,7 @@
+         }
+ 
+         for (int i = 0; i < n; i++) {
+-            CategoryPlot plot = (CategoryPlot) this.subplots.get(i);
++            CategoryPlot plot = (CategoryPlot) var_2142.get(i);
+ 
+             // calculate sub-plot area
+             if (orientation == PlotOrientation.VERTICAL) {

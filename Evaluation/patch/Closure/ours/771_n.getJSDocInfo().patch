@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/ProcessDefines.java b/src/com/google/javascript/jscomp/ProcessDefines.java
+index e86001d..4135464 100644
+--- a/src/com/google/javascript/jscomp/ProcessDefines.java
++++ b/src/com/google/javascript/jscomp/ProcessDefines.java
+@@ -327,8 +327,9 @@
+         }
+       }
+ 
+-      if (!t.inGlobalScope() &&
+-          n.getJSDocInfo() != null && n.getJSDocInfo().isDefine()) {
++      JSDocInfo var_771 = n.getJSDocInfo();
++	if (!t.inGlobalScope() &&
++          var_771 != null && var_771.isDefine()) {
+         // warn about @define annotations in local scopes
+         compiler.report(
+             t.makeError(n, NON_GLOBAL_DEFINE_INIT_ERROR, ""));

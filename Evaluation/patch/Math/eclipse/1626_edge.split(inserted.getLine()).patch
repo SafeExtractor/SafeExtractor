@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+index 5d8a992..94be98a 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/twod/PolygonsSet.java
+@@ -274,11 +274,12 @@
+                                  Side.HYPER : ((startOffset < 0) ? Side.MINUS : Side.PLUS);
+                 Side endSide   = (FastMath.abs(endOffset) <= hyperplaneThickness) ?
+                                  Side.HYPER : ((endOffset < 0) ? Side.MINUS : Side.PLUS);
+-                switch (startSide) {
++                Vertex var_1626 = edge.split(inserted.getLine());
++				switch (startSide) {
+                     case PLUS:
+                         if (endSide == Side.MINUS) {
+                             // we need to insert a split point on the hyperplane
+-                            final Vertex splitPoint = edge.split(inserted.getLine());
++                            final Vertex splitPoint = var_1626;
+                             minusList.add(splitPoint.getOutgoing());
+                             plusList.add(splitPoint.getIncoming());
+                         } else {
+@@ -288,7 +289,7 @@
+                     case MINUS:
+                         if (endSide == Side.PLUS) {
+                             // we need to insert a split point on the hyperplane
+-                            final Vertex splitPoint = edge.split(inserted.getLine());
++                            final Vertex splitPoint = var_1626;
+                             minusList.add(splitPoint.getIncoming());
+                             plusList.add(splitPoint.getOutgoing());
+                         } else {

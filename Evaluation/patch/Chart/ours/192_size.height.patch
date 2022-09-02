@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/annotations/XYTitleAnnotation.java b/source/org/jfree/chart/annotations/XYTitleAnnotation.java
+index 2178436..8349481 100644
+--- a/source/org/jfree/chart/annotations/XYTitleAnnotation.java
++++ b/source/org/jfree/chart/annotations/XYTitleAnnotation.java
+@@ -300,8 +300,9 @@
+                 new Range(0, maxW), new Range(0, maxH));
+ 
+         Size2D size = this.title.arrange(g2, rc);
+-        Rectangle2D titleRect = new Rectangle2D.Double(0, 0, size.width,
+-                size.height);
++        double var_192 = size.height;
++		Rectangle2D titleRect = new Rectangle2D.Double(0, 0, size.width,
++                var_192);
+         Point2D anchorPoint = RectangleAnchor.coordinates(titleRect,
+                 this.anchor);
+         xx = xx - (float) anchorPoint.getX();
+@@ -324,7 +325,7 @@
+             String url = getURL();
+             if (toolTip != null || url != null) {
+                 addEntity(info, new Rectangle2D.Float(xx, yy,
+-                        (float) size.width, (float) size.height),
++                        (float) size.width, (float) var_192),
+                         rendererIndex, toolTip, url);
+             }
+         }

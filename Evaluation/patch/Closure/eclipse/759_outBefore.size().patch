@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/DataFlowAnalysis.java b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+index 5b39646..8335293 100644
+--- a/src/com/google/javascript/jscomp/DataFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/DataFlowAnalysis.java
+@@ -445,8 +445,9 @@
+       BranchedFlowState<L> state = node.getAnnotation();
+       List<L> outBefore = state.out;
+       state.out = branchedFlowThrough(node.getValue(), state.in);
+-      Preconditions.checkState(outBefore.size() == state.out.size());
+-      for (int i = 0; i < outBefore.size(); i++) {
++      int var_759 = outBefore.size();
++	Preconditions.checkState(var_759 == state.out.size());
++      for (int i = 0; i < var_759; i++) {
+         if (!outBefore.get(i).equals(state.out.get(i))) {
+           return true;
+         }

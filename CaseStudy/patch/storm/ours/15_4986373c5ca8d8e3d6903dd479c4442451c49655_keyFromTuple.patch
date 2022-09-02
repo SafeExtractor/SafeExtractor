@@ -1,0 +1,21 @@
+diff --git a/external/storm-kafka-client/src/main/java/org/apache/storm/kafka/trident/TridentKafkaState.java b/external/storm-kafka-client/src/main/java/org/apache/storm/kafka/trident/TridentKafkaState.java
+index f24fed5..5205058 100644
+--- a/external/storm-kafka-client/src/main/java/org/apache/storm/kafka/trident/TridentKafkaState.java
++++ b/external/storm-kafka-client/src/main/java/org/apache/storm/kafka/trident/TridentKafkaState.java
+@@ -79,12 +79,13 @@
+             for (TridentTuple tuple : tuples) {
+                 topic = topicSelector.getTopic(tuple);
+ 
+-                if(topic != null) {
++                Object keyFromTuple = mapper.getKeyFromTuple(tuple);
++				if(topic != null) {
+                     Future<RecordMetadata> result = producer.send(new ProducerRecord(topic,
+-                            mapper.getKeyFromTuple(tuple), mapper.getMessageFromTuple(tuple)));
++                            keyFromTuple, mapper.getMessageFromTuple(tuple)));
+                     futures.add(result);
+                 } else {
+-                    LOG.warn("skipping key = " + mapper.getKeyFromTuple(tuple) + ", topic selector returned null.");
++                    LOG.warn("skipping key = " + keyFromTuple + ", topic selector returned null.");
+                 }
+             }
+ 

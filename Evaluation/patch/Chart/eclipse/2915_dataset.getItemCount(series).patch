@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
+index aa90f2b..28df8b8 100644
+--- a/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/StandardXYItemRenderer.java
+@@ -765,7 +765,8 @@
+         double transY1 = rangeAxis.valueToJava2D(y1, dataArea, yAxisLocation);
+ 
+         if (getPlotLines()) {
+-            if (this.drawSeriesLineAsPath) {
++            int var_2915 = dataset.getItemCount(series);
++			if (this.drawSeriesLineAsPath) {
+                 State s = (State) state;
+                 if (s.getSeriesIndex() != series) {
+                     // we are starting a new series path
+@@ -795,7 +796,7 @@
+                 else {
+                     s.setLastPointGood(false);
+                 }
+-                if (item == dataset.getItemCount(series) - 1) {
++                if (item == var_2915 - 1) {
+                     if (s.seriesIndex == series) {
+                         // draw path
+                         g2.setStroke(lookupSeriesStroke(series));
+@@ -814,7 +815,7 @@
+                     if (getPlotDiscontinuous()) {
+                         // only draw a line if the gap between the current and
+                         // previous data point is within the threshold
+-                        int numX = dataset.getItemCount(series);
++                        int numX = var_2915;
+                         double minX = dataset.getXValue(series, 0);
+                         double maxX = dataset.getXValue(series, numX - 1);
+                         if (this.gapThresholdType == UnitType.ABSOLUTE) {

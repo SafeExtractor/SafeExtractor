@@ -1,0 +1,51 @@
+diff --git a/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java b/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
+index 8332a80..84da8d5 100644
+--- a/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/StackedXYAreaRenderer.java
+@@ -96,6 +96,7 @@
+ import org.jfree.chart.util.ObjectUtilities;
+ import org.jfree.chart.util.PaintUtilities;
+ import org.jfree.chart.util.PublicCloneable;
++import org.jfree.chart.util.RectangleEdge;
+ import org.jfree.chart.util.SerialUtilities;
+ import org.jfree.chart.util.ShapeUtilities;
+ import org.jfree.data.Range;
+@@ -417,8 +418,9 @@
+         double ph1 = getPreviousHeight(tdataset, series, item);
+         double transX1 = domainAxis.valueToJava2D(x1, dataArea,
+                 plot.getDomainAxisEdge());
+-        double transY1 = rangeAxis.valueToJava2D(y1 + ph1, dataArea,
+-                plot.getRangeAxisEdge());
++        RectangleEdge var_3013 = plot.getRangeAxisEdge();
++		double transY1 = rangeAxis.valueToJava2D(y1 + ph1, dataArea,
++                var_3013);
+ 
+         Paint seriesPaint = getItemPaint(series, item, selected);
+         Stroke seriesStroke = getItemStroke(series, item, selected);
+@@ -435,7 +437,7 @@
+ 
+                 // start from previous height (ph1)
+                 double transY2 = rangeAxis.valueToJava2D(ph1, dataArea,
+-                        plot.getRangeAxisEdge());
++                        var_3013);
+ 
+                 // The first point is (x, 0)
+                 if (orientation == PlotOrientation.VERTICAL) {
+@@ -469,7 +471,7 @@
+                     double transX0 = domainAxis.valueToJava2D(x0, dataArea,
+                             plot.getDomainAxisEdge());
+                     double transY0 = rangeAxis.valueToJava2D(y0 + ph0,
+-                            dataArea, plot.getRangeAxisEdge());
++                            dataArea, var_3013);
+ 
+                     if (orientation == PlotOrientation.VERTICAL) {
+                         areaState.getLine().setLine(transX0, transY0, transX1,
+@@ -488,7 +490,7 @@
+             if (getPlotArea() && item > 0 && item == (itemCount - 1)) {
+ 
+                 double transY2 = rangeAxis.valueToJava2D(ph1, dataArea,
+-                        plot.getRangeAxisEdge());
++                        var_3013);
+ 
+                 if (orientation == PlotOrientation.VERTICAL) {
+                     // Add the last point (x,0)

@@ -1,0 +1,32 @@
+diff --git a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+index 4a54655..8062239 100644
+--- a/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
++++ b/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java
+@@ -1183,7 +1183,8 @@
+                                 Marker marker,
+                                 Rectangle2D dataArea) {
+ 
+-        if (marker instanceof ValueMarker) {
++        PlotOrientation var_2491 = PlotOrientation.HORIZONTAL;
++		if (marker instanceof ValueMarker) {
+             ValueMarker vm = (ValueMarker) marker;
+             double value = vm.getValue();
+             Range range = axis.getRange();
+@@ -1200,7 +1201,7 @@
+             double v = axis.valueToJava2D(value, dataArea,
+                     plot.getRangeAxisEdge());
+             Line2D line = null;
+-            if (orientation == PlotOrientation.HORIZONTAL) {
++            if (orientation == var_2491) {
+                 line = new Line2D.Double(v, dataArea.getMinY(), v,
+                         dataArea.getMaxY());
+             }
+@@ -1251,7 +1252,7 @@
+ 
+             PlotOrientation orientation = plot.getOrientation();
+             Rectangle2D rect = null;
+-            if (orientation == PlotOrientation.HORIZONTAL) {
++            if (orientation == var_2491) {
+                 // clip left and right bounds to data area
+                 low = Math.max(low, dataArea.getMinX());
+                 high = Math.min(high, dataArea.getMaxX());

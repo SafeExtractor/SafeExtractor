@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/random/SobolSequenceGenerator.java b/src/main/java/org/apache/commons/math3/random/SobolSequenceGenerator.java
+index a8ed30a..992430f 100644
+--- a/src/main/java/org/apache/commons/math3/random/SobolSequenceGenerator.java
++++ b/src/main/java/org/apache/commons/math3/random/SobolSequenceGenerator.java
+@@ -243,13 +243,14 @@
+      */
+     private void initDirectionVector(final int d, final int a, final int[] m) {
+         final int s = m.length - 1;
+-        for (int i = 1; i <= s; i++) {
+-            direction[d][i] = ((long) m[i]) << (BITS - i);
++        long[] var_3660 = direction[d];
++		for (int i = 1; i <= s; i++) {
++            var_3660[i] = ((long) m[i]) << (BITS - i);
+         }
+         for (int i = s + 1; i <= BITS; i++) {
+-            direction[d][i] = direction[d][i - s] ^ (direction[d][i - s] >> s);
++            var_3660[i] = var_3660[i - s] ^ (var_3660[i - s] >> s);
+             for (int k = 1; k <= s - 1; k++) {
+-                direction[d][i] ^= ((a >> (s - 1 - k)) & 1) * direction[d][i - k];
++                var_3660[i] ^= ((a >> (s - 1 - k)) & 1) * var_3660[i - k];
+             }
+         }
+     }

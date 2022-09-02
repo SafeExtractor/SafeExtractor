@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/jscomp/JvmMetrics.java b/src/com/google/javascript/jscomp/JvmMetrics.java
+index c7ec381..1a63642 100644
+--- a/src/com/google/javascript/jscomp/JvmMetrics.java
++++ b/src/com/google/javascript/jscomp/JvmMetrics.java
+@@ -114,14 +114,15 @@
+ 
+   private static void writeOverallMemoryUsage(
+       PrintStream out, MemoryUsage usage, String prefix, boolean pretty) {
+-    if (pretty) {
++    long var_1871 = usage.getMax();
++	if (pretty) {
+       out.format("\t%s\n", prefix);
+-      out.format("\t\tavailable         : %s\n", formatBytes(usage.getMax()));
++      out.format("\t\tavailable         : %s\n", formatBytes(var_1871));
+       out.format("\t\tcurrent           : %s\n", formatBytes(usage.getUsed()));
+     } else {
+       prefix = normalizeName(prefix);
+       out.println(normalizeTabularColonPos(
+-          String.format(prefix + "-available-bytes : %d", usage.getMax())));
++          String.format(prefix + "-available-bytes : %d", var_1871)));
+       out.println(normalizeTabularColonPos(
+           String.format(prefix + "-current-bytes : %d", usage.getUsed())));
+     }

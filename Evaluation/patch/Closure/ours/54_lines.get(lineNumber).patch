@@ -1,0 +1,19 @@
+diff --git a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
+index e970d3a..059ce3c 100644
+--- a/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
++++ b/src/com/google/debugging/sourcemap/SourceMapConsumerV3.java
+@@ -217,11 +217,12 @@
+ 
+ 
+     // If the line is empty return the previous mapping.
+-    if (lines.get(lineNumber) == null) {
++    ArrayList<Entry> var_54 = lines.get(lineNumber);
++	if (var_54 == null) {
+       return getPreviousMapping(lineNumber);
+     }
+ 
+-    ArrayList<Entry> entries = lines.get(lineNumber);
++    ArrayList<Entry> entries = var_54;
+     // No empty lists.
+     Preconditions.checkState(entries.size() > 0);
+     if (entries.get(0).getGeneratedColumn() > column) {

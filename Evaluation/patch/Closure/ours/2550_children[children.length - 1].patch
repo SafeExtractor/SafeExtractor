@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/rhino/Node.java b/src/com/google/javascript/rhino/Node.java
+index 55aefbe..3567380 100644
+--- a/src/com/google/javascript/rhino/Node.java
++++ b/src/com/google/javascript/rhino/Node.java
+@@ -471,7 +471,8 @@
+     parent = null;
+     if (children.length != 0) {
+       this.first = children[0];
+-      this.last = children[children.length - 1];
++      Node var_2550 = children[children.length - 1];
++	this.last = var_2550;
+ 
+       for (int i = 1; i < children.length; i++) {
+         if (null != children[i - 1].next) {
+@@ -482,8 +483,8 @@
+         Preconditions.checkArgument(children[i - 1].parent == null);
+         children[i - 1].parent = this;
+       }
+-      Preconditions.checkArgument(children[children.length - 1].parent == null);
+-      children[children.length - 1].parent = this;
++      Preconditions.checkArgument(var_2550.parent == null);
++      var_2550.parent = this;
+ 
+       if (null != this.last.next) {
+         // fail early on loops. implies same node in array twice

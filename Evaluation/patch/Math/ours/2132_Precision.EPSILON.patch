@@ -1,0 +1,50 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+index 4652f61..c8a0c08 100644
+--- a/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/EigenDecomposition.java
+@@ -801,7 +801,8 @@
+             double p = realEigenvalues[idx];
+             double q = imagEigenvalues[idx];
+ 
+-            if (Precision.equals(q, 0.0)) {
++            double var_2132 = Precision.EPSILON;
++			if (Precision.equals(q, 0.0)) {
+                 // Real vector
+                 int l = idx;
+                 matrixT[idx][idx] = 1.0;
+@@ -820,7 +821,7 @@
+                             if (w != 0.0) {
+                                 matrixT[i][idx] = -r / w;
+                             } else {
+-                                matrixT[i][idx] = -r / (Precision.EPSILON * norm);
++                                matrixT[i][idx] = -r / (var_2132 * norm);
+                             }
+                         } else {
+                             // Solve real equations
+@@ -839,7 +840,7 @@
+ 
+                         // Overflow control
+                         double t = FastMath.abs(matrixT[i][idx]);
+-                        if ((Precision.EPSILON * t) * t > 1) {
++                        if ((var_2132 * t) * t > 1) {
+                             for (int j = i; j <= idx; j++) {
+                                 matrixT[j][idx] = matrixT[j][idx] / t;
+                             }
+@@ -891,7 +892,7 @@
+                                         imagEigenvalues[i] * imagEigenvalues[i] - q * q;
+                             final double vi = (realEigenvalues[i] - p) * 2.0 * q;
+                             if (Precision.equals(vr, 0.0) && Precision.equals(vi, 0.0)) {
+-                                vr = Precision.EPSILON * norm *
++                                vr = var_2132 * norm *
+                                      (FastMath.abs(w) + FastMath.abs(q) + FastMath.abs(x) +
+                                       FastMath.abs(y) + FastMath.abs(z));
+                             }
+@@ -916,7 +917,7 @@
+                         // Overflow control
+                         double t = FastMath.max(FastMath.abs(matrixT[i][idx - 1]),
+                                                 FastMath.abs(matrixT[i][idx]));
+-                        if ((Precision.EPSILON * t) * t > 1) {
++                        if ((var_2132 * t) * t > 1) {
+                             for (int j = i; j <= idx; j++) {
+                                 matrixT[j][idx - 1] = matrixT[j][idx - 1] / t;
+                                 matrixT[j][idx]     = matrixT[j][idx] / t;

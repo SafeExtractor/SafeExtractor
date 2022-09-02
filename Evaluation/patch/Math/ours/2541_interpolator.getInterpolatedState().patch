@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java b/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java
+index 3898435..536908e 100644
+--- a/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java
+@@ -413,7 +413,8 @@
+             // last part of the step, after the last event
+             interpolator.setInterpolatedTime(currentT);
+             final double[] currentY = new double[y.length];
+-            expandable.getPrimaryMapper().insertEquationData(interpolator.getInterpolatedState(),
++            double[] var_2541 = interpolator.getInterpolatedState();
++			expandable.getPrimaryMapper().insertEquationData(var_2541,
+                                                              currentY);
+             int index = 0;
+             for (EquationsMapper secondary : expandable.getSecondaryMappers()) {

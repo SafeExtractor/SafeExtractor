@@ -1,0 +1,20 @@
+diff --git a/src/com/google/javascript/jscomp/InlineVariables.java b/src/com/google/javascript/jscomp/InlineVariables.java
+index 5c7408d..43feda1 100644
+--- a/src/com/google/javascript/jscomp/InlineVariables.java
++++ b/src/com/google/javascript/jscomp/InlineVariables.java
+@@ -436,11 +436,12 @@
+      *     to re-parent.
+      */
+     private void inlineValue(Var v, Reference ref, Node value) {
+-      if (ref.isSimpleAssignmentToName()) {
++      Node var_1107 = ref.getParent();
++	if (ref.isSimpleAssignmentToName()) {
+         // This is the initial assignment.
+-        ref.getGrandparent().replaceChild(ref.getParent(), value);
++        ref.getGrandparent().replaceChild(var_1107, value);
+       } else {
+-        ref.getParent().replaceChild(ref.getNode(), value);
++        var_1107.replaceChild(ref.getNode(), value);
+       }
+ 
+       blacklistVarReferencesInTree(value, v.scope);

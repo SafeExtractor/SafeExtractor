@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java b/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
+index 3da752b..3a649bf 100644
+--- a/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
++++ b/src/com/google/javascript/rhino/jstype/PrototypeObjectType.java
+@@ -152,7 +152,8 @@
+   @Override
+   public void setPropertyJSDocInfo(String propertyName, JSDocInfo info) {
+     if (info != null) {
+-      if (properties.getOwnProperty(propertyName) == null) {
++      Property var_2636 = properties.getOwnProperty(propertyName);
++	if (var_2636 == null) {
+         // If docInfo was attached, but the type of the property
+         // was not defined anywhere, then we consider this an explicit
+         // declaration of the property.
+@@ -162,7 +163,7 @@
+ 
+       // The prototype property is not represented as a normal Property.
+       // We probably don't want to attach any JSDoc to it anyway.
+-      Property property = properties.getOwnProperty(propertyName);
++      Property property = var_2636;
+       if (property != null) {
+         property.setJSDocInfo(info);
+       }

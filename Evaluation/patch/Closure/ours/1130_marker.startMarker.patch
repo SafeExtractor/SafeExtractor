@@ -1,0 +1,22 @@
+diff --git a/src/com/google/javascript/jscomp/CreateSyntheticBlocks.java b/src/com/google/javascript/jscomp/CreateSyntheticBlocks.java
+index 3be8a6b..332669d 100644
+--- a/src/com/google/javascript/jscomp/CreateSyntheticBlocks.java
++++ b/src/com/google/javascript/jscomp/CreateSyntheticBlocks.java
+@@ -109,14 +109,15 @@
+     Node originalParent = marker.endMarker.getParent();
+     Node outerBlock = IR.block();
+     outerBlock.setIsSyntheticBlock(true);
+-    originalParent.addChildBefore(outerBlock, marker.startMarker);
++    Node var_1130 = marker.startMarker;
++	originalParent.addChildBefore(outerBlock, var_1130);
+ 
+     Node innerBlock = IR.block();
+     innerBlock.setIsSyntheticBlock(true);
+     // Move everything after the start Node up to the end Node into the inner
+     // block.
+     moveSiblingExclusive(originalParent, innerBlock,
+-        marker.startMarker,
++        var_1130,
+         marker.endMarker);
+ 
+     // Add the start node.

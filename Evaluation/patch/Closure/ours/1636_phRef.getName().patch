@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/ReplaceMessages.java b/src/com/google/javascript/jscomp/ReplaceMessages.java
+index bd435ec..4e87b7d 100644
+--- a/src/com/google/javascript/jscomp/ReplaceMessages.java
++++ b/src/com/google/javascript/jscomp/ReplaceMessages.java
+@@ -212,14 +212,15 @@
+       JsMessage.PlaceholderReference phRef =
+           (JsMessage.PlaceholderReference) part;
+ 
+-      for (Node node : argListNode.children()) {
++      String var_1636 = phRef.getName();
++	for (Node node : argListNode.children()) {
+         if (node.isName()) {
+           String arg = node.getString();
+ 
+           // We ignore the case here because the transconsole only supports
+           // uppercase placeholder names, but function arguments in JavaScript
+           // code can have mixed case.
+-          if (arg.equalsIgnoreCase(phRef.getName())) {
++          if (arg.equalsIgnoreCase(var_1636)) {
+             partNode = IR.name(arg);
+           }
+         }
+@@ -227,7 +228,7 @@
+ 
+       if (partNode == null) {
+         throw new MalformedException(
+-            "Unrecognized message placeholder referenced: " + phRef.getName(),
++            "Unrecognized message placeholder referenced: " + var_1636,
+             argListNode);
+       }
+     } else {

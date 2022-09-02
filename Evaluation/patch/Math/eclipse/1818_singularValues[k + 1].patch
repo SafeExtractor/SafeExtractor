@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java b/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
+index efbe8a2..64c452c 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
++++ b/src/main/java/org/apache/commons/math3/linear/SingularValueDecomposition.java
+@@ -281,10 +281,11 @@
+             // kase = 3     if e[k-1] is negligible, k<p, and
+             //              s(k), ..., s(p) are not negligible (qr step).
+             // kase = 4     if e(p-1) is negligible (convergence).
+-            for (k = p - 2; k >= 0; k--) {
++            double var_1818 = singularValues[k + 1];
++			for (k = p - 2; k >= 0; k--) {
+                 final double threshold
+                     = TINY + EPS * (FastMath.abs(singularValues[k]) +
+-                                    FastMath.abs(singularValues[k + 1]));
++                                    FastMath.abs(var_1818));
+ 
+                 // the following condition is written this way in order
+                 // to break out of the loop when NaN occurs, writing it
+@@ -445,11 +446,11 @@
+                     }
+                     // Order the singular values.
+                     while (k < pp) {
+-                        if (singularValues[k] >= singularValues[k + 1]) {
++                        if (singularValues[k] >= var_1818) {
+                             break;
+                         }
+                         double t = singularValues[k];
+-                        singularValues[k] = singularValues[k + 1];
++                        singularValues[k] = var_1818;
+                         singularValues[k + 1] = t;
+                         if (k < n - 1) {
+                             for (int i = 0; i < n; i++) {

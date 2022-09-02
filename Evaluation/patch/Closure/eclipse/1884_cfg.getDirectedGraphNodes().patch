@@ -1,0 +1,27 @@
+diff --git a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+index 980deff..3b37fe3 100644
+--- a/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
++++ b/src/com/google/javascript/jscomp/ControlFlowAnalysis.java
+@@ -162,10 +162,11 @@
+     DiGraphNode<Node, Branch> entry = cfg.getEntry();
+     prioritizeFromEntryNode(entry);
+ 
+-    if (shouldTraverseFunctions) {
++    Iterable<DiGraphNode<Node, Branch>> var_1884 = cfg.getDirectedGraphNodes();
++	if (shouldTraverseFunctions) {
+       // If we're traversing inner functions, we need to rank the
+       // priority of them too.
+-      for (DiGraphNode<Node, Branch> candidate : cfg.getDirectedGraphNodes()) {
++      for (DiGraphNode<Node, Branch> candidate : var_1884) {
+         Node value = candidate.getValue();
+         if (value != null && value.isFunction()) {
+           Preconditions.checkState(
+@@ -179,7 +180,7 @@
+     // unreachable nodes have not been given a priority. Put them last.
+     // Presumably, it doesn't really matter what priority they get, since
+     // this shouldn't happen in real code.
+-    for (DiGraphNode<Node, Branch> candidate : cfg.getDirectedGraphNodes()) {
++    for (DiGraphNode<Node, Branch> candidate : var_1884) {
+       if (!nodePriorities.containsKey(candidate)) {
+         nodePriorities.put(candidate, ++priorityCounter);
+       }

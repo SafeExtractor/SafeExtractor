@@ -1,0 +1,61 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/FastMathCalc.java b/src/main/java/org/apache/commons/math3/util/FastMathCalc.java
+index 07c0bdc..bd22558 100644
+--- a/src/main/java/org/apache/commons/math3/util/FastMathCalc.java
++++ b/src/main/java/org/apache/commons/math3/util/FastMathCalc.java
+@@ -105,16 +105,17 @@
+         final double result[] = new double[2];
+ 
+         /* Use taylor series for 0 <= x <= 6/8 */
+-        for (int i = 0; i < 7; i++) {
++        double var_4152 = result[1];
++		for (int i = 0; i < 7; i++) {
+             double x = i / 8.0;
+ 
+             slowSin(x, result);
+             SINE_TABLE_A[i] = result[0];
+-            SINE_TABLE_B[i] = result[1];
++            SINE_TABLE_B[i] = var_4152;
+ 
+             slowCos(x, result);
+             COSINE_TABLE_A[i] = result[0];
+-            COSINE_TABLE_B[i] = result[1];
++            COSINE_TABLE_B[i] = var_4152;
+         }
+ 
+         /* Use angle addition formula to complete table to 13/8, just beyond pi/2 */
+@@ -135,7 +136,7 @@
+                 /* compute sine */
+                 splitMult(xs, ys, result);
+                 SINE_TABLE_A[i] = result[0] * 2.0;
+-                SINE_TABLE_B[i] = result[1] * 2.0;
++                SINE_TABLE_B[i] = var_4152 * 2.0;
+ 
+                 /* Compute cosine */
+                 splitMult(ys, ys, as);
+@@ -144,7 +145,7 @@
+                 temps[1] = -temps[1];
+                 splitAdd(as, temps, result);
+                 COSINE_TABLE_A[i] = result[0];
+-                COSINE_TABLE_B[i] = result[1];
++                COSINE_TABLE_B[i] = var_4152;
+             } else {
+                 xs[0] = SINE_TABLE_A[i/2];
+                 xs[1] = SINE_TABLE_B[i/2];
+@@ -160,7 +161,7 @@
+                 splitMult(ys, as, result);
+                 splitAdd(result, temps, result);
+                 SINE_TABLE_A[i] = result[0];
+-                SINE_TABLE_B[i] = result[1];
++                SINE_TABLE_B[i] = var_4152;
+ 
+                 /* Compute cosine */
+                 splitMult(ys, bs, result);
+@@ -169,7 +170,7 @@
+                 temps[1] = -temps[1];
+                 splitAdd(result, temps, result);
+                 COSINE_TABLE_A[i] = result[0];
+-                COSINE_TABLE_B[i] = result[1];
++                COSINE_TABLE_B[i] = var_4152;
+             }
+         }
+ 

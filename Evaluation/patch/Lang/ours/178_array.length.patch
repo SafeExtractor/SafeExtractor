@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/lang3/ArrayUtils.java b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+index a0a499a..1b29751 100644
+--- a/src/main/java/org/apache/commons/lang3/ArrayUtils.java
++++ b/src/main/java/org/apache/commons/lang3/ArrayUtils.java
+@@ -2803,9 +2803,12 @@
+     public static Long[] toObject(final long[] array) {
+         if (array == null) {
+             return null;
+-        } else if (array.length == 0) {
+-            return EMPTY_LONG_OBJECT_ARRAY;
+-        }
++        } else {
++			int var_178 = array.length;
++			if (var_178 == 0) {
++			    return EMPTY_LONG_OBJECT_ARRAY;
++			}
++		}
+         final Long[] result = new Long[array.length];
+         for (int i = 0; i < array.length; i++) {
+             result[i] = Long.valueOf(array[i]);

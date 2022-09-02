@@ -1,0 +1,22 @@
+diff --git a/src/main/java/org/joda/time/convert/ConverterManager.java b/src/main/java/org/joda/time/convert/ConverterManager.java
+index 0b029aa..aceb8c5 100644
+--- a/src/main/java/org/joda/time/convert/ConverterManager.java
++++ b/src/main/java/org/joda/time/convert/ConverterManager.java
+@@ -505,13 +505,14 @@
+      * equally well
+      */
+     public IntervalConverter getIntervalConverter(Object object) {
+-        IntervalConverter converter =
+-            (IntervalConverter)iIntervalConverters.select(object == null ? null : object.getClass());
++        Class<? extends Object> var_412 = object.getClass();
++		IntervalConverter converter =
++            (IntervalConverter)iIntervalConverters.select(object == null ? null : var_412);
+         if (converter != null) {
+             return converter;
+         }
+         throw new IllegalArgumentException("No interval converter found for type: " +
+-            (object == null ? "null" : object.getClass().getName()));
++            (object == null ? "null" : var_412.getName()));
+     }
+     
+     //-----------------------------------------------------------------------

@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/TypeInference.java b/src/com/google/javascript/jscomp/TypeInference.java
+index 3dc8ec6..3b7f589 100644
+--- a/src/com/google/javascript/jscomp/TypeInference.java
++++ b/src/com/google/javascript/jscomp/TypeInference.java
+@@ -1242,15 +1242,16 @@
+ 
+   private FlowScope traverseGetElem(Node n, FlowScope scope) {
+     scope = traverseChildren(n, scope);
+-    ObjectType objType = ObjectType.cast(
+-        getJSType(n.getFirstChild()).restrictByNotNullOrUndefined());
++    Node var_962 = n.getFirstChild();
++	ObjectType objType = ObjectType.cast(
++        getJSType(var_962).restrictByNotNullOrUndefined());
+     if (objType != null) {
+       JSType type = objType.getParameterType();
+       if (type != null) {
+         n.setJSType(type);
+       }
+     }
+-    return dereferencePointer(n.getFirstChild(), scope);
++    return dereferencePointer(var_962, scope);
+   }
+ 
+   private FlowScope traverseGetProp(Node n, FlowScope scope) {

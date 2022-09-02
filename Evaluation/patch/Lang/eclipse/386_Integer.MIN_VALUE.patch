@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/lang3/math/Fraction.java b/src/main/java/org/apache/commons/lang3/math/Fraction.java
+index a722ffe..cd914a5 100644
+--- a/src/main/java/org/apache/commons/lang3/math/Fraction.java
++++ b/src/main/java/org/apache/commons/lang3/math/Fraction.java
+@@ -214,12 +214,13 @@
+             return ZERO; // normalize zero.
+         }
+         // allow 2^k/-2^31 as a valid fraction (where k>0)
+-        if (denominator==Integer.MIN_VALUE && (numerator&1)==0) {
++        int var_386 = Integer.MIN_VALUE;
++		if (denominator==var_386 && (numerator&1)==0) {
+             numerator/=2; denominator/=2;
+         }
+         if (denominator < 0) {
+-            if (numerator==Integer.MIN_VALUE ||
+-                    denominator==Integer.MIN_VALUE) {
++            if (numerator==var_386 ||
++                    denominator==var_386) {
+                 throw new ArithmeticException("overflow: can't negate");
+             }
+             numerator = -numerator;

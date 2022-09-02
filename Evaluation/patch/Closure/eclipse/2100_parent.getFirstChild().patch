@@ -1,0 +1,29 @@
+diff --git a/src/com/google/javascript/jscomp/NodeUtil.java b/src/com/google/javascript/jscomp/NodeUtil.java
+index e36d1fe..fe9a9b7 100644
+--- a/src/com/google/javascript/jscomp/NodeUtil.java
++++ b/src/com/google/javascript/jscomp/NodeUtil.java
+@@ -3197,12 +3197,13 @@
+   static boolean isExecutedExactlyOnce(Node n) {
+     inspect: do {
+       Node parent = n.getParent();
+-      switch (parent.getType()) {
++      Node var_2100 = parent.getFirstChild();
++	switch (parent.getType()) {
+         case Token.IF:
+         case Token.HOOK:
+         case Token.AND:
+         case Token.OR:
+-          if (parent.getFirstChild() != n) {
++          if (var_2100 != n) {
+             return false;
+           }
+           // other ancestors may be conditional
+@@ -3213,7 +3214,7 @@
+               return false;
+             }
+           } else {
+-            if (parent.getFirstChild() != n) {
++            if (var_2100 != n) {
+               return false;
+             }
+           }

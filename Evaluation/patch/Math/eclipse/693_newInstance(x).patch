@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..61aa09a 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -2027,7 +2027,8 @@
+                 x.mant[mant.length-1] = 3000;
+         }
+ 
+-        Dfp dx = newInstance(x);
++        Dfp var_693 = newInstance(x);
++		Dfp dx = var_693;
+ 
+         /* Now that we have the first pass estimate, compute the rest
+        by the formula dx = (y - x*x) / (2x); */
+@@ -2035,7 +2036,7 @@
+         Dfp px  = getZero();
+         Dfp ppx = getZero();
+         while (x.unequal(px)) {
+-            dx = newInstance(x);
++            dx = var_693;
+             dx.sign = -1;
+             dx = dx.add(this.divide(x));
+             dx = dx.divide(2);

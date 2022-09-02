@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+index 6a7c33a..29069c8 100644
+--- a/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optimization/direct/BOBYQAOptimizer.java
+@@ -2061,7 +2061,8 @@
+             if (temp <= qred * 1e-4 * qred) {
+                 state = 190; break;
+             }
+-            temp = Math.sqrt(temp);
++            double var_3407 = Math.sqrt(temp);
++			temp = var_3407;
+             for (int i = 0; i < n; i++) {
+                 if (xbdi.getEntry(i) == ZERO) {
+                     s.setEntry(i, (dredg * trialStepPoint.getEntry(i) - dredsq * gnew.getEntry(i)) / temp);
+@@ -2100,7 +2101,7 @@
+                     d1 = trustRegionCenterOffset.getEntry(i) - lowerDifference.getEntry(i);
+                     temp = ssq - d1 * d1;
+                     if (temp > ZERO) {
+-                        temp = Math.sqrt(temp) - s.getEntry(i);
++                        temp = var_3407 - s.getEntry(i);
+                         if (angbd * temp > tempa) {
+                             angbd = tempa / temp;
+                             iact = i;
+@@ -2111,7 +2112,7 @@
+                     d1 = upperDifference.getEntry(i) - trustRegionCenterOffset.getEntry(i);
+                     temp = ssq - d1 * d1;
+                     if (temp > ZERO) {
+-                        temp = Math.sqrt(temp) + s.getEntry(i);
++                        temp = var_3407 + s.getEntry(i);
+                         if (angbd * temp > tempb) {
+                             angbd = tempb / temp;
+                             iact = i;

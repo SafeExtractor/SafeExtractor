@@ -1,0 +1,32 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1290_current.getParent().patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1290_current.getParent().patch
+index 48b0c3c..310328a 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/1290_current.getParent().patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/1290_current.getParent().patch
+@@ -1,21 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/SymbolTable.java b/src/com/google/javascript/jscomp/SymbolTable.java
+-index 5f0a14c..1c6d8ab 100644
++index 5f0a14c..befa408 100644
+ --- a/src/com/google/javascript/jscomp/SymbolTable.java
+ +++ b/src/com/google/javascript/jscomp/SymbolTable.java
+-@@ -193,12 +193,13 @@
+-    */
+-   public SymbolScope getEnclosingScope(Node n) {
++@@ -195,7 +195,8 @@
+      Node current = n.getParent();
+--    if (n.isName() &&
+-+    Node var_1290 = current.getParent();
+-+	if (n.isName() &&
++     if (n.isName() &&
+          n.getParent().isFunction()) {
+ -      current = current.getParent();
+-+      current = var_1290;
+++      Node var_1290 = current.getParent();
+++	current = var_1290;
+      }
+  
+--    for (; current != null; current = current.getParent()) {
+-+    for (; current != null; current = var_1290) {
+-       if (scopes.containsKey(current)) {
+-         return scopes.get(current);
+-       }
++     for (; current != null; current = current.getParent()) {

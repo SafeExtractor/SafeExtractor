@@ -1,0 +1,22 @@
+diff --git a/source/org/jfree/chart/renderer/category/StackedAreaRenderer.java b/source/org/jfree/chart/renderer/category/StackedAreaRenderer.java
+index f8c3051..a00578c 100644
+--- a/source/org/jfree/chart/renderer/category/StackedAreaRenderer.java
++++ b/source/org/jfree/chart/renderer/category/StackedAreaRenderer.java
+@@ -384,14 +384,15 @@
+         double result = 0.0;
+         Number n;
+         double total = 0.0;
+-        if (this.renderAsPercentages) {
++        boolean var_2718 = this.renderAsPercentages;
++		if (var_2718) {
+             total = DataUtilities.calculateColumnTotal(dataset, category);
+         }
+         for (int i = 0; i < series; i++) {
+             n = dataset.getValue(i, category);
+             if (n != null) {
+                 double v = n.doubleValue();
+-                if (this.renderAsPercentages) {
++                if (var_2718) {
+                     v = v / total;
+                 }
+                 result += v;

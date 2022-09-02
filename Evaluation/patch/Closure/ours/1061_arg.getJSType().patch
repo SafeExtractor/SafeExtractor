@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/TightenTypes.java b/src/com/google/javascript/jscomp/TightenTypes.java
+index 2f1ab6a..29e8b59 100644
+--- a/src/com/google/javascript/jscomp/TightenTypes.java
++++ b/src/com/google/javascript/jscomp/TightenTypes.java
+@@ -888,10 +888,11 @@
+         while (paramIter.hasNext() && argumentIter.hasNext()) {
+           Node arg = argumentIter.next();
+           Node param = paramIter.next();
+-          if (arg.getJSType() != null && arg.getJSType().isFunctionType()) {
++          JSType var_1061 = arg.getJSType();
++		if (var_1061 != null && var_1061.isFunctionType()) {
+             actions.addAll(getImplicitActionsFromArgument(
+                 arg,
+-                arg.getJSType().toMaybeFunctionType().getTypeOfThis()
++                var_1061.toMaybeFunctionType().getTypeOfThis()
+                     .toObjectType(),
+                 param.getJSType()));
+           }

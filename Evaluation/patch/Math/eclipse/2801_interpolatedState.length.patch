@@ -1,0 +1,47 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
+index 15450f4..3e9557b 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
+@@ -317,12 +317,13 @@
+                                           final double oneMinusThetaH)
+       throws MaxCountExceededException {
+ 
+-    if (! vectorsInitialized) {
++    int var_2801 = interpolatedState.length;
++	if (! vectorsInitialized) {
+ 
+       if (v == null) {
+         v = new double[7][];
+         for (int k = 0; k < 7; ++k) {
+-          v[k] = new double[interpolatedState.length];
++          v[k] = new double[var_2801];
+         }
+       }
+ 
+@@ -330,7 +331,7 @@
+       finalizeStep();
+ 
+       // compute the interpolation vectors for this time step
+-      for (int i = 0; i < interpolatedState.length; ++i) {
++      for (int i = 0; i < var_2801; ++i) {
+           final double yDot1  = yDotK[0][i];
+           final double yDot6  = yDotK[5][i];
+           final double yDot7  = yDotK[6][i];
+@@ -371,7 +372,7 @@
+     final double dot6 = theta2 * theta * (4 + theta * (-15 + theta * (18 - 7 * theta)));
+ 
+     if ((previousState != null) && (theta <= 0.5)) {
+-        for (int i = 0; i < interpolatedState.length; ++i) {
++        for (int i = 0; i < var_2801; ++i) {
+             interpolatedState[i] = previousState[i] +
+                     theta * h * (v[0][i] +
+                             eta * (v[1][i] +
+@@ -385,7 +386,7 @@
+                     dot5 * v[5][i] + dot6 * v[6][i];
+         }
+     } else {
+-        for (int i = 0; i < interpolatedState.length; ++i) {
++        for (int i = 0; i < var_2801; ++i) {
+             interpolatedState[i] = currentState[i] -
+                     oneMinusThetaH * (v[0][i] -
+                             theta * (v[1][i] +

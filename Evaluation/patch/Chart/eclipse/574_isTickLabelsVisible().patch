@@ -1,0 +1,26 @@
+diff --git a/source/org/jfree/chart/axis/ValueAxis.java b/source/org/jfree/chart/axis/ValueAxis.java
+index 5972cdd..db2eccf 100644
+--- a/source/org/jfree/chart/axis/ValueAxis.java
++++ b/source/org/jfree/chart/axis/ValueAxis.java
+@@ -685,9 +685,10 @@
+         state.setTicks(ticks);
+         g2.setFont(getTickLabelFont());
+         Iterator iterator = ticks.iterator();
+-        while (iterator.hasNext()) {
++        boolean var_574 = isTickLabelsVisible();
++		while (iterator.hasNext()) {
+             ValueTick tick = (ValueTick) iterator.next();
+-            if (isTickLabelsVisible()) {
++            if (var_574) {
+                 g2.setPaint(getTickLabelPaint());
+                 float[] anchorPoint = calculateAnchorPoint(tick, cursor,
+                         dataArea, edge);
+@@ -730,7 +731,7 @@
+         // need to work out the space used by the tick labels...
+         // so we can update the cursor...
+         double used = 0.0;
+-        if (isTickLabelsVisible()) {
++        if (var_574) {
+             if (edge == RectangleEdge.LEFT) {
+                 used += findMaximumTickLabelWidth(ticks, g2, plotArea,
+                         isVerticalTickLabels());

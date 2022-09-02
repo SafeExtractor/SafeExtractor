@@ -1,0 +1,26 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Math/eclipse/1805_iter.hasNext().patch b/Users/safe/paper/Evaluation/patch/Math/ours/1805_iter.hasNext().patch
+index 7b611bc..e69de29 100644
+--- a/Users/safe/paper/Evaluation/patch/Math/eclipse/1805_iter.hasNext().patch
++++ b/Users/safe/paper/Evaluation/patch/Math/ours/1805_iter.hasNext().patch
+@@ -1,21 +0,0 @@
+-diff --git a/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java b/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+-index 55d2b6a..0335e17 100644
+---- a/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+-+++ b/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+-@@ -478,13 +478,14 @@
+-         checkVectorDimensions(v.getDimension());
+-         double max = 0;
+-         Iterator iter = entries.iterator();
+--        while (iter.hasNext()) {
+-+        boolean var_1805 = iter.hasNext();
+-+		while (var_1805) {
+-             iter.advance();
+-             double delta = FastMath.abs(iter.value() - v.getEntry(iter.key()));
+-             max += delta;
+-         }
+-         iter = v.getEntries().iterator();
+--        while (iter.hasNext()) {
+-+        while (var_1805) {
+-             iter.advance();
+-             int key = iter.key();
+-             if (!entries.containsKey(key)) {

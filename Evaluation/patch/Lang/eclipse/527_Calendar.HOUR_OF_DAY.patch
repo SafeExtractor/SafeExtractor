@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/commons/lang3/time/DateUtils.java b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+index b16af53..2632efc 100644
+--- a/src/main/java/org/apache/commons/lang3/time/DateUtils.java
++++ b/src/main/java/org/apache/commons/lang3/time/DateUtils.java
+@@ -1005,7 +1005,8 @@
+ 
+         boolean roundUp = false;
+         for (final int[] aField : fields) {
+-            for (final int element : aField) {
++            int var_527 = Calendar.HOUR_OF_DAY;
++			for (final int element : aField) {
+                 if (element == field) {
+                     //This is our field... we stop looping
+                     if (modType == MODIFY_CEILING || (modType == MODIFY_ROUND && roundUp)) {
+@@ -1024,10 +1025,10 @@
+                             // This is a special case
+                             // If the time is 0, we round up to 12, otherwise
+                             //  we subtract 12 hours and add 1 day
+-                            if (val.get(Calendar.HOUR_OF_DAY) == 0) {
+-                                val.add(Calendar.HOUR_OF_DAY, 12);
++                            if (val.get(var_527) == 0) {
++                                val.add(var_527, 12);
+                             } else {
+-                                val.add(Calendar.HOUR_OF_DAY, -12);
++                                val.add(var_527, -12);
+                                 val.add(Calendar.DATE, 1);
+                             }
+ // ----------------- Fix for LANG-440 ---------------------- END ---------------
+@@ -1062,10 +1063,10 @@
+                     }
+                     break;
+                 case Calendar.AM_PM:
+-                    if (aField[0] == Calendar.HOUR_OF_DAY) {
++                    if (aField[0] == var_527) {
+                         //If we're going to drop the HOUR field's value,
+                         //  we want to do this our own way.
+-                        offset = val.get(Calendar.HOUR_OF_DAY);
++                        offset = val.get(var_527);
+                         if (offset >= 12) {
+                             offset -= 12;
+                         }

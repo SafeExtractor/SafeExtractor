@@ -1,0 +1,28 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java
+index 0fce857..fcdd8fe 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/TricubicSplineInterpolator.java
+@@ -60,17 +60,18 @@
+         final double[][][] fvalXY = new double[zLen][xLen][yLen];
+         final double[][][] fvalZX = new double[yLen][zLen][xLen];
+         for (int i = 0; i < xLen; i++) {
+-            if (fval[i].length != yLen) {
+-                throw new DimensionMismatchException(fval[i].length, yLen);
++            double[][] var_327 = fval[i];
++			if (var_327.length != yLen) {
++                throw new DimensionMismatchException(var_327.length, yLen);
+             }
+ 
+             for (int j = 0; j < yLen; j++) {
+-                if (fval[i][j].length != zLen) {
+-                    throw new DimensionMismatchException(fval[i][j].length, zLen);
++                if (var_327[j].length != zLen) {
++                    throw new DimensionMismatchException(var_327[j].length, zLen);
+                 }
+ 
+                 for (int k = 0; k < zLen; k++) {
+-                    final double v = fval[i][j][k];
++                    final double v = var_327[j][k];
+                     fvalXY[k][i][j] = v;
+                     fvalZX[j][k][i] = v;
+                 }

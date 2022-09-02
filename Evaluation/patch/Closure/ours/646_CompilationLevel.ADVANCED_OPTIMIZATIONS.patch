@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/CommandLineRunner.java b/src/com/google/javascript/jscomp/CommandLineRunner.java
+index 2d3b139..bd10067 100644
+--- a/src/com/google/javascript/jscomp/CommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/CommandLineRunner.java
+@@ -785,8 +785,9 @@
+ 
+     options.closurePass = flags.process_closure_primitives;
+ 
+-    options.jqueryPass = flags.process_jquery_primitives &&
+-        CompilationLevel.ADVANCED_OPTIMIZATIONS == level;
++    CompilationLevel var_646 = CompilationLevel.ADVANCED_OPTIMIZATIONS;
++	options.jqueryPass = flags.process_jquery_primitives &&
++        var_646 == level;
+ 
+     if (!flags.translationsFile.isEmpty()) {
+       try {
+@@ -796,7 +797,7 @@
+       } catch (IOException e) {
+         throw new RuntimeException("Reading XTB file", e);
+       }
+-    } else if (CompilationLevel.ADVANCED_OPTIMIZATIONS == level) {
++    } else if (var_646 == level) {
+       // In SIMPLE or WHITESPACE mode, if the user hasn't specified a
+       // translations file, they might reasonably try to write their own
+       // implementation of goog.getMsg that makes the substitution at

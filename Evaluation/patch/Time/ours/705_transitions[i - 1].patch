@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+index fa5c164..f295447 100644
+--- a/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
++++ b/src/main/java/org/joda/time/tz/DateTimeZoneBuilder.java
+@@ -1596,9 +1596,10 @@
+                 return instant;
+             }
+             i = ~i;
+-            if (i < transitions.length) {
++            long var_705 = transitions[i - 1];
++			if (i < transitions.length) {
+                 if (i > 0) {
+-                    long prev = transitions[i - 1];
++                    long prev = var_705;
+                     if (prev > Long.MIN_VALUE) {
+                         return prev - 1;
+                     }
+@@ -1611,7 +1612,7 @@
+                     return prev;
+                 }
+             }
+-            long prev = transitions[i - 1];
++            long prev = var_705;
+             if (prev > Long.MIN_VALUE) {
+                 return prev - 1;
+             }

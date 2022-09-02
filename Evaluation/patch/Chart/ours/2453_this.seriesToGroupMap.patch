@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/renderer/category/GroupedStackedBarRenderer.java b/source/org/jfree/chart/renderer/category/GroupedStackedBarRenderer.java
+index 503fc31..09b8599 100644
+--- a/source/org/jfree/chart/renderer/category/GroupedStackedBarRenderer.java
++++ b/source/org/jfree/chart/renderer/category/GroupedStackedBarRenderer.java
+@@ -258,7 +258,8 @@
+         }
+ 
+         double value = dataValue.doubleValue();
+-        Comparable group = this.seriesToGroupMap.getGroup(
++        KeyToGroupMap var_2453 = this.seriesToGroupMap;
++		Comparable group = var_2453.getGroup(
+                 dataset.getRowKey(row));
+         PlotOrientation orientation = plot.getOrientation();
+         double barW0 = calculateBarW0(plot, orientation, dataArea, domainAxis,
+@@ -268,7 +269,7 @@
+         double negativeBase = 0.0;
+ 
+         for (int i = 0; i < row; i++) {
+-            if (group.equals(this.seriesToGroupMap.getGroup(
++            if (group.equals(var_2453.getGroup(
+                     dataset.getRowKey(i)))) {
+                 Number v = dataset.getValue(i, column);
+                 if (v != null) {

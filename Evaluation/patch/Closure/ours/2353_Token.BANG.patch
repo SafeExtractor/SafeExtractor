@@ -1,0 +1,44 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..86164f2 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -1747,22 +1747,25 @@
+       }
+ 
+       return wrapNode(Token.QMARK, parseBasicTypeExpression(token));
+-    } else if (token == JsDocToken.BANG) {
+-      return wrapNode(Token.BANG, parseBasicTypeExpression(next()));
+     } else {
+-      Node basicTypeExpr = parseBasicTypeExpression(token);
+-      if (basicTypeExpr != null) {
+-        if (match(JsDocToken.QMARK)) {
+-          next();
+-          return wrapNode(Token.QMARK, basicTypeExpr);
+-        } else if (match(JsDocToken.BANG)) {
+-          next();
+-          return wrapNode(Token.BANG, basicTypeExpr);
+-        }
+-      }
++		int var_2353 = Token.BANG;
++		if (token == JsDocToken.BANG) {
++		  return wrapNode(var_2353, parseBasicTypeExpression(next()));
++		} else {
++		  Node basicTypeExpr = parseBasicTypeExpression(token);
++		  if (basicTypeExpr != null) {
++		    if (match(JsDocToken.QMARK)) {
++		      next();
++		      return wrapNode(Token.QMARK, basicTypeExpr);
++		    } else if (match(JsDocToken.BANG)) {
++		      next();
++		      return wrapNode(var_2353, basicTypeExpr);
++		    }
++		  }
+ 
+-      return basicTypeExpr;
+-    }
++		  return basicTypeExpr;
++		}
++	}
+   }
+ 
+   /**

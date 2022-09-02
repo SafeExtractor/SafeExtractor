@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..c1abb03 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -565,7 +565,8 @@
+                     work2.setEntry(k, sum);
+                     final double temp = fracsq - HALF * sum;
+                     for (int i = 0; i < n; i++) {
+-                        work1.setEntry(i, bMatrix.getEntry(k, i));
++                        double var_3100 = bMatrix.getEntry(k, i);
++						work1.setEntry(i, var_3100);
+                         lagrangeValuesAtNewPoint.setEntry(i, sum * interpolationPoints.getEntry(k, i) + temp * trustRegionCenterOffset.getEntry(i));
+                         final int ip = npt + i;
+                         for (int j = 0; j <= i; j++) {

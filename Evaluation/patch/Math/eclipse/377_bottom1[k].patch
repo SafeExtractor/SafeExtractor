@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java
+index 14199eb..77e7c65 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/FieldHermiteInterpolator.java
+@@ -116,7 +116,8 @@
+                 }
+                 final T inv = x.subtract(abscissae.get(n - (j + 1))).reciprocal();
+                 for (int k = 0; k < y.length; ++k) {
+-                    bottom1[k] = inv.multiply(bottom0[k].subtract(bottom1[k]));
++                    T var_377 = bottom1[k];
++					bottom1[k] = inv.multiply(bottom0[k].subtract(var_377));
+                 }
+                 bottom0 = bottom1;
+             }

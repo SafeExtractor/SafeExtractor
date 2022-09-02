@@ -1,0 +1,18 @@
+diff --git a/src/com/google/javascript/jscomp/Tracer.java b/src/com/google/javascript/jscomp/Tracer.java
+index 5298e98..c9129b3 100644
+--- a/src/com/google/javascript/jscomp/Tracer.java
++++ b/src/com/google/javascript/jscomp/Tracer.java
+@@ -683,9 +683,10 @@
+         long delta = tracer.stopTimeMs - tracer.startTimeMs;
+         sb.append(longToPaddedString(delta, digitsColWidth));
+         sb.append(" ms ");
+-        if (tracer.extraTracingValues != null) {
+-          for (int i = 0; i < tracer.extraTracingValues.length; i++) {
+-            delta = tracer.extraTracingValues[i];
++        long[] var_1938 = tracer.extraTracingValues;
++		if (var_1938 != null) {
++          for (int i = 0; i < var_1938.length; i++) {
++            delta = var_1938[i];
+             sb.append(String.format("%4d", delta));
+             sb.append(extraTracingStatistics.get(i).getUnits());
+             sb.append(";  ");

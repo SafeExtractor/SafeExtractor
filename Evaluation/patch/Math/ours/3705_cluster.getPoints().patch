@@ -1,0 +1,20 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/clustering/KMeansPlusPlusClusterer.java b/src/main/java/org/apache/commons/math3/stat/clustering/KMeansPlusPlusClusterer.java
+index 8b12d23..d40cce7 100644
+--- a/src/main/java/org/apache/commons/math3/stat/clustering/KMeansPlusPlusClusterer.java
++++ b/src/main/java/org/apache/commons/math3/stat/clustering/KMeansPlusPlusClusterer.java
+@@ -118,12 +118,13 @@
+             // compute the variance of the current list
+             double varianceSum = 0.0;
+             for (final Cluster<T> cluster : clusters) {
+-                if (!cluster.getPoints().isEmpty()) {
++                List<T> var_3705 = cluster.getPoints();
++				if (!var_3705.isEmpty()) {
+ 
+                     // compute the distance variance of the current cluster
+                     final T center = cluster.getCenter();
+                     final Variance stat = new Variance();
+-                    for (final T point : cluster.getPoints()) {
++                    for (final T point : var_3705) {
+                         stat.increment(point.distanceFrom(center));
+                     }
+                     varianceSum += stat.getResult();

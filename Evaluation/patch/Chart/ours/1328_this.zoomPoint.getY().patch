@@ -1,0 +1,36 @@
+diff --git a/source/org/jfree/chart/panel/ZoomHandler.java b/source/org/jfree/chart/panel/ZoomHandler.java
+index ab08810..d10ad87 100644
+--- a/source/org/jfree/chart/panel/ZoomHandler.java
++++ b/source/org/jfree/chart/panel/ZoomHandler.java
+@@ -105,15 +105,16 @@
+             hZoom = panel.isDomainZoomable();
+             vZoom = panel.isRangeZoomable();
+         }
+-        Rectangle2D scaledDataArea = panel.getScreenDataArea(
+-                (int) this.zoomPoint.getX(), (int) this.zoomPoint.getY());
++        double var_1328 = this.zoomPoint.getY();
++		Rectangle2D scaledDataArea = panel.getScreenDataArea(
++                (int) this.zoomPoint.getX(), (int) var_1328);
+         if (hZoom && vZoom) {
+             // selected rectangle shouldn't extend outside the data area...
+             double xmax = Math.min(e.getX(), scaledDataArea.getMaxX());
+             double ymax = Math.min(e.getY(), scaledDataArea.getMaxY());
+             this.zoomRectangle = new Rectangle2D.Double(
+-                    this.zoomPoint.getX(), this.zoomPoint.getY(),
+-                    xmax - this.zoomPoint.getX(), ymax - this.zoomPoint.getY());
++                    this.zoomPoint.getX(), var_1328,
++                    xmax - this.zoomPoint.getX(), ymax - var_1328);
+         }
+         else if (hZoom) {
+             double xmax = Math.min(e.getX(), scaledDataArea.getMaxX());
+@@ -124,8 +125,8 @@
+         else if (vZoom) {
+             double ymax = Math.min(e.getY(), scaledDataArea.getMaxY());
+             this.zoomRectangle = new Rectangle2D.Double(
+-                    scaledDataArea.getMinX(), this.zoomPoint.getY(),
+-                    scaledDataArea.getWidth(), ymax - this.zoomPoint.getY());
++                    scaledDataArea.getMinX(), var_1328,
++                    scaledDataArea.getWidth(), ymax - var_1328);
+         }
+         panel.setZoomRectangle(this.zoomRectangle);
+         // Draw the new zoom rectangle...

@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/data/KeyedObjects2D.java b/source/org/jfree/data/KeyedObjects2D.java
+index 9d812bc..59bf615 100644
+--- a/source/org/jfree/data/KeyedObjects2D.java
++++ b/source/org/jfree/data/KeyedObjects2D.java
+@@ -334,10 +334,11 @@
+         // 2. check whether the column is now empty.
+         allNull = true;
+ 
+-        for (int item = 0, itemCount = this.rows.size(); item < itemCount;
++        int var_3780 = row.getIndex(columnKey);
++		for (int item = 0, itemCount = this.rows.size(); item < itemCount;
+              item++) {
+             row = (KeyedObjects) this.rows.get(item);
+-            int colIndex = row.getIndex(columnKey);
++            int colIndex = var_3780;
+             if (colIndex >= 0 && row.getObject(colIndex) != null) {
+                 allNull = false;
+                 break;
+@@ -348,7 +349,7 @@
+             for (int item = 0, itemCount = this.rows.size(); item < itemCount;
+                  item++) {
+                 row = (KeyedObjects) this.rows.get(item);
+-                int colIndex = row.getIndex(columnKey);
++                int colIndex = var_3780;
+                 if (colIndex >= 0) {
+                     row.removeValue(colIndex);
+                 }

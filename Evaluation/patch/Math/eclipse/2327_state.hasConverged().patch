@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+index 7b1dcc7..ddbf9ae 100644
+--- a/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
++++ b/src/main/java/org/apache/commons/math3/linear/SymmLQ.java
+@@ -1172,7 +1172,8 @@
+         }
+         /* Cause termination if beta is essentially zero. */
+         final boolean earlyStop;
+-        earlyStop = state.betaEqualsZero() || state.hasConverged();
++        boolean var_2327 = state.hasConverged();
++		earlyStop = state.betaEqualsZero() || var_2327;
+         manager.fireInitializationEvent(event);
+         if (!earlyStop) {
+             do {
+@@ -1191,7 +1192,7 @@
+                                                               b,
+                                                               state.getNormOfResidual());
+                 manager.fireIterationPerformedEvent(event);
+-            } while (!state.hasConverged());
++            } while (!var_2327);
+         }
+         event = new DefaultIterativeLinearSolverEvent(this,
+                                                       manager.getIterations(),

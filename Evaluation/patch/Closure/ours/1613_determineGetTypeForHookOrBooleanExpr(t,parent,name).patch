@@ -1,0 +1,31 @@
+diff --git a/src/com/google/javascript/jscomp/GlobalNamespace.java b/src/com/google/javascript/jscomp/GlobalNamespace.java
+index 1cd29f0..da01fa7 100644
+--- a/src/com/google/javascript/jscomp/GlobalNamespace.java
++++ b/src/com/google/javascript/jscomp/GlobalNamespace.java
+@@ -633,7 +633,8 @@
+ 
+       Ref.Type type = Ref.Type.DIRECT_GET;
+       if (parent != null) {
+-        switch (parent.getType()) {
++        com.google.javascript.jscomp.GlobalNamespace.Ref.Type var_1613 = determineGetTypeForHookOrBooleanExpr(t, parent, name);
++		switch (parent.getType()) {
+           case Token.IF:
+           case Token.TYPEOF:
+           case Token.VOID:
+@@ -658,14 +659,14 @@
+             // alias is not getting created for this name if the result is used
+             // in a boolean context or assigned to the same name
+             // (e.g. var a = a || {}).
+-            type = determineGetTypeForHookOrBooleanExpr(t, parent, name);
++            type = var_1613;
+             break;
+           case Token.HOOK:
+             if (n != parent.getFirstChild()) {
+               // This node is y or z in (x?y:z). We only know that an alias is
+               // not getting created for this name if the result is assigned to
+               // the same name (e.g. var a = a ? a : {}).
+-              type = determineGetTypeForHookOrBooleanExpr(t, parent, name);
++              type = var_1613;
+             }
+             break;
+           case Token.DELPROP:

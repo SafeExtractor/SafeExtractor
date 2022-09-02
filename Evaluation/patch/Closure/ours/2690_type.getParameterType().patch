@@ -1,0 +1,17 @@
+diff --git a/src/com/google/javascript/rhino/jstype/ModificationVisitor.java b/src/com/google/javascript/rhino/jstype/ModificationVisitor.java
+index 7d70968..d298953 100644
+--- a/src/com/google/javascript/rhino/jstype/ModificationVisitor.java
++++ b/src/com/google/javascript/rhino/jstype/ModificationVisitor.java
+@@ -159,9 +159,10 @@
+   public JSType caseParameterizedType(ParameterizedType type) {
+     ObjectType genericType = ObjectType.cast(
+         type.getReferencedTypeInternal().visit(this));
+-    JSType paramType = type.getParameterType().visit(this);
++    JSType var_2690 = type.getParameterType();
++	JSType paramType = var_2690.visit(this);
+     if (type.getReferencedTypeInternal() != genericType
+-        || type.getParameterType() != paramType) {
++        || var_2690 != paramType) {
+       type = registry.createParameterizedType(genericType, paramType);
+     }
+     return type;

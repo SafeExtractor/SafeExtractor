@@ -1,0 +1,19 @@
+diff --git a/source/org/jfree/chart/block/GridArrangement.java b/source/org/jfree/chart/block/GridArrangement.java
+index 7aa4631..e062be9 100644
+--- a/source/org/jfree/chart/block/GridArrangement.java
++++ b/source/org/jfree/chart/block/GridArrangement.java
+@@ -292,11 +292,12 @@
+         RectangleConstraint c1 = constraint.toUnconstrainedHeight();
+         Size2D size1 = arrange(container, g2, c1);
+ 
+-        if (constraint.getHeightRange().contains(size1.getHeight())) {
++        double var_880 = size1.getHeight();
++		if (constraint.getHeightRange().contains(var_880)) {
+             return size1;
+         }
+         else {
+-            double h = constraint.getHeightRange().constrain(size1.getHeight());
++            double h = constraint.getHeightRange().constrain(var_880);
+             RectangleConstraint c2 = constraint.toFixedHeight(h);
+             return arrange(container, g2, c2);
+         }

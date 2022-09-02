@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/RemoveUnusedVars.java b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+index 4c84735..d27f92b 100644
+--- a/src/com/google/javascript/jscomp/RemoveUnusedVars.java
++++ b/src/com/google/javascript/jscomp/RemoveUnusedVars.java
+@@ -192,7 +192,8 @@
+   private void traverseNode(Node n, Node parent, Scope scope) {
+     int type = n.getType();
+     Var var = null;
+-    switch (type) {
++    String var_606 = n.getString();
++	switch (type) {
+       case Token.FUNCTION:
+         // If this function is a removable var, then create a continuation
+         // for it instead of traversing immediately.
+@@ -259,7 +260,7 @@
+         break;
+ 
+       case Token.NAME:
+-        var = scope.getVar(n.getString());
++        var = scope.getVar(var_606);
+         if (parent.isVar()) {
+           Node value = n.getFirstChild();
+           if (value != null && var != null && isRemovableVar(var) &&
+@@ -274,7 +275,7 @@
+ 
+           // If arguments is escaped, we just assume the worst and continue
+           // on all the parameters.
+-          if ("arguments".equals(n.getString()) && scope.isLocal()) {
++          if ("arguments".equals(var_606) && scope.isLocal()) {
+             Node lp = scope.getRootNode().getFirstChild().getNext();
+             for (Node a = lp.getFirstChild(); a != null; a = a.getNext()) {
+               markReferencedVar(scope.getVar(a.getString()));

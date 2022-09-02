@@ -1,0 +1,29 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/1377_SerialUtilities.readPaint(stream).patch b/Users/safe/paper/Evaluation/patch/Chart/ours/1377_SerialUtilities.readPaint(stream).patch
+index 308917e..9355145 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/1377_SerialUtilities.readPaint(stream).patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/1377_SerialUtilities.readPaint(stream).patch
+@@ -1,8 +1,8 @@
+ diff --git a/source/org/jfree/chart/plot/FastScatterPlot.java b/source/org/jfree/chart/plot/FastScatterPlot.java
+-index c5a3b1d..0e54aa8 100644
++index c5a3b1d..7730151 100644
+ --- a/source/org/jfree/chart/plot/FastScatterPlot.java
+ +++ b/source/org/jfree/chart/plot/FastScatterPlot.java
+-@@ -1113,12 +1113,13 @@
++@@ -1113,7 +1113,8 @@
+              throws IOException, ClassNotFoundException {
+          stream.defaultReadObject();
+  
+@@ -10,12 +10,5 @@ index c5a3b1d..0e54aa8 100644
+ +        Paint var_1377 = SerialUtilities.readPaint(stream);
+ +		this.paint = var_1377;
+          this.domainGridlineStroke = SerialUtilities.readStroke(stream);
+--        this.domainGridlinePaint = SerialUtilities.readPaint(stream);
+-+        this.domainGridlinePaint = var_1377;
++         this.domainGridlinePaint = SerialUtilities.readPaint(stream);
+  
+-         this.rangeGridlineStroke = SerialUtilities.readStroke(stream);
+--        this.rangeGridlinePaint = SerialUtilities.readPaint(stream);
+-+        this.rangeGridlinePaint = var_1377;
+- 
+-         if (this.domainAxis != null) {
+-             this.domainAxis.addChangeListener(this);

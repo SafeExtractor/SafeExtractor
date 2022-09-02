@@ -1,0 +1,21 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java b/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java
+index 6016825..1a5b9ac 100644
+--- a/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java
++++ b/src/main/java/org/apache/commons/math3/linear/TriDiagonalTransformer.java
+@@ -140,12 +140,13 @@
+             final int m = main.length;
+             double[][] ta = new double[m][m];
+             for (int i = 0; i < m; ++i) {
+-                ta[i][i] = main[i];
++                double[] var_1867 = ta[i];
++				var_1867[i] = main[i];
+                 if (i > 0) {
+-                    ta[i][i - 1] = secondary[i - 1];
++                    var_1867[i - 1] = secondary[i - 1];
+                 }
+                 if (i < main.length - 1) {
+-                    ta[i][i + 1] = secondary[i];
++                    var_1867[i + 1] = secondary[i];
+                 }
+             }
+             cachedT = MatrixUtils.createRealMatrix(ta);

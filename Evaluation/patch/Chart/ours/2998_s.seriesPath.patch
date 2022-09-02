@@ -1,0 +1,54 @@
+diff --git a/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java b/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java
+index 6841362..61649c6 100644
+--- a/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/XYSplineRenderer.java
+@@ -45,6 +45,7 @@
+ package org.jfree.chart.renderer.xy;
+ 
+ import java.awt.Graphics2D;
++import java.awt.geom.GeneralPath;
+ import java.awt.geom.Rectangle2D;
+ import java.util.Vector;
+ 
+@@ -205,12 +206,13 @@
+             if (this.points.size() > 1) {
+                 // we need at least two points to draw something
+                 ControlPoint cp0 = (ControlPoint) this.points.get(0);
+-                s.seriesPath.moveTo(cp0.x, cp0.y);
++                GeneralPath var_2998 = s.seriesPath;
++				var_2998.moveTo(cp0.x, cp0.y);
+                 if (this.points.size() == 2) {
+                     // we need at least 3 points to spline. Draw simple line
+                     // for two points
+                     ControlPoint cp1 = (ControlPoint) this.points.get(1);
+-                    s.seriesPath.lineTo(cp1.x, cp1.y);
++                    var_2998.lineTo(cp1.x, cp1.y);
+                 }
+                 else {
+                     // construct spline
+@@ -253,7 +255,7 @@
+                     // draw
+                     oldt = x[0];
+                     oldy = d[0];
+-                    s.seriesPath.moveTo(oldt, oldy);
++                    var_2998.moveTo(oldt, oldy);
+                     for (int i = 1; i <= np - 1; i++) {
+                         // loop over intervals between nodes
+                         for (int j = 1; j <= this.precision; j++) {
+@@ -263,14 +265,14 @@
+                                     * t2 + (-a[i] / 6 * (t1 + h[i]) * t2
+                                     + d[i]) * t1) / h[i];
+                             t = x[i - 1] + t1;
+-                            s.seriesPath.lineTo(t, y);
++                            var_2998.lineTo(t, y);
+                             oldt = t;
+                             oldy = y;
+                         }
+                     }
+                 }
+                 // draw path
+-                drawShape1(g2, pass, series, item, selected, s.seriesPath);
++                drawShape1(g2, pass, series, item, selected, var_2998);
+             }
+ 
+             // reset points vector

@@ -1,0 +1,32 @@
+diff --git a/src/com/google/javascript/jscomp/TypedScopeCreator.java b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+index 461cddc..c496cd1 100644
+--- a/src/com/google/javascript/jscomp/TypedScopeCreator.java
++++ b/src/com/google/javascript/jscomp/TypedScopeCreator.java
+@@ -514,7 +514,8 @@
+       inputId = t.getInputId();
+       attachLiteralTypes(t, n);
+ 
+-      switch (n.getType()) {
++      JSDocInfo var_1210 = n.getJSDocInfo();
++	switch (n.getType()) {
+         case Token.CALL:
+           checkForClassDefiningCalls(t, n, parent);
+           checkForCallingConventionDefiningCalls(n, delegateCallingConventions);
+@@ -536,7 +537,7 @@
+           Node firstChild = n.getFirstChild();
+           if (firstChild.isGetProp() &&
+               firstChild.isQualifiedName()) {
+-            maybeDeclareQualifiedName(t, n.getJSDocInfo(),
++            maybeDeclareQualifiedName(t, var_1210,
+                 firstChild, n, firstChild.getNext());
+           }
+           break;
+@@ -553,7 +554,7 @@
+           // Handle stubbed properties.
+           if (parent.isExprResult() &&
+               n.isQualifiedName()) {
+-            maybeDeclareQualifiedName(t, n.getJSDocInfo(), n, parent, null);
++            maybeDeclareQualifiedName(t, var_1210, n, parent, null);
+           }
+           break;
+       }

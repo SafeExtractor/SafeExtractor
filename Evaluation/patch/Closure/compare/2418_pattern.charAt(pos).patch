@@ -1,0 +1,38 @@
+diff --git a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2418_pattern.charAt(pos).patch b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2418_pattern.charAt(pos).patch
+index 7402a43..d63d766 100644
+--- a/home/safe/SafeExtractor/Evaluation/patch/Closure/eclipse/2418_pattern.charAt(pos).patch
++++ b/home/safe/SafeExtractor/Evaluation/patch/Closure/ours/2418_pattern.charAt(pos).patch
+@@ -1,29 +1,14 @@
+ diff --git a/src/com/google/javascript/jscomp/regex/RegExpTree.java b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+-index c0c470a..cc0445d 100644
++index c0c470a..e1ce01b 100644
+ --- a/src/com/google/javascript/jscomp/regex/RegExpTree.java
+ +++ b/src/com/google/javascript/jscomp/regex/RegExpTree.java
+-@@ -253,12 +253,13 @@
+-        * {@code (?=...)}.
+-        */
+-       private RegExpTree parseParenthetical() {
+--        Preconditions.checkState(pattern.charAt(pos) == '(');
+-+        char var_2418 = pattern.charAt(pos);
+-+		Preconditions.checkState(var_2418 == '(');
+-         int start = pos;
+-         ++pos;
+-         boolean capturing = true;
+-         int type = 0;
+--        if (pos < limit && pattern.charAt(pos) == '?') {
+-+        if (pos < limit && var_2418 == '?') {
+-           if (pos + 1 < limit) {
+-             capturing = false;
+-             char ch = pattern.charAt(pos + 1);
+-@@ -278,7 +279,7 @@
++@@ -278,7 +278,8 @@
+            }
+          }
+          RegExpTree body = parse();
+ -        if (pos < limit && pattern.charAt(pos) == ')') {
+-+        if (pos < limit && var_2418 == ')') {
+++        char var_2418 = pattern.charAt(pos);
+++		if (pos < limit && var_2418 == ')') {
+            ++pos;
+          } else {
+            throw new IllegalArgumentException(

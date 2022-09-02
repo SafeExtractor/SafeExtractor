@@ -1,0 +1,21 @@
+diff --git a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+index 5ef8850..a9e5bd7 100644
+--- a/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
++++ b/src/com/google/javascript/jscomp/parsing/JsDocInfoParser.java
+@@ -2012,13 +2012,14 @@
+       return newNode(Token.EMPTY);
+     }
+ 
+-    token = next();
++    JsDocToken var_2367 = next();
++	token = var_2367;
+     skipEOLs();
+     if (match(JsDocToken.STRING) && "void".equals(stream.getString())) {
+       next();
+       return newNode(Token.VOID);
+     } else {
+-      return parseTypeExpression(next());
++      return parseTypeExpression(var_2367);
+     }
+   }
+ 

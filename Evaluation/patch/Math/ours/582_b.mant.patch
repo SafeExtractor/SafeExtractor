@@ -1,0 +1,37 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..643ed48 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -946,7 +946,8 @@
+      */
+     private static int compare(final Dfp a, final Dfp b) {
+         // Ignore the sign of zero
+-        if (a.mant[a.mant.length - 1] == 0 && b.mant[b.mant.length - 1] == 0 &&
++        int[] var_582 = b.mant;
++		if (a.mant[a.mant.length - 1] == 0 && var_582[var_582.length - 1] == 0 &&
+             a.nans == FINITE && b.nans == FINITE) {
+             return 0;
+         }
+@@ -973,7 +974,7 @@
+         }
+ 
+         // Handle special case when a or b is zero, by ignoring the exponents
+-        if (b.mant[b.mant.length-1] != 0 && a.mant[b.mant.length-1] != 0) {
++        if (var_582[var_582.length-1] != 0 && a.mant[var_582.length-1] != 0) {
+             if (a.exp < b.exp) {
+                 return -a.sign;
+             }
+@@ -985,11 +986,11 @@
+ 
+         // compare the mantissas
+         for (int i = a.mant.length - 1; i >= 0; i--) {
+-            if (a.mant[i] > b.mant[i]) {
++            if (a.mant[i] > var_582[i]) {
+                 return a.sign;
+             }
+ 
+-            if (a.mant[i] < b.mant[i]) {
++            if (a.mant[i] < var_582[i]) {
+                 return -a.sign;
+             }
+         }

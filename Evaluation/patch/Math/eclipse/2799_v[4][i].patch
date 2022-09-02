@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java b/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
+index 15450f4..5d8dd7d 100644
+--- a/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/ode/nonstiff/DormandPrince853StepInterpolator.java
+@@ -372,16 +372,17 @@
+ 
+     if ((previousState != null) && (theta <= 0.5)) {
+         for (int i = 0; i < interpolatedState.length; ++i) {
+-            interpolatedState[i] = previousState[i] +
++            double var_2799 = v[4][i];
++			interpolatedState[i] = previousState[i] +
+                     theta * h * (v[0][i] +
+                             eta * (v[1][i] +
+                                     theta * (v[2][i] +
+                                             eta * (v[3][i] +
+-                                                    theta * (v[4][i] +
++                                                    theta * (var_2799 +
+                                                             eta * (v[5][i] +
+                                                                     theta * (v[6][i])))))));
+             interpolatedDerivatives[i] =  v[0][i] + dot1 * v[1][i] + dot2 * v[2][i] +
+-                    dot3 * v[3][i] + dot4 * v[4][i] +
++                    dot3 * v[3][i] + dot4 * var_2799 +
+                     dot5 * v[5][i] + dot6 * v[6][i];
+         }
+     } else {

@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/ChartPanel.java b/source/org/jfree/chart/ChartPanel.java
+index 001049a..88c40ce 100644
+--- a/source/org/jfree/chart/ChartPanel.java
++++ b/source/org/jfree/chart/ChartPanel.java
+@@ -1908,8 +1908,9 @@
+             return;
+         }
+ 
+-        if (this.liveMouseHandler != null) {
+-            this.liveMouseHandler.mousePressed(e);
++        AbstractMouseHandler var_89 = this.liveMouseHandler;
++		if (var_89 != null) {
++            var_89.mousePressed(e);
+         }
+         else {
+             AbstractMouseHandler h = null;
+@@ -1931,7 +1932,7 @@
+             }
+             if (found) {
+                 this.liveMouseHandler = h;
+-                this.liveMouseHandler.mousePressed(e);
++                var_89.mousePressed(e);
+             }
+         }
+ 

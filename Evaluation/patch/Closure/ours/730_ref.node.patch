@@ -1,0 +1,34 @@
+diff --git a/src/com/google/javascript/jscomp/CollapseProperties.java b/src/com/google/javascript/jscomp/CollapseProperties.java
+index 3dc9204..332696d 100644
+--- a/src/com/google/javascript/jscomp/CollapseProperties.java
++++ b/src/com/google/javascript/jscomp/CollapseProperties.java
+@@ -533,8 +533,9 @@
+    *     updated
+    */
+   private void updateSimpleDeclaration(String alias, Name refName, Ref ref) {
+-    Node rvalue = ref.node.getNext();
+-    Node parent = ref.node.getParent();
++    Node var_730 = ref.node;
++	Node rvalue = var_730.getNext();
++    Node parent = var_730.getParent();
+     Node gramps = parent.getParent();
+     Node greatGramps = gramps.getParent();
+     Node greatGreatGramps = greatGramps.getParent();
+@@ -547,7 +548,7 @@
+     Node nameNode = NodeUtil.newName(
+         compiler.getCodingConvention(), alias, gramps.getFirstChild(),
+         refName.getFullName());
+-    NodeUtil.copyNameAnnotations(ref.node.getLastChild(), nameNode);
++    NodeUtil.copyNameAnnotations(var_730.getLastChild(), nameNode);
+ 
+     if (gramps.isExprResult()) {
+       // BEFORE: a.b.c = ...;
+@@ -594,7 +595,7 @@
+           .copyInformationFrom(nameNode);
+       currentParent.addChildBefore(stubVar, current);
+ 
+-      parent.replaceChild(ref.node, nameNode);
++      parent.replaceChild(var_730, nameNode);
+     }
+ 
+     compiler.reportCodeChange();

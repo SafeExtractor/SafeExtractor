@@ -1,0 +1,45 @@
+diff --git a/src/main/java/org/joda/time/format/ISODateTimeFormat.java b/src/main/java/org/joda/time/format/ISODateTimeFormat.java
+index af53ee4..6d14cd1 100644
+--- a/src/main/java/org/joda/time/format/ISODateTimeFormat.java
++++ b/src/main/java/org/joda/time/format/ISODateTimeFormat.java
+@@ -217,10 +217,11 @@
+         boolean strictISO) {
+         
+         boolean reducedPrec = false;
+-        if (fields.remove(DateTimeFieldType.year())) {
++        DateTimeFieldType var_574 = DateTimeFieldType.dayOfMonth();
++		if (fields.remove(DateTimeFieldType.year())) {
+             bld.append(Constants.ye);
+             if (fields.remove(DateTimeFieldType.monthOfYear())) {
+-                if (fields.remove(DateTimeFieldType.dayOfMonth())) {
++                if (fields.remove(var_574)) {
+                     // YYYY-MM-DD/YYYYMMDD
+                     appendSeparator(bld, extended);
+                     bld.appendMonthOfYear(2);
+@@ -233,7 +234,7 @@
+                     reducedPrec = true;
+                 }
+             } else {
+-                if (fields.remove(DateTimeFieldType.dayOfMonth())) {
++                if (fields.remove(var_574)) {
+                     // YYYY--DD/YYYY--DD (non-iso)
+                     checkNotStrictISO(fields, strictISO);
+                     bld.appendLiteral('-');
+@@ -249,7 +250,7 @@
+             bld.appendLiteral('-');
+             bld.appendLiteral('-');
+             bld.appendMonthOfYear(2);
+-            if (fields.remove(DateTimeFieldType.dayOfMonth())) {
++            if (fields.remove(var_574)) {
+                 // --MM-DD/--MMDD
+                 appendSeparator(bld, extended);
+                 bld.appendDayOfMonth(2);
+@@ -257,7 +258,7 @@
+                 // --MM/--MM
+                 reducedPrec = true;
+             }
+-        } else if (fields.remove(DateTimeFieldType.dayOfMonth())) {
++        } else if (fields.remove(var_574)) {
+             // ---DD/---DD
+             bld.appendLiteral('-');
+             bld.appendLiteral('-');

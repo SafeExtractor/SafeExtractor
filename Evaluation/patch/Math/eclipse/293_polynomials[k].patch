@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java b/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java
+index 56f7bb3..342aa93 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java
+@@ -145,7 +145,8 @@
+         for (int i = 0; i < topDiagonal.size(); ++i) {
+             double[] tdi = topDiagonal.get(i);
+             for (int k = 0; k < polynomials.length; ++k) {
+-                polynomials[k] = polynomials[k].add(coeff.multiply(polynomial(tdi[k])));
++                PolynomialFunction var_293 = polynomials[k];
++				polynomials[k] = var_293.add(coeff.multiply(polynomial(tdi[k])));
+             }
+             coeff = coeff.multiply(polynomial(-abscissae.get(i), 1.0));
+         }

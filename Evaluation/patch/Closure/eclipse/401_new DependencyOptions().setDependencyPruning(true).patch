@@ -1,0 +1,33 @@
+diff --git a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+index ffa8bfe..bf5d72c 100644
+--- a/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
++++ b/src/com/google/javascript/jscomp/AbstractCommandLineRunner.java
+@@ -218,14 +218,15 @@
+       boolean processCommonJSModules,
+       List<String> closureEntryPoints)
+       throws FlagUsageException {
+-    if (onlyClosureDependencies) {
++    DependencyOptions var_401 = new DependencyOptions()
++		      .setDependencyPruning(true);
++	if (onlyClosureDependencies) {
+       if (closureEntryPoints.isEmpty()) {
+         throw new FlagUsageException("When only_closure_dependencies is "
+           + "on, you must specify at least one closure_entry_point");
+       }
+ 
+-      return new DependencyOptions()
+-          .setDependencyPruning(true)
++      return var_401
+           .setDependencySorting(true)
+           .setMoocherDropping(true)
+           .setEntryPoints(closureEntryPoints);
+@@ -238,8 +239,7 @@
+     }
+     else if (manageClosureDependencies ||
+         closureEntryPoints.size() > 0) {
+-      return new DependencyOptions()
+-          .setDependencyPruning(true)
++      return var_401
+           .setDependencySorting(true)
+           .setMoocherDropping(false)
+           .setEntryPoints(closureEntryPoints);

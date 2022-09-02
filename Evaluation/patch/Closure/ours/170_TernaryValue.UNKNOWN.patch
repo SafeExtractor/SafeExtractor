@@ -1,0 +1,30 @@
+diff --git a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+index 7378f31..148f380 100644
+--- a/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
++++ b/src/com/google/javascript/jscomp/PeepholeFoldConstants.java
+@@ -1150,12 +1150,13 @@
+    */
+   private static TernaryValue compareAsNumbers(int op, Node left, Node right) {
+     Double leftValue = NodeUtil.getNumberValue(left);
+-    if (leftValue == null) {
+-      return TernaryValue.UNKNOWN;
++    TernaryValue var_170 = TernaryValue.UNKNOWN;
++	if (leftValue == null) {
++      return var_170;
+     }
+     Double rightValue = NodeUtil.getNumberValue(right);
+     if (rightValue == null) {
+-      return TernaryValue.UNKNOWN;
++      return var_170;
+     }
+ 
+     double lv = leftValue;
+@@ -1181,7 +1182,7 @@
+       case Token.GT:
+         return TernaryValue.forBoolean(lv >  rv);
+       default:
+-        return TernaryValue.UNKNOWN;  // don't handle that op
++        return var_170;  // don't handle that op
+     }
+   }
+ 

@@ -1,0 +1,50 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java b/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java
+index 3898435..16486a8 100644
+--- a/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java
++++ b/src/main/java/org/apache/commons/math3/ode/AbstractIntegrator.java
+@@ -343,7 +343,8 @@
+                 }
+             }
+ 
+-            while (!occurringEvents.isEmpty()) {
++            int var_2538 = y.length;
++			while (!occurringEvents.isEmpty()) {
+ 
+                 // handle the chronologically first event
+                 final Iterator<EventState> iterator = occurringEvents.iterator();
+@@ -357,7 +358,7 @@
+ 
+                 // get state at event time
+                 interpolator.setInterpolatedTime(eventT);
+-                final double[] eventYComplete = new double[y.length];
++                final double[] eventYComplete = new double[var_2538];
+                 expandable.getPrimaryMapper().insertEquationData(interpolator.getInterpolatedState(),
+                                                                  eventYComplete);
+                 int index = 0;
+@@ -379,7 +380,7 @@
+ 
+                 if (isLastStep) {
+                     // the event asked to stop integration
+-                    System.arraycopy(eventYComplete, 0, y, 0, y.length);
++                    System.arraycopy(eventYComplete, 0, y, 0, var_2538);
+                     return eventT;
+                 }
+ 
+@@ -391,7 +392,7 @@
+                     // some event handler has triggered changes that
+                     // invalidate the derivatives, we need to recompute them
+                     interpolator.setInterpolatedTime(eventT);
+-                    System.arraycopy(eventYComplete, 0, y, 0, y.length);
++                    System.arraycopy(eventYComplete, 0, y, 0, var_2538);
+                     computeDerivatives(eventT, y, yDot);
+                     resetOccurred = true;
+                     return eventT;
+@@ -412,7 +413,7 @@
+ 
+             // last part of the step, after the last event
+             interpolator.setInterpolatedTime(currentT);
+-            final double[] currentY = new double[y.length];
++            final double[] currentY = new double[var_2538];
+             expandable.getPrimaryMapper().insertEquationData(interpolator.getInterpolatedState(),
+                                                              currentY);
+             int index = 0;

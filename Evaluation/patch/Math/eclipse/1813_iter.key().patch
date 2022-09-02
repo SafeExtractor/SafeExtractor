@@ -1,0 +1,26 @@
+diff --git a/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java b/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+index 55d2b6a..98d276f 100644
+--- a/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
++++ b/src/main/java/org/apache/commons/math3/linear/OpenMapRealVector.java
+@@ -742,9 +742,10 @@
+             return false;
+         }
+         Iterator iter = entries.iterator();
+-        while (iter.hasNext()) {
++        int var_1813 = iter.key();
++		while (iter.hasNext()) {
+             iter.advance();
+-            double test = other.getEntry(iter.key());
++            double test = other.getEntry(var_1813);
+             if (Double.doubleToLongBits(test) != Double.doubleToLongBits(iter.value())) {
+                 return false;
+             }
+@@ -753,7 +754,7 @@
+         while (iter.hasNext()) {
+             iter.advance();
+             double test = iter.value();
+-            if (Double.doubleToLongBits(test) != Double.doubleToLongBits(getEntry(iter.key()))) {
++            if (Double.doubleToLongBits(test) != Double.doubleToLongBits(getEntry(var_1813))) {
+                 return false;
+             }
+         }

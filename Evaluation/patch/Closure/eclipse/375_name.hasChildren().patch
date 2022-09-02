@@ -1,0 +1,61 @@
+diff --git a/src/com/google/javascript/jscomp/CoalesceVariableNames.java b/src/com/google/javascript/jscomp/CoalesceVariableNames.java
+index 11bb585..37fb157 100644
+--- a/src/com/google/javascript/jscomp/CoalesceVariableNames.java
++++ b/src/com/google/javascript/jscomp/CoalesceVariableNames.java
+@@ -353,30 +353,33 @@
+     if (NodeUtil.isForIn(parent)) {
+       var.removeChild(name);
+       parent.replaceChild(var, name);
+-    } else if (var.hasOneChild()) {
+-      // The removal is easy when there is only one variable in the VAR node.
+-      if (name.hasChildren()) {
+-        Node value = name.removeFirstChild();
+-        var.removeChild(name);
+-        Node assign = IR.assign(name, value).srcref(name);
+-
+-        // We don't need to wrapped it with EXPR node if it is within a FOR.
+-        if (!parent.isFor()) {
+-          assign = NodeUtil.newExpr(assign);
+-        }
+-        parent.replaceChild(var, assign);
+-
+-      } else {
+-        // In a FOR( ; ; ) node, we must replace it with an EMPTY or else it
+-        // becomes a FOR-IN node.
+-        NodeUtil.removeChild(parent, var);
+-      }
+     } else {
+-      if (!name.hasChildren()) {
+-        var.removeChild(name);
+-      }
+-      // We are going to leave duplicated declaration otherwise.
+-    }
++		boolean var_375 = name.hasChildren();
++		if (var.hasOneChild()) {
++		  // The removal is easy when there is only one variable in the VAR node.
++		  if (var_375) {
++		    Node value = name.removeFirstChild();
++		    var.removeChild(name);
++		    Node assign = IR.assign(name, value).srcref(name);
++
++		    // We don't need to wrapped it with EXPR node if it is within a FOR.
++		    if (!parent.isFor()) {
++		      assign = NodeUtil.newExpr(assign);
++		    }
++		    parent.replaceChild(var, assign);
++
++		  } else {
++		    // In a FOR( ; ; ) node, we must replace it with an EMPTY or else it
++		    // becomes a FOR-IN node.
++		    NodeUtil.removeChild(parent, var);
++		  }
++		} else {
++		  if (!var_375) {
++		    var.removeChild(name);
++		  }
++		  // We are going to leave duplicated declaration otherwise.
++		}
++	}
+   }
+ 
+   private static class LiveRangeChecker

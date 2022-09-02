@@ -1,0 +1,16 @@
+diff --git a/src/com/google/javascript/jscomp/AmbiguateProperties.java b/src/com/google/javascript/jscomp/AmbiguateProperties.java
+index 68c3996..cca58f1 100644
+--- a/src/com/google/javascript/jscomp/AmbiguateProperties.java
++++ b/src/com/google/javascript/jscomp/AmbiguateProperties.java
+@@ -223,8 +223,9 @@
+       colorMap.put(i, nameGen.generateNextName());
+     }
+     for (GraphNode<Property, Void> node : graph.getNodes()) {
+-      node.getValue().newName = colorMap.get(node.getAnnotation().hashCode());
+-      renamingMap.put(node.getValue().oldName, node.getValue().newName);
++      Property var_693 = node.getValue();
++	var_693.newName = colorMap.get(node.getAnnotation().hashCode());
++      renamingMap.put(var_693.oldName, var_693.newName);
+     }
+ 
+     // Update the string nodes.

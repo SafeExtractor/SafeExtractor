@@ -1,0 +1,41 @@
+diff --git a/source/org/jfree/chart/renderer/xy/CyclicXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/CyclicXYItemRenderer.java
+index bdc095b..6f04647 100644
+--- a/source/org/jfree/chart/renderer/xy/CyclicXYItemRenderer.java
++++ b/source/org/jfree/chart/renderer/xy/CyclicXYItemRenderer.java
+@@ -207,7 +207,8 @@
+             yBoundMapping = cnay.isBoundMappedToLastCycle();
+             // The split may occur in either x splitted segments, if any, but
+             // not in both
+-            if ((y[0] != y[1]) && ((ycycleBound >= y[0])
++            double var_2967 = y[2];
++			if ((y[0] != y[1]) && ((ycycleBound >= y[0])
+                     && (ycycleBound <= y[1])
+                     || (ycycleBound >= y[1]) && (ycycleBound <= y[0]))) {
+                 double[] nx = new double[x.length + 1];
+@@ -217,20 +218,20 @@
+                 nx[1] = (x[1] - x[0]) * (ycycleBound - y[0])
+                         / (y[1] - y[0]) + x[0];
+                 if (x.length == 3) {
+-                    nx[3] = x[2]; ny[3] = y[2];
++                    nx[3] = x[2]; ny[3] = var_2967;
+                 }
+                 x = nx; y = ny;
+             }
+-            else if ((x.length == 3) && (y[1] != y[2]) && ((ycycleBound >= y[1])
+-                    && (ycycleBound <= y[2])
+-                    || (ycycleBound >= y[2]) && (ycycleBound <= y[1]))) {
++            else if ((x.length == 3) && (y[1] != var_2967) && ((ycycleBound >= y[1])
++                    && (ycycleBound <= var_2967)
++                    || (ycycleBound >= var_2967) && (ycycleBound <= y[1]))) {
+                 double[] nx = new double[4];
+                 double[] ny = new double[4];
+                 nx[0] = x[0]; nx[1] = x[1]; nx[3] = x[2];
+-                ny[0] = y[0]; ny[1] = y[1]; ny[3] = y[2];
++                ny[0] = y[0]; ny[1] = y[1]; ny[3] = var_2967;
+                 ny[2] = ycycleBound;
+                 nx[2] = (x[2] - x[1]) * (ycycleBound - y[1])
+-                        / (y[2] - y[1]) + x[1];
++                        / (var_2967 - y[1]) + x[1];
+                 x = nx; y = ny;
+             }
+         }

@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+index 4e56fef..130b293 100644
+--- a/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
++++ b/src/main/java/org/joda/time/tz/ZoneInfoCompiler.java
+@@ -164,7 +164,8 @@
+      */
+     static void writeZoneInfoMap(DataOutputStream dout, Map<String, DateTimeZone> zimap) throws IOException {
+         // Build the string pool.
+-        Map<String, Short> idToIndex = new HashMap<String, Short>(zimap.size());
++        int var_612 = zimap.size();
++		Map<String, Short> idToIndex = new HashMap<String, Short>(var_612);
+         TreeMap<Short, String> indexToId = new TreeMap<Short, String>();
+ 
+         short count = 0;
+@@ -196,7 +197,7 @@
+         }
+ 
+         // Write the mappings.
+-        dout.writeShort(zimap.size());
++        dout.writeShort(var_612);
+         for (Entry<String, DateTimeZone> entry : zimap.entrySet()) {
+             String id = entry.getKey();
+             dout.writeShort(idToIndex.get(id).shortValue());

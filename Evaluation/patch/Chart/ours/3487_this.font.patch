@@ -1,0 +1,30 @@
+diff --git a/source/org/jfree/chart/title/TextTitle.java b/source/org/jfree/chart/title/TextTitle.java
+index 74e534a..90dde09 100644
+--- a/source/org/jfree/chart/title/TextTitle.java
++++ b/source/org/jfree/chart/title/TextTitle.java
+@@ -553,10 +553,11 @@
+      */
+     protected Size2D arrangeFN(Graphics2D g2, double w) {
+         RectangleEdge position = getPosition();
+-        if (position == RectangleEdge.TOP || position == RectangleEdge.BOTTOM) {
++        Font var_3487 = this.font;
++		if (position == RectangleEdge.TOP || position == RectangleEdge.BOTTOM) {
+             float maxWidth = (float) w;
+-            g2.setFont(this.font);
+-            this.content = TextUtilities.createTextBlock(this.text, this.font,
++            g2.setFont(var_3487);
++            this.content = TextUtilities.createTextBlock(this.text, var_3487,
+                     this.paint, maxWidth, this.maximumLinesToDisplay,
+                     new G2TextMeasurer(g2));
+             this.content.setLineAlignment(this.textAlignment);
+@@ -571,8 +572,8 @@
+         else if (position == RectangleEdge.LEFT || position
+                 == RectangleEdge.RIGHT) {
+             float maxWidth = Float.MAX_VALUE;
+-            g2.setFont(this.font);
+-            this.content = TextUtilities.createTextBlock(this.text, this.font,
++            g2.setFont(var_3487);
++            this.content = TextUtilities.createTextBlock(this.text, var_3487,
+                     this.paint, maxWidth, this.maximumLinesToDisplay,
+                     new G2TextMeasurer(g2));
+             this.content.setLineAlignment(this.textAlignment);

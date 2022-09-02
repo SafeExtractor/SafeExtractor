@@ -1,0 +1,24 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/AbstractMultipleLinearRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/AbstractMultipleLinearRegression.java
+index 1bf17de..5576d0c 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/AbstractMultipleLinearRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/AbstractMultipleLinearRegression.java
+@@ -185,15 +185,16 @@
+         if (x == null) {
+             throw new NullArgumentException();
+         }
+-        if (x.length == 0) {
++        int var_3941 = x.length;
++		if (var_3941 == 0) {
+             throw new NoDataException();
+         }
+         if (noIntercept) {
+             this.xMatrix = new Array2DRowRealMatrix(x, true);
+         } else { // Augment design matrix with initial unitary column
+             final int nVars = x[0].length;
+-            final double[][] xAug = new double[x.length][nVars + 1];
+-            for (int i = 0; i < x.length; i++) {
++            final double[][] xAug = new double[var_3941][nVars + 1];
++            for (int i = 0; i < var_3941; i++) {
+                 if (x[i].length != nVars) {
+                     throw new DimensionMismatchException(x[i].length, nVars);
+                 }

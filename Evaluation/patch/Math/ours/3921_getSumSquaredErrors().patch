@@ -1,0 +1,41 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java b/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java
+index c1a681a..f870b33 100644
+--- a/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java
++++ b/src/main/java/org/apache/commons/math3/stat/regression/SimpleRegression.java
+@@ -769,7 +769,8 @@
+      * estimate the regression parameters
+      */
+     public RegressionResults regress() throws ModelSpecificationException, NoDataException {
+-        if (hasIntercept) {
++        double var_3921 = getSumSquaredErrors();
++		if (hasIntercept) {
+           if( n < 3 ){
+               throw new NoDataException(LocalizedFormats.NOT_ENOUGH_DATA_REGRESSION);
+           }
+@@ -783,7 +784,7 @@
+                 mse/sumXX };
+               return new RegressionResults(
+                       params, new double[][]{vcv}, true, n, 2,
+-                      sumY, _syy, getSumSquaredErrors(),true,false);
++                      sumY, _syy, var_3921,true,false);
+           }else{
+               final double[] params = new double[]{ sumY / n, Double.NaN };
+               //final double mse = getMeanSquareError();
+@@ -793,7 +794,7 @@
+                 Double.NaN };
+               return new RegressionResults(
+                       params, new double[][]{vcv}, true, n, 1,
+-                      sumY, sumYY, getSumSquaredErrors(),true,false);
++                      sumY, sumYY, var_3921,true,false);
+           }
+         }else{
+           if (n < 2) {
+@@ -804,7 +805,7 @@
+           final double[] params = new double[]{ sumXY/sumXX };
+           return new RegressionResults(
+                       params, new double[][]{vcv}, true, n, 1,
+-                      sumY, sumYY, getSumSquaredErrors(),false,false);
++                      sumY, sumYY, var_3921,false,false);
+           }else{
+           final double[] vcv = new double[]{Double.NaN };
+           final double[] params = new double[]{ Double.NaN };

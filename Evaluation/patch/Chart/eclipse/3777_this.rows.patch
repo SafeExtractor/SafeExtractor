@@ -1,0 +1,45 @@
+diff --git a/source/org/jfree/data/KeyedObjects2D.java b/source/org/jfree/data/KeyedObjects2D.java
+index 9d812bc..50d15c1 100644
+--- a/source/org/jfree/data/KeyedObjects2D.java
++++ b/source/org/jfree/data/KeyedObjects2D.java
+@@ -316,7 +316,8 @@
+ 
+         // 1. check whether the row is now empty.
+         boolean allNull = true;
+-        KeyedObjects row = (KeyedObjects) this.rows.get(rowIndex);
++        List var_3777 = this.rows;
++		KeyedObjects row = (KeyedObjects) var_3777.get(rowIndex);
+ 
+         for (int item = 0, itemCount = row.getItemCount(); item < itemCount;
+              item++) {
+@@ -328,15 +329,15 @@
+ 
+         if (allNull) {
+             this.rowKeys.remove(rowIndex);
+-            this.rows.remove(rowIndex);
++            var_3777.remove(rowIndex);
+         }
+ 
+         // 2. check whether the column is now empty.
+         allNull = true;
+ 
+-        for (int item = 0, itemCount = this.rows.size(); item < itemCount;
++        for (int item = 0, itemCount = var_3777.size(); item < itemCount;
+              item++) {
+-            row = (KeyedObjects) this.rows.get(item);
++            row = (KeyedObjects) var_3777.get(item);
+             int colIndex = row.getIndex(columnKey);
+             if (colIndex >= 0 && row.getObject(colIndex) != null) {
+                 allNull = false;
+@@ -345,9 +346,9 @@
+         }
+ 
+         if (allNull) {
+-            for (int item = 0, itemCount = this.rows.size(); item < itemCount;
++            for (int item = 0, itemCount = var_3777.size(); item < itemCount;
+                  item++) {
+-                row = (KeyedObjects) this.rows.get(item);
++                row = (KeyedObjects) var_3777.get(item);
+                 int colIndex = row.getIndex(columnKey);
+                 if (colIndex >= 0) {
+                     row.removeValue(colIndex);

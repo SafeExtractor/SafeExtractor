@@ -1,0 +1,23 @@
+diff --git a/source/org/jfree/chart/renderer/DefaultPolarItemRenderer.java b/source/org/jfree/chart/renderer/DefaultPolarItemRenderer.java
+index 66eaade..2803543 100644
+--- a/source/org/jfree/chart/renderer/DefaultPolarItemRenderer.java
++++ b/source/org/jfree/chart/renderer/DefaultPolarItemRenderer.java
+@@ -213,7 +213,8 @@
+ 
+         g2.setFont(plot.getAngleLabelFont());
+         g2.setStroke(plot.getAngleGridlineStroke());
+-        g2.setPaint(plot.getAngleGridlinePaint());
++        Paint var_2386 = plot.getAngleGridlinePaint();
++		g2.setPaint(var_2386);
+ 
+         double axisMin = plot.getAxis().getLowerBound();
+         double maxRadius = plot.getMaxRadius();
+@@ -225,7 +226,7 @@
+             NumberTick tick = (NumberTick) iterator.next();
+             Point p = plot.translateValueThetaRadiusToJava2D(
+                     tick.getNumber().doubleValue(), maxRadius, dataArea);
+-            g2.setPaint(plot.getAngleGridlinePaint());
++            g2.setPaint(var_2386);
+             g2.drawLine(center.x, center.y, p.x, p.y);
+             if (plot.isAngleLabelsVisible()) {
+                 int x = p.x;

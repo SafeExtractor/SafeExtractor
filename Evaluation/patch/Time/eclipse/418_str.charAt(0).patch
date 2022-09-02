@@ -1,0 +1,25 @@
+diff --git a/src/main/java/org/joda/time/convert/StringConverter.java b/src/main/java/org/joda/time/convert/StringConverter.java
+index ea4553e..fa73ec7 100644
+--- a/src/main/java/org/joda/time/convert/StringConverter.java
++++ b/src/main/java/org/joda/time/convert/StringConverter.java
+@@ -102,8 +102,9 @@
+         String original = (String) object;
+         String str = original;
+         int len = str.length();
+-        if (len >= 4 &&
+-            (str.charAt(0) == 'P' || str.charAt(0) == 'p') &&
++        char var_418 = str.charAt(0);
++		if (len >= 4 &&
++            (var_418 == 'P' || var_418 == 'p') &&
+             (str.charAt(1) == 'T' || str.charAt(1) == 't') &&
+             (str.charAt(len - 1) == 'S' || str.charAt(len - 1) == 's')) {
+             // ok
+@@ -116,7 +117,7 @@
+         for (int i = 0; i < str.length(); i++) {
+             if (str.charAt(i) >= '0' && str.charAt(i) <= '9') {
+                 // ok
+-            } else if (i == 0 && str.charAt(0) == '-') {
++            } else if (i == 0 && var_418 == '-') {
+             	// ok
+             	negative = true;
+             } else if (i > (negative ? 1 : 0) && str.charAt(i) == '.' && dot == -1) {

@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/Compiler.java b/src/com/google/javascript/jscomp/Compiler.java
+index 5f6b2c5..6c1cd23 100644
+--- a/src/com/google/javascript/jscomp/Compiler.java
++++ b/src/com/google/javascript/jscomp/Compiler.java
+@@ -26,6 +26,7 @@
+ import com.google.common.io.CharStreams;
+ import com.google.javascript.jscomp.CompilerOptions.DevMode;
+ import com.google.javascript.jscomp.CompilerOptions.LanguageMode;
++import com.google.javascript.jscomp.CompilerOptions.TracerMode;
+ import com.google.javascript.jscomp.ReferenceCollectingCallback.ReferenceCollection;
+ import com.google.javascript.jscomp.Scope.Var;
+ import com.google.javascript.jscomp.deps.SortedDependencies;
+@@ -1301,8 +1302,9 @@
+     externAndJsRoot = IR.block(externsRoot, jsRoot);
+     externAndJsRoot.setIsSyntheticBlock(true);
+ 
+-    if (options.tracer.isOn()) {
+-      tracker = new PerformanceTracker(jsRoot, options.tracer);
++    TracerMode var_508 = options.tracer;
++	if (var_508.isOn()) {
++      tracker = new PerformanceTracker(jsRoot, var_508);
+       addChangeHandler(tracker.getCodeChangeHandler());
+     }
+ 

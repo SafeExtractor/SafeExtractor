@@ -1,0 +1,28 @@
+diff --git a/src/org/mockito/internal/verification/checkers/NumberOfInvocationsChecker.java b/src/org/mockito/internal/verification/checkers/NumberOfInvocationsChecker.java
+index 17dec9f..cfc88e0 100644
+--- a/src/org/mockito/internal/verification/checkers/NumberOfInvocationsChecker.java
++++ b/src/org/mockito/internal/verification/checkers/NumberOfInvocationsChecker.java
+@@ -37,13 +37,16 @@
+         if (wantedCount > actualCount) {
+             Location lastInvocation = finder.getLastLocation(actualInvocations);
+             reporter.tooLittleActualInvocations(new Discrepancy(wantedCount, actualCount), wanted, lastInvocation);
+-        } else if (wantedCount == 0 && actualCount > 0) {
+-            Location firstUndesired = actualInvocations.get(wantedCount).getLocation();
+-            reporter.neverWantedButInvoked(wanted, firstUndesired); 
+-        } else if (wantedCount < actualCount) {
+-            Location firstUndesired = actualInvocations.get(wantedCount).getLocation();
+-            reporter.tooManyActualInvocations(wantedCount, actualCount, wanted, firstUndesired);
+-        }
++        } else {
++			Invocation var_137 = actualInvocations.get(wantedCount);
++			if (wantedCount == 0 && actualCount > 0) {
++			    Location firstUndesired = var_137.getLocation();
++			    reporter.neverWantedButInvoked(wanted, firstUndesired); 
++			} else if (wantedCount < actualCount) {
++			    Location firstUndesired = var_137.getLocation();
++			    reporter.tooManyActualInvocations(wantedCount, actualCount, wanted, firstUndesired);
++			}
++		}
+         
+         invocationMarker.markVerified(actualInvocations, wanted);
+     }

@@ -1,0 +1,24 @@
+diff --git a/src/com/google/javascript/jscomp/AstParallelizer.java b/src/com/google/javascript/jscomp/AstParallelizer.java
+index 4b7a67c..2a8a4f4 100644
+--- a/src/com/google/javascript/jscomp/AstParallelizer.java
++++ b/src/com/google/javascript/jscomp/AstParallelizer.java
+@@ -219,13 +219,14 @@
+     public void reattach() {
+       // If the place-holder no longer has a parent, this implies the function
+       // has been removed from the AST.
+-      if (placeHolder.getParent() != null) {
++      Node var_2114 = placeHolder.getParent();
++	if (var_2114 != null) {
+         if (before == null) {
+-          placeHolder.getParent().addChildrenToFront(original);
+-          placeHolder.getParent().removeChildAfter(original);
++          var_2114.addChildrenToFront(original);
++          var_2114.removeChildAfter(original);
+         } else {
+-          placeHolder.getParent().addChildAfter(original, before);
+-          placeHolder.getParent().removeChildAfter(original);
++          var_2114.addChildAfter(original, before);
++          var_2114.removeChildAfter(original);
+         }
+       }
+     }

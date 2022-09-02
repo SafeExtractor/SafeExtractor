@@ -1,0 +1,25 @@
+diff --git a/source/org/jfree/chart/plot/PiePlot.java b/source/org/jfree/chart/plot/PiePlot.java
+index 34014e9..b909d1e 100644
+--- a/source/org/jfree/chart/plot/PiePlot.java
++++ b/source/org/jfree/chart/plot/PiePlot.java
+@@ -2673,8 +2673,9 @@
+         if (Math.abs(angle) > getMinimumArcAngleToDraw()) {
+             double ep = 0.0;
+             double mep = getMaximumExplodePercent();
+-            if (mep > 0.0) {
+-                ep = getExplodePercent(getSectionKey(section)) / mep;
++            Comparable var_2041 = getSectionKey(section);
++			if (mep > 0.0) {
++                ep = getExplodePercent(var_2041) / mep;
+             }
+             Rectangle2D arcBounds = getArcBounds(state.getPieArea(),
+                     state.getExplodedPieArea(), angle1, angle, ep);
+@@ -2691,7 +2692,7 @@
+                 }
+             }
+             else if (currentPass == 1) {
+-                Comparable key = getSectionKey(section);
++                Comparable key = var_2041;
+                 Paint paint = lookupSectionPaint(key, selected);
+                 Shape savedClip = g2.getClip();
+                 g2.clip(arc);

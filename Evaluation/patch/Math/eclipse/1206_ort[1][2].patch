@@ -1,0 +1,46 @@
+diff --git a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+index c5c8ecf..3ae4911 100644
+--- a/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
++++ b/src/main/java/org/apache/commons/math3/geometry/euclidean/threed/FieldRotation.java
+@@ -343,11 +343,12 @@
+         // the first one greater than 0.45 is safe (this leads to a simple
+         // test since qi = 0.45 implies 4 qi^2 - 1 = -0.19)
+         T s = ort[0][0].add(ort[1][1]).add(ort[2][2]);
+-        if (s.getReal() > -0.19) {
++        T var_1206 = ort[1][2];
++		if (s.getReal() > -0.19) {
+             // compute q0 and deduce q1, q2 and q3
+             quat[0] = s.add(1.0).sqrt().multiply(0.5);
+             T inv = quat[0].reciprocal().multiply(0.25);
+-            quat[1] = inv.multiply(ort[1][2].subtract(ort[2][1]));
++            quat[1] = inv.multiply(var_1206.subtract(ort[2][1]));
+             quat[2] = inv.multiply(ort[2][0].subtract(ort[0][2]));
+             quat[3] = inv.multiply(ort[0][1].subtract(ort[1][0]));
+         } else {
+@@ -356,7 +357,7 @@
+                 // compute q1 and deduce q0, q2 and q3
+                 quat[1] = s.add(1.0).sqrt().multiply(0.5);
+                 T inv = quat[1].reciprocal().multiply(0.25);
+-                quat[0] = inv.multiply(ort[1][2].subtract(ort[2][1]));
++                quat[0] = inv.multiply(var_1206.subtract(ort[2][1]));
+                 quat[2] = inv.multiply(ort[0][1].add(ort[1][0]));
+                 quat[3] = inv.multiply(ort[0][2].add(ort[2][0]));
+             } else {
+@@ -367,7 +368,7 @@
+                     T inv = quat[2].reciprocal().multiply(0.25);
+                     quat[0] = inv.multiply(ort[2][0].subtract(ort[0][2]));
+                     quat[1] = inv.multiply(ort[0][1].add(ort[1][0]));
+-                    quat[3] = inv.multiply(ort[2][1].add(ort[1][2]));
++                    quat[3] = inv.multiply(ort[2][1].add(var_1206));
+                 } else {
+                     // compute q3 and deduce q0, q1 and q2
+                     s = ort[2][2].subtract(ort[0][0]).subtract(ort[1][1]);
+@@ -375,7 +376,7 @@
+                     T inv = quat[3].reciprocal().multiply(0.25);
+                     quat[0] = inv.multiply(ort[0][1].subtract(ort[1][0]));
+                     quat[1] = inv.multiply(ort[0][2].add(ort[2][0]));
+-                    quat[2] = inv.multiply(ort[2][1].add(ort[1][2]));
++                    quat[2] = inv.multiply(ort[2][1].add(var_1206));
+                 }
+             }
+         }

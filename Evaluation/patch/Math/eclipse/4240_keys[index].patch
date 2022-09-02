@@ -1,0 +1,35 @@
+diff --git a/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java b/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java
+index fd55902..c80bc8d 100644
+--- a/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java
++++ b/src/main/java/org/apache/commons/math3/util/OpenIntToFieldHashMap.java
+@@ -281,9 +281,10 @@
+                                           final int key, final int mask) {
+         final int hash = hashOf(key);
+         int index = hash & mask;
+-        if (states[index] == FREE) {
++        int var_4240 = keys[index];
++		if (states[index] == FREE) {
+             return index;
+-        } else if (states[index] == FULL && keys[index] == key) {
++        } else if (states[index] == FULL && var_4240 == key) {
+             return changeIndexSign(index);
+         }
+ 
+@@ -295,7 +296,7 @@
+                 index = j & mask;
+                 perturb >>= PERTURB_SHIFT;
+ 
+-                if (states[index] != FULL || keys[index] == key) {
++                if (states[index] != FULL || var_4240 == key) {
+                     break;
+                 }
+             }
+@@ -316,7 +317,7 @@
+ 
+             if (states[index] == FREE) {
+                 return firstRemoved;
+-            } else if (states[index] == FULL && keys[index] == key) {
++            } else if (states[index] == FULL && var_4240 == key) {
+                 return changeIndexSign(index);
+             }
+ 

@@ -1,0 +1,27 @@
+diff --git a/source/org/jfree/chart/panel/ZoomHandler.java b/source/org/jfree/chart/panel/ZoomHandler.java
+index ab08810..f059145 100644
+--- a/source/org/jfree/chart/panel/ZoomHandler.java
++++ b/source/org/jfree/chart/panel/ZoomHandler.java
+@@ -235,18 +235,19 @@
+      */
+     private void drawZoomRectangle(ChartPanel panel, Graphics2D g2,
+             boolean xor) {
+-        if (this.zoomRectangle != null) {
++        Rectangle2D var_1347 = this.zoomRectangle;
++		if (var_1347 != null) {
+             if (xor) {
+                  // Set XOR mode to draw the zoom rectangle
+                 g2.setXORMode(Color.gray);
+             }
+             if (panel.getFillZoomRectangle()) {
+                 g2.setPaint(panel.getZoomFillPaint());
+-                g2.fill(this.zoomRectangle);
++                g2.fill(var_1347);
+             }
+             else {
+                 g2.setPaint(panel.getZoomOutlinePaint());
+-                g2.draw(this.zoomRectangle);
++                g2.draw(var_1347);
+             }
+             if (xor) {
+                 // Reset to the default 'overwrite' mode

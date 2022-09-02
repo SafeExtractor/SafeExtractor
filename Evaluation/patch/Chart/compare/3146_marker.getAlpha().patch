@@ -1,0 +1,43 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3146_marker.getAlpha().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/3146_marker.getAlpha().patch
+index 93314c2..3f84b99 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/3146_marker.getAlpha().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/3146_marker.getAlpha().patch
+@@ -1,32 +1,16 @@
+ diff --git a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+-index a558724..ad96080 100644
++index a558724..2a094b9 100644
+ --- a/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+ +++ b/source/org/jfree/chart/renderer/xy/AbstractXYItemRenderer.java
+-@@ -1539,7 +1539,8 @@
+-                                 Marker marker,
+-                                 Rectangle2D dataArea) {
+- 
+--        if (marker instanceof ValueMarker) {
+-+        float var_3146 = marker.getAlpha();
+-+		if (marker instanceof ValueMarker) {
+-             ValueMarker vm = (ValueMarker) marker;
+-             double value = vm.getValue();
+-             Range range = rangeAxis.getRange();
+-@@ -1562,7 +1563,7 @@
++@@ -1561,8 +1561,9 @@
++             }
+  
+              final Composite originalComposite = g2.getComposite();
+-             g2.setComposite(AlphaComposite.getInstance(
++-            g2.setComposite(AlphaComposite.getInstance(
+ -                    AlphaComposite.SRC_OVER, marker.getAlpha()));
+++            float var_3146 = marker.getAlpha();
+++			g2.setComposite(AlphaComposite.getInstance(
+ +                    AlphaComposite.SRC_OVER, var_3146));
+              g2.setPaint(marker.getPaint());
+              g2.setStroke(marker.getStroke());
+              g2.draw(line);
+-@@ -1620,7 +1621,7 @@
+- 
+-             final Composite originalComposite = g2.getComposite();
+-             g2.setComposite(AlphaComposite.getInstance(
+--                    AlphaComposite.SRC_OVER, marker.getAlpha()));
+-+                    AlphaComposite.SRC_OVER, var_3146));
+-             Paint p = marker.getPaint();
+-             if (p instanceof GradientPaint) {
+-                 GradientPaint gp = (GradientPaint) p;

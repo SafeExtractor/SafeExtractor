@@ -1,0 +1,25 @@
+diff --git a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+index 9d1b56c..2c3f49f 100644
+--- a/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
++++ b/src/com/google/javascript/jscomp/DeadAssignmentsElimination.java
+@@ -131,16 +131,17 @@
+       if (n == null) {
+         continue;
+       }
+-      switch (n.getType()) {
++      Node var_237 = NodeUtil.getConditionExpression(n);
++	switch (n.getType()) {
+         case Token.IF:
+         case Token.WHILE:
+         case Token.DO:
+-          tryRemoveAssignment(t, NodeUtil.getConditionExpression(n), state);
++          tryRemoveAssignment(t, var_237, state);
+           continue;
+         case Token.FOR:
+           if (!NodeUtil.isForIn(n)) {
+             tryRemoveAssignment(
+-                t, NodeUtil.getConditionExpression(n), state);
++                t, var_237, state);
+           }
+           continue;
+         case Token.SWITCH:

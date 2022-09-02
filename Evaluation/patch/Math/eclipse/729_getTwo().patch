@@ -1,0 +1,23 @@
+diff --git a/src/main/java/org/apache/commons/math3/dfp/Dfp.java b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+index e6de61f..a3f3e64 100644
+--- a/src/main/java/org/apache/commons/math3/dfp/Dfp.java
++++ b/src/main/java/org/apache/commons/math3/dfp/Dfp.java
+@@ -2443,7 +2443,8 @@
+             exponent--;
+         }
+ 
+-        Dfp tempDfp = DfpMath.pow(getTwo(), exponent);
++        Dfp var_729 = getTwo();
++		Dfp tempDfp = DfpMath.pow(var_729, exponent);
+         while (tempDfp.lessThan(y) || tempDfp.equals(y)) {
+             tempDfp = tempDfp.multiply(2);
+             exponent++;
+@@ -2452,7 +2453,7 @@
+ 
+         /* We have the exponent, now work on the mantissa */
+ 
+-        y = y.divide(DfpMath.pow(getTwo(), exponent));
++        y = y.divide(DfpMath.pow(var_729, exponent));
+         if (exponent > -1023) {
+             y = y.subtract(getOne());
+         }

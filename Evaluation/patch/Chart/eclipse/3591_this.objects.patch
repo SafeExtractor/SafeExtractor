@@ -1,0 +1,21 @@
+diff --git a/source/org/jfree/chart/util/AbstractObjectList.java b/source/org/jfree/chart/util/AbstractObjectList.java
+index eac3110..f39ebe9 100644
+--- a/source/org/jfree/chart/util/AbstractObjectList.java
++++ b/source/org/jfree/chart/util/AbstractObjectList.java
+@@ -123,12 +123,13 @@
+         if (index < 0) {
+             throw new IllegalArgumentException("Requires index >= 0.");
+         }
+-        if (index >= this.objects.length) {
++        Object[] var_3591 = this.objects;
++		if (index >= var_3591.length) {
+             Object[] enlarged = new Object[index + this.increment];
+-            System.arraycopy(this.objects, 0, enlarged, 0, this.objects.length);
++            System.arraycopy(var_3591, 0, enlarged, 0, var_3591.length);
+             this.objects = enlarged;
+         }
+-        this.objects[index] = object;
++        var_3591[index] = object;
+         this.size = Math.max(this.size, index + 1);
+     }
+ 

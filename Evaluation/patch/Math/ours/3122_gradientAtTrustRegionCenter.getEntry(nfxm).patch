@@ -1,0 +1,16 @@
+diff --git a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+index efc0110..e17b948 100644
+--- a/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
++++ b/src/main/java/org/apache/commons/math3/optim/nonlinear/scalar/noderiv/BOBYQAOptimizer.java
+@@ -1708,8 +1708,9 @@
+                     final int ih = nfx * (nfx + 1) / 2 - 1;
+                     final double tmp = (f - fbeg) / stepb;
+                     final double diff = stepb - stepa;
+-                    modelSecondDerivativesValues.setEntry(ih, TWO * (tmp - gradientAtTrustRegionCenter.getEntry(nfxm)) / diff);
+-                    gradientAtTrustRegionCenter.setEntry(nfxm, (gradientAtTrustRegionCenter.getEntry(nfxm) * stepb - tmp * stepa) / diff);
++                    double var_3122 = gradientAtTrustRegionCenter.getEntry(nfxm);
++					modelSecondDerivativesValues.setEntry(ih, TWO * (tmp - var_3122) / diff);
++                    gradientAtTrustRegionCenter.setEntry(nfxm, (var_3122 * stepb - tmp * stepa) / diff);
+                     if (stepa * stepb < ZERO && f < fAtInterpolationPoints.getEntry(nfm - n)) {
+                         fAtInterpolationPoints.setEntry(nfm, fAtInterpolationPoints.getEntry(nfm - n));
+                         fAtInterpolationPoints.setEntry(nfm - n, f);

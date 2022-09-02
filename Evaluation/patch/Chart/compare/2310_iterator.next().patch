@@ -1,0 +1,35 @@
+diff --git a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2310_iterator.next().patch b/Users/safe/paper/Evaluation/patch/Chart/ours/2310_iterator.next().patch
+index f43763b..f1a9b02 100644
+--- a/Users/safe/paper/Evaluation/patch/Chart/eclipse/2310_iterator.next().patch
++++ b/Users/safe/paper/Evaluation/patch/Chart/ours/2310_iterator.next().patch
+@@ -1,25 +1,14 @@
+ diff --git a/source/org/jfree/chart/plot/dial/DialPlot.java b/source/org/jfree/chart/plot/dial/DialPlot.java
+-index acb9f7c..b08dc91 100644
++index acb9f7c..fe32bd7 100644
+ --- a/source/org/jfree/chart/plot/dial/DialPlot.java
+ +++ b/source/org/jfree/chart/plot/dial/DialPlot.java
+-@@ -554,8 +554,9 @@
+-         }
++@@ -555,7 +555,8 @@
+  
+          Iterator iterator = this.layers.iterator();
+--        while (iterator.hasNext()) {
+--            DialLayer current = (DialLayer) iterator.next();
+-+        Object var_2310 = iterator.next();
+-+		while (iterator.hasNext()) {
+-+            DialLayer current = (DialLayer) var_2310;
+-             if (current.isVisible()) {
+-                 if (current.isClippedToWindow()) {
+-                     Shape savedClip = g2.getClip();
+-@@ -572,7 +573,7 @@
+-         // draw the pointers
+-         iterator = this.pointers.iterator();
+          while (iterator.hasNext()) {
+--            DialPointer current = (DialPointer) iterator.next();
+-+            DialPointer current = (DialPointer) var_2310;
++-            DialLayer current = (DialLayer) iterator.next();
+++            Object var_2310 = iterator.next();
+++			DialLayer current = (DialLayer) var_2310;
+              if (current.isVisible()) {
+                  if (current.isClippedToWindow()) {
+                      Shape savedClip = g2.getClip();

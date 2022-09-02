@@ -1,0 +1,14 @@
+diff --git a/src/main/java/org/apache/commons/math3/analysis/differentiation/FiniteDifferencesDifferentiator.java b/src/main/java/org/apache/commons/math3/analysis/differentiation/FiniteDifferencesDifferentiator.java
+index 623b6ac..efd0d99 100644
+--- a/src/main/java/org/apache/commons/math3/analysis/differentiation/FiniteDifferencesDifferentiator.java
++++ b/src/main/java/org/apache/commons/math3/analysis/differentiation/FiniteDifferencesDifferentiator.java
+@@ -203,7 +203,8 @@
+             // update the bottom diagonal of the divided differences array
+             bottom[i] = y[i];
+             for (int j = 1; j <= i; ++j) {
+-                bottom[i - j] = (bottom[i - j + 1] - bottom[i - j]) / (j * stepSize);
++                double var_149 = bottom[i - j];
++				bottom[i - j] = (bottom[i - j + 1] - var_149) / (j * stepSize);
+             }
+ 
+             // update the top diagonal of the divided differences array

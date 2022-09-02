@@ -1,0 +1,32 @@
+diff --git a/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java b/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java
+index a5f5faf..687408f 100644
+--- a/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java
++++ b/src/main/java/org/apache/commons/math3/ode/ContinuousOutputModel.java
+@@ -266,10 +266,11 @@
+       }
+ 
+       // reduction of the table slice size
+-      while (iMax - iMin > 5) {
++      StepInterpolator var_2593 = steps.get(index);
++	while (iMax - iMin > 5) {
+ 
+         // use the last estimated index as the splitting index
+-        final StepInterpolator si = steps.get(index);
++        final StepInterpolator si = var_2593;
+         final int location = locatePoint(time, si);
+         if (location < 0) {
+           iMax = index;
+@@ -321,11 +322,11 @@
+ 
+       // now the table slice is very small, we perform an iterative search
+       index = iMin;
+-      while ((index <= iMax) && (locatePoint(time, steps.get(index)) > 0)) {
++      while ((index <= iMax) && (locatePoint(time, var_2593) > 0)) {
+         ++index;
+       }
+ 
+-      steps.get(index).setInterpolatedTime(time);
++      var_2593.setInterpolatedTime(time);
+ 
+   }
+ 

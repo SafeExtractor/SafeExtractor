@@ -1,0 +1,19 @@
+diff --git a/src/main/java/org/apache/commons/math3/stat/inference/ChiSquareTest.java b/src/main/java/org/apache/commons/math3/stat/inference/ChiSquareTest.java
+index 813f094..b228244 100644
+--- a/src/main/java/org/apache/commons/math3/stat/inference/ChiSquareTest.java
++++ b/src/main/java/org/apache/commons/math3/stat/inference/ChiSquareTest.java
+@@ -446,11 +446,12 @@
+         double obs1 = 0.0d;
+         double obs2 = 0.0d;
+         for (int i = 0; i < observed1.length; i++) {
+-            if (observed1[i] == 0 && observed2[i] == 0) {
++            long var_3856 = observed2[i];
++			if (observed1[i] == 0 && var_3856 == 0) {
+                 throw new ZeroException(LocalizedFormats.OBSERVED_COUNTS_BOTTH_ZERO_FOR_ENTRY, i);
+             } else {
+                 obs1 = observed1[i];
+-                obs2 = observed2[i];
++                obs2 = var_3856;
+                 if (unequalCounts) { // apply weights
+                     dev = obs1/weight - obs2 * weight;
+                 } else {

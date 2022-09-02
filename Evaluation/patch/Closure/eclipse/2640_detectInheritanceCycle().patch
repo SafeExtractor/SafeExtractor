@@ -1,0 +1,23 @@
+diff --git a/src/com/google/javascript/rhino/jstype/NamedType.java b/src/com/google/javascript/rhino/jstype/NamedType.java
+index 9fb2191..489c13e 100644
+--- a/src/com/google/javascript/rhino/jstype/NamedType.java
++++ b/src/com/google/javascript/rhino/jstype/NamedType.java
+@@ -187,7 +187,8 @@
+     // makes more sense. Now, resolution via registry is first in order to
+     // avoid triggering the warnings built into the resolution via properties.
+     boolean resolved = resolveViaRegistry(t, enclosing);
+-    if (detectInheritanceCycle()) {
++    boolean var_2640 = detectInheritanceCycle();
++	if (var_2640) {
+       handleTypeCycle(t);
+     }
+ 
+@@ -199,7 +200,7 @@
+     }
+ 
+     resolveViaProperties(t, enclosing);
+-    if (detectInheritanceCycle()) {
++    if (var_2640) {
+       handleTypeCycle(t);
+     }
+ 
