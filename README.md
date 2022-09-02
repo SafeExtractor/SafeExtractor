@@ -109,7 +109,7 @@ The evaluation and case study have different running models. In the evaluation p
 
 <img src="./Fig/63.PNG" align=center />
 
-#### 6.4 Review the Result
+#### 6.4 Outputs of the Replication
 
 After execution, the following windprow will pop up:
 
@@ -151,7 +151,7 @@ The evaluation and case study have different running models. In the evaluation p
 
 <img src="./Fig/53.PNG" align=center />
 
-#### 7.4 Review the Result
+#### 7.4  Outputs of the Replication
 
 After execution, the following window will pop up:
 
