@@ -41,11 +41,12 @@ This is the replication package for ICSE submission, containing both tools and d
 ## 2. Download Subject Applications
  
 
-### 2.1 Download subject projects from Zenodo
+### 2.1 Download subject projects from OneDrive
 
 Download the Zip file from:
 <[https://1drv.ms/u/s!AgwVV6C2TRb3aqkAyh7zvzWn-sg?e=EzAe1q](https://1drv.ms/u/s!AgwVV6C2TRb3aqkAyh7zvzWn-sg?e=EzAe1q)>
 
+The Zip file will be downloaded automatically once you open the link.
  
 ### 2.2 Unzip the Downloaded File 
 Open the Zip file
