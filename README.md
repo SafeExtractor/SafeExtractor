@@ -105,7 +105,7 @@ Open `Replicate` and Click `Extract Variables`
 
 #### 6.3 Manually Specify Replication of Evaluation
 
-The evaluation and case study have different running model. In the evaluation part, we should try all repetitive expressions whereas in the case study we should only try such refactoring discovered from evolution history. To this end, you should let the tool known what you want to replicate and which test project you want to replicate. 
+The evaluation and case study have different running models. In the evaluation part, we should try all repetitive expressions whereas in the case study we should only try such refactorings discovered from evolution history. To this end, you should let the tool known what you want to replicate and which test project you want to replicate. 
 
 <img src="./Fig/63.PNG" align=center />
 
@@ -147,7 +147,7 @@ Open `Replicate` and Click `Extract Variables`
 
 #### 7.3 Manually Specify Replication of Case Study
 
-The evaluation and case study have different running model. In the evaluation part, we should try all repetitive expressions whereas in the case study we should only try such refactoring discovered from evolution history. To this end, you should let the tool known what you want to replicate and which test project you want to replicate. 
+The evaluation and case study have different running models. In the evaluation part, we should try all repetitive expressions whereas in the case study we should only try such refactorings discovered from evolution history. To this end, you should let the tool known what you want to replicate and which test project you want to replicate. 
 
 <img src="./Fig/53.PNG" align=center />
 
