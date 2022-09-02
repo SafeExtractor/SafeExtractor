@@ -44,9 +44,8 @@ This is the replication package for ICSE submission, containing both tools and d
 ### 2.1 Download subject projects from Zenodo
 
 Download the Zip file from:
-<https://zenodo.org/record/7040339#.YxB8uWYzb5Y>
+<[https://1drv.ms/u/s!AgwVV6C2TRb3aqkAyh7zvzWn-sg?e=EzAe1q](https://1drv.ms/u/s!AgwVV6C2TRb3aqkAyh7zvzWn-sg?e=EzAe1q)>
 
-<img src="./Fig/23.PNG" align=center />
  
 ### 2.2 Unzip the Downloaded File 
 Open the Zip file
