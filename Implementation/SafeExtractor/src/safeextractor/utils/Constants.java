@@ -5,7 +5,7 @@ import java.util.HashMap;
 public final class Constants {
 	
 	//----------- need to configure ----------- 
-	public static final String Project_Path="/home/safe/SafeExtractor/Implementation/SafeExtractor"; 
+	public static final String Project_Path="/home/safe/SafeExtractor/Implementation/SafeExtractor/"; 
 	public static final String EXP1_ROOT = "/home/safe/SafeExtractor/CaseStudy/"; 
     public static final String EXP2_ROOT = "/home/safe/SafeExtractor/Evaluation/"; 
     //----------------------------------------- 
