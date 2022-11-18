@@ -13,14 +13,13 @@ import java.util.*;
 public class MiddleCode {
 	ASTNode loopNode;
 	ASTNode commonNode;
-	ASTNode node;// 到node结尾
+	ASTNode node;//
 	ASTNode expression1;
 	ASTNode expression2;
 	public MiddleCodeVisitor middleCodeVisitor;
 	public static HashSet<ASTNode> allStatement;
 	int endPosition;
 	public boolean valid;
-
 
 	public MiddleCode(int startPosition, int endPostion, ASTNode expression1, ASTNode expression2, ASTNode commonNode,
 			CompilationUnit compilationUnit, String key, Set<String> tempWriterSet, Set<String> tempReaderSet) {
@@ -39,8 +38,8 @@ public class MiddleCode {
 		middleCodeVisitor = new MiddleCodeVisitor(compilationUnit, startPosition, endPostion, excludeSet,
 				this.expression1, this.expression2);
 		compilationUnit.accept(middleCodeVisitor);
+		List<Thread> threadSet = new ArrayList<>();
 		for (ASTNode node : middleCodeVisitor.getAllStatement()) {
-			// 要排除的节点
 			boolean v = true;
 			for (ASTNode astnode : allStatement) {
 				if (astnode.getStartPosition() == node.getStartPosition() && astnode.getLength() == node.getLength()) {
@@ -50,21 +49,40 @@ public class MiddleCode {
 			}
 			if (v == false) {
 				continue;
-			}     
-			allStatement.add(node);
-			WriterSet writerSet = new WriterSet(node, 1, key, expression1);
-			LinkedHashSet<String> writerHashSet = new LinkedHashSet<>(writerSet.getResList());
-			ArrayList<String> list = new ArrayList<>(writerHashSet);
-			if (extractvariable.detector.Comparator.isNoOverLap(list) == false) {
-				this.valid = false;
+			}
+			if (this.valid == false) {
 				break;
+			}
+			allStatement.add(node);
+			Thread t = new Thread(() -> {
+				WriterSet writerSet = new WriterSet(node, 1, key, expression1);
+				LinkedHashSet<String> writerHashSet = new LinkedHashSet<>(writerSet.getResList());
+				ArrayList<String> list = new ArrayList<>(writerHashSet);
+//						if(node.toString().contains("serialiseRequestUrl")) {
+//							for(String s:list) {
+//								System.out.println("aaa: "+s);
+//							}
+//						}
+				if (extractvariable.detector.Comparator.isNoOverLap(list) == false) {
+					this.valid = false;
+				}
+			});
+			threadSet.add(t);
+			t.start();
+		}
+		for (Thread thread : threadSet) {
+			try {
+				thread.join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	}
 
 	private HashSet<ASTNode> excludeSwitchBranch() {
 		HashSet<ASTNode> excludeSet = new HashSet<ASTNode>();
-		
+
 		if (!(this.commonNode instanceof SwitchStatement)) {
 			ASTNode temp2 = this.expression2;
 			boolean switchFlag = false;
@@ -78,8 +96,8 @@ public class MiddleCode {
 			if (switchFlag) {
 				SwitchStatement sw = (SwitchStatement) temp2;
 				int index2 = -1;
-				boolean isbreak=false;
- 
+				boolean isbreak = false;
+
 				for (int k = sw.statements().size() - 1; k >= 0; --k) {
 					Object obj = sw.statements().get(k);
 					if (!(obj instanceof ASTNode)) {
@@ -95,9 +113,9 @@ public class MiddleCode {
 							isbreak = true;
 						}
 						if (isbreak) {
-							excludeSet.add(node); 
+							excludeSet.add(node);
 						}
-					} 
+					}
 					if (index2 == -1 && this.expression2.getStartPosition() >= node.getStartPosition()
 							&& this.expression2.getStartPosition()
 									+ this.expression2.getLength() <= node.getStartPosition() + node.getLength()) {
@@ -110,58 +128,30 @@ public class MiddleCode {
 
 		SwitchStatement sw = (SwitchStatement) commonNode;
 		int index1 = -1;
-		int index2=-1;
-		int caseIndex=-1;
-		boolean isbreak = false; 
-		
-		if(this.expression1.getStartPosition()!=this.expression2.getStartPosition()) {
+		int index2 = -1;
+		int caseIndex = -1;
+		boolean isbreak = false;
+
+		if (this.expression1.getStartPosition() != this.expression2.getStartPosition()) {
 			for (int k = 0; k < sw.statements().size(); ++k) {
-				Object obj = sw.statements().get(k);
-				if (!(obj instanceof ASTNode) ) {
-					continue;
-				} 
-				ASTNode node = (ASTNode) obj;
-				if(index2==-1 && (node instanceof SwitchCase)) {
-					caseIndex= k;
-				}
-				if (index1==-1&&this.expression1.getStartPosition() >= node.getStartPosition()
-						&& this.expression1.getStartPosition() + this.expression1.getLength() <= node.getStartPosition() + node.getLength()) {
-					index1 = k;  
-				}
-				if (index2==-1&&this.expression2.getStartPosition() >= node.getStartPosition()
-						&& this.expression2.getStartPosition() + this.expression2.getLength() <= node.getStartPosition() + node.getLength()) {
-					index2 = k; 
-				}
-				if (index1 != -1) {
-					BreakVisitor bv = new BreakVisitor(node);
-					ReturnVisitor rv = new ReturnVisitor(node);
-					node.accept(bv);
-					node.accept(rv);
-					if (bv.breakFlag || rv.returnFlag) { 
-						isbreak = true;
-					} 
-				}
-				if (isbreak) {
-					excludeSet.add(node); 
-				}
-			} 
-			if(index1!=-1&&index2!=-1 && isbreak ) {
-				 
-				for (int k = 0; k <= caseIndex; ++k) {
-					Object obj = sw.statements().get(k);
-					if (!(obj instanceof ASTNode) || obj == null ) {
-						continue;
-					}
-					excludeSet.add(( ASTNode)obj); 
-				}
-			}
-		}else {
-			for (int k = sw.statements().size()-1; k >=0; --k) {
 				Object obj = sw.statements().get(k);
 				if (!(obj instanceof ASTNode)) {
 					continue;
 				}
-				ASTNode node = (ASTNode) obj;				 
+				ASTNode node = (ASTNode) obj;
+				if (index2 == -1 && (node instanceof SwitchCase)) {
+					caseIndex = k;
+				}
+				if (index1 == -1 && this.expression1.getStartPosition() >= node.getStartPosition()
+						&& this.expression1.getStartPosition() + this.expression1.getLength() <= node.getStartPosition()
+								+ node.getLength()) {
+					index1 = k;
+				}
+				if (index2 == -1 && this.expression2.getStartPosition() >= node.getStartPosition()
+						&& this.expression2.getStartPosition() + this.expression2.getLength() <= node.getStartPosition()
+								+ node.getLength()) {
+					index2 = k;
+				}
 				if (index1 != -1) {
 					BreakVisitor bv = new BreakVisitor(node);
 					ReturnVisitor rv = new ReturnVisitor(node);
@@ -172,15 +162,46 @@ public class MiddleCode {
 					}
 				}
 				if (isbreak) {
-					excludeSet.add(node); 
+					excludeSet.add(node);
 				}
-				if (index1==-1&&this.expression1.getStartPosition() >= node.getStartPosition()
-						&& this.expression1.getStartPosition() +this.expression1.getLength() <= node.getStartPosition() + node.getLength()) {
+			}
+			if (index1 != -1 && index2 != -1 && isbreak) {
+
+				for (int k = 0; k <= caseIndex; ++k) {
+					Object obj = sw.statements().get(k);
+					if (!(obj instanceof ASTNode) || obj == null) {
+						continue;
+					}
+					excludeSet.add((ASTNode) obj);
+				}
+			}
+		} else {
+			for (int k = sw.statements().size() - 1; k >= 0; --k) {
+				Object obj = sw.statements().get(k);
+				if (!(obj instanceof ASTNode)) {
+					continue;
+				}
+				ASTNode node = (ASTNode) obj;
+				if (index1 != -1) {
+					BreakVisitor bv = new BreakVisitor(node);
+					ReturnVisitor rv = new ReturnVisitor(node);
+					node.accept(bv);
+					node.accept(rv);
+					if (bv.breakFlag || rv.returnFlag) {
+						isbreak = true;
+					}
+				}
+				if (isbreak) {
+					excludeSet.add(node);
+				}
+				if (index1 == -1 && this.expression1.getStartPosition() >= node.getStartPosition()
+						&& this.expression1.getStartPosition() + this.expression1.getLength() <= node.getStartPosition()
+								+ node.getLength()) {
 					index1 = k;
-				} 
+				}
 			}
 		}
-		  
+
 		return excludeSet;
 	}
 
@@ -200,7 +221,7 @@ public class MiddleCode {
 					if (av.occurFlag == false) {
 						excludeSet.add(((IfStatement) temp).getThenStatement());
 					}
-				}   
+				}
 			}
 		}
 		return excludeSet;
@@ -277,5 +298,5 @@ public class MiddleCode {
 			return super.preVisit2(node);
 		}
 
-	} 
+	}
 }
