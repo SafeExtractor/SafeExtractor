@@ -173,3 +173,8 @@ For example, these are the results of `patch/commons-codec/ours` folder.
 `runtime` folder contains the runtime of the eclipse/our approach for each refactoring in milliseconds. 
 
 Note: file `statistics.xlsx` is obtained after we manually checked the refactoring results of Eclipse/SafeExtractor based on `eval` floder, rather than automatically generated.
+
+# Preconditions
+FULL CONDITIONS when a set of literally identical expressions could be extracted by an extract variable refactoring:\
+$exps$ represents all expressions to be extracted, $name$ represents the name of the new variable, $p$ represents the program where $exps$ appear, and $loc$ represents the location where the new variable should be declared and initialized:
+ <img src="./Fig/pcs.PNG" align=center />
