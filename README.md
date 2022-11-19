@@ -6,6 +6,7 @@
 - [Contents of the Replication Package](#Contents-of-the-Replication-Package)
 - [Requirements](#Requirements)
 - [How to Replicate the Evaluation and Case Study?](#How-to-Replicate-the-Evaluation-and-Case-Study)
+- [Preconditions](#Preconditions)
 
 # General Introduction
 
@@ -177,4 +178,5 @@ Note: file `statistics.xlsx` is obtained after we manually checked the refactori
 # Preconditions
 FULL CONDITIONS when a set of literally identical expressions could be extracted by an extract variable refactoring:\
 $exps$ represents all expressions to be extracted, $name$ represents the name of the new variable, $p$ represents the program where $exps$ appear, and $loc$ represents the location where the new variable should be declared and initialized:
+
  <img src="./Fig/pcs.PNG" align=center />
